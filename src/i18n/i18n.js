@@ -4,6 +4,9 @@ const translations = {
     'en': {
         nt: "Natural time",
         at: "Artificial time",
+        meta: {
+            description: "Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles."
+        },
         longitude: "Longitude",
         latitude: "Latitude",
         rainbowDay: {
@@ -52,6 +55,9 @@ const translations = {
     'fr': {
         nt: "Temps naturel",
         at: "Temps artificiel",
+        meta: {
+            description: "Le temps naturel est une nouvelle manière de mesurer les mouvements du temps de façon cohérente, fraiche et élégante. Cette nouvelle convention est basée sur le bon sens et sur l'observation des cycles naturels."
+        },
         longitude: "Longitude",
         latitude: "Latitude",
         rainbowDay: {
