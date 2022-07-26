@@ -2,7 +2,7 @@
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useI18n }from 'vue-i18n'
+import { useI18n } from 'vue-i18n/index'
 import { fromLonLat, toLonLat } from 'ol/proj';
 import 'vue3-openlayers/dist/vue3-openlayers.css'
 
@@ -18,9 +18,9 @@ const geoLocChange = (loc) => {
   trackGeolocation.value = false;
 }
 
-// GET LOCATION FROM LOCALSTORAGE or default to somewhere in Pyrenées
-const latitude = ref(localStorage.latitude || 42.42);
-const longitude = ref(localStorage.longitude || 0);
+// GET LOCATION FROM LOCALSTORAGE
+const latitude = ref(localStorage.latitude);
+const longitude = ref(localStorage.longitude);
 const location = ref(localStorage.location?.replace(/_/g, " ") || i18n.t('longitude') + " 0");
 
 // ONLINE / OFFLINE STATUS
@@ -45,11 +45,12 @@ function centerChanged(center) {
 // SAVE AND GO TO THE CLOCK
 function save() {
   localStorage.location = location.value.replace(/\s/g, '_');
-  localStorage.longitude = parseFloat(longitude.value);
-  localStorage.latitude = parseFloat(latitude.value);
+  localStorage.longitude = longitude.value;
+  localStorage.latitude = latitude.value;
+  localStorage.coordinatesFrom = 'user';
   
   router.push({name: 'time', params: {
-    location: localStorage.location || "",
+    location: localStorage.location,
     latlng: localStorage.latitude + "," + localStorage.longitude
   }});
 }

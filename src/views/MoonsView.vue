@@ -9,32 +9,32 @@ import ElementIcon from '@/components/ElementIcon.vue';
 const route = useRoute();
 const router = useRouter();
 
-// Search for GPS coordinates in URL
-if(!route.params.latlng) {
-  if(!localStorage.latitude || !localStorage.longitude)
-    router.push({name: 'settings'});
-  else {
-    router.push({name: 'date', params: {
-      latlng: localStorage.latitude+','+localStorage.longitude,
-      location: localStorage.location || null
-    }});
-  }
+// If coordinates present in url && default localStorage => populate localStorage
+if(route.params.latlng && localStorage.coordinatesFrom == 'default') {
+  localStorage.latitude = parseFloat(route.params.latlng.split(',')[0]);
+  localStorage.longitude = parseFloat(route.params.latlng.split(',')[1]);
+  localStorage.location = route.params.location || '';
+  localStorage.coordinatesFrom = "url";
 }
 
-// Get coordinates from LOCAL STORAGE > DEFAULT
-const	latitude = ref(parseFloat(localStorage.latitude) || 42.42);
-const longitude = ref(parseFloat(localStorage.longitude) || 0);
-const location = ref(route.params.location || localStorage.location || "");
+// If empty url && localstorage different than default => populate url
+if(!route.params.latlng && localStorage.coordinatesFrom != 'default') {
+  router.push({name: 'date', params: {
+    latlng:localStorage.latitude+','+localStorage.longitude,
+    location: localStorage.location
+  }});
+}
+
+// Get coordinates from LOCAL STORAGE
+const latitude = ref(parseFloat(localStorage.latitude));
+const longitude = ref(parseFloat(localStorage.longitude));
+const location = ref(String(localStorage.location));
 
 // Overwrite with URL params if present
 if(route.params.latlng) {
   latitude.value = parseFloat(route.params.latlng.split(',')[0]);
   longitude.value = parseFloat(route.params.latlng.split(',')[1]);
-
-  // When coming for the first time record the URI into localStorage
-  if(!localStorage.latitude) localStorage.latitude = latitude.value;
-  if(!localStorage.longitude) localStorage.longitude = longitude.value;
-  if(!localStorage.location) localStorage.location = location.value;
+  location.value = String(route.params.location);
 }
 
 // Initialize date
@@ -114,7 +114,7 @@ onBeforeRouteUpdate((to, from) => {
           </div>
         </div>
         <div class="display-bottom">
-          <div class="time">{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
+          <div class="time">{{ location ? location + " | " : "" }}{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
         </div>
       </div>
 

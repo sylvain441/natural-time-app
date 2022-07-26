@@ -33,9 +33,19 @@ const router = createRouter({
     { 
       path: '/about', 
       name: 'about', 
-      component: About 
+      component: About,
     },
   ]
 })
+
+/**
+ * Prepopulate with defaults when first arrival
+ */
+router.beforeEach((to, from) => {
+  if(!localStorage.latitude) localStorage.latitude = 42.42;
+  if(!localStorage.longitude) localStorage.longitude = 0;
+  if(!localStorage.location) localStorage.location = '';
+  if(!localStorage.coordinatesFrom) localStorage.coordinatesFrom = 'default';
+});
 
 export default router

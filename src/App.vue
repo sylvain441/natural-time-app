@@ -1,9 +1,14 @@
 <script setup>
 
+import { useRoute } from 'vue-router';
 import { useI18n }from 'vue-i18n/index'
+
+const route = useRoute();
 const i18n = useI18n();
+
 const meta = document.getElementsByTagName('meta')
 meta.description.content = i18n.t("meta.description");
+
 </script>
 
 <template>
@@ -16,8 +21,8 @@ meta.description.content = i18n.t("meta.description");
   </router-view>
 
   <nav class="UI">
-    <router-link :to="{name: 'time'}">{{ $t('nav.clock') }}</router-link>
-    <router-link :to="{name: 'date'}">{{ $t('nav.moons') }}</router-link>
+    <router-link :to="{name: 'time', params: route.params}">{{ $t('nav.clock') }}</router-link>
+    <router-link :to="{name: 'date', params: route.params}">{{ $t('nav.moons') }}</router-link>
     &nbsp;
     <router-link :to="{name: 'settings'}"><img src="@/assets/icon/location.svg" :title="$t('nav.location')"></router-link>
     <router-link :to="{name: 'about'}"><img src="@/assets/icon/about.svg" :title="$t('nav.about')"></router-link>
