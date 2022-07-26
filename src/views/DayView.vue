@@ -196,6 +196,7 @@ onBeforeRouteUpdate((to, from) => {
 
 #backgrounds {
   z-index: 0;
+  background-color: rgba(0, 3, 13, calc(1 - var(--day-progression)));
   &, div {
     position: absolute;
     width: 100vw;

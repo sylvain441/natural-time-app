@@ -17,8 +17,6 @@ const translations = {
             time: "Y"
         },
         nav:{
-            title1: "Natural",
-            title2: "Time",
             clock: "Clock",
             moons: "13 moons",
             location: "Settings",
@@ -73,8 +71,6 @@ const translations = {
             time: "Ciel"
         },
         nav:{
-            title1: "Temps",
-            title2: "Naturel",
             clock: "Horloge",
             moons: "13 lunes",
             location: "Réglages",

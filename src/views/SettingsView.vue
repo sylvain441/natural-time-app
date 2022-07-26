@@ -90,16 +90,19 @@ function save() {
         <div>
           <table>
             <tr>
-              <td colspan="2"><h1>{{ $t('settings.title') }}</h1></td>
+              <td colspan="2">
+                <h1>{{ $t('nt') }}</h1>
+                <h2>{{ $t('settings.title') }}</h2>
+              </td>
             </tr>
             <tr>
               <td>
                 <label for="latitude">{{ $t('settings.form.latitude') }}</label><br>
-                <input type="number" name="latitude" step=".01" size="4" v-model="latitude">
+                <input type="number" name="latitude" step=".01" size="4" v-model="latitude" v-on:keyup.enter="save">
               </td>
               <td>
                 <label for="longitude">{{ $t('settings.form.longitude') }}</label><br>
-                <input type="number" name="longitude" step=".01" size="4" v-model="longitude">
+                <input type="number" name="longitude" step=".01" size="4" v-model="longitude" v-on:keyup.enter="save">
               </td>
             </tr>
             <tr>
@@ -117,7 +120,7 @@ function save() {
               </td>
             </tr>
             <tr>
-              <td colspan="2">_ - 0 - _</td>
+              <td colspan="2">. . .</td>
             </tr>
           </table>
         </div>
@@ -132,6 +135,7 @@ function save() {
 #backgrounds {
   z-index: 0;
   &, div {
+    background-color: #00030D;
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -222,11 +226,21 @@ function save() {
             padding: .2em 0;
           }
           h1{
+            font-size: 1em;
+            font-weight: 700;
+            letter-spacing: .03em;
+            line-height: 1;
+            margin-bottom: 0;
+            font-family: "Radio Canada", sans-serif;
+            text-transform: uppercase;
+          }
+          h2{
             font-size: 0.9em;
             font-weight: 300;
             letter-spacing: .03em;
             font-family: "Radio Canada", sans-serif;
             text-decoration: underline;
+            margin-top: 0;
           }
           label{
             text-transform: uppercase;
@@ -271,16 +285,18 @@ function save() {
     .left{
       height: auto;
       width: 100%;
-      top: 0;
+      top: auto;
+      bottom: 0;
       left: 0;
     }
     .right{
       z-index: 3000;
       height: auto;
       width: 100%;
-      bottom: 0;
+      top: 0;
       left: 0;
-      top: auto;
+      bottom: auto;
+      order: 1
     }
   }
 }
