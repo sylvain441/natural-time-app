@@ -34,6 +34,11 @@ const translations = {
                 trackGPS: "Find me on the map"
             },
         },
+        askForlocation:{
+            line1: "Natural",
+            line2: "Time",
+            button: "Set the clock"
+        },
         timeControl: {
             moveBackward: 'Move',
             moveForward: 'Move',
@@ -84,6 +89,11 @@ const translations = {
                 save: "Enregistrer",
                 trackGPS: "Me localiser"
             },
+        },
+        askForlocation:{
+            line1: "Temps",
+            line2: "Naturel",
+            button: "Definir l'emplacement"
         },
         timeControl: {
             moveBackward: 'Reculer de',

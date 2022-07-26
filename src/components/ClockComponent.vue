@@ -1,5 +1,10 @@
 <script setup>
 
+import { computed } from '@vue/reactivity';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 const props = defineProps({
   naturalDate: {
     type: Object,
@@ -32,6 +37,11 @@ const settings = {
   }
 }
 
+// If no coordinates provided, ask for them
+const askForLocation = computed(() => {
+  return localStorage?.coordinatesFrom == "default";
+});
+
 // SVG pie chart are not straightforward
 // We use the dashed stroke hack to build them
 function drawPeriod(start, end, stroke, radiusSize) {
@@ -50,7 +60,7 @@ function drawPeriod(start, end, stroke, radiusSize) {
 
 <template>
 
-  <svg height="100%" width="100%" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" overflow="visible">
+  <svg :class="{blurMe: askForLocation}" height="100%" width="100%" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" overflow="visible">
     <!-- SVG DEFS -->
     <defs>
       <!-- BLUR -->
@@ -149,7 +159,7 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <image id="ntzNeedle" xlink:href="../assets/clock/NTZ.png" width="100%" height="100%" />
 
     <!-- PROMPT -->
-    <g id="prompt">
+    <g id="prompt" v-if="!askForLocation">
 
       <!-- LOCATION -->
       <text id="location" x="180" y="211">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})</text>
@@ -168,12 +178,17 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <image id="sunNeedle" href="@/assets/clock/sun-needle.png" width="100%" height="100%" />
     
     <!-- TIME -->
-    <g id="time">
+    <g id="time" v-if="!askForLocation">
       <text id="units" x="174" y="196">{{ ('00'+Math.floor(naturalDate.time)).slice(-3) }}°</text>
       <text id="decimals" x="228" y="196" >{{ ('0' + Math.floor((naturalDate.time - Math.floor(naturalDate.time))  * 100/5) * 5).slice(-2) }}</text>
     </g>
 
   </svg>
+
+  <div id="askForLocation" v-if="askForLocation" @click="router.push({name: 'settings'})">
+      <h1>{{ $t('askForlocation.line1') }}<br>{{ $t('askForlocation.line2') }}</h1>
+      <button>{{ $t('askForlocation.button') }}</button>
+  </div>
 
   <!-- DEFINE GLOBAL CSS VARS -->
   <component :is="'style'">
@@ -271,5 +286,35 @@ svg{
   }
 }
 
+#askForLocation{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  font-size: min(calc(100vw * 0.04), 36px);
+  h1{
+    text-transform: uppercase;
+    font-family: "Radio Canada", sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0em;
+    color: #4D4D59;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: .1em;
+  }
+  button{
+    cursor: pointer;
+    font-size: .42em;
+    padding: 0.2em 0.5em;
+    margin: 0.1em;
+  }
+}
+
+.blurMe{
+  filter: blur(3px);
+  opacity: .8;
+}
   
 </style>
