@@ -15,8 +15,8 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,woff2}']
       },
       manifest: {
-        name: 'Natural Time',
-        //start_url: "https://naturaltime.app/?utm_source=web_app_manifest",
+        name: 'Natural time',
+        start_url: "https://naturaltime.app/?utm_source=web_app_manifest",
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
         theme_color: '#CAF3FF',
         background_color: "#CAF3FF",
@@ -66,9 +66,6 @@ export default defineConfig({
             purpose: "any maskable"
           },
         ]
-      },
-      devOptions: {
-        enabled: true
       }
     })
     ],

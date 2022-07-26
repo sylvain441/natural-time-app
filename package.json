@@ -13,6 +13,7 @@
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.10",
     "vue-long-click": "^0.1.0",
+    "vue-matomo": "^4.1.0",
     "vue-router": "^4.0.12",
     "vue3-openlayers": "^0.1.63",
     "vue3-touch-events": "^4.1.0"
