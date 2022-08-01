@@ -2,6 +2,7 @@
 
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
+import { useI18n } from 'vue-i18n/index'
 
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from '../../../natural-time-js/context';
@@ -10,6 +11,7 @@ import ClockComponent from '@/components/ClockComponent.vue';
 
 const route = useRoute();
 const router = useRouter();
+const i18n = useI18n();
 
 // If coordinates present in url && default localStorage => populate localStorage
 if(route.params.latlng && localStorage.coordinatesFrom == 'default') {
@@ -38,13 +40,13 @@ onUnmounted(() => { clearInterval(timerInterval) });
 // Get coordinates from LOCAL STORAGE
 const latitude = ref(parseFloat(localStorage.latitude));
 const longitude = ref(parseFloat(localStorage.longitude));
-const location = ref(String(localStorage.location));
+const location = ref(String(localStorage.location).replace(/_/g, " "));
 
 // Overwrite with URL params if present
 if(route.params.latlng) {
   latitude.value = parseFloat(route.params.latlng.split(',')[0]);
   longitude.value = parseFloat(route.params.latlng.split(',')[1]);
-  location.value = String(route.params.location);
+  location.value = String(route.params.location.replace(/_/g, " "));
 }
 
 const context = computed(() => {
@@ -81,7 +83,7 @@ const context = computed(() => {
   }
 
   // UPDATE PAGE TITLE
-  document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString()} | ${location.value} | ${naturalDate.toDateString()}`;
+  document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${naturalDate.toDateString()} | ${i18n.t('nt')}`;
 
 	return {
 		naturalDate: naturalDate,
@@ -174,8 +176,8 @@ onBeforeRouteUpdate((to, from) => {
   </div>
 
   <div id="legend">
-    {{ context.naturalDate }}<br>
-    <small><strong>{{ $t("nt") }}</strong></small>
+    <small><strong>{{ $t("nt") }}</strong></small><br>
+    {{ context.naturalDate }}
   </div>
 
   <!-- DEFINE GLOBAL CSS VARS -->
@@ -255,6 +257,9 @@ onBeforeRouteUpdate((to, from) => {
         transform: scale(1.2);
       }
     }
+    &[data-variation='0']:not(:disabled){
+      color: red;
+    }
     -webkit-touch-callout:none;
     -webkit-user-select:none;
     -khtml-user-select:none;
@@ -268,7 +273,7 @@ onBeforeRouteUpdate((to, from) => {
 #legend{
   position: fixed;
   z-index: 3000;
-  bottom: 1em;
+  bottom: 1.5em;
   left: 50%;
   transform: translateX(-50%);
   font-family: Monospace;

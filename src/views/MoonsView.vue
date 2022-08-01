@@ -49,7 +49,7 @@ onUnmounted(() => { clearInterval(timerInterval) });
 const today = computed(() => {
   let naturalDate = new NaturalDate(now.value, longitude.value);
   // Update page title
-  document.title = `${naturalDate.toDateString()} - ${location.value} (${naturalDate.toLongitudeString()})`;
+  document.title = `${naturalDate.toDateString()} - ${location.value ? location.value.replace(/_/g, " ") : ""} (${naturalDate.toLongitudeString()})`;
   return naturalDate;
 });
 
@@ -114,7 +114,7 @@ onBeforeRouteUpdate((to, from) => {
           </div>
         </div>
         <div class="display-bottom">
-          <div class="time">{{ location ? location + " | " : "" }}{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
+          <div class="time">{{ location ? location.replace(/_/g, " ") + " | " : "" }}{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
         </div>
       </div>
 
