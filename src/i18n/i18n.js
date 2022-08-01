@@ -19,8 +19,8 @@ const translations = {
         nav:{
             clock: "Clock",
             moons: "13 moons",
-            location: "Settings",
             about: 'Read more',
+            location: "Settings",
         },
         settings: {
             title: "Pick up a location",
@@ -73,8 +73,8 @@ const translations = {
         nav:{
             clock: "Horloge",
             moons: "13 lunes",
+            about: 'À propos',
             location: "Réglages",
-            about: 'En savoir +',
         },
         settings: {
             title: "Choisir un lieu",

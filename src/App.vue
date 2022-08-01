@@ -23,9 +23,9 @@ meta.description.content = i18n.t("meta.description");
   <nav class="UI">
     <router-link :to="{name: 'time', params: route.params}">{{ $t('nav.clock') }}</router-link>
     <router-link :to="{name: 'date', params: route.params}">{{ $t('nav.moons') }}</router-link>
+    <router-link :to="{name: 'about'}">{{ $t('nav.about') }}</router-link>
     &nbsp;
     <router-link :to="{name: 'settings'}"><img src="@/assets/icon/location.svg" :title="$t('nav.location')"></router-link>
-    <router-link :to="{name: 'about'}"><img src="@/assets/icon/about.svg" :title="$t('nav.about')"></router-link>
   </nav>
 
 </div>
