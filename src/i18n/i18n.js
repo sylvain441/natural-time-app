@@ -48,6 +48,9 @@ const translations = {
             reset: 'Set Now',
             resetTitle: 'Go back to now',
         },
+        about: {
+            title: "Learn more about natural time"
+        },
         year: "Year",
         moon: "Moon",
         day: "Day",
@@ -101,6 +104,9 @@ const translations = {
             future: 'dans le futur',
             reset: 'Remise à 0',
             resetTitle: 'Revenir à Maintenant',
+        },
+        about: {
+            title: "En savoir plus sur le temps naturel"
         },
         year: "Année",
         moon: "Lune",
