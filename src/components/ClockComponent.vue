@@ -278,8 +278,9 @@ svg{
   #location{
     text-anchor: middle;
     font-family: monospace, sans-serif;
-    font-size: 0.45em;
+    font-size: 0.5em;
     fill: #9b9bb4;
+    font-weight: bold;
   }
   #fulldate{
     text-anchor: middle;
@@ -296,6 +297,7 @@ svg{
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
   font-size: min(calc(100vw * 0.04), 36px);
+  text-shadow: 0 0 100px #000;
   h1{
     text-transform: uppercase;
     font-family: "Radio Canada", sans-serif;

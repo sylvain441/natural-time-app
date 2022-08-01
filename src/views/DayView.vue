@@ -232,7 +232,7 @@ onBeforeRouteUpdate((to, from) => {
 #time-controls{
   position: absolute;
   z-index: 4000;
-  bottom: 8%;
+  bottom: 4em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -246,6 +246,7 @@ onBeforeRouteUpdate((to, from) => {
     font-size: 0.7em;
     transition: .3s;
     transition-delay: .1s;
+    cursor: pointer;
     &:disabled{
       opacity: .5;
     }
