@@ -107,7 +107,8 @@ function drawPeriod(start, end, stroke, radiusSize) {
 
     <!-- SUN -->
     <g id="sun" width="100%" height="100%">
-      <image href="@/assets/clock/sun-circle.png" width="100%" height="100%" />
+      <image v-if="hemisphere > 0" href="@/assets/clock/northern-sun-circle.png" width="100%" height="100%" />
+      <image v-else href="@/assets/clock/southern-sun-circle.png" width="100%" height="100%" />
     </g>
 
     <!-- MOON -->
@@ -215,9 +216,11 @@ svg{
   transform-origin: 50% 50%;
 }
 
-#sun > image{
+#sun{
+  & > image{
   transform: translateX(var(--sun-altitude));
   filter: blur(calc(1px - var(--day-progression) * 1px)) var(--day-saturation);
+}
 }
 
 #blurryPeriodsRing{
