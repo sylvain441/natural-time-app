@@ -6,8 +6,9 @@ import { useI18n }from 'vue-i18n/index'
 const route = useRoute();
 const i18n = useI18n();
 
-const meta = document.getElementsByTagName('meta')
-meta.description.content = i18n.t("meta.description");
+const meta = document.getElementsByTagName('meta');
+if(meta.description)
+  meta.description.content = i18n.t("meta.description");
 
 </script>
 
@@ -24,8 +25,6 @@ meta.description.content = i18n.t("meta.description");
     <router-link :to="{name: 'time', params: route.params}">{{ $t('nav.clock') }}</router-link>
     <router-link :to="{name: 'date', params: route.params}">{{ $t('nav.moons') }}</router-link>
     <router-link :to="{name: 'about'}">{{ $t('nav.about') }}</router-link>
-    &nbsp;
-    <router-link :to="{name: 'settings'}"><img src="@/assets/icon/location.svg" :title="$t('nav.location')"></router-link>
   </nav>
 
 </div>
@@ -115,7 +114,7 @@ body {
 }
 
 .fade-enter-active, .fade-leave-active{
-  transition: .5s;
+  transition: .8s;
 }
 .fade-enter-from, .fade-leave-to{
   opacity: 0;
@@ -124,18 +123,20 @@ body {
 nav{
   position: absolute;
   z-index: 10000;
-  top: 3%;
+  top: 1.5em;
+  left:50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
+  transform: translateX(-50%);
   a{
     margin: .5em;
     transition: .4s;
     font-size: .75em;
     font-weight: 500;
     font-family: "Radio Canada", sans-serif;
-    color: rgb(137, 137, 137);
+    color: #597A82;
     text-transform: uppercase;
     text-decoration: none;
     img{
@@ -143,7 +144,7 @@ nav{
       aspect-ratio: 1 / 1;
     }
     &:hover, &.router-link-active{
-      color: rgb(118, 118, 118);
+      color: #597A82;
       text-decoration: underline;
       text-decoration-thickness: 3px;
     }
@@ -155,6 +156,20 @@ nav{
     font-weight: 500;
     margin: .5em;
     text-transform: uppercase;
+  }
+}
+
+#menu-icon{
+  position: absolute;
+  z-index: 11000;
+  top: 1.5em;
+  right: 1.5em;
+  width: 2em;
+  transform: scale(.9);
+  transition: 0.4s;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1);
   }
 }
 

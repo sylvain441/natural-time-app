@@ -2,12 +2,17 @@
 
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
+import { useI18n } from 'vue-i18n/index'
 import { NaturalDate } from 'natural-time-js';
+
 import Moon from '@/components/MoonComponent.vue';
+import LocationPicker from '@/components/LocationPicker.vue';
+
 import ElementIcon from '@/components/ElementIcon.vue';
 
 const route = useRoute();
 const router = useRouter();
+const i18n = useI18n();
 
 // If coordinates present in url && default localStorage => populate localStorage
 if(route.params.latlng && localStorage.coordinatesFrom == 'default') {
@@ -61,6 +66,9 @@ const resetHoverDate = () => { hoverDate.value = false }
 // Display either current day or hover date (if available)
 const displayDate = computed(() => hoverDate.value || today.value);
 
+// If no coordinates provided, ask for them
+const editLocation = ref(localStorage?.coordinatesFrom == "default");
+
 onMounted(() => {
   // SCROLL TO MOON
   let currentMoon = document.getElementsByClassName('currentMoon')[0];
@@ -73,7 +81,7 @@ onMounted(() => {
 // Update current location from URI change
 onBeforeRouteUpdate((to, from) => {
   if(!to.params.latlng.match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)) {
-    router.push({name: 'settings'});
+    editLocation.value = true;
   } else {
     latitude.value = parseFloat(to.params.latlng.split(',')[0]);
     longitude.value = parseFloat(to.params.latlng.split(',')[1]);
@@ -90,13 +98,17 @@ onBeforeRouteUpdate((to, from) => {
     <div id="clouds"></div>
   </div>
 
-  <div id="year">
+  <div id="menu-icon" class="UI" v-if="!editLocation" @click="editLocation = true">
+    <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
+  </div>
+
+  <div id="year" :class="{'blur-me': editLocation}">
     
     <!-- DISPLAY -->
     <div id="display">
       
       <!-- DISPLAY: YEAR ) MOON ) DAY -->
-      <div v-if="!displayDate.isRainbowDay" class="center-me">
+      <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true">
         <div class="display-top">
           <div class="display-year">
             <div class="digit">{{displayDate.toYearString()}}</div>
@@ -108,7 +120,7 @@ onBeforeRouteUpdate((to, from) => {
             <div class="label">{{ $t('moon') }}</div>
           </div>
           <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
-          <div class="display-day" @click="router.push({name: 'time'})">
+          <div class="display-day">
             <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
             <div class="label">{{ $t('day') }}</div>
           </div>
@@ -119,7 +131,7 @@ onBeforeRouteUpdate((to, from) => {
       </div>
 
       <!-- DISPLAY: RAINBOW DAY -->
-      <div v-else class="center-me">
+      <div v-else class="center-me" @click="editLocation = true">
         <div class="display-top">
           <div class="display-year">
             <div class="digit">&nbsp;</div>
@@ -153,6 +165,17 @@ onBeforeRouteUpdate((to, from) => {
       @reset-hover="resetHoverDate"></Moon>
 
   </div>
+
+  <div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+    {{ today }}
+  </div>
+
+  <transition name="fade" mode="out-in">
+  <div id="location-picker" v-if="editLocation">
+    <LocationPicker @close="editLocation = false"></LocationPicker>
+  </div>
+  </transition>
+
 </div>
 
 </template>
@@ -200,6 +223,12 @@ onBeforeRouteUpdate((to, from) => {
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  transition: 0.8s;
+  transition-delay: 0.1s;
+  &.blur-me{
+    filter: blur(10px);
+    opacity: .5;
+  }
 
   #display {
     position: relative;
@@ -211,6 +240,8 @@ onBeforeRouteUpdate((to, from) => {
       display: flex;
       flex-direction: column;
       align-items: center;
+      cursor: pointer;
+      cursor: pointer;
       .display-top{
         display: flex;
         align-items: center;
@@ -299,24 +330,34 @@ onBeforeRouteUpdate((to, from) => {
       }
     }
     #moon-14{
-      padding-bottom: 10em;
+      padding-bottom: 5em;
+      transform: none;
     }
     
     .moonComponent{
-      width: 300px;
+      width: 280px;
       margin: auto;
-      padding: 5vh 0;
+      padding: 1.2em 0;
       .dayColors{
         display: none;
       }
       .left{
         display: none;
       }
+      .bottom{
+        background-color: #FFF;
+        border-radius: 6px;
+      }
+      &:nth-child(4n+1){ transform: translateX(8%);}
+      &:nth-child(4n+3){ transform: translateX(-8%);}
     }
     @media (max-height: 500px) and (orientation: landscape) {
       #display {
         font-size: 7px;
       }
+    }
+    &.blur-me{
+      display: none;
     }
   }
 
@@ -325,12 +366,12 @@ onBeforeRouteUpdate((to, from) => {
     position: absolute;
     z-index: 3000;
     aspect-ratio: 1.618 / 1;
-    max-width: min(calc(94vh * 1.618), 92vw);
+    max-width: min(calc(94vh * 1.618), 92vw, 1323px);
     height: auto;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    font-size: min(calc(100vw * 0.01), calc(100vh * 0.02));
+    font-size: min(min(calc(100vw * 0.01), calc(100vh * 0.02)), 16px);
     padding: 5%;
     display: flex;
     flex-wrap: wrap;
@@ -400,5 +441,37 @@ onBeforeRouteUpdate((to, from) => {
   }
 }
 
+#location-picker{
+  position: relative;
+  z-index: 5000;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 700px) and (min-height: 700px) {
+  #location-picker{
+    position: absolute;
+  }
+}
+
+#legend{
+  position: absolute;
+  z-index: 3000;
+  bottom: 1.8em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Monospace;
+  text-align: center;
+  color: #7B7A8B;
+  opacity: .65;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  word-break: normal;
+  width: 100%;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}
 
 </style>

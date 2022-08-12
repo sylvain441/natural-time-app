@@ -17,25 +17,26 @@ const translations = {
             time: "Y"
         },
         nav:{
-            clock: "Clock",
+            clock: "Natural Time",
             moons: "13 moons",
             about: 'Read more',
-            location: "Settings",
+            editLocation: "Edit geolocation",
         },
-        settings: {
-            title: "Pick up a location",
-            form: {
+        locationPicker: {
+            title: {
+                line1: "Welcome",
+                line2: "at the clock of",
+                line3: "natural time",
+            },
+            advise: "Please choose a place in order to set the clock up",
+            searchFor: "Search for a place...",
+            locateMe: "Track my location",
+            form:{
                 latitude: "latitude",
                 longitude: "longitude",
-                location: "location name",
-                save: "save",
-                trackGPS: "Find me on the map"
+                save: "Save location",
             },
-        },
-        askForlocation:{
-            line1: "Natural",
-            line2: "Time",
-            button: "Set the clock"
+            promptLocationName: "Please give a name to this place"
         },
         timeControl: {
             moveBackward: 'Move',
@@ -74,25 +75,26 @@ const translations = {
             time: "Ciel"
         },
         nav:{
-            clock: "Horloge",
+            clock: "Temps Naturel",
             moons: "13 lunes",
             about: 'À propos',
-            location: "Réglages",
+            editLocation: "Modifier l'emplacement géographique",
         },
-        settings: {
-            title: "Choisir un lieu",
-            form: {
+        locationPicker: {
+            title: {
+                line1: "Bienvenue",
+                line2: "sur l'horloge du",
+                line3: "temps naturel",
+            },
+            advise: "Pour fonctionner, l'horloge a besoin d'une position géographique",
+            searchFor: "Rechercher un lieu...",
+            locateMe: "Me géolocaliser",
+            form:{
                 latitude: "latitude",
                 longitude: "longitude",
-                location: "nom du lieu",
-                save: "Enregistrer",
-                trackGPS: "Me localiser"
+                save: "Enregistrer la position",
             },
-        },
-        askForlocation:{
-            line1: "Temps",
-            line2: "Naturel",
-            button: "Definir l'emplacement"
+            promptLocationName: "Comment s'appelle cet endroit ?"
         },
         timeControl: {
             moveBackward: 'Reculer de',

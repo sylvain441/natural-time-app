@@ -1,6 +1,5 @@
 <script setup>
 
-import { computed } from '@vue/reactivity';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
@@ -37,10 +36,7 @@ const settings = {
   }
 }
 
-// If no coordinates provided, ask for them
-const askForLocation = computed(() => {
-  return localStorage?.coordinatesFrom == "default";
-});
+const emit = defineEmits(['editLocation']);
 
 // SVG pie chart are not straightforward
 // We use the dashed stroke hack to build them
@@ -60,7 +56,7 @@ function drawPeriod(start, end, stroke, radiusSize) {
 
 <template>
 
-  <svg :class="{blurMe: askForLocation}" height="100%" width="100%" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" overflow="visible">
+  <svg height="100%" width="100%" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" overflow="visible">
     <!-- SVG DEFS -->
     <defs>
       <!-- BLUR -->
@@ -160,10 +156,10 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <image id="ntzNeedle" xlink:href="../assets/clock/NTZ.png" width="100%" height="100%" />
 
     <!-- PROMPT -->
-    <g id="prompt" v-if="!askForLocation">
+    <g id="prompt">
 
       <!-- LOCATION -->
-      <text id="location" x="180" y="211">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})</text>
+      <text id="location" x="180" y="211" @click="emit('editLocation')">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})<title>{{ $t('nav.editLocation') }}</title></text>
 
       <!-- MOON LOOP -->
       <g> 
@@ -179,17 +175,13 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <image id="sunNeedle" href="@/assets/clock/sun-needle.png" width="100%" height="100%" />
     
     <!-- TIME -->
-    <g id="time" v-if="!askForLocation">
+    <g id="time" @click="emit('editLocation')">
       <text id="units" x="174" y="196">{{ ('00'+Math.floor(naturalDate.time)).slice(-3) }}°</text>
-      <text id="decimals" x="228" y="196" >{{ ('0' + Math.floor((naturalDate.time - Math.floor(naturalDate.time))  * 100/5) * 5).slice(-2) }}</text>
+      <text id="decimals" x="228" y="196" >{{ ('0' + Math.floor((naturalDate.time - Math.floor(naturalDate.time))  * 100/1) * 1).slice(-2) }}</text>
+      <title>{{ $t('nav.editLocation') }}</title>
     </g>
 
   </svg>
-
-  <div id="askForLocation" v-if="askForLocation" @click="router.push({name: 'settings'})">
-      <h1>{{ $t('askForlocation.line1') }}<br>{{ $t('askForlocation.line2') }}</h1>
-      <button>{{ $t('askForlocation.button') }}</button>
-  </div>
 
   <!-- DEFINE GLOBAL CSS VARS -->
   <component :is="'style'">
@@ -254,18 +246,27 @@ svg{
 }
 
 #time{
+  cursor: pointer;
   transform: rotate(-90deg);
   transform-origin: center center;
-    text-anchor: middle;
-    font-family: "Radio Canada", sans-serif;
-    font-weight: 700;
-    fill: #4D4D59;
+  text-anchor: middle;
+  font-family: "Radio Canada", sans-serif;
+  font-weight: 700;
+  fill: #4D4D59;
   #units{
     font-size: 3.4em;
   }
   #decimals{
-    font-size: 1.3em;
+    font-size: 1.1em;
+    font-weight: 400;
+    fill: #cccccd;
+  } 
+  &:hover{
+    #units, #decimals{
+      fill: #2b2b2b;
+    }
   }
+
 }
 
 #prompt{
@@ -276,6 +277,7 @@ svg{
   }
 
   #location{
+    cursor: pointer;
     text-anchor: middle;
     font-family: monospace, sans-serif;
     font-size: 0.5em;
@@ -288,38 +290,6 @@ svg{
     font-size: 0.45em;
     fill: #bfbfbf;
   }
-}
-
-#askForLocation{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  text-align: center;
-  font-size: min(calc(100vw * 0.04), 36px);
-  text-shadow: 0 0 100px #000;
-  h1{
-    text-transform: uppercase;
-    font-family: "Radio Canada", sans-serif;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0em;
-    color: #4D4D59;
-    font-size: 1em;
-    cursor: pointer;
-    margin-top: .1em;
-  }
-  button{
-    cursor: pointer;
-    font-size: .42em;
-    padding: 0.2em 0.5em;
-    margin: 0.1em;
-  }
-}
-
-.blurMe{
-  filter: blur(3px);
-  opacity: .8;
 }
   
 </style>

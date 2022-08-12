@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import SettingsView from '../views/SettingsView.vue'
 import DayView from '../views/DayView.vue'
 import MoonsView from '../views/MoonsView.vue'
 import About from '../views/About.vue'
@@ -13,11 +12,6 @@ const checkLatlngFormat = (to, from) => {
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
-    { 
-      path: '/settings', 
-      name: 'settings', 
-      component: SettingsView
-    },
     { 
       path: '/:latlng?/:location?', 
       name: 'time', 

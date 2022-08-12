@@ -3,6 +3,8 @@
 import { computed } from 'vue';
 import { NaturalDate } from 'natural-time-js';
 
+//import ElementIcon from '@/components/ElementIcon.vue';
+
 const props = defineProps({
   today: {
     type: NaturalDate,
@@ -188,7 +190,6 @@ const daysOfMoon = computed(() => {
       filter: saturate(100%);
     }
   }
-
   
   .dayOfMoon{
     position: relative;

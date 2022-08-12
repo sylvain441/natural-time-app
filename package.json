@@ -10,6 +10,7 @@
   "dependencies": {
     "astronomy-engine": "^2.0.15",
     "natural-time-js": "^1.0.1",
+    "ol-geocoder": "^4.1.2",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.10",
     "vue-long-click": "^0.1.0",

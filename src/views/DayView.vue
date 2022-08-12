@@ -8,6 +8,7 @@ import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from '../../../natural-time-js/context';
 
 import ClockComponent from '@/components/ClockComponent.vue';
+import LocationPicker from '@/components/LocationPicker.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -97,6 +98,9 @@ const context = computed(() => {
 // Hemisphere
 const hemisphere = computed(() => latitude.value >= 0 ? 1 : -1)
 
+// If no coordinates provided, ask for them
+const editLocation = ref(localStorage?.coordinatesFrom == "default");
+
 const timeVariation = ref(0);
 // Allows user to move through time with buttons
 function timeTravel(event) {
@@ -122,7 +126,7 @@ function displayUI() {
 // Update current location from URI change
 onBeforeRouteUpdate((to, from) => {
   if(to.params.length && !to.params.latlng.match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)) {
-    router.push({name: 'settings'});
+    editLocation.value = true;
   } else {
     if(to.params.latlng !== undefined) {
       latitude.value = parseFloat(to.params.latlng.split(',')[0]);
@@ -138,15 +142,18 @@ onBeforeRouteUpdate((to, from) => {
 
 <template>
 
-<div v-touch:rollover="displayUI" v-touch:release="displayUI">
+<div id="day-view" v-touch:rollover="displayUI" v-touch:release="displayUI">
 
   <div id="backgrounds">
     <div id="stars" ></div>
     <div id="clouds"></div>
   </div>
 
-  <div id="ClockComponent">
+  <div id="menu-icon" class="UI" v-if="!editLocation" @click="editLocation = true">
+    <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
+  </div>
 
+  <div id="ClockComponent" :class="{'blur-me': editLocation}">
     <!-- DIAL ClockComponent -->
     <ClockComponent 
       :naturalDate="context.naturalDate"
@@ -154,11 +161,18 @@ onBeforeRouteUpdate((to, from) => {
       :moonContext="context.moon"
       :hemisphere="hemisphere"
       :location="location"
+      @editLocation="editLocation = true"
       ></ClockComponent>
   </div>
 
+  <transition name="fade" mode="out-in">
+  <div id="location-picker" v-if="editLocation" :style="{backgroundColor: 'rgba(255,255,255,' + (1-context.dayProgression)*0.9 + ')'}">
+    <LocationPicker @close="editLocation = false"></LocationPicker>
+  </div>
+  </transition>
+
   <!-- TIME CONTROLS -->
-  <div id="time-controls" :class="timeVariation ? '' : 'UI'">
+  <div id="time-controls" v-if="!editLocation" :class="timeVariation ? '' : 'UI'">
     <button v-touch:tap="timeTravel" v-longclick="timeTravel"
       :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
     <button v-touch:tap="timeTravel" v-longclick="timeTravel"
@@ -175,8 +189,7 @@ onBeforeRouteUpdate((to, from) => {
       :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
   </div>
 
-  <div id="legend">
-    <small><strong>{{ $t("nt") }}</strong></small><br>
+  <div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
     {{ context.naturalDate }}
   </div>
 
@@ -195,6 +208,12 @@ onBeforeRouteUpdate((to, from) => {
 </template>
 
 <style lang="scss">
+
+#day-view{
+  position: relative;
+  height: 100vh;
+  min-height: 555px;
+}
 
 #backgrounds {
   z-index: 0;
@@ -218,21 +237,40 @@ onBeforeRouteUpdate((to, from) => {
   }
 }
 
+
 #ClockComponent {
   position: absolute;
   z-index: 3000;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: max(80vmin, calc(100vmin - calc((100vmin - 350px) / 2)));
+  width: max(65vmin, calc(100vmin - calc((100vmin - 350px) / 2)));
   max-width: 888px;
   aspect-ratio: 1 / 1;
+  transition: 1.5s;
+  &.blur-me{
+    filter: blur(10px);
+    opacity: 0;
+  }
+}
+
+#location-picker{
+  position: relative;
+  z-index: 5000;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 700px) and (min-height: 700px) {
+  #location-picker{
+    position: absolute;
+  }
 }
 
 #time-controls{
   position: absolute;
   z-index: 4000;
-  bottom: 4em;
+  bottom: 3.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -272,9 +310,9 @@ onBeforeRouteUpdate((to, from) => {
 }
 
 #legend{
-  position: fixed;
+  position: absolute;
   z-index: 3000;
-  bottom: 1.5em;
+  bottom: 1.8em;
   left: 50%;
   transform: translateX(-50%);
   font-family: Monospace;
@@ -285,6 +323,10 @@ onBeforeRouteUpdate((to, from) => {
   text-transform: uppercase;
   word-break: normal;
   width: 100%;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 
 @media (max-height: 500) and (orientation: landscape) {
