@@ -1,14 +1,10 @@
-# natural-time
+# Natural Time
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to natural time app.
 
-## Recommended IDE Setup
+![Natural time app](.github/natural-time-app.jpg)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Play and read more about natural time at [https://naturaltime.app/](https://naturaltime.app/)
 
 ## Project Setup
 
@@ -26,4 +22,10 @@ npm run dev
 
 ```sh
 npm run build
+```
+
+### Test the compiled production version before deployment
+
+```sh
+npm run preview
 ```
