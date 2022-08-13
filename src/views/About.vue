@@ -20,27 +20,18 @@ document.title = `${i18n.t('about.title')}`;
     
     <p style="text-align: center;"><strong>Quelle heure est-il ?</strong><br>Le soleil est à 113° 🌞 😎</p>
 
-    <p>Le temps naturel est un <strong>outil de mesure du temps</strong> intimement lié au vivant. Cette nouvelle convention, simple, fraiche et cohérente, est basée sur le bon sens et l’observation des cycles naturels.</p>
+    <p>Le temps naturel est un <strong>outil de mesure du temps</strong> intimement lié au vivant. Cette nouvelle convention, simple, fraiche et cohérente, est basée sur le bon sens et l’observation des cycles naturels. Le temps qui passe n'est plus compté avec des heures/minutes/secondes compliquées, ni des mois disproportionnés</p>
 
-    <p>Une introduction au temps naturel est consultable ici : <br><a href="https://sylvainbiquette.xyz/presentation-horloge-temps-naturel">sylvainbiquette.xyz/presentation-horloge-temps-naturel</a> (en français)</p>
+    <p>Pour bien comprendre, une introduction au temps naturel est consultable ici : <br><a href="https://sylvainbiquette.xyz/presentation-horloge-temps-naturel">sylvainbiquette.xyz/presentation-horloge-temps-naturel</a> (en français)</p>
     <p>Les spécifications techniques complètes sont disponibles ici :<br><a href="https://github.com/sylvain441/natural-time">github.com/sylvain441/natural-time</a> (en anglais)</p>
-    
-    <!--<h3>En quelques mots :</h3>
-    <ul>
-      <li>Le temps n’est plus fragmenté en heures/minutes/secondes mais en <strong>degrés de rotation du soleil dans le ciel</strong> depuis un point d’observation donné.</li>
-      <li>Les jours qui passent sont comptés selon un rythme régulier de <strong>13 lunes de 28 jours</strong>.</li>
-      <li>Chacune d’entre elles est composée d’exactement <strong>4 semaines de 7 jours</strong>.</li>
-      <li>Une année naturelle commence aux alentours du solstice d’hiver (hémisphère nord).</li>
-      <li>Elle est composée de 13 x 28 jours + 1 ou 2 jour(s) arc-en-ciel (rainbow day) pour une durée totale de 365 ou 366 jours.</li>
-    </ul>-->
     
     <h2>Application naturaltime.app</h2>
     
-    <p>L’application open source <a href="https://naturaltime.app">naturaltime.app</a> est la première horloge basée sur le temps naturel. Elle est hébergée sur <a href="https://github.com/sylvain441/natural-time-app">github</a> libérée sous licence Creative Common Zero.</p>
+    <p>Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple horloge effectuant le tour du cadran en une journée suffit pour l'adopter. Cette application open source a toutefois été créée (<a href="https://naturaltime.app">naturaltime.app</a>) pour comprendre et pour jouer avec l'horloge du temps naturel. Elle est hébergée sur <a href="https://github.com/sylvain441/natural-time-app">github</a> et libérée sous licence Creative Common Zero.</p>
 
     <h3>Comment l'installer</h3>
 
-    <p>Elle ne se trouve pas dans l’AppStore ni le PlayStore mais peut quand même s’installer sur certains appareils/navigateurs pour une consultation hors-ligne. Il suffit simplement de se rendre sur <a href="https://naturaltime.app">naturaltime.app</a> puis de cliquer sur :</p>
+    <p>Ce n'est pas vraiment une application... Mais plutôt un site web qui peut fonctionner hors-ligne. Ne la cherche donc pas dans l’AppStore ni le PlayStore, il suffit simplement de se rendre sur <a href="https://naturaltime.app">naturaltime.app</a> puis de cliquer sur :</p>
     <ul>
       <li>iOS Safari : <em>Partager &gt; Sur l’écran d’accueil</em></li>
       <li>Android Chrome : <em>Menu &gt; Ajouter à l’écran d’accueil</em></li>
@@ -57,13 +48,13 @@ document.title = `${i18n.t('about.title')}`;
 
     <h3>Comment partager</h3>
 
-    <p>Il est possible de créer une URL personnalisée à partager avec ses amis ou pour enregistrer en tant que favoris :<br><code>https://naturaltime.app/#/latitude,longitude/Nom_personnalisé_du_lieu</code>.<br>Ex: <code>https://naturaltime.app/#/29.97,31.13/Pyramide_de_Khéops</code></p>
-    <p>Un simple copier/coller de l'adresse web (URL) suffit à partager l'horloge du temps naturel pré-programmée à un emplacement géographique donné.</p>
+    <p>Il est possible de créer une URL personnalisée à partager avec ses amis ou pour enregistrer en tant que favori :<br><code>https://naturaltime.app/#/latitude,longitude/Nom_personnalisé_du_lieu</code>.<br>Ex: <code>https://naturaltime.app/#/29.97,31.13/Pyramide_de_Khéops</code></p>
+    <p>Un simple copier/coller de l'adresse web (URL) suffit pour partager l'horloge du temps naturel pré-programmée à un emplacement géographique donné.</p>
     
     
     <h2>Contribuer</h2>
     
-    <p>Si le projet parle à ton cœur, n’hésite pas à contribuer à ta façon. L’application aurait bien besoin d’un regard expert pour y apporter un peu d’optimisation.</p>
+    <p>Si le projet parle à ton cœur, n’hésite pas à contribuer de la façon qui te ressemble. L’application aurait bien besoin d’un regard expert pour y apporter un peu d’optimisation.</p>
     <p>Le code source du temps naturel est divisé en trois parties :</p>
     <ul>
       <li>Spécifications complètes du temps naturel (no code) : <a href="https://github.com/sylvain441/natural-time">github.com/sylvain441/natural-time</a></li>
@@ -77,7 +68,7 @@ document.title = `${i18n.t('about.title')}`;
 
     <h2>Remerciements</h2>
 
-    <p>Un grand merci aux montagnes, aux chèvres, lamas et fourmis pour leur inspiration.<br>Gratitude infinie pour Toto et Uncle Skywalker, deux explorateurs du temps. Merci d'exister.</p>
+    <p>Un grand merci aux montagnes, aux chèvres, aux lamas et aux fourmis pour leur inspiration.<br>Gratitude infinie pour Toto et Uncle Skywalker, deux explorateurs du temps. Merci d'exister.</p>
     <p>Remerciement à Don Cross l'auteur d'<a href="https://github.com/cosinekitty/astronomy/">astronomy engine</a> qui permet à l'application de calculer le mouvement des astres dans le ciel. Merci également à tout l'univers open source qui offre au monde des solutions et des ressources abouties telles que Vue3, Vite, OpenLayers, OpenStreetMap, ... utilisées pour créer cette application</p>
     <p>Le temps naturel est né dans les Alpes Françaises lors du printemps/été 2022.<br>Pour toutes questions : <a href="mailto:sylvain441@pm.me">sylvain441@pm.me</a> – <a href="https://t.me/sylvain441">@sylvain441</a> (telegram).</p>
     <p style="text-align:center"><br><br>🌍 One love 🌎<br>🏔 🐐 🌞 🌈</p>
