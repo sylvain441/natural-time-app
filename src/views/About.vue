@@ -20,9 +20,9 @@ document.title = `${i18n.t('about.title')}`;
     
     <p style="text-align: center;"><strong>Quelle heure est-il ?</strong><br>Le soleil est à 113° 🌞 😎</p>
 
-    <p>Le temps naturel est un <strong>outil de mesure du temps</strong> intimement lié au vivant. Cette nouvelle convention, simple, fraiche et cohérente, est basée sur le bon sens et l’observation des cycles naturels. Le temps qui passe n'est plus compté avec des heures/minutes/secondes compliquées, ni des mois disproportionnés</p>
+    <p>Le temps naturel est un <strong>outil de mesure du temps</strong> intimement lié au vivant. Cette nouvelle convention, simple, fraiche et cohérente, est basée sur le bon sens et l’observation des cycles naturels. Le temps qui passe n'est plus divisé en heures/minutes/secondes compliquées, ni en mois de différentes durées, mais plutôt en degrés de rotation du soleil dans le ciel. Le calendrier est remplacé par une spirale de 13 lunes de 28 jours exactement + le jour arc-en-ciel 🌈.</p>
 
-    <p>Pour bien comprendre, une introduction au temps naturel est consultable ici : <br><a href="https://sylvainbiquette.xyz/presentation-horloge-temps-naturel">sylvainbiquette.xyz/presentation-horloge-temps-naturel</a> (en français)</p>
+    <p>Une introduction complète au temps naturel est consultable ici : <br><a href="https://sylvainbiquette.xyz/presentation-horloge-temps-naturel">sylvainbiquette.xyz/presentation-horloge-temps-naturel</a> (en français)</p>
     <p>Les spécifications techniques complètes sont disponibles ici :<br><a href="https://github.com/sylvain441/natural-time">github.com/sylvain441/natural-time</a> (en anglais)</p>
     
     <h2>Application naturaltime.app</h2>
