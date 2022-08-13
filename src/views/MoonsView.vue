@@ -108,7 +108,7 @@ onBeforeRouteUpdate((to, from) => {
     <div id="display">
       
       <!-- DISPLAY: YEAR ) MOON ) DAY -->
-      <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true">
+      <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
         <div class="display-top">
           <div class="display-year">
             <div class="digit">{{displayDate.toYearString()}}</div>
@@ -131,7 +131,7 @@ onBeforeRouteUpdate((to, from) => {
       </div>
 
       <!-- DISPLAY: RAINBOW DAY -->
-      <div v-else class="center-me" @click="editLocation = true">
+      <div v-else class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
         <div class="display-top">
           <div class="display-year">
             <div class="digit">&nbsp;</div>
@@ -316,21 +316,10 @@ onBeforeRouteUpdate((to, from) => {
     }
 
     #moon-1{
-      .dayColors{
-        display: block;
-      }
-      .title{
-        transform: translateY(-100%);
-      }
-      &::before{
-        content: '';
-        display: block;
-        width: 100%;
-        height: 8em;
-      }
+      padding-top: 133px;
     }
     #moon-14{
-      padding-bottom: 5em;
+      padding-bottom: 177px;
       transform: none;
     }
     
@@ -338,6 +327,20 @@ onBeforeRouteUpdate((to, from) => {
       width: 280px;
       margin: auto;
       padding: 1.2em 0;
+      &.currentMoon{
+      .title{
+          transform: translateY(-100%);
+        }
+        &::before{
+          content: '';
+          display: block;
+          width: 100%;
+          height: 2em;
+        }
+        .dayColors{
+          display: block;
+        }
+      }
       .dayColors{
         display: none;
       }
@@ -366,13 +369,13 @@ onBeforeRouteUpdate((to, from) => {
     position: absolute;
     z-index: 3000;
     aspect-ratio: 1.618 / 1;
-    max-width: min(calc(94vh * 1.618), 92vw, 1323px);
+    max-width: min(calc(75vh * 1.618), 92vw, 1323px);
     height: auto;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     font-size: min(min(calc(100vw * 0.01), calc(100vh * 0.02)), 16px);
-    padding: 5%;
+    //padding: 5%;
     display: flex;
     flex-wrap: wrap;
 

@@ -139,6 +139,7 @@ nav{
     color: #597A82;
     text-transform: uppercase;
     text-decoration: none;
+    white-space: nowrap;
     img{
       width: 2em;
       aspect-ratio: 1 / 1;

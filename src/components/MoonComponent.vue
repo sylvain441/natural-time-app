@@ -180,7 +180,6 @@ const daysOfMoon = computed(() => {
 
   .moon-rainbow-day{
     filter: saturate(50%);
-    &,& > div{ height: 100% }
     img{
       position: absolute;
       display: block;

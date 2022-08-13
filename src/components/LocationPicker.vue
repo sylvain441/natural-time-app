@@ -4,13 +4,9 @@ import { useRouter } from "vue-router";
 import { useI18n } from 'vue-i18n/index'
 import { fromLonLat, toLonLat } from 'ol/proj';
 
-import { NaturalDate } from 'natural-time-js';
-import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from 'natural-time-js/context';
-
 import Geocoder from "ol-geocoder/dist/ol-geocoder.js";
 import Control from 'ol/control/Control';
 import ElementIcon from '@/components/ElementIcon.vue';
-import ClockComponent from '@/components/ClockComponent.vue';
 // import "ol-geocoder/dist/ol-geocoder.min.css"; // Overriden below
 
 import 'vue3-openlayers/dist/vue3-openlayers.css'
@@ -62,42 +58,24 @@ function updateCenter() {
     view.value.setCenter(fromLonLat([longitude.value, latitude.value]));
 }
 
-const locationPickerContext = computed(() => {
-
-  let artificialDate = new Date();
-  let naturalDate = new NaturalDate(artificialDate, parseFloat(longitude.value));
-
-	return {
-		naturalDate: naturalDate,
-		artificialDate: artificialDate,
-    hemisphere: parseFloat(latitude.value) >= 0 ? 1 : -1,
-		sun: { 
-      ...NaturalSunAltitude(naturalDate, parseFloat(latitude.value)),
-      ...NaturalSunEvents(naturalDate, parseFloat(latitude.value))
-    },
-		moon: {
-      ...NaturalMoonPosition(naturalDate, parseFloat(latitude.value)),
-      ...NaturalMoonEvents(naturalDate, parseFloat(latitude.value))
-    },
-	};
-});
-
-
 onMounted(() => {
     // Geolocation button
     map.value.map.addControl( new Control({ element: locateButton.value }) );
     
     // Address search field
     const geocoder = new Geocoder('nominatim', {
-        provider: 'osm',
+        provider: 'photon',
         lang: 'fr-FR',
         placeholder: i18n.t('locationPicker.searchFor'),
         targetType: 'text-input',
+        autoComplete: true,
+        autoCompleteMinLength: 4,
+        autoCompleteTimeout: 500,
         limit: 4,
-        keepOpen: true
+        keepOpen: true,
     });
     geocoder.on('addresschosen', function(evt) {
-        location.value = evt.place.address.city || evt.place.address.state || evt.place.address.country;
+        location.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
     });
     map.value.map.addControl(geocoder);
 
@@ -135,16 +113,6 @@ function save() {
     </h1>
 
     <div id="map">
-        <article id="clock">
-          <ClockComponent 
-          :naturalDate="locationPickerContext.naturalDate"
-          :sunContext="locationPickerContext.sun"
-          :moonContext="locationPickerContext.moon"
-          :hemisphere="locationPickerContext.hemisphere"
-          :location="i18n.t('longitude') + ' ' + parseInt(longitude).toFixed(0) "
-          ></ClockComponent>
-        </article>
-
         <ol-map id="map-canvas" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" ref="map">
 
           <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" @centerChanged="centerChanged" />

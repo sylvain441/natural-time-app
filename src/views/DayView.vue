@@ -153,7 +153,7 @@ onBeforeRouteUpdate((to, from) => {
     <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
   </div>
 
-  <div id="ClockComponent" :class="{'blur-me': editLocation}">
+  <div id="ClockComponent" v-if="!editLocation">
     <!-- DIAL ClockComponent -->
     <ClockComponent 
       :naturalDate="context.naturalDate"
@@ -212,6 +212,7 @@ onBeforeRouteUpdate((to, from) => {
 #day-view{
   position: relative;
   height: 100vh;
+  height: -webkit-fill-available;
   min-height: 555px;
 }
 
