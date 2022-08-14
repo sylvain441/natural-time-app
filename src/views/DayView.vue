@@ -210,9 +210,7 @@ onBeforeRouteUpdate((to, from) => {
 <style lang="scss">
 
 #day-view{
-  position: relative;
-  height: 100vh;
-  height: -webkit-fill-available;
+  height: 100%;
   min-height: 555px;
 }
 
