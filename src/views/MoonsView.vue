@@ -1,64 +1,44 @@
 <script setup>
-
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router';
-import { useI18n } from 'vue-i18n/index'
+import { useI18n } from 'vue-i18n'
+import { storeToRefs } from 'pinia'
+import { useContextStore } from '@/stores/contextStore'
 import { NaturalDate } from 'natural-time-js';
 
 import Moon from '@/components/MoonComponent.vue';
 import LocationPicker from '@/components/LocationPicker.vue';
-
 import ElementIcon from '@/components/ElementIcon.vue';
 
-const route = useRoute();
-const router = useRouter();
 const i18n = useI18n();
 
-// If coordinates present in url && default localStorage => populate localStorage
-if(route.params.latlng && localStorage.coordinatesFrom == 'default') {
-  localStorage.latitude = parseFloat(route.params.latlng.split(',')[0]);
-  localStorage.longitude = parseFloat(route.params.latlng.split(',')[1]);
-  localStorage.location = route.params.location || '';
-  localStorage.coordinatesFrom = "url";
-}
+const contextStore = useContextStore()
+const { latitude, longitude, location, currentTime } = storeToRefs(contextStore)
+onMounted(() => { contextStore.initialize() });
+onUnmounted(() => { contextStore.terminate() });
 
-// If empty url && localstorage different than default => populate url
-if(!route.params.latlng && localStorage.coordinatesFrom != 'default') {
-  router.push({name: 'date', params: {
-    latlng:localStorage.latitude+','+localStorage.longitude,
-    location: localStorage.location
-  }});
-}
+// Initialize store from localStorage or URL
+onMounted(() => {
+  contextStore.initialize()
 
-// Get coordinates from LOCAL STORAGE
-const latitude = ref(parseFloat(localStorage.latitude));
-const longitude = ref(parseFloat(localStorage.longitude));
-const location = ref(String(localStorage.location));
+  // SCROLL TO MOON
+  let currentMoon = document.getElementsByClassName('currentMoon')[0];
+  window.scrollTo({
+      top: currentMoon.offsetTop,
+      behavior: 'smooth'
+  });
+});
 
-// Overwrite with URL params if present
-if(route.params.latlng) {
-  latitude.value = parseFloat(route.params.latlng.split(',')[0]);
-  longitude.value = parseFloat(route.params.latlng.split(',')[1]);
-  location.value = String(route.params.location);
-}
-
-// Initialize date
-const now = ref(new Date());
-
-// Update clock automatically
-let timerInterval = null;
-onMounted(() => { timerInterval = setInterval(() => now.value = Date.now(), 12000) });
-onUnmounted(() => { clearInterval(timerInterval) });
+onUnmounted(() => { contextStore.terminate() });
 
 // Translate to natural date
 const today = computed(() => {
-  let naturalDate = new NaturalDate(now.value, longitude.value);
+  let naturalDate = new NaturalDate(currentTime.value, longitude.value);
   // Update page title
   document.title = `${naturalDate.toDateString()} - ${location.value ? location.value.replace(/_/g, " ") : ""} (${naturalDate.toLongitudeString()})`;
   return naturalDate;
 });
 
-// Retreive hover date from subcomponents
+// Retrieve hover date from subcomponents
 const hoverDate = ref(false);
 const hoverDateEvent = (payload) => { hoverDate.value = payload }
 const resetHoverDate = () => { hoverDate.value = false }
@@ -67,114 +47,95 @@ const resetHoverDate = () => { hoverDate.value = false }
 const displayDate = computed(() => hoverDate.value || today.value);
 
 // If no coordinates provided, ask for them
-const editLocation = ref(localStorage?.coordinatesFrom == "default");
+const editLocation = ref(contextStore.coordinatesFrom === "default");
 
-onMounted(() => {
-  // SCROLL TO MOON
-  let currentMoon = document.getElementsByClassName('currentMoon')[0];
-  window.scrollTo({
-      top: currentMoon.offsetTop,
-      behavior: 'smooth'
-  });
-})
-
-// Update current location from URI change
-onBeforeRouteUpdate((to, from) => {
-  if(!to.params.latlng.match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/)) {
-    editLocation.value = true;
-  } else {
-    latitude.value = parseFloat(to.params.latlng.split(',')[0]);
-    longitude.value = parseFloat(to.params.latlng.split(',')[1]);
-    location.value = to.params.location;
-  }
-})
 </script>
 
 <template>
+  
+  <div id="moons-view">
 
-<div id="moons-view">
+<div id="backgrounds">
+  <div id="clouds"></div>
+</div>
 
-  <div id="backgrounds">
-    <div id="clouds"></div>
-  </div>
+<div id="menu-icon" class="UI" v-if="!editLocation" @click="editLocation = true">
+  <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
+</div>
 
-  <div id="menu-icon" class="UI" v-if="!editLocation" @click="editLocation = true">
-    <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
-  </div>
-
-  <div id="year" :class="{'blur-me': editLocation}">
+<div id="year" :class="{'blur-me': editLocation}">
+  
+  <!-- DISPLAY -->
+  <div id="display">
     
-    <!-- DISPLAY -->
-    <div id="display">
-      
-      <!-- DISPLAY: YEAR ) MOON ) DAY -->
-      <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
-        <div class="display-top">
-          <div class="display-year">
-            <div class="digit">{{displayDate.toYearString()}}</div>
-            <div class="label">{{ $t('year') }}</div>
-          </div>
-          <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
-          <div class="display-moon">
-            <div class="digit">{{displayDate.toMoonString()}}</div>
-            <div class="label">{{ $t('moon') }}</div>
-          </div>
-          <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
-          <div class="display-day">
-            <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
-            <div class="label">{{ $t('day') }}</div>
-          </div>
+    <!-- DISPLAY: YEAR ) MOON ) DAY -->
+    <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+      <div class="display-top">
+        <div class="display-year">
+          <div class="digit">{{displayDate.toYearString()}}</div>
+          <div class="label">{{ $t('year') }}</div>
         </div>
-        <div class="display-bottom">
-          <div class="time">{{ location ? location.replace(/_/g, " ") + " | " : "" }}{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
+        <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
+        <div class="display-moon">
+          <div class="digit">{{displayDate.toMoonString()}}</div>
+          <div class="label">{{ $t('moon') }}</div>
+        </div>
+        <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
+        <div class="display-day">
+          <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
+          <div class="label">{{ $t('day') }}</div>
         </div>
       </div>
-
-      <!-- DISPLAY: RAINBOW DAY -->
-      <div v-else class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
-        <div class="display-top">
-          <div class="display-year">
-            <div class="digit">&nbsp;</div>
-            <div class="label">{{ $t('rainbowDay.out') }}</div>
-          </div>
-          <div class="separator"></div>
-          <div class="display-moon">
-            <div class="digit">{{ $t('rainbowDay.day') }}</div>
-            <div class="label">{{ $t('rainbowDay.of') }}</div>
-          </div>
-          <div class="separator"></div>
-          <div class="display-day">
-            <div class="digit">&nbsp;</div>
-            <div class="label">{{ $t('rainbowDay.time') }}</div>
-          </div>
-        </div>
-        <div class="display-bottom" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">
-          <div v-for="color = 1 in 7">
-            <ElementIcon :element="4 - Math.abs(4 - color)" :color="color"></ElementIcon>
-          </div>
-        </div>
+      <div class="display-bottom">
+        <div class="time">{{ location ? location.replace(/_/g, " ") + " | " : "" }}{{ today.toTimeString(2,5) }} {{ today.toLongitudeString() }}</div>
       </div>
     </div>
 
-    <!-- 13 MOONS -->
-    <Moon v-for="moon = 1 in 14" 
-      :id="'moon-'+moon"
-      :today="today" 
-      :moon="moon" 
-      @hover-date="hoverDateEvent"
-      @reset-hover="resetHoverDate"></Moon>
-
+    <!-- DISPLAY: RAINBOW DAY -->
+    <div v-else class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+      <div class="display-top">
+        <div class="display-year">
+          <div class="digit">&nbsp;</div>
+          <div class="label">{{ $t('rainbowDay.out') }}</div>
+        </div>
+        <div class="separator"></div>
+        <div class="display-moon">
+          <div class="digit">{{ $t('rainbowDay.day') }}</div>
+          <div class="label">{{ $t('rainbowDay.of') }}</div>
+        </div>
+        <div class="separator"></div>
+        <div class="display-day">
+          <div class="digit">&nbsp;</div>
+          <div class="label">{{ $t('rainbowDay.time') }}</div>
+        </div>
+      </div>
+      <div class="display-bottom" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">
+        <div v-for="color = 1 in 7">
+          <ElementIcon :element="4 - Math.abs(4 - color)" :color="color"></ElementIcon>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
-    {{ today }}
-  </div>
+  <!-- 13 MOONS -->
+  <Moon v-for="moon = 1 in 14" 
+    :id="'moon-'+moon"
+    :today="today" 
+    :moon="moon" 
+    @hover-date="hoverDateEvent"
+    @reset-hover="resetHoverDate"></Moon>
 
-  <transition name="fade" mode="out-in">
-  <div id="location-picker" v-if="editLocation">
-    <LocationPicker @close="editLocation = false"></LocationPicker>
-  </div>
-  </transition>
+</div>
+
+<div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+  {{ today }}
+</div>
+
+<transition name="fade" mode="out-in">
+<div id="location-picker" v-if="editLocation">
+  <LocationPicker @close="editLocation = false"></LocationPicker>
+</div>
+</transition>
 
 </div>
 

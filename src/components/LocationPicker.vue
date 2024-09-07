@@ -1,36 +1,33 @@
 <script setup>
-import { onMounted, ref, defineEmits, computed } from "vue";
-import { useRouter } from "vue-router";
-import { useI18n } from 'vue-i18n/index'
+import { onMounted, ref, defineEmits, watch } from "vue";
+import { useI18n } from 'vue-i18n'
 import { fromLonLat, toLonLat } from 'ol/proj';
+import { useContextStore } from '@/stores/contextStore';
+import { storeToRefs } from 'pinia';
 
 import Geocoder from "ol-geocoder/dist/ol-geocoder.js";
 import Control from 'ol/control/Control';
+import Geolocation from 'ol/Geolocation';
 import ElementIcon from '@/components/ElementIcon.vue';
-// import "ol-geocoder/dist/ol-geocoder.min.css"; // Overriden below
+// import "ol-geoco er/dist/ol-geocoder.min.css"; // Overriden below
 
 import 'vue3-openlayers/dist/vue3-openlayers.css'
 
-const router = useRouter();
 const i18n = useI18n();
 const emit = defineEmits(['close']);
 
-const urlroot = ref(window.location.origin);
-
-// ASK SOMETIMES FOR HTML5 GEO API CALL// TRACK GPS
-const trackGeolocation = ref(false);
-const geoLocChange = (loc) => {
-  view.value.fit([loc[0], loc[1], loc[0], loc[1]], { maxZoom: 7 });
-  trackGeolocation.value = false;
-}
-
 // GET LOCATION FROM LOCALSTORAGE
-const latitude = ref(localStorage.latitude);
-const longitude = ref(localStorage.longitude);
-const location = ref(localStorage.location?.replace(/_/g, " ") || "");
+const contextStore = useContextStore()
+contextStore.initialize() 
+let { latitude, longitude, location } = storeToRefs(contextStore)
+
+// CREATE TMP VARIABLES
+let newLatitude = latitude;
+let newLongitude = longitude;
+let newLocation = location;
 
 // ONLINE / OFFLINE STATUS
-const isOnline = ref(window.navigator.onLine);
+let isOnline = ref(window.navigator.onLine);
 window.addEventListener('online',  () => { isOnline.value = window.navigator.onLine });
 window.addEventListener('offline', () => { isOnline.value = window.navigator.onLine });
 
@@ -39,23 +36,37 @@ const map = ref(null);
 const view = ref(null);
 const modal = ref(null);
 const locateButton = ref(null)
-;
+const geolocation = ref(null);
 // OPENLAYER SETUP
-const zoomLevel = ref(localStorage.longitude ? 3 : 2)
+let zoomLevel = ref(localStorage.longitude ? 3 : 2)
 const setupCoordinates = fromLonLat([longitude.value, latitude.value]);
 
 // UPDATE LAT/LONG INPUTS WHEN USING THE MAP
-function centerChanged(center) {
-  latitude.value = parseFloat(toLonLat(center)[1].toFixed(2));
-  longitude.value = parseFloat(toLonLat(center)[0].toFixed(2));
+function centerChanged(event) {
+  let center = event.target.get("center");
+  newLatitude.value = parseFloat(toLonLat(center)[1].toFixed(2));
+  newLongitude.value = parseFloat(toLonLat(center)[0].toFixed(2));
 
-  if(String(location.value).startsWith(i18n.t('longitude')) || !location.value)
-    location.value = i18n.t('longitude') + " " + parseInt(longitude.value);
+  if(String(newLocation.value).startsWith(i18n.t('longitude')) || !newLocation.value)
+    newLocation.value = i18n.t('longitude') + " " + parseInt(newLongitude.value);
 }
 
 // UPDATE CENTER OF THE MAP WHEN CHANGING LAT/LONG INPUTS
 function updateCenter() {
-    view.value.setCenter(fromLonLat([longitude.value, latitude.value]));
+  newLongitude.value = ((parseFloat(newLongitude.value) + 180) % 360) - 180;
+  newLatitude.value = Math.max(-90, Math.min(90, newLatitude.value));
+  view.value.setCenter(fromLonLat([newLongitude.value, newLatitude.value]));
+}
+
+// ASK SOMETIMES FOR HTML5 GEO API CALL// TRACK GPS
+let trackUserLocation = ref(false);
+watch(trackUserLocation, (isTracking) => console.log(geolocation.value/*.setTracking(isTracking)*/) );
+
+const GPSChanged = (event) => {
+  console.log("AAAAA", event.target.getPosition());
+  view.value?.setCenter(event.target?.getPosition());
+  //view.value.fit([loc[0], loc[1], loc[0], loc[1]], { maxZoom: 7 });
+  trackUserLocation.value = false;
 }
 
 onMounted(() => {
@@ -85,20 +96,14 @@ onMounted(() => {
 
 // SAVE AND GO TO THE CLOCK
 function save() {
-    let locationPrompt = window.prompt(i18n.t('locationPicker.promptLocationName'), location.value);
-    if(locationPrompt != null) {
-        localStorage.location = locationPrompt.replace(/\s/g, '_');
-        localStorage.longitude = longitude.value;
-        localStorage.latitude = latitude.value;
-        localStorage.coordinatesFrom = 'user';
+    let locationPrompt = window.prompt(i18n.t('locationPicker.promptLocationName'), newLocation.value);
 
-        emit('close');
+    if(locationPrompt == null) 
+      return;
 
-        router.push({name: router.currentRoute.value.name, params: {
-            location: localStorage.location,
-            latlng: localStorage.latitude + "," + localStorage.longitude
-        }});
-    }
+    contextStore.setCoordinates(newLatitude.value, newLongitude.value);
+    contextStore.setLocation(locationPrompt);
+    emit('close');
 }
 
 </script>
@@ -115,13 +120,13 @@ function save() {
     <div id="map">
         <ol-map id="map-canvas" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" ref="map">
 
-          <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" @centerChanged="centerChanged" />
-          <ol-geolocation :tracking="trackGeolocation" @positionChanged="geoLocChange"></ol-geolocation>
+          <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" @change:center="centerChanged" />
+          <ol-geolocation ref="geolocation" :tracking="trackUserLocation" @change:position="GPSChanged"></ol-geolocation>
 
           <ol-zoom-control />
 
-          <div class="ol-control ol-unselectable locate" ref="locateButton" :class="{'is-tracking': trackGeolocation}">
-            <button :title="i18n.t('locationPicker.locateMe')" @click="trackGeolocation = true"><img src="@/assets/icon/geolocation.svg"></button>
+          <div class="ol-control ol-unselectable locate" ref="locateButton" :class="{'is-tracking': trackUserLocation}">
+            <button :title="i18n.t('locationPicker.locateMe')" @click="trackUserLocation = !trackUserLocation"><img src="@/assets/icon/geolocation.svg"></button>
           </div>
 
           <ol-tile-layer>
@@ -133,8 +138,8 @@ function save() {
         <span class="reticule"></span>
 
         <div id="form">
-            <label for="latitude">{{ $t('locationPicker.form.latitude') }}&nbsp;<input type="number" name="latitude" step=".01" size="5" v-model="latitude" @change="updateCenter"></label>&nbsp;&nbsp;
-            <label for="longitude">{{ $t('locationPicker.form.longitude') }}&nbsp;&nbsp;<input type="number" name="longitude" step=".01" size="5" v-model="longitude" @change="updateCenter"></label>
+            <label for="latitude">{{ $t('locationPicker.form.latitude') }}&nbsp;<input type="number" id="latitude" step=".01" size="5" max="90" min="-90" v-model="newLatitude" @change="updateCenter"></label>&nbsp;&nbsp;
+            <label for="longitude">{{ $t('locationPicker.form.longitude') }}&nbsp;&nbsp;<input type="number" id="longitude" step=".01" size="5" max="180" min="-180" v-model="newLongitude" @change="updateCenter"></label>
         </div>
     </div>
 
@@ -287,7 +292,6 @@ p{
     font-size: 0.6em;
     color: #999999;
     button{
-      display: inline-block;
       float: right;
       padding: .4em .8em;
       margin: 0 .8em;
@@ -475,8 +479,6 @@ p{
 .ol-geocoder ul.gcd-gl-result:empty {
   display: none; }
 
-#gcd-container .gcd-txt-control{
-}
 .ol-geocoder.gcd-txt-container {
   position: absolute;
   width: 40%; //width: 25em;

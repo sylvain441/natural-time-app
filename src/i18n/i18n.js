@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n/index";
+import { createI18n } from "vue-i18n";
 
 const translations = {
     'en': {
@@ -125,6 +125,7 @@ const i18n = createI18n({
     silentTranslationWarn: true,
     silentFallbackWarn: true,
     messages: translations,
+    legacy: false,
 })
 
 export default i18n;
