@@ -10,9 +10,6 @@ document.title = `${i18n.t('about.title')}`;
 
 <template>
 <div>
-  <div id="backgrounds">
-    <div id="clouds"></div>
-  </div>
 
   <h1>À propos du temps naturel</h1>
 
@@ -80,25 +77,6 @@ document.title = `${i18n.t('about.title')}`;
 </template>
 
 <style lang="scss" scoped>
-
-#backgrounds {
-  z-index: 0;
-  background-color: rgba(0, 3, 13, calc(1 - var(--day-progression)));
-  &, div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-  }
-  #clouds {
-    z-index: 40; 
-    background: url("@/assets/background/clouds.jpg") center center; 
-    background-size: cover;
-    opacity: var(--day-progression);
-  }
-}
 
 h1{
   position: relative;

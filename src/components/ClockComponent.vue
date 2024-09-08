@@ -36,8 +36,6 @@ const settings = {
   }
 }
 
-const emit = defineEmits(['editLocation']);
-
 // SVG pie chart are not straightforward
 // We use the dashed stroke hack to build them
 function drawPeriod(start, end, stroke, radiusSize) {
@@ -159,7 +157,7 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <g id="prompt">
 
       <!-- LOCATION -->
-      <text id="location" x="180" y="211" @click="emit('editLocation')">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})<title>{{ $t('nav.editLocation') }}</title></text>
+      <text id="location" x="180" y="211">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})<title>{{ $t('nav.openLocationPicker') }}</title></text>
 
       <!-- MOON LOOP -->
       <g> 
@@ -175,10 +173,10 @@ function drawPeriod(start, end, stroke, radiusSize) {
     <image id="sunNeedle" href="@/assets/clock/sun-needle.png" width="100%" height="100%" />
     
     <!-- TIME -->
-    <g id="time" @click="emit('editLocation')">
+    <g id="time">
       <text id="units" x="174" y="196">{{ ('00'+Math.floor(naturalDate.time)).slice(-3) }}°</text>
       <text id="decimals" x="228" y="196" >{{ ('0' + Math.floor((naturalDate.time - Math.floor(naturalDate.time))  * 100/1) * 1).slice(-2) }}</text>
-      <title>{{ $t('nav.editLocation') }}</title>
+      <title>{{ $t('nav.openLocationPicker') }}</title>
     </g>
 
   </svg>

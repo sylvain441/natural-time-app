@@ -1,3 +1,51 @@
+<template>
+<div>
+  <div class="z-10 relative">
+    <router-view v-slot="{Component}">
+    <transition name="fade" mode="out-in">
+      <component :is="Component"></component>
+      </transition>
+    </router-view>
+  </div>
+
+  <!-- Burger menu button -->
+  <button @click.stop="toggleMenu" class="fixed top-6 left-6 z-50 p-2 rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Navigation menu -->
+  <nav class="UI fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out"
+       :class="{ '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen }"
+       @click="handleNavClick">
+    <div class="flex flex-col p-4 space-y-4">
+      <router-link :to="{ name: 'welcome' }" class="nav-link">
+        {{ $t('nav.welcome') }}
+      </router-link>
+      <router-link to="/time" class="nav-link">
+        {{ $t('nav.clock') }}
+      </router-link>
+      <router-link to="/13moons" class="nav-link">
+        {{ $t('nav.moons') }}
+      </router-link>
+      <router-link :to="{ name: 'about' }" class="nav-link">
+        {{ $t('nav.about') }}
+      </router-link>
+      <router-link to="/settings" class="nav-link">
+        {{ $t('settings.title') }}
+      </router-link>
+    </div>
+  </nav>
+
+  <div id="backgrounds" class="z-0 fixed top-0 left-0 w-screen h-screen">
+    <div id="stars" class="absolute top-0 left-0 w-full h-full"></div>
+    <div id="clouds" class="absolute top-0 left-0 w-full h-full"></div>
+  </div>
+  
+</div>
+</template>
+
 <script setup>
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n'
@@ -11,9 +59,13 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
-const closeMenu = (event) => {
-  if (isMenuOpen.value && !event.target.closest('nav') && !event.target.closest('button')) {
-    isMenuOpen.value = false;
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
+
+const handleNavClick = (event) => {
+  if (event.target.closest('a')) {
+    closeMenu();
   }
 };
 
@@ -29,35 +81,12 @@ const meta = document.getElementsByTagName('meta');
 if(meta.description)
   meta.description.content = i18n.t("meta.description");
 
+// CONTEXT STORE
+import { useContextStore } from '@/stores/contextStore'
+const contextStore = useContextStore()
+contextStore.init();
+
 </script>
-
-<template>
-<div>
-  <router-view v-slot="{Component}">
-    <transition name="fade" mode="out-in">
-      <component :is="Component"></component>
-    </transition>
-  </router-view>
-
-  <!-- Burger menu button -->
-  <button @click.stop="toggleMenu" class="fixed top-6 left-6 z-50 p-2 rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-
-  <!-- Navigation menu -->
-  <nav class="UI fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out"
-       :class="{ '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen }">
-    <div class="flex flex-col p-4 space-y-4">
-      <router-link :to="{name: 'welcome'}" class="nav-link">{{ $t('nav.welcome') }}</router-link>
-      <router-link :to="{name: 'time', params: route.params}" class="nav-link">{{ $t('nav.clock') }}</router-link>
-      <router-link :to="{name: 'date', params: route.params}" class="nav-link">{{ $t('nav.moons') }}</router-link>
-      <router-link :to="{name: 'about'}" class="nav-link">{{ $t('nav.about') }}</router-link>
-    </div>
-  </nav>
-</div>
-</template>
 
 <style lang="scss">
 
@@ -138,9 +167,6 @@ if(meta.description)
 .color-7{ color: var(--color-7)!important; fill: var(--color-7)!important; background-color: var(--color-7)!important; }
 
 
-body {
-  margin: 0;
-}
 
 .fade-enter-active, .fade-leave-active{
   transition: .8s;
@@ -203,5 +229,19 @@ nav{
   }
 }
 
+#backgrounds {
+  background-color: rgba(0, 3, 13, calc(1 - var(--day-progression)));
+  #stars { 
+    z-index: 10; 
+    background: url("@/assets/background/stars.jpg") center center; 
+    background-size: cover;
+  }
+  #clouds {
+    z-index: 40; 
+    background: url("@/assets/background/clouds.jpg") center center; 
+    background-size: cover;
+    opacity: var(--day-progression);
+  }
+}
 
 </style>

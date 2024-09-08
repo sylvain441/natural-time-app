@@ -21,7 +21,7 @@ const translations = {
             clock: "Natural Time",
             moons: "13 moons",
             about: 'Read more',
-            editLocation: "Edit geolocation",
+            openLocationPicker: "Edit geolocation",
         },
         locationPicker: {
             title: {
@@ -59,6 +59,10 @@ const translations = {
         weekDay: "{color} {element}",
         colors: { 1: "Red", 2: "Orange", 3: "Yellow", 4: "Green", 5: "Blue", 6: "Indigo", 7: "Violet" },
         elements: { 1: "Earth", 2: "Water", 3: "Air", 4: "Fire" },
+        settings: {
+            title: 'Settings',
+            description: 'Customize your experience and preferences here.'
+        }
     },
     'fr': {
         nt: "Temps naturel",
@@ -76,11 +80,11 @@ const translations = {
             time: "Ciel"
         },
         nav:{
-            welcome: "Bienvenue",
-            clock: "Temps Naturel",
-            moons: "13 lunes",
+            welcome: "Temps Naturel",
+            clock: "Horloge 360°",
+            moons: "Spirale 13 lunes",
             about: 'À propos',
-            editLocation: "Modifier l'emplacement géographique",
+            openLocationPicker: "Modifier l'emplacement géographique",
         },
         locationPicker: {
             title: {
@@ -90,13 +94,12 @@ const translations = {
             },
             advise: "Pour fonctionner, l'horloge a besoin d'une position géographique",
             searchFor: "Rechercher un lieu...",
-            locateMe: "Me géolocaliser",
             form:{
                 latitude: "latitude",
                 longitude: "longitude",
-                save: "Enregistrer la position",
+                save: "Valider la position",
             },
-            promptLocationName: "Comment s'appelle cet endroit ?"
+            promptLocationName: "Donner un nom à ce lieu (facultatif)"
         },
         timeControl: {
             moveBackward: 'Reculer de',
@@ -118,6 +121,10 @@ const translations = {
         weekDay: "{element} {color}",
         colors: { 1: "Rouge", 2: "Orange", 3: "Jaune", 4: "Vert", 5: "Bleu", 6: "Indigo", 7: "Violet" },
         elements: { 1: "Terre", 2: "Eau", 3: "Air", 4: "Feu" },
+        settings: {
+            title: 'Préférences',
+            description: 'Customize your experience and preferences here.'
+        }
     }
 }
   

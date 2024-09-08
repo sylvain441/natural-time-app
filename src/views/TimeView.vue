@@ -1,19 +1,89 @@
-<script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useI18n } from 'vue-i18n'
-import { storeToRefs } from 'pinia'
-import { useContextStore } from '@/stores/contextStore'
+<template>
 
+<div id="day-view" v-touch:rollover="displayUI" v-touch:release="displayUI">
+
+  <div id="backgrounds">
+    <div id="stars" ></div>
+    <div id="clouds"></div>
+  </div>
+  
+  <div id="ClockComponent" v-if="context">
+    <!-- DIAL ClockComponent -->
+    <ClockComponent 
+      :naturalDate="context.naturalDate"
+      :sunContext="context.sun"
+      :moonContext="context.moon"
+      :hemisphere="hemisphere"
+      :location="location"
+    ></ClockComponent>
+  </div>
+  
+  
+  
+  <!-- TIME CONTROLS -->
+  <div id="time-controls" :class="timeVariation ? '' : 'UI'">
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="-24*3600" :title="$t('timeControl.moveBackward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.past')">-360°</button>
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="-8*60" :title="$t('timeControl.moveBackward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.past')">-2°</button>
+    <button v-touch:tap="timeTravel" :disabled="timeVariation == 0"
+      :data-variation="0" :title="$t('timeControl.resetTitle')">{{ $t('timeControl.reset') }}</button>
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="+8*60" :title="$t('timeControl.moveForward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.future')">+2°</button>
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="+24*60*60" :title="$t('timeControl.moveForward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.future')">+360°</button>
+    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+      :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
+  </div>
+  
+  <div id="legend" v-if="context" @click="goToSettings">
+    {{ context.naturalDate }}
+  </div>
+  
+  <!-- DEFINE GLOBAL CSS VARS -->
+  <component :is="'style'">
+    :root {
+      --hemisphere: {{hemisphere}};
+      --day-progression: {{context.dayProgression}};
+      --day-saturation: saturate({{0.4 + context.dayProgression * 0.6}});
+      --ui-opacity: {{uiOpacity}};
+    }
+  </component>
+  
+  </div>
+  
+</template>
+
+<script setup>
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router';
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from 'natural-time-js/context';
-
 import ClockComponent from '@/components/ClockComponent.vue';
-import LocationPicker from '@/components/LocationPicker.vue';
 
+const router = useRouter();
+
+// CONTEXT STORE
+import { useContextStore } from '@/stores/contextStore'
+const contextStore = useContextStore()
+console.log('contextStore', contextStore.isEmpty);
+// Redirect to settings page if contextStore is empty
+watch(() => contextStore.isEmpty, (isEmpty) => {
+  if (isEmpty) {
+    router.push('/settings');
+  }
+}, { immediate: true });
+
+function goToSettings() {
+  router.push('/settings');
+}
+// I18N
+import { useI18n } from 'vue-i18n'
 const i18n = useI18n();
 
-const contextStore = useContextStore()
-contextStore.initialize() 
 let { latitude, longitude, location, currentTime } = storeToRefs(contextStore);
 
 // Compute context
@@ -63,12 +133,8 @@ let context = computed(() => {
 
 let hemisphere = computed(() => latitude.value >= 0 ? 1 : -1)
 
-let editLocation = ref(contextStore.coordinatesFrom === "default")
 
 let timeVariation = ref(0);
-
-onMounted(() => { });
-onUnmounted(() => { contextStore.terminate() });
 
 // Allows user to move through time with buttons
 function timeTravel(event) {
@@ -93,71 +159,9 @@ function displayUI() {
 
 </script>
 
-<template>
-  <div id="day-view" v-touch:rollover="displayUI" v-touch:release="displayUI">
-
-<div id="backgrounds">
-  <div id="stars" ></div>
-  <div id="clouds"></div>
-</div>
-
-<div id="ClockComponent" v-if="!editLocation && context">
-  <!-- DIAL ClockComponent -->
-  <ClockComponent 
-    :naturalDate="context.naturalDate"
-    :sunContext="context.sun"
-    :moonContext="context.moon"
-    :hemisphere="hemisphere"
-    :location="location"
-    @editLocation="editLocation = true"
-    ></ClockComponent>
-</div>
-
-<transition name="fade" mode="out-in">
-<div id="location-picker" v-if="editLocation" :style="{backgroundColor: 'rgba(255,255,255,' + (1-context.dayProgression)*0.9 + ')'}">
-  <LocationPicker @close="editLocation = false"></LocationPicker>
-</div>
-</transition>
-
-<!-- TIME CONTROLS -->
-<div id="time-controls" v-if="!editLocation" :class="timeVariation ? '' : 'UI'">
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="-24*3600" :title="$t('timeControl.moveBackward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.past')">-360°</button>
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="-8*60" :title="$t('timeControl.moveBackward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.past')">-2°</button>
-  <button v-touch:tap="timeTravel" :disabled="timeVariation == 0"
-    :data-variation="0" :title="$t('timeControl.resetTitle')">{{ $t('timeControl.reset') }}</button>
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="+8*60" :title="$t('timeControl.moveForward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.future')">+2°</button>
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="+24*60*60" :title="$t('timeControl.moveForward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.future')">+360°</button>
-  <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-    :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
-</div>
-
-<div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
-  {{ context.naturalDate }}
-</div>
-
-<!-- DEFINE GLOBAL CSS VARS -->
-<component :is="'style'">
-  :root {
-    --hemisphere: {{hemisphere}};
-    --day-progression: {{context.dayProgression}};
-    --day-saturation: saturate({{0.4 + context.dayProgression * 0.6}});
-    --ui-opacity: {{uiOpacity}};
-  }
-</component>
-
-</div>
-
-</template>
-
 <style lang="scss">
   
-  #day-view{
+#day-view{
   height: 100%;
   min-height: 555px;
 }

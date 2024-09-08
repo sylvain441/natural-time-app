@@ -2,41 +2,28 @@ import { defineStore } from 'pinia'
 
 export const useContextStore = defineStore('context', {
   state: () => ({
-    latitude: null,
-    longitude: null,
-    location: '',
+    storedLatitude: parseFloat(localStorage.latitude),
+    storedLongitude: parseFloat(localStorage.longitude),
+    storedLocation: localStorage.location,
     currentTime: new Date(),
     timer: null,
   }),
   
   getters: {
-    //coordinates: (state) => `${state.latitude},${state.longitude}`,
-    //formattedTime: (state) => state.currentTime.toLocaleTimeString(),
-    //formattedDate: (state) => state.currentTime.toLocaleDateString(),
+    isEmpty: (state) => !state.storedLatitude || !state.storedLongitude,
+    latitude: (state) => state.storedLatitude || 42.42,
+    longitude: (state) => state.storedLongitude || 0,
+    location: (state) => state.storedLocation || '',
   },
   
   actions: {
-    setCoordinates(lat, lng) {
-      localStorage.latitude = this.latitude = Math.max(-90, Math.min(90, parseFloat(lat)));
-      localStorage.longitude = this.longitude = ((parseFloat(lng) + 180) % 360) - 180;
+    init() {
+      this.timer = setInterval(() =>  this.currentTime = new Date(), 2400);
     },
-    setLocation(location) {
-      this.location = location;
-      localStorage.location = location;
-    },
-    initialize() {
-      // Get data from localStorage
-      this.latitude = parseFloat(localStorage.latitude) || 42.42;
-      this.longitude = parseFloat(localStorage.longitude) || 0;
-      this.location = localStorage.location || '';
-      // Update timer
-      this.timer = setInterval(() =>  this.currentTime = new Date(), 1200)
-    },
-    terminate() {
-      if (this.timer) {
-        clearInterval(this.timer);
-        this.timer = null;
-      }
+    update(latitude, longitude, location) {
+      localStorage.latitude = this.storedLatitude = Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2);
+      localStorage.longitude = this.storedLongitude = (((parseFloat(longitude) + 180) % 360) - 180).toFixed(2);
+      localStorage.location = this.storedLocation = location;
     },
   },
 })

@@ -6,20 +6,14 @@ import { useContextStore } from '@/stores/contextStore'
 import { NaturalDate } from 'natural-time-js';
 
 import Moon from '@/components/MoonComponent.vue';
-import LocationPicker from '@/components/LocationPicker.vue';
 import ElementIcon from '@/components/ElementIcon.vue';
 
 const i18n = useI18n();
 
 const contextStore = useContextStore()
 const { latitude, longitude, location, currentTime } = storeToRefs(contextStore)
-onMounted(() => { contextStore.initialize() });
-onUnmounted(() => { contextStore.terminate() });
 
-// Initialize store from localStorage or URL
 onMounted(() => {
-  contextStore.initialize()
-
   // SCROLL TO MOON
   let currentMoon = document.getElementsByClassName('currentMoon')[0];
   window.scrollTo({
@@ -27,8 +21,6 @@ onMounted(() => {
       behavior: 'smooth'
   });
 });
-
-onUnmounted(() => { contextStore.terminate() });
 
 // Translate to natural date
 const today = computed(() => {
@@ -46,26 +38,19 @@ const resetHoverDate = () => { hoverDate.value = false }
 // Display either current day or hover date (if available)
 const displayDate = computed(() => hoverDate.value || today.value);
 
-// If no coordinates provided, ask for them
-const editLocation = ref(contextStore.coordinatesFrom === "default");
-
 </script>
 
 <template>
   
   <div id="moons-view">
 
-<div id="backgrounds">
-  <div id="clouds"></div>
-</div>
-
-<div id="year" :class="{'blur-me': editLocation}">
+<div id="year">
   
   <!-- DISPLAY -->
   <div id="display">
     
     <!-- DISPLAY: YEAR ) MOON ) DAY -->
-    <div v-if="!displayDate.isRainbowDay" class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+    <div v-if="!displayDate.isRainbowDay" class="center-me">
       <div class="display-top">
         <div class="display-year">
           <div class="digit">{{displayDate.toYearString()}}</div>
@@ -88,7 +73,7 @@ const editLocation = ref(contextStore.coordinatesFrom === "default");
     </div>
 
     <!-- DISPLAY: RAINBOW DAY -->
-    <div v-else class="center-me" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+    <div v-else class="center-me">
       <div class="display-top">
         <div class="display-year">
           <div class="digit">&nbsp;</div>
@@ -123,15 +108,9 @@ const editLocation = ref(contextStore.coordinatesFrom === "default");
 
 </div>
 
-<div id="legend" v-if="!editLocation" @click="editLocation = true" :title="i18n.t('nav.editLocation')">
+<div id="legend">
   {{ today }}
 </div>
-
-<transition name="fade" mode="out-in">
-<div id="location-picker" v-if="editLocation">
-  <LocationPicker @close="editLocation = false"></LocationPicker>
-</div>
-</transition>
 
 </div>
 
