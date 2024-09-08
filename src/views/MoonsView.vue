@@ -59,10 +59,6 @@ const editLocation = ref(contextStore.coordinatesFrom === "default");
   <div id="clouds"></div>
 </div>
 
-<div id="menu-icon" class="UI" v-if="!editLocation" @click="editLocation = true">
-  <img src="@/assets/icon/location.svg" :title="i18n.t('nav.editLocation')">
-</div>
-
 <div id="year" :class="{'blur-me': editLocation}">
   
   <!-- DISPLAY -->

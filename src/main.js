@@ -9,6 +9,8 @@ import OpenLayersMap from 'vue3-openlayers'
 import { setupMatomo } from './plugins/matomo'
 import { initializePWA } from './plugins/pwa'
 
+import './assets/main.css'
+
 const app = createApp(App)
 
 app.use(createPinia())

@@ -17,6 +17,7 @@ const translations = {
             time: "Y"
         },
         nav:{
+            welcome: "Welcome",
             clock: "Natural Time",
             moons: "13 moons",
             about: 'Read more',
@@ -75,6 +76,7 @@ const translations = {
             time: "Ciel"
         },
         nav:{
+            welcome: "Bienvenue",
             clock: "Temps Naturel",
             moons: "13 lunes",
             about: 'À propos',

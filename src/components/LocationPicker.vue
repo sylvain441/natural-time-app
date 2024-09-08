@@ -126,7 +126,7 @@ function save() {
           <ol-zoom-control />
 
           <div class="ol-control ol-unselectable locate" ref="locateButton" :class="{'is-tracking': trackUserLocation}">
-            <button :title="i18n.t('locationPicker.locateMe')" @click="trackUserLocation = !trackUserLocation"><img src="@/assets/icon/geolocation.svg"></button>
+            <button :title="i18n.t('locationPicker.locateMe')" @click="trackUserLocation = !trackUserLocation">LOCATE</button>
           </div>
 
           <ol-tile-layer>

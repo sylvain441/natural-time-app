@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+import WelcomeView from '../views/WelcomeView.vue'
 import DayView from '../views/DayView.vue'
 import MoonsView from '../views/MoonsView.vue'
 import About from '../views/About.vue'
@@ -9,6 +10,11 @@ const router = createRouter({
   routes: [
     { 
       path: '/', 
+      name: 'welcome', 
+      component: WelcomeView,
+    },
+    { 
+      path: '/clock', 
       name: 'time', 
       component: DayView,
     },

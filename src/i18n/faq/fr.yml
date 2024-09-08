@@ -1,0 +1,13 @@
+- name: "Comprendre l'horloge du Temps Naturel"
+  items:
+    - question: "Qu'est-ce que le Temps Naturel ?"
+      answer: "Le Temps Naturel est une nouvelle convention temporelle basée sur la position du soleil dans le ciel, divisant la journée en 360 degrés au lieu de 24 heures."
+    - question: "En quoi le Temps Naturel diffère-t-il du temps standard ?"
+      answer: "Le Temps Naturel est directement lié à la position du soleil, le rendant plus intuitif et connecté aux cycles naturels. Il n'utilise pas de divisions arbitraires comme les heures, minutes ou secondes."
+
+- name: "Comprendre la Spirale des 13 Lunes"
+  items:
+    - question: "Comment lire le Temps Naturel ?"
+      answer: "Le Temps Naturel se lit en degrés, de 0° à 360°. 0° est minuit, 90° est le lever du soleil, 180° est midi, et 270° est le coucher du soleil."
+    - question: "Puis-je utiliser le Temps Naturel en parallèle avec le temps standard ?"
+      answer: "Oui, le Temps Naturel peut être utilisé en parallèle avec le temps standard. Cette application vous permet de visualiser les deux simultanément."
