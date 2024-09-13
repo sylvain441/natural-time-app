@@ -1,13 +1,8 @@
 <template>
 
 <div id="day-view" v-touch:rollover="displayUI" v-touch:release="displayUI">
-
-  <div id="backgrounds">
-    <div id="stars" ></div>
-    <div id="clouds"></div>
-  </div>
   
-  <div id="ClockComponent" v-if="context">
+  <div id="ClockComponent" v-if="!showSettings">
     <!-- DIAL ClockComponent -->
     <ClockComponent 
       :naturalDate="context.naturalDate"
@@ -18,10 +13,8 @@
     ></ClockComponent>
   </div>
   
-  
-  
   <!-- TIME CONTROLS -->
-  <div id="time-controls" :class="timeVariation ? '' : 'UI'">
+  <div id="time-controls" v-if="!showSettings" :class="timeVariation ? '' : 'UI'">
     <button v-touch:tap="timeTravel" v-longclick="timeTravel"
       :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
     <button v-touch:tap="timeTravel" v-longclick="timeTravel"
@@ -38,8 +31,14 @@
       :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
   </div>
   
-  <div id="legend" v-if="context" @click="goToSettings">
+  <div id="legend" v-if="!showSettings" @click="showSettings = true">
     {{ context.naturalDate }}
+  </div>
+  
+
+  <div id="backgrounds" class="z-0 fixed top-0 left-0 w-screen h-screen">
+    <div id="stars" class="absolute top-0 left-0 w-full h-full"></div>
+    <div id="clouds" class="absolute top-0 left-0 w-full h-full"></div>
   </div>
   
   <!-- DEFINE GLOBAL CSS VARS -->
@@ -52,6 +51,14 @@
     }
   </component>
   
+  <!-- Settings overlay -->
+  <SettingsComponent v-if="showSettings" @close="closeSettings" />
+
+  <!-- Button to open settings -->
+  <button @click="toggleSettings" class="fixed bottom-4 right-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+    {{ $t('settings.title') }}
+  </button>
+  
   </div>
   
 </template>
@@ -63,6 +70,7 @@ import { useRouter } from 'vue-router';
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from 'natural-time-js/context';
 import ClockComponent from '@/components/ClockComponent.vue';
+import SettingsComponent from '@/components/SettingsComponent.vue';
 
 const router = useRouter();
 
@@ -70,16 +78,7 @@ const router = useRouter();
 import { useContextStore } from '@/stores/contextStore'
 const contextStore = useContextStore()
 console.log('contextStore', contextStore.isEmpty);
-// Redirect to settings page if contextStore is empty
-watch(() => contextStore.isEmpty, (isEmpty) => {
-  if (isEmpty) {
-    router.push('/settings');
-  }
-}, { immediate: true });
 
-function goToSettings() {
-  router.push('/settings');
-}
 // I18N
 import { useI18n } from 'vue-i18n'
 const i18n = useI18n();
@@ -157,6 +156,15 @@ function displayUI() {
   }, 5000);
 }
 
+const showSettings = ref(false);
+
+const toggleSettings = () => {
+  showSettings.value = !showSettings.value;
+};
+
+const closeSettings = () => {
+  showSettings.value = false;
+};
 </script>
 
 <style lang="scss">

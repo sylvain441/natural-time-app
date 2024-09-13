@@ -1,55 +1,47 @@
 <template>
-<div>
-  <div class="z-10 relative">
-    <router-view v-slot="{Component}">
-    <transition name="fade" mode="out-in">
-      <component :is="Component"></component>
+  <MetaTags />
+  <div>
+    <!-- Full-screen navigation menu -->
+    <transition name="menu-fade">
+      <nav v-if="isMenuOpen" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-40">
+        <div class="flex flex-col items-center space-y-8">
+          <router-link :to="{ name: 'welcome' }" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
+            {{ $t('nav.welcome') }}
+          </router-link>
+          <router-link to="/time" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
+            {{ $t('nav.clock') }}
+          </router-link>
+          <router-link to="/13moons" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
+            {{ $t('nav.moons') }}
+          </router-link>
+        </div>
+      </nav>
+    </transition>
+
+    <!-- Menu toggle button -->
+    <button @click="toggleMenu" class="fixed top-4 left-4 z-50 p-2 rounded-full bg-slate-500 text-slate-200 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12" class="transition-transform duration-300" :class="{ 'rotate-45 translate-y-0': isMenuOpen, '-translate-y-2': !isMenuOpen }" />
+        <line x1="3" y1="12" x2="21" y2="12" class="transition-opacity duration-300" :class="{ 'opacity-0': isMenuOpen }" />
+        <line x1="3" y1="12" x2="21" y2="12" class="transition-transform duration-300" :class="{ '-rotate-45 translate-y-0': isMenuOpen, 'translate-y-2': !isMenuOpen }" />
+      </svg>
+    </button>
+
+    <div class="z-10 relative">
+      <router-view v-slot="{Component}">
+      <transition name="fade" mode="out-in">
+        <component :is="Component"></component>
       </transition>
-    </router-view>
-  </div>
-
-  <!-- Burger menu button -->
-  <button @click.stop="toggleMenu" class="fixed top-6 left-6 z-50 p-2 rounded-md bg-gray-200 hover:bg-gray-300 focus:outline-none">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-    </svg>
-  </button>
-
-  <!-- Navigation menu -->
-  <nav class="UI fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out"
-       :class="{ '-translate-x-full': !isMenuOpen, 'translate-x-0': isMenuOpen }"
-       @click="handleNavClick">
-    <div class="flex flex-col p-4 space-y-4">
-      <router-link :to="{ name: 'welcome' }" class="nav-link">
-        {{ $t('nav.welcome') }}
-      </router-link>
-      <router-link to="/time" class="nav-link">
-        {{ $t('nav.clock') }}
-      </router-link>
-      <router-link to="/13moons" class="nav-link">
-        {{ $t('nav.moons') }}
-      </router-link>
-      <router-link :to="{ name: 'about' }" class="nav-link">
-        {{ $t('nav.about') }}
-      </router-link>
-      <router-link to="/settings" class="nav-link">
-        {{ $t('settings.title') }}
-      </router-link>
+      </router-view>
     </div>
-  </nav>
-
-  <div id="backgrounds" class="z-0 fixed top-0 left-0 w-screen h-screen">
-    <div id="stars" class="absolute top-0 left-0 w-full h-full"></div>
-    <div id="clouds" class="absolute top-0 left-0 w-full h-full"></div>
   </div>
-  
-</div>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n'
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import MetaTags from '@/components/MetaTags.vue';
 
 const route = useRoute();
 const i18n = useI18n();
@@ -63,24 +55,6 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 
-const handleNavClick = (event) => {
-  if (event.target.closest('a')) {
-    closeMenu();
-  }
-};
-
-onMounted(() => {
-  document.addEventListener('click', closeMenu);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('click', closeMenu);
-});
-
-const meta = document.getElementsByTagName('meta');
-if(meta.description)
-  meta.description.content = i18n.t("meta.description");
-
 // CONTEXT STORE
 import { useContextStore } from '@/stores/contextStore'
 const contextStore = useContextStore()
@@ -89,6 +63,10 @@ contextStore.init();
 </script>
 
 <style lang="scss">
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root{
   --color-0: #444;
@@ -100,8 +78,9 @@ contextStore.init();
   --color-6: #443cea;
   --color-7: #8047eb;
 
-  --top-row-height: 18%;
-  --left-column-width: 14%;
+  //--color-yellow: #fff200;
+  //--color-cyan: #00F2FF;
+  //--color-magenta: #de3252;
 
   --yearloop-bg-color: #FFF;
   --yearloop-radius: 6px
@@ -158,6 +137,15 @@ contextStore.init();
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'DM Serif Display';
+  src: url('@/assets/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 .color-1{ color: var(--color-1)!important; fill: var(--color-1)!important; background-color: var(--color-1)!important; }
 .color-2{ color: var(--color-2)!important; fill: var(--color-2)!important; background-color: var(--color-2)!important; }
 .color-3{ color: var(--color-3)!important; fill: var(--color-3)!important; background-color: var(--color-3)!important; }
@@ -166,67 +154,36 @@ contextStore.init();
 .color-6{ color: var(--color-6)!important; fill: var(--color-6)!important; background-color: var(--color-6)!important; }
 .color-7{ color: var(--color-7)!important; fill: var(--color-7)!important; background-color: var(--color-7)!important; }
 
+.underlined {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+}
 
+.underline-gray {
+  @extend .underlined;
+  text-decoration-color: lightgray;
+}
+
+.underline-yellow {
+  @extend .underlined;
+  text-decoration-color: var(--color-yellow);
+}
+
+.underline-cyan {
+  @extend .underlined;
+  text-decoration-color: var(--color-cyan);
+}
+
+.underline-magenta {
+  @extend .underlined;
+  text-decoration-color: var(--color-magenta);
+}
 
 .fade-enter-active, .fade-leave-active{
   transition: .8s;
 }
 .fade-enter-from, .fade-leave-to{
   opacity: 0;
-}
-
-nav{
-  position: absolute;
-  z-index: 10000;
-  top: 1.5em;
-  left:50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  transform: translateX(-50%);
-  a{
-    margin: .5em;
-    transition: .4s;
-    font-size: .75em;
-    font-weight: 500;
-    font-family: "Radio Canada", sans-serif;
-    color: #597A82;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-    img{
-      width: 2em;
-      aspect-ratio: 1 / 1;
-    }
-    &:hover, &.router-link-active{
-      color: #597A82;
-      text-decoration: underline;
-      text-decoration-thickness: 3px;
-    }
-  }
-  span{
-    text-align: center;
-    color: #7B7A8B;
-    font-family: "Radio Canada", sans-serif;
-    font-weight: 500;
-    margin: .5em;
-    text-transform: uppercase;
-  }
-}
-
-#menu-icon{
-  position: absolute;
-  z-index: 11000;
-  top: 1.5em;
-  right: 1.5em;
-  width: 2em;
-  transform: scale(.9);
-  transition: 0.4s;
-  cursor: pointer;
-  &:hover{
-    transform: scale(1);
-  }
 }
 
 #backgrounds {
@@ -242,6 +199,43 @@ nav{
     background-size: cover;
     opacity: var(--day-progression);
   }
+}
+
+.menu-fade-enter-active,
+.menu-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+  opacity: 0;
+}
+
+// Underline animation
+.nav-link {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: #4a5568; // A darker shade for the underline
+    transition: all 0.3s ease;
+  }
+  &:hover::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+svg {
+  transform-origin: center;
+}
+
+svg line {
+  transform-origin: center;
 }
 
 </style>

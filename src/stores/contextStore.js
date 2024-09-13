@@ -21,8 +21,8 @@ export const useContextStore = defineStore('context', {
       this.timer = setInterval(() =>  this.currentTime = new Date(), 2400);
     },
     update(latitude, longitude, location) {
-      localStorage.latitude = this.storedLatitude = Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2);
-      localStorage.longitude = this.storedLongitude = (((parseFloat(longitude) + 180) % 360) - 180).toFixed(2);
+      localStorage.latitude = this.storedLatitude = parseFloat(Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2));
+      localStorage.longitude = this.storedLongitude = parseFloat(Math.max(-180, Math.min(180, parseFloat(longitude))).toFixed(2));
       localStorage.location = this.storedLocation = location;
     },
   },
