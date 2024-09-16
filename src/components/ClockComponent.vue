@@ -1,293 +1,230 @@
+<template>
+  <div class="clock-wrapper flex items-center justify-center" ref="clockWrapper">
+    <div class="clock-box relative" :style="clockBoxStyle">
+      <!-- DAY / NIGHT -->
+      <div class="clock-day-night nt-box-outer rotate-180">
+        <div class="nt-box-outer blur-2xl">
+          <svg class="w-full h-full" viewBox="0 0 800 800">
+            <path :d="dayPeriodPath(context.sun.sunrise, context.sun.sunset)" fill="#AFE0FF" />
+            <path :d="dayPeriodPath(context.sun.sunset, context.sun.sunrise)" fill="#1C1241" style="opacity: 0.5" />
+          </svg>
+        </div>
+        <div class="nt-box-outer opacity-70">
+          <svg class="w-full h-full" viewBox="0 0 800 800">
+            <path :d="dayPeriodPath(context.sun.sunset + 3, context.sun.sunrise - 3)" fill="#000" /> 
+            <path :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="#FFC856" /> 
+            <path :d="dayPeriodPath(context.sun.sunset - 3, context.sun.sunset + 3)" fill="#FFC856" /> 
+            <path :d="dayPeriodPath(context.sun.sunrise + 3, context.sun.sunset - 3)" fill="#80CCFF" /> 
+          </svg>
+        </div>
+      </div>
+
+      <!-- SUN -->
+      <div class="clock-sun nt-box-outer rotate-180">
+        <div class="nt-box-outer text-center" :style="{transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`}">
+          <div class="inline-block" style="width: 72px; height: 72px;">
+            <div class="w-full h-full rounded-full bg-ntyellow-dark" style="box-shadow: 0 0 40px 0 rgba(255, 205, 0, var(--day-progression)); filter: blur(calc(var(--day-progression) * 5px));"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOON -->
+      <div class="clock-moon nt-box-outer rotate-180">
+        <div class="nt-box-outer flex justify-center" :style="{transform: `scale(${context.moon.altitude*0.50 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
+          <div style="width: 72px; height: 72px; box-shadow: 0 0 60px rgba(255, 255, 255, calc(1 - var(--day-progression)));" class="relative rounded-full overflow-hidden flex align-center shadow shadow-slate-800/50">
+            <!-- LIGHT SIDE-->
+            <div class="w-1/2 h-full bg-slate-100" :class="{ 'order-1': context.moon.phase < 180 }"></div>
+            <!-- DARK SIDE -->
+            <div class="w-1/2 h-full bg-slate-800"></div>
+            <!-- 3D FLIPPER-->
+            <div class="moon-divider bg-slate-800 after:bg-slate-100"
+              :style="{transform: `rotate3d(0, 1, 0, ${context.moon.phase}deg)`}"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HAND NTZ-->
+      <div class="clock-hand-ntz nt-box-outer rotate-180 text-white">
+        <div class="nt-box-outer" :style="{ transform: `rotate(${(context.naturalDate.time - context.naturalDate.longitude) * context.hemisphere}deg) scaleX(${context.hemisphere})`}">
+          <HandNtzSVG fill="currentColor"/>
+        </div>
+      </div>
+
+      <!-- DIAL -->
+      <div class="clock-dial nt-box-outer">
+        <div class="nt-box-inner rounded-full bg-white shadow-xl"></div>
+      </div>
+
+      <!-- MUSTACHES EQUINOXES -->
+      <div class="clock-mustache-equinox nt-box-outer text-slate-400">
+        <MustacheEquinoxSVG fill="currentColor"/>
+      </div>
+
+      <!-- MUSTACHES WINTER SUNRISE -->
+      <div class="clock-mustache-winter-sunrise nt-box-outer rotate-180 text-slate-400">
+        <div class="nt-box-inner" :style="{transform: `rotate(${(context.mustaches.winterSunrise) * context.hemisphere}deg)`}">
+          <MustacheSVG fill="currentColor" />
+        </div>
+      </div>
+
+      <!-- MUSTACHES SUMMER SUNRISE -->
+      <div class="clock-mustache-summer-sunrise nt-box-outer rotate-180 text-slate-400">
+        <div class="nt-box-inner" :style="{transform: `rotate(${(context.mustaches.summerSunrise) * context.hemisphere}deg)`}">
+          <MustacheSVG fill="currentColor" />
+        </div>
+      </div>
+
+      <!-- MUSTACHES WINTER SUNSET -->
+      <div class="clock-mustache-winter-sunset nt-box-outer rotate-180 text-slate-400">
+        <div class="nt-box-inner" :style="{transform: `rotate(${(context.mustaches.winterSunset) * context.hemisphere}deg)`}">
+          <MustacheSVG fill="currentColor" />
+        </div>
+      </div>
+
+      <!-- MUSTACHES SUMMER SUNSET -->
+      <div class="clock-mustache-summer-sunset nt-box-outer rotate-180 text-slate-400">
+        <div class="nt-box-inner" :style="{transform: `rotate(${(context.mustaches.summerSunset) * context.hemisphere}deg)`}">
+          <MustacheSVG fill="currentColor" />
+        </div>
+      </div>
+
+      <!-- TITLE -->
+      <div class="clock-title nt-box-outer text-slate-300 text-2xl text-center font-bold">
+        <div class="nt-box-inner">
+          <h1 style="padding-top: 67%;">Temps Naturel</h1>
+        </div>
+      </div>
+
+      <!-- NUMBERS -->
+      <div class="clock-numbers nt-box-outer rotate-180 text-2xl">
+        <div class="nt-box-inner absolute text-center p-1"
+          v-once
+          v-for="n in 36" 
+          :key="`dial-number-${(n - 1) * 10}`" 
+          :data-time="(n - 1) * 10" 
+          :style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }"
+          :class="{
+            'multiple-of-90 font-extrabold text-slate-900': (n - 1) % 9 === 0,
+            'multiple-of-30 font-normal text-slate-400': (n - 1) % 3 === 0 && (n - 1) % 9 !== 0,
+            'multiple-of-10 font-thin text-slate-200': (n - 1) % 3 !== 0
+          }">
+          <span>{{ (n - 1) * 10 }}</span>
+        </div>
+      </div>
+
+      <!-- DOTS -->
+      <div class="clock-dots nt-box-outer rotate-180">
+        <div class="nt-box-inner absolute text-center"
+          v-once
+          v-for="n in 36" 
+          :key="`dial-dot-${(n - 1) * 10}`" 
+          :style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }"
+          :class="{
+            'multiple-of-90': (n - 1) % 9 === 0,
+            'multiple-of-30': (n - 1) % 3 === 0 && (n - 1) % 9 !== 0,
+            'multiple-of-10': (n - 1) % 3 !== 0
+          }">
+          <div class="w-2 h-2 inline-block mt-12 rounded-full bg-slate-300"></div>
+        </div>
+      </div>
+
+      <!-- HAND -->
+      <div class="clock-hand nt-box-outer rotate-180">
+        <div class="nt-box-inner" :style="{ transform: `rotate(${context.naturalDate.time * context.hemisphere}deg)` }">
+          <HandSVG fill="currentColor" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup>
-
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import HandSVG from '@/assets/clock/hand-default.svg';
+import HandNtzSVG from '@/assets/clock/hand-ntz-default.svg';
+import MustacheEquinoxSVG from '@/assets/clock/mustache-equinox-default.svg';
+import MustacheSVG from '@/assets/clock/mustache-default.svg';
 
 const props = defineProps({
-  naturalDate: {
+  context: {
     type: Object,
     required: true
   },
-  sunContext: Object,
-  moonContext: Object,
-  hemisphere: Number,
-  location: String
+  style: {
+    type: Object,
+    default: () => ({})
+  }
 });
 
-const settings = {
-  // DIAL ELEMENTS SIZES
-  dialSize: 110,
-  ringSize: 90,
-  ntzSize: 74.9,
-  blurSize: 165,
-  // MOON LOOP circle positions
-  xstart: 2.02,
-  xspan: 0.05,
-  ystart: 1.455,
-  yspan: 0.06,
-  // Period type colors
-  periodColors: {
-    golden: "#FFC856",
-    day: "#80CCFF",
-    pinky: "#FFC856",
-    nautical: "#2A2F55",
-    night: "#000",
-  }
-}
+const clockWrapper = ref(null);
+const scale = ref(1);
+let resizeObserver = null;
 
-// SVG pie chart are not straightforward
-// We use the dashed stroke hack to build them
-function drawPeriod(start, end, stroke, radiusSize) {
-  if(start > end) end += 360; // Night starts at the end of the "day"
-  return {
-    "stroke-dasharray": (end - start) * Math.PI * (radiusSize/180) + " " + Math.PI * radiusSize * 2,
-    "transform": "rotate(" + start + " 180 180)",
-    "r": radiusSize, "cx": "180", "cy": "180",
-    "stroke-width": radiusSize,
-    "stroke": stroke,
-    "fill": "transparent"
+const clockBoxStyle = computed(() => ({
+  width: '800px',
+  height: '800px',
+  minWidth: '800px',
+  minHeight: '800px',
+  transform: `scale(${scale.value})`,
+}));
+
+const updateScale = () => {
+  if (!clockWrapper.value) return;
+  const wrapperWidth = clockWrapper.value.offsetWidth;
+  const wrapperHeight = clockWrapper.value.offsetHeight;
+  const scaleX = (wrapperWidth * 0.85) / 800;
+  const scaleY = (wrapperHeight * 0.55) / 800;
+  scale.value = Math.min(scaleX, scaleY, 1);
+};
+
+onMounted(() => {
+  updateScale();
+  
+  resizeObserver = new ResizeObserver(updateScale);
+  if (clockWrapper.value) {
+    resizeObserver.observe(clockWrapper.value);
   }
-}
+});
+
+onUnmounted(() => {
+  if (resizeObserver) {
+    resizeObserver.disconnect();
+  }
+});
+
+const dayPeriodPath = (start, end) => {
+  // Adjust for cases where end is on the next day
+  const adjustedEnd = end < start ? end + 360 : end;
+  const largeArcFlag = adjustedEnd - start <= 180 ? 0 : 1;  
+  const startX = 400 + 400 * Math.cos((start - 90) * Math.PI / 180);
+  const startY = 400 + 400 * Math.sin((start - 90) * Math.PI / 180);
+  const endX = 400 + 400 * Math.cos((end - 90) * Math.PI / 180);
+  const endY = 400 + 400 * Math.sin((end - 90) * Math.PI / 180);
+  return `M 400 400 L ${startX} ${startY} A 400 400 0 ${largeArcFlag} 1 ${endX} ${endY} Z`;
+};
 
 </script>
 
-<template>
-
-  <svg height="100%" width="100%" viewBox="0 0 360 360" preserveAspectRatio="xMidYMid meet" overflow="visible">
-    <!-- SVG DEFS -->
-    <defs>
-      <!-- BLUR -->
-      <filter id="blurry">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="5" />
-      </filter>
-
-      <!-- PERIODS GRADIENTS -->
-      <radialGradient v-for="(periodColor, name) in settings.periodColors" :key="name" :id="name" cx="50%" cy="50%" r="50%">
-        <stop offset="50%" :stop-color="periodColor" stop-opacity="1" />
-        <stop offset="100%" :stop-color="periodColor" stop-opacity="0" />
-      </radialGradient>
-
-      <!-- NORTHERN DIAL -->
-      <pattern id="northernDial" height="100%" width="100%" patternContentUnits="objectBoundingBox">
-        <image preserveAspectRatio="none" width="1" height="1" href="../assets/clock/northern-dial.jpg"></image>
-      </pattern>
-
-      <!-- SOUTHERN DIAL -->
-      <pattern id="southernDial" height="100%" width="100%" patternContentUnits="objectBoundingBox">
-        <image preserveAspectRatio="none" width="1" height="1" href="../assets/clock/southern-dial.jpg"></image>
-      </pattern>
-    </defs>
-    
-    <!-- BLURRY DIAL BACKGROUND -->
-   <g id="blurryPeriodsRing"  filter="url(#blurry)">
-      <circle v-bind="drawPeriod(sunContext.sunrise, sunContext.morningGoldenHour, 'url(#golden)', settings.blurSize)" />
-      <circle v-bind="drawPeriod(sunContext.morningGoldenHour, sunContext.eveningGoldenHour,'url(#day)', settings.blurSize)" />
-      <circle v-bind="drawPeriod(sunContext.eveningGoldenHour, sunContext.sunset, 'url(#pinky)', settings.blurSize)" />
-      <circle v-bind="drawPeriod(sunContext.nightStart, sunContext.nightEnd, 'url(#night)', settings.blurSize)" />
-      <circle v-bind="drawPeriod(sunContext.nightEnd, sunContext.sunrise, 'url(#nautical)', settings.blurSize)" />
-      <circle v-bind="drawPeriod(sunContext.sunset, sunContext.nightStart, 'url(#nautical)', settings.blurSize)" />
-   </g>
-
-    <!-- DAY PERIODS RING -->
-    <g id="periodsRing">
-      <circle v-bind="drawPeriod(sunContext.sunrise, sunContext.morningGoldenHour, settings.periodColors.golden, settings.ringSize)" />
-      <circle v-bind="drawPeriod(sunContext.morningGoldenHour, sunContext.eveningGoldenHour, settings.periodColors.day, settings.ringSize)" />
-      <circle v-bind="drawPeriod(sunContext.eveningGoldenHour, sunContext.sunset, settings.periodColors.pinky, settings.ringSize)" />
-      <circle v-bind="drawPeriod(sunContext.nightStart, sunContext.nightEnd, settings.periodColors.night, settings.ringSize)" />
-      <circle v-bind="drawPeriod(sunContext.nightEnd, sunContext.sunrise, settings.periodColors.nautical, settings.ringSize)" />
-      <circle v-bind="drawPeriod(sunContext.sunset, sunContext.nightStart, settings.periodColors.nautical, settings.ringSize)" />
-    </g>
-
-    <!-- SUN -->
-    <g id="sun" width="100%" height="100%">
-      <image v-if="hemisphere > 0" href="@/assets/clock/northern-sun-circle.png" width="100%" height="100%" />
-      <image v-else href="@/assets/clock/southern-sun-circle.png" width="100%" height="100%" />
-    </g>
-
-    <!-- MOON -->
-    <g id="moon" width="100%" height="100%">
-      <!-- Cheap trick: pre-create all 36 moon phases for webpack inclusion in build -->
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 0" href="@/assets/moon/moon-0.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 1" href="@/assets/moon/moon-1.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 2" href="@/assets/moon/moon-2.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 3" href="@/assets/moon/moon-3.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 4" href="@/assets/moon/moon-4.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 5" href="@/assets/moon/moon-5.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 6" href="@/assets/moon/moon-6.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 7" href="@/assets/moon/moon-7.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 8" href="@/assets/moon/moon-8.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 9" href="@/assets/moon/moon-9.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 10" href="@/assets/moon/moon-10.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 11" href="@/assets/moon/moon-11.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 12" href="@/assets/moon/moon-12.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 13" href="@/assets/moon/moon-13.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 14" href="@/assets/moon/moon-14.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 15" href="@/assets/moon/moon-15.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 16" href="@/assets/moon/moon-16.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 17" href="@/assets/moon/moon-17.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 18" href="@/assets/moon/moon-18.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 19" href="@/assets/moon/moon-19.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 20" href="@/assets/moon/moon-20.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 21" href="@/assets/moon/moon-21.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 22" href="@/assets/moon/moon-22.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 23" href="@/assets/moon/moon-23.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 24" href="@/assets/moon/moon-24.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 25" href="@/assets/moon/moon-25.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 26" href="@/assets/moon/moon-26.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 27" href="@/assets/moon/moon-27.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 28" href="@/assets/moon/moon-28.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 29" href="@/assets/moon/moon-29.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 30" href="@/assets/moon/moon-30.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 31" href="@/assets/moon/moon-31.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 32" href="@/assets/moon/moon-32.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 33" href="@/assets/moon/moon-33.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 34" href="@/assets/moon/moon-34.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-      <image v-if="Math.floor((360-moonContext.phase)/10) == 35" href="@/assets/moon/moon-35.png" :width="(moonWidth = 11) + '%'" :height="moonWidth + '%'" :x="50 - moonWidth/2 + '%'" :y="50 - moonWidth/2 + '%'" />
-    </g>
-
-    <!-- DIAL -->
-    <circle id="dialLoadingBg" :r="settings.dialSize" cx="180" cy="180" fill="#E3E3E3" />
-    <circle id="dial" :r="settings.dialSize" cx="180" cy="180" :fill="hemisphere > 0 ? 'url(#northernDial)' : 'url(#southernDial)'" />
-    
-    <!-- NTZ 0° / +180° -->
-    <image id="ntzNeedle" xlink:href="../assets/clock/NTZ.png" width="100%" height="100%" />
-
-    <!-- PROMPT -->
-    <g id="prompt">
-
-      <!-- LOCATION -->
-      <text id="location" x="180" y="211">{{ location.replace(/_/g, " ") }} ({{ naturalDate.toLongitudeString() }})<title>{{ $t('nav.openLocationPicker') }}</title></text>
-
-      <!-- MOON LOOP -->
-      <g> 
-        <circle v-if="!naturalDate.isRainbowDay" v-for="n in 28" 
-          :cx="(settings.ystart + settings.yspan * ((n-1)%7)) * settings.dialSize" 
-          :cy="(settings.xstart + settings.xspan * parseInt((n-1)/7)) * settings.dialSize" 
-          :r="n == naturalDate.dayOfMoon ? 2 : 1.4" 
-          :class="n == naturalDate.dayOfMoon ? 'color-'+naturalDate.dayOfWeek : ''"></circle>
-      </g>
-    </g>
-
-    <!-- SUN NEEDLE -->
-    <image id="sunNeedle" href="@/assets/clock/sun-needle.png" width="100%" height="100%" />
-    
-    <!-- TIME -->
-    <g id="time">
-      <text id="units" x="174" y="196">{{ ('00'+Math.floor(naturalDate.time)).slice(-3) }}°</text>
-      <text id="decimals" x="228" y="196" >{{ ('0' + Math.floor((naturalDate.time - Math.floor(naturalDate.time))  * 100/1) * 1).slice(-2) }}</text>
-      <title>{{ $t('nav.openLocationPicker') }}</title>
-    </g>
-
-  </svg>
-
-  <!-- DEFINE GLOBAL CSS VARS -->
-  <component :is="'style'">
-    :root {
-      --sun-time: {{naturalDate.time * hemisphere}}deg;
-      --ntz-time: {{(naturalDate.time - naturalDate.longitude) * hemisphere}}deg;
-      --sun-altitude: {{sunContext.altitude * 0.9}}px;
-      --moon-time: {{naturalDate.time * hemisphere - moonContext.phase * hemisphere}}deg;
-      --moon-altitude: {{moonContext.altitude * 0.9}}px;
-    }
-  </component>
-
-</template>
-
 <style lang="scss" scoped>
-  
-// set all rotations origin to bottom
-svg{
-  transform: rotate(90deg);
-}
-
-#sun, #sunNeedle{
-  transform: rotateZ(var(--sun-time));
-  transform-origin: 50% 50%;
-}
-
-#sun{
-  & > image{
-  transform: translateX(var(--sun-altitude));
-  filter: blur(calc(1px - var(--day-progression) * 1px)) var(--day-saturation);
-}
-}
-
-#blurryPeriodsRing{
-  opacity: calc(0.5 + var(--day-progression) / 5);
-  transform: scale(calc(0.86 + var(--day-progression) * 0.14)) scaleY(var(--hemisphere));
-  transform-origin: 50% 50%;
-}
-
-#periodsRing{
-  opacity: calc(0.5 + var(--day-progression) * 0.5);
-  transform: scale(calc(0.86 + var(--day-progression) * 0.14)) scaleY(var(--hemisphere));
-  transform-origin: 50% 50%;
-}
-
-#ntz-ring{
-  transform: scaleY(var(--hemisphere));
-  transform-origin: 50% 50%;
-}
-
-#ntzNeedle{
-  transform: rotateZ(var(--ntz-time)) scaleY(var(--hemisphere));
-  transform-origin: 50% 50%;
-}
-
-#moon{
-  transform: rotateZ(var(--moon-time)) scaleY(var(--hemisphere));
-  transform-origin: 50% 50%;
-  image{
-    transform: translateX(calc(32% + var(--moon-altitude)));
+  .nt-box-outer {
+    @apply absolute inset-0 w-full h-full bg-cover bg-center;
   }
-}
-
-#time{
-  cursor: pointer;
-  transform: rotate(-90deg);
-  transform-origin: center center;
-  text-anchor: middle;
-  font-family: "Radio Canada", sans-serif;
-  font-weight: 700;
-  fill: #4D4D59;
-  #units{
-    font-size: 3.4em;
-  }
-  #decimals{
-    font-size: 1.1em;
-    font-weight: 400;
-    fill: #cccccd;
-  } 
-  &:hover{
-    #units, #decimals{
-      fill: #2b2b2b;
-    }
+  .nt-box-inner {
+    @apply w-[720px] h-[720px] m-[40px];
   }
 
-}
 
-#prompt{
-  transform: rotate(-90deg);
-  transform-origin: center center;
-  circle{
-    fill: #CECECE;
+.moon-divider {
+  &,
+  &:after {
+    @apply absolute top-0 left-0 w-full h-full rounded-full;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
 
-  #location{
-    cursor: pointer;
-    text-anchor: middle;
-    font-family: monospace, sans-serif;
-    font-size: 0.5em;
-    fill: #9b9bb4;
-    font-weight: bold;
-  }
-  #fulldate{
-    text-anchor: middle;
-    font-family: "Radio Canada", sans-serif;
-    font-size: 0.45em;
-    fill: #bfbfbf;
+  &:after {
+    content: '';
+    transform: rotateY(180deg);
   }
 }
-  
 </style>

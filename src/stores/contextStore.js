@@ -5,25 +5,38 @@ export const useContextStore = defineStore('context', {
     storedLatitude: parseFloat(localStorage.latitude),
     storedLongitude: parseFloat(localStorage.longitude),
     storedLocation: localStorage.location,
+    tempLatitude: parseFloat(localStorage.latitude),
+    tempLongitude: parseFloat(localStorage.longitude),
+    tempLocation: localStorage.location,
     currentTime: new Date(),
     timer: null,
   }),
   
   getters: {
     isEmpty: (state) => !state.storedLatitude || !state.storedLongitude,
-    latitude: (state) => state.storedLatitude || 42.42,
-    longitude: (state) => state.storedLongitude || 0,
-    location: (state) => state.storedLocation || '',
+    latitude: (state) => state.tempLatitude || 42.42,
+    longitude: (state) => state.tempLongitude || 0,
+    location: (state) => state.tempLocation || '',
   },
   
   actions: {
     init() {
       this.timer = setInterval(() =>  this.currentTime = new Date(), 2400);
     },
-    update(latitude, longitude, location) {
-      localStorage.latitude = this.storedLatitude = parseFloat(Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2));
-      localStorage.longitude = this.storedLongitude = parseFloat(Math.max(-180, Math.min(180, parseFloat(longitude))).toFixed(2));
-      localStorage.location = this.storedLocation = location;
+    updateTemp(latitude, longitude, location) {
+      this.tempLatitude = parseFloat(Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2));
+      this.tempLongitude = parseFloat(Math.max(-180, Math.min(180, parseFloat(longitude))).toFixed(2));
+      this.tempLocation = location;
+    },
+    saveToLocalStorage(latitude, longitude, location) {
+      localStorage.latitude = this.storedLatitude = this.tempLatitude = parseFloat(Math.max(-90, Math.min(90, parseFloat(latitude))).toFixed(2));
+      localStorage.longitude = this.storedLongitude = this.tempLongitude = parseFloat(Math.max(-180, Math.min(180, parseFloat(longitude))).toFixed(2));
+      localStorage.location = this.storedLocation = this.tempLocation = location;
+    },
+    restoreFromLocalStorage() {
+      this.tempLatitude = this.storedLatitude;
+      this.tempLongitude = this.storedLongitude;
+      this.tempLocation = this.storedLocation;
     },
   },
 })

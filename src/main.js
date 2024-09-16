@@ -16,7 +16,7 @@ app.use(createPinia())
    .use(i18n, {missingWarn: false, silentFallbackWarn: true})
    .use(OpenLayersMap)
    .use(Vue3TouchEvents, {rollOverFrequency: 500})
-   .directive('longclick', longClickDirective({delay: 222, interval: 111}))
+   .directive('longclick', longClickDirective({delay: 200, interval: 50}))
 
 //setupMatomo(app, router)
 initializePWA()

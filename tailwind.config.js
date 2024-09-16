@@ -13,10 +13,12 @@ module.exports = {
         'ntyellow': {
           light: '#fff200',
           dark: '#ffd700',
+          darker: '#ffc700',
         },
         'ntcyan': {
           light: '#00F2FF',
           dark: '#00d7e6',
+          darker: '#02B2B8',
         },
         'ntmagenta': {
           light: '#fe6c87',

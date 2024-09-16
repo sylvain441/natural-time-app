@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 360 360" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-3626,-3357)">
+        <g id="mustache-equinox-default" transform="matrix(1.11455,0,0,1.11455,387.078,-384.736)">
+            <rect x="2906.04" y="3357.17" width="323" height="323" style="fill:none;"/>
+            <g transform="matrix(0.294313,-0.00295847,0.00295847,0.294313,2913.61,3424.49)">
+                <path d="M715.752,332.395L323.619,328.453C320.744,328.424 318.434,326.067 318.463,323.193C318.492,320.318 320.849,318.008 323.723,318.037L715.857,321.979C718.732,322.008 721.042,324.365 721.013,327.239C720.984,330.113 718.627,332.424 715.752,332.395Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

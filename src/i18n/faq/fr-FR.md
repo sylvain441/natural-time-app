@@ -31,7 +31,7 @@ Pour toutes questions : sylvain441@pm.me – @sylvain441 (telegram).
 
 
 
-### Horloge de 360°
+### Horloge Naturelle
 
 #### Comment lire une horloge naturelle ?
 [Réponse ici]

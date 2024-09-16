@@ -1,13 +1,44 @@
 <template>
-  <div id="FAQ" v-html="faq"></div>
+  <div id="FAQ" v-html="filteredFaq"></div>
 </template>
 
 <script setup>
 import { useFaq } from '../i18n/faq';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, computed } from 'vue';
+
+const props = defineProps({
+  categories: {
+    type: Array,
+    default: () => []
+  }
+});
 
 const faq = useFaq();
 const observer = ref(null);
+
+const filteredFaq = computed(() => {
+  if (props.categories.length === 0) {
+    return faq.value;
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(faq.value, 'text/html');
+  const categories = doc.querySelectorAll('h3');
+  
+  categories.forEach((category, index) => {
+    if (!props.categories.includes(index + 1)) {
+      let nextElement = category.nextElementSibling;
+      while (nextElement && nextElement.tagName !== 'H3') {
+        const toRemove = nextElement;
+        nextElement = nextElement.nextElementSibling;
+        toRemove.remove();
+      }
+      category.remove();
+    }
+  });
+
+  return doc.body.innerHTML;
+});
 
 const setupAccordion = () => {
   const faqElement = document.getElementById('FAQ');
@@ -16,7 +47,7 @@ const setupAccordion = () => {
   if (categories.length === 0) return;
 
   categories.forEach((category, index) => {
-    const categoryId = index + 1;
+    const categoryId = props.categories.length > 0 ? props.categories[index] : index + 1;
     category.classList.add('faq-category');
     category.setAttribute('data-category', categoryId);
 
@@ -108,7 +139,7 @@ onUnmounted(() => {
     }
   }
   .faq-question {
-    @apply text-lg md:text-xl mb-1 text-gray-700;
+    @apply text-lg md:text-xl mt-2 mb-1 text-gray-700;
     @apply cursor-pointer flex items-center justify-between;
     &:hover, &.open {
       .question-text {
@@ -123,7 +154,7 @@ onUnmounted(() => {
     }
   }
   .faq-answer {
-    @apply transition-all duration-300 ease-in-out mb-8 mt-2 px-4 py-1 border-l-2 border-gray-300;
+    @apply transition-all duration-300 ease-in-out mb-4 mt-2 px-4 py-1 border-l-2 border-gray-300;
     p{
        @apply mb-2;
     }

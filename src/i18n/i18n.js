@@ -94,12 +94,12 @@ const translations = {
               "title": "Choisir un lieu",
               "subtitle": "Le Temps Naturel dépend de la position géographique",
               "offlineMessage": "L'appareil semble hors-ligne.<br>Veuillez vérifier votre connexion internet<br>ou entrer vos coordonnées GPS manuellement.",
-              "searchFor": "Rechercher un lieu",
+              "searchFor": "Rechercher",
               "form": {
-                "save": "Valider l'emplacement",
-                "cancel": "annuler",
-                "latitude": "latitude",
-                "longitude": "longitude",
+                "save": "Valider",
+                "cancel": "Fermer",
+                "latitude": "lat",
+                "longitude": "long",
                 "useGeolocation": "Me localiser"
               },
               "promptLocationName": "Donner un nom à ce lieu (facultatif)"

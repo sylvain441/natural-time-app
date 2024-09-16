@@ -1,37 +1,11 @@
 <template>
   <MetaTags />
   <div>
-    <!-- Full-screen navigation menu -->
-    <transition name="menu-fade">
-      <nav v-if="isMenuOpen" class="fixed inset-0 bg-white bg-opacity-95 flex items-center justify-center z-40">
-        <div class="flex flex-col items-center space-y-8">
-          <router-link :to="{ name: 'welcome' }" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
-            {{ $t('nav.welcome') }}
-          </router-link>
-          <router-link to="/time" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
-            {{ $t('nav.clock') }}
-          </router-link>
-          <router-link to="/13moons" class="nav-link text-4xl font-semibold text-gray-800 hover:text-gray-600 transition-all duration-300 transform hover:scale-110" @click="closeMenu">
-            {{ $t('nav.moons') }}
-          </router-link>
-        </div>
-      </nav>
-    </transition>
-
-    <!-- Menu toggle button -->
-    <button @click="toggleMenu" class="fixed top-4 left-4 z-50 p-2 rounded-full bg-slate-500 text-slate-200 focus:outline-none transition-all duration-300 hover:bg-slate-600">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="3" y1="12" x2="21" y2="12" class="transition-transform duration-300" :class="{ 'rotate-45 translate-y-0': isMenuOpen, '-translate-y-2': !isMenuOpen }" />
-        <line x1="3" y1="12" x2="21" y2="12" class="transition-opacity duration-300" :class="{ 'opacity-0': isMenuOpen }" />
-        <line x1="3" y1="12" x2="21" y2="12" class="transition-transform duration-300" :class="{ '-rotate-45 translate-y-0': isMenuOpen, 'translate-y-2': !isMenuOpen }" />
-      </svg>
-    </button>
-
-    <div class="z-10 relative">
-      <router-view v-slot="{Component}">
-      <transition name="fade" mode="out-in">
-        <component :is="Component"></component>
-      </transition>
+    <div class="z-10 h-min-screen relative">
+      <router-view v-slot="{ Component }" @panel-open-change="updatePanelOpenStatus">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" ref="currentView"></component>
+        </transition>
       </router-view>
     </div>
   </div>
@@ -39,31 +13,32 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { useI18n } from 'vue-i18n'
-import { ref, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import MetaTags from '@/components/MetaTags.vue';
+import { useContextStore } from '@/stores/contextStore';
 
 const route = useRoute();
-const i18n = useI18n();
-const isMenuOpen = ref(false);
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
-
-const closeMenu = () => {
-  isMenuOpen.value = false;
-};
-
-// CONTEXT STORE
-import { useContextStore } from '@/stores/contextStore'
-const contextStore = useContextStore()
+const contextStore = useContextStore();
 contextStore.init();
 
+const currentView = ref(null);
+const isPanelOpenInTimeView = ref(false);
+
+const updatePanelOpenStatus = () => {
+  if (currentView.value && currentView.value.isPanelOpen) {
+    isPanelOpenInTimeView.value = currentView.value.isPanelOpen;
+  } else {
+    isPanelOpenInTimeView.value = false;
+  }
+};
+
+watch(() => route.name, () => {
+  // Reset panel open status when route changes
+  isPanelOpenInTimeView.value = false;
+});
 </script>
 
 <style lang="scss">
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

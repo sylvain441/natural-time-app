@@ -1,83 +1,117 @@
 <template>
+  <div id="day-view" class="flex flex-row h-screen overflow-hidden">
+    
+    <!-- Main content -->
+    <div :class="['relative h-full transition-all duration-300 ease-in-out', (showSettings || showFAQ) ? 'w-0 md:block md:w-1/2 xl:w-2/3' : 'w-full']">
+     
+      <!-- APP menu -->  
+      <MainMenu />
 
-<div id="day-view" v-touch:rollover="displayUI" v-touch:release="displayUI">
-  
-  <div id="ClockComponent" v-if="!showSettings">
-    <!-- DIAL ClockComponent -->
-    <ClockComponent 
-      :naturalDate="context.naturalDate"
-      :sunContext="context.sun"
-      :moonContext="context.moon"
-      :hemisphere="hemisphere"
-      :location="location"
-    ></ClockComponent>
-  </div>
-  
-  <!-- TIME CONTROLS -->
-  <div id="time-controls" v-if="!showSettings" :class="timeVariation ? '' : 'UI'">
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="-24*3600" :title="$t('timeControl.moveBackward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.past')">-360°</button>
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="-8*60" :title="$t('timeControl.moveBackward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.past')">-2°</button>
-    <button v-touch:tap="timeTravel" :disabled="timeVariation == 0"
-      :data-variation="0" :title="$t('timeControl.resetTitle')">{{ $t('timeControl.reset') }}</button>
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="+8*60" :title="$t('timeControl.moveForward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.future')">+2°</button>
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="+24*60*60" :title="$t('timeControl.moveForward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.future')">+360°</button>
-    <button v-touch:tap="timeTravel" v-longclick="timeTravel"
-      :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
-  </div>
-  
-  <div id="legend" v-if="!showSettings" @click="showSettings = true">
-    {{ context.naturalDate }}
-  </div>
-  
+      <div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end" style="width: inherit;">
+        
+        <!-- ClockComponent -->
+        <ClockComponent class="absolute w-full h-full"
+          :context="context"
+        ></ClockComponent>
+        
+        <!-- Bottom informations -->
+        <div class="z-20 text-center" style="padding-bottom: 5vh;">
+          <h1 class="text-slate-800 font-extrabold text-2xl mt-1">{{ contextStore.location || 'Natural Time' }}</h1>
+          <h2 class="text-slate-400 text-xl mt-2">{{ context.naturalDate }}</h2>
+          
+          <!-- TIME CONTROLS -->
+          <div v-if="showTimeControls" id="time-controls" class="relative z-20 bg-white mt-4 p-2 rounded-lg" style="background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');">
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="-24*3600" :title="$t('timeControl.moveBackward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.past')">-360°</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="-8*60" :title="$t('timeControl.moveBackward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.past')">-2°</button>
+            <button v-touch:tap="timeTravel" :disabled="timeVariation == 0"
+              :data-variation="0" :title="$t('timeControl.resetTitle')">{{ $t('timeControl.reset') }}</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="+8*60" :title="$t('timeControl.moveForward')+' 2 '+$t('timeControl.degrees')+' '+$t('timeControl.future')">+2°</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="+24*60*60" :title="$t('timeControl.moveForward')+' 1 '+$t('timeControl.day')+' '+$t('timeControl.future')">+360°</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
+            <button v-touch:tap="timeTravel" v-longclick="timeTravel"
+              :data-variation="+365*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+1y{{$t('timeControl.days')}}</button>
+            <button @click="toggleTimeControls" class="absolute -top-6 -right-6 p-4 w-6 h-6 bg-gray-600 rounded-full text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div id="backgrounds" class="z-0 fixed top-0 left-0 w-screen h-screen">
-    <div id="stars" class="absolute top-0 left-0 w-full h-full"></div>
-    <div id="clouds" class="absolute top-0 left-0 w-full h-full"></div>
-  </div>
-  
-  <!-- DEFINE GLOBAL CSS VARS -->
-  <component :is="'style'">
-    :root {
-      --hemisphere: {{hemisphere}};
-      --day-progression: {{context.dayProgression}};
-      --day-saturation: saturate({{0.4 + context.dayProgression * 0.6}});
-      --ui-opacity: {{uiOpacity}};
-    }
-  </component>
-  
-  <!-- Settings overlay -->
-  <SettingsComponent v-if="showSettings" @close="closeSettings" />
+    <!-- Right panel (keep w-1 -mr-1 to prevent map width == 0 error) -->
+    <div :class="['z-30 transition-all duration-300 ease-in-out', (showSettings || showFAQ) ? 'w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8' : 'w-1 -mr-1']">
+      <div class="overflow-hidden w-full h-full bg-white md:rounded-2xl md:shadow-2xl">
+        <!-- Close button -->
+        <button v-if="showSettings || showFAQ" @click="closeRightPanel" 
+                class="absolute top-4 right-4 z-50 p-2 rounded-full bg-slate-500 text-slate-200 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+        
+        <div class="overflow-hidden h-full">
+          <SettingsComponent v-if="showSettings" @close="closeRightPanel" />
+          <div v-if="showFAQ" id="faq" class="overflow-y-auto h-full">
+            <div class="my-6 mx-4 md:my-8 md:mx-8">
+              <FAQAccordion :categories="[2]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- Button to open settings -->
-  <button @click="toggleSettings" class="fixed bottom-4 right-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
-    {{ $t('settings.title') }}
-  </button>
-  
+    <!-- Settings toggle button -->
+    <button v-if="!showSettings && !showFAQ" @click="toggleSettings" class="fixed top-4 right-4 z-30 p-2 rounded-full bg-slate-500 text-slate-200 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+
+    <!-- FAQ toggle button -->
+    <button v-if="!showSettings && !showFAQ" @click="toggleFAQ" class="fixed top-16 right-4 z-30 p-2 rounded-full bg-slate-500 text-slate-200 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+    </button>
+      
+    <!-- DEFINE GLOBAL CSS VARS -->
+    <component :is="'style'">
+      :root {
+        --hemisphere: {{context.hemisphere}};
+        --day-progression: {{context.dayProgression}};
+        --abs-day-progression: {{Math.abs(context.dayProgression * 2 - 1)}}; /* close to sunrise and sunset */
+      }
+    </component>
   </div>
-  
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router';
-import { NaturalDate } from 'natural-time-js';
-import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents } from 'natural-time-js/context';
+import { NaturalDate } from '../../../natural-time-js';
+import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from '../../../natural-time-js/context';
 import ClockComponent from '@/components/ClockComponent.vue';
 import SettingsComponent from '@/components/SettingsComponent.vue';
-
-const router = useRouter();
+import FAQAccordion from '@/components/FAQAccordion.vue';
+import MainMenu from '@/components/MainMenu.vue';
 
 // CONTEXT STORE
 import { useContextStore } from '@/stores/contextStore'
 const contextStore = useContextStore()
-console.log('contextStore', contextStore.isEmpty);
 
 // I18N
 import { useI18n } from 'vue-i18n'
@@ -88,8 +122,7 @@ let { latitude, longitude, location, currentTime } = storeToRefs(contextStore);
 // Compute context
 let context = computed(() => {
   // Compute date from Now + Variation
-  let artificialDate = new Date(currentTime.value.getTime() + timeVariation.value);
-  let naturalDate = new NaturalDate(artificialDate, longitude.value);
+  let naturalDate = new NaturalDate(new Date(currentTime.value.getTime() + timeVariation.value), longitude.value);
 
   // Compute Sun data
   let sun = { 
@@ -102,6 +135,10 @@ let context = computed(() => {
     ...NaturalMoonPosition(naturalDate, latitude.value),
     ...NaturalMoonEvents(naturalDate, latitude.value)
   };
+
+  let mustaches = MustachesRange(naturalDate, latitude.value);
+
+  let hemisphere = latitude.value >= 0 ? 1 : -1;
 
   // Calculate luminosity progression for day/night mode
   let dayProgression = 0;
@@ -118,20 +155,18 @@ let context = computed(() => {
     }
   }
 
-  // UPDATE PAGE TITLE
+  // UPDATE PAGE TITLE TODO: make this reactive
   document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${naturalDate.toDateString()} | ${i18n.t('nt')}`;
 
   return {
     naturalDate: naturalDate,
-    artificialDate: artificialDate,
     sun: sun,
     moon: moon,
+    mustaches: mustaches,
+    hemisphere: hemisphere,
     dayProgression: dayProgression,
   };
 });
-
-let hemisphere = computed(() => latitude.value >= 0 ? 1 : -1)
-
 
 let timeVariation = ref(0);
 
@@ -144,163 +179,72 @@ function timeTravel(event) {
   timeVariation.value += variation * 1000;
 }
 
-// Make the UI shade away when idle
-let uiOpacity = ref(0);
-let timeoutUI = null;
-
-function displayUI() {
-  uiOpacity.value = 1;
-  clearTimeout(timeoutUI);
-  timeoutUI = setTimeout(() => {
-    uiOpacity.value = 0;
-  }, 5000);
-}
-
 const showSettings = ref(false);
+const showFAQ = ref(false);
+const showTimeControls = ref(false);
 
 const toggleSettings = () => {
   showSettings.value = !showSettings.value;
+  if (showSettings.value) {
+    showFAQ.value = false;
+  }
 };
 
-const closeSettings = () => {
-  showSettings.value = false;
+const toggleFAQ = () => {
+  showFAQ.value = !showFAQ.value;
+  if (showFAQ.value) {
+    showSettings.value = false;
+  }
 };
+
+const toggleTimeControls = () => {
+  showTimeControls.value = !showTimeControls.value;
+};
+
+const closeRightPanel = () => {
+  showSettings.value = false;
+  showFAQ.value = false;
+  contextStore.restoreFromLocalStorage();
+};
+
 </script>
 
 <style lang="scss">
-  
-#day-view{
-  height: 100%;
-  min-height: 555px;
-}
-
-#backgrounds {
-  z-index: 0;
-  background-color: rgba(0, 3, 13, calc(1 - var(--day-progression)));
-  &, div {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-  }
-  #stars { 
-    z-index: 10; 
-    background: url("@/assets/background/stars.jpg") center center; 
-    background-size: cover;
-  }
-  #clouds {
-    z-index: 40; 
-    background: url("@/assets/background/clouds.jpg") center center; 
-    background-size: cover;
-    opacity: var(--day-progression);
-  }
-}
-
-
-#ClockComponent {
-  position: absolute;
-  z-index: 3000;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: max(65vmin, calc(100vmin - calc((100vmin - 350px) / 2)));
-  max-width: 888px;
-  aspect-ratio: 1 / 1;
-  transition: 1.5s;
-  &.blur-me{
-    filter: blur(10px);
-    opacity: 0;
-  }
-}
-
-#location-picker{
+#day-view {
   position: relative;
-  z-index: 5000;
-  width: 100%;
-  height: 100%;
-}
+  overflow: hidden;
+  background-image: url("https://www.transparenttextures.com/patterns/debut-light.png");
+  background-repeat: repeat;
 
-@media screen and (min-width: 700px) and (min-height: 700px) {
-  #location-picker{
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
-  }
-}
-
-#time-controls{
-  position: absolute;
-  z-index: 4000;
-  bottom: 3.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  button{
-    background-color: transparentize(#FFF, .2);
-    border: none;
-    border-radius: 5px;
-    padding: .3em .5em;
-    margin: .4em;
-    font-size: 0.7em;
-    transition: .3s;
-    transition-delay: .1s;
-    cursor: pointer;
-    -webkit-touch-callout:none;
-    -webkit-user-select:none;
-    -khtml-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
-    -webkit-tap-highlight-color:rgba(0,0,0,0);
-    &:disabled{
-      opacity: .5;
-    }
-    &:not(:disabled){
-      &:hover{
-        box-shadow: 0 0 5px transparentize(#000, .8);
-      }
-      &:active{
-        transform: scale(1.2);
-      }
-    }
-    &[data-variation='0']:not(:disabled){
-      color: red;
-    }
-  }
-}
-
-#legend{
-  position: absolute;
-  z-index: 3000;
-  bottom: 1.8em;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: Monospace;
-  text-align: center;
-  color: #7B7A8B;
-  opacity: .65;
-  font-size: 1.1em;
-  text-transform: uppercase;
-  word-break: normal;
-  width: 100%;
-  cursor: pointer;
-  &:hover{
-    text-decoration: underline;
-  }
-}
-
-@media (max-height: 500) and (orientation: landscape) {
-  #time-controls{
-    flex-direction: column;
-    width: auto;
-    height: 100%;
-    right: 3%;
+    top: 0;
+    left: 0;
+    right: 0;
     bottom: 0;
   }
+
+  // Night gradient
+  &::before {
+    background: radial-gradient(circle at center, #071135, #000000);
+    opacity: calc((1 - var(--day-progression)) * 0.8);
+  }
+
+  // Day gradient
+  &::after {
+    background: radial-gradient(circle at center, #ffffff, #d5f7fd);
+    opacity: calc(var(--day-progression) *0.5);
+  }
 }
 
-.UI{
-  opacity: var(--ui-opacity);
-  transition: opacity 1s;
+#faq{
+  .faq-question{
+    @apply text-sm;
+  }
+  .faq-answer{
+    @apply text-sm;
+  }
 }
-
 </style>

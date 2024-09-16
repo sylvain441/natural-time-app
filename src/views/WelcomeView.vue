@@ -17,8 +17,8 @@
         </h1>
         <p class="text-center text-sm md:text-2xl md:mb-8 max-w-3xl mx-auto py-2 px-6 md:px-0 md:pt-4 md:pb-8">
           Le <i>Temps Naturel</i> réinvente notre façon de mesurer le temps.<br/>
-          L'<span class="font-medium underline decoration-ntyellow-dark cursor-pointer" @click="scrollToNaturalClock">horloge de 360°</span> et la <span class="font-medium underline decoration-ntcyan-dark cursor-pointer" @click="scrollToThirteenMoons">spirale de 13 lunes</span> s'inspirent du vivant. <br class="hidden md:block">
-          Le soleil (re)devient la référence universelle du temps. <br class="hidden md:block">
+          En s'inspirant du vivant, l'<span class="font-medium underline decoration-ntyellow-dark cursor-pointer" @click="scrollToNaturalClock">horloge de 360°</span> et la <span class="font-medium underline decoration-ntcyan-dark cursor-pointer" @click="scrollToThirteenMoons">spirale de 13 lunes</span> <br class="hidden md:block">
+          redéfinissent le soleil comme référence universelle du temps. <br><br>
           <span @click="scrollToVideo" class="text-sm mr-4 cursor-pointer font-mono hover:underline" v-if="isOnline">Comprendre en vidéo</span>
           <span @click="scrollToFAQ" class="text-sm cursor-pointer font-mono hover:underline">Lire la FAQ</span>
         </p>
@@ -39,7 +39,7 @@
                 Mon unique aiguille tourne une seule fois par jour, <br class="hidden md:block" />
                 Lentement... Sur un cadran de 360°.
               </p>
-              <div class="flex justify-start mt-1">
+              <div class="flex justify-center md:justify-start mt-1">
                 <router-link :to="{ name: 'time' }" class="bg-black text-white px-10 py-2 rounded-2xl text-lg font-semibold hover:bg-gray-800 transition duration-300">
                   {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} l'horloge
                 </router-link>
@@ -69,7 +69,7 @@
                 En ajoutant le jour arc-en-ciel, cela donne <br class="hidden md:block" />
                 <strong>13 lunes x 28 jours + 1 = 365 🤩</strong>
               </p>
-              <div class="flex justify-start mt-1">
+              <div class="flex justify-center md:justify-start mt-1">
                 <router-link :to="{ name: '13moons' }" class="bg-black text-white px-10 py-2 rounded-2xl text-lg font-semibold hover:bg-gray-800 transition duration-300">
                   {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} les 13 lunes
                 </router-link>

@@ -27,7 +27,7 @@ Did you know the latin root of the word "Calendar" means "account book" ? Time h
 
 Nowadays most of the humanity "adopted" a very strange way to measure time. There is so much oddness encoded in our artificial clock coupled with the gregorian calendar.
 
-- Why do the needle spins around the clock two times a day ?
+- Why do the hand spins around the clock two times a day ?
 - Why sept-ember is not the 7th month ? oct-ober the 8th ?
 - Why 24 hours, 60 minutes of 60 seconds ? 
 - What happened between the 4th and the 15th of october 1582 ? [wiki]
@@ -75,7 +75,7 @@ Natural Time is obvious, simple, elegant and independant from any political inte
 
 ### How do you read the clock ?
 
-The time needle follow the course of the Sun starting from 0° at the middle of the night (aka "nadir") to 360° the next midnight. 180° Sun corresponds to the middle of the day.
+The time hand follow the course of the Sun starting from 0° at the middle of the night (aka "nadir") to 360° the next midnight. 180° Sun corresponds to the middle of the day.
 
 - _"Let's meet precisely at 144.41° sun"_
 - _"Workshop duration is around 60° sun"_
@@ -103,7 +103,7 @@ Even though 360 degrees with decimals using base 10 feels like the most universa
 
 Natural time is a local time. The "midday" (i.e 180° Sun) is really the middle of the day at your specific location. Artificial time uses artificial timezones following artificial zigzaging economic borders. 
 
-Natural time relates on the longitude system to display the time correctly. Imagin that you travel 1° longitude to the west, you will have to move the time needle 1° backward to get the local time of your destination.
+Natural time relates on the longitude system to display the time correctly. Imagin that you travel 1° longitude to the west, you will have to move the time hand 1° backward to get the local time of your destination.
 
 If you are lost in the middle of nowhere, you can always calibrate your clock with this method : when the sun reaches its highest point in the sky (or crosses the south/north line) set it up at 180°.
 
