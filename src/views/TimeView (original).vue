@@ -10,35 +10,18 @@
       <div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end" style="width: inherit;">
         
         <!-- ClockComponent -->
-        <ClockComponent class="absolute w-full h-full -translate-y-12":context="context" :animationSpeed="skin.animationSpeed"></ClockComponent>
+        <ClockComponent class="absolute w-full h-full"
+          :context="context"
+          :style="clockStyle"
+        ></ClockComponent>
         
         <!-- Bottom informations -->
-        <div class="z-20 text-center" style="padding-bottom: 10vh;">
-          <h1 class="text-slate-800 font-extrabold text-2xl mt-1">{{ skin.titleText || contextStore.location || 'Natural Time' }}</h1>
-          <h2 class="text-slate-400 text-xl mt-2">{{ skin.descriptionText || context.naturalDate }}</h2>
-
-          <!-- TUTORIAL -->
-          <div class="flex justify-center items-center space-x-4 mt-4 w-fit mx-auto font-mono text-sm font-extrabold">
-            <button v-if="displayTutorial" :disabled="tutorialStep < 1" @click="tutorialStep--" class="bg-ntyellow-dark text-black hover:bg-ntyellow-darker py-1 px-3 rounded transition duration-300 ease-in-out transform disabled:opacity-10">
-              &lt;&lt;
-            </button>
-            <span v-if="displayTutorial" class="text-md text-ntyellow-darker">Tutoriel <span class="">{{ String(tutorialStep + 1).padStart(2, '0') }}/{{ String(tutorialStepsCount).padStart(2, '0') }}</span></span>
-            <button v-if="displayTutorial" :disabled="tutorialStep >= tutorialStepsCount - 1" @click="tutorialStep++" class="bg-ntyellow-dark text-black hover:bg-ntyellow-darker py-1 px-3 rounded transition duration-300 ease-in-out transform disabled:opacity-10">
-              &gt;&gt;
-            </button>
-            <button v-if="displayTutorial && tutorialStep < tutorialStepsCount - 1" @click="displayTutorial = false" class="bg-gray-200 text-gray-400 hover:bg-gray-300 text-xs py-1 px-2 rounded transition duration-300 ease-in-out transform">
-              passer
-            </button>
-            <button v-if="firstLaunch && !displayTutorial" @click="displayTutorial = true" class="bg-ntyellow-dark text-black hover:bg-ntyellow-darker py-1 px-3 rounded transition duration-300 ease-in-out transform disabled:opacity-10">
-              Lancer le tutoriel
-            </button>
-            <button v-if="(firstLaunch && !displayTutorial) || (!showSettings && tutorialStep >= tutorialStepsCount - 1)" @click="toggleSettings" class="bg-slate-500 text-white hover:bg-slate-600 py-1 px-3 rounded transition duration-300 ease-in-out transform disabled:opacity-10">
-              Configurer
-            </button>
-          </div>
-
+        <div class="z-20 text-center" style="padding-bottom: 5vh;">
+          <h1 class="text-slate-800 font-extrabold text-2xl mt-1">{{ contextStore.location || 'Natural Time' }}</h1>
+          <h2 class="text-slate-400 text-xl mt-2">{{ context.naturalDate }}</h2>
+          
           <!-- TIME CONTROLS -->
-          <div v-if="timeTravelMode" id="time-controls" class="relative z-20 bg-white mt-4 p-2 rounded-lg" style="background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');">
+          <div v-if="showTimeControls" id="time-controls" class="relative z-20 bg-white mt-4 p-2 rounded-lg" style="background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');">
             <button v-touch:tap="timeTravel" v-longclick="timeTravel"
               :data-variation="-7*86400" :title="$t('timeControl.moveBackward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.past')">-7{{$t('timeControl.days')}}</button>
             <button v-touch:tap="timeTravel" v-longclick="timeTravel"
@@ -55,7 +38,7 @@
               :data-variation="+7*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+7{{$t('timeControl.days')}}</button>
             <button v-touch:tap="timeTravel" v-longclick="timeTravel"
               :data-variation="+365*24*60*60" :title="$t('timeControl.moveForward')+' 7 '+$t('timeControl.days')+' '+$t('timeControl.future')">+1y{{$t('timeControl.days')}}</button>
-            <button @click="timeTravelMode = false" class="absolute -top-6 -right-6 p-4 w-6 h-6 bg-gray-600 rounded-full text-white transition-colors">
+            <button @click="toggleTimeControls" class="absolute -top-6 -right-6 p-4 w-6 h-6 bg-gray-600 rounded-full text-white transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -68,7 +51,6 @@
 
     <!-- Right panel (keep w-1 -mr-1 to prevent map width == 0 error) -->
     <div :class="['z-30 transition-all duration-300 ease-in-out', (showSettings || showFAQ) ? 'w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8' : 'w-1 -mr-1']">
-
       <div class="overflow-hidden w-full h-full bg-white md:rounded-2xl md:shadow-2xl">
         <!-- Close button -->
         <button v-if="showSettings || showFAQ" @click="closeRightPanel" 
@@ -80,7 +62,7 @@
         </button>
         
         <div class="overflow-hidden h-full">
-          <SettingsComponent v-if="showSettings" @close="closeRightPanel" @save="configStore.notFirstLaunchAnymore()" />
+          <SettingsComponent v-if="showSettings" @close="closeRightPanel" />
           <div v-if="showFAQ" id="faq" class="overflow-y-auto h-full">
             <div class="my-6 mx-4 md:my-8 md:mx-8">
               <FAQAccordion :categories="[2]" />
@@ -119,7 +101,7 @@
 </template>
 
 <script setup>
-import { ref, computed  } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from '../../../natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from '../../../natural-time-js/context';
@@ -131,12 +113,6 @@ import MainMenu from '@/components/MainMenu.vue';
 // CONTEXT STORE
 import { useContextStore } from '@/stores/contextStore'
 const contextStore = useContextStore()
-const { isEmpty } = storeToRefs(contextStore);
-
-// CONFIG STORE
-import { useConfigStore } from '@/stores/configStore'
-const configStore = useConfigStore()
-const { timeTravelMode, skin, displayTutorial, tutorialStep, tutorialStepsCount, firstLaunch } = storeToRefs(configStore);
 
 // I18N
 import { useI18n } from 'vue-i18n'
@@ -146,16 +122,13 @@ let { latitude, longitude, location, currentTime } = storeToRefs(contextStore);
 
 // Compute context
 let context = computed(() => {
-  let theCurrentTime = firstLaunch.value && displayTutorial.value ? skin.value.context.currentTime : currentTime.value;
-  let theLatitude = firstLaunch.value && displayTutorial.value ? skin.value.context.latitude : latitude.value;
-  let theLongitude = firstLaunch.value && displayTutorial.value ? skin.value.context.longitude : longitude.value;
-
-  const naturalDate = new NaturalDate(new Date(theCurrentTime), theLongitude);
+  // Compute date from Now + Variation
+  let naturalDate = new NaturalDate(new Date(currentTime.value.getTime() + timeVariation.value), longitude.value);
 
   // Compute Sun data
   let sun = { 
-    ...NaturalSunAltitude(naturalDate, theLatitude),
-    ...NaturalSunEvents(naturalDate, theLatitude)
+    ...NaturalSunAltitude(naturalDate, latitude.value),
+    ...NaturalSunEvents(naturalDate, latitude.value)
   };
 
   // Compute Moon data
@@ -211,6 +184,15 @@ const showSettings = ref(false);
 const showFAQ = ref(false);
 const showTimeControls = ref(false);
 
+// Settings
+const clockStyle = computed(() => { 
+  return {
+    dots: {
+      display: localStorage.getItem('styleDisplayDots') === 'true' || null,
+    }
+  }
+});
+
 const toggleSettings = () => {
   showSettings.value = !showSettings.value;
   if (showSettings.value) {
@@ -252,7 +234,6 @@ const closeRightPanel = () => {
     left: 0;
     right: 0;
     bottom: 0;
-    transition: var(--nt-animation-speed) ease-out;
   }
 
   // Night gradient

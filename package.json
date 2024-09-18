@@ -12,6 +12,7 @@
     "natural-time-js": "^1.0.3",
     "ol-geocoder": "^4.3.3",
     "pinia": "^2.2.2",
+    "pinia-plugin-persistedstate": "^4.0.1",
     "vite-plugin-markdown": "^2.2.0",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.2.31",

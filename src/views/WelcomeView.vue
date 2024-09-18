@@ -29,7 +29,7 @@
         <div class="max-w-6xl mx-auto bg-ntyellow-light rounded-3xl md:py-12" style="background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
-              <img src="@/assets/icon/clock.svg" alt="Clock Icon" @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
+              <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
             </div>
             <div class="w-full md:w-3/5 flex flex-col justify-center px-8 pb-10 md:pb-0">
               <h2 class="text-3xl md:text-5xl mb-2 font-title">Horloge Naturelle</h2>
@@ -58,7 +58,7 @@
         <div class="max-w-6xl mx-auto bg-ntcyan-light rounded-3xl md:py-12" style="background-image: url('https://www.transparenttextures.com/patterns/debut-light.png');">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
-              <img src="@/assets/icon/year.svg" alt="13 Moons" @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
+              <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
             </div>
             <div class="w-full md:w-3/5 flex flex-col justify-center px-8 pb-10 md:pb-0">
               <h2 class="text-3xl md:text-5xl mb-2 font-title">Spirale 13 Lunes</h2>
@@ -145,6 +145,9 @@ const naturalClockRef = ref(null);
 const thirteenMoonsRef = ref(null);
 const faqRef = ref(null);
 const videoRef = ref(null);
+
+import ClockSVG from '@/assets/icon/clock.svg';
+import YearSVG from '@/assets/icon/year.svg';
 
 const scrollToNaturalClock = () => {
   naturalClockRef.value?.scrollIntoView({ behavior: 'smooth' });

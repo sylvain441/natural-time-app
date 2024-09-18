@@ -21,8 +21,9 @@ module.exports = {
           darker: '#02B2B8',
         },
         'ntmagenta': {
-          light: '#fe6c87',
+          light: '#FF80CB',
           dark: '#de3252',
+          darker: '#c02641',
         },
       }
     },

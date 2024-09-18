@@ -8,10 +8,15 @@ import Vue3TouchEvents from "vue3-touch-events";
 import OpenLayersMap from 'vue3-openlayers'
 import { setupMatomo } from './plugins/matomo'
 import { initializePWA } from './plugins/pwa'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+
 
 const app = createApp(App)
 
-app.use(createPinia())
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+
+app.use(pinia)
    .use(router)
    .use(i18n, {missingWarn: false, silentFallbackWarn: true})
    .use(OpenLayersMap)
