@@ -12,14 +12,13 @@
       <div id="map-container" class="relative px-4 h-96 min-h-96">
         <template v-if="isOnline">
           <ol-map id="map-canvas" class="w-full h-full rounded-lg overflow-hidden cursor-move min-h-16 min-w-16" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" ref="map">
-            <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" />
-            <ol-geolocation ref="geolocation" :tracking="trackUserLocation" @change:position="GPSChanged"></ol-geolocation>
+            <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" :minZoom="4" />
+            <ol-geolocation ref="geolocation" :tracking="trackUserLocation"></ol-geolocation>
             <ol-zoom-control />
             <ol-tile-layer>
               <ol-source-osm />
             </ol-tile-layer>
           </ol-map>
-          <div id="reticule" class="block absolute w-6 h-6"></div>
         </template>
         <template v-else>
           <div class="w-full h-full flex items-center justify-center p-8">
@@ -88,16 +87,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, nextTick } from 'vue';
 import { fromLonLat, toLonLat } from 'ol/proj';
 import { useContextStore } from '@/stores/contextStore';
 import { storeToRefs } from 'pinia';
-import Geocoder from 'ol-geocoder/dist/ol-geocoder.js';
+import Geocoder from 'ol-geocoder';
 import 'vue3-openlayers/dist/vue3-openlayers.css';
 import { useI18n } from 'vue-i18n';
 import Geolocation from 'ol/Geolocation';
 import ToggleButton from '@/components/ToggleButton.vue';
 import { useConfigStore } from '@/stores/configStore';
+import { debounce } from 'lodash';
 
 // Store setup
 const configStore = useConfigStore();
@@ -115,79 +115,50 @@ const newLocation = ref(location.value);
 const isOnline = ref(window.navigator.onLine);
 const map = ref(null);
 const view = ref(null);
-const zoomLevel = ref(localStorage.longitude ? 5 : 2);
+const zoomLevel = ref(localStorage.longitude ? 5 : 3);
 const setupCoordinates = fromLonLat([longitude.value, latitude.value]);
 const trackUserLocation = ref(false);
-const isDragging = ref(false);
-const lastGeolocationRequest = ref(localStorage.getItem('lastGeolocationRequest') || 0);
 const isTracking = ref(false);
+const geocoder = ref(null);
 
-// Computed
-const canRequestGeolocation = computed(() => {
-  return Date.now() - lastGeolocationRequest.value > 24 * 60 * 60 * 1000;
-});
-
-// Methods
 const updateOnlineStatus = () => isOnline.value = window.navigator.onLine;
-const updateCenterData = () => {
-  if (!isDragging.value) {
-    const center = view.value.getCenter();
-    [newLongitude.value, newLatitude.value] = toLonLat(center).map(coord => parseFloat(coord.toFixed(2)));
-    
-    // Always set the location to "Longitude XXX" when the center changes
-    //newLocation.value = `${i18n.t('longitude')} ${Math.round(newLongitude.value)}`;
-    
-    // Update store values without saving to localStorage
-    contextStore.updateTemp(newLatitude.value, newLongitude.value, newLocation.value);
-  }
-};
-const updateCenter = () => {
-  newLongitude.value = ((parseFloat(newLongitude.value) + 180) % 360) - 180;
-  newLatitude.value = Math.max(-90, Math.min(90, newLatitude.value));
-  view.value.setCenter(fromLonLat([newLongitude.value, newLatitude.value]));
-};
-const GPSChanged = (event) => {
-  view.value?.setCenter(event.target?.getPosition());
-  trackUserLocation.value = false;
-};
-const setupGeolocation = () => {
-  const geolocation = new Geolocation({
-    trackingOptions: { enableHighAccuracy: true },
-    projection: view.value.getProjection(),
-  });
-
-  geolocation.setTracking(true);
-  isTracking.value = true;
-  geolocation.on('change:position', () => {
-    const coordinates = geolocation.getPosition();
-    if (coordinates) {
-      view.value.setCenter(coordinates);
-      view.value.setZoom(12);
-      geolocation.setTracking(false);
-      isTracking.value = false;
-      lastGeolocationRequest.value = Date.now();
-      localStorage.setItem('lastGeolocationRequest', lastGeolocationRequest.value);
-    }
-  });
-};
 const setupGeocoder = () => {
-  const geocoder = new Geocoder('nominatim', {
-    provider: 'photon',
+  geocoder.value = new Geocoder('nominatim', {
+    provider: 'osm',
     lang: 'fr-FR',
     placeholder: i18n.t('settings.searchFor'),
     targetType: 'text-input',
-    autoComplete: true,
-    autoCompleteMinLength: 3,
-    autoCompleteTimeout: 250,
     preventMarker: true,
     limit: 5,
     keepOpen: true,
   });
-  geocoder.on('addresschosen', (evt) => {
-    newLocation.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
+
+  geocoder.value.on('addresschosen', (evt) => {
+    newLocation.value = evt.address.city || evt.address.name || evt.address.state || evt.address.country;
+    const coordinates = evt.coordinate;
+    if (coordinates) {
+      view.value.setCenter(fromLonLat(coordinates));
+      view.value.setZoom(12);
+    }
   });
-  map.value.map.addControl(geocoder);
+  
+  map.value.map.addControl(geocoder.value);
+  
+  // AUTOCOMPLETE
+  nextTick(() => {
+    const input = document.getElementById('gcd-input-query');
+    if (input && geocoder.value) {
+      const triggerAutocomplete = debounce(() => {
+        if (input.value.length >= 3) {
+          console.log('SEARCH', input.value);
+          input.dispatchEvent(new KeyboardEvent('keypress', { keyCode: 13 }));
+        }
+      }, 700);
+      input.addEventListener('input', triggerAutocomplete, { bubbles: true, capture: true });
+    }
+  });
 };
+
 const save = () => {
   const locationPrompt = window.prompt(i18n.t('settings.promptLocationName'), newLocation.value);
   contextStore.saveToLocalStorage(newLatitude.value, newLongitude.value, locationPrompt);
@@ -198,29 +169,6 @@ const save = () => {
 // Lifecycle hooks
 onMounted(() => {
   setupGeocoder();
-  if (canRequestGeolocation.value) {
-    setupGeolocation();
-  }
-
-  if (map.value && map.value.map) {
-    const olMap = map.value.map;
-
-    olMap.on('pointerdown', () => {
-      isDragging.value = true;
-    });
-
-    olMap.on('pointerup', () => {
-      isDragging.value = false;
-      updateCenterData();
-    });
-
-    // For touch devices
-    olMap.on('moveend', () => {
-      if (!isDragging.value) {
-        updateCenterData();
-      }
-    });
-  }
 });
 
 // Event listeners
@@ -293,19 +241,6 @@ const emit = defineEmits(['close', 'save']);
 .ol-zoom{
   top: .5em;
   left: .5em;
-}
-
-#map-canvas {
-  cursor: move; /* fallback if grab cursor is unsupported */
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-
-  &:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-  }
 }
 
 .section-header {

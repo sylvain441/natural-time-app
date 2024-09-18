@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
     "natural-time-js": "^1.0.3",
     "ol-geocoder": "^4.3.3",
     "pinia": "^2.2.2",
