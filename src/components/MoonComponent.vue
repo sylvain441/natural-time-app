@@ -56,7 +56,7 @@ const daysOfMoon = computed(() => {
     <div class="right">
 
       <div class="top">
-        <div class="title"><span>{{ $t("moon") }}</span> #{{moon}}</div>
+        <div class="title"><span>Lune</span> #{{moon}}</div>
         <div class="dayColors">
           <span class="color-1"></span>
           <span class="color-2"></span>
@@ -72,7 +72,7 @@ const daysOfMoon = computed(() => {
         <div v-for="day in daysOfMoon" 
           class="dayOfMoon" 
           :class="day.dayClasses" 
-          :title="$t('nt')+' => ' + day.date.toDateString() + '\n' + $t('at')+ ' => ' + new Date(day.date.unixTime).toLocaleDateString()"
+          :title="'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString()"
           @mouseenter="$emit('hover-date', day.date)"
           @mouseleave="$emit('reset-hover')"
           v-touch:press="$emit('hover-date', day.date)"

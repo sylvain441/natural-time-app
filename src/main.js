@@ -5,12 +5,10 @@ import router from './router/router'
 import i18n from './i18n/i18n'
 import longClickDirective from './directive/longclick'
 import Vue3TouchEvents from "vue3-touch-events";
-import OpenLayersMap from 'vue3-openlayers'
+
 import { setupMatomo } from './plugins/matomo'
 import { initializePWA } from './plugins/pwa'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-
-
 const app = createApp(App)
 
 const pinia = createPinia();
@@ -18,13 +16,12 @@ pinia.use(piniaPluginPersistedstate);
 
 app.use(pinia)
    .use(router)
-   .use(i18n, {missingWarn: false, silentFallbackWarn: true})
-   .use(OpenLayersMap)
+   .use(i18n)
    .use(Vue3TouchEvents, {rollOverFrequency: 500})
    .directive('longclick', longClickDirective({delay: 200, interval: 50}))
 
 //setupMatomo(app, router)
-initializePWA()
+//initializePWA()
 
 app.mount('#app')
 

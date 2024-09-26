@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2779,-939)">
+        <g id="map-icon" transform="matrix(0.0166431,0,0,0.0166667,2733.83,939)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="2714.03" y="0" width="1442.04" height="1440"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(60.0851,0,0,60,-164263,-56340)">
+                    <path d="M2791.11,939.002C2791.12,939.001 2791.13,939 2791.14,939C2794.51,939.054 2797.68,941.09 2798.77,944.374C2799.61,946.925 2799.12,949.314 2797.82,951.594L2791.38,962.749C2791.28,962.939 2790.79,963.129 2790.65,962.884C2788.48,959.112 2786.28,955.312 2784.11,951.539C2782.75,949.178 2782.32,946.382 2783.51,943.858C2784.9,940.927 2787.8,939 2791.06,939C2791.08,939 2791.09,939.001 2791.11,939.002ZM2791.11,950.723C2793.53,950.586 2795.56,948.374 2795.05,945.894C2794.64,943.858 2792.85,942.04 2790.62,942.311C2785.46,942.96 2786.14,950.476 2791.11,950.723Z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

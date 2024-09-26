@@ -45,24 +45,24 @@ Pour toutes questions : sylvain441@pm.me – @sylvain441 (telegram).
 #### Que représentent les moustaches au centre du cadran ?
 [Réponse ici]
 
-#### Est-il possible de fabriquer soi-même une horloge naturelle ?
-
-Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple horloge effectuant le tour du cadran en une journée suffit pour l'adopter.
-
 #### Pourquoi le temps naturel depend t'il de la longitude ?
 [Réponse ici]
 
-#### Comment utiliser le temps naturel entre de longues distances ?
+#### Comment ça fonctionne entre deux endroits lointains sur Terre ?
 [Réponse ici]
 
-#### Que se passe t'il lors des changements d'heure saisoniers ?
+#### Que se passe t'il lors des changements d'heures ?
 [Réponse ici]
 
-#### Convertir les heures conventionnelles en degrés naturels
+#### Comment convertir les heures conventionnelles en degrés ?
 [Réponse ici]
 
-#### Comment demander l'heure naturelle ?
+#### Pourquoi ne dit-on plus "quelle heure est-il ?"
 [Réponse ici]
+
+#### Est-il possible de fabriquer soi-même une horloge naturelle ?
+
+Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple horloge effectuant le tour du cadran en une journée suffit pour l'adopter.
 
 
 
@@ -76,10 +76,13 @@ Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple
 #### Qu'est-ce que le jour arc-en-ciel ?
 [Réponse ici]
 
-#### Pourquoi utiliser les 13 lunes au quotidien ?
+#### Les 13 lunes sont-elles synchros avec les vraies phases lunaires ?
 [Réponse ici]
 
-#### Que symbolisent les 7 couleurs associées aux jours de la semaine ?
+#### Quels sont les avantages d'utiliser les 13 lunes au quotidien ?
+[Réponse ici]
+
+#### Que symbolisent les 7 couleurs des jours de la semaine ?
 [Réponse ici]
 
 #### Pourquoi utiliser le terme "Spirale" plutôt que "Calendrier" ?
@@ -92,9 +95,6 @@ Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple
 [Réponse ici]
 
 #### Pourquoi 2012 correspond-elle à l'an 001 ?
-[Réponse ici]
-
-#### Les 13 lunes sont-elles synchros avec les vraies phases lunaires ?
 [Réponse ici]
 
 
@@ -132,7 +132,7 @@ Ce n'est pas vraiment une application... Mais plutôt un site web qui peut fonct
 - Firefox : *Installation hors ligne non permise*
 - Safari Mac : *Installation hors ligne non permise*
 
-#### Pourquoi l'application me demande-t-elle l'accès à une position GPS ?
+#### Pourquoi l'application me demande-t-elle une position géographique ?
 
 Pour afficher [l'horloge](#) et la [spirale des 13 lunes](#), l'utilisateur doit préalablement renseigner une position géographique. 
 

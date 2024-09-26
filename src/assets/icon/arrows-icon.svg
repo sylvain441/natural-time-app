@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2779,-1155)">
+        <g id="arrows-icon" transform="matrix(0.0166431,0,0,0.0166667,2733.83,1155)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <clipPath id="_clip1">
+                <rect x="2714.03" y="0" width="1442.04" height="1440"/>
+            </clipPath>
+            <g clip-path="url(#_clip1)">
+                <g transform="matrix(72.1021,0,0,72,2567.01,-144)">
+                    <path d="M12,2C6.477,2 2,6.477 2,12C2,17.523 6.477,22 12,22C17.523,22 22,17.523 22,12C22,6.477 17.523,2 12,2ZM13.293,7.293C12.902,7.683 12.902,8.317 13.293,8.707L16.586,12L13.293,15.293C12.902,15.683 12.902,16.317 13.293,16.707C13.683,17.098 14.317,17.098 14.707,16.707L18,13.414C18.781,12.633 18.781,11.367 18,10.586L14.707,7.293C14.317,6.902 13.683,6.902 13.293,7.293ZM7.293,8.707C6.902,8.317 6.902,7.683 7.293,7.293C7.683,6.902 8.317,6.902 8.707,7.293L12,10.586C12.781,11.367 12.781,12.633 12,13.414L8.707,16.707C8.317,17.098 7.683,17.098 7.293,16.707C6.902,16.317 6.902,15.683 7.293,15.293L10.586,12L7.293,8.707Z"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

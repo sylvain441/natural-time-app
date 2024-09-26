@@ -148,38 +148,61 @@ onUnmounted(() => {
     }
   }
   .faq-arrow {
-    @apply text-sm ml-2 transition-transform duration-300 ease-in-out ;
+    @apply text-sm ml-2 transition-transform duration-300 ease-in-out;
     &.rotated {
       @apply transform rotate-180;
     }
   }
   .faq-answer {
     @apply transition-all duration-300 ease-in-out mb-4 mt-2 px-4 py-1 border-l-2 border-gray-300;
-    p{
-       @apply mb-2;
+    p {
+      @apply mb-2;
     }
-    a{
+    a {
       @apply underline decoration-sky-500 hover:decoration-sky-700;
     }
     &.hidden {
       @apply h-0 overflow-hidden opacity-0;
     }
   }
-  @each $category, $color in (
-    1: emerald-400,
-    2: ntyellow-dark,
-    3: ntcyan-dark,
-    4: ntmagenta-dark
-  ) {
-    .faq-category[data-category="#{$category}"] {
-      @apply decoration-#{$color};
-    }
-    .faq-question[data-category="#{$category}"] .question-text {
-      @apply decoration-#{$color};
-    }
-    .faq-question[data-category="#{$category}"] .faq-arrow {
-      @apply text-#{$color};
-    }
+  .faq-category[data-category="1"] {
+    @apply decoration-emerald-400;
+  }
+  .faq-question[data-category="1"] .question-text {
+    @apply decoration-emerald-400;
+  }
+  .faq-question[data-category="1"] .faq-arrow {
+    @apply text-emerald-400;
+  }
+
+  .faq-category[data-category="2"] {
+    @apply decoration-nt-yellow-dark;
+  }
+  .faq-question[data-category="2"] .question-text {
+    @apply decoration-nt-yellow-dark;
+  }
+  .faq-question[data-category="2"] .faq-arrow {
+    @apply text-nt-yellow-dark;
+  }
+
+  .faq-category[data-category="3"] {
+    @apply decoration-nt-cyan-dark;
+  }
+  .faq-question[data-category="3"] .question-text {
+    @apply decoration-nt-cyan-dark;
+  }
+  .faq-question[data-category="3"] .faq-arrow {
+    @apply text-nt-cyan-dark;
+  }
+
+  .faq-category[data-category="4"] {
+    @apply decoration-nt-magenta-dark;
+  }
+  .faq-question[data-category="4"] .question-text {
+    @apply decoration-nt-magenta-dark;
+  }
+  .faq-question[data-category="4"] .faq-arrow {
+    @apply text-nt-magenta-dark;
   }
 }
 </style>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2779,-1011)">
+        <g id="info-icon" transform="matrix(0.0166431,0,0,0.0166667,2733.83,1011)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <g transform="matrix(42.8625,0,0,48.5667,-115989,-48834.2)">
+                <g transform="matrix(1.00329,0,0,1,-9.15992,0)">
+                    <g transform="matrix(18,0,0,18,2789.1,1026.91)">
+                    </g>
+                    <text x="2783.39px" y="1026.91px" style="font-family:'AbrilFatface-Regular', 'Abril Fatface';font-size:18px;">i</text>
+                </g>
+            </g>
+            <g transform="matrix(48.4228,0,0,48.3542,-131713,-48746.4)">
+                <path d="M2791,1011C2797.62,1011 2803,1016.38 2803,1023C2803,1029.62 2797.62,1035 2791,1035C2784.38,1035 2779,1029.62 2779,1023C2779,1016.38 2784.38,1011 2791,1011ZM2791,1013.48C2785.75,1013.48 2781.48,1017.75 2781.48,1023C2781.48,1028.25 2785.75,1032.52 2791,1032.52C2796.25,1032.52 2800.52,1028.25 2800.52,1023C2800.52,1017.75 2796.25,1013.48 2791,1013.48Z"/>
+            </g>
+        </g>
+    </g>
+</svg>

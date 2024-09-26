@@ -1,383 +1,66 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
+import { skins } from './skins.js';
 
-const skins = {
-  full: {
-    default: {
-      animationSpeed: .2,
-      mustachesDisplay: true,
-      mustachesEquinox: 'text-slate-400',
-      mustachesSummerSunrise: 'text-slate-400',
-      mustachesWinterSunrise: 'text-slate-400',
-      mustachesWinterSunset: 'text-slate-400',
-      mustachesSummerSunset: 'text-slate-400',
-      handDisplay: true,
-      hand: 'text-black',
-      ntzDisplay: true,
-      ntzHand: 'text-white',
-      title: 'text-slate-300',
-      dotsDisplay: false,
-      dotsMultipleOf90: 'w-4 h-4 mt-1 bg-slate-800',
-      dotsMultipleOf30: 'w-2 h-2 mt-2 bg-slate-300',
-      dotsMultipleOf10: 'w-2 h-2 mt-2 bg-slate-300',
-      numbersDisplay: false,
-      numbersMultipleOf90: 'text-slate-800 font-black text-3xl',
-      numbersMultipleOf30: 'text-slate-400 font-extrabold text-lg',
-      numbersMultipleOf10: 'text-slate-300 font-thin text-lg',
-      moonDisplay: false,
-      sunDisplay: false,
-      dayNightRingDisplay: true,
-      dayNightRing: 'opacity-100',
-      dayNightBlurDisplay: false,
-      dayNightBlur: 'opacity-100',
-    },
-    displayGraduations: {
-      dotsDisplay: true,
-      numbersDisplay: true,
-    },
-    displayAnimations: {
-      dayNightBlurDisplay: true,
-      sunDisplay: true,
-      moonDisplay: true,
-    },
-    tutorial: [
-      {
-        context: {
-          currentTime: new Date(1356078600000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: 'Je suis une horloge naturelle',
-        descriptionText: 'Je tourne au rythme du soleil',
-        animationSpeed: .5,
-        mustachesDisplay: false,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: false,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-      },
-      {
-        context: {
-          currentTime: new Date(1356085800000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Je tourne lentement",
-        descriptionText: 'Une seule fois par jour autour du cadran',
-        animationSpeed: 5,
-        mustachesDisplay: false,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: false,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-      },
-      {
-        context: {
-          currentTime: new Date(1356087600000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Mon unique aiguille",
-        descriptionText: 'Pointe à chaque instant en direction du soleil',
-        animationSpeed: .4,
-        mustachesDisplay: false,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-      },
-      {
-        context: {
-          currentTime: new Date(1356087600000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Mon cadran est gradué en 360°",
-        descriptionText: 'Bye bye les 24 heures 60 minutes et 60 secondes',
-        animationSpeed: .4,
-        mustachesDisplay: false,
-        dotsDisplay: true,
-        numbersDisplay: true,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-        numbersMultipleOf90: 'text-black font-black text-3xl',
-        numbersMultipleOf30: 'text-black font-extrabold text-lg',
-        numbersMultipleOf10: 'text-white font-thin text-lg',
-        dotsMultipleOf90: 'w-4 h-4 mt-1 bg-black',
-        dotsMultipleOf30: 'w-2 h-2 mt-2 bg-black',
-        dotsMultipleOf10: 'w-2 h-2 mt-2 bg-slate-300',
-        hand: 'text-slate-200',
-      },
-      {
-        context: {
-          currentTime: new Date(1356091200000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "180° est le véritable midi",
-        descriptionText: 'Lorsque le soleil est au zénith',
-        animationSpeed: 2,
-        mustachesDisplay: false,
-        dotsDisplay: true,
-        numbersDisplay: true,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-        numbersMultipleOf90: 'text-black font-black text-3xl',
-        numbersMultipleOf30: 'text-white font-extrabold text-lg',
-        numbersMultipleOf10: 'text-white font-thin text-lg',
-        dotsMultipleOf90: 'w-4 h-4 mt-1 bg-black',
-        dotsMultipleOf30: 'w-2 h-2 mt-2 bg-slate-300',
-        dotsMultipleOf10: 'w-2 h-2 mt-2 bg-slate-300',
-        hand: 'text-slate-200',
-      },
-      {
-        context: {
-          currentTime: new Date(1356134399000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "0° marque le vrai milieu de la nuit",
-        descriptionText: "Lorsque le soleil est à l'opposé du globe",
-        animationSpeed: 2,
-        mustachesDisplay: false,
-        dotsDisplay: true,
-        numbersDisplay: true,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: false,
-        dayNightBlurDisplay: false,
-        numbersMultipleOf90: 'text-black font-black text-3xl',
-        numbersMultipleOf30: 'text-white font-extrabold text-lg',
-        numbersMultipleOf10: 'text-white font-thin text-lg',
-        dotsMultipleOf90: 'w-4 h-4 mt-1 bg-black',
-        dotsMultipleOf30: 'w-2 h-2 mt-2 bg-slate-300',
-        dotsMultipleOf10: 'w-2 h-2 mt-2 bg-slate-300',
-        hand: 'text-slate-200',
-      },
-      {
-        context: {
-          currentTime: new Date(1356134400000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Les moustaches représentent le jour et la nuit",
-        descriptionText: "À différents moments de l'année",
-        animationSpeed: 0,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-        hand: 'text-slate-100',
-        mustachesEquinox: 'text-black',
-        mustachesSummerSunrise: 'text-black',
-        mustachesWinterSunrise: 'text-black',
-        mustachesWinterSunset: 'text-black',
-        mustachesSummerSunset: 'text-black',
-      },
-      {
-        context: {
-          currentTime: new Date(1356161400000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Au solstice d'hiver...",
-        descriptionText: "Le soleil se lève ici",
-        animationSpeed: 1,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-        hand: 'text-ntyellow-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
-        mustachesWinterSunrise: 'text-ntyellow-dark',
-        mustachesWinterSunset: 'text-ntyellow-dark',
-        mustachesSummerSunset: 'text-slate-400',
-      },
-      {
-        context: {
-          currentTime: new Date(1356193800000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Au solstice d'hiver...",
-        descriptionText: "Et se couche par là",
-        animationSpeed: 2,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-        hand: 'text-ntyellow-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
-        mustachesWinterSunrise: 'text-ntyellow-dark',
-        mustachesWinterSunset: 'text-ntyellow-dark',
-        mustachesSummerSunset: 'text-slate-400',
-      },
-      {
-        context: {
-          currentTime: new Date(1340252400000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Au solstice d'été...",
-        descriptionText: "Le soleil se lève par ici",
-        animationSpeed: .3,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-        hand: 'text-ntyellow-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesWinterSunrise: 'text-slate-400',
-        mustachesSummerSunrise: 'text-ntyellow-dark',
-        mustachesSummerSunset: 'text-ntyellow-dark',
-        mustachesWinterSunset: 'text-slate-400',
-      },
-      {
-        context: {
-          currentTime: new Date(1340307600000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Au solstice d'été...",
-        descriptionText: "Puis se couche par là",
-        animationSpeed: 2,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-        hand: 'text-ntyellow-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesWinterSunrise: 'text-slate-400',
-        mustachesSummerSunrise: 'text-ntyellow-dark',
-        mustachesSummerSunset: 'text-ntyellow-dark',
-        mustachesWinterSunset: 'text-slate-400',
-      },
-      {
-        context: {
-          currentTime: new Date(1332331200000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Les jours d'équinoxes",
-        descriptionText: "La durée du jour égale celle de la nuit",
-        animationSpeed: .4,
-        mustachesDisplay: true,
-        dotsDisplay: false,
-        numbersDisplay: false,
-        moonDisplay: false,
-        ntzDisplay: false,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: false,
-        hand: 'text-ntyellow-dark',
-        mustachesEquinox: 'text-ntyellow-dark',
-        mustachesWinterSunrise: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
-        mustachesSummerSunset: 'text-slate-400',
-        mustachesWinterSunset: 'text-slate-400',
-      },
-      {
-        context: {
-          currentTime: new Date(1332331200000),
-          latitude: 42.42,
-          longitude: 0,
-        },
-        titleText: "Tutoriel terminé !",
-        descriptionText: "Pour continuer, l'application a besoin de ta position",
-        animationSpeed: .4,
-        mustachesDisplay: true,
-        dotsDisplay: true,
-        numbersDisplay: true,
-        moonDisplay: false,
-        ntzDisplay: true,
-        sunDisplay: true,
-        dayNightRingDisplay: true,
-        dayNightBlurDisplay: true,
-      }
-    ]
-  }
+const TUTORIAL_STEPS_COUNT = Object.keys(skins.full.tutorial).length;
+export const AVAILABLE_PANELS = {
+  locationPicker: 'locationPicker',
+  clockSettings: 'clockSettings',
+  faq: 'faq'
 }
 
-export const useConfigStore = defineStore('config', () => {
-  const firstLaunch = ref(true);
+export const useConfigStore = defineStore('appConfig', () => {
+  
   const askForGeolocation = ref(false);
-  const timeTravelMode = ref(false);
-  const displayGraduations = ref(true);
-  const displayAnimations = ref(true);
-  const displayTutorial = ref(false);
-  const tutorialStep = ref(0);
 
-  // Watch for changes in displayTutorial
-  watch(displayTutorial, (newValue, oldValue) => {
+  const welcomeMode = ref(true);
+  const tutorialMode = ref(false);
+  const timeTravelMode = ref(false);
+
+  const uiTutorialStepsTotal = computed(() => TUTORIAL_STEPS_COUNT - 1);
+  const uiTutorialCurrentStep = ref(0);
+  
+	const uiActivePanel = ref(null); // Can be 'locationPicker', 'clockSettings', or 'faq'
+
+  const uiShowClockGraduations = ref(true);
+  const uiShowClockAnimations = ref(true);
+  const uiShowClockTitle = ref(true);
+
+  const skin = computed(() => ({
+		// Default skin
+    ...skins.full.default,
+    // Remove graduations
+    ...((!welcomeMode.value && !uiShowClockGraduations.value) && skins.full.hideClockGraduations),
+    // Reduce animations
+    ...((!welcomeMode.value && !uiShowClockAnimations.value) && skins.full.hideClockAnimations),
+		// Welcome skin
+    ...(!uiActivePanel.value && welcomeMode.value ? skins.full.welcome : {}),
+    // Tutorial skin
+    ...(tutorialMode.value ? skins.full.tutorial[uiTutorialCurrentStep.value] : {}),
+  }));
+
+  // When closing tutorial, rewind to step #1
+  watch(tutorialMode, (newValue, oldValue) => {
     if (oldValue === true && newValue === false) {
-      tutorialStep.value = 0;
+      uiTutorialCurrentStep.value = 0;
+    } else {
+      uiActivePanel.value = null;
     }
   });
 
-  const notFirstLaunchAnymore = () => {
-    firstLaunch.value = false;
-    displayTutorial.value = false;
-    console.log('NOT FIRST ANYMORE');
-  }
-
-  const skin = computed(() => ({
-    ...skins.full.default,
-    ...(displayGraduations.value && skins.full.displayGraduations),
-    ...(displayAnimations.value && skins.full.displayAnimations),
-    ...((displayTutorial.value || firstLaunch.value) && skins.full.tutorial[tutorialStep.value])
-  }));
-
-  const tutorialStepsCount = computed(() => Object.keys(skins.full.tutorial).length);
-
   return {
-    firstLaunch,
+    AVAILABLE_PANELS,
     askForGeolocation,
-    timeTravelMode,
-    displayGraduations,
-    displayAnimations,
-    displayTutorial ,
-    tutorialStep,
-    tutorialStepsCount,
+    uiShowClockGraduations,
+    uiShowClockAnimations,
+    uiShowClockTitle,
     skin,
-    notFirstLaunchAnymore,
+    uiTutorialStepsTotal,
+    uiTutorialCurrentStep,
+    welcomeMode,
+    tutorialMode,
+    timeTravelMode,
+    uiActivePanel
   };
 }, {
   persist: {

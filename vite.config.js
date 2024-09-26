@@ -7,6 +7,8 @@ import svgLoader from 'vite-svg-loader'
 
 import { VitePWA } from 'vite-plugin-pwa'
 
+import { analyzer } from 'vite-bundle-analyzer'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -74,8 +76,15 @@ export default defineConfig({
       mode: [Mode.HTML],
       enforce: 'pre'
     }),
-    svgLoader()
+    svgLoader(),
+    analyzer()
   ],
+  build: {
+    rollupOptions: {
+      output: {
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

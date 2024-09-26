@@ -54,17 +54,17 @@ const displayDate = computed(() => hoverDate.value || today.value);
       <div class="display-top">
         <div class="display-year">
           <div class="digit">{{displayDate.toYearString()}}</div>
-          <div class="label">{{ $t('year') }}</div>
+          <div class="label">Année</div>
         </div>
         <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
         <div class="display-moon">
           <div class="digit">{{displayDate.toMoonString()}}</div>
-          <div class="label">{{ $t('moon') }}</div>
+          <div class="label">Lune</div>
         </div>
         <div class="separator" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">)</div>
         <div class="display-day">
           <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
-          <div class="label">{{ $t('day') }}</div>
+          <div class="label">Jour</div>
         </div>
       </div>
       <div class="display-bottom">
@@ -77,17 +77,17 @@ const displayDate = computed(() => hoverDate.value || today.value);
       <div class="display-top">
         <div class="display-year">
           <div class="digit">&nbsp;</div>
-          <div class="label">{{ $t('rainbowDay.out') }}</div>
+          <div class="label">Arc</div>
         </div>
         <div class="separator"></div>
         <div class="display-moon">
-          <div class="digit">{{ $t('rainbowDay.day') }}</div>
-          <div class="label">{{ $t('rainbowDay.of') }}</div>
+          <div class="digit">Jour</div>
+          <div class="label">En</div>
         </div>
         <div class="separator"></div>
         <div class="display-day">
           <div class="digit">&nbsp;</div>
-          <div class="label">{{ $t('rainbowDay.time') }}</div>
+          <div class="label">Ciel</div>
         </div>
       </div>
       <div class="display-bottom" :style="{color:'var(--color-'+displayDate.dayOfWeek+')'}">
@@ -117,21 +117,6 @@ const displayDate = computed(() => hoverDate.value || today.value);
 </template>
 
 <style lang="scss">
-
-#backgrounds {
-  z-index: 0;
-  &, div {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-  }
-  #clouds {
-    z-index: 40; 
-    background: url("@/assets/background/clouds.jpg") center center; 
-    background-size: cover;
-  }
-}
 
 @mixin lbg {  @media (min-width: 800px) { .left{ background-color: var(--yearloop-bg-color) } } }
 @mixin tbg {  @media (min-width: 800px) { .top{ background-color: var(--yearloop-bg-color) } } }
@@ -245,7 +230,6 @@ const displayDate = computed(() => hoverDate.value || today.value);
       left: 50%;
       transform: translateX(-50%);
       border-radius: 10px;
-      box-shadow: 0 0 80px transparentize($color: #FFF, $amount: 0);
       @media (min-width: 800px) { 
         font-size: 12px;
       }
