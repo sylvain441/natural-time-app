@@ -31,9 +31,6 @@ const route = useRoute();
 	--color-5: #49a2f0;
 	--color-6: #443cea;
 	--color-7: #8047eb;
-
-	--yearloop-bg-color: #FFF;
-	--yearloop-radius: 6px
 }
 
 @font-face {

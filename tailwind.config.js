@@ -36,6 +36,12 @@ module.exports = {
       scale: {
         200: '2',
       },
+      spacing: {
+        '1/7': '14.285714285714286%',
+      },
+      width: {
+        '384': '96rem',
+      },
     },
   },
   plugins: [],

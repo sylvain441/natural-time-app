@@ -242,7 +242,7 @@ const setupGeocoder = () => {
   geocoder.value = new Geocoder('nominatim', {
     provider: 'photon',
     lang: 'fr-FR',
-    placeholder: i18n.t('settings.searchFor'),
+    placeholder: 'Rechercher un lieu',
     targetType: 'text-input',
     preventMarker: true,
     limit: 3,

@@ -14,12 +14,12 @@
 				<!-- CLOCK COMPONENT -->
 				<ClockComponent 
 					class="absolute w-full h-full min-w-72" 
-					:class="(welcomeMode && !uiActivePanel) || tutorialMode || timeTravelMode ? '-translate-y-8 md:-translate-y-14' : ''" 
+					:class="(welcomeMode && !uiActivePanel) || tutorialMode || timeTravelMode ? '-translate-y-8 md:-translate-y-14' : '-translate-y-4 md:-translate-y-6'" 
 					:context="context">
 				</ClockComponent>
 				
 				<!-- FOOTER -->
-				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
+				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-16 w-full max-w-screen-sm">
 					
 					<!-- TITLE -->
 					<div v-if="!timeTravelMode && uiShowClockTitle">
@@ -377,7 +377,7 @@ let context = computed(() => {
 	}
 	
 	// UPDATE PAGE TITLE TODO: make this reactive
-	document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${naturalDate.toDateString()} | ${i18n.t('nt')}`;
+	document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${naturalDate.toDateString()} | Temps Naturel`;
 	
 	return {
 		naturalDate: naturalDate,
