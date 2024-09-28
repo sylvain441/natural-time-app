@@ -487,14 +487,6 @@ function debounce(func, wait) {
 </script>
 
 <style lang="scss">
-#reticule {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: url('@/assets/icon/reticule.svg') center no-repeat;
-  background-size: cover;
-}
-
 @import 'ol-geocoder/dist/ol-geocoder.min.css';
 
 .ol-geocoder {

@@ -11,7 +11,7 @@ export function useFaq() {
             faqContent.value = module.html;
         } catch (error) {
             console.warn(`FAQ for locale ${locale.value} not found, falling back to English`, error);
-            const fallbackModule = await import('./faq/en-US.md');
+            const fallbackModule = await import('./faq/en.md');
             faqContent.value = fallbackModule.html;
         }
     });

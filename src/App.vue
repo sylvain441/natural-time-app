@@ -10,11 +10,7 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router';
 import MetaTags from '@/components/MetaTags.vue';
-
-const route = useRoute();
-
 </script>
 
 <style lang="scss">

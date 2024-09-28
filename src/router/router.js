@@ -8,8 +8,12 @@ import NotFoundView from '../views/404.vue'
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      redirect: '/fr'
+    },
     { 
-      path: '/', 
+      path: '/fr', 
       name: 'welcome', 
       component: WelcomeView,
     },

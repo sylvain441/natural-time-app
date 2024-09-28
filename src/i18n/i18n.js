@@ -1,20 +1,15 @@
 import { createI18n } from "vue-i18n";
 
-const translations = {
-    'en': {
-        
-    },
-    'fr': {
-
-    }
-}
+const fr = {
+    
+};
   
 const i18n = createI18n({
-    locale: navigator.language || navigator.userLanguage,
+    locale: 'fr',
     fallbackLocale: 'fr',
     missingWarn: false,
     fallbackWarn: false,
-    messages: translations,
+    messages: fr,
     legacy: false,
 })
 
