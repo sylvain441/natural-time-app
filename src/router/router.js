@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createMemoryHistory } from 'vue-router'
 
 import WelcomeView from '../views/WelcomeView.vue'
 import TimeView from '../views/TimeView.vue'
@@ -6,24 +6,24 @@ import MoonsView from '../views/MoonsView.vue'
 import NotFoundView from '../views/404.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createMemoryHistory(),
   routes: [
     {
       path: '/',
-      redirect: '/fr'
+      redirect: '/fr/'
     },
     { 
-      path: '/fr', 
+      path: '/fr/', 
       name: 'welcome', 
       component: WelcomeView,
     },
     { 
-      path: '/time', 
+      path: '/fr/horloge-temps-naturel', 
       name: 'time', 
       component: TimeView,
     },
     { 
-      path: '/13moons', 
+      path: '/fr/spirale-13-lunes', 
       name: '13moons', 
       component: MoonsView,
     },

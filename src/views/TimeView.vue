@@ -280,6 +280,7 @@
 <script setup>
 // Imports
 import { ref, computed, defineAsyncComponent, onMounted, watch } from 'vue';
+import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from 'natural-time-js/context';
@@ -376,9 +377,6 @@ let context = computed(() => {
 		}
 	}
 	
-	// UPDATE PAGE TITLE TODO: make this reactive
-	document.title = `${naturalDate.toTimeString(2, 5)} ${naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${naturalDate.toDateString()} | Temps Naturel`;
-	
 	return {
 		naturalDate: naturalDate,
 		sun: sun,
@@ -387,6 +385,14 @@ let context = computed(() => {
 		hemisphere: hemisphere,
 		dayProgression: dayProgression,
 	};
+});
+
+useHead({
+  title: `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`,
+  meta: [
+    { name: 'description', content: 'Le temps Naturel TODO description' },
+    { property: 'og:image', content: '/natural-time-social-sharing.jpg' },
+  ],
 });
 
 const shouldShowNotification = computed(() => {
@@ -451,12 +457,13 @@ onMounted(() => {
 			}
 		}, 10000);
 	}  
+	// Watchers
+	watch([() => skin.value.animationSpeed, () => timeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
+		document.documentElement.style.setProperty('--nt-animation-speed', newSpeed && !newTimeTravelMode ? `${newSpeed}s` : '0s');
+	}, { immediate: true });
 });
 
-// Watchers
-watch([() => skin.value.animationSpeed, () => timeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
-	document.documentElement.style.setProperty('--nt-animation-speed', newSpeed && !newTimeTravelMode ? `${newSpeed}s` : '0s');
-}, { immediate: true });
+
 </script>
 
 <style lang="scss">

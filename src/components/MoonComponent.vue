@@ -1,6 +1,5 @@
 <script setup>
-
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { NaturalDate } from 'natural-time-js';
 
 //import ElementIcon from '@/components/ElementIcon.vue';
@@ -40,6 +39,23 @@ const daysOfMoon = computed(() => {
   return allDays;
 })
 
+const isClient = ref(false);
+
+onMounted(() => {
+  isClient.value = true;
+});
+
+const handleTouchStart = (date) => {
+  if (isClient.value) {
+    $emit('hover-date', date);
+  }
+};
+
+const handleTouchEnd = () => {
+  if (isClient.value) {
+    $emit('reset-hover');
+  }
+};
 </script>
 
 <template>
@@ -49,11 +65,11 @@ const daysOfMoon = computed(() => {
         <div v-for="day in daysOfMoon" 
           class="day-of-moon relative w-1/7 aspect-square flex items-center justify-center rounded-full cursor-default"
           :class="day.dayClasses"
-          :title="'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString()"
+          :title="isClient ? 'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString() : ''"
           @mouseenter="$emit('hover-date', day.date)"
           @mouseleave="$emit('reset-hover')"
-          v-touch:press="$emit('hover-date', day.date)"
-          v-touch:release="$emit('reset-hover')">
+          @touchstart="handleTouchStart(day.date)"
+          @touchend="handleTouchEnd">
           <span class="day-of-moon-number font-mono font-bold text-xl">{{day.date.toDayOfMoonString()}}</span>
         </div>
       </div>
@@ -61,12 +77,14 @@ const daysOfMoon = computed(() => {
 
     <div v-else class="moon-rainbow-day" :class="{'saturate-100': today.isRainbowDay || hover}"
       @mouseenter="$emit('hover-date', new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 364, today.longitude))"
-      @mouseleave="$emit('reset-hover')">
+      @mouseleave="$emit('reset-hover')"
+      @touchstart="handleTouchStart(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 364, today.longitude))"
+      @touchend="handleTouchEnd">
       <div v-if="today.yearDuration == 365">
-        <img src="@/assets/13moons/rainbow-day.png">
+        <img src="@/assets/13moons/rainbow-day.png" alt="Rainbow Day">
       </div>
       <div v-else>
-        <img src="@/assets/13moons/rainbow-days.png">
+        <img src="@/assets/13moons/rainbow-days.png" alt="Rainbow Days">
       </div>
     </div>
   </div>

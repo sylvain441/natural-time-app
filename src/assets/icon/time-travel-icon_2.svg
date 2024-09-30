@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2779,-1227)">
+        <g id="time-travel-icon" transform="matrix(0.0166431,0,0,0.0166667,2733.83,1227)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <g transform="matrix(67.5958,0,0,67.5,2894.28,272.137)">
+                <path d="M1.93,4.09L1.93,5.63L0.94,5.63L0.94,6.66L15.07,6.66L15.07,5.63L14.07,5.63L14.07,4.09L12.54,4.09L12.54,2.79L3.47,2.79L3.47,4.09L12.53,4.09L12.53,5.63L3.46,5.63L3.46,4.09L1.93,4.09Z" style="fill-rule:nonzero;"/>
+                <path d="M6.69,2.25L9.32,2.25L9.32,1.03L15.85,1.03L15.85,0.04L8.75,0.04L8.75,1.16L7.27,1.16L7.27,0L0.16,0L0.16,0.99L6.69,0.99L6.69,2.25Z" style="fill-rule:nonzero;"/>
+                <path d="M0,7.38L0,11.1L0.55,11.1L0.55,12.13L1.7,12.13L1.7,13.27L3.67,13.27L3.67,12.13L4.82,12.13L4.82,11.1L11.18,11.1L11.18,12.03L12.33,12.03L12.33,13.17L14.3,13.17L14.3,12.03L15.45,12.03L15.45,11.1L16,11.1L16,7.38L0,7.38ZM2.59,8.97L0.89,8.97L0.89,8.14L2.58,8.14L2.58,8.97L2.59,8.97ZM4.67,9.97L2.98,9.97L2.98,9.4L4.67,9.4L4.67,9.97ZM4.67,8.97L2.98,8.97L2.98,8.14L4.67,8.14L4.67,8.97ZM13.04,9.97L11.35,9.97L11.35,9.4L13.04,9.4L13.04,9.97ZM13.04,8.97L11.35,8.97L11.35,8.14L13.04,8.14L13.04,8.97ZM15.12,8.97L13.43,8.97L13.43,8.14L15.12,8.14L15.12,8.97Z" style="fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

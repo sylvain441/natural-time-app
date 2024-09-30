@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 dist
+.vite-ssg-temp
 .DS_Store
 dist-ssr
 coverage

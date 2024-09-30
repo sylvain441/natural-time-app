@@ -40,10 +40,10 @@ export const skins = {
       dotsDisplay: false,
       numbersDisplay: false,
     },
-    hideClockAnimations: {
-      dayNightBlurDisplay: false,
-      sunDisplay: false,
-      moonDisplay: false,
+    showClockAnimations: {
+      dayNightBlurDisplay: true,
+      sunDisplay: true,
+      moonDisplay: true,
     },
     welcome: {
       context: {

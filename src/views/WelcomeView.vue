@@ -1,12 +1,6 @@
 <template>
   <div class="min-h-screen bg-white bg-texture">
     
-    <MetaTags
-      :title="'Le temps Naturel TODO'"
-      :description="'Le temps Naturel TODO description'"
-      image="/natural-time-social-sharing.jpg"
-    />
-
     <!-- APP menu -->  
     <MainMenu />
 
@@ -27,7 +21,7 @@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-12" ref="naturalClockRef">
-        <div class="max-w-4xl mx-auto bg-nt-yellow-light md:rounded-xl md:py-12 bg-texture">
+        <div class="max-w-4xl mx-auto bg-nt-yellow-light md:rounded-3xl md:py-12 bg-texture">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -52,7 +46,7 @@
 
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-12" ref="thirteenMoonsRef">
-        <div class="max-w-4xl mx-auto bg-nt-cyan-light md:rounded-xl md:py-12 bg-texture">
+        <div class="max-w-4xl mx-auto bg-nt-cyan-light md:rounded-3xl md:py-12 bg-texture">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -78,7 +72,7 @@
 
       <!-- FAQ Section -->
       <section class="w-full md:px-6 md:mb-12" ref="faqRef">
-        <div class="max-w-4xl mx-auto bg-white md:rounded-xl p-4 md:p-12">
+        <div class="max-w-4xl mx-auto bg-white md:rounded-3xl p-4 md:p-12">
           <div class="flex flex-col">
             <h2 class="text-3xl md:text-5xl mb-8 font-title text-center">Foire Aux Questions</h2>
             <FAQAccordion class="pb-16" />
@@ -110,25 +104,34 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import FAQAccordion from '@/components/FAQAccordion.vue';
-import MetaTags from '@/components/MetaTags.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useHead } from '@unhead/vue';
+import { useContextStore } from '@/stores/contextStore'; // Import the store
 
 const router = useRouter();
-
-import { useContextStore } from '@/stores/contextStore';
 const contextStore = useContextStore();
-
-const isOnline = ref(window.navigator.onLine);
 
 const naturalClockRef = ref(null);
 const thirteenMoonsRef = ref(null);
 const faqRef = ref(null);
-const videoRef = ref(null);
 
 import MainMenu from '@/components/MainMenu.vue';
 
 import ClockSVG from '@/assets/icon/clock.svg';
 import YearSVG from '@/assets/icon/year.svg';
+
+
+useHead({
+  title: 'Le temps Naturel TODO',
+  meta: [
+    { name: 'description', content: 'Le temps Naturel TODO description' },
+    { property: 'og:image', content: '/natural-time-social-sharing.jpg' },
+  ],
+});
+
+onMounted(() => {
+  
+});
 
 const scrollToNaturalClock = () => {
   naturalClockRef.value?.scrollIntoView({ behavior: 'smooth' });

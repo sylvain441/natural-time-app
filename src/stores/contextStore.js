@@ -1,4 +1,4 @@
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useContextStore = defineStore('context', () => {
@@ -41,12 +41,14 @@ export const useContextStore = defineStore('context', () => {
     tempLongitude.value = storedLongitude.value;
     tempLocation.value = storedLocation.value;
 
-    window.addEventListener('keydown', (event) => {
-      // CMD + K to clear localStorage
-      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-        localStorage.clear();
-        window.location.reload();
-      }
+    onMounted(() => {
+      window.addEventListener('keydown', (event) => {
+        // CMD + K to clear localStorage
+        if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+          localStorage?.clear();
+          window.location.reload();
+        }
+      });
     });
 
     initDone.value = true
@@ -57,7 +59,6 @@ export const useContextStore = defineStore('context', () => {
       return;
 
     if (newValue){
-      console.trace('enableGeolocation', newValue);
       getGeolocation();
     }
     else {

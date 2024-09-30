@@ -1,10 +1,16 @@
 <template>
-  <div id="FAQ" v-html="filteredFaq"></div>
+  <div id="FAQ" ref="faqRef">
+    <div v-html="filteredFaq"></div>
+  </div>
 </template>
 
 <script setup>
-import { useFaq } from '../i18n/faq';
-import { onMounted, onUnmounted, ref, computed } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { faqContent } from '@/i18n/faq/faqLoader';
+
+const faqRef = ref(null);
+const observer = ref(null);
 
 const props = defineProps({
   categories: {
@@ -13,16 +19,17 @@ const props = defineProps({
   }
 });
 
-const faq = useFaq();
-const observer = ref(null);
+const { locale } = useI18n();
 
 const filteredFaq = computed(() => {
+  const content = faqContent[locale.value] || faqContent.en;
+  
   if (props.categories.length === 0) {
-    return faq.value;
+    return content;
   }
 
   const parser = new DOMParser();
-  const doc = parser.parseFromString(faq.value, 'text/html');
+  const doc = parser.parseFromString(content, 'text/html');
   const categories = doc.querySelectorAll('h3');
   
   categories.forEach((category, index) => {
@@ -41,8 +48,7 @@ const filteredFaq = computed(() => {
 });
 
 const setupAccordion = () => {
-  const faqElement = document.getElementById('FAQ');
-  const categories = faqElement.querySelectorAll('h3');
+  const categories = faqRef.value.querySelectorAll('h3');
 
   if (categories.length === 0) return;
 
@@ -106,8 +112,8 @@ const setupAccordion = () => {
 };
 
 onMounted(() => {
-  const faqElement = document.getElementById('FAQ');
-  
+  setupAccordion();
+
   observer.value = new MutationObserver((mutations) => {
     for (const mutation of mutations) {
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
@@ -117,9 +123,7 @@ onMounted(() => {
     }
   });
 
-  observer.value.observe(faqElement, { childList: true, subtree: true });
-
-  setupAccordion();
+  observer.value.observe(faqRef.value, { childList: true, subtree: true });
 });
 
 onUnmounted(() => {

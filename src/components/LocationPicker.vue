@@ -200,14 +200,13 @@ const { getGeolocation } = contextStore;
 const i18n = useI18n();
 
 // Refs
-const isOnline = ref(window.navigator.onLine);
+const isOnline = ref(false);
 const map = ref(null);
 const view = ref(null);
 const vectorSource = ref(null);
 const markerFeature = ref(null);
 const geolocationFeature = ref(null);
-const zoomLevel = ref(localStorage.longitude ? 5 : 4);
-const setupCoordinates = fromLonLat([longitude.value, latitude.value]);
+const zoomLevel = ref(contextStore.longitude ? 5 : 4);
 const geocoder = ref(null);
 const mapInitialized = ref(false);
 
@@ -436,6 +435,11 @@ onMounted(() => {
       getGeolocation();
     }
   });
+
+  // Event listeners
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  updateOnlineStatus();
 });
 
 onUnmounted(() => {
@@ -446,10 +450,6 @@ onUnmounted(() => {
   contextStore.resetLocation();
   destroyMap();
 });
-
-// Event listeners
-window.addEventListener('online', updateOnlineStatus);
-window.addEventListener('offline', updateOnlineStatus);
 
 // Watchers for updating markers
 watch(pointerCoordinates, updateMarker);

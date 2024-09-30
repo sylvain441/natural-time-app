@@ -1,4 +1,3 @@
-import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/router'
@@ -6,27 +5,44 @@ import i18n from './i18n/i18n'
 import longClickDirective from './directive/longclick'
 import Vue3TouchEvents from "vue3-touch-events";
 
-import { setupMatomo } from './plugins/matomo'
+// import { setupMatomo } from './plugins/matomo'
 import { initializePWA } from './plugins/pwa'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
-const app = createApp(App)
+import { ViteSSG } from 'vite-ssg'
 
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
+export const createApp = ViteSSG(
+  App, 
+  {
+    base: '/',
+    routes: router.options.routes,
+  },
+  ({ app, router, routes, isClient, initialState }) => {
+    const pinia = createPinia();
+    if(!import.meta.env.SSR) {
+      pinia.use(piniaPluginPersistedstate);
+    }
+    app
+      .use(pinia)
 
-app.use(pinia)
-   .use(router)
-   .use(i18n)
-   .use(Vue3TouchEvents, {rollOverFrequency: 500})
-   .directive('longclick', longClickDirective({delay: 200, interval: 50}))
+    if (import.meta.env.SSR) {
+      initialState.pinia = pinia.state.value
+    }
+    else {
+      pinia.state.value = initialState.pinia || {}
+    }
+    
+    app
+      .use(router)
+      .use(i18n)
 
-//setupMatomo(app, router)
-//initializePWA()
+    if (!import.meta.env.SSR) {
+      app
+        .use(Vue3TouchEvents, {rollOverFrequency: 500})
+        .directive('longclick', longClickDirective({delay: 200, interval: 50}));
 
-app.mount('#app')
+      //setupMatomo(app, router)
+      initializePWA()
+    }
 
-// Global error handler
-/* app.config.errorHandler = (err, vm, info) => {
-  // Handle the error, maybe send to an error tracking service
-  console.error('Unhandled error:', err, info)
-} */
+  }
+)

@@ -1,5 +1,4 @@
 <template>
-	<MetaTags />
 	<div class="z-10 h-min-screen relative">
 		<router-view v-slot="{ Component }">
 			<transition name="fade" mode="out-in">
@@ -10,7 +9,7 @@
 </template>
 
 <script setup>
-import MetaTags from '@/components/MetaTags.vue';
+
 </script>
 
 <style lang="scss">

@@ -9,8 +9,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 import { analyzer } from 'vite-bundle-analyzer'
 
+import 'vite-ssg'
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [
     vue(),
     VitePWA({ 
@@ -77,13 +80,17 @@ export default defineConfig({
       enforce: 'pre'
     }),
     svgLoader(),
-    analyzer()
+    //analyzer()
   ],
   build: {
     rollupOptions: {
       output: {
       }
     }
+  },
+  ssgOptions: {
+    script: 'async',
+    formatting: 'prettify',
   },
   resolve: {
     alias: {

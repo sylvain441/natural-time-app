@@ -30,9 +30,9 @@ export const useConfigStore = defineStore('appConfig', () => {
 		// Default skin
     ...skins.full.default,
     // Remove graduations
-    ...((!welcomeMode.value && !uiShowClockGraduations.value) && skins.full.hideClockGraduations),
+    ...((!welcomeMode.value && uiShowClockGraduations.value === false) && skins.full.hideClockGraduations),
     // Reduce animations
-    ...((!welcomeMode.value && !uiShowClockAnimations.value) && skins.full.hideClockAnimations),
+    ...((!welcomeMode.value && uiShowClockAnimations.value === true) && skins.full.showClockAnimations),
 		// Welcome skin
     ...(!uiActivePanel.value && welcomeMode.value ? skins.full.welcome : {}),
     // Tutorial skin
@@ -65,6 +65,5 @@ export const useConfigStore = defineStore('appConfig', () => {
 }, {
   persist: {
     key: 'configStore',
-    storage: localStorage,
   },
 });
