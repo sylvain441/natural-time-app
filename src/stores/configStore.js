@@ -1,66 +1,111 @@
 import { defineStore } from 'pinia';
 import { ref, computed, watch } from 'vue';
-import { skins } from './skins.js';
+import { clockSkins } from './clockSkins.js';
+import { spiralSkins } from './spiralSkins.js';
 
-const TUTORIAL_STEPS_COUNT = Object.keys(skins.full.tutorial).length;
 export const AVAILABLE_PANELS = {
   locationPicker: 'locationPicker',
   clockSettings: 'clockSettings',
-  faq: 'faq'
+  faq: 'faq',
+  spiralSettings: 'spiralSettings'
 }
 
 export const useConfigStore = defineStore('appConfig', () => {
   
   const askForGeolocation = ref(false);
 
-  const welcomeMode = ref(true);
-  const tutorialMode = ref(false);
-  const timeTravelMode = ref(false);
+  const clockWelcomeMode = ref(true);
+  const clockTutorialMode = ref(false);
+  const clockTimeTravelMode = ref(false);
 
-  const uiTutorialStepsTotal = computed(() => TUTORIAL_STEPS_COUNT - 1);
-  const uiTutorialCurrentStep = ref(0);
+  const clockTutorialStepsTotal = computed(() => Object.keys(clockSkins.full.tutorial).length - 1);
+  const clockTutorialCurrentStep = ref(0);
   
-	const uiActivePanel = ref(null); // Can be 'locationPicker', 'clockSettings', or 'faq'
+	const clockActivePanel = ref(null);
 
-  const uiShowClockGraduations = ref(true);
-  const uiShowClockAnimations = ref(true);
-  const uiShowClockTitle = ref(true);
+  const clockShowGraduations = ref(true);
+  const clockShowAnimations = ref(true);
+  const clockShowTitle = ref(true);
 
-  const skin = computed(() => ({
-		// Default skin
-    ...skins.full.default,
+  const clockSkin = computed(() => ({
+		// Default clockSkin
+    ...clockSkins.full.default,
     // Remove graduations
-    ...((!welcomeMode.value && uiShowClockGraduations.value === false) && skins.full.hideClockGraduations),
+    ...((!clockWelcomeMode.value && clockShowGraduations.value === false) && clockSkins.full.hideClockGraduations),
     // Reduce animations
-    ...((!welcomeMode.value && uiShowClockAnimations.value === true) && skins.full.showClockAnimations),
-		// Welcome skin
-    ...(!uiActivePanel.value && welcomeMode.value ? skins.full.welcome : {}),
-    // Tutorial skin
-    ...(tutorialMode.value ? skins.full.tutorial[uiTutorialCurrentStep.value] : {}),
+    ...((!clockWelcomeMode.value && clockShowAnimations.value === true) && clockSkins.full.showClockAnimations),
+		// Welcome clockSkin
+    ...(!clockActivePanel.value && clockWelcomeMode.value ? clockSkins.full.welcome : {}),
+    // Tutorial clockSkin
+    ...(clockTutorialMode.value ? clockSkins.full.tutorial[clockTutorialCurrentStep.value] : {}),
   }));
 
   // When closing tutorial, rewind to step #1
-  watch(tutorialMode, (newValue, oldValue) => {
+  watch(clockTutorialMode, (newValue, oldValue) => {
     if (oldValue === true && newValue === false) {
-      uiTutorialCurrentStep.value = 0;
+      clockTutorialCurrentStep.value = 0;
     } else {
-      uiActivePanel.value = null;
+      clockActivePanel.value = null;
+    }
+  });
+
+
+  const spiralWelcomeMode = ref(true);
+  const spiralTutorialMode = ref(false);
+  const spiralTimeTravelMode = ref(false);
+
+  const spiralTutorialStepsTotal = computed(() => Object.keys(spiralSkins.full.tutorial).length - 1);
+  const spiralTutorialCurrentStep = ref(0);
+  
+	const spiralActivePanel = ref(null); // Can be 'locationPicker', 'spiralSettings', or 'faq'
+
+  const spiralShowTitle = ref(true);
+  const spiralShowDaysNumber = ref(true);
+
+  const spiralSkin = computed(() => ({
+		// Default clockSkin
+    ...spiralSkins.full.default,
+    // Hide days number
+    ...((!spiralWelcomeMode.value && spiralShowDaysNumber.value === false) && spiralSkins.full.hideDaysNumber),
+    // Hide title
+    ...((!spiralWelcomeMode.value && spiralShowTitle.value === false) && spiralSkins.full.hideTitle),
+		// Welcome clockSkin
+    ...(!spiralActivePanel.value && spiralWelcomeMode.value ? spiralSkins.full.welcome : {}),
+    // Tutorial clockSkin
+    ...(spiralTutorialMode.value ? spiralSkins.full.tutorial[spiralTutorialCurrentStep.value] : {}),
+  }));
+
+  // When closing spiral tutorial, rewind to step #1
+  watch(spiralTutorialMode, (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+      spiralTutorialCurrentStep.value = 0;
+    } else {
+      spiralActivePanel.value = null;
     }
   });
 
   return {
     AVAILABLE_PANELS,
     askForGeolocation,
-    uiShowClockGraduations,
-    uiShowClockAnimations,
-    uiShowClockTitle,
-    skin,
-    uiTutorialStepsTotal,
-    uiTutorialCurrentStep,
-    welcomeMode,
-    tutorialMode,
-    timeTravelMode,
-    uiActivePanel
+    clockWelcomeMode,
+    clockTutorialMode,
+    clockTimeTravelMode,
+    clockTutorialStepsTotal,
+    clockTutorialCurrentStep,
+    clockActivePanel,
+    clockShowGraduations,
+    clockShowAnimations,
+    clockShowTitle,
+    spiralWelcomeMode,
+    spiralTutorialMode,
+    spiralTimeTravelMode,
+    spiralTutorialStepsTotal,
+    spiralTutorialCurrentStep,
+    spiralActivePanel,
+    spiralShowTitle,
+    spiralShowDaysNumber,
+    clockSkin,
+    spiralSkin
   };
 }, {
   persist: {

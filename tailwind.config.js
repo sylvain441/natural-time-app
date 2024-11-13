@@ -18,6 +18,8 @@ module.exports = {
           darker: '#ffc700',
         },
         'nt-cyan': {
+          ultralight: '#DCFFFF',
+          lighter: '#9EFCFF',
           light: '#00F2FF',
           dark: '#00d7e6',
           darker: '#02B2B8',
@@ -40,8 +42,13 @@ module.exports = {
         '1/7': '14.285714285714286%',
       },
       width: {
-        '384': '96rem',
+        '112': '28rem',
+        '120': '30rem',
+        '240': '60rem',
       },
+      animation: {
+        'spin-slow': 'spin 20s linear infinite',
+      }
     },
   },
   plugins: [],

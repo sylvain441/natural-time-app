@@ -1,8 +1,8 @@
 import { createRouter, createMemoryHistory } from 'vue-router'
 
 import WelcomeView from '../views/WelcomeView.vue'
-import TimeView from '../views/TimeView.vue'
-import MoonsView from '../views/MoonsView.vue'
+import ClockView from '../views/ClockView.vue'
+import SpiralView from '../views/SpiralView.vue'
 import NotFoundView from '../views/404.vue'
 
 const router = createRouter({
@@ -10,7 +10,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/fr/'
+      redirect: '/fr/',
+      name: 'home',
     },
     { 
       path: '/fr/', 
@@ -20,18 +21,31 @@ const router = createRouter({
     { 
       path: '/fr/horloge-temps-naturel', 
       name: 'time', 
-      component: TimeView,
+      component: ClockView,
     },
     { 
       path: '/fr/spirale-13-lunes', 
       name: '13moons', 
-      component: MoonsView,
+      component: SpiralView,
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFoundView,
-    }
+    },
+    // OLD ROUTES
+    { 
+      path: '/:latlng?/:location?', 
+      redirect: { name: 'time' }
+    },
+    { 
+      path: '/13moons/:latlng?/:location?', 
+      redirect: { name: '13moons' }
+    },
+    { 
+      path: '/about', 
+      redirect: { name: 'welcome' }
+    },
   ],
 })
 

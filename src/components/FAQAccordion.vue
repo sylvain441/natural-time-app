@@ -163,10 +163,19 @@ onUnmounted(() => {
       @apply mb-2;
     }
     a {
-      @apply underline decoration-sky-500 hover:decoration-sky-700;
+      @apply underline decoration-2 decoration-sky-500 hover:decoration-sky-700;
     }
     &.hidden {
       @apply h-0 overflow-hidden opacity-0;
+    }
+    ul {
+      @apply list-disc pl-8 mb-3;
+      a {
+        @apply font-bold underline decoration-2 text-sky-500 hover:decoration-sky-700;
+      }
+    }
+    blockquote {
+      @apply italic text-orange-500;
     }
   }
   .faq-category[data-category="1"] {

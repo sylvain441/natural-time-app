@@ -18,14 +18,14 @@
 @tailwind utilities;
 
 :root{
-	--color-0: #444;
-	--color-1: #d74d40;
-	--color-2: #eaa945;
-	--color-3: #dfdd45;
-	--color-4: #7fc663;
-	--color-5: #49a2f0;
-	--color-6: #443cea;
-	--color-7: #8047eb;
+	--color-0: 68, 68, 68;
+	--color-1: 215, 77, 64;
+	--color-2: 234, 169, 69;
+	--color-3: 223, 221, 69;
+	--color-4: 76, 175, 80;
+	--color-5: 73, 162, 240;
+	--color-6: 72, 52, 234;
+	--color-7: 128, 71, 235;
 }
 
 @font-face {
@@ -37,13 +37,13 @@
 }
 
 
-.color-1{ color: var(--color-1)!important; fill: var(--color-1)!important; background-color: var(--color-1)!important; }
-.color-2{ color: var(--color-2)!important; fill: var(--color-2)!important; background-color: var(--color-2)!important; }
-.color-3{ color: var(--color-3)!important; fill: var(--color-3)!important; background-color: var(--color-3)!important; }
-.color-4{ color: var(--color-4)!important; fill: var(--color-4)!important; background-color: var(--color-4)!important; }
-.color-5{ color: var(--color-5)!important; fill: var(--color-5)!important; background-color: var(--color-5)!important; }
-.color-6{ color: var(--color-6)!important; fill: var(--color-6)!important; background-color: var(--color-6)!important; }
-.color-7{ color: var(--color-7)!important; fill: var(--color-7)!important; background-color: var(--color-7)!important; }
+.color-1{ color: rgb(var(--color-1))!important; fill: rgb(var(--color-1))!important; background-color: rgb(var(--color-1))!important; }
+.color-2{ color: rgb(var(--color-2))!important; fill: rgb(var(--color-2))!important; background-color: rgb(var(--color-2))!important; }
+.color-3{ color: rgb(var(--color-3))!important; fill: rgb(var(--color-3))!important; background-color: rgb(var(--color-3))!important; }
+.color-4{ color: rgb(var(--color-4))!important; fill: rgb(var(--color-4))!important; background-color: rgb(var(--color-4))!important; }
+.color-5{ color: rgb(var(--color-5))!important; fill: rgb(var(--color-5))!important; background-color: rgb(var(--color-5))!important; }
+.color-6{ color: rgb(var(--color-6))!important; fill: rgb(var(--color-6))!important; background-color: rgb(var(--color-6))!important; }
+.color-7{ color: rgb(var(--color-7))!important; fill: rgb(var(--color-7))!important; background-color: rgb(var(--color-7))!important; }
 
 .fade-enter-active, .fade-leave-active{
 	transition: .8s;

@@ -63,7 +63,7 @@
     </div>
     
     <div v-if="isOnline" class="px-4 pt-2 pb-5">
-      <label v-if="markerPlaced" for="locationName" class="text-xs font-mono font-extrabold">Nom du lieu</label>
+      <label v-if="markerPlaced" for="locationName" class="text-xs font-mono font-extrabold text-slate-400">Donner un nom au lieu</label>
       <div class="flex flex-row items-center justify-between">
         <div v-if="markerPlaced" class="grow flex items-center space-x-2 justify-start ">
           <input 
@@ -165,7 +165,6 @@ import { storeToRefs } from 'pinia';
 import Geocoder from 'ol-geocoder';
 import { useI18n } from 'vue-i18n';
 import ToggleButton from '@/components/ToggleButton.vue';
-import { useConfigStore } from '@/stores/configStore';
 
 // Import OpenLayers modules directly
 import Map from 'ol/Map';
@@ -182,17 +181,13 @@ import ZoomControl from 'ol/control/Zoom';
 
 // Icons
 import mapMarkerIcon from '@/assets/icon/map-marker.png';
-const mapMarkerIconSrc = computed(() => mapMarkerIcon);
-import checkIcon from '@/assets/icon/check-icon.svg';
 import spinIcon from '@/assets/icon/spin-icon.svg';
 import infoIcon from '@/assets/icon/info-icon.svg';
 import mapIcon from '@/assets/icon/map-icon.svg';
 import geolocationIcon from '@/assets/icon/geolocation-icon.svg';
 
 // Store setup
-const configStore = useConfigStore();
 const contextStore = useContextStore();
-const { uiActivePanel, welcomeMode } = storeToRefs(configStore);
 const { latitude, longitude, enableGeolocation, geolocationStatus, tempLatitude, tempLongitude, tempLocation, geolocationLatitude, geolocationLongitude, positionChanged } = storeToRefs(contextStore);
 const { getGeolocation } = contextStore;
 
@@ -283,8 +278,6 @@ const setupGeocoder = () => {
 
 const save = () => {
   contextStore.saveLocation();
-  welcomeMode.value = false;
-  uiActivePanel.value = null;
   emit('close');
   emit('save');
 };
@@ -503,12 +496,12 @@ function debounce(func, wait) {
   .gcd-txt-control {
     position: relative;
     width: 100%;
-    height: 1.8em;
+    height: 2.4em;
   }
   
   .gcd-txt-input {
     height: 100%;
-    padding: 2px 30px 2px 8px;
+    padding: 5px 30px 4px 8px;
   }
   
   .gcd-txt-search::after {

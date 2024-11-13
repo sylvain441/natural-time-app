@@ -8,7 +8,7 @@ export function initializePWA() {
     },
     onNeedRefresh() {
       console.log('New content is available; please refresh.');
-      // You can prompt the user to refresh here if desired
+      // Prompt the user to refresh
     },
   })
 

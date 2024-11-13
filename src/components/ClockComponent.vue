@@ -5,7 +5,7 @@
 			<!-- DAY / NIGHT -->
 			<div class="clock-day-night nt-box-outer rotate-180">
 				<Transition name="fade">
-				<div v-if="skin.dayNightBlurDisplay" class="nt-box-outer blur-2xl" :class="skin.dayNightBlur">
+				<div v-if="clockSkin.dayNightBlurDisplay" class="nt-box-outer blur-2xl" :class="clockSkin.dayNightBlur">
 					<svg class="w-full h-full" viewBox="0 0 800 800">
 						<path :d="dayPeriodPath(context.sun.sunrise, context.sun.sunset)" fill="#AFE0FF" />
 						<path :d="dayPeriodPath(context.sun.sunset, context.sun.sunrise)" fill="#1C1241" style="opacity: 0.5" />
@@ -13,12 +13,12 @@
 				</div>
 				</Transition>
 				<Transition name="scale-with-delay">
-				<div v-if="skin.dayNightRingDisplay" class="nt-box-outer" :class="skin.dayNightRing">
+				<div v-if="clockSkin.dayNightRingDisplay" class="nt-box-outer" :class="clockSkin.dayNightRing">
 					<svg class="w-full h-full" viewBox="0 0 800 800">
-						<path :d="dayPeriodPath(context.sun.sunset + 3, context.sun.sunrise - 3)" fill="currentColor" class="text-slate-800" /> 
-						<path :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="currentColor" class="text-nt-yellow-light" />  
-						<path :d="dayPeriodPath(context.sun.sunset - 3, context.sun.sunset + 3)" fill="currentColor" class="text-nt-yellow-light" /> 
-						<path :d="dayPeriodPath(context.sun.sunrise + 3, context.sun.sunset - 3)" fill="currentColor" class="text-nt-cyan-dark" />  
+						<path :d="dayPeriodPath(0.001, 359.999)" fill="currentColor" class="text-slate-800" /> 
+						<path :d="dayPeriodPath(Math.max(context.sun.sunrise, 0.001), Math.min(context.sun.sunset, 359.999))" fill="currentColor" class="text-nt-cyan-dark" />  
+						<path v-if="context.sun.sunrise % 180 != 0" :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="currentColor" class="text-nt-yellow-light" />  
+						<path v-if="context.sun.sunrise % 180 != 0"  :d="dayPeriodPath(context.sun.sunset - 3, context.sun.sunset + 3)" fill="currentColor" class="text-nt-yellow-light" /> 
 					</svg>
 				</div>
 				</Transition>
@@ -26,7 +26,7 @@
 
 			<!-- SUN -->
 			<Transition name="scale-with-delay">
-				<div v-if="skin.sunDisplay" class="clock-sun nt-box-outer">
+				<div v-if="clockSkin.sunDisplay" class="clock-sun nt-box-outer">
 					<div class="nt-box-outer rotate-180">
 						<div class="nt-box-outer text-center nt-animate" :style="{transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`}">
 							<div class="inline-block" style="width: 72px; height: 72px;">
@@ -39,7 +39,7 @@
 
 			<!-- MOON -->
 			<Transition name="fade">
-				<div v-if="skin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
+				<div v-if="clockSkin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
 					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.50 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
 						<div style="width: 72px; height: 72px; box-shadow: 0 0 15px 0 rgba(0, 80, 0, 0.15), 0 0 60px rgba(255, 255, 255, 1);" class="relative rounded-full overflow-hidden flex align-center">
 							<!-- LIGHT SIDE-->
@@ -56,7 +56,7 @@
 
 			<!-- HAND NTZ-->
 			<Transition name="fade">
-				<div v-if="skin.ntzDisplay" class="clock-hand-ntz nt-box-outer rotate-180" :class="skin.ntzHand">
+				<div v-if="clockSkin.ntzDisplay" class="clock-hand-ntz nt-box-outer rotate-180" :class="clockSkin.ntzHand">
 					<div class="nt-box-outer nt-animate" :style="{ transform: `rotate(${(context.naturalDate.time - context.naturalDate.longitude) * context.hemisphere}deg) scaleX(${context.hemisphere})`}">
 						<HandNtzSVG fill="currentColor"/>
 					</div>
@@ -65,45 +65,45 @@
 
 			<!-- DIAL -->
 			<Transition name="fade">
-				<div v-if="skin.dialDisplay" class="nt-box-outer">
-					<div class="nt-box-inner rounded-full" :class="skin.dial"></div>
+				<div v-if="clockSkin.dialDisplay" class="nt-box-outer">
+					<div class="nt-box-inner rounded-full" :class="clockSkin.dial"></div>
 				</div>
 			</Transition>
 
 			<!-- MUSTACHES -->
 			<Transition name="fade">
-				<div v-if="skin.mustachesDisplay">
-					<div v-if="skin.mustachesDisplay" class="clock-mustache-equinox nt-box-outer rotate-180" :class="skin.mustachesEquinox">
+				<div v-if="clockSkin.mustachesDisplay">
+					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-equinox nt-box-outer rotate-180" :class="clockSkin.mustachesEquinox">
 						<div class="nt-box-inner nt-animate">
 							<MustacheEquinoxSVG fill="currentColor" />
 						</div>
 					</div>
-					<div v-if="skin.mustachesDisplay" class="clock-mustache-winter-sunrise nt-box-outer rotate-180" :class="skin.mustachesWinterSunrise">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${(context.mustaches.winterSunrise) * context.hemisphere}deg)`}">
+					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-winter-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunrise">
+						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 + context.mustaches.averageMustacheAngle}deg)`}">
 							<MustacheSVG fill="currentColor" />
 						</div>
 					</div>
-					<div v-if="skin.mustachesDisplay" class="clock-mustache-summer-sunrise nt-box-outer rotate-180" :class="skin.mustachesSummerSunrise">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${(context.mustaches.summerSunrise) * context.hemisphere}deg)`}">
+					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-summer-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesSummerSunrise">
+						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 - context.mustaches.averageMustacheAngle}deg)`}">
 							<MustacheSVG fill="currentColor" />
 						</div>
 					</div>
-					<div v-if="skin.mustachesDisplay" class="clock-mustache-winter-sunset nt-box-outer rotate-180" :class="skin.mustachesWinterSunset">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${(context.mustaches.winterSunset) * context.hemisphere}deg)`}">
+					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-winter-sunset nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunset">
+						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 - context.mustaches.averageMustacheAngle}deg)`}">
 							<MustacheSVG fill="currentColor" />
 						</div>
 					</div>
-					<div v-if="skin.mustachesDisplay" class="clock-mustache-summer-sunset nt-box-outer rotate-180" :class="skin.mustachesSummerSunset">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${(context.mustaches.summerSunset) * context.hemisphere}deg)`}">
+					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-summer-sunset nt-box-outer 		rotate-180" :class="clockSkin.mustachesSummerSunset">
+						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 + context.mustaches.averageMustacheAngle}deg)`}">
 							<MustacheSVG fill="currentColor" />
 						</div>
 					</div>
 				</div>
 			</Transition>
 
-			<!-- TITLE -->
+			<!-- TITLE  -->
 			<Transition name="fade">
-				<div v-if="skin.titleDisplay" class="clock-title nt-box-outer text-2xl text-center font-bold" :class="skin.title">
+				<div v-if="clockSkin.titleDisplay" class="clock-title nt-box-outer text-2xl text-center font-bold" :class="clockSkin.title">
 					<div class="nt-box-inner">
 						<h1 style="padding-top: 67%;">Temps Naturel</h1>
 					</div>
@@ -112,7 +112,7 @@
 
 			<!-- NUMBERS -->
 			<Transition name="fade">
-				<div v-if="skin.numbersDisplay" class="clock-numbers nt-box-outer">
+				<div v-if="clockSkin.numbersDisplay" class="clock-numbers nt-box-outer">
 					<div class="nt-box-outer rotate-180">
 						<div class="nt-box-inner absolute text-center p-1"
 							v-for="n in 36" 
@@ -120,9 +120,9 @@
 							:data-time="(n - 1) * 10" 
 							:style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }">
 							<span class="nt-animate" :class="[
-								(n - 1) % 9 === 0 ? skin.numbersMultipleOf90 : 
-								(n - 1) % 3 === 0 ? skin.numbersMultipleOf30 : 
-								skin.numbersMultipleOf10
+								(n - 1) % 9 === 0 ? clockSkin.numbersMultipleOf90 : 
+								(n - 1) % 3 === 0 ? clockSkin.numbersMultipleOf30 : 
+								clockSkin.numbersMultipleOf10
 							]">{{ (n - 1) * 10 }}</span>
 						</div>
 					</div>
@@ -131,15 +131,15 @@
 
 			<!-- DOTS -->
 			<Transition name="fade">
-				<div v-if="skin.dotsDisplay" class="clock-dots nt-box-outer rotate-180">
+				<div v-if="clockSkin.dotsDisplay" class="clock-dots nt-box-outer rotate-180">
 					<div class="nt-box-inner absolute flex justify-center p-10"
 						v-for="n in 36" 
 						:key="`dot-${(n - 1) * 10}`" 
 						:style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }">
 						<div class="rounded-full" :class="[
-							(n - 1) % 9 === 0 ? skin.dotsMultipleOf90 : 
-							(n - 1) % 3 === 0 ? skin.dotsMultipleOf30 : 
-							skin.dotsMultipleOf10
+							(n - 1) % 9 === 0 ? clockSkin.dotsMultipleOf90 : 
+							(n - 1) % 3 === 0 ? clockSkin.dotsMultipleOf30 : 
+							clockSkin.dotsMultipleOf10
 						]"></div>
 					</div>
 				</div>
@@ -147,7 +147,7 @@
 
 			<!-- HAND -->
 			<Transition name="fade">
-				<div v-if="skin.handDisplay" class="clock-hand nt-box-outer rotate-180" :class="skin.hand">
+				<div v-if="clockSkin.handDisplay" class="clock-hand nt-box-outer rotate-180" :class="clockSkin.hand">
 					<div class="nt-box-inner nt-animate" :style="{ transform: `rotate(${context.naturalDate.time * context.hemisphere}deg)` }">
 						<HandSVG fill="currentColor" />
 					</div>
@@ -158,7 +158,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useConfigStore } from '@/stores/configStore';
 import { storeToRefs } from 'pinia';
 import HandSVG from '@/assets/clock/hand-default.svg';
@@ -176,7 +176,7 @@ const props = defineProps({
 
 // Store
 const configStore = useConfigStore();
-const { skin } = storeToRefs(configStore);
+const { clockSkin } = storeToRefs(configStore);
 
 // Refs
 const clockWrapper = ref(null);

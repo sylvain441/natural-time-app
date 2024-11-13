@@ -1,31 +1,94 @@
 ### Temps Naturel
 
 #### Le Temps Naturel, c'est quoi ? À quoi ça sert ?
-
-Le temps naturel est un **outil de mesure du temps** intimement lié au vivant. Cette nouvelle convention, simple, fraiche et cohérente, est basée sur le bon sens et l'observation des cycles naturels. Le temps qui passe n'est plus divisé en heures/minutes/secondes compliquées, ni en mois de différentes durées, mais plutôt en degrés de rotation du soleil dans le ciel. Le calendrier est remplacé par une spirale de 13 lunes de 28 jours exactement + le jour arc-en-ciel 🌈.
-
-Une introduction complète au temps naturel est consultable ici :  
-[biquette.xyz/presentation-horloge-temps-naturel](https://sylvainbiquette.xyz/presentation-horloge-temps-naturel) (en français)
-
-Les spécifications techniques complètes sont disponibles ici :  
-[github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time) (en anglais) 
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi notre système de temps actuel est-il artificiel ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Comment la perception du temps influence le bien-être ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Qui a imaginé le concept de temps naturel ?
-
-Le temps naturel est né dans les Alpes Françaises lors du printemps/été 2022.
-Pour toutes questions : sylvain441@pm.me – @sylvain441 (telegram).
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Comment contribuer à ce projet ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
-#### [Publicité] Où peut-on acheter une horloge naturelle ?
-[Réponse ici]
+#### \[Publicité\] Où peut-on acheter une horloge naturelle ?
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 
 
@@ -34,35 +97,154 @@ Pour toutes questions : sylvain441@pm.me – @sylvain441 (telegram).
 ### Horloge Naturelle
 
 #### Comment lire une horloge naturelle ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Quels sont les avantages de l'utiliser au quotidien ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi diviser le temps en 360° au lieu de 24h/60m/60s ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Que représentent les moustaches au centre du cadran ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi le temps naturel depend t'il de la longitude ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Comment ça fonctionne entre deux endroits lointains sur Terre ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Que se passe t'il lors des changements d'heures ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Comment convertir les heures conventionnelles en degrés ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi ne dit-on plus "quelle heure est-il ?"
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Est-il possible de fabriquer soi-même une horloge naturelle ?
-
-Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple horloge effectuant le tour du cadran en une journée suffit pour l'adopter.
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 
 
@@ -71,31 +253,139 @@ Le temps naturel n'est pas dépendant de l'informatique pour exister. Une simple
 ### Spirale des 13 Lunes
 
 #### Pourquoi 13 mois (lunes) de 28 jours ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Qu'est-ce que le jour arc-en-ciel ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Les 13 lunes sont-elles synchros avec les vraies phases lunaires ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Quels sont les avantages d'utiliser les 13 lunes au quotidien ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Que symbolisent les 7 couleurs des jours de la semaine ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi utiliser le terme "Spirale" plutôt que "Calendrier" ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### En quoi le calendrier grégorien est-il si mauvais ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Quand commence l'année naturelle ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Pourquoi 2012 correspond-elle à l'an 001 ?
-[Réponse ici]
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 
 
@@ -133,12 +423,34 @@ Ce n'est pas vraiment une application... Mais plutôt un site web qui peut fonct
 - Safari Mac : *Installation hors ligne non permise*
 
 #### Pourquoi l'application me demande-t-elle une position géographique ?
-
-Pour afficher [l'horloge](#) et la [spirale des 13 lunes](#), l'utilisateur doit préalablement renseigner une position géographique. 
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Comment sont gérées et protégées les données utilisateur ?
-
-Pour afficher [l'horloge](#) et la [spirale des 13 lunes](#), l'utilisateur doit préalablement renseigner une position géographique. Les coordonnées sont sauvegardées dans les données temporaires du navigateur.
+> 🚧 🚧 🚧 🚧 🚧   
+>  
+> La rédaction d'une FAQ complète et détaillée est en cours et nécéssite du temps.  
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+>
+> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
+> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
+> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
+>
+> Merci pour ta patience et ton soutien ! 🙏  
+> Sylvain
+> 
+> 🚧 🚧 🚧 🚧 🚧 
 
 #### Remerciements
 

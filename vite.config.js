@@ -25,53 +25,31 @@ export default defineConfig({
         name: 'Natural time',
         start_url: "https://naturaltime.app/?utm_source=web_app_manifest",
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
-        theme_color: '#CAF3FF',
-        background_color: "#CAF3FF",
+        theme_color: '#fff200',
+        background_color: "#d5f7fd",
         icons: [
           {
-            src: './icon/naturaltime-128x128.png',
-            sizes: '128x128',
-            type: 'image/png',
+            src: 'naturaltime-pwa-64x64.png',
+            sizes: '64x64',
+            type: 'image/png'
           },
           {
-            src: './icon/naturaltime-128x128-maskable.jpg',
-            sizes: '128x128',
-            type: 'image/jpg',
-            purpose: "any maskable"
-          },
-          {
-            src: './icon/naturaltime-180x180.png',
-            sizes: '180x180',
-            type: 'image/png',
-          },
-          {
-            src: './icon/naturaltime-180x180-maskable.jpg',
-            sizes: '180x180',
-            type: 'image/jpg',
-            purpose: "any maskable"
-          },
-          {
-            src: './icon/naturaltime-192x192.png',
+            src: 'naturaltime-pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
-            src: './icon/naturaltime-192x192-maskable.jpg',
-            sizes: '192x192',
-            type: 'image/jpg',
-            purpose: "any maskable"
-          },
-          {
-            src: './icon/naturaltime-512x512.png',
+            src: 'naturaltime-pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
+            purpose: 'any'  
           },
           {
-            src: './icon/naturaltime-512x512-maskable.jpg',
+            src: 'naturaltime-maskable-512x512.png',
             sizes: '512x512',
-            type: 'image/jpg',
-            purpose: "any maskable"
-          },
+            type: 'image/png',
+            purpose: 'maskable'
+          }
         ]
       }
     }),
@@ -95,6 +73,16 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Use modern API
+        api: 'modern',
+        // Silence deprecation warnings until you can fully migrate
+        //additionalData: `$silenceDeprecations: ['legacy-js-api'];`
+      }
     }
   }
 })
