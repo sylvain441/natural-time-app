@@ -154,7 +154,7 @@
 			
 			<div class="overflow-hidden h-full">
 				<!-- LOCATION PICKER -->
-				<LocationPicker v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { clockActivePanel = null; clockWelcomeMode = false; }" />
+				<LocationPicker viewType="clock" v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { clockActivePanel = null; clockWelcomeMode = false; }" />
 				<!-- CLOCK SETTINGS -->
 				<ClockSettings v-if="clockActivePanel === AVAILABLE_PANELS.clockSettings" />
 				<!-- FAQ -->

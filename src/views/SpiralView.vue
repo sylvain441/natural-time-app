@@ -9,163 +9,171 @@
       <div 
         class="fixed z-10 inset-0 h-full px-2 pt-4 transition-all duration-300 ease-in-out"
         :class="[
-          !spiralActivePanel ? 'md:px-[8%]' : '', 
+          !spiralActivePanel ? 'md:px-[8%]' : 'md:px-[3%]', 
           spiralTimeTravelMode || spiralTutorialMode ? 'border-8 border-nt-cyan-light' : '', 
-          (spiralShowTitle ? 'pb-40' : ''), 
+          (spiralShowTitle ? 'pb-40' : 'pb-6'), 
           (spiralTutorialMode ? 'pb-48' : ''), 
-          (spiralTimeTravelMode ? 'pb-20' : ''), 
-          isCurrentMoonView ? 'px-4 md-px-12 max-w-3xl mx-auto' : '']"
+          (spiralTimeTravelMode ? 'pb-36' : ''), 
+          spiralSkin.singleMoonView ? 'px-4 md-px-12' : '']"
         style="width: inherit;">
         
         <!-- MOONS COMPONENT -->
         <div ref="yearWrapper" class="w-full h-full relative drop-shadow-2xl">
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <div id="year" :style="yearStyle" class="flex flex-wrap items-start transition-all duration-800 delay-100" :class="{'single-moon-mode': isCurrentMoonView}">
-              <!-- Display component -->
-              <div id="display" class="relative w-1/2 h-1/4">
-                <!-- DISPLAY: YEAR ) MOON ) DAY -->
-                <div v-if="!displayDate.isRainbowDay" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center space-x-2 space-y-4">
-                  <div class="flex items-center font-radio text-7xl font-bold">
-                    <div class="text-center">
-                      <div class="digit">{{displayDate.toYearString()}}</div>
-                      <div class="label uppercase text-4xl">Année</div>
+            <Transition name="scale-with-delay">
+              <div id="year" :style="yearStyle" class="flex flex-wrap items-center transition-all duration-800 delay-100" :class="{'single-moon-mode': spiralSkin.singleMoonView}">
+                <!-- Display component -->
+                <div id="display" class="relative" :class="{'opacity-0 -mt-[100%]': !spiralSkin.showDisplay, 'w-1/2 h-1/4': !spiralSkin.singleMoonView}">
+                  <!-- DISPLAY: YEAR ) MOON ) DAY -->
+                  <div v-if="!displayDate.isRainbowDay" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center space-x-2 space-y-4">
+                    <div class="flex items-center font-radio text-7xl font-bold">
+                      <div class="text-center">
+                        <div class="digit">{{displayDate.toYearString()}}</div>
+                        <div class="label uppercase text-4xl">Année</div>
+                      </div>
+                      <div class="mx-3 text-7xl text-gray-400">)</div>
+                      <div class="text-center">
+                        <div class="digit">{{displayDate.toMoonString()}}</div>
+                        <div class="label uppercase text-4xl">Lune</div>
+                      </div>
+                      <div class="mx-3 text-7xl text-gray-400">)</div>
+                      <div class="text-center" :style="{color:'rgb(var(--color-'+displayDate.dayOfWeek+'))'}">
+                        <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
+                        <div class="label uppercase text-4xl">Jour</div>
+                      </div>
                     </div>
-                    <div class="mx-3 text-7xl text-gray-400">)</div>
-                    <div class="text-center">
-                      <div class="digit">{{displayDate.toMoonString()}}</div>
-                      <div class="label uppercase text-4xl">Lune</div>
-                    </div>
-                    <div class="mx-3 text-7xl text-gray-400">)</div>
-                    <div class="text-center" :style="{color:'rgb(var(--color-'+displayDate.dayOfWeek+'))'}">
-                      <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
-                      <div class="label uppercase text-4xl">Jour</div>
+                    <!-- Add gregorian date below only in time travel mode -->
+                    <div v-if="spiralTimeTravelMode" class="text-slate-400 text-xl italic">
+                      (eq. {{ new Date(context.naturalDate.unixTime).toLocaleDateString('fr-FR', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                      }) }})
                     </div>
                   </div>
-                  <!-- Add gregorian date below only in time travel mode -->
-                  <div v-if="spiralTimeTravelMode" class="text-slate-400 text-xl">
-                    (eq. {{ new Date(context.naturalDate.unixTime).toLocaleDateString('fr-FR', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'short', 
-                      day: 'numeric' 
-                    }) }})
+                  
+                  <!-- DISPLAY: RAINBOW DAY -->
+                  <div v-else class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div class="flex items-center font-radio text-7xl font-bold">
+                      <div class="text-center">
+                        <div class="digit">&nbsp;</div>
+                        <div class="label uppercase text-4xl">Arc</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="digit">Jour</div>
+                        <div class="label uppercase text-4xl">En</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="digit">&nbsp;</div>
+                        <div class="label uppercase text-4xl">Ciel</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
-                <!-- DISPLAY: RAINBOW DAY -->
-                <div v-else class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                  <div class="flex items-center font-radio text-7xl font-bold">
-                    <div class="text-center">
-                      <div class="digit">&nbsp;</div>
-                      <div class="label uppercase text-4xl">Arc</div>
-                    </div>
-                    <div class="text-center">
-                      <div class="digit">Jour</div>
-                      <div class="label uppercase text-4xl">En</div>
-                    </div>
-                    <div class="text-center">
-                      <div class="digit">&nbsp;</div>
-                      <div class="label uppercase text-4xl">Ciel</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- 13 Moons -->
-              <template v-if="!isCurrentMoonView">
-                <Moon v-for="moon in 14" 
-                  :key="moon"
-                  :id="`moon-${moon}`"
-                  :today="today" 
-                  :moon="moon" 
-                  @open-time-travel="openTimeTravelAtDate"
-                  class="w-1/4 h-1/4"
-                />
-              </template>
-              <!-- Current Moon -->
-              <template v-else>
-                <div class="rounded-3xl mx-auto h-fit" :class="{'bg-white': today.moon != 14}">
-                  <Moon 
-                    :id="`moon-${today.moon}`"
+                <!-- 13 Moons -->
+                <template v-if="!spiralSkin.singleMoonView">
+                  <Moon v-for="moon in 14" 
+                    :key="moon"
+                    :id="`moon-${moon}`"
                     :today="today" 
-                    :moon="today.moon"
-                    :baseSize="80"
-                    :spacing="10" 
+                    :moon="moon" 
                     @open-time-travel="openTimeTravelAtDate"
-                    class="current-moon-component"
+                    class="w-1/4 h-1/4"
                   />
-                </div>
-              </template>
-            </div>
+                </template>
+                <!-- Current Moon -->
+                <template v-else>
+                  <div class="rounded-3xl mx-auto h-fit" :class="{'bg-white': today.moon != 14}">
+                    <Moon 
+                      :id="`moon-${today.moon}`"
+                      :today="today" 
+                      :moon="today.moon"
+                      :baseSize="60"
+                      :spacing="12" 
+                      @open-time-travel="openTimeTravelAtDate"
+                      class="current-moon-component"
+                    />
+                  </div>
+                </template>
+              </div>
+            </Transition>
           </div>
         </div>
         
         <!-- FOOTER -->
         <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-16 w-full">
-          
-          <!-- TITLE -->
-          <div v-if="!spiralTimeTravelMode && spiralShowTitle">
-            <h1 
-              @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-              class="font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
-              title="Modifier l'emplacement">
-              <span v-if="!spiralTutorialMode" class="bg-nt-cyan-lighter px-3 py-1">
-                {{ context.location || "Spirale des 13 lunes" }}
-                <span v-if="latitude && longitude" class="font-normal">
-                  | {{ context.naturalDate.toLongitudeString(0) }}
+          <Transition name="fade">
+            <div v-if="!spiralTimeTravelMode && spiralShowTitle">
+              <!-- TITLE -->
+              <h1 
+                @click="openPanel(AVAILABLE_PANELS.locationPicker)"
+                class="font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
+                title="Modifier l'emplacement">
+                <span v-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && context.location" class="bg-nt-cyan-lighter px-3 py-1">
+                  {{ context.location }}
+                  <span v-if="latitude && longitude" class="font-normal">
+                    | {{ context.naturalDate.toLongitudeString(0) }}
+                  </span>
                 </span>
-              </span>
-              <span v-else-if="spiralSkin.titleText" class="px-3 py-1 bg-nt-cyan-lighter">
-                {{ spiralSkin.titleText }}
-              </span>
-            </h1>
-            
-            <!-- SUBTITLE -->
-            <div v-if="!spiralTutorialMode && latitude && longitude">
-              <h2 class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
-                <span class="font-extrabold text-lg bg-black text-nt-cyan-lighter font-mono px-2 py-0 mb-3">
-                  {{ context.naturalDate.toTimeString() }}
+                <span v-else-if="spiralSkin.titleText" class="px-3 py-1 bg-nt-cyan-lighter">
+                  {{ spiralSkin.titleText }}
                 </span>
-              </h2>
+                <span v-else class="px-3 py-1 bg-nt-cyan-lighter">
+                  {{  "Spirale des 13 lunes" }}
+                </span>
+              </h1>
+              
+              <!-- SUBTITLE -->
+              <div v-if="!spiralTutorialMode && !spiralWelcomeMode && latitude && longitude">
+                <h2 class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
+                  <span class="font-extrabold text-lg bg-black text-nt-cyan-lighter font-mono px-2 py-0 mb-3">
+                    {{ context.naturalDate.toTimeString() }}
+                  </span>
+                </h2>
+              </div>
+              <div v-else>
+                <h2 class="text-slate-500 text-md md:text-xl">
+                  {{ spiralSkin.descriptionText }}
+                </h2>
+              </div>
             </div>
-            <div v-else>
-              <h2 class="text-slate-500 text-md md:text-xl">
-                {{ spiralSkin.descriptionText }}
-              </h2>
-            </div>
-          </div>
+          </Transition>
           
           <!-- TIME TRAVEL CONTROL PANEL -->
-          <div v-if="spiralTimeTravelMode" 
-            class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
-            <div class="flex items-center justify-center space-x-2">
-              <button 
-                @click="decrementTime" 
-                v-longclick="decrementTime" 
-                class="flex items-center space-x-4 text-sm text-slate-700 hover:text-black font-bold py-1 px-4 rounded-lg transition duration-300 ease-in-out bg-nt-cyan-light hover:bg-nt-cyan-lighter">
-                <rewindIcon class="w-6 h-6" fill="currentColor"/>
-              </button>
+          <Transition name="fade">
+            <div v-if="spiralTimeTravelMode" 
+              class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
+              <div class="flex items-center justify-center space-x-2">
+                <arrowsIcon 
+                  @click="decrementTime" 
+                  v-longclick="decrementTime" 
+                  fill="currentColor"
+                  class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer"
+                />
 
-              <div class="flex flex-col items-center justify-center space-y-2">
-                <select 
-                  id="speed-selector"
-                  v-model="selectedSpeed"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                  <option value="" disabled>Vitesse de voyage</option>
-                  <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
-                    {{ speed.label }}
-                  </option>
-                </select>
+                <div class="flex flex-col items-center justify-center space-y-2">
+                  <select 
+                    id="speed-selector"
+                    v-model="selectedSpeed"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value="" disabled>Vitesse de voyage</option>
+                    <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
+                      {{ speed.label }}
+                    </option>
+                  </select>
+                </div>
+
+                <arrowsIcon 
+                  @click="incrementTime" 
+                  v-longclick="incrementTime" 
+                  fill="currentColor"
+                  class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer"
+                />
               </div>
-
-              <button 
-                @click="incrementTime" 
-                v-longclick="incrementTime" 
-                class="flex items-center space-x-4 text-sm text-slate-700 hover:text-black font-bold py-1 px-4 rounded-lg transition duration-300 ease-in-out bg-nt-cyan-light hover:bg-nt-cyan-lighter">
-                <rewindIcon class="w-6 h-6 rotate-180" fill="currentColor"/>
-              </button>
             </div>
-          </div>
+          </Transition>
           
           <!-- TUTORIAL CONTROL PANEL -->
           <div v-if="spiralTutorialMode && spiralTutorialCurrentStep < spiralTutorialStepsTotal" 
@@ -197,7 +205,7 @@
             <button 
               v-if="!spiralTutorialMode" 
               @click="spiralTutorialMode = true" 
-              class="flex item-center justify-center bg-nt-cyan-light text-black bg-nt-cyan-light hover:bg-nt-cyan-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
+              class="flex item-center justify-center text-black bg-nt-cyan-light hover:bg-nt-cyan-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
               Lancer tutoriel
             </button>
             
@@ -224,7 +232,7 @@
       
       <div class="overflow-hidden h-full">
         <!-- LOCATION PICKER -->
-        <LocationPicker v-if="spiralActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { spiralActivePanel = null; spiralWelcomeMode = false; }" />
+        <LocationPicker viewType="spiral" v-if="spiralActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { spiralActivePanel = null; spiralWelcomeMode = false; }" />
         <!-- SPIRAL SETTINGS -->
         <SpiralSettings v-if="spiralActivePanel === AVAILABLE_PANELS.spiralSettings" />
         <!-- FAQ -->
@@ -246,63 +254,65 @@
 
       <!-- Single Moon Toggle -->
       <button 
-        @click="isCurrentMoonView = !isCurrentMoonView" 
+        @click="toggleSingleMoonMode" 
         class="p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-300"
-        :title="isCurrentMoonView ? 'Afficher toutes les lunes' : 'Afficher la lune courante'">
+        :title="spiralSingleMoonMode ? 'Afficher toutes les lunes' : 'Afficher la lune courante'">
         <component 
-          :is="isCurrentMoonView ? thirteenMoonIcon : oneMoonIcon" 
+          :is="spiralSingleMoonMode ? thirteenMoonIcon : oneMoonIcon" 
           class="w-6 h-6"
         />
       </button>
       
-      <div v-if="isMenuOpen" class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-        <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-          <!-- SETTINGS -->
-          <div class="px-4 pt-2 pb-0 text-sm text-slate-400 font-bold">Paramètres</div>
-          <!-- Location Picker -->
-          <a 
-            @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-            class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
-            role="menuitem">
-            <mapIcon class="w-6 h-6 mr-2"/>Emplacement
-          </a>
-          <!-- Spiral Settings -->
-          <a 
-            @click="openPanel(AVAILABLE_PANELS.spiralSettings)" 
-            class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
-            role="menuitem">
-            <brushIcon class="w-6 h-6 mr-2"/>Affichage
-          </a>
-          
-          <!-- SPECIAL MODES -->
-          <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Mode spéciaux</div>
-          <!-- Tutorial -->
-          <a 
-            @click="toggleTutorial" 
-            class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
-            role="menuitem">
-            <learnIcon class="w-6 h-6 mr-2"/>Tutoriel
-          </a>
-          <!-- Time Travel -->
-          <a 
-            @click="toggleTimeTravel" 
-            class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
-            :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
-            role="menuitem">
-            <timeTravelIcon class="w-6 h-6 mr-2"/>Voyage temporel
-          </a>
-          
-          <!-- UNDERSTAND -->
-          <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Aide</div>
-          <!-- FAQ -->
-          <a 
-            @click="openPanel(AVAILABLE_PANELS.faq)" 
-            class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
-            role="menuitem">
-            <faqIcon class="w-6 h-6 mr-2"/>FAQ
-          </a>
+      <Transition name="fade">
+        <div v-if="isMenuOpen" class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <!-- SETTINGS -->
+            <div class="px-4 pt-2 pb-0 text-sm text-slate-400 font-bold">Paramètres</div>
+            <!-- Location Picker -->
+            <a 
+              @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              role="menuitem">
+              <mapIcon class="w-6 h-6 mr-2"/>Emplacement
+            </a>
+            <!-- Spiral Settings -->
+            <a 
+              @click="openPanel(AVAILABLE_PANELS.spiralSettings)" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              role="menuitem">
+              <brushIcon class="w-6 h-6 mr-2"/>Affichage
+            </a>
+            
+            <!-- SPECIAL MODES -->
+            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Mode spéciaux</div>
+            <!-- Tutorial -->
+            <a 
+              @click="toggleTutorial" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
+              role="menuitem">
+              <learnIcon class="w-6 h-6 mr-2"/>Tutoriel
+            </a>
+            <!-- Time Travel -->
+            <a 
+              @click="toggleTimeTravel" 
+              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
+              :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
+              role="menuitem">
+              <timeTravelIcon class="w-6 h-6 mr-2"/>Voyage temporel
+            </a>
+            
+            <!-- UNDERSTAND -->
+            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Aide</div>
+            <!-- FAQ -->
+            <a 
+              @click="openPanel(AVAILABLE_PANELS.faq)" 
+              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              role="menuitem">
+              <faqIcon class="w-6 h-6 mr-2"/>FAQ
+            </a>
+          </div>
         </div>
-      </div>
+      </Transition>
     </div>
   </div>
 
@@ -310,7 +320,7 @@
   <button 
     v-if="spiralTutorialMode"
     @click="spiralTutorialMode = false" 
-    class="block absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+    class=" absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
     <span>Passer le tutoriel</span>
     <closeIcon class="w-4 h-4 bg-black rounded-full text-nt-cyan-light" fill="currentColor" />
   </button>
@@ -319,7 +329,7 @@
   <button 
     v-if="spiralTimeTravelMode"
     @click="closeTimeTravel" 
-    class="block absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+    class=" absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
     <span>Quitter le voyage temporel</span>
     <closeIcon class="w-4 h-4 bg-black rounded-full text-white" fill="currentColor" />
   </button>
@@ -365,7 +375,6 @@ import { ref, computed, defineAsyncComponent, onMounted, onUnmounted, watch, nex
 import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
-import { useI18n } from 'vue-i18n'
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -398,13 +407,10 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralShowTitle, spiralShowDaysNumber } = storeToRefs(configStore);
-
-// I18n setup
-const i18n = useI18n();
+const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralShowTitle, spiralSingleMoonMode } = storeToRefs(configStore);
 
 // SEO Meta tags
-const metaTitle = "Spirale des 13 lunes naturelles - Une alternative au calendrier Grégorien";
+const metaTitle = "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien";
 const metaDescription = "Découvrir la spirale des 13 lunes de 28 jours qui remplace avec élégance nos 12 mois tout tordus";
 
 useHead({
@@ -446,14 +452,6 @@ const context = computed(() => {
 
 const today = computed(() => context.value.naturalDate);
 
-useHead({
-  title: `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`,
-  meta: [
-    { name: 'description', content: 'Le temps Naturel TODO description' },
-    { property: 'og:image', content: '/natural-time-social-sharing.jpg' },
-  ],
-});
-
 const shouldShowNotification = computed(() => {
   if (!geolocationNotificationDismissedAt.value) return true;
   const oneDay = 24 * 60 * 60 * 1000;
@@ -465,10 +463,13 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
-const toggleTutorial = () => {
+const toggleTutorial = async () => {
   spiralTutorialMode.value = !spiralTutorialMode.value;
   isMenuOpen.value = false;
   closeTimeTravel();
+  // Wait for DOM update before recalculating scale
+  await nextTick();
+  updateScale();
 };
 
 const toggleTimeTravel = () => {
@@ -508,6 +509,10 @@ const resetTime = () => timeDelta.value = 0;
 
 // Lifecycle hooks
 onMounted(() => {
+  // Deactivate time travel mode on launch
+  spiralTimeTravelMode.value = false;
+  timeDelta.value = 0;
+
   if (enableGeolocation.value) {
     // Wait 10 seconds before calculating whether to show the notification
     setTimeout(() => {
@@ -530,12 +535,12 @@ let resizeObserver = null;
 const updateScale = () => {
   const wrapperWidth = yearWrapper.value.offsetWidth;
   const wrapperHeight = yearWrapper.value.offsetHeight;
-  const divWidth = isCurrentMoonView.value ? 580 : 1472;
-  const divHeight = isCurrentMoonView.value ? 484 : 896;
+  const divWidth = spiralSkin.value.singleMoonView ? 471 : 1472;
+  const divHeight = spiralSkin.value.singleMoonView ? 471 : 896;
 
   const scaleX = wrapperWidth / divWidth;
   const scaleY = wrapperHeight / divHeight;
-  const scale = Math.min(scaleX, scaleY);
+  const scale = Math.min(scaleX, scaleY, 1);
 
   yearStyle.value = {
     width: `${divWidth}px`,
@@ -577,12 +582,17 @@ const openTimeTravelAtDate = (date) => {
 
 const displayDate = computed(() => context.value.naturalDate);
 
-// Single Moon View Mode
-const isCurrentMoonView = ref(false);
-watch(isCurrentMoonView, () => {
-  nextTick(() => {
-    updateScale();
-  });
+const toggleSingleMoonMode = async () => {
+  spiralSingleMoonMode.value = !spiralSingleMoonMode.value;
+  // Wait for DOM update before recalculating scale
+  await nextTick();
+  updateScale();
+};
+
+// Also add a watch for tutorial step changes
+watch([spiralTutorialCurrentStep], async () => {
+  await nextTick();
+  updateScale();
 });
 
 </script>
@@ -595,22 +605,20 @@ watch(isCurrentMoonView, () => {
 
 	#moon-1 { 
     order: 1; 
-    @apply rounded-tl-xl rounded-bl-xl;
+    .moon-left { @apply rounded-tl-xl rounded-bl-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-2 { 
     order: 2; 
-    @apply rounded-tl-xl; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-3 { 
     order: 3; 
-    @apply rounded-tl-xl; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-4 { 
     order: 4; 
-    @apply rounded-tl-xl; 
+    .moon-center { @apply rounded-tr-xl; }
     .moon-top, .moon-right { @apply hidden; }
   }
 	#moon-5 { 
@@ -619,47 +627,42 @@ watch(isCurrentMoonView, () => {
   }
 	#moon-6 { 
     order: 11; 
-    @apply rounded-tl-xl; 
     .moon-left, .moon-right { @apply hidden; }
   }
 	#moon-7 { 
     order: 15; 
-    @apply rounded-tl-xl; 
+    .moon-center { @apply rounded-br-xl; }
     .moon-bottom, .moon-right { @apply hidden; }
   }
 	#moon-8 { 
     order: 14; 
-    @apply rounded-tl-xl; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-9 { 
     order: 13; 
-    @apply rounded-tl-xl; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-10 { 
     order: 12; 
-    @apply rounded-tl-xl; 
+    .moon-center { @apply rounded-bl-xl; }
     .moon-bottom, .moon-left { @apply hidden; }
   }
 	#moon-11 { 
     order: 9; 
-    @apply rounded-tl-xl; 
    .moon-left, .moon-right { @apply hidden; }
   }
 	#moon-12 { 
     order: 5; 
-    @apply rounded-tl-xl; 
+    .moon-center { @apply rounded-tl-xl; }
     .moon-top, .moon-left { @apply hidden; }
   }
 	#moon-13 { 
     order: 6; 
-    @apply rounded-tl-xl; 
+    .moon-right { @apply rounded-tr-xl rounded-br-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-14 { 
     order: 7; 
-    @apply rounded-tl-xl; 
     .moon-top, .moon-bottom, .moon-left, .moon-right { @apply hidden; }
   }
 
@@ -684,27 +687,19 @@ watch(isCurrentMoonView, () => {
   &.single-moon-mode {
     #display {
       order: 16;
-      @apply w-full h-36;
+      @apply w-full h-32;
       .digit{
-        @apply text-5xl;
+        @apply text-6xl;
       }
       .label{
-        @apply text-2xl;
+        @apply text-3xl;
       }
     }
-    
-    .current-moon-component {
-      transition: all 0.3s ease-in-out;
-      .moon-top, .moon-bottom, .moon-left, .moon-right { @apply hidden; }
-    }
-    .day-of-moon {
-      @apply rounded-full border-white border-4;
-    }
   }
-  &:not(.single-moon-mode) {
-    .day-of-moon-number {
-      @apply hidden md:block;
-    }
+
+  .current-moon-component {
+    transition: all 0.3s ease-in-out;
+    .moon-top, .moon-bottom, .moon-left, .moon-right { @apply hidden; }
   }
 }
 
@@ -717,5 +712,44 @@ watch(isCurrentMoonView, () => {
 .view-transition-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.nt-animate {
+  transition-property: all;
+  transition-duration: var(--nt-animation-speed);
+  transition-timing-function: ease;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: var(--nt-animation-speed);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.scale-with-delay-enter-active,
+.scale-with-delay-leave-active {
+  transition: opacity var(--nt-animation-speed),
+              transform 1s cubic-bezier(0.25, 0.1, 0.25, 2) 1s;
+}
+
+.scale-with-delay-enter-from,
+.scale-with-delay-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+#year {
+  &, .current-moon-component {
+    transition: all var(--nt-animation-speed) ease-in-out;
+  }
+}
+
+.view-transition-enter-active,
+.view-transition-leave-active {
+  transition: all var(--nt-animation-speed) ease-in-out;
 }
 </style>

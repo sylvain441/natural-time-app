@@ -53,25 +53,24 @@ export const useConfigStore = defineStore('appConfig', () => {
   const spiralWelcomeMode = ref(true);
   const spiralTutorialMode = ref(false);
   const spiralTimeTravelMode = ref(false);
-
+  const spiralSingleMoonMode = ref(false);
   const spiralTutorialStepsTotal = computed(() => Object.keys(spiralSkins.full.tutorial).length - 1);
   const spiralTutorialCurrentStep = ref(0);
   
 	const spiralActivePanel = ref(null); // Can be 'locationPicker', 'spiralSettings', or 'faq'
 
   const spiralShowTitle = ref(true);
-  const spiralShowDaysNumber = ref(true);
 
   const spiralSkin = computed(() => ({
 		// Default clockSkin
     ...spiralSkins.full.default,
-    // Hide days number
-    ...((!spiralWelcomeMode.value && spiralShowDaysNumber.value === false) && spiralSkins.full.hideDaysNumber),
     // Hide title
     ...((!spiralWelcomeMode.value && spiralShowTitle.value === false) && spiralSkins.full.hideTitle),
-		// Welcome clockSkin
+    // Single moon mode
+    ...(spiralSingleMoonMode.value && spiralSkins.full.singleMoon),
+    // Welcome spiralSkin
     ...(!spiralActivePanel.value && spiralWelcomeMode.value ? spiralSkins.full.welcome : {}),
-    // Tutorial clockSkin
+    // Tutorial spiralSkin
     ...(spiralTutorialMode.value ? spiralSkins.full.tutorial[spiralTutorialCurrentStep.value] : {}),
   }));
 
@@ -103,7 +102,7 @@ export const useConfigStore = defineStore('appConfig', () => {
     spiralTutorialCurrentStep,
     spiralActivePanel,
     spiralShowTitle,
-    spiralShowDaysNumber,
+    spiralSingleMoonMode,
     clockSkin,
     spiralSkin
   };

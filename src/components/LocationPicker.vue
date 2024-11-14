@@ -1,7 +1,7 @@
 <template>
   <div id="settings-view" class="overflow-y-auto flex flex-col h-full">
     <!-- Location Picker Section -->
-    <h4 class="section-header border-nt-yellow-light flex flex-row items-center justify-between">
+    <h4 :class="[viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light']" class="section-header flex flex-row items-center justify-between">
       <span>Choisir un lieu</span>
     </h4>
     
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="flex justify-center p-4">
-            <button @click="save" class="bg-nt-yellow-light text-black hover:bg-nt-yellow-darker text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center">
+            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
               </svg>
@@ -74,7 +74,7 @@
           class="flex-grow py-2 px-3 border rounded text-sm"
           @keyup.enter="save"
           />
-          <button @click="save" class="bg-nt-yellow-light text-black hover:bg-nt-yellow-darker text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
+          <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
             </svg>
@@ -90,13 +90,13 @@
       
     </div>
 
-    <div class="pt-2 pb-6 px-4 bg-nt-yellow-ultralight">
+    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight' : 'bg-nt-yellow-ultralight']" class="pt-2 pb-6 px-4">
 
       <!-- Geolocation -->
       <div class="flex items-center justify-between pt-2  text-slate-700">
         <transition name="fadein">
           <div v-if="enableGeolocation && geolocationStatus === 'searching'" class="flex items-center space-x-2">
-            <spinIcon class="h-6 w-6 text-nt-yellow-dark animate-spin" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <spinIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark' : 'text-nt-yellow-dark']" class="h-6 w-6 animate-spin" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation en cours...</span>
           </div>
           <div v-else-if="enableGeolocation && geolocationStatus === 'success'" class="flex items-center space-x-2">
@@ -104,7 +104,7 @@
             <span>Position GPS détectée</span>
           </div>
           <div v-else-if="enableGeolocation" class="flex items-center space-x-2">
-            <geolocationIcon class="h-6 w-6 text-nt-yellow-dark" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark' : 'text-nt-yellow-dark']" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation activée</span>
           </div>
           <div v-else class="flex items-center space-x-2">
@@ -476,6 +476,15 @@ function debounce(func, wait) {
     timeout = setTimeout(later, wait);
   };
 }
+
+// Add this prop
+const props = defineProps({
+  viewType: {
+    type: String,
+    default: 'clock', // 'clock' or 'spiral'
+    required: true
+  }
+});
 
 </script>
 

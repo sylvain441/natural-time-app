@@ -1,45 +1,59 @@
 <template>
-  <div class="moon-component relative overflow-hidden" 
+  <div class="moon-component relative" 
        :style="{ 
          '--base-size': baseSize + 'px',
          '--spacing': spacing + 'px'
        }"
        :class="{
          'opacity-100': today.moon >= moon,
-         'past-moon': pastMoon
+         'past-moon': pastMoon,
+         'isRainbowDay': today.isRainbowDay
        }">
-    <div v-if="moon < 14" class="moon-container flex justify-center items-center">
-      <div class="moon-center flex flex-wrap">
-        <div v-for="day in daysOfMoon" 
-          class="day-of-moon flex items-center justify-center rounded-full cursor-pointer"
-          :class="day.dayClasses"
-          :title="isClient ? 'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString() : ''"
-          @click="openTimeTravelForDay(day.date)">
-          <span v-if="spiralShowDaysNumber" class="day-of-moon-number font-mono font-bold text-xl">{{day.date.toDayOfMoonString()}}</span>
+
+    <Transition name="fade">
+      <div v-if="moon < 14" class="moon-top absolute top-0 left-4 right-4 h-4 z-10"></div>
+    </Transition>
+    <Transition name="fade">
+      <div v-if="moon < 14" class="moon-bottom absolute bottom-0 left-4 right-4 h-4"></div>
+    </Transition>
+    <Transition name="fade">
+      <div v-if="moon < 14" class="moon-left absolute top-4 bottom-4 left-0 w-4"></div>
+    </Transition>
+    <Transition name="fade">
+      <div v-if="moon < 14" class="moon-right absolute top-4 bottom-4 right-0 w-4"></div>
+    </Transition>
+
+    <div v-if="moon < 14" class="moon-container relative flex justify-center items-center">
+      <Transition name="scale-with-delay">
+        <div class="moon-center flex flex-wrap overflow-hidden">
+          <div v-for="day in daysOfMoon" 
+            class="day-of-moon flex items-center justify-center rounded-full border-white border-4 cursor-pointer"
+            :class="day.dayClasses"
+            :title="isClient ? 'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString() : ''"
+            @click="openTimeTravelForDay(day.date)">
+            <span v-if="spiralSkin.showDaysNumber" class="day-of-moon-number font-mono font-bold text-xl">{{day.date.toDayOfMoonString()}}</span>
+          </div>
         </div>
-      </div>
+      </Transition>
     </div>
 
     <div v-else class="moon-rainbow-day flex justify-center items-center">
-      <div class="container flex items-center justify-center space-x-4">
-        <div 
-          @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 364, today.longitude))" 
-          class="rainbow-circle cursor-pointer"
-          :class="{'is-active animate-spin-slow': today.dayOfYear === 365}">
+      <Transition name="scale-with-delay">
+        <div class="container flex items-center justify-center space-x-4">
+          <div 
+            @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 364, today.longitude))" 
+            class="rainbow-circle cursor-pointer"
+            :class="{'is-active animate-spin-slow': today.dayOfYear === 365}">
+          </div>
+          <div 
+            v-if="today.yearDuration === 366" 
+            @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 365, today.longitude))" 
+            class="rainbow-circle cursor-pointer"
+            :class="{'is-active animate-spin-slow': today.dayOfYear === 366}">
+          </div>
         </div>
-        <div 
-          v-if="today.yearDuration === 366" 
-          @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 365, today.longitude))" 
-          class="rainbow-circle cursor-pointer"
-          :class="{'is-active animate-spin-slow': today.dayOfYear === 366}">
-        </div>
-      </div>
+      </Transition>
     </div>
-
-    <div v-if="moon < 14" class="moon-top absolute top-0 left-4 right-4 h-4 z-10"></div>
-    <div v-if="moon < 14" class="moon-bottom absolute bottom-0 left-4 right-4 h-4"></div>
-    <div v-if="moon < 14" class="moon-left absolute top-4 bottom-4 left-0 w-4"></div>
-    <div v-if="moon < 14" class="moon-right absolute top-4 bottom-4 right-0 w-4"></div>
   </div>
 </template>
 
@@ -50,7 +64,7 @@ import { NaturalDate } from 'natural-time-js';
 import { useConfigStore } from '@/stores/configStore';
 import { storeToRefs } from 'pinia';
 const configStore = useConfigStore();
-const { spiralShowDaysNumber } = storeToRefs(configStore);
+const { spiralSkin } = storeToRefs(configStore);
 
 const props = defineProps({
   today: {
@@ -120,8 +134,9 @@ const pastMoon = computed(() => {
   }
 
   .moon-center {
-    width: calc(var(--base-size) * 7);
-    height: calc(var(--base-size) * 4);
+    padding: 1px;
+    width: calc(var(--base-size) * 7 + 2px);
+    height: calc(var(--base-size) * 4 + 2px);
   }
 
   .moon-rainbow-day {
@@ -143,16 +158,16 @@ const pastMoon = computed(() => {
   // Border elements (we add +1px to the spacing to avoid phantom lines)
   .moon-top, .moon-bottom, .moon-left, .moon-right {
     &.moon-top, &.moon-bottom {
-      left: calc(var(--spacing));
-      right: calc(var(--spacing));
+      left: calc(var(--spacing) - 1px);
+      right: calc(var(--spacing) - 1px);
       height: calc(var(--spacing) + 2px);
     }
     &.moon-top { top: -1px; }
     &.moon-bottom { bottom: -1px; }
 
     &.moon-left, &.moon-right {
-      top: calc(var(--spacing));
-      bottom: calc(var(--spacing));
+      top: calc(var(--spacing) - 1px);
+      bottom: calc(var(--spacing) - 1px);
       width: calc(var(--spacing) + 2px);
     }
     &.moon-left { left: -1px; }
@@ -168,32 +183,32 @@ const pastMoon = computed(() => {
         @apply bg-gray-600 bg-opacity-40 scale-75;
       }
       @media (min-width: 768px) { 
-        @apply bg-gray-700 text-white rounded-none;
+        @apply bg-gray-700 text-white rounded-none border-none;
       }
     }
   }
   .day-of-moon {
-    &:nth-child(7n+1){ @apply bg-red-500 text-white bg-opacity-0}
-    &:nth-child(7n+2){ @apply bg-orange-500 text-white bg-opacity-0 }
-    &:nth-child(7n+3){ @apply bg-yellow-500 text-white bg-opacity-0 }
-    &:nth-child(7n+4){ @apply bg-green-500 text-white bg-opacity-0 }
-    &:nth-child(7n+5){ @apply bg-sky-500 text-white bg-opacity-0 }
-    &:nth-child(7n+6){ @apply bg-indigo-500 text-white bg-opacity-0 }
-    &:nth-child(7n+0){ @apply bg-violet-500 text-white bg-opacity-0 }
+    &:nth-child(7n+1){ @apply border-red-500 text-red-500 border-opacity-0 text-opacity-50}
+    &:nth-child(7n+2){ @apply border-orange-500 text-orange-500 border-opacity-0 text-opacity-50 }
+    &:nth-child(7n+3){ @apply border-yellow-500 text-yellow-500 border-opacity-0 text-opacity-50 }
+    &:nth-child(7n+4){ @apply border-green-500 text-green-500 border-opacity-0 text-opacity-50 }
+    &:nth-child(7n+5){ @apply border-sky-500 text-sky-500 border-opacity-0 text-opacity-50 }
+    &:nth-child(7n+6){ @apply border-indigo-500 text-indigo-500 border-opacity-0 text-opacity-50 }
+    &:nth-child(7n+0){ @apply border-violet-500 text-violet-500 border-opacity-0 text-opacity-50 }
     &.isPast:not(:hover):not(.isRainbowDay) {
-      @apply bg-gray-700 text-gray-100;
+      @apply bg-gray-700 text-white border-opacity-50;
     }
     &.isToday {
-      @apply bg-opacity-50;
+      @apply border-opacity-100 text-opacity-100;
     }
     &.isFuture:not(:hover) {
       @apply bg-opacity-0 text-gray-500;
     }
     &:hover {
-      @apply bg-opacity-50 cursor-pointer;
+      @apply border-opacity-100 text-opacity-100 cursor-pointer;
     }
     &.isRainbowDay {
-      @apply bg-opacity-20;
+      @apply border-opacity-20;
     }
   }
 }
@@ -230,6 +245,52 @@ $x-offset-hover: $x-offset * $shadow-depth-hover-ratio;
       inset $x-offset-hover $y-offset-hover $shadow-blur $shadow-spread rgba(var(--color-6), 1),
       inset 0 (-$shadow-depth * $shadow-depth-hover-ratio) $shadow-blur $shadow-spread rgba(var(--color-2), 1);
   }
+}
+
+// Add these animation classes at the end
+.nt-animate {
+  transition-property: all;
+  transition-duration: var(--nt-animation-speed, 300ms);
+  transition-timing-function: ease;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: var(--nt-animation-speed, 300ms);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.scale-with-delay-enter-active,
+.scale-with-delay-leave-active {
+  transition: opacity var(--nt-animation-speed, 300ms),
+              transform 1s cubic-bezier(0.25, 0.1, 0.25, 2) 1s;
+}
+
+.scale-with-delay-enter-from,
+.scale-with-delay-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.scale-with-delay-enter-to,
+.scale-with-delay-leave-from {
+  opacity: 1;
+  transform: scale(1);
+}
+
+// Add smooth transitions to existing elements
+.day-of-moon {
+  @extend .nt-animate;
+  // ... existing styles ...
+}
+
+.rainbow-circle {
+  @extend .nt-animate;
+  // ... existing styles ...
 }
 
 </style>

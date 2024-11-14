@@ -5,13 +5,7 @@
 		</h4>
 		<div class="px-6 py-3">
 			<div class="flex items-center justify-between mt-4">
-				<span class="text-sm font-medium text-gray-700">Afficher les graduations</span>
-				<ToggleButton v-model="spiralShowDaysNumber" class="bg-nt-cyan-light" />
-			</div>
-			<p class="text-xs text-gray-400 mt-1">Affiche les numéros des jours sur la spirale (sur tablette et ordinateur seulement).</p>
-
-			<div class="flex items-center justify-between mt-4">
-				<span class="text-sm font-medium text-gray-700">Afficher la légende</span>
+				<span class="text-sm font-medium text-gray-700">Afficher le nom du lieu</span>
 				<ToggleButton v-model="spiralShowTitle" class="bg-nt-cyan-light" />
 			</div>
 			<p class="text-xs text-gray-400 mt-1">Affiche le nom du lieu et le temps naturel en bas de l'écran.</p>
@@ -25,5 +19,5 @@ import { useConfigStore } from '@/stores/configStore';
 import ToggleButton from '@/components/ToggleButton.vue';
 
 const configStore = useConfigStore();
-const { spiralShowTitle, spiralShowDaysNumber } = storeToRefs(configStore);
+const { spiralShowTitle } = storeToRefs(configStore);
 </script>

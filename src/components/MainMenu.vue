@@ -12,12 +12,14 @@
             </router-link>
             <router-link 
               :to="{ name: 'time' }" 
+              @click="closeMenu"
               class="flex flex-row items-center justify-center text-4xl font-black text-black transition-all duration-300 transform bg-nt-yellow-lighter hover:bg-nt-yellow-light uppercase px-4 py-2 rounded-full">
               <ClockIcon class="w-16 h-16 mr-2"/>
               <span>Horloge</span>
             </router-link>
             <router-link 
               :to="{ name: '13moons' }" 
+              @click="closeMenu"
               class="flex flex-row items-center justify-center text-4xl font-black text-black transition-all duration-300 transform bg-nt-cyan-lighter hover:bg-nt-cyan-light uppercase px-4 py-2 rounded-full">
               <SpiralIcon class="w-16 h-16 mr-2"/>
               <span>13 Lunes</span>
