@@ -88,7 +88,7 @@
       
       <div v-if="!markerPlaced" class="flex items-center space-x-2 pt-2">
         <mapIcon class="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-        <span class="italic">Cliquer la carte pour choisir un lieu</span>
+        <span class="italic dark:text-green-200">Cliquer la carte pour choisir un lieu</span>
       </div>
       
     </div>

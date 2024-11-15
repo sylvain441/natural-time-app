@@ -1,5 +1,5 @@
 <template>
-  <div id="moons-view" class="flex flex-row h-screen relative overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
+  <div id="moons-view" class="flex flex-row h-dvh relative overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
     
     <div :class="['relative h-full transition-all duration-300 ease-in-out', (spiralActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
       
@@ -21,7 +21,7 @@
         <div ref="yearWrapper" class="w-full h-full relative drop-shadow-2xl">
           <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Transition name="scale-with-delay">
-              <div id="year" :style="yearStyle" class="flex flex-wrap items-center transition-all duration-800 delay-100" :class="{'single-moon-mode': spiralSkin.singleMoonView}">
+              <div id="year" :style="yearStyle" class="flex flex-wrap items-center" :class="{'single-moon-mode': spiralSkin.singleMoonView}">
                 <!-- Display component -->
                 <div id="display" class="relative" :class="{'opacity-0 -mt-[100%]': !spiralSkin.showDisplay, 'w-1/2 h-1/4': !spiralSkin.singleMoonView}">
                   <!-- DISPLAY: YEAR ) MOON ) DAY -->
