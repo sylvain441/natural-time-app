@@ -25,7 +25,7 @@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-light to-nt-yellow-lighter max-sm:m-2 max-sm:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-light to-nt-yellow-lighter max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -50,7 +50,7 @@
 
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-16" ref="thirteenMoonsRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter max-sm:m-2 max-sm:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />

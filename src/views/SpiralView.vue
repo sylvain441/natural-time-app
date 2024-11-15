@@ -147,10 +147,10 @@
               class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
               <div class="flex items-center justify-center space-x-2">
                 <arrowsIcon 
-                  @click="decrementTime" 
+                  @click.stop.prevent="decrementTime" 
                   v-longclick="decrementTime" 
                   fill="currentColor"
-                  class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer"
+                  class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
                 />
 
                 <div class="flex flex-col items-center justify-center space-y-2">
@@ -166,10 +166,10 @@
                 </div>
 
                 <arrowsIcon 
-                  @click="incrementTime" 
+                  @click.stop.prevent="incrementTime" 
                   v-longclick="incrementTime" 
                   fill="currentColor"
-                  class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer"
+                  class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
                 />
               </div>
             </div>
@@ -181,9 +181,9 @@
             
             <!-- Previous step -->
             <arrowsIcon 
-              @click="spiralTutorialCurrentStep > 0 ? spiralTutorialCurrentStep-- : null"
+              @click.stop.prevent="spiralTutorialCurrentStep > 0 ? spiralTutorialCurrentStep-- : null"
               fill="currentColor"
-              class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10"
+              class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10 select-none"
               :class="spiralTutorialCurrentStep > 0 ? 'text-black hover:bg-nt-cyan-lighter cursor-pointer' : 'opacity-20'"  />
             
               <!-- Tutorial step -->
@@ -191,9 +191,9 @@
             
             <!-- Next step -->
             <arrowsIcon 
-              @click="spiralTutorialCurrentStep < spiralTutorialStepsTotal ? spiralTutorialCurrentStep++ : null"
+              @click.stop.prevent="spiralTutorialCurrentStep < spiralTutorialStepsTotal ? spiralTutorialCurrentStep++ : null"
               fill="currentColor"
-              class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10"
+              class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10 select-none"
               :class="spiralTutorialCurrentStep < spiralTutorialStepsTotal ? 'text-black hover:bg-nt-cyan-light cursor-pointer' : 'opacity-20'"  />
           </div>
 

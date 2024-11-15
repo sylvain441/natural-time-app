@@ -58,7 +58,9 @@ export default defineConfig({
       enforce: 'pre'
     }),
     svgLoader(),
-    //analyzer()
+    analyzer({
+      analyzerPort: 14578
+    })
   ],
   build: {
     rollupOptions: {

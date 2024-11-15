@@ -93,7 +93,8 @@ const daysOfMoon = computed(() => {
     let date = new NaturalDate(
       props.today.yearStart + 
       NaturalDate.MILLISECONDS_PER_DAY * 28 * (props.moon - 1) + 
-      NaturalDate.MILLISECONDS_PER_DAY * i
+      NaturalDate.MILLISECONDS_PER_DAY * i +
+      12 * 60 * 60 * 1000 // Set to midday to prevent bug when selecting 01)01 000°
     , props.today.longitude);
     
     allDays[i] = {

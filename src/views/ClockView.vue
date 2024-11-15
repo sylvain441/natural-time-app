@@ -73,9 +73,12 @@
 							<span class="text-slate-500 font-normal">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) }}</span>
 						</div>
 						<div class="flex items-center justify-center space-x-2 mt-2">
-							<button @click="decrementTime" v-longclick="decrementTime" class="flex items-center space-x-4 bg-nt-yellow-light hover:bg-nt-yellow-lighter text-sm text-black font-bold py-1 px-4 rounded-lg transition duration-300 ease-in-out">
-								<rewindIcon class="w-6 h-6" fill="currentColor"/>
-							</button>
+							<arrowsIcon 
+								@click.stop.prevent="decrementTime" 
+								v-longclick="decrementTime" 
+								fill="currentColor"
+								class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer rotate-180"
+							/>
 
 							<div class="flex flex-col items-center justify-center space-y-2">
 								<select 
@@ -84,14 +87,17 @@
 									class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 									<option value="" disabled>Vitesse de voyage</option>
 									<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
-										{{ speed.label }} ({{ speed.equivalentTo }})
+										{{ speed.label }} {{ speed.equivalentTo ? `(${speed.equivalentTo})` : '' }}
 									</option>
 								</select>
 							</div>
 
-							<button @click="incrementTime" v-longclick="incrementTime" class="flex items-center space-x-4 bg-nt-yellow-light hover:bg-nt-yellow-lighter text-sm text-black font-bold py-1 px-4 rounded-lg transition duration-300 ease-in-out">
-								<rewindIcon class="w-6 h-6 rotate-180" fill="currentColor"/>
-							</button>
+							<arrowsIcon 
+								@click.stop.prevent="incrementTime" 
+								v-longclick="incrementTime" 
+								fill="currentColor"
+								class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer"
+							/>
 						</div>
 					</div>
 					
@@ -101,9 +107,9 @@
 						
 						<!-- Previous step -->
 						<arrowsIcon 
-							@click="clockTutorialCurrentStep > 0 ? clockTutorialCurrentStep-- : null"
+							@click.stop.prevent="clockTutorialCurrentStep > 0 ? clockTutorialCurrentStep-- : null"
 							fill="currentColor"
-							class="w-8 h-8 rotate-180 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10"
+							class="w-8 h-8 rotate-180 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10 select-none"
 							:class="clockTutorialCurrentStep > 0 ? 'text-black hover:bg-nt-yellow-lighter cursor-pointer' : 'opacity-20'"  />
 						
 							<!-- Tutorial step -->
@@ -111,9 +117,9 @@
 						
 						<!-- Next step -->
 						<arrowsIcon 
-							@click="clockTutorialCurrentStep < clockTutorialStepsTotal ? clockTutorialCurrentStep++ : null"
+							@click.stop.prevent="clockTutorialCurrentStep < clockTutorialStepsTotal ? clockTutorialCurrentStep++ : null"
 							fill="currentColor"
-							class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10"
+							class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10 select-none"
 							:class="clockTutorialCurrentStep < clockTutorialStepsTotal ? 'text-black hover:bg-nt-yellow-light cursor-pointer' : 'opacity-20'"  />
 					</div>
 
@@ -353,12 +359,12 @@ const isMenuOpen = ref(false);
 
 // Time travel setup
 const travelSpeeds = [
-	{ value: 1000 * 60 * 4, label: '1°', equivalentTo: '4min' },
-	{ value: 1000 * 60 * 8, label: '2°', equivalentTo: '8min' },
-	{ value: 1000 * 60 * 20, label: '5°', equivalentTo: '20min' },
-	{ value: 1000 * 60 * 60 * 24, label: '1 jour', equivalentTo: '1j' },
-	{ value: 1000 * 60 * 60 * 24 * 7, label: '1 semaine', equivalentTo: '7j' },
-	{ value: 1000 * 60 * 60 * 24 * 28, label: '1 lune', equivalentTo: '28j' },
+	{ value: 1000 * 60 * 4, label: '+/- 001°', equivalentTo: '4min' },
+	{ value: 1000 * 60 * 8, label: '+/- 002°', equivalentTo: '8min' },
+	{ value: 1000 * 60 * 20, label: '+/- 005°', equivalentTo: '20min' },
+	{ value: 1000 * 60 * 60 * 24, label: '+/- 360°', equivalentTo: '1j' },
+	{ value: 1000 * 60 * 60 * 24 * 7, label: '+/- 7 jours' },
+	{ value: 1000 * 60 * 60 * 24 * 28, label: '+/- 28 jours'},
 ];
 const selectedSpeed = ref(0);
 const timeDelta = ref(0);

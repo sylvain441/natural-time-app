@@ -28,7 +28,7 @@
               :to="{ name: 'welcome' }" 
               @click="closeMenu"
               class="nav-link flex flex-row items-center justify-center text-2xl font-normal text-slate-700 transition-all duration-300 transform hover:bg-slate-200  px-4 py-2 rounded-full" >
-              <span>← Acceuil</span>
+              <span>← Accueil</span>
             </router-link>
           </div>
         </nav>
