@@ -9,8 +9,8 @@
       <div 
         class="fixed z-10 inset-0 h-full px-2 pt-8 transition-all duration-300 ease-in-out"
         :class="[
-          !spiralActivePanel ? 'md:px-[8%]' : 'md:px-[3%]', 
-          spiralTimeTravelMode || spiralTutorialMode ? 'border-8 border-nt-cyan-light' : '', 
+          !spiralActivePanel ? 'md:px-[14%]' : 'md:px-[3%]', 
+          spiralTimeTravelMode || spiralTutorialMode ? 'md:border-8 md:border-nt-cyan-light' : '', 
           (spiralShowTitle ? 'pb-40' : 'pb-10'), 
           (spiralTutorialMode ? 'pb-48' : ''), 
           (spiralTimeTravelMode ? 'pb-36' : ''), 
@@ -23,54 +23,12 @@
             <Transition name="scale-with-delay">
               <div id="year" :style="yearStyle" class="flex flex-wrap items-center" :class="{'single-moon-mode': spiralSkin.singleMoonView}">
                 <!-- Display component -->
-                <div id="display" class="relative" :class="{'opacity-0 -mt-[100%]': !spiralSkin.showDisplay, 'w-1/2 h-1/4': !spiralSkin.singleMoonView}">
-                  <!-- DISPLAY: YEAR ) MOON ) DAY -->
-                  <div v-if="!displayDate.isRainbowDay" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center space-x-2 space-y-4">
-                    <div class="flex items-center font-radio text-7xl font-bold">
-                      <div class="text-center">
-                        <div class="digit">{{displayDate.toYearString()}}</div>
-                        <div class="label uppercase text-4xl">Année</div>
-                      </div>
-                      <div class="mx-3 text-7xl text-gray-400">)</div>
-                      <div class="text-center">
-                        <div class="digit">{{displayDate.toMoonString()}}</div>
-                        <div class="label uppercase text-4xl">Lune</div>
-                      </div>
-                      <div class="mx-3 text-7xl text-gray-400">)</div>
-                      <div class="text-center" :style="{color:'rgb(var(--color-'+displayDate.dayOfWeek+'))'}">
-                        <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
-                        <div class="label uppercase text-4xl">Jour</div>
-                      </div>
-                    </div>
-                    <!-- Add gregorian date below only in time travel mode -->
-                    <div v-if="spiralTimeTravelMode" class="text-slate-400 text-xl italic">
-                      (eq. {{ new Date(context.naturalDate.unixTime).toLocaleDateString('fr-FR', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'short', 
-                        day: 'numeric' 
-                      }) }})
-                    </div>
-                  </div>
-                  
-                  <!-- DISPLAY: RAINBOW DAY -->
-                  <div v-else class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div class="flex items-center font-radio text-7xl font-bold">
-                      <div class="text-center">
-                        <div class="digit">&nbsp;</div>
-                        <div class="label uppercase text-4xl">Arc</div>
-                      </div>
-                      <div class="text-center">
-                        <div class="digit">Jour</div>
-                        <div class="label uppercase text-4xl">En</div>
-                      </div>
-                      <div class="text-center">
-                        <div class="digit">&nbsp;</div>
-                        <div class="label uppercase text-4xl">Ciel</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <DisplayComponent 
+                  :display-date="displayDate"
+                  :context="context"
+                  class="relative"
+                  :class="{'w-1/2 h-1/4': !spiralSkin.singleMoonView}"
+                />
                 
                 <!-- 13 Moons -->
                 <template v-if="!spiralSkin.singleMoonView">
@@ -226,7 +184,7 @@
     <div v-if="spiralActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8">
       <div class="overflow-hidden w-full h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
         <button v-if="spiralActivePanel" @click="spiralActivePanel = null" 
-        class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
+        class="absolute z-50 top-4 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
         <closeIcon class="w-6 h-6" fill="currentColor" />
       </button>
       
@@ -385,6 +343,7 @@ import Moon from '@/components/MoonComponent.vue';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import MainMenu from '@/components/MainMenu.vue';
 import SpiralSettings from '@/components/SpiralSettings.vue';
+import DisplayComponent from '@/components/DisplayComponent.vue';
 
 // Lazy loaded components
 const LocationPicker = defineAsyncComponent(() => import('@/components/LocationPicker.vue'));
@@ -478,6 +437,7 @@ const toggleTimeTravel = () => {
   if (spiralTimeTravelMode.value) {
     spiralActivePanel.value = null;
     spiralTutorialMode.value = false;
+    spiralSingleMoonMode.value = false;
   }
 };
 
@@ -689,10 +649,10 @@ watch([spiralTutorialCurrentStep], async () => {
       order: 16;
       @apply w-full h-32;
       .digit{
-        @apply text-6xl;
+        @apply text-5xl;
       }
       .label{
-        @apply text-3xl;
+        @apply text-2xl;
       }
     }
   }

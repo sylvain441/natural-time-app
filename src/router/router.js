@@ -1,4 +1,5 @@
 import { createRouter, createMemoryHistory } from 'vue-router'
+import { useContextStore } from '../stores/contextStore'
 
 import WelcomeView from '../views/WelcomeView.vue'
 import ClockView from '../views/ClockView.vue'
@@ -51,4 +52,19 @@ export { routes }
 export default createRouter({
   history: createMemoryHistory(),
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  // If first launch of a PWA and location is set, redirect to the clock view
+  if (!from.name && isStandalone()) {
+    const contextStore = useContextStore()
+    
+    // Check if location is set by verifying stored coordinates
+    if (contextStore.storedLatitude && contextStore.storedLongitude) {
+      next({ name: 'time' })
+      return
+    }
+  }
+  
+  next()
 })

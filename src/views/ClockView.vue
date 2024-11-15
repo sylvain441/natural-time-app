@@ -9,7 +9,7 @@
 			<MainMenu />
 
 			<div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end transition-all duration-300 ease-in-out"
-				:class="clockTimeTravelMode || clockTutorialMode ? 'border-8 border-nt-yellow-light' : ''"
+				:class="clockTimeTravelMode || clockTutorialMode ? 'md:border-8 md:border-nt-yellow-light' : ''"
 				style="width: inherit;">
 
 				<!-- CLOCK COMPONENT -->
@@ -156,7 +156,7 @@
 			<div
 				class="overflow-hidden w-full h-[calc(100dvh-0px)] md:h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
 				<button v-if="clockActivePanel" @click="clockActivePanel = null"
-					class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
+					class="absolute z-50 top-4 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
 					<closeIcon class="w-6 h-6" fill="currentColor" />
 				</button>
 
@@ -355,7 +355,12 @@ const metaTitle = "Horloge du Temps Naturel - Une seule aiguille synchro avec le
 const metaDescription = "Découvrir l'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel";
 
 useHead({
-	title: metaTitle,
+	title: computed(() => {
+		if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
+			return metaTitle;
+		}
+		return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`;
+	}),
 	meta: [
 		{ name: 'description', content: metaDescription },
 		{ property: 'og:title', content: metaTitle },
@@ -431,10 +436,6 @@ let context = computed(() => {
 		hemisphere: hemisphere,
 		dayProgression: dayProgression,
 	};
-});
-
-useHead({
-	title: `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`,
 });
 
 const shouldShowNotification = computed(() => {

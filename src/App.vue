@@ -75,7 +75,7 @@
 }
 
 .section-header {
-  @apply relative font-mono font-bold px-4 mt-4 mb-0 pb-1 text-base text-slate-800 border-b-4;
+  @apply relative font-mono font-bold px-4 mt-6 mb-0 pb-3 text-base text-slate-800 border-b-4;
 }
 
 svg {
