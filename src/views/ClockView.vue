@@ -284,7 +284,7 @@
 	<!-- NOTIFICATION: Southern Hemisphere -->
 	<transition name="fade">
 		<div v-if="context.hemisphere === -1 && !hemisphereNotificationDismissed || shouldShowHemisphereNotification" 
-				class="fixed bottom-4 left-4 z-20 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
+				class="fixed bottom-4 left-4 right-4 md:left-4 md:right-auto z-20 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto md:mx-0">
 			<div class="p-4">
 				<p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
 					🔄 <strong>Hémisphère Sud :</strong> l'horloge tourne dans le sens inverse (de droite à gauche) car c'est ainsi que se déplace le soleil dans cet hémisphère.
@@ -448,6 +448,9 @@ const shouldShowNotification = computed(() => {
 
 // Computed property to check if notification should be shown
 const shouldShowHemisphereNotification = computed(() => {
+  // Don't show notification during welcome mode
+  if (clockWelcomeMode.value) return false;
+  
   if (!hemisphereNotificationDismissedAt.value) return true;
   
   // Show notification again after 1 day
