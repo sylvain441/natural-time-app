@@ -7,11 +7,11 @@
       <MainMenu />
       
       <div 
-        class="fixed z-10 inset-0 h-full px-2 pt-4 transition-all duration-300 ease-in-out"
+        class="fixed z-10 inset-0 h-full px-2 pt-8 transition-all duration-300 ease-in-out"
         :class="[
           !spiralActivePanel ? 'md:px-[8%]' : 'md:px-[3%]', 
           spiralTimeTravelMode || spiralTutorialMode ? 'border-8 border-nt-cyan-light' : '', 
-          (spiralShowTitle ? 'pb-40' : 'pb-6'), 
+          (spiralShowTitle ? 'pb-40' : 'pb-10'), 
           (spiralTutorialMode ? 'pb-48' : ''), 
           (spiralTimeTravelMode ? 'pb-36' : ''), 
           spiralSkin.singleMoonView ? 'px-4 md-px-12' : '']"
@@ -103,7 +103,7 @@
         </div>
         
         <!-- FOOTER -->
-        <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-16 w-full">
+        <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-12 w-full">
           <Transition name="fade">
             <div v-if="!spiralTimeTravelMode && spiralShowTitle">
               <!-- TITLE -->
@@ -676,7 +676,7 @@ watch([spiralTutorialCurrentStep], async () => {
 }
 
 #legend {
-  @apply absolute z-[3000] bottom-7 left-1/2 -translate-x-1/2 font-mono text-center text-[#7B7A8B] opacity-65 text-[1.1em] uppercase break-normal w-full cursor-pointer;
+  @apply absolute z-[3000] bottom-6 left-1/2 -translate-x-1/2 font-mono text-center text-[#7B7A8B] opacity-65 text-[1.1em] uppercase break-normal w-full cursor-pointer;
   
   &:hover {
     @apply underline;

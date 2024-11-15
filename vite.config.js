@@ -19,7 +19,10 @@ export default defineConfig({
     VitePWA({ 
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,woff2}']
+        globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,woff2}'],
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true
       },
       manifest: {
         name: 'Natural time',

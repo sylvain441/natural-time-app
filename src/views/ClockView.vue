@@ -281,6 +281,24 @@
 		</div>
 	</transition>
 
+	<!-- NOTIFICATION: Southern Hemisphere -->
+	<transition name="fade">
+		<div v-if="context.hemisphere === -1 && !hemisphereNotificationDismissed || shouldShowHemisphereNotification" 
+				class="fixed bottom-4 left-4 z-20 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
+			<div class="p-4">
+				<p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+					🔄 <strong>Hémisphère Sud :</strong> l'horloge tourne dans le sens inverse (de droite à gauche) car c'est ainsi que se déplace le soleil dans cet hémisphère.
+				</p>
+				<div class="flex justify-end">
+					<button @click="dismissHemisphereNotification" 
+							class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
+						Okay, compris
+					</button>
+				</div>
+			</div>
+		</div>
+	</transition>
+
 	<!-- DEFINE GLOBAL CSS VARS -->
 	<component :is="'style'">
 		:root {
@@ -330,7 +348,7 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockShowTitle } = storeToRefs(configStore);
+const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockShowTitle, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
 
 // I18n setup
 const i18n = useI18n();
@@ -432,6 +450,15 @@ const shouldShowNotification = computed(() => {
 	return (new Date() - new Date(geolocationNotificationDismissedAt.value)) > oneDay;
 });
 
+// Computed property to check if notification should be shown
+const shouldShowHemisphereNotification = computed(() => {
+  if (!hemisphereNotificationDismissedAt.value) return true;
+  
+  // Show notification again after 1 day
+  const delay = 24 * 60 * 60 * 1000;
+  return (new Date() - new Date(hemisphereNotificationDismissedAt.value)) > delay;
+});
+
 // Methods
 const toggleMenu = () => {
 	isMenuOpen.value = !isMenuOpen.value;
@@ -477,6 +504,12 @@ const closeTimeTravel = () => {
 const incrementTime = () => timeDelta.value += travelSpeeds[selectedSpeed.value].value;	
 const decrementTime = () => timeDelta.value -= travelSpeeds[selectedSpeed.value].value;
 const resetTime = () => timeDelta.value = 0;
+
+// Method to dismiss notification
+const dismissHemisphereNotification = () => {
+  hemisphereNotificationDismissed.value = true;
+  hemisphereNotificationDismissedAt.value = new Date().toISOString();
+};
 
 // Lifecycle hooks
 onMounted(() => {

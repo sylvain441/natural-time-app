@@ -2,6 +2,7 @@ import { registerSW } from 'virtual:pwa-register'
 
 export function initializePWA() {
   const updateSW = registerSW({
+    immediate: true,
     onOfflineReady() {
       console.log('This app is now available offline');
       // You can show a notification to the user here if desired

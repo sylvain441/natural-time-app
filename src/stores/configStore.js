@@ -83,6 +83,9 @@ export const useConfigStore = defineStore('appConfig', () => {
     }
   });
 
+  const hemisphereNotificationDismissed = ref(false);
+  const hemisphereNotificationDismissedAt = ref(null);
+
   return {
     AVAILABLE_PANELS,
     askForGeolocation,
@@ -104,7 +107,9 @@ export const useConfigStore = defineStore('appConfig', () => {
     spiralShowTitle,
     spiralSingleMoonMode,
     clockSkin,
-    spiralSkin
+    spiralSkin,
+    hemisphereNotificationDismissed,
+    hemisphereNotificationDismissedAt,
   };
 }, {
   persist: {
