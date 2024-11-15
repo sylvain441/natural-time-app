@@ -1,5 +1,5 @@
 <template>
-	<div id="day-view" class="flex flex-row h-screen relative overflow-hidden bg-texture">
+	<div id="day-view" class="flex flex-row h-screen relative overflow-hidden bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
 		
 		<div :class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
 			
@@ -131,7 +131,7 @@
 						<button 
 							v-if="!clockTutorialMode" 
 							@click="clockTutorialMode = true" 
-							class="flex item-center justify-center bg-nt-yellow-light text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
+							class="flex item-center justify-center text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
 							Lancer tutoriel
 						</button>
 						
@@ -152,9 +152,9 @@
 		<div v-if="clockActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8">
 			
 			<!-- Close button -->
-			<div class="overflow-hidden w-full h-full bg-white md:rounded-2xl md:shadow-2xl">
+			<div class="overflow-hidden w-full h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
 				<button v-if="clockActivePanel" @click="clockActivePanel = null" 
-				class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+				class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
 				<closeIcon class="w-6 h-6" fill="currentColor" />
 			</button>
 			
@@ -174,55 +174,55 @@
 	<!-- TOP RIGHT MENU -->
 	<div v-if="!clockActivePanel && !clockWelcomeMode && !clockTutorialMode && !clockTimeTravelMode" class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
 		<div class="relative">
-			<!-- Close button -->
+			<!-- Settings button -->
 			<button @click="toggleMenu" class="p-2 rounded-full bg-nt-yellow-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-yellow-lighter">
-				<settingsIcon class="w-6 h-6" />
+				<settingsIcon class="w-6 h-6" fill="currentColor" />
 			</button>
-			<div v-if="isMenuOpen" class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+			<div v-if="isMenuOpen" class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
 				<div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 					<!-- SETTINGS -->
-					<div class="px-4 pt-2 pb-0 text-sm text-slate-400 font-bold">Paramètres</div>
+					<div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Paramètres</div>
 					<!-- Location Picker -->
 					<a 
 						@click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-						class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+						class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
 						role="menuitem">
-						<mapIcon class="w-6 h-6 mr-2"/>Emplacement
+						<mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Emplacement
 					</a>
 					<!-- Clock Settings -->
 					<a 
 						@click="openPanel(AVAILABLE_PANELS.clockSettings)" 
-						class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+						class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
 						role="menuitem">
-						<brushIcon class="w-6 h-6 mr-2"/>Affichage
+						<brushIcon class="w-6 h-6 mr-2" fill="currentColor"/>Affichage
 					</a>
 					
 					<!-- SPECIAL MODES -->
-					<div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Mode spéciaux</div>
+					<div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Mode spéciaux</div>
 					<!-- Tutorial -->
 					<a 
 						@click="toggleTutorial" 
-						class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-yellow-lighter flex items-center" 
+						class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-yellow-lighter dark:hover:bg-nt-yellow-darker dark:hover:bg-opacity-30 flex items-center" 
 						role="menuitem">
-						<learnIcon class="w-6 h-6 mr-2"/>Tutoriel Horloge
+						<learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel Horloge
 					</a>
 					<!-- Time Travel -->
 					<a 
 						@click="toggleTimeTravel" 
-						class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-yellow-lighter flex items-center" 
+						class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-yellow-lighter dark:hover:bg-nt-yellow-darker dark:hover:bg-opacity-30 flex items-center" 
 						:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''"
 						role="menuitem">
-						<timeTravelIcon class="w-6 h-6 mr-2"/>Voyage temporel
+						<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
 					</a>
 					
 					<!-- UNDERSTAND -->
-					<div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Aide</div>
+					<div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Aide</div>
 					<!-- FAQ -->
 					<a 
 						@click="openPanel(AVAILABLE_PANELS.faq)" 
-						class="block px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+						class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
 						role="menuitem">
-						<faqIcon class="w-6 h-6 mr-2"/>FAQ
+						<faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>FAQ
 					</a>
 				</div>
 			</div>
@@ -233,7 +233,7 @@
 	<button 
 		v-if="clockTutorialMode"
 		@click="clockTutorialMode = false" 
-		class="block absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+		class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
 		<span>Passer le tutoriel</span>
 		<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
 	</button>
@@ -242,7 +242,7 @@
 	<button 
 		v-if="clockTimeTravelMode"
 		@click="closeTimeTravel" 
-		class="block absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+		class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
 		<span>Quitter le  voyage temporel</span>
 		<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
 	</button>
@@ -259,11 +259,11 @@
 	<!-- NOTIFICATION: Geolocation changed -->
 	<transition name="fade">
 		<div v-if="showPositionChangedNotification && shouldShowNotification && clockActivePanel !== AVAILABLE_PANELS.locationPicker" 
-				class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
+				class="fixed bottom-4 right-4 z-50 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
 			<div class="p-4">
-				<p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
+				<p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Position GPS modifiée. Mettre à jour ?</p>
 				<div class="flex justify-between space-x-2">
-					<button @click="preventNotificationForOneDay" class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
+					<button @click="preventNotificationForOneDay" class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
 						Ignorer aujourd'hui
 					</button>
 					<div class="flex space-x-2">

@@ -15,7 +15,7 @@ module.exports = {
           lighter: '#fff768',
           light: '#fff200',
           dark: '#ffd700',
-          darker: '#ffc700',
+          darker: '#ffc700',  
         },
         'nt-cyan': {
           ultralight: '#DCFFFF',

@@ -1,19 +1,22 @@
 <template>
-  <div id="settings-view" class="overflow-y-auto flex flex-col h-full">
+  <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900">
     <!-- Location Picker Section -->
-    <h4 :class="[viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light']" class="section-header flex flex-row items-center justify-between">
+    <h4 :class="[
+      viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light',
+      'dark:text-white'
+    ]" class="section-header flex flex-row items-center justify-between">
       <span>Choisir un lieu</span>
     </h4>
     
     <div id="map-container" class="relative h-full flex-grow">
       <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white"></div>
       <div class="w-full h-full flex flex-col items-center justify-center p-8">
-        <p v-if="!isOnline" class="text-center text-gray-600">
+        <p v-if="!isOnline" class="text-center text-gray-600 dark:text-gray-400">
           L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.
         </p>
         <div class="flex flex-col">
           <div class="grow flex flex-col items-center space-y-2 justify-center hover:opacity-100 py-2" :class="[isOnline ? 'opacity-50' : '']">
-            <div>
+            <div class="dark:text-white">
               <span>Latitude</span> 
               <input 
                 :placeholder="0" 
@@ -22,10 +25,10 @@
                 type="number" 
                 min="-90" 
                 max="90" 
-                class="w-24 ml-2 p-2 border rounded text-xs" 
+                class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
               />
             </div>
-            <div>
+            <div class="dark:text-white">
               <span>Longitude</span> 
               <input 
                 :placeholder="0" 
@@ -34,12 +37,12 @@
                 type="number" 
                 min="-180" 
                 max="180" 
-                class="w-24 ml-2 p-2 border rounded text-xs" 
+                class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
               />
             </div>
-            <div>
+            <div class="dark:text-white">
               <span>Nom</span> 
-              <input v-model="tempLocation" type="text" placeholder="(Facultatif)" class="w-36 ml-2 p-2 border rounded text-xs" @keyup.enter="save" />
+              <input v-model="tempLocation" type="text" placeholder="(Facultatif)" class="w-36 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" @keyup.enter="save" />
             </div>
           </div>
           <div class="flex justify-center p-4">
@@ -90,29 +93,29 @@
       
     </div>
 
-    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight' : 'bg-nt-yellow-ultralight']" class="pt-2 pb-6 px-4">
+    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight dark:bg-nt-cyan-light dark:bg-opacity-30' : 'bg-nt-yellow-ultralight dark:bg-nt-yellow-light dark:bg-opacity-30']" class="pt-2 pb-6 px-4">
 
       <!-- Geolocation -->
-      <div class="flex items-center justify-between pt-2  text-slate-700">
+      <div class="flex items-center justify-between pt-2 text-slate-700 dark:text-slate-300">
         <transition name="fadein">
           <div v-if="enableGeolocation && geolocationStatus === 'searching'" class="flex items-center space-x-2">
-            <spinIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark' : 'text-nt-yellow-dark']" class="h-6 w-6 animate-spin" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <spinIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark dark:text-nt-cyan-light' : 'text-nt-yellow-dark dark:text-nt-yellow-light']" class="h-6 w-6 animate-spin" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation en cours...</span>
           </div>
           <div v-else-if="enableGeolocation && geolocationStatus === 'success'" class="flex items-center space-x-2">
-            <geolocationIcon class="h-6 w-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Position GPS détectée</span>
           </div>
           <div v-else-if="enableGeolocation" class="flex items-center space-x-2">
-            <geolocationIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark' : 'text-nt-yellow-dark']" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark dark:text-nt-cyan-light' : 'text-nt-yellow-dark dark:text-nt-yellow-light']" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation activée</span>
           </div>
           <div v-else class="flex items-center space-x-2">
-            <geolocationIcon class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon class="h-6 w-6 dark:text-slate-300" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Activer la géolocalisation</span>
           </div>
         </transition>
-        <ToggleButton v-model="enableGeolocation" class="bg-blue-500" />
+        <ToggleButton v-model="enableGeolocation" class="bg-blue-500 dark:bg-blue-600" />
       </div>
 
       <div v-if="enableGeolocation" class="flex items-center space-x-2 text-sm">
@@ -122,33 +125,33 @@
             <div v-if="geolocationStatus === 'permission denied'" class="flex items-center mt-2">
               <div class="flex items-center justify-between w-full">
                 <div class="flex items-center space-x-2">
-                  <infoIcon class="h-6 w-6 text-red-500" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                  <span class="text-red-500">Veuillez activer la géolocalisation dans votre navigateur</span>
+                  <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                  <span class="text-red-500 dark:text-red-400">Veuillez activer la géolocalisation dans votre navigateur</span>
                 </div>
               </div>
             </div>
             <div v-else-if="geolocationStatus === 'position unavailable'" class="flex items-center mt-2">
               <div class="flex items-center justify-between w-full space-x-2">
                 <div class="flex items-center space-x-2">
-                  <infoIcon class="h-6 w-6 text-red-500" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                  <span class="text-red-500">Position non disponible</span>
+                  <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                  <span class="text-red-500 dark:text-red-400">Position non disponible</span>
                 </div>
               </div>
-              <button @click="getGeolocation()" class="text-blue-500 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation()" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
             </div>
             <div v-else-if="geolocationStatus === 'timeout'" class="flex items-center mt-2">
               <div class="flex items-center space-x-2">            
-                <infoIcon class="h-6 w-6 text-red-500" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                <span class="text-red-500">Délai de géolocalisation dépassé</span>
+                <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                <span class="text-red-500 dark:text-red-400">Délai de géolocalisation dépassé</span>
               </div>
-              <button @click="getGeolocation" class="text-blue-500 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
             </div>
             <div v-else-if="geolocationStatus === 'error'" class="flex items-center mt-2">
               <div class="flex items-center space-x-2">
-                <infoIcon class="h-6 w-6 text-red-500" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                <span class="text-red-500">Erreur de géolocalisation</span>
+                <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                <span class="text-red-500 dark:text-red-400">Erreur de géolocalisation</span>
               </div>
-              <button @click="getGeolocation" class="text-blue-500 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
             </div>
           
           </transition>

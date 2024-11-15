@@ -137,13 +137,13 @@ onUnmounted(() => {
 
 #FAQ {
   .faq-category {
-    @apply text-3xl mb-4 text-gray-800 font-title underline decoration-4;
+    @apply text-3xl mb-4 text-gray-800 dark:text-gray-100 font-title underline decoration-4;
     &:not(:first-of-type) {
       @apply mt-12;
     }
   }
   .faq-question {
-    @apply text-lg md:text-xl mt-2 mb-1 text-gray-700;
+    @apply text-lg md:text-xl mt-2 mb-1 text-gray-700 dark:text-gray-300;
     @apply cursor-pointer flex items-center justify-between;
     &:hover, &.open {
       .question-text {
@@ -158,64 +158,66 @@ onUnmounted(() => {
     }
   }
   .faq-answer {
-    @apply transition-all duration-300 ease-in-out mb-4 mt-2 px-4 py-1 border-l-2 border-gray-300;
+    @apply transition-all duration-300 ease-in-out mb-4 mt-2 px-4 py-1 border-l-2 border-gray-300 dark:border-gray-700;
     p {
-      @apply mb-2;
+      @apply mb-2 dark:text-gray-300;
     }
     a {
-      @apply underline decoration-2 decoration-sky-500 hover:decoration-sky-700;
+      @apply underline decoration-2 decoration-sky-500 hover:decoration-sky-700 
+             dark:decoration-sky-400 dark:hover:decoration-sky-300;
     }
     &.hidden {
       @apply h-0 overflow-hidden opacity-0;
     }
     ul {
-      @apply list-disc pl-8 mb-3;
+      @apply list-disc pl-8 mb-3 dark:text-gray-300;
       a {
-        @apply font-bold underline decoration-2 text-sky-500 hover:decoration-sky-700;
+        @apply font-bold underline decoration-2 text-sky-500 hover:decoration-sky-700
+               dark:text-sky-400 dark:hover:text-sky-300;
       }
     }
-    blockquote {
-      @apply italic text-orange-500;
+    blockquote > * {
+      @apply italic text-orange-500 dark:text-orange-400;
     }
   }
   .faq-category[data-category="1"] {
-    @apply decoration-emerald-400;
+    @apply decoration-emerald-400 dark:decoration-emerald-500;
   }
   .faq-question[data-category="1"] .question-text {
-    @apply decoration-emerald-400;
+    @apply decoration-emerald-400 dark:decoration-emerald-500;
   }
   .faq-question[data-category="1"] .faq-arrow {
-    @apply text-emerald-400;
+    @apply text-emerald-400 dark:text-emerald-500;
   }
 
   .faq-category[data-category="2"] {
-    @apply decoration-nt-yellow-dark;
+    @apply decoration-nt-yellow-dark dark:decoration-yellow-500;
   }
   .faq-question[data-category="2"] .question-text {
-    @apply decoration-nt-yellow-dark;
+    @apply decoration-nt-yellow-dark dark:decoration-yellow-500;
   }
   .faq-question[data-category="2"] .faq-arrow {
-    @apply text-nt-yellow-dark;
+    @apply text-nt-yellow-dark dark:text-yellow-500;
   }
 
   .faq-category[data-category="3"] {
-    @apply decoration-nt-cyan-dark;
+    @apply decoration-nt-cyan-dark dark:decoration-cyan-500;
   }
   .faq-question[data-category="3"] .question-text {
-    @apply decoration-nt-cyan-dark;
+    @apply decoration-nt-cyan-dark dark:decoration-cyan-500;
   }
   .faq-question[data-category="3"] .faq-arrow {
-    @apply text-nt-cyan-dark;
+    @apply text-nt-cyan-dark dark:text-cyan-500;
   }
 
   .faq-category[data-category="4"] {
-    @apply decoration-nt-magenta-dark;
+    @apply decoration-nt-magenta-dark dark:decoration-pink-500;
   }
   .faq-question[data-category="4"] .question-text {
-    @apply decoration-nt-magenta-dark;
+    @apply decoration-nt-magenta-dark dark:decoration-pink-500;
   }
   .faq-question[data-category="4"] .faq-arrow {
-    @apply text-nt-magenta-dark;
+    @apply text-nt-magenta-dark dark:text-pink-500;
   }
 }
 </style>

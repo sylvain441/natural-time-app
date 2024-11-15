@@ -1,12 +1,12 @@
 <template>
-  <div class="min-h-screen bg-white bg-texture">
+  <div class="min-h-screen bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
     
     <!-- APP menu -->  
     <MainMenu />
 
     <div class="max-w-6xl mx-auto">
       <!-- Title Section (Gray) -->
-      <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-100 md:text-slate-800 bg-gradient-to-r from-slate-700 to-slate-800 md:bg-none">
+      <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-100 md:text-slate-800 dark:text-slate-100 bg-gradient-to-r from-slate-700 to-slate-800 dark:from-slate-900 dark:to-slate-900 md:bg-none">
         <h1 class="w-full text-center text-3xl md:text-6xl font-bold pt-3 pb-4 md:pt-20 md:pb-10">
           <strong class="font-title underline decoration-nt-yellow-light">Le Temps Naturel</strong>
           <br>
@@ -14,7 +14,7 @@
         </h1>
       </section>
       <!-- Hero Section (White) -->
-      <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-2 md:p-6 text-slate-800">
+      <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-2 md:p-6 text-slate-800 dark:text-slate-100">
         <p class="md:text-center text-lg md:text-2xl max-w-3xl mx-auto py-2 px-6 md:px-0 md:pt-4 md:pb-12">
           Le Temps Naturel réinvente notre façon de mesurer le temps.<br/>
           Avec <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-yellow-light cursor-pointer font-title" @click="scrollToNaturalClock">l'horloge de 360°</span> et <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-cyan-light cursor-pointer font-title" @click="scrollToThirteenMoons">la spirale de 13 lunes</span>,<br class="hidden md:block">
@@ -25,7 +25,7 @@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-light to-nt-yellow-lighter max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-light to-nt-yellow-lighter dark:from-nt-yellow-dark dark:to-nt-yellow-darker max-md:mx-2 max-md:my-4 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -39,7 +39,7 @@
                 tranquillement... selon un cadran de 360°.
               </p>
               <div class="flex justify-center md:justify-start mt-1">
-                <router-link :to="{ name: 'time' }" class="bg-black text-white px-10 py-2 rounded-2xl text-lg font-semibold transition duration-300 hover:shadow-[4px_4px_0_0_#ffffff]">
+                <router-link :to="{ name: 'time' }" class="bg-black dark:bg-white text-white dark:text-black px-10 py-2 rounded-2xl text-lg font-semibold transition duration-300 hover:shadow-[4px_4px_0_0_#ffffff] dark:hover:shadow-[4px_4px_0_0_#000000]">
                   {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} l'horloge
                 </router-link>
               </div>
@@ -50,7 +50,7 @@
 
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-16" ref="thirteenMoonsRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter dark:from-nt-cyan-dark dark:to-nt-cyan-darker max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -65,7 +65,7 @@
                 13 lunes x 28 jours + 1 = 365 🤩
               </p>
               <div class="flex justify-center md:justify-start mt-1">
-                <router-link :to="{ name: '13moons' }" class="bg-black text-white px-10 py-2 rounded-2xl text-lg font-semibold transition duration-300 hover:shadow-[4px_4px_0_0_#ffffff]">
+                <router-link :to="{ name: '13moons' }" class="bg-black dark:bg-white text-white dark:text-black px-10 py-2 rounded-2xl text-lg font-semibold transition duration-300 hover:shadow-[4px_4px_0_0_#ffffff] dark:hover:shadow-[4px_4px_0_0_#000000]">
                   {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} les 13 lunes
                 </router-link>
               </div>
@@ -76,28 +76,28 @@
 
       <!-- FAQ Section -->
       <section class="w-full md:px-6 md:mb-12" ref="faqRef">
-        <div class="max-w-4xl mx-auto bg-white md:rounded-3xl p-4 md:p-12">
+        <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 md:rounded-3xl p-4 md:p-12">
           <div class="flex flex-col">
-            <h2 class="text-5xl my-8 font-title text-center">FAQ</h2>
+            <h2 class="text-5xl my-8 font-title text-center dark:text-white">FAQ</h2>
             <FAQAccordion class="pb-16" />
           </div>
         </div>
       </section>
 
       <section class="w-full md:px-6 md:mb-12">
-        <p class="text-center text-sm md:text-lg md:mb-8 max-w-3xl mx-auto pb-4 md:py-6 py-4 px-4 md:px-0 italic text-gray-600">
+        <p class="text-center text-sm md:text-lg md:mb-8 max-w-3xl mx-auto pb-4 md:py-6 py-4 px-4 md:px-0 italic text-gray-600 dark:text-gray-300">
             Nous avons créé des machines pour mesurer le temps.<br class="hidden md:block">
             Puis nous sommes devenus leurs esclaves...<br class="hidden md:block">
             Le Temps Naturel inverse cette tendance.<br class="hidden md:block">
             La vie a déja prévu la plus belle des horloges...<br class="hidden md:block">
-            On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant.<br class="hidden md:block"><br class="hidden md:block">
+            On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant.<br><br>
             <span class="text-2xl not-italic md:text-4xl">🌞</span>
           </p>
       </section>
     </div>
 
     <!-- Footer (Black) -->
-    <footer class="md:mt-12 w-full text-center py-4 text-sm bg-black text-white">
+    <footer class="md:mt-12 w-full text-center py-4 text-sm bg-black text-white dark:bg-slate-950">
       <p>
         Created by <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Sylvain</a> | 
         <a href="https://github.com/sylvain441/natural-time" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Open sourced on GitHub</a>

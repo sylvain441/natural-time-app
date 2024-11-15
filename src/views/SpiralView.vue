@@ -1,5 +1,5 @@
 <template>
-  <div id="moons-view" class="flex flex-row h-screen relative overflow-hidden bg-texture">
+  <div id="moons-view" class="flex flex-row h-screen relative overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
     
     <div :class="['relative h-full transition-all duration-300 ease-in-out', (spiralActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
       
@@ -224,9 +224,9 @@
     
     <!-- RIGHT MODAL PANELS -->
     <div v-if="spiralActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8">
-      <div class="overflow-hidden w-full h-full bg-white md:rounded-2xl md:shadow-2xl">
+      <div class="overflow-hidden w-full h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
         <button v-if="spiralActivePanel" @click="spiralActivePanel = null" 
-        class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600">
+        class="absolute z-50 top-2 right-2 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
         <closeIcon class="w-6 h-6" fill="currentColor" />
       </button>
       
@@ -264,51 +264,51 @@
       </button>
       
       <Transition name="fade">
-        <div v-if="isMenuOpen" class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div v-if="isMenuOpen" class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
           <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <!-- SETTINGS -->
-            <div class="px-4 pt-2 pb-0 text-sm text-slate-400 font-bold">Paramètres</div>
+            <div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Paramètres</div>
             <!-- Location Picker -->
             <a 
               @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
               role="menuitem">
-              <mapIcon class="w-6 h-6 mr-2"/>Emplacement
+              <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Emplacement
             </a>
             <!-- Spiral Settings -->
             <a 
               @click="openPanel(AVAILABLE_PANELS.spiralSettings)" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
               role="menuitem">
-              <brushIcon class="w-6 h-6 mr-2"/>Affichage
+              <brushIcon class="w-6 h-6 mr-2" fill="currentColor"/>Affichage
             </a>
             
             <!-- SPECIAL MODES -->
-            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Mode spéciaux</div>
+            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Mode spéciaux</div>
             <!-- Tutorial -->
             <a 
               @click="toggleTutorial" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
+              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
               role="menuitem">
-              <learnIcon class="w-6 h-6 mr-2"/>Tutoriel
+              <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel
             </a>
             <!-- Time Travel -->
             <a 
               @click="toggleTimeTravel" 
-              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-nt-cyan-lighter flex items-center" 
+              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
               :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
               role="menuitem">
-              <timeTravelIcon class="w-6 h-6 mr-2"/>Voyage temporel
+              <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
             </a>
             
             <!-- UNDERSTAND -->
-            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 font-bold">Aide</div>
+            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Aide</div>
             <!-- FAQ -->
             <a 
               @click="openPanel(AVAILABLE_PANELS.faq)" 
-              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 hover:bg-slate-100 flex items-center" 
+              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
               role="menuitem">
-              <faqIcon class="w-6 h-6 mr-2"/>FAQ
+              <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>FAQ
             </a>
           </div>
         </div>
@@ -346,11 +346,11 @@
   <!-- Update the notification to use context.location -->
   <transition name="fade">
     <div v-if="showPositionChangedNotification && shouldShowNotification && spiralActivePanel !== AVAILABLE_PANELS.locationPicker" 
-         class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
+         class="fixed bottom-4 right-4 z-50 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
       <div class="p-4">
-        <p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Position GPS modifiée. Mettre à jour ?</p>
         <div class="flex justify-between space-x-2">
-          <button @click="preventNotificationForOneDay" class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
+          <button @click="preventNotificationForOneDay" class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
             Ignorer aujourd'hui
           </button>
           <div class="flex space-x-2">

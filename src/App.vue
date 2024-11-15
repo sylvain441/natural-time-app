@@ -63,7 +63,14 @@
 }
 
 .bg-texture{
+	background-color: #fff;
 	background-image: url('@/assets/debut-light.png');
+	background-repeat: repeat;
+}
+
+.bg-texture-dark{
+	background-color: #000;
+	background-image: url('@/assets/debut-dark.png');
 	background-repeat: repeat;
 }
 
