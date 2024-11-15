@@ -55,7 +55,7 @@
 							</h2>
 						</div>
 						<div v-else>
-							<h2 class="text-slate-500 text-md md:text-xl">
+							<h2 class="text-slate-500 dark:text-slate-200 text-md md:text-xl">
 								{{ clockSkin.descriptionText }}
 							</h2>
 						</div>
@@ -438,10 +438,6 @@ let context = computed(() => {
 
 useHead({
   title: `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`,
-  meta: [
-    { name: 'description', content: 'Le temps Naturel TODO description' },
-    { property: 'og:image', content: '/natural-time-social-sharing.jpg' },
-  ],
 });
 
 const shouldShowNotification = computed(() => {
