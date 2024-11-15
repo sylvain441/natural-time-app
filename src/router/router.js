@@ -5,48 +5,50 @@ import ClockView from '../views/ClockView.vue'
 import SpiralView from '../views/SpiralView.vue'
 import NotFoundView from '../views/404.vue'
 
-const router = createRouter({
-  history: createMemoryHistory(),
-  routes: [
-    {
-      path: '/',
-      redirect: '/fr/',
-      name: 'home',
-    },
-    { 
-      path: '/fr/', 
-      name: 'welcome', 
-      component: WelcomeView,
-    },
-    { 
-      path: '/fr/horloge-temps-naturel', 
-      name: 'time', 
-      component: ClockView,
-    },
-    { 
-      path: '/fr/spirale-13-lunes', 
-      name: '13moons', 
-      component: SpiralView,
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'not-found',
-      component: NotFoundView,
-    },
-    // OLD ROUTES
-    { 
-      path: '/:latlng?/:location?', 
-      redirect: { name: 'time' }
-    },
-    { 
-      path: '/13moons/:latlng?/:location?', 
-      redirect: { name: '13moons' }
-    },
-    { 
-      path: '/about', 
-      redirect: { name: 'welcome' }
-    },
-  ],
-})
+const routes = [
+  {
+    path: '/',
+    redirect: '/fr/',
+    name: 'home',
+  },
+  { 
+    path: '/fr/', 
+    name: 'welcome', 
+    component: WelcomeView,
+  },
+  { 
+    path: '/fr/horloge-temps-naturel', 
+    name: 'time', 
+    component: ClockView,
+  },
+  { 
+    path: '/fr/spirale-13-lunes', 
+    name: '13moons', 
+    component: SpiralView,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFoundView,
+  },
+  // OLD ROUTES
+  { 
+    path: '/:latlng?/:location?', 
+    redirect: { name: 'time' }
+  },
+  { 
+    path: '/13moons/:latlng?/:location?', 
+    redirect: { name: '13moons' }
+  },
+  { 
+    path: '/about', 
+    redirect: { name: 'welcome' }
+  },
+]
 
-export default router
+export { routes }
+
+export default createRouter({
+  history: createMemoryHistory(),
+  routes,
+})

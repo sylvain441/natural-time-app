@@ -16,7 +16,7 @@ export const createApp = ViteSSG(
     base: '/',
     routes: router.options.routes,
   },
-  ({ app, router, routes, isClient, initialState }) => {
+  ({ app, router, initialState }) => {
     const pinia = createPinia();
     if(!import.meta.env.SSR) {
       pinia.use(piniaPluginPersistedstate);

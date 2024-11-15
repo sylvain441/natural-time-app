@@ -61,19 +61,41 @@ export default defineConfig({
       enforce: 'pre'
     }),
     svgLoader(),
-    analyzer({
-      analyzerPort: 14578
-    })
+    /*analyzer({
+      analyzerPort: 8888
+    })*/
   ],
-  build: {
-    rollupOptions: {
-      output: {
-      }
-    }
-  },
   ssgOptions: {
     script: 'async',
     formatting: 'prettify',
+    crittersOptions: {
+      // Optimize critical CSS
+      preload: 'js-lazy',
+      preloadFonts: true,
+    },
+    dirStyle: 'nested',
+    includedRoutes(paths, routes) {
+      // Define the routes to pre-render
+      return [
+        '/',
+        '/fr/',
+        '/fr/horloge-temps-naturel',
+        '/fr/spirale-13-lunes',
+      ]
+    },
+    onFinished() {
+      // Optional: Run any code after pre-rendering is complete
+      console.log('Static site generation complete!')
+    }
+  },
+  build: {
+    ssrManifest: true, // Enable SSR manifest
+    rollupOptions: {
+      output: {
+        manualChunks: {
+        }
+      }
+    }
   },
   resolve: {
     alias: {
@@ -83,10 +105,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // Use modern API
         api: 'modern',
-        // Silence deprecation warnings until you can fully migrate
-        //additionalData: `$silenceDeprecations: ['legacy-js-api'];`
       }
     }
   }
