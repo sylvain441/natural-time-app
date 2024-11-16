@@ -1,5 +1,5 @@
 <template>
-  <div id="moons-view" class="min-h-dvh overflow-hidden bg-[#F2FFFF] dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
+  <div id="moons-view" class="flex flex-row min-h-dvh overflow-hidden bg-[#F2FFFF] dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]" @touchmove.prevent>
     
     <div :class="['relative h-full transition-all duration-300 ease-in-out', (spiralActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
       
@@ -714,11 +714,11 @@ watch([spiralTutorialCurrentStep], async () => {
 }
 
 #moons-view {
-  // Add these properties to prevent elastic scrolling
   position: fixed;
   width: 100%;
   height: 100%;
   overscroll-behavior: none;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: none;
+  touch-action: none;
 }
 </style>
