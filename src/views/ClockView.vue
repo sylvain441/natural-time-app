@@ -1,6 +1,6 @@
 <template>
 	<div id="day-view"
-		class="flex flex-row h-dvh relative overflow-hidden bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
+		class="min-h-dvh overflow-hidden bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
 
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
@@ -532,6 +532,11 @@ onMounted(() => {
 
 <style lang="scss">
 #day-view {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	overscroll-behavior: none;
+	-webkit-overflow-scrolling: touch;
 
 	&::before,
 	&::after {

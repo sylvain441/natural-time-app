@@ -103,6 +103,9 @@
         <a href="https://github.com/sylvain441/natural-time" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Open sourced on GitHub</a>
       </p>
     </footer>
+
+    <!-- Location Picker -->
+    <LocationPicker view-type="clock" />
   </div>
 </template>
 
@@ -112,6 +115,7 @@ import FAQAccordion from '@/components/FAQAccordion.vue';
 import { ref, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the store
+import LocationPicker from '@/components/LocationPicker.vue';
 
 const router = useRouter();
 const contextStore = useContextStore();

@@ -190,7 +190,6 @@
 import { ref, onMounted, nextTick, computed, onUnmounted, watch } from 'vue';
 import { useContextStore } from '@/stores/contextStore';
 import { storeToRefs } from 'pinia';
-import Geocoder from 'ol-geocoder';
 import { useI18n } from 'vue-i18n';
 import ToggleButton from '@/components/ToggleButton.vue';
 
@@ -256,53 +255,10 @@ const updateOnlineStatus = () => {
   }
 };
 
-const setupGeocoder = () => {
-  if (!map.value) {
-    console.warn('Map not available, skipping geocoder setup');
-    return;
-  }
-  
-  geocoder.value = new Geocoder('nominatim', {
-    provider: 'photon',
-    lang: 'fr-FR',
-    placeholder: 'Rechercher un lieu',
-    targetType: 'text-input',
-    preventMarker: true,
-    limit: 3,
-    keepOpen: true
-  });
-  
-  geocoder.value.on('addresschosen', (evt) => {
-    tempLocation.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
-    const coordinates = evt.coordinate;
-    if (coordinates && view.value) {
-      view.value.setZoom(12);
-      tempLatitude.value = toLonLat(coordinates)[1];
-      tempLongitude.value = toLonLat(coordinates)[0];
-    }
-  });
-  
-  map.value.addControl(geocoder.value);
-  
-  // AUTOCOMPLETE
-  nextTick(() => {
-    const setupAutocomplete = () => {
-      const input = document.getElementById('gcd-input-query');
-      if (input && geocoder.value) {
-        const triggerAutocomplete = debounce(() => {
-          if (input.value.length >= 3) {
-            input.dispatchEvent(new KeyboardEvent('keypress', { keyCode: 13 }));
-          }
-        }, 700);
-        input.addEventListener('input', triggerAutocomplete, { bubbles: true, capture: true });
-      } else {
-        // If the input is not found, retry after a short delay
-        setTimeout(setupAutocomplete, 100);
-      }
-    };
-    
-    setupAutocomplete();
-  });
+// Instead, use dynamic import
+const initGeocoder = async () => {
+  const { default: Geocoder } = await import('ol-geocoder');
+  // Rest of your geocoder initialization code
 };
 
 const save = () => {
@@ -487,7 +443,7 @@ const initMap = () => {
     // Setup geocoder after ensuring map is ready
     map.value.once('postrender', () => {
       mapInitialized.value = true;
-      setupGeocoder();
+      initGeocoder();
     });
 
   } catch (error) {
