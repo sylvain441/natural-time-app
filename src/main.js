@@ -62,7 +62,6 @@ export const createApp = ViteSSG(
 
       // Dynamic import for Matomo
       import('./plugins/matomo').then(({ setupMatomo }) => {
-        console.log(setupMatomo);
         setupMatomo(app, router)
       })
       

@@ -7,8 +7,8 @@
       <span>Choisir un lieu</span>
     </h4>
     
-    <div id="map-container" class="relative h-full flex-grow">
-      <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white"></div>
+    <div id="map-container" class="relative h-full flex-grow touch-manipulation">
+      <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" @touchstart.prevent style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
       <div class="w-full h-full flex flex-col items-center justify-center p-8">
         <p v-if="!isOnline" class="text-center text-gray-600 dark:text-gray-400">
           L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.
@@ -363,74 +363,137 @@ const geolocationCoordinates = computed(() => {
   return null;
 });
 
+const safeDestroyMap = (map) => {
+  if (!map) return;
+  
+  try {
+    const mapTarget = map.getTarget();
+    if (mapTarget) {
+      // Remove all listeners
+      map.setTarget(null);
+      // Clear target element
+      if (typeof mapTarget === 'string') {
+        const element = document.getElementById(mapTarget);
+        if (element) {
+          element.innerHTML = '';
+        }
+      }
+    }
+  } catch (error) {
+    console.warn('Error during map cleanup:', error);
+  }
+};
+
+// Update the destroyMap function
 const destroyMap = () => {
-  if (map.value) {
-    // Remove event listeners
+  if (!map.value) return;
+
+  try {
+    // Remove event listeners first
     map.value.un('singleclick', handleMapClick);
     
-    // Remove controls (like geocoder)
+    // Remove controls
     if (geocoder.value) {
-      map.value.removeControl(geocoder.value);
+      try {
+        map.value.removeControl(geocoder.value);
+        geocoder.value.dispose(); // Properly dispose geocoder
+      } catch (e) {
+        console.warn('Error removing geocoder:', e);
+      }
       geocoder.value = null;
     }
     
     // Clear vector source
     if (vectorSource.value) {
       vectorSource.value.clear();
+      vectorSource.value = null;
     }
     
-    // Destroy the map
-    map.value.setTarget(null);
+    // Clear features
+    markerFeature.value = null;
+    geolocationFeature.value = null;
+    
+    // Safely destroy map
+    safeDestroyMap(map.value);
     map.value = null;
+    
+    // Clear view
+    if (view.value) {
+      view.value.setCenter(null);
+      view.value.setZoom(undefined);
+      view.value = null;
+    }
+    
+    mapInitialized.value = false;
+  } catch (error) {
+    console.warn('Error during map destruction:', error);
   }
-  
-  // Reset other related values
-  view.value = null;
-  vectorSource.value = null;
-  markerFeature.value = null;
-  geolocationFeature.value = null;
-  mapInitialized.value = false;
 };
 
+// Update initMap function
 const initMap = () => {
-  if (!isOnline.value) return; // Don't initialize if offline
+  if (!isOnline.value || mapInitialized.value) return;
 
-  // Destroy existing map if it exists
-  destroyMap();
+  try {
+    destroyMap();
+    
+    // Add error boundary
+    const mapElement = document.getElementById('map-canvas');
+    if (!mapElement) {
+      console.warn('Map canvas element not found');
+      return;
+    }
 
-  vectorSource.value = new VectorSource();
-  
-  view.value = new View({
-    center: fromLonLat([longitude.value, latitude.value]),
-    zoom: zoomLevel.value
-  });
+    vectorSource.value = new VectorSource({
+      wrapX: false // Prevent wrapping around globe
+    });
+    
+    view.value = new View({
+      center: fromLonLat([longitude.value || 0, latitude.value || 0]),
+      zoom: zoomLevel.value,
+      constrainResolution: true, // Prevent fractional zoom levels
+      maxZoom: 18
+    });
 
-  map.value = new Map({
-    target: 'map-canvas',
-    layers: [
-      new TileLayer({
-        source: new OSM()
-      }),
-      new VectorLayer({
-        source: vectorSource.value
-      })
-    ],
-    view: view.value,
-    controls: [new ZoomControl()]
-  });
+    map.value = new Map({
+      target: 'map-canvas',
+      layers: [
+        new TileLayer({
+          source: new OSM({
+            crossOrigin: 'anonymous'
+          })
+        }),
+        new VectorLayer({
+          source: vectorSource.value,
+          updateWhileAnimating: false, // Optimize performance
+          updateWhileInteracting: false
+        })
+      ],
+      view: view.value,
+      controls: [new ZoomControl()],
+      pixelRatio: 2 // Better rendering on high-DPI displays
+    });
 
-  map.value.on('singleclick', handleMapClick);
+    // Add touch-specific interactions
+    map.value.on('pointermove', (e) => {
+      e.preventDefault(); // Prevent unwanted scrolling
+    });
 
-  updateMarker();
-  updateGeolocationMarker();
+    map.value.on('singleclick', handleMapClick);
 
-  // Set mapInitialized to true after map is fully loaded
-  map.value.once('postrender', () => {
-    mapInitialized.value = true;
-  });
+    updateMarker();
+    updateGeolocationMarker();
 
-  // Setup geocoder after map is initialized
-  setupGeocoder();
+    // Setup geocoder after ensuring map is ready
+    map.value.once('postrender', () => {
+      mapInitialized.value = true;
+      setupGeocoder();
+    });
+
+  } catch (error) {
+    console.error('Error initializing map:', error);
+    mapInitialized.value = false;
+  }
 };
 
 const updateMarker = () => {
@@ -606,4 +669,17 @@ const props = defineProps({
 
 // Add OpenLayers default styles
 @import 'ol/ol.css';
+
+#map-canvas {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ol-control {
+  /* Prevent text selection on controls */
+  -webkit-user-select: none;
+  user-select: none;
+}
 </style>
