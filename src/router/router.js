@@ -47,9 +47,7 @@ const routes = [
   },
 ]
 
-export { routes }
-
-export default createRouter({
+const router = createRouter({
   history: createMemoryHistory(),
   routes,
 })
@@ -68,3 +66,6 @@ router.beforeEach((to, from, next) => {
   
   next()
 })
+
+export { routes }
+export default router

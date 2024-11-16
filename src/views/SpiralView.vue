@@ -164,7 +164,7 @@
               v-if="!spiralTutorialMode" 
               @click="spiralTutorialMode = true" 
               class="flex item-center justify-center text-black bg-nt-cyan-light hover:bg-nt-cyan-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-              Lancer tutoriel
+              Commencer ici
             </button>
             
             <!-- Configure -->

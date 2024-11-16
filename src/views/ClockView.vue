@@ -132,7 +132,7 @@
 						<!-- Start tutorial -->
 						<button v-if="!clockTutorialMode" @click="clockTutorialMode = true"
 							class="flex item-center justify-center text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-							Lancer tutoriel
+							Commencer ici
 						</button>
 
 						<!-- Configure -->
