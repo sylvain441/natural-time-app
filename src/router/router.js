@@ -1,5 +1,6 @@
 import { createRouter, createMemoryHistory } from 'vue-router'
 import { useContextStore } from '../stores/contextStore'
+import { version } from '../../package.json'
 
 import WelcomeView from '../views/WelcomeView.vue'
 import ClockView from '../views/ClockView.vue'
@@ -57,12 +58,21 @@ const routes = [
   },
 ]
 
+const migrateData = () => {
+  console.log('Migrating data from', localStorage.getItem('appVersion'), 'to', version)
+}
+
 const router = createRouter({
   history: createMemoryHistory(),
   routes,
 })
 
 router.beforeEach((to, from, next) => {
+  if (localStorage.getItem('appVersion') !== version) 
+    migrateData()
+  else
+    localStorage.setItem('appVersion', version)
+
   // If first launch of a PWA and location is set, redirect to the clock view
   if (!from.name && isStandalone()) {
     const contextStore = useContextStore()
