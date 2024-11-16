@@ -1,6 +1,6 @@
 {
   "name": "natural-time",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "scripts": {
     "dev": "vite",
     "build": "vite-ssg build",
