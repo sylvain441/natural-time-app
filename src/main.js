@@ -12,6 +12,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { ViteSSG } from 'vite-ssg'
 
 const migrateData = () => {
+  // If needed one day to display change log or other migration logic
   console.log('Migrating data from', localStorage.getItem('appVersion'), 'to', version)
 }
 
