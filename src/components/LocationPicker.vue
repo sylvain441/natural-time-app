@@ -2,8 +2,7 @@
   <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900">
     <!-- Location Picker Section -->
     <h4 :class="[
-      viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light',
-      'dark:text-white'
+      viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light'
     ]" class="section-header flex flex-row items-center justify-between">
       <span>Choisir un lieu</span>
     </h4>
@@ -66,34 +65,55 @@
     </div>
     
     <div v-if="isOnline" class="px-4 pt-2 pb-5">
-      <label v-if="markerPlaced" for="locationName" class="text-xs font-mono font-extrabold text-slate-400">Donner un nom au lieu</label>
-      <div class="flex flex-row items-center justify-between">
-        <div v-if="markerPlaced" class="grow flex items-center space-x-2 justify-start ">
-          <input 
-          id="locationName" 
-          v-model="tempLocation" 
-          type="text" 
-          placeholder="(Facultatif)"
-          class="flex-grow py-2 px-3 border rounded text-sm"
-          @keyup.enter="save"
-          />
-          <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-            </svg>
-            Valider
-          </button>
+      <!-- Only show if marker is placed AND (initialPosition is null OR position has changed) -->
+      <template v-if="markerPlaced && (shouldShowForm)">
+        <label for="locationName" :class="[
+          viewType === 'spiral' 
+            ? 'text-nt-cyan-dark dark:text-nt-cyan-light' 
+            : 'text-nt-yellow-darker dark:text-nt-yellow-light'
+        ]" class="text-sm font-mono font-extrabold">Donner un nom au lieu</label>
+        <div class="flex flex-row items-center justify-between">
+          <div class="grow flex items-center space-x-2 justify-start">
+            <input 
+            id="locationName" 
+            v-model="tempLocation" 
+            type="text" 
+            placeholder="(Facultatif)"
+            :class="[
+              viewType === 'spiral' 
+                ? 'border-nt-cyan-light focus:border-nt-cyan-dark dark:border-nt-cyan-light' 
+                : 'border-nt-yellow-light focus:border-nt-yellow-dark dark:border-nt-yellow-light'
+            ]"
+            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none dark:bg-gray-600 dark:text-white"
+            @keyup.enter="save"
+            />
+            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+              </svg>
+              Valider
+            </button>
+          </div>
         </div>
-      </div>
+      </template>
       
-      <div v-if="!markerPlaced" class="flex items-center space-x-2 pt-2">
-        <mapIcon class="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-        <span class="italic dark:text-green-200">Cliquer la carte pour choisir un lieu</span>
+      <div v-if="!markerPlaced || !shouldShowForm" class="flex items-center space-x-2 pt-2">
+        <mapIcon :class="[
+          viewType === 'spiral' 
+            ? 'text-nt-cyan-light dark:text-nt-cyan-light' 
+            : 'text-nt-yellow-light dark:text-nt-yellow-light'
+        ]" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+        <span :class="[
+          viewType === 'spiral' 
+            ? 'text-nt-cyan-dark dark:text-nt-cyan-light' 
+            : 'text-nt-yellow-darker dark:text-nt-yellow-light'
+        ]" class="italic">
+          {{ !markerPlaced ? 'Cliquer la carte pour choisir un lieu' : 'Cliquer la carte pour choisir un autre lieu' }}
+        </span>
       </div>
-      
     </div>
 
-    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight dark:bg-nt-cyan-light dark:bg-opacity-30' : 'bg-nt-yellow-ultralight dark:bg-nt-yellow-light dark:bg-opacity-30']" class="pt-2 pb-6 px-4">
+    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight dark:bg-nt-cyan-light dark:bg-opacity-30' : 'bg-nt-yellow-ultralight dark:bg-nt-yellow-light dark:bg-opacity-30']" class="pt-2 pb-4 px-4">
 
       <!-- Geolocation -->
       <div class="flex items-center justify-between pt-2 text-slate-700 dark:text-slate-300">
@@ -158,6 +178,11 @@
         </div>
       </div>
     </div>
+
+    <p class="text-sm text-gray-500 dark:text-gray-400 px-4 pt-2 pb-4 italic text-center">
+      Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil.<br>
+      Aucune donnée personnelle n'est enregistrée.
+    </p>
   </div>
 </template>
 
@@ -183,7 +208,8 @@ import { Style, Icon, Circle, Fill, Stroke } from 'ol/style';
 import ZoomControl from 'ol/control/Zoom';
 
 // Icons
-import mapMarkerIcon from '@/assets/icon/map-marker.png';
+import mapMarkerCyanIcon from '@/assets/icon/map-marker-cyan.png';
+import mapMarkerYellowIcon from '@/assets/icon/map-marker-yellow.png';
 import spinIcon from '@/assets/icon/spin-icon.svg';
 import infoIcon from '@/assets/icon/info-icon.svg';
 import mapIcon from '@/assets/icon/map-icon.svg';
@@ -285,12 +311,35 @@ const save = () => {
   emit('save');
 };
 
+// Add these new refs and computed properties
+const initialPosition = ref({
+  lat: tempLatitude.value,
+  lng: tempLongitude.value
+});
+
+const hasPositionChanged = computed(() => {
+  return initialPosition.value.lat !== tempLatitude.value || 
+         initialPosition.value.lng !== tempLongitude.value;
+});
+
+const shouldShowForm = computed(() => {
+  // Show form if:
+  // 1. No initial position was set (new location selection)
+  // 2. OR if position has changed from initial position
+  return !initialPosition.value.lat || hasPositionChanged.value;
+});
+
+// Update handleMapClick to track position changes
 const handleMapClick = (event) => {
   const clickedCoord = event.coordinate;
   const lonLat = toLonLat(clickedCoord);
-  if (Math.abs(tempLatitude.value - parseFloat(lonLat[1])) > 0.1 || Math.abs(tempLongitude.value - parseFloat(lonLat[0])) > 0.1) {
+  
+  // Only clear location name if position has significantly changed
+  if (Math.abs(tempLatitude.value - parseFloat(lonLat[1])) > 0.1 || 
+      Math.abs(tempLongitude.value - parseFloat(lonLat[0])) > 0.1) {
     tempLocation.value = '';
   }
+  
   tempLatitude.value = parseFloat(lonLat[1]);
   tempLongitude.value = parseFloat(lonLat[0]);
 };
@@ -394,7 +443,7 @@ const updateMarker = () => {
     });
     markerFeature.value.setStyle(new Style({
       image: new Icon({
-        src: mapMarkerIcon,
+        src: props.viewType === 'spiral' ? mapMarkerCyanIcon : mapMarkerYellowIcon,
         scale: 0.5,
         anchor: [0.5, 0.95]
       })

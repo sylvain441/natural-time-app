@@ -70,12 +70,12 @@
 						class="bg-white max-w-md mx-auto font-extrabold p-4 rounded-lg shadow-lg relative">
 						<div class="text-center flex flex-row items-center justify-center space-x-2">
 							<span>{{ context.naturalDate.toDateString() }}</span>
-							<span class="text-slate-500 font-normal">{{ context.naturalDate.toTimeString(0) }} {{
+							<span>{{ context.naturalDate.toTimeString(0) }} {{
 								context.naturalDate.toLongitudeString(0) }}</span>
 						</div>
-						<div class="text-center flex flex-row items-center justify-center space-x-2">
+						<div class="text-center flex flex-row items-center justify-center space-x-2 text-slate-500 font-normal">
 							<span>{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
-							<span class="text-slate-500 font-normal">{{ new
+							<span>{{ new
 								Date(context.naturalDate.unixTime).toLocaleTimeString([], {
 									hour: '2-digit', minute:
 										'2-digit', timeZoneName: 'short' }) }}</span>
@@ -132,7 +132,7 @@
 						<!-- Start tutorial -->
 						<button v-if="!clockTutorialMode" @click="clockTutorialMode = true"
 							class="flex item-center justify-center text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-							Commencer ici
+							Lancer tutoriel
 						</button>
 
 						<!-- Configure -->
@@ -350,29 +350,7 @@ const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal,
 // I18n setup
 const i18n = useI18n();
 
-// SEO Meta tags
-const metaTitle = "Horloge du Temps Naturel - Une seule aiguille synchro avec le soleil";
-const metaDescription = "Découvrir l'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel";
-
-useHead({
-	title: computed(() => {
-		if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
-			return metaTitle;
-		}
-		return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`;
-	}),
-	meta: [
-		{ name: 'description', content: metaDescription },
-		{ property: 'og:title', content: metaTitle },
-		{ property: 'og:description', content: metaDescription },
-		{ property: 'og:image', content: '/public/natural-time-social.jpg' },
-		{ property: 'og:url', content: 'https://naturaltime.app' },
-		{ property: 'og:type', content: 'website' },
-		{ name: 'twitter:card', content: 'summary_large_image' },
-	],
-});
-
-// Refs and computed properties
+// Refs and computed properties first
 let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation } = storeToRefs(contextStore);
 let showPositionChangedNotification = ref(false);
 const isMenuOpen = ref(false);
@@ -389,8 +367,8 @@ const travelSpeeds = [
 const selectedSpeed = ref(0);
 const timeDelta = ref(0);
 
-// Computed properties
-let context = computed(() => {
+// Context computed property
+const context = computed(() => {
 	let theCurrentTime = clockSkin.value.context?.currentTime ? clockSkin.value.context.currentTime : currentTime.value + timeDelta.value;
 	let theLatitude = clockSkin.value.context?.latitude != null ? clockSkin.value.context.latitude : latitude.value;
 	let theLongitude = clockSkin.value.context?.longitude != null ? clockSkin.value.context.longitude : longitude.value;
@@ -438,6 +416,31 @@ let context = computed(() => {
 	};
 });
 
+// SEO Meta tags - MOVED AFTER context is defined
+const metaTitle = "Horloge du Temps Naturel - Une seule aiguille synchro avec le soleil";
+const metaDescription = "Découvrir l'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel";
+
+const pageTitle = computed(() => {
+	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
+		return metaTitle;
+	}
+	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`;
+});
+
+useHead({
+	title: pageTitle,
+	meta: [
+		{ name: 'description', content: metaDescription },
+		{ property: 'og:title', content: metaTitle },
+		{ property: 'og:description', content: metaDescription },
+		{ property: 'og:image', content: '/public/natural-time-social.jpg' },
+		{ property: 'og:url', content: 'https://naturaltime.app' },
+		{ property: 'og:type', content: 'website' },
+		{ name: 'twitter:card', content: 'summary_large_image' },
+	],
+});
+
+// Computed properties
 const shouldShowNotification = computed(() => {
 	if (!geolocationNotificationDismissedAt.value) return true;
 	const oneDay = 24 * 60 * 60 * 1000;

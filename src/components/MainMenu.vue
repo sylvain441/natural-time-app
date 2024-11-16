@@ -30,6 +30,15 @@
               class="nav-link flex flex-row items-center justify-center text-2xl font-normal text-slate-700 dark:text-slate-300 transition-all duration-300 transform hover:bg-slate-200 dark:hover:bg-slate-800 px-4 py-2 rounded-full" >
               <span>← Accueil</span>
             </router-link>
+            <div class="absolute bottom-2 right-2 text-xs text-slate-400 dark:text-slate-600">
+              v{{ version }}
+              <button 
+                @click="clearLocalStorageAndReload"
+                class="ml-2 hover:text-slate-600 dark:hover:text-slate-400"
+              >
+                reset
+              </button>
+            </div>
           </div>
         </nav>
       </transition>
@@ -52,8 +61,13 @@
   
   <script setup>
   import { ref } from 'vue';
+  import { useContextStore } from '@/stores/contextStore';
   import ClockIcon from "@/assets/icon/clock-icon.svg";
   import SpiralIcon from "@/assets/icon/spiral-icon.svg";
+  import { version } from '../../package.json';
+
+  const contextStore = useContextStore();
+  const { clearLocalStorageAndReload } = contextStore;
 
   const isMenuOpen = ref(false);
 

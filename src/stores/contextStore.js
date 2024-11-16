@@ -30,6 +30,15 @@ export const useContextStore = defineStore('context', () => {
   // Actions
   const initDone = ref(false)
 
+  const clearLocalStorageAndReload = () => {
+    localStorage?.clear();
+    window.location.reload();
+    if (confirm('Es-tu sûr de vouloir effacer toutes les données enregistrées ?')) {
+      localStorage?.clear();
+      window.location.reload();
+    }
+  }
+
   const init = () => {
     if (initDone.value) return
 
@@ -45,8 +54,7 @@ export const useContextStore = defineStore('context', () => {
       window.addEventListener('keydown', (event) => {
         // CMD + K to clear localStorage
         if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-          localStorage?.clear();
-          window.location.reload();
+          clearLocalStorageAndReload();
         }
       });
     });
@@ -172,6 +180,7 @@ export const useContextStore = defineStore('context', () => {
     getGeolocation,
     positionChanged,
     geolocationNotificationDismissedAt,
+    clearLocalStorageAndReload,
   }
 }, {
   persist: {

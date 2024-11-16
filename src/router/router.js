@@ -45,6 +45,16 @@ const routes = [
     path: '/about', 
     redirect: { name: 'welcome' }
   },
+  { 
+    path: '/startpwa',
+    name: 'startpwa',
+    redirect: to => {
+      const contextStore = useContextStore()
+      return contextStore.storedLatitude && contextStore.storedLongitude 
+        ? { name: 'time' }
+        : { name: 'welcome' }
+    }
+  },
 ]
 
 const router = createRouter({

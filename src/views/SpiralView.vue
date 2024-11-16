@@ -1,5 +1,5 @@
 <template>
-  <div id="moons-view" class="flex flex-row h-dvh relative overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
+  <div id="moons-view" class="flex flex-row h-dvh relative overflow-hidden bg-[#F2FFFF] dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]">
     
     <div :class="['relative h-full transition-all duration-300 ease-in-out', (spiralActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
       

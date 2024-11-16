@@ -8,7 +8,8 @@
          'opacity-100': today.moon >= moon,
          'past-moon': pastMoon,
          'isRainbowDay': today.isRainbowDay
-       }">
+       }"
+       :title="moon === 14 ? 'Jour arc-en-ciel' : `Lune #${moon}`">
 
     <div v-if="moon < 14" class="moon-top absolute top-0 left-4 right-4 h-4 z-10"></div>
     <div v-if="moon < 14" class="moon-bottom absolute bottom-0 left-4 right-4 h-4"></div>
@@ -17,7 +18,7 @@
 
     <div v-if="moon < 14" class="moon-container relative flex justify-center items-center">
       <Transition name="scale-with-delay">
-        <div class="moon-center flex flex-wrap overflow-hidden">
+        <div class="moon-center flex flex-wrap">
           <div v-for="day in daysOfMoon" 
             class="day-of-moon flex items-center justify-center rounded-full border-white border-4 cursor-pointer"
             :class="day.dayClasses"
@@ -165,13 +166,13 @@ const pastMoon = computed(() => {
   .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white }
   
   &.past-moon {
-    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-gray-700 }
+    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-gray-100 }
     .day-of-moon.isPast:not(:hover):not(.isRainbowDay) {
       @media (max-width: 768px) { 
         @apply bg-gray-600 bg-opacity-40;
       }
       @media (min-width: 768px) { 
-        @apply bg-gray-700 text-white rounded-none border-none;
+        @apply bg-gray-100 text-gray-500 border-none;
       }
     }
   }
@@ -185,13 +186,13 @@ const pastMoon = computed(() => {
     &:nth-child(7n+6){ @apply border-indigo-500 text-indigo-500 bg-indigo-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &:nth-child(7n+0){ @apply border-violet-500 text-violet-500 bg-violet-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &.isPast:not(:hover):not(.isRainbowDay) {
-      @apply bg-gray-700 text-white border-opacity-50;
+      @apply bg-gray-50 text-gray-500 border-opacity-80;
     }
     &.isToday {
-      @apply border-opacity-100 text-opacity-100;
+      @apply border-opacity-100 bg-opacity-100 text-white;
     }
     &.isFuture:not(:hover) {
-      @apply bg-opacity-0 text-gray-500;
+      @apply bg-opacity-0 text-gray-300;
     }
     &:hover {
       @apply border-opacity-100 text-opacity-100 cursor-pointer;
@@ -200,48 +201,79 @@ const pastMoon = computed(() => {
       @apply border-opacity-50 scale-75 animate-ping;
       &:nth-child(11n+1){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+2){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+3){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+4){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+5){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+6){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+7){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+8){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+9){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+10){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
       &:nth-child(11n+11){ 
         animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(14000ms + random() * 6000ms);
+        animation-duration: calc(10000ms + random() * 6000ms);
       }
+    }
+  }
+
+  &:hover {
+    & .moon-center {
+      @apply shadow-inner transition-all duration-500;
+    }
+    &::after {
+      content: attr(title);
+      position: absolute;
+      top: -1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 1.6rem;
+      font-weight: 800;
+      pointer-events: none;
+      z-index: 50;
+      animation: tooltip-fade 0.3s ease-out;
+      white-space: nowrap;
+    }
+  }
+
+  @keyframes tooltip-fade {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 10px);
+    }
+    to {
+      opacity: 1; 
+      transform: translate(-50%, 0);
     }
   }
 }

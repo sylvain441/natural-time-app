@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'url'
-
 import { defineConfig } from 'vite'
+import { version } from './package.json'
 import vue from '@vitejs/plugin-vue'
 import vitePluginMarkdown, { Mode } from 'vite-plugin-markdown'
 import svgLoader from 'vite-svg-loader'
@@ -26,7 +26,7 @@ export default defineConfig({
       },
       manifest: {
         name: 'Natural time',
-        start_url: "https://naturaltime.app/?utm_source=web_app_manifest",
+        start_url: `https://naturaltime.app/startpwa/?v=${version}`,
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
         theme_color: '#fff200',
         background_color: "#d5f7fd",
