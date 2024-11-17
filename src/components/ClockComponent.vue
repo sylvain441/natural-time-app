@@ -38,7 +38,7 @@
 							 :style="{
 								 transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`
 							 }">
-							<div class="inline-block" :style="`width: ${BASESIZE * 0.11}px; height: ${BASESIZE * 0.11}px;`">
+							<div class="inline-block" :style="`width: ${BASESIZE * 0.1}px; height: ${BASESIZE * 0.1}px;`">
 								<div class="w-full h-full rounded-full bg-nt-yellow-dark" 
 									 :style="`
 										 box-shadow: 0 0 ${BASESIZE * 0.05}px 0 rgba(255, 205, 0, var(--day-progression));
@@ -55,7 +55,7 @@
 			<Transition name="fade">
 				<div v-if="clockSkin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
 					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.30 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
-						<div :style="`width: ${BASESIZE * 0.11}px; height: ${BASESIZE * 0.11}px; 
+						<div :style="`width: ${BASESIZE * 0.1}px; height: ${BASESIZE * 0.1}px; 
 									  box-shadow: 0 0 ${BASESIZE * 0.01875}px 0 rgba(0, 0, 100, 0.3), 
 												  0 0 ${BASESIZE * 0.035}px rgba(255, 255, 255, 0.5);
 									  ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001 * context.dayProgression}px);` : ''}`" 
