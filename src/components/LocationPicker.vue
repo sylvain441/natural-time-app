@@ -32,7 +32,7 @@
                 ? 'border-nt-cyan-light focus:border-nt-cyan-dark dark:border-nt-cyan-light' 
                 : 'border-nt-yellow-light focus:border-nt-yellow-dark dark:border-nt-yellow-light'
             ]"
-            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-white dark:bg-gray-00 dark:text-white"
+            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-white text-slate-900"
             @keyup.enter="save"
             />
             <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-dark hover:bg-nt-cyan-light dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white' : 'bg-nt-yellow-dark hover:bg-nt-yellow-darker dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
@@ -643,6 +643,7 @@ const preventZoom = () => {
     left: auto;
     right: .5em;
     padding: 0;
+    z-index: 20;
   }
   
   .gcd-txt-control {
@@ -671,6 +672,7 @@ const preventZoom = () => {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     box-shadow: none;
+    z-index: 21;
     
     > li {
       &:nth-child(odd) {
@@ -722,5 +724,16 @@ input[type="text"] {
 /* Prevent double-tap zoom */
 * {
   touch-action: manipulation;
+}
+
+/* Add these new styles */
+#map-container {
+  isolation: isolate;
+}
+
+.gcd-txt-input {
+  font-size: 16px !important;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 </style>
