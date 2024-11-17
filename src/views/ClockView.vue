@@ -69,13 +69,7 @@
 					<div v-if="clockTimeTravelMode">
 						
 						<div class="bg-white max-w-md mx-auto font-extrabold p-4 rounded-lg shadow-lg relative">
-							<div class="text-center flex flex-row items-center justify-center space-x-2 font-mono text-sm">
-								<span class="font-bold">Naturel : </span>
-								<span>{{ context.naturalDate.toDateString() }}</span>
-								<span>{{ context.naturalDate.toTimeString(0) }} {{
-									context.naturalDate.toLongitudeString(0) }}</span>
-							</div>
-							<div class="flex items-center justify-center space-x-4 my-2">
+							<div class="flex items-center justify-center space-x-4 mb-2">
 								<arrowsIcon @click.stop.prevent="decrementTime" v-longclick="decrementTime"
 									fill="currentColor"
 									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer rotate-180" />
@@ -95,13 +89,19 @@
 									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer" />
 							</div>
 
-							<div class="text-center flex flex-row items-center justify-center space-x-2 text-slate-500 font-mono font-normal text-xs">
-								<span class="font-bold">Artificiel : </span>
-								<span>{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
+							<div class="text-center flex flex-row items-center justify-center space-x-2  font-mono text-sm">
+								<span>Artificiel : </span>
 								<span>{{ new
 									Date(context.naturalDate.unixTime).toLocaleTimeString([], {
 										hour: '2-digit', minute:
-											'2-digit', timeZoneName: 'short' }) }}</span>
+										'2-digit', timeZoneName: 'short' }) }}</span>
+								<span class="text-xs text-slate-500">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
+							</div>
+							<div class="text-center flex flex-row items-center justify-center space-x-2 font-mono text-sm">
+								<span>Naturel : </span>
+								<span>{{ context.naturalDate.toTimeString(0) }}</span>
+								<span>{{ context.naturalDate.toLongitudeString(0) }}</span>
+								<span class="text-xs text-slate-500">{{ context.naturalDate.toDateString() }}</span>
 							</div>
 						</div>
 						<!-- Add title -->
@@ -365,13 +365,13 @@ const isMenuOpen = ref(false);
 // Time travel setup
 const travelSpeeds = [
 	{ value: 1000 * 60 * 4, label: '+/- 001°', equivalentTo: '4min' },
-	{ value: 1000 * 60 * 8, label: '+/- 002°', equivalentTo: '8min' },
 	{ value: 1000 * 60 * 20, label: '+/- 005°', equivalentTo: '20min' },
+	{ value: 1000 * 60 * 40, label: '+/- 015°', equivalentTo: '1h' },
 	{ value: 1000 * 60 * 60 * 24, label: '+/- 360°', equivalentTo: '1j' },
 	{ value: 1000 * 60 * 60 * 24 * 7, label: '+/- 7 jours' },
 	{ value: 1000 * 60 * 60 * 24 * 28, label: '+/- 28 jours' },
 ];
-const selectedSpeed = ref(0);
+const selectedSpeed = ref(1);
 const timeDelta = ref(0);
 
 // Context computed property

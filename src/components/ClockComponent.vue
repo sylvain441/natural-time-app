@@ -5,16 +5,22 @@
 			<!-- DAY / NIGHT -->
 			<div class="clock-day-night nt-box-outer rotate-180">
 				<Transition name="fade">
-				<div v-if="clockSkin.dayNightBlurDisplay" class="nt-box-outer blur-2xl" :class="clockSkin.dayNightBlur">
-					<svg class="w-full h-full" viewBox="0 0 800 800">
+				<div v-if="configStore.clockShowAnimations" 
+					 class="nt-box-outer hidden md:block opacity-50" 
+					 :style="`filter: blur(${BASESIZE * 0.12}px)`">
+					<svg class="w-full h-full" :viewBox="`0 0 ${BASESIZE} ${BASESIZE}`">
 						<path :d="dayPeriodPath(context.sun.sunrise, context.sun.sunset)" fill="#AFE0FF" />
-						<path :d="dayPeriodPath(context.sun.sunset, context.sun.sunrise)" fill="#1C1241" style="opacity: 0.5" />
+						<path :d="dayPeriodPath(context.sun.sunset, context.sun.sunrise)" fill="#1C1241" />
 					</svg>
 				</div>
 				</Transition>
 				<Transition name="scale-with-delay">
-				<div v-if="clockSkin.dayNightRingDisplay" class="nt-box-outer" :class="clockSkin.dayNightRing">
-					<svg class="w-full h-full" viewBox="0 0 800 800">
+				<div class="nt-box-outer" :class="clockSkin.dayNightRing"
+					 :style="{
+						 transform: `scale(${95 + (context.dayProgression * 5)}%)`,
+						 opacity: !clockSkin.dayNightRingDisplay ? 0 : 0.6 + (context.dayProgression * 0.4)
+					 }">
+					<svg class="w-full h-full" :viewBox="`0 0 ${BASESIZE} ${BASESIZE}`">
 						<path :d="dayPeriodPath(0.001, 359.999)" fill="currentColor" class="text-slate-800" /> 
 						<path :d="dayPeriodPath(Math.max(context.sun.sunrise, 0.001), Math.min(context.sun.sunset, 359.999))" fill="currentColor" class="text-nt-cyan-dark" />  
 						<path v-if="context.sun.sunrise % 180 != 0" :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="currentColor" class="text-nt-yellow-light" />  
@@ -28,9 +34,17 @@
 			<Transition name="scale-with-delay">
 				<div v-if="clockSkin.sunDisplay" class="clock-sun nt-box-outer">
 					<div class="nt-box-outer rotate-180">
-						<div class="nt-box-outer text-center nt-animate" :style="{transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`}">
-							<div class="inline-block" style="width: 72px; height: 72px;">
-								<div class="w-full h-full rounded-full bg-nt-yellow-dark" style="box-shadow: 0 0 40px 0 rgba(255, 205, 0, var(--day-progression)); filter: blur(calc(var(--day-progression) * 5px));"></div>
+						<div class="nt-box-outer text-center nt-animate" 
+							 :style="{
+								 transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`
+							 }">
+							<div class="inline-block" :style="`width: ${BASESIZE * 0.11}px; height: ${BASESIZE * 0.11}px;`">
+								<div class="w-full h-full rounded-full bg-nt-yellow-dark" 
+									 :style="`
+										 box-shadow: 0 0 ${BASESIZE * 0.05}px 0 rgba(255, 205, 0, var(--day-progression));
+										 ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001}px);` : ''}
+									 `">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -40,8 +54,12 @@
 			<!-- MOON -->
 			<Transition name="fade">
 				<div v-if="clockSkin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
-					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.50 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
-						<div style="width: 72px; height: 72px; box-shadow: 0 0 15px 0 rgba(0, 80, 0, 0.15), 0 0 60px rgba(255, 255, 255, 1);" class="relative rounded-full overflow-hidden flex align-center">
+					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.30 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
+						<div :style="`width: ${BASESIZE * 0.11}px; height: ${BASESIZE * 0.11}px; 
+									  box-shadow: 0 0 ${BASESIZE * 0.01875}px 0 rgba(0, 0, 100, 0.3), 
+												  0 0 ${BASESIZE * 0.035}px rgba(255, 255, 255, 0.5);
+									  ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001 * context.dayProgression}px);` : ''}`" 
+							 class="relative rounded-full overflow-hidden flex align-center">
 							<!-- LIGHT SIDE-->
 							<div class="w-1/2 h-full bg-slate-100" :class="{ 'order-1': context.moon.phase < 180 }"></div>
 							<!-- DARK SIDE -->
@@ -103,9 +121,12 @@
 
 			<!-- TITLE  -->
 			<Transition name="fade">
-				<div v-if="clockSkin.titleDisplay" class="clock-title nt-box-outer text-2xl text-center font-bold" :class="clockSkin.title">
+				<div v-if="clockSkin.titleDisplay" 
+					 class="clock-title nt-box-outer text-center font-bold" 
+					 :style="{ fontSize: `${BASESIZE * 0.03}px` }"
+					 :class="clockSkin.title">
 					<div class="nt-box-inner">
-						<h1 style="padding-top: 67%;">Temps Naturel</h1>
+						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">Temps Naturel</h1>
 					</div>
 				</div>
 			</Transition>
@@ -114,12 +135,21 @@
 			<Transition name="fade">
 				<div v-if="clockSkin.numbersDisplay" class="clock-numbers nt-box-outer">
 					<div class="nt-box-outer rotate-180">
-						<div class="nt-box-inner absolute text-center p-1"
+						<div class="nt-box-inner absolute text-center"
 							v-for="n in 36" 
 							:key="`dial-number-${(n - 1) * 10}`" 
 							:data-time="(n - 1) * 10" 
-							:style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }">
-							<span class="nt-animate" :class="[
+							:style="{ 
+								transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)`,
+								padding: `${BASESIZE * 0.03}px`,
+								fontSize: (n - 1) % 9 === 0 
+									? `${BASESIZE * 0.04}px` 
+									: (n - 1) % 3 === 0 
+										? `${BASESIZE * 0.025}px` 
+										: `${BASESIZE * 0.02}px`,
+								lineHeight: 0
+							}">
+							<span class="nt-animate inline-block align-baseline" :class="[
 								(n - 1) % 9 === 0 ? clockSkin.numbersMultipleOf90 : 
 								(n - 1) % 3 === 0 ? clockSkin.numbersMultipleOf30 : 
 								clockSkin.numbersMultipleOf10
@@ -132,15 +162,36 @@
 			<!-- DOTS -->
 			<Transition name="fade">
 				<div v-if="clockSkin.dotsDisplay" class="clock-dots nt-box-outer rotate-180">
-					<div class="nt-box-inner absolute flex justify-center p-10"
+					<div class="nt-box-inner absolute flex justify-center"
 						v-for="n in 36" 
 						:key="`dot-${(n - 1) * 10}`" 
-						:style="{ transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)` }">
-						<div class="rounded-full" :class="[
-							(n - 1) % 9 === 0 ? clockSkin.dotsMultipleOf90 : 
-							(n - 1) % 3 === 0 ? clockSkin.dotsMultipleOf30 : 
-							clockSkin.dotsMultipleOf10
-						]"></div>
+						:style="{ 
+							transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)`,
+							padding: `${BASESIZE * 0.05}px`
+						}">
+						<div class="rounded-full" 
+							 :style="[
+								 (n - 1) % 9 === 0 
+									 ? { width: `${BASESIZE * 0.02}px`,
+										 height: `${BASESIZE * 0.02}px`,		
+										 marginTop: `${BASESIZE * 0.005}px`,
+									   } 
+									 : (n - 1) % 3 === 0
+										 ? { width: `${BASESIZE * 0.015}px`,
+											 height: `${BASESIZE * 0.015}px`,
+											 marginTop: `${BASESIZE * 0.005}px`,
+										   }
+										 : { width: `${BASESIZE * 0.005}px`,
+											 height: `${BASESIZE * 0.005}px`,
+											 marginTop: `${BASESIZE * 0.005}px`,
+										   }
+							 ]"
+							 :class="[
+								 (n - 1) % 9 === 0 ? clockSkin.dotsMultipleOf90 : 
+								 (n - 1) % 3 === 0 ? clockSkin.dotsMultipleOf30 : 
+								 clockSkin.dotsMultipleOf10
+							 ]">
+						</div>
 					</div>
 				</div>
 			</Transition>
@@ -180,15 +231,15 @@ const { clockSkin } = storeToRefs(configStore);
 
 // Refs
 const clockWrapper = ref(null);
-const scale = ref(1);
 let resizeObserver = null;
+const BASESIZE = ref(555); // This is our reference size
 
+// Update computed
 const clockBoxStyle = computed(() => ({
-	width: '800px',
-	height: '800px',
-	minWidth: '800px',
-	minHeight: '800px',
-	transform: `scale(${scale.value})`,
+	width: `${BASESIZE.value}px`,
+	height: `${BASESIZE.value}px`,
+	minWidth: `${BASESIZE.value}px`,
+	minHeight: `${BASESIZE.value}px`,
 }));
 
 // Methods
@@ -196,19 +247,22 @@ const updateScale = () => {
 	if (!clockWrapper.value) return;
 	const wrapperWidth = clockWrapper.value.offsetWidth;
 	const wrapperHeight = clockWrapper.value.offsetHeight;
-	const scaleX = (wrapperWidth * 0.85) / 800;
-	const scaleY = (wrapperHeight * 0.55) / 800;
-	scale.value = Math.min(scaleX, scaleY, 1);
+	const maxWidth = wrapperWidth * 0.85;
+	const maxHeight = wrapperHeight * 0.55;
+	BASESIZE.value = Math.min(maxWidth, maxHeight);
 };
 
+// Update dayPeriodPath method
 const dayPeriodPath = (start, end) => {
+	const radius = BASESIZE.value / 2;
+	const center = radius;
 	const adjustedEnd = end < start ? end + 360 : end;
 	const largeArcFlag = adjustedEnd - start <= 180 ? 0 : 1;  
-	const startX = 400 + 400 * Math.cos((start - 90) * Math.PI / 180);
-	const startY = 400 + 400 * Math.sin((start - 90) * Math.PI / 180);
-	const endX = 400 + 400 * Math.cos((end - 90) * Math.PI / 180);
-	const endY = 400 + 400 * Math.sin((end - 90) * Math.PI / 180);
-	return `M 400 400 L ${startX} ${startY} A 400 400 0 ${largeArcFlag} 1 ${endX} ${endY} Z`;
+	const startX = center + radius * Math.cos((start - 90) * Math.PI / 180);
+	const startY = center + radius * Math.sin((start - 90) * Math.PI / 180);
+	const endX = center + radius * Math.cos((end - 90) * Math.PI / 180);
+	const endY = center + radius * Math.sin((end - 90) * Math.PI / 180);
+	return `M ${center} ${center} L ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY} Z`;
 };
 
 // Lifecycle hooks
@@ -233,7 +287,11 @@ onUnmounted(() => {
 		@apply absolute inset-0 w-full h-full bg-cover bg-center;
 	}
 	.nt-box-inner {
-		@apply w-[720px] h-[720px] m-[40px];
+		--inner-size: calc(0.9 * v-bind(BASESIZE) * 1px);
+		--margin-size: calc(0.05 * v-bind(BASESIZE) * 1px);
+		width: var(--inner-size);
+		height: var(--inner-size);
+		margin: var(--margin-size);
 	}
 
 
@@ -252,7 +310,7 @@ onUnmounted(() => {
 }
 
 .nt-animate {
-	transition-property: all;
+	transition-property: transform, opacity;
 	transition-duration: var(--nt-animation-speed);
 	transition-timing-function: ease;
 }

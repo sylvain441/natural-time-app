@@ -702,7 +702,7 @@ watch([spiralTutorialCurrentStep], async () => {
 .scale-with-delay-enter-from,
 .scale-with-delay-leave-to {
   opacity: 0;
-  transform: scale(0.5);
+  transform: scale(0.75);
 }
 
 #year {

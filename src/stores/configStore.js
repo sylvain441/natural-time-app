@@ -24,7 +24,7 @@ export const useConfigStore = defineStore('appConfig', () => {
 	const clockActivePanel = ref(null);
 
   const clockShowGraduations = ref(true);
-  const clockShowAnimations = ref(true);
+  const clockShowAnimations = ref(false);
   const clockShowTitle = ref(true);
 
   const clockSkin = computed(() => ({

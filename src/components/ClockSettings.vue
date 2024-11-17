@@ -24,7 +24,7 @@
 				<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Afficher les animations</span>
 				<ToggleButton v-model="clockShowAnimations" class="bg-nt-yellow-light" />
 			</div>
-			<p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Désactiver cette option retire certains éléments de l'interface pour améliorer les performances d'affichage (lune, soleil, animations).</p>
+			<p class="text-xs text-gray-400 dark:text-gray-500 mt-1">Ajoute des animations couteuses en termes de performances (peut faire planter le navigateur).</p>
 		</div>
 	</div>
 </template>
