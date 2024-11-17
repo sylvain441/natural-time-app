@@ -12,7 +12,7 @@
       viewType === 'spiral' 
         ? 'bg-nt-cyan-lighter dark:bg-nt-cyan-dark' 
         : 'bg-nt-yellow-lighter dark:bg-nt-yellow-dark'
-    ]" class="px-4 pt-2 pb-5">
+    ]" class="px-4 pt-1 pb-4">
       <!-- This form is here (at the top) so that is is visible when keyboard is open on mobile -->
       <template v-if="markerPlaced && (shouldShowForm)">
         <label for="locationName" :class="[
@@ -54,7 +54,7 @@
     </div>
 
     <div id="map-container" class="relative h-full flex-grow touch-manipulation">
-      <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" @touchstart.prevent style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
+      <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
       <div class="w-full h-full flex flex-col items-center justify-center p-8">
         <p v-if="!isOnline" class="text-center text-gray-600 dark:text-gray-400">
           L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.

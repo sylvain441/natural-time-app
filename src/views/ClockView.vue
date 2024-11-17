@@ -163,7 +163,7 @@
 			<div
 				class="overflow-hidden w-full h-[calc(100dvh-0px)] md:h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
 				<button v-if="clockActivePanel" @click="clockActivePanel = null"
-					class="absolute z-50 top-4 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
+					class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
 					<closeIcon class="w-6 h-6" fill="currentColor" />
 				</button>
 
