@@ -9,7 +9,7 @@
          'past-moon': pastMoon,
          'isRainbowDay': today.isRainbowDay
        }"
-       :title="moon === 14 ? 'Jour arc-en-ciel' : `Lune #${moon}`">
+       :title="moon === 14 ? (today.yearDuration === 366 ? 'Jours arc-en-ciel' : 'Jour arc-en-ciel') : `Lune #${moon}`">
 
     <div v-if="moon < 14" class="moon-top absolute top-0 left-4 right-4 h-4 z-10"></div>
     <div v-if="moon < 14" class="moon-bottom absolute bottom-0 left-4 right-4 h-4"></div>

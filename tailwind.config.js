@@ -15,7 +15,8 @@ module.exports = {
           lighter: '#fff768',
           light: '#fff200',
           dark: '#ffd700',
-          darker: '#ffc700',  
+          darker: '#ffc700',
+          darkest: '#cc9900',
         },
         'nt-cyan': {
           ultralight: '#DCFFFF',
@@ -23,11 +24,13 @@ module.exports = {
           light: '#00F2FF',
           dark: '#00d7e6',
           darker: '#02B2B8',
+          darkest: '#016b6e',
         },
         'nt-magenta': {
           light: '#FF80CB',
           dark: '#de3252',
           darker: '#c02641',
+          darkest: '#801728',
         },
       },
       textDecorationThickness: {

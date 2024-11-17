@@ -61,7 +61,7 @@
         </div>
         
         <!-- FOOTER -->
-        <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-12 w-full">
+        <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-8 w-full">
           <Transition name="fade">
             <div v-if="!spiralTimeTravelMode && spiralShowTitle">
               <!-- TITLE -->
@@ -101,35 +101,38 @@
           
           <!-- TIME TRAVEL CONTROL PANEL -->
           <Transition name="fade">
-            <div v-if="spiralTimeTravelMode" 
-              class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
-              <div class="flex items-center justify-center space-x-2">
-                <arrowsIcon 
-                  @click.stop.prevent="decrementTime" 
-                  v-longclick="decrementTime" 
-                  fill="currentColor"
-                  class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
-                />
+            <div v-if="spiralTimeTravelMode">
+              <div class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
+                <div class="flex items-center justify-center space-x-2">
+                  <arrowsIcon 
+                    @click.stop.prevent="decrementTime" 
+                    v-longclick="decrementTime" 
+                    fill="currentColor"
+                    class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
+                  />
 
-                <div class="flex flex-col items-center justify-center space-y-2">
-                  <select 
-                    id="speed-selector"
-                    v-model="selectedSpeed"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option value="" disabled>Vitesse de voyage</option>
-                    <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
-                      {{ speed.label }}
-                    </option>
-                  </select>
+                  <div class="flex flex-col items-center justify-center space-y-2">
+                    <select 
+                      id="speed-selector"
+                      v-model="selectedSpeed"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                      <option value="" disabled>Vitesse de voyage</option>
+                      <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
+                        {{ speed.label }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <arrowsIcon 
+                    @click.stop.prevent="incrementTime" 
+                    v-longclick="incrementTime" 
+                    fill="currentColor"
+                    class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
+                  />
                 </div>
-
-                <arrowsIcon 
-                  @click.stop.prevent="incrementTime" 
-                  v-longclick="incrementTime" 
-                  fill="currentColor"
-                  class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
-                />
               </div>
+
+              <h3 class="text-center text-nt-cyan-darkest mt-2 font-bold">Voyage temporel</h3>
             </div>
           </Transition>
           

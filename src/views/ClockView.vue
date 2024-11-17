@@ -19,7 +19,7 @@
 				</ClockComponent>
 
 				<!-- FOOTER -->
-				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-12 w-full max-w-screen-sm">
+				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-8 w-full max-w-screen-sm">
 
 					<!-- TITLE -->
 					<div v-if="!clockTimeTravelMode && clockShowTitle">
@@ -66,39 +66,46 @@
 					</div>
 
 					<!-- TIME TRAVEL CONTROL PANEL -->
-					<div v-if="clockTimeTravelMode"
-						class="bg-white max-w-md mx-auto font-extrabold p-4 rounded-lg shadow-lg relative">
-						<div class="text-center flex flex-row items-center justify-center space-x-2">
-							<span>{{ context.naturalDate.toDateString() }}</span>
-							<span>{{ context.naturalDate.toTimeString(0) }} {{
-								context.naturalDate.toLongitudeString(0) }}</span>
-						</div>
-						<div class="text-center flex flex-row items-center justify-center space-x-2 text-slate-500 font-normal">
-							<span>{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
-							<span>{{ new
-								Date(context.naturalDate.unixTime).toLocaleTimeString([], {
-									hour: '2-digit', minute:
-										'2-digit', timeZoneName: 'short' }) }}</span>
-						</div>
-						<div class="flex items-center justify-center space-x-2 mt-2">
-							<arrowsIcon @click.stop.prevent="decrementTime" v-longclick="decrementTime"
-								fill="currentColor"
-								class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer rotate-180" />
+					<div v-if="clockTimeTravelMode">
+						
+						<div class="bg-white max-w-md mx-auto font-extrabold p-4 rounded-lg shadow-lg relative">
+							<div class="text-center flex flex-row items-center justify-center space-x-2 font-mono text-sm">
+								<span class="font-bold">Naturel : </span>
+								<span>{{ context.naturalDate.toDateString() }}</span>
+								<span>{{ context.naturalDate.toTimeString(0) }} {{
+									context.naturalDate.toLongitudeString(0) }}</span>
+							</div>
+							<div class="flex items-center justify-center space-x-4 my-2">
+								<arrowsIcon @click.stop.prevent="decrementTime" v-longclick="decrementTime"
+									fill="currentColor"
+									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer rotate-180" />
 
-							<div class="flex flex-col items-center justify-center space-y-2">
-								<select id="speed-selector" v-model="selectedSpeed"
-									class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-									<option value="" disabled>Vitesse de voyage</option>
-									<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
-										{{ speed.label }} {{ speed.equivalentTo ? `(${speed.equivalentTo})` : '' }}
-									</option>
-								</select>
+								<div class="flex flex-col items-center justify-center space-y-2">
+									<select id="speed-selector" v-model="selectedSpeed"
+										class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+										<option value="" disabled>Vitesse de voyage</option>
+										<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
+											{{ speed.label }} {{ speed.equivalentTo ? `(${speed.equivalentTo})` : '' }}
+										</option>
+									</select>
+								</div>
+
+								<arrowsIcon @click.stop.prevent="incrementTime" v-longclick="incrementTime"
+									fill="currentColor"
+									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer" />
 							</div>
 
-							<arrowsIcon @click.stop.prevent="incrementTime" v-longclick="incrementTime"
-								fill="currentColor"
-								class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer" />
+							<div class="text-center flex flex-row items-center justify-center space-x-2 text-slate-500 font-mono font-normal text-xs">
+								<span class="font-bold">Artificiel : </span>
+								<span>{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
+								<span>{{ new
+									Date(context.naturalDate.unixTime).toLocaleTimeString([], {
+										hour: '2-digit', minute:
+											'2-digit', timeZoneName: 'short' }) }}</span>
+							</div>
 						</div>
+						<!-- Add title -->
+						<h3 class="text-center text-nt-yellow-dark mt-2 font-bold">Voyage temporel</h3>
 					</div>
 
 					<!-- TUTORIAL CONTROL PANEL -->

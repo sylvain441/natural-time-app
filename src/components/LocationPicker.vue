@@ -1,12 +1,58 @@
 <template>
-  <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900">
-    <!-- Location Picker Section -->
+  <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900" @submit.prevent>
+    <!-- Location Picker title -->
     <h4 :class="[
       viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light'
     ]" class="section-header flex flex-row items-center justify-between">
       <span>Choisir un lieu</span>
     </h4>
     
+    <!-- Form -->
+    <div v-if="isOnline" :class="[
+      viewType === 'spiral' 
+        ? 'bg-nt-cyan-lighter dark:bg-nt-cyan-dark' 
+        : 'bg-nt-yellow-lighter dark:bg-nt-yellow-dark'
+    ]" class="px-4 pt-2 pb-5">
+      <!-- This form is here (at the top) so that is is visible when keyboard is open on mobile -->
+      <template v-if="markerPlaced && (shouldShowForm)">
+        <label for="locationName" :class="[
+          viewType === 'spiral' 
+            ? 'text-nt-cyan-darkest' 
+            : 'text-nt-yellow-darkest'
+        ]" class="text-sm font-mono font-extrabold">Donner un nom au lieu</label>
+        <div class="flex flex-row items-center justify-between">
+          <div class="grow flex items-center space-x-2 justify-start">
+            <input 
+            id="locationName" 
+            v-model="tempLocation" 
+            type="text" 
+            placeholder="(Facultatif)"
+            :class="[
+              viewType === 'spiral' 
+                ? 'border-nt-cyan-light focus:border-nt-cyan-dark dark:border-nt-cyan-light' 
+                : 'border-nt-yellow-light focus:border-nt-yellow-dark dark:border-nt-yellow-light'
+            ]"
+            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-white dark:bg-gray-00 dark:text-white"
+            @keyup.enter="save"
+            />
+            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-dark hover:bg-nt-cyan-light dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white' : 'bg-nt-yellow-dark hover:bg-nt-yellow-darker dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+              </svg>
+              Valider
+            </button>
+          </div>
+        </div>
+      </template>
+      
+      <div v-if="!markerPlaced || !shouldShowForm" class="flex items-center space-x-2 pt-2 text-slate-600">
+        <mapIcon class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+        <span class="italic">
+          {{ !markerPlaced ? 'Cliquer la carte pour choisir un lieu' : 'Cliquer la carte pour choisir un autre point' }}
+        </span>
+      </div>
+    </div>
+
     <div id="map-container" class="relative h-full flex-grow touch-manipulation">
       <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" @touchstart.prevent style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
       <div class="w-full h-full flex flex-col items-center justify-center p-8">
@@ -18,10 +64,14 @@
             <div class="dark:text-white">
               <span>Latitude</span> 
               <input 
+                autocomplete="off"
                 :placeholder="0" 
                 v-model="tempLatitude" 
-                @input="tempLatitude = parseFloat(Math.max(-90, Math.min(90, parseFloat($event.target.value))))" 
+                @submit.prevent
+                @focus="preventZoom"
                 type="number" 
+                inputmode="decimal"
+                pattern="[0-9]*"
                 min="-90" 
                 max="90" 
                 class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
@@ -30,10 +80,14 @@
             <div class="dark:text-white">
               <span>Longitude</span> 
               <input 
+                autocomplete="off"
                 :placeholder="0" 
                 v-model="tempLongitude" 
-                @input="tempLongitude = parseFloat(Math.max(-90, Math.min(90, parseFloat($event.target.value))))" 
+                @submit.prevent
+                @focus="preventZoom"
                 type="number" 
+                inputmode="decimal"
+                pattern="[0-9]*"
                 min="-180" 
                 max="180" 
                 class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
@@ -41,7 +95,16 @@
             </div>
             <div class="dark:text-white">
               <span>Nom</span> 
-              <input v-model="tempLocation" type="text" placeholder="(Facultatif)" class="w-36 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" @keyup.enter="save" />
+              <input 
+                autocomplete="off"
+                v-model="tempLocation" 
+                @submit.prevent
+                @focus="preventZoom"
+                type="text" 
+                placeholder="(Facultatif)" 
+                class="w-36 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                @keyup.enter="save" 
+              />
             </div>
           </div>
           <div class="flex justify-center p-4">
@@ -56,82 +119,25 @@
       </div>
     </div>
 
-    <!-- Success -->
-    <div v-if="enableGeolocation && geolocationStatus === 'success' && positionChanged" class="flex items-center justify-center -mt-12 z-10">
-      <button @click="acceptNewGeolocation()" class="bg-white text-blue-500 hover:shadow-lg text-xs font-bold py-2 px-4 mt-2 mb-4 rounded transition duration-300 ease-in-out transform flex items-center">
-        <span class="block h-4 w-4 mr-2 bg-blue-600 rounded-full border-2 border-gray-200 animate-pulse"></span>
-        Centrer sur ma position GPS
-      </button>
-    </div>
-    
-    <div v-if="isOnline" class="px-4 pt-2 pb-5">
-      <!-- Only show if marker is placed AND (initialPosition is null OR position has changed) -->
-      <template v-if="markerPlaced && (shouldShowForm)">
-        <label for="locationName" :class="[
-          viewType === 'spiral' 
-            ? 'text-nt-cyan-dark dark:text-nt-cyan-light' 
-            : 'text-nt-yellow-darker dark:text-nt-yellow-light'
-        ]" class="text-sm font-mono font-extrabold">Donner un nom au lieu</label>
-        <div class="flex flex-row items-center justify-between">
-          <div class="grow flex items-center space-x-2 justify-start">
-            <input 
-            id="locationName" 
-            v-model="tempLocation" 
-            type="text" 
-            placeholder="(Facultatif)"
-            :class="[
-              viewType === 'spiral' 
-                ? 'border-nt-cyan-light focus:border-nt-cyan-dark dark:border-nt-cyan-light' 
-                : 'border-nt-yellow-light focus:border-nt-yellow-dark dark:border-nt-yellow-light'
-            ]"
-            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none dark:bg-gray-600 dark:text-white"
-            @keyup.enter="save"
-            />
-            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-              </svg>
-              Valider
-            </button>
-          </div>
-        </div>
-      </template>
-      
-      <div v-if="!markerPlaced || !shouldShowForm" class="flex items-center space-x-2 pt-2">
-        <mapIcon :class="[
-          viewType === 'spiral' 
-            ? 'text-nt-cyan-light dark:text-nt-cyan-light' 
-            : 'text-nt-yellow-light dark:text-nt-yellow-light'
-        ]" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-        <span :class="[
-          viewType === 'spiral' 
-            ? 'text-nt-cyan-dark dark:text-nt-cyan-light' 
-            : 'text-nt-yellow-darker dark:text-nt-yellow-light'
-        ]" class="italic">
-          {{ !markerPlaced ? 'Cliquer la carte pour choisir un lieu' : 'Cliquer la carte pour choisir un autre lieu' }}
-        </span>
-      </div>
-    </div>
-
     <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight dark:bg-nt-cyan-light dark:bg-opacity-30' : 'bg-nt-yellow-ultralight dark:bg-nt-yellow-light dark:bg-opacity-30']" class="pt-2 pb-4 px-4">
 
       <!-- Geolocation -->
       <div class="flex items-center justify-between pt-2 text-slate-700 dark:text-slate-300">
         <transition name="fadein">
           <div v-if="enableGeolocation && geolocationStatus === 'searching'" class="flex items-center space-x-2">
-            <spinIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark dark:text-nt-cyan-light' : 'text-nt-yellow-dark dark:text-nt-yellow-light']" class="h-6 w-6 animate-spin" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <spinIcon class="h-6 w-6 animate-spin text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation en cours...</span>
           </div>
           <div v-else-if="enableGeolocation && geolocationStatus === 'success'" class="flex items-center space-x-2">
             <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-            <span>Position GPS détectée</span>
+            <span>Position GPS détectée</span> <button v-if="positionChanged" @click="acceptNewGeolocation()" class="text-blue-500 dark:text-blue-400 underline ml-2">Recentrer</button>
           </div>
           <div v-else-if="enableGeolocation" class="flex items-center space-x-2">
-            <geolocationIcon :class="[viewType === 'spiral' ? 'text-nt-cyan-dark dark:text-nt-cyan-light' : 'text-nt-yellow-dark dark:text-nt-yellow-light']" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Géolocalisation activée</span>
           </div>
           <div v-else class="flex items-center space-x-2">
-            <geolocationIcon class="h-6 w-6 dark:text-slate-300" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
             <span>Activer la géolocalisation</span>
           </div>
         </transition>
@@ -255,10 +261,61 @@ const updateOnlineStatus = () => {
   }
 };
 
-// Instead, use dynamic import
 const initGeocoder = async () => {
   const { default: Geocoder } = await import('ol-geocoder');
   // Rest of your geocoder initialization code
+  if (!map.value) {
+    console.warn('Map not available, skipping geocoder setup');
+    return;
+  }
+  
+  geocoder.value = new Geocoder('nominatim', {
+    provider: 'photon',
+    lang: 'fr-FR',
+    placeholder: 'Rechercher un lieu',
+    targetType: 'text-input',
+    preventMarker: true,
+    limit: 3,
+    keepOpen: true
+  });
+  
+  geocoder.value.on('addresschosen', (evt) => {
+    tempLocation.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
+    const coordinates = evt.coordinate;
+    if (coordinates && view.value) {
+      view.value.setZoom(12);
+      tempLatitude.value = toLonLat(coordinates)[1];
+      tempLongitude.value = toLonLat(coordinates)[0];
+    }
+    
+    // Clear the geocoder input
+    const input = document.getElementById('gcd-input-query');
+    if (input) {
+      input.value = '';
+    }
+  });
+  
+  map.value.addControl(geocoder.value);
+  
+  // AUTOCOMPLETE
+  nextTick(() => {
+    const setupAutocomplete = () => {
+      const input = document.getElementById('gcd-input-query');
+      if (input && geocoder.value) {
+        const triggerAutocomplete = debounce(() => {
+          if (input.value.length >= 3) {
+            input.dispatchEvent(new KeyboardEvent('keypress', { keyCode: 13 }));
+          }
+        }, 700);
+        input.addEventListener('input', triggerAutocomplete, { bubbles: true, capture: true });
+      } else {
+        // If the input is not found, retry after a short delay
+        setTimeout(setupAutocomplete, 100);
+      }
+    };
+    
+    setupAutocomplete();
+  });
 };
 
 const save = () => {
@@ -267,7 +324,6 @@ const save = () => {
   emit('save');
 };
 
-// Add these new refs and computed properties
 const initialPosition = ref({
   lat: tempLatitude.value,
   lng: tempLongitude.value
@@ -557,6 +613,22 @@ const props = defineProps({
   }
 });
 
+// Add meta viewport control function
+const preventZoom = () => {
+  const viewport = document.querySelector('meta[name=viewport]');
+  if (viewport) {
+    viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0';
+    
+    // Reset viewport after input blur
+    const resetViewport = () => {
+      viewport.content = 'width=device-width, initial-scale=1.0';
+      document.removeEventListener('blur', resetViewport, true);
+    };
+    
+    document.addEventListener('blur', resetViewport, true);
+  }
+};
+
 </script>
 
 <style lang="scss">
@@ -637,5 +709,18 @@ const props = defineProps({
   /* Prevent text selection on controls */
   -webkit-user-select: none;
   user-select: none;
+}
+
+/* Add these styles to prevent unwanted zoom behavior */
+input[type="number"],
+input[type="text"] {
+  font-size: 16px; /* Prevents iOS zoom */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Prevent double-tap zoom */
+* {
+  touch-action: manipulation;
 }
 </style>
