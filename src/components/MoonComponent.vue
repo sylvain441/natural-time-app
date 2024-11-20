@@ -20,10 +20,14 @@
            bottom: `${spacing}px`
          }">
       <div v-for="day in daysOfMoon" 
-        class="day-of-moon w-1/7 h-1/4 aspect-square flex items-center justify-center rounded-full border-white border-4 cursor-pointer"
-        :class="day.dayClasses"
+        class="day-of-moon w-1/7 h-1/4 aspect-square flex items-center justify-center rounded-full border-white border-4"
+        :class="[
+          day.dayClasses,
+          {'show-animation': spiralSkin.showAnimation},
+          {'cursor-pointer': !spiralWelcomeMode}
+        ]"
         :title="isClient ? 'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString() : ''"
-        @click="openTimeTravelForDay(day.date)">
+        @click="!spiralWelcomeMode && openTimeTravelForDay(day.date)">
         <span v-if="spiralSkin.showDaysNumber" class="day-of-moon-number font-mono font-bold">{{day.date.toDayOfMoonString()}}</span>
       </div>
     </div>
@@ -53,7 +57,7 @@ import { NaturalDate } from 'natural-time-js';
 import { useConfigStore } from '@/stores/configStore';
 import { storeToRefs } from 'pinia';
 const configStore = useConfigStore();
-const { spiralSkin } = storeToRefs(configStore);
+const { spiralSkin, spiralWelcomeMode } = storeToRefs(configStore);
 
 const props = defineProps({
   today: {
@@ -119,12 +123,12 @@ const pastMoon = computed(() => {
 <style lang="scss">
 .moon-component {
 
-  .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white }
+  .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white/40 }
   
   &.past-moon {
-    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-gray-100 }
+    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-gray-50 }
     .day-of-moon.isPast:not(:hover):not(.isRainbowDay) {
-      @apply bg-gray-100 text-gray-500 border-opacity-0;
+      @apply bg-white/90 text-gray-500 border-opacity-0;
     }
   }
   .day-of-moon {
@@ -150,56 +154,59 @@ const pastMoon = computed(() => {
       @apply border-opacity-100 bg-opacity-100 text-white;
     }
     &.isFuture:not(:hover) {
-      @apply bg-opacity-0 text-gray-300;
+      @apply bg-opacity-0 text-gray-400;
     }
-    &:hover {
-      @apply border-opacity-100 text-opacity-100 cursor-pointer;
+    &:hover:not(.spiralWelcomeMode) {
+      @apply border-opacity-100 text-opacity-100;
     }
     &.isRainbowDay {
-      @apply border-opacity-50 scale-75 animate-ping;
-      &:nth-child(11n+1){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+2){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+3){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+4){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+5){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+6){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+7){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+8){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+9){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+10){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
-      }
-      &:nth-child(11n+11){ 
-        animation-delay: calc(random() * 9000ms); 
-        animation-duration: calc(10000ms + random() * 6000ms);
+      @apply border-opacity-50 scale-75;
+      &.show-animation {
+        @apply animate-ping;
+        &:nth-child(11n+1){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+2){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+3){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+4){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+5){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+6){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+7){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+8){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+9){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+10){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
+        &:nth-child(11n+11){ 
+          animation-delay: calc(random() * 9000ms); 
+          animation-duration: calc(10000ms + random() * 6000ms);
+        }
       }
     }
   }
@@ -219,7 +226,6 @@ const pastMoon = computed(() => {
     font-weight: 800;
     pointer-events: none;
     z-index: 50;
-    animation: tooltip-fade 0.3s ease-out;
     white-space: nowrap;
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.3);
   }
@@ -232,17 +238,6 @@ const pastMoon = computed(() => {
       opacity: 1;
     }
   }
-
-  @keyframes tooltip-fade {
-    from {
-      opacity: 0;
-      transform: translate(-50%, 10px);
-    }
-    to {
-      opacity: 1; 
-      transform: translate(-50%, 0);
-    }
-  }
 }
 
 .spinner {
@@ -251,7 +246,6 @@ const pastMoon = computed(() => {
   height: calc(var(--base-size) * 0.25);
   border-radius: 50%;
   background: conic-gradient(rgba(var(--color-1), 0.9), rgba(var(--color-2), 0.9), rgba(var(--color-3), 0.9), rgba(var(--color-4), 0.9), rgba(var(--color-5), 0.9), rgba(var(--color-6), 0.9), rgba(var(--color-1), 0.9));
-  transition: all 0.8s ease-in-out;
   &::before {
     content: "";
     background-color: white;
@@ -264,13 +258,16 @@ const pastMoon = computed(() => {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  &:not(.is-active,:hover){
+  &:not(.is-active):not(:hover) {
     width: calc(var(--base-size) * 0.20);  // 20% of base size
     height: calc(var(--base-size) * 0.20);
     &::before {
       width: 60%;
       height: 60%;
     }
+  }
+  &.is-active, &:hover {
+    transition: all 0.8s ease-in-out;
   }
 }
 </style>

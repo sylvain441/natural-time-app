@@ -21,7 +21,6 @@ export const useContextStore = defineStore('context', () => {
 
   const geolocationNotificationDismissedAt = ref(null);
 
-
   // Getters
   const latitude = computed(() => tempLatitude.value || storedLatitude.value || 42.42)
   const longitude = computed(() => tempLongitude.value || storedLongitude.value || 0)
@@ -190,7 +189,7 @@ export const useContextStore = defineStore('context', () => {
       'storedLongitude', 
       'storedLocation', 
       'enableGeolocation', 
-      'geolocationNotificationDismissedAt'
+      'geolocationNotificationDismissedAt',
     ]
   }
 })

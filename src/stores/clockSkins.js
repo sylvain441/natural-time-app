@@ -34,9 +34,11 @@ export const clockSkins = {
       
       dayNightRing: 'opacity-100',
     },
-    hideClockGraduations: {
+    simplifiedMode: {
       dotsDisplay: false,
       numbersDisplay: false,
+      mustachesDisplay: false,
+      ntzDisplay: false,
     },
     welcome: {
       context: {
@@ -302,7 +304,7 @@ export const clockSkins = {
         numbersDisplay: false,
         moonDisplay: false,
         ntzDisplay: false,
-        sunDisplay: true,
+        sunDisplay: false,
         dayNightRingDisplay: true,
         mustachesEquinox: 'text-nt-yellow-dark',
         mustachesWinterSunrise: 'text-slate-400',
@@ -312,25 +314,21 @@ export const clockSkins = {
       },
       {
         context: {
-          currentTime: new Date(1332331200000),
+          currentTime: new Date(1332331200000 + 1000 * 4 * 60 * 42),
           latitude: 42.42,
           longitude: 0,
         },
         titleText: 'On ne dit plus "Quelle heure est-il ?"',
         descriptionText: 'Mais plutôt : "Où est le soleil dans le ciel ?"',
         animationSpeed: 2,
-        handDisplay: false,
-        dotsDisplay: true,
+        handDisplay: true,
+        dotsDisplay: false,
         numbersDisplay: false,
         moonDisplay: false,
         ntzDisplay: false,
         sunDisplay: false,
         dayNightRingDisplay: true,
-        mustachesEquinox: 'text-nt-yellow-dark',
-        mustachesWinterSunrise: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
-        mustachesSummerSunset: 'text-slate-400',
-        mustachesWinterSunset: 'text-slate-400',
+        mustachesDisplay: false,
       },
       {
         context: {
@@ -348,11 +346,7 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        mustachesEquinox: 'text-nt-yellow-dark',
-        mustachesWinterSunrise: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
-        mustachesSummerSunset: 'text-slate-400',
-        mustachesWinterSunset: 'text-slate-400',
+        mustachesDisplay: false,
       },
       {
         context: {
@@ -360,7 +354,7 @@ export const clockSkins = {
           latitude: 42.42,
           longitude: 0,
         },
-        titleText: 'Les nombres du cadran ne sont pas essentiels...',
+        titleText: 'Mais... les nombres ne sont pas essentiels',
         descriptionText: "L'horloge naturelle est avant tout une expérience visuelle",
         animationSpeed: 2,
         mustachesDisplay: true,
@@ -371,6 +365,7 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
+        mustachesDisplay: false,
       },
       {
         context: {

@@ -121,12 +121,23 @@
 
 			<!-- TITLE  -->
 			<Transition name="fade">
-				<div v-if="clockSkin.titleDisplay" 
+				<div v-if="!clockSimplifiedMode" 
 					 class="clock-title nt-box-outer text-center font-bold" 
 					 :style="{ fontSize: `${BASESIZE * 0.03}px` }"
 					 :class="clockSkin.title">
 					<div class="nt-box-inner">
 						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">Temps Naturel</h1>
+					</div>
+				</div>
+				<div v-else
+					 class="clock-title nt-box-outer text-center" 
+					 :style="{ fontSize: `${BASESIZE * 0.025}px` }"
+					 :class="clockSkin.title">
+					<div class="nt-box-inner text-sm">
+						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">
+							<span class="font-bold">{{ location }}</span><br>
+							<span class="font-normal">{{ context.naturalDate.toTimeString(0) }}&nbsp;{{ context.naturalDate.toLongitudeString(0) }}</span>
+						</h1>
 					</div>
 				</div>
 			</Transition>
@@ -216,6 +227,7 @@ import HandSVG from '@/assets/clock/hand-default.svg';
 import HandNtzSVG from '@/assets/clock/hand-ntz-default.svg';
 import MustacheEquinoxSVG from '@/assets/clock/mustache-equinox-default.svg';
 import MustacheSVG from '@/assets/clock/mustache-default.svg';
+import { useContextStore } from '@/stores/contextStore';
 
 // Props
 const props = defineProps({
@@ -227,7 +239,9 @@ const props = defineProps({
 
 // Store
 const configStore = useConfigStore();
-const { clockSkin } = storeToRefs(configStore);
+const { clockSkin, clockSimplifiedMode } = storeToRefs(configStore);
+const contextStore = useContextStore();
+const { location } = storeToRefs(contextStore);
 
 // Refs
 const clockWrapper = ref(null);
@@ -334,7 +348,7 @@ onUnmounted(() => {
 .scale-with-delay-enter-from,
 .scale-with-delay-leave-to {
 	opacity: 0;
-	transform: scale(0.5);
+	transform: scale(0.7);
 }
 
 .scale-with-delay-enter-to,

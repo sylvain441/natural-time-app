@@ -5,15 +5,12 @@ import { spiralSkins } from './spiralSkins.js';
 
 export const AVAILABLE_PANELS = {
   locationPicker: 'locationPicker',
-  clockSettings: 'clockSettings',
   faq: 'faq',
-  spiralSettings: 'spiralSettings'
 }
 
 export const useConfigStore = defineStore('appConfig', () => {
   
-  const askForGeolocation = ref(false);
-
+  // CLOCK
   const clockWelcomeMode = ref(true);
   const clockTutorialMode = ref(false);
   const clockTimeTravelMode = ref(false);
@@ -23,18 +20,14 @@ export const useConfigStore = defineStore('appConfig', () => {
   
 	const clockActivePanel = ref(null);
 
-  const clockShowGraduations = ref(true);
-  const clockShowAnimations = ref(false);
-  const clockShowTitle = ref(true);
+  const clockSimplifiedMode = ref(false);
 
   const clockSkin = computed(() => ({
 		// Default clockSkin
     ...clockSkins.full.default,
-    // Remove graduations
-    ...((!clockWelcomeMode.value && clockShowGraduations.value === false) && clockSkins.full.hideClockGraduations),
-    // Reduce animations
-    ...((!clockWelcomeMode.value && clockShowAnimations.value === true) && clockSkins.full.showClockAnimations),
-		// Welcome clockSkin
+    // Remove graduations and animations in simplified mode
+    ...(!clockWelcomeMode.value && clockSimplifiedMode.value && clockSkins.full.simplifiedMode),
+    // Welcome clockSkin
     ...(!clockActivePanel.value && clockWelcomeMode.value ? clockSkins.full.welcome : {}),
     // Tutorial clockSkin
     ...(clockTutorialMode.value ? clockSkins.full.tutorial[clockTutorialCurrentStep.value] : {}),
@@ -57,7 +50,7 @@ export const useConfigStore = defineStore('appConfig', () => {
   const spiralTutorialStepsTotal = computed(() => Object.keys(spiralSkins.full.tutorial).length - 1);
   const spiralTutorialCurrentStep = ref(0);
   
-	const spiralActivePanel = ref(null); // Can be 'locationPicker', 'spiralSettings', or 'faq'
+	const spiralActivePanel = ref(null); // Can be 'locationPicker', or 'faq'
 
   const spiralShowTitle = ref(true);
 
@@ -86,16 +79,13 @@ export const useConfigStore = defineStore('appConfig', () => {
 
   return {
     AVAILABLE_PANELS,
-    askForGeolocation,
     clockWelcomeMode,
     clockTutorialMode,
     clockTimeTravelMode,
     clockTutorialStepsTotal,
     clockTutorialCurrentStep,
     clockActivePanel,
-    clockShowGraduations,
-    clockShowAnimations,
-    clockShowTitle,
+    clockSimplifiedMode,
     spiralWelcomeMode,
     spiralTutorialMode,
     spiralTimeTravelMode,

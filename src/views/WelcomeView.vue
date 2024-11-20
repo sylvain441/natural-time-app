@@ -14,11 +14,11 @@
       <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-2 md:p-6 text-slate-800 dark:text-slate-100">
         <p class="md:text-center text-lg md:text-2xl max-w-3xl mx-auto py-2 px-6 md:px-0 md:pt-4 md:pb-12">
           Le Temps Naturel réinvente notre façon de mesurer le temps.<br/>
-          Avec <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-yellow-light cursor-pointer font-title" @click="scrollToNaturalClock">l'horloge de 360°</span> et <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-cyan-light cursor-pointer font-title" @click="scrollToThirteenMoons">la spirale de 13 lunes</span>,<br class="hidden md:block">
+          Avec <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-yellow-light cursor-pointer font-title" @click="router.push({ name: 'time' })">l'horloge de 360°</span> et <span class="font-medium underline decoration-3 md:decoration-5 decoration-nt-cyan-light cursor-pointer font-title" @click="router.push({ name: '13moons' })">la spirale de 13 lunes</span>,<br class="hidden md:block">
           le soleil retrouve sa place comme référence universelle<br class="hidden md:block">
           du temps qui passe...
         </p>
-      </section>@
+      </section>
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">

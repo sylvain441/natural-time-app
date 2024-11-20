@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2376,-1297)">
+        <g id="simple-clock-icon" transform="matrix(0.0166431,0,0,0.0166667,2330.83,1297)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <g id="BACKUP" transform="matrix(0.9643,0,0,0.9643,119.407,4.48094)">
+                <g transform="matrix(60.0851,0,0,60,-164263,-74581.9)">
+                    <path d="M2791,1255.03L2785.68,1243.86" style="fill:none;stroke:black;stroke-width:1.5px;"/>
+                </g>
+                <g transform="matrix(3.25545,0,0,3.25084,-313.842,-527.86)">
+                    <circle cx="1151.58" cy="383.858" r="34.194"/>
+                    <path d="M1151.58,349.664C1170.45,349.664 1185.77,364.986 1185.77,383.858C1185.77,402.73 1170.45,418.052 1151.58,418.052C1132.7,418.052 1117.38,402.73 1117.38,383.858C1117.38,364.986 1132.7,349.664 1151.58,349.664ZM1151.58,382.998C1151.1,382.998 1150.71,383.383 1150.71,383.858C1150.71,384.333 1151.1,384.719 1151.58,384.719C1152.05,384.719 1152.43,384.333 1152.43,383.858C1152.43,383.383 1152.05,382.998 1151.58,382.998Z" style="fill:rgb(35,31,32);"/>
+                </g>
+                <g transform="matrix(0.906308,0.42202,0.423218,-0.906308,-264.119,432.822)">
+                    <g transform="matrix(126.586,0,0,126.407,-348706,-159274)">
+                        <circle cx="2781.62" cy="1270.3" r="0.343"/>
+                    </g>
+                    <g transform="matrix(126.586,0,0,126.407,-348577,-159274)">
+                        <circle cx="2781.62" cy="1270.3" r="0.343"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

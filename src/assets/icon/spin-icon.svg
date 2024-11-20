@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-2352,-1035)">
-        <g id="spin-icon" transform="matrix(0.0166431,0,0,0.0166667,2306.83,1035)">
+    <g transform="matrix(1,0,0,1,-2352,-987)">
+        <g id="spin-icon" transform="matrix(0.0166431,0,0,0.0166667,2306.83,987)">
             <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
             <g transform="matrix(51.8159,0,0,51.7425,-141183,-53457.3)">
                 <path d="M2788.29,1036.61L2788.97,1039.22C2785.4,1040.15 2782.91,1043.37 2782.91,1047.06C2782.91,1051.52 2786.53,1055.15 2791,1055.15C2795.47,1055.15 2799.1,1051.52 2799.1,1047.06C2799.1,1044.91 2798.24,1042.85 2796.72,1041.33L2798.63,1039.42C2800.66,1041.45 2801.79,1044.19 2801.79,1047.06C2801.79,1053.01 2796.96,1057.85 2791,1057.85C2785.04,1057.85 2780.21,1053.01 2780.21,1047.06C2780.21,1042.14 2783.53,1037.84 2788.29,1036.61Z"/>

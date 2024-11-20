@@ -7,12 +7,9 @@ export const spiralSkins = {
     default: {
       animationSpeed: 0.4,
       showDaysNumber: true,
-      showTitle: true,
       showDisplay: true,
       singleMoonView: false,
-    },
-    hideTitle: {
-      showTitle: false,
+      showAnimation: true,
     },
     welcome: {
       context: {
@@ -25,6 +22,7 @@ export const spiralSkins = {
       showDaysNumber: false,
       showDisplay: false,
       singleMoonView: false,
+      showAnimation: false,
     },
     tutorial: [
       {
@@ -41,7 +39,7 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(1325160000000),
+          currentTime: new Date(1325160000000 + 28 * 86400000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -54,7 +52,7 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(1325160000000 + 86400000),
+          currentTime: new Date(1325160000000 + 86400000 * 29),
           latitude: 42.42,
           longitude: 0,
         },
@@ -67,7 +65,7 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(1325160000000 + 86400000 * 7),
+          currentTime: new Date(1325160000000 + 86400000 * 35),
           latitude: 42.42,
           longitude: 0,
         },
@@ -80,7 +78,7 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(1325764800000),
+          currentTime: new Date(1325764800000 + 28 * 86400000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -135,6 +133,7 @@ export const spiralSkins = {
         titleText: "Il s'appelle le jour arc-en-ciel 🌈",
         descriptionText: "Un jour de célébration qui a lieu lors du solstice d'hiver de l'hémisphère nord",
         animationSpeed: 0.4,
+        showAnimation: true,
         showDaysNumber: false,
         showDisplay: true, // Keep it
       },
@@ -147,6 +146,7 @@ export const spiralSkins = {
         titleText: "Certaines années ont 366 jours au lieu de 365",
         descriptionText: "C'est l'occasion de fêter deux jours consécutifs de vie en dehors du temps",
         animationSpeed: 0.4,
+        showAnimation: true,
         showDaysNumber: false,
         showDisplay: true, // Keep it
       },

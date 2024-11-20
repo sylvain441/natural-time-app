@@ -620,22 +620,6 @@ const props = defineProps({
   }
 });
 
-// Add meta viewport control function
-/*const preventZoom = () => {
-  const viewport = document.querySelector('meta[name=viewport]');
-  if (viewport) {
-    viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0';
-    
-    // Reset viewport after input blur
-    const resetViewport = () => {
-      viewport.content = 'width=device-width, initial-scale=1.0';
-      document.removeEventListener('blur', resetViewport, true);
-    };
-    
-    document.addEventListener('blur', resetViewport, true);
-  }*/
-
-
 </script>
 
 <style lang="scss">

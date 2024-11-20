@@ -2,14 +2,14 @@
   <div id="moons-view" 
        :class="[
          'flex flex-row bg-[#F2FFFF] dark:bg-slate-300 bg-[url(@/assets/debut-light.png)]',
-         spiralVerticalMode ? 'min-h-screen overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden fixed w-full h-full'
+         spiralVerticalMode ? 'min-h-dvh overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden relative'
        ]" 
        @touchmove="handleTouchMove">
     
     <div :class="[
       'relative transition-all duration-300 ease-in-out ', 
       spiralActivePanel ? 'hidden md:block md:w-1/2 xl:w-2/3' : 'w-full',
-      spiralVerticalMode ? 'h-auto' : 'h-full'
+      spiralVerticalMode ? 'h-auto' : 'h-dvh'
     ]">
       
       <!-- MAIN MENU -->  
@@ -18,18 +18,17 @@
       <div 
         class="z-10 w-full transition-all duration-300 ease-in-out"
         :class="[
-          !spiralVerticalMode ? 'fixed h-full inset-0 px-3' : 'relative', 
-          !spiralActivePanel && !spiralVerticalMode ? 'md:px-[14%] md:pt-10' : !spiralVerticalMode ? 'md:px-[3%]' : '', 
+          !spiralVerticalMode ? 'h-full px-3 pt-12 pb-48' : 'relative', 
+          !spiralActivePanel && !spiralVerticalMode ? 'md:px-[14%] md:pt-10' : !spiralVerticalMode ? 'md:px-[5%]' : '', 
           spiralTimeTravelMode || spiralTutorialMode ? 'md:border-8 md:border-nt-cyan-light' : '', 
-          (spiralShowTitle ? 'pb-40' : 'pb-10'), 
-          (spiralTutorialMode ? 'pb-48' : ''), 
+          (spiralTutorialMode ? 'pb-56' : ''), 
           (spiralTimeTravelMode ? 'pb-36' : ''), 
           spiralVerticalMode ? 'px-0 pb-0 pt-0' : '']">
         
         <!-- MOONS COMPONENT -->
         <div ref="yearWrapper" 
              :class="[
-               'w-full flex items-center justify-center drop-shadow-2xl relative',
+               'w-full flex items-center justify-center relative', !spiralSkin.singleMoonView ? 'drop-shadow-2xl' : '',
                spiralVerticalMode ? 'h-auto max-w-md mx-auto' : 'h-full'
              ]">
           
@@ -62,7 +61,10 @@
               :display-date="displayDate"
               :context="context"
               :container-size="containerSize"
-              :style="{ order: displayOrder, margin: spiralVerticalMode ? '0' : `0 ${containerSize/2}px` }"
+              :style="{ 
+                margin: spiralVerticalMode ? '0' : `0 ${containerSize/2}px`,
+                cursor: spiralWelcomeMode ? 'default' : 'pointer' 
+              }"
             />
             
             <!-- All 13 Moons -->
@@ -81,7 +83,7 @@
         <!-- FOOTER -->
         <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-8 w-full">
           <Transition name="fade">
-            <div v-if="!spiralTimeTravelMode && spiralShowTitle">
+            <div v-if="!spiralTimeTravelMode">
               <!-- TITLE -->
               <h1 
                 @click="openPanel(AVAILABLE_PANELS.locationPicker)"
@@ -97,7 +99,7 @@
                   {{ spiralSkin.titleText }}
                 </span>
                 <span v-else class="px-3 py-1 bg-nt-cyan-lighter">
-                  {{  "Spirale des 13 lunes" }}
+                  {{  "Temps Naturel" }}
                 </span>
               </h1>
               
@@ -119,38 +121,40 @@
           
           <!-- TIME TRAVEL CONTROL PANEL -->
           <Transition name="fade">
-            <div v-if="spiralTimeTravelMode" class="fixed bottom-4 left-1/2 -translate-x-1/2">
-              <div class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
+            <div v-if="spiralTimeTravelMode" class="fixed bottom-4 left-1/2 -translate-x-1/2 p-4">
+              <div class="bg-nt-cyan-light max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
                 <div class="flex items-center justify-center space-x-2">
-                  <arrowsIcon 
+                  <!-- Minus button -->
+                  <button 
                     @click.stop.prevent="decrementTime" 
                     v-longclick="decrementTime" 
-                    fill="currentColor"
-                    class="w-8 h-8 rotate-180 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
-                  />
+                    class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
+                  >
+                    <minusIcon class="w-4 h-4" fill="currentColor" />
+                  </button>
 
                   <div class="flex flex-col items-center justify-center space-y-2">
                     <select 
                       id="speed-selector"
                       v-model="selectedSpeed"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                      class="bg-white border-none text-black text-sm rounded-lg focus:ring-nt-cyan-light focus:border-nt-cyan-light block w-full p-2.5 text-center">
                       <option value="" disabled>Vitesse de voyage</option>
-                      <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
+                      <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index" class="text-center">
                         {{ speed.label }}
                       </option>
                     </select>
                   </div>
 
-                  <arrowsIcon 
+                  <!-- Plus button -->
+                  <button 
                     @click.stop.prevent="incrementTime" 
                     v-longclick="incrementTime" 
-                    fill="currentColor"
-                    class="w-8 h-8 p-1 bg-nt-cyan-lighter rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
-                  />
+                    class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-cyan-light cursor-pointer select-none"
+                  >
+                    <plusIcon class="w-4 h-4" fill="currentColor" />
+                  </button>
                 </div>
               </div>
-
-              <h3 class="text-center text-nt-cyan-darkest mt-2 font-bold">Voyage temporel</h3>
             </div>
           </Transition>
           
@@ -213,8 +217,6 @@
       <div class="overflow-hidden h-full">
         <!-- LOCATION PICKER -->
         <LocationPicker viewType="spiral" v-if="spiralActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { spiralActivePanel = null; spiralWelcomeMode = false; }" />
-        <!-- SPIRAL SETTINGS -->
-        <SpiralSettings v-if="spiralActivePanel === AVAILABLE_PANELS.spiralSettings" />
         <!-- FAQ -->
         <div class="py-6 px-4 h-full overflow-auto">
           <FAQAccordion v-if="spiralActivePanel === AVAILABLE_PANELS.faq" :categories="[3]" />
@@ -234,7 +236,7 @@
           class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-100"
           :title="spiralVerticalMode ? 'Afficher en spiral' : 'Afficher en vertical'">
           <component 
-            :is="spiralVerticalMode ? thirteenMoonIcon : oneMoonIcon" 
+            :is="spiralVerticalMode ? thirteenMoonIcon : verticalSpiralIcon" 
             class="w-6 h-6"
           />
           <span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-nt-cyan-lighter text-black text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
@@ -242,7 +244,7 @@
           </span>
         </button>
 
-        <!-- Settings button -->
+        <!-- Menu button -->
         <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-lighter text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-light">
           <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
             <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
@@ -257,7 +259,7 @@
 
       <!-- Menu Dropdown -->
       <div v-if="isMenuOpen"
-        class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+        class="absolute right-0 mt-12 pb-2 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
         <!-- SETTINGS -->
         <div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Paramètres</div>
         <!-- Location Picker -->
@@ -373,7 +375,6 @@ import { useConfigStore, AVAILABLE_PANELS } from '@/stores/configStore'
 import Moon from '@/components/MoonComponent.vue';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import MainMenu from '@/components/MainMenu.vue';
-import SpiralSettings from '@/components/SpiralSettings.vue';
 import DisplayComponent from '@/components/DisplayComponent.vue';
 
 // Lazy loaded components
@@ -381,21 +382,22 @@ const LocationPicker = defineAsyncComponent(() => import('@/components/LocationP
 
 // Icon imports
 import mapIcon from '@/assets/icon/map-icon.svg';
-import brushIcon from '@/assets/icon/brush-icon.svg';
 import faqIcon from '@/assets/icon/faq-icon.svg';
 import learnIcon from '@/assets/icon/learn-icon.svg';
 import arrowsIcon from '@/assets/icon/arrows-icon.svg';
 import closeIcon from '@/assets/icon/close-icon.svg';
 import timeTravelIcon from '@/assets/icon/time-travel-icon.svg';
-import oneMoonIcon from '@/assets/icon/1-moon-icon.svg';
+import verticalSpiralIcon from '@/assets/icon/vertical-spiral-icon.svg';
 import thirteenMoonIcon from '@/assets/icon/13-moon-icon.svg';
+import plusIcon from '@/assets/icon/plus-icon.svg';
+import minusIcon from '@/assets/icon/minus-icon.svg';
 
 // Store setup
 const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralShowTitle, spiralVerticalMode } = storeToRefs(configStore);
+const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralVerticalMode } = storeToRefs(configStore);
 
 // SEO Meta tags
 const metaTitle = "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien";
@@ -422,9 +424,9 @@ const containerSize = ref(333);
 
 // Time travel setup
 const travelSpeeds = [
-  { value: 1000 * 60 * 60 * 24, label: '+/- 1 jour'},
-  { value: 1000 * 60 * 60 * 24 * 7, label: '+/- 1 semaine'},
-  { value: 1000 * 60 * 60 * 24 * 28, label: '+/- 1 lune'},
+  { value: 1000 * 60 * 60 * 24, label: '1 jour'},
+  { value: 1000 * 60 * 60 * 24 * 7, label: '1 semaine'},
+  { value: 1000 * 60 * 60 * 24 * 28, label: '1 lune'},
 ];
 const selectedSpeed = ref(0);
 const timeDelta = ref(0);
@@ -535,6 +537,13 @@ onMounted(() => {
   if (yearWrapper.value) {
     resizeObserver.observe(yearWrapper.value);
   }
+
+  // Add scroll to current moon if starting in vertical mode
+  if (spiralVerticalMode.value) {
+    nextTick(() => {
+      scrollToCurrentMoon();
+    });
+  }
 });
 
 onUnmounted(() => {
@@ -555,24 +564,28 @@ const openTimeTravelAtDate = (date) => {
 
 const displayDate = computed(() => context.value.naturalDate);
 
-const toggleVerticalMode = async () => {
-  spiralVerticalMode.value = !spiralVerticalMode.value;
-  // Wait for DOM update before recalculating scale
-  await nextTick();
-  updateScale();
-
-  // Add scroll to current moon when switching to vertical mode
+const scrollToCurrentMoon = () => {
   if (spiralVerticalMode.value) {
-    await nextTick(); // Wait for DOM to update with vertical layout
-    const currentMoonElement = document.getElementById(`moon-${today.value.moon}`);
-    if (currentMoonElement) {
-      setTimeout(() => {
+    setTimeout(() => {
+      const currentMoonElement = document.getElementById(`moon-${today.value.moon}`);
+      if (currentMoonElement) {
         currentMoonElement.scrollIntoView({ 
           behavior: 'smooth',
           block: 'center'
         });
-      }, 555);
-    }
+      }
+    }, 555); // 555ms timeout
+  }
+};
+
+const toggleVerticalMode = async () => {
+  spiralVerticalMode.value = !spiralVerticalMode.value;
+  await nextTick();
+  updateScale();
+
+  if (spiralVerticalMode.value) {
+    await nextTick(); // Wait for DOM to update with vertical layout
+    scrollToCurrentMoon();
   }
 };
 
@@ -580,12 +593,6 @@ const toggleVerticalMode = async () => {
 watch([spiralTutorialCurrentStep], async () => {
   await nextTick();
   updateScale();
-});
-
-// Add this computed property
-const displayOrder = computed(() => {
-  if (!spiralVerticalMode.value) return 100;
-  return today.value.moon * 10 + 5; 
 });
 
 // Add this method to handle touch events
@@ -702,13 +709,6 @@ const handleTouchMove = (event) => {
     #moon-13 { order: 130; }
     #moon-14 { order: 140; background-color: transparent; &::after { display: none; } }
 
-    #display {
-      order: 140;
-      @apply w-full pt-8 pb-36 -translate-y-6;
-      .digit { @apply text-3xl; }
-      .label { @apply text-xl; }
-    }
-
     .moon-left, .moon-right, .moon-top, .moon-bottom {
       @apply hidden !important;
     }
@@ -735,8 +735,7 @@ const handleTouchMove = (event) => {
       transition: all 0.3s ease-in-out;
 
       // Hover effect to emphasize curve
-      &:hover {
-        transform: scale(1.02) translateX(0);
+      &:not(#moon-14):hover {
         @apply shadow-lg;
       }
 
@@ -747,6 +746,9 @@ const handleTouchMove = (event) => {
       .day-of-moon:not(.isToday) .day-of-moon-number {
         @apply text-gray-500;
       }
+      .day-of-moon.isFuture {
+        @apply opacity-50;
+      }
       &:not(#moon-14)::after {
         opacity: 1;
       }
@@ -754,12 +756,14 @@ const handleTouchMove = (event) => {
 
     // Adjust display component position
     #display {
-      order: 140;
-      @apply w-full pt-8 pb-36;
+      order: 150;
+      @apply w-full pt-8 pb-48 -translate-y-6;
       transform: translateX(0) !important; // Ensure display stays centered
+      .digit { @apply text-3xl; }
+      .label { @apply text-xl; }
+      .absolute { @apply top-[0%]; }
     }
 
-    // Rest of existing vertical mode styles...
   }
 }
 

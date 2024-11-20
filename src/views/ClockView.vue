@@ -14,15 +14,16 @@
 
 				<!-- CLOCK COMPONENT -->
 				<ClockComponent class="absolute w-full h-full min-w-72"
-					:class="(clockWelcomeMode && !clockActivePanel) || clockTutorialMode || clockTimeTravelMode ? '-translate-y-8 md:-translate-y-14' : clockShowTitle ? '-translate-y-4 md:-translate-y-6' : '-translate-y-0 md:-translate-y-0'"
+					:class="(clockWelcomeMode && !clockActivePanel) || clockTutorialMode || clockTimeTravelMode ? '-translate-y-8 md:-translate-y-14' : !clockSimplifiedMode ? '-translate-y-4 md:-translate-y-8' : '-translate-y-0 md:-translate-y-0'"
 					:context="context">
 				</ClockComponent>
 
 				<!-- FOOTER -->
-				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
+				<footer v-if="!clockSimplifiedMode || clockTimeTravelMode || clockTutorialMode || clockWelcomeMode" 
+					class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
 
 					<!-- TITLE -->
-					<div v-if="!clockTimeTravelMode && clockShowTitle">
+					<div v-if="!clockTimeTravelMode">
 						<h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
 							class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
 							title="Modifier l'emplacement">
@@ -32,7 +33,7 @@
 								Choisir un emplacement
 							</div>
 							<div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
-								{{ location || "Horloge du Temps Naturel" }}
+								{{ location || "Temps Naturel" }}
 								<span v-if="latitude && longitude" class="font-normal">
 									| {{ context.naturalDate.toLongitudeString(0) }}
 								</span>
@@ -67,41 +68,51 @@
 
 					<!-- TIME TRAVEL CONTROL PANEL -->
 					<div v-if="clockTimeTravelMode">
-						
-						<div class="bg-white max-w-md mx-auto font-extrabold p-4 rounded-lg shadow-lg relative">
-							<div class="flex items-center justify-center space-x-4 mb-2">
-								<arrowsIcon @click.stop.prevent="decrementTime" v-longclick="decrementTime"
-									fill="currentColor"
-									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer rotate-180" />
+						<div class="bg-white/80 w-fit mx-auto mb-2 py-1 px-4 rounded-lg shadow-lg">
+							<p class="text-center font-mono text-xs">
+								<span class=" text-slate-500">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>&nbsp;
+								<span class="font-extrabold text-xl">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>&nbsp;
+								<span class="">UTC{{ new Date(context.naturalDate.unixTime).getTimezoneOffset() > 0 ? '-' : '+' }}{{ Math.abs(new Date(context.naturalDate.unixTime).getTimezoneOffset() / 60) }}</span>&nbsp;&nbsp;
+							</p>
+							<p class="text-center text-nt-yellow-darkest font-mono text-xs">
+								<span class="">{{ context.naturalDate.toDateString() }}</span>&nbsp;
+								<span class="font-extrabold text-xl">{{ context.naturalDate.toTimeString(0) }}</span>&nbsp;
+								<span class="">{{ context.naturalDate.toLongitudeString(0) }}</span>&nbsp;&nbsp;
+							</p>
+						</div>
+
+						<div class="bg-nt-yellow-light max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
+							<div class="flex items-center justify-center space-x-4">
+								<button 
+									@click.stop.prevent="decrementTime" 
+									v-longclick="decrementTime" 
+									class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-yellow-lighter cursor-pointer select-none"
+								>
+									<minusIcon class="w-4 h-4" fill="currentColor" />
+								</button>
 
 								<div class="flex flex-col items-center justify-center space-y-2">
-									<select id="speed-selector" v-model="selectedSpeed"
-										class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+									<select 
+										id="speed-selector" 
+										v-model="selectedSpeed"
+										class="bg-white border-none text-black text-sm rounded-lg focus:ring-nt-yellow-light focus:border-nt-yellow-light block w-full p-2.5 text-center"
+									>
 										<option value="" disabled>Vitesse de voyage</option>
-										<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index">
+										<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index" class="text-center">
 											{{ speed.label }} {{ speed.equivalentTo ? `(${speed.equivalentTo})` : '' }}
 										</option>
 									</select>
 								</div>
 
-								<arrowsIcon @click.stop.prevent="incrementTime" v-longclick="incrementTime"
-									fill="currentColor"
-									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer" />
-							</div>
-
-							<div class="text-center flex flex-row items-center justify-evenly space-x-2 font-mono text-sm">
-								<span class="font-extrabold text-xl">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>
-								<span class="text-xs text-slate-500">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
-								<span class="text-xs">UTC{{ new Date(context.naturalDate.unixTime).getTimezoneOffset() > 0 ? '-' : '+' }}{{ Math.abs(new Date(context.naturalDate.unixTime).getTimezoneOffset() / 60) }}</span>
-							</div>
-							<div class="text-center text-nt-yellow-darkest flex flex-row items-center justify-evenly space-x-2 font-mono text-sm">
-								<span class="font-extrabold text-xl">{{ context.naturalDate.toTimeString(0) }}</span>
-								<span class="text-xs">{{ context.naturalDate.toDateString() }}</span>
-								<span class="text-xs">{{ context.naturalDate.toLongitudeString(0) }}</span>
+								<button 
+									@click.stop.prevent="incrementTime" 
+									v-longclick="incrementTime" 
+									class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-yellow-lighter cursor-pointer select-none"
+								>
+									<plusIcon class="w-4 h-4" fill="currentColor" />
+								</button>
 							</div>
 						</div>
-						<!-- Add title -->
-						<h3 class="text-center text-nt-yellow-dark mt-2 font-bold">Voyage temporel</h3>
 					</div>
 
 					<!-- TUTORIAL CONTROL PANEL -->
@@ -167,8 +178,6 @@
 					<!-- LOCATION PICKER -->
 					<LocationPicker viewType="clock" v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker"
 						@save="() => { clockActivePanel = null; clockWelcomeMode = false; }" />
-					<!-- CLOCK SETTINGS -->
-					<ClockSettings v-if="clockActivePanel === AVAILABLE_PANELS.clockSettings" />
 					<!-- FAQ -->
 					<div class="py-6 px-4 h-full overflow-auto">
 						<FAQAccordion v-if="clockActivePanel === AVAILABLE_PANELS.faq" :categories="[2]" />
@@ -180,8 +189,22 @@
 		<!-- TOP RIGHT MENU -->
 		<div v-if="!clockActivePanel && !clockWelcomeMode && !clockTutorialMode && !clockTimeTravelMode"
 			class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
-			<div class="relative">
-				<!-- Settings button -->
+			<div class="relative flex gap-2">
+				<!-- Simplified mode button -->
+				<button 
+					@click="toggleSimplifiedMode" 
+					class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-100"
+					:title="clockSimplifiedMode ? 'Design détaillé' : 'Design épuré'">
+					<component 
+						:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
+						class="w-6 h-6"
+					/>
+					<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-nt-yellow-lighter text-black text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+						{{ clockSimplifiedMode ? 'Design détaillé' : 'Design épuré' }}
+					</span>
+				</button>
+
+				<!-- Menu button -->
 				<button @click="toggleMenu"
 					class="p-2 rounded-full bg-nt-yellow-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-yellow-lighter">
 					<div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
@@ -203,15 +226,8 @@
 						<a @click="openPanel(AVAILABLE_PANELS.locationPicker)"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center"
 							role="menuitem">
-							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />Emplacement
+							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />Choisir un lieu
 						</a>
-						<!-- Clock Settings -->
-						<a @click="openPanel(AVAILABLE_PANELS.clockSettings)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center"
-							role="menuitem">
-							<brushIcon class="w-6 h-6 mr-2" fill="currentColor" />Affichage
-						</a>
-
 						<!-- SPECIAL MODES -->
 						<div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Mode
 							spéciaux</div>
@@ -337,7 +353,6 @@ import { useConfigStore, AVAILABLE_PANELS } from '@/stores/configStore'
 
 // Component imports
 import ClockComponent from '@/components/ClockComponent.vue';
-import ClockSettings from '@/components/ClockSettings.vue';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import MainMenu from '@/components/MainMenu.vue';
 
@@ -346,19 +361,22 @@ const LocationPicker = defineAsyncComponent(() => import('@/components/LocationP
 
 // Icon imports
 import mapIcon from '@/assets/icon/map-icon.svg';
-import brushIcon from '@/assets/icon/brush-icon.svg';
 import faqIcon from '@/assets/icon/faq-icon.svg';
 import learnIcon from '@/assets/icon/learn-icon.svg';
 import arrowsIcon from '@/assets/icon/arrows-icon.svg';
 import closeIcon from '@/assets/icon/close-icon.svg';
 import timeTravelIcon from '@/assets/icon/time-travel-icon.svg';
+import minusIcon from '@/assets/icon/minus-icon.svg';
+import plusIcon from '@/assets/icon/plus-icon.svg';
+import simpleClockIcon from '@/assets/icon/simple-clock-icon.svg';
+import advancedClockIcon from '@/assets/icon/advanced-clock-icon.svg';
 
 // Store setup
 const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockShowTitle, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
+const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockSimplifiedMode, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
 
 // I18n setup
 const i18n = useI18n();
@@ -370,12 +388,12 @@ const isMenuOpen = ref(false);
 
 // Time travel setup
 const travelSpeeds = [
-	{ value: 1000 * 60 * 4, label: '+/- 001°', equivalentTo: '4min' },
-	{ value: 1000 * 60 * 20, label: '+/- 005°', equivalentTo: '20min' },
-	{ value: 1000 * 60 * 40, label: '+/- 015°', equivalentTo: '1h' },
-	{ value: 1000 * 60 * 60 * 24, label: '+/- 360°', equivalentTo: '1j' },
-	{ value: 1000 * 60 * 60 * 24 * 7, label: '+/- 7 jours' },
-	{ value: 1000 * 60 * 60 * 24 * 28, label: '+/- 28 jours' },
+	{ value: 1000 * 60 * 4, label: '001°', equivalentTo: '4min' },
+	{ value: 1000 * 60 * 20, label: '005°', equivalentTo: '20min' },
+	{ value: 1000 * 60 * 40, label: '015°', equivalentTo: '1h' },
+	{ value: 1000 * 60 * 60 * 24, label: '360°', equivalentTo: '1j' },
+	{ value: 1000 * 60 * 60 * 24 * 7, label: '7 jours' },
+	{ value: 1000 * 60 * 60 * 24 * 28, label: '28 jours' },
 ];
 const selectedSpeed = ref(1);
 const timeDelta = ref(0);
@@ -522,6 +540,11 @@ const resetTime = () => timeDelta.value = 0;
 const dismissHemisphereNotification = () => {
 	hemisphereNotificationDismissed.value = true;
 	hemisphereNotificationDismissedAt.value = new Date().toISOString();
+};
+
+// Add new method
+const toggleSimplifiedMode = () => {
+	clockSimplifiedMode.value = !clockSimplifiedMode.value;
 };
 
 // Lifecycle hooks
