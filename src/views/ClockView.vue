@@ -5,8 +5,8 @@
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
 
-			<!-- MAIN MENU -->
-			<MainMenu />
+      <!-- MAIN MENU -->  
+      <MainMenu />
 
 			<div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end transition-all duration-300 ease-in-out"
 				:class="clockTimeTravelMode || clockTutorialMode ? 'md:border-8 md:border-nt-yellow-light' : ''"
@@ -19,27 +19,27 @@
 				</ClockComponent>
 
 				<!-- FOOTER -->
-				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-8 w-full max-w-screen-sm">
+				<footer class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
 
 					<!-- TITLE -->
 					<div v-if="!clockTimeTravelMode && clockShowTitle">
 						<h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
-							class="font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
+							class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
 							title="Modifier l'emplacement">
-							<span
+							<div
 								v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude === null"
 								class="px-3 py-1 bg-nt-yellow-light">
 								Choisir un emplacement
-							</span>
-							<span v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
+							</div>
+							<div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
 								{{ location || "Horloge du Temps Naturel" }}
 								<span v-if="latitude && longitude" class="font-normal">
 									| {{ context.naturalDate.toLongitudeString(0) }}
 								</span>
-							</span>
-							<span v-else-if="clockSkin.titleText" class="px-3 py-1 bg-nt-yellow-light">
+							</div>
+							<div v-else-if="clockSkin.titleText" class="px-3 py-1 bg-nt-yellow-light">
 								{{ clockSkin.titleText }}
-							</span>
+							</div>
 						</h1>
 
 						<!-- SUBTITLE -->
@@ -53,7 +53,7 @@
 							<h2
 								class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
 								<span
-									class="font-extrabold text-lg bg-black text-nt-yellow-light font-mono px-2 py-0 mb-3">
+									class="font-extrabold text-xl bg-black text-nt-yellow-light font-mono px-2 py-1 mb-3">
 									{{ context.naturalDate.toTimeString() }}
 								</span>
 							</h2>
@@ -89,19 +89,15 @@
 									class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform select-none hover:bg-nt-yellow-light cursor-pointer" />
 							</div>
 
-							<div class="text-center flex flex-row items-center justify-center space-x-2  font-mono text-sm">
-								<span>Artificiel : </span>
-								<span>{{ new
-									Date(context.naturalDate.unixTime).toLocaleTimeString([], {
-										hour: '2-digit', minute:
-										'2-digit', timeZoneName: 'short' }) }}</span>
+							<div class="text-center flex flex-row items-center justify-evenly space-x-2 font-mono text-sm">
+								<span class="font-extrabold text-xl">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>
 								<span class="text-xs text-slate-500">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>
+								<span class="text-xs">UTC{{ new Date(context.naturalDate.unixTime).getTimezoneOffset() > 0 ? '-' : '+' }}{{ Math.abs(new Date(context.naturalDate.unixTime).getTimezoneOffset() / 60) }}</span>
 							</div>
-							<div class="text-center flex flex-row items-center justify-center space-x-2 font-mono text-sm">
-								<span>Naturel : </span>
-								<span>{{ context.naturalDate.toTimeString(0) }}</span>
-								<span>{{ context.naturalDate.toLongitudeString(0) }}</span>
-								<span class="text-xs text-slate-500">{{ context.naturalDate.toDateString() }}</span>
+							<div class="text-center text-nt-yellow-darkest flex flex-row items-center justify-evenly space-x-2 font-mono text-sm">
+								<span class="font-extrabold text-xl">{{ context.naturalDate.toTimeString(0) }}</span>
+								<span class="text-xs">{{ context.naturalDate.toDateString() }}</span>
+								<span class="text-xs">{{ context.naturalDate.toLongitudeString(0) }}</span>
 							</div>
 						</div>
 						<!-- Add title -->
@@ -188,7 +184,14 @@
 				<!-- Settings button -->
 				<button @click="toggleMenu"
 					class="p-2 rounded-full bg-nt-yellow-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-yellow-lighter">
-					<settingsIcon class="w-6 h-6" fill="currentColor" />
+					<div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
+						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
+							isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
+						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+							isMenuOpen ? 'opacity-0' : '']"></span>
+						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+							isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
+					</div>
 				</button>
 				<div v-if="isMenuOpen"
 					class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
@@ -235,6 +238,11 @@
 						</a>
 					</div>
 				</div>
+			</div>
+			<!-- Add overlay -->
+			<div v-if="isMenuOpen" 
+				@click="toggleMenu"
+				class="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1]">
 			</div>
 		</div>
 
@@ -341,10 +349,8 @@ import mapIcon from '@/assets/icon/map-icon.svg';
 import brushIcon from '@/assets/icon/brush-icon.svg';
 import faqIcon from '@/assets/icon/faq-icon.svg';
 import learnIcon from '@/assets/icon/learn-icon.svg';
-import settingsIcon from '@/assets/icon/settings-icon.svg';
 import arrowsIcon from '@/assets/icon/arrows-icon.svg';
 import closeIcon from '@/assets/icon/close-icon.svg';
-import rewindIcon from '@/assets/icon/rewind-icon.svg';
 import timeTravelIcon from '@/assets/icon/time-travel-icon.svg';
 
 // Store setup

@@ -1,12 +1,9 @@
 <template>
   <div class="min-h-dvh bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
-    
-    <!-- APP menu -->  
-    <MainMenu />
 
     <div class="max-w-6xl mx-auto">
       <!-- Title Section (Gray) -->
-      <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-100 md:text-slate-800 dark:text-slate-100 bg-gradient-to-r from-slate-700 to-slate-800 dark:from-slate-900 dark:to-slate-900 md:bg-none">
+      <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-800 dark:text-slate-100 bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10 md:bg-none">
         <h1 class="w-full text-center text-3xl md:text-6xl font-bold pt-3 pb-4 md:pt-20 md:pb-10">
           <strong class="font-title underline decoration-nt-yellow-light">Le Temps Naturel</strong>
           <br>
@@ -21,7 +18,7 @@
           le soleil retrouve sa place comme référence universelle<br class="hidden md:block">
           du temps qui passe...
         </p>
-      </section>
+      </section>@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">
@@ -49,7 +46,7 @@
       </section>
 
       <!-- 13 Moons Section (Cyan) -->
-      <section class="w-full md:px-6 md:mb-16" ref="thirteenMoonsRef">
+      <section class="w-full md:px-6 md:mb-10" ref="thirteenMoonsRef">
         <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter dark:from-nt-cyan-dark dark:to-nt-cyan-darker max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
@@ -72,6 +69,15 @@
             </div>
           </div>
         </div>
+      </section>
+
+      <!-- Mission Statement -->
+      <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-8 md:mb-10">
+        <p class="text-center text-lg md:text-2xl max-w-3xl mx-auto font-thin italic text-slate-800 dark:text-slate-100">
+          Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
+          susceptible de remplacer ou compléter<br class="hidden md:block">
+          l'horloge des 24 heures et le calendrier grégorien.
+        </p>
       </section>
 
       <!-- FAQ Section -->
@@ -97,10 +103,19 @@
     </div>
 
     <!-- Footer (Black) -->
-    <footer class="md:mt-12 w-full text-center py-4 text-sm bg-black text-white dark:bg-slate-950">
+    <footer class="md:mt-12 w-full text-center py-4 text-sm bg-black text-white">
       <p>
         Created by <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Sylvain</a> | 
         <a href="https://github.com/sylvain441/natural-time" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Open sourced on GitHub</a>
+        <span class="ml-2 text-gray-500">
+          <button 
+            @click="contextStore.clearLocalStorageAndReload"
+            class="ml-1 hover:text-gray-300"
+            title="Réinitialiser les données"
+          >
+            v{{ version }}
+          </button>
+        </span>
       </p>
     </footer>
   </div>
@@ -112,6 +127,7 @@ import FAQAccordion from '@/components/FAQAccordion.vue';
 import { ref, onMounted } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the store
+import { version } from '../../package.json';
 
 const router = useRouter();
 const contextStore = useContextStore();

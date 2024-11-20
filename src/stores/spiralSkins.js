@@ -14,9 +14,6 @@ export const spiralSkins = {
     hideTitle: {
       showTitle: false,
     },
-    singleMoon: {
-      singleMoonView: true,
-    },
     welcome: {
       context: {
         currentTime: new Date(1356091200000),
@@ -36,8 +33,8 @@ export const spiralSkins = {
           latitude: 42.42,
           longitude: 0,
         },
-        titleText: 'Je suis un calendrier avec 13 mois de 28 jours',
-        descriptionText: "On m'appelle la Spirale des 13 lunes",
+        titleText: "Je suis un calendrier avec 13 mois de 28 jours",
+        descriptionText: 'On m\'appelle la "Spirale des 13 lunes"',
         animationSpeed: 0.4,
         showDaysNumber: true,
         showDisplay: true,
@@ -95,11 +92,11 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(1329480000000),
+          currentTime: new Date(1329480000000 + 60 * 86400000),
           latitude: 42.42,
           longitude: 0,
         },
-        titleText: "Voici le 1er jour de la 3ème lune",
+        titleText: "Voici le 5ème jour de la 5ème lune",
         descriptionText: "Par exemple...",
         animationSpeed: 0.4,
         showDaysNumber: true,
@@ -172,7 +169,7 @@ export const spiralSkins = {
           longitude: 0,
         },
         titleText: "Le 1er jour de l'an 001",
-        descriptionText: "correspond au 22 décembre 2012 dans le calendrier grégorien",
+        descriptionText: "correspond au 22 décembre 2012 dans le calendrier grégorien (voir FAQ)",
         animationSpeed: 0.4,
         showDaysNumber: true,
         showDisplay: true, // Keep it
@@ -184,7 +181,7 @@ export const spiralSkins = {
           longitude: 0,
         },
         titleText: "Dernier détail important",
-        descriptionText: "Les 28 jours ne correspondent pas exactement aux cycles pleine/nouvelle lune (29,53 jours)",
+        descriptionText: "Les 28 jours ne correspondent pas aux 29,53 jours du cycles pleine/nouvelle lune (Voir FAQ)",
         animationSpeed: 0.4,
         showDaysNumber: true,
         singleMoonView: true,

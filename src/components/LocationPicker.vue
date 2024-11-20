@@ -2,7 +2,7 @@
   <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900" @submit.prevent>
     <!-- Location Picker title -->
     <h4 :class="[
-      viewType === 'spiral' ? 'border-nt-cyan-light' : 'border-nt-yellow-light'
+      viewType === 'spiral' ? 'border-nt-cyan-light dark:border-nt-cyan-darkest' : 'border-nt-yellow-light dark:border-nt-yellow-darkest'
     ]" class="section-header flex flex-row items-center justify-between">
       <span>Choisir un lieu</span>
     </h4>
@@ -198,6 +198,7 @@ import { useContextStore } from '@/stores/contextStore';
 import { storeToRefs } from 'pinia';
 import { useI18n } from 'vue-i18n';
 import ToggleButton from '@/components/ToggleButton.vue';
+import { useConfigStore } from '@/stores/configStore';
 
 // Import OpenLayers modules directly
 import Map from 'ol/Map';
@@ -224,6 +225,8 @@ import geolocationIcon from '@/assets/icon/geolocation-icon.svg';
 const contextStore = useContextStore();
 const { latitude, longitude, enableGeolocation, geolocationStatus, tempLatitude, tempLongitude, tempLocation, geolocationLatitude, geolocationLongitude, positionChanged } = storeToRefs(contextStore);
 const { getGeolocation } = contextStore;
+
+const configStore = useConfigStore();
 
 // Composables
 const i18n = useI18n();
@@ -336,9 +339,13 @@ const hasPositionChanged = computed(() => {
 
 const shouldShowForm = computed(() => {
   // Show form if:
-  // 1. No initial position was set (new location selection)
-  // 2. OR if position has changed from initial position
-  return !initialPosition.value.lat || hasPositionChanged.value;
+  // 1. Welcome mode is on for current view type (spiral or clock)
+  // 2. OR No initial position was set (new location selection)
+  // 3. OR if position has changed from initial position
+  return (props.viewType === 'spiral' && configStore.spiralWelcomeMode) || 
+         (props.viewType === 'clock' && configStore.clockWelcomeMode) || 
+         !initialPosition.value.lat || 
+         hasPositionChanged.value;
 });
 
 // Update handleMapClick to track position changes

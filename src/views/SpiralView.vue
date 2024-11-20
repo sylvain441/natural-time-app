@@ -1,62 +1,81 @@
 <template>
-  <div id="moons-view" class="flex flex-row min-h-dvh overflow-hidden bg-[#F2FFFF] dark:bg-slate-300 bg-[url('@/assets/debut-light.png')]" @touchmove.prevent>
+  <div id="moons-view" 
+       :class="[
+         'flex flex-row bg-[#F2FFFF] dark:bg-slate-300 bg-[url(@/assets/debut-light.png)]',
+         spiralVerticalMode ? 'min-h-screen overflow-y-auto relative' : 'min-h-dvh overflow-hidden fixed w-full h-full'
+       ]" 
+       @touchmove.prevent="!spiralVerticalMode">
     
-    <div :class="['relative h-full transition-all duration-300 ease-in-out', (spiralActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
+    <div :class="[
+      'relative transition-all duration-300 ease-in-out', 
+      spiralVerticalMode ? 'w-full' : (spiralActivePanel ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full'),
+      spiralVerticalMode ? 'h-auto' : 'h-full'
+    ]">
       
       <!-- MAIN MENU -->  
       <MainMenu />
       
       <div 
-        class="fixed z-10 inset-0 h-full px-2 pt-8 transition-all duration-300 ease-in-out"
+        class="z-10 transition-all duration-300 ease-in-out"
         :class="[
-          !spiralActivePanel ? 'md:px-[14%]' : 'md:px-[3%]', 
+          !spiralVerticalMode ? 'fixed h-full inset-0 px-3' : 'relative', 
+          !spiralActivePanel && !spiralVerticalMode ? 'md:px-[14%] md:pt-10' : !spiralVerticalMode ? 'md:px-[3%]' : '', 
           spiralTimeTravelMode || spiralTutorialMode ? 'md:border-8 md:border-nt-cyan-light' : '', 
           (spiralShowTitle ? 'pb-40' : 'pb-10'), 
           (spiralTutorialMode ? 'pb-48' : ''), 
           (spiralTimeTravelMode ? 'pb-36' : ''), 
-          spiralSkin.singleMoonView ? 'px-4 md-px-12' : '']"
+          spiralVerticalMode ? 'px-0 pb-0 pt-0' : '']"
         style="width: inherit;">
         
         <!-- MOONS COMPONENT -->
-        <div ref="yearWrapper" class="w-full h-full relative drop-shadow-2xl">
-          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Transition name="scale-with-delay">
-              <div id="year" :style="yearStyle" class="flex flex-wrap items-center" :class="{'single-moon-mode': spiralSkin.singleMoonView}">
-                <!-- Display component -->
-                <DisplayComponent 
-                  :display-date="displayDate"
-                  :context="context"
-                  class="relative"
-                  :class="{'w-1/2 h-1/4': !spiralSkin.singleMoonView}"
-                />
-                
-                <!-- 13 Moons -->
-                <template v-if="!spiralSkin.singleMoonView">
-                  <Moon v-for="moon in 14" 
-                    :key="moon"
-                    :id="`moon-${moon}`"
-                    :today="today" 
-                    :moon="moon" 
-                    @open-time-travel="openTimeTravelAtDate"
-                    class="w-1/4 h-1/4"
-                  />
-                </template>
-                <!-- Current Moon -->
-                <template v-else>
-                  <div class="rounded-3xl mx-auto h-fit" :class="{'bg-white': today.moon != 14}">
-                    <Moon 
-                      :id="`moon-${today.moon}`"
-                      :today="today" 
-                      :moon="today.moon"
-                      :baseSize="60"
-                      :spacing="12" 
-                      @open-time-travel="openTimeTravelAtDate"
-                      class="current-moon-component"
-                    />
-                  </div>
-                </template>
-              </div>
-            </Transition>
+        <div ref="yearWrapper" 
+             :class="[
+               'w-full flex items-center justify-center drop-shadow-2xl relative',
+               spiralVerticalMode ? 'h-auto' : 'h-full'
+             ]">
+          
+          <!-- Single Moon Overlay -->
+          <Transition name="fade-zoom">
+            <div v-if="spiralSkin.singleMoonView" 
+                 class="absolute inset-0 z-20 flex items-center justify-center">
+              <Moon 
+                :id="`moon-${context.naturalDate.moon}`"
+                :today="today"
+                :moon="context.naturalDate.moon"
+                :baseSize="containerSize * 1.75"
+                :spacing="containerSize * 0.1"
+                class="transition-transform duration-500 shadow-xl bg-white rounded-xl"
+                @open-time-travel="openTimeTravelAtDate"
+              />
+            </div>
+          </Transition>
+
+          <!-- Year container (original moons) -->
+          <div id="year" 
+               class="w-full h-fit flex flex-wrap items-center justify-center gap-0 mx-auto" 
+               :class="[
+                 {'vertical-mode': spiralVerticalMode},
+                 {'blur-sm opacity-80': spiralSkin.singleMoonView}
+               ]"
+               :style="{ maxWidth: `${4.01 * containerSize}px`}">
+            <!-- Display component -->
+            <DisplayComponent 
+              :display-date="displayDate"
+              :context="context"
+              :container-size="containerSize"
+              :style="{ order: displayOrder }"
+            />
+            
+            <!-- All 13 Moons -->
+            <Moon v-for="moon in 14" 
+              :key="moon"
+              :id="`moon-${moon}`"
+              :today="today" 
+              :moon="moon" 
+              :baseSize="containerSize"
+              :spacing="containerSize * 0.035" 
+              @open-time-travel="openTimeTravelAtDate"
+            />
           </div>
         </div>
         
@@ -101,8 +120,8 @@
           
           <!-- TIME TRAVEL CONTROL PANEL -->
           <Transition name="fade">
-            <div v-if="spiralTimeTravelMode">
-              <div class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg relative">
+            <div v-if="spiralTimeTravelMode" class="fixed bottom-4 left-1/2 -translate-x-1/2">
+              <div class="bg-white max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
                 <div class="flex items-center justify-center space-x-2">
                   <arrowsIcon 
                     @click.stop.prevent="decrementTime" 
@@ -138,7 +157,8 @@
           
           <!-- TUTORIAL CONTROL PANEL -->
           <div v-if="spiralTutorialMode && spiralTutorialCurrentStep < spiralTutorialStepsTotal" 
-            class="flex justify-center items-center bg-white space-x-4 mt-3 w-fit mx-auto font-mono text-sm font-extrabold px-6 py-2 rounded-full shadow-lg relative">
+            class="flex justify-center items-center bg-white space-x-4 mt-3 w-fit mx-auto font-mono text-sm font-extrabold px-6 py-2 rounded-full shadow-lg"
+            :class="spiralVerticalMode ? 'fixed' : ''">
             
             <!-- Previous step -->
             <arrowsIcon 
@@ -207,73 +227,82 @@
   <!-- TOP RIGHT MENU -->
   <div v-if="!spiralActivePanel && !spiralWelcomeMode && !spiralTutorialMode && !spiralTimeTravelMode" class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
     <div class="relative flex flex-col gap-2">
+      <!-- Top row with menu and single moon buttons -->
+      <div class="flex gap-2 items-center">
+        <!-- Vertical mode button -->
+        <button 
+          @click="toggleVerticalMode" 
+          class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-100"
+          :title="spiralVerticalMode ? 'Afficher en spiral' : 'Afficher en vertical'">
+          <component 
+            :is="spiralVerticalMode ? thirteenMoonIcon : oneMoonIcon" 
+            class="w-6 h-6"
+          />
+          <span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-nt-cyan-lighter text-black text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+            {{ spiralVerticalMode ? 'Affichage spiral' : 'Affichage vertical' }}
+          </span>
+        </button>
 
-      <!-- Settings button -->
-      <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-lighter text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-light">
-        <settingsIcon class="w-6 h-6" />
-      </button>
-
-      <!-- Single Moon Toggle -->
-      <button 
-        @click="toggleSingleMoonMode" 
-        class="p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-300"
-        :title="spiralSingleMoonMode ? 'Afficher toutes les lunes' : 'Afficher la lune courante'">
-        <component 
-          :is="spiralSingleMoonMode ? thirteenMoonIcon : oneMoonIcon" 
-          class="w-6 h-6"
-        />
-      </button>
-      
-      <Transition name="fade">
-        <div v-if="isMenuOpen" class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
-          <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            <!-- SETTINGS -->
-            <div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Paramètres</div>
-            <!-- Location Picker -->
-            <a 
-              @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
-              role="menuitem">
-              <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Emplacement
-            </a>
-            <!-- Spiral Settings -->
-            <a 
-              @click="openPanel(AVAILABLE_PANELS.spiralSettings)" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
-              role="menuitem">
-              <brushIcon class="w-6 h-6 mr-2" fill="currentColor"/>Affichage
-            </a>
-            
-            <!-- SPECIAL MODES -->
-            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Mode spéciaux</div>
-            <!-- Tutorial -->
-            <a 
-              @click="toggleTutorial" 
-              class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
-              role="menuitem">
-              <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel
-            </a>
-            <!-- Time Travel -->
-            <a 
-              @click="toggleTimeTravel" 
-              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
-              :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
-              role="menuitem">
-              <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
-            </a>
-            
-            <!-- UNDERSTAND -->
-            <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Aide</div>
-            <!-- FAQ -->
-            <a 
-              @click="openPanel(AVAILABLE_PANELS.faq)" 
-              class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
-              role="menuitem">
-              <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>FAQ
-            </a>
+        <!-- Settings button -->
+        <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-lighter text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-light">
+          <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
+            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
+              isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
+            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+              isMenuOpen ? 'opacity-0' : '']"></span>
+            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+              isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
           </div>
-        </div>
-      </Transition>
+        </button>
+      </div>
+
+      <!-- Menu Dropdown -->
+      <div v-if="isMenuOpen"
+        class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+        <!-- SETTINGS -->
+        <div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Paramètres</div>
+        <!-- Location Picker -->
+        <a 
+          @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
+          role="menuitem">
+          <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Choisir un lieu
+        </a>
+        
+        <!-- SPECIAL MODES -->
+        <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Mode spéciaux</div>
+        <!-- Tutorial -->
+        <a 
+          @click="toggleTutorial" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
+          role="menuitem">
+          <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel 13 lunes
+        </a>
+        <!-- Time Travel -->
+        <a 
+          @click="toggleTimeTravel" 
+          class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
+          :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
+          role="menuitem">
+          <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
+        </a>
+        
+        <!-- UNDERSTAND -->
+        <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Aide</div>
+        <!-- FAQ -->
+        <a 
+          @click="openPanel(AVAILABLE_PANELS.faq)" 
+          class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
+          role="menuitem">
+          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>FAQ
+        </a>
+      </div>
+    </div>
+
+    <!-- Add overlay -->
+    <div v-if="isMenuOpen" 
+      @click="toggleMenu"
+      class="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1]">
     </div>
   </div>
 
@@ -290,7 +319,7 @@
   <button 
     v-if="spiralTimeTravelMode"
     @click="closeTimeTravel" 
-    class=" absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+    class="fixed z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
     <span>Quitter le voyage temporel</span>
     <closeIcon class="w-4 h-4 bg-black rounded-full text-white" fill="currentColor" />
   </button>
@@ -300,7 +329,7 @@
     v-if="spiralTimeTravelMode"
     :disabled="!timeDelta"
     @click="resetTime" 
-    class="block absolute z-40 top-16 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
+    class="fixed z-40 top-16 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
     Remettre à zéro
   </button>
 
@@ -356,10 +385,8 @@ import mapIcon from '@/assets/icon/map-icon.svg';
 import brushIcon from '@/assets/icon/brush-icon.svg';
 import faqIcon from '@/assets/icon/faq-icon.svg';
 import learnIcon from '@/assets/icon/learn-icon.svg';
-import settingsIcon from '@/assets/icon/settings-icon.svg';
 import arrowsIcon from '@/assets/icon/arrows-icon.svg';
 import closeIcon from '@/assets/icon/close-icon.svg';
-import rewindIcon from '@/assets/icon/rewind-icon.svg';
 import timeTravelIcon from '@/assets/icon/time-travel-icon.svg';
 import oneMoonIcon from '@/assets/icon/1-moon-icon.svg';
 import thirteenMoonIcon from '@/assets/icon/13-moon-icon.svg';
@@ -369,7 +396,7 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralShowTitle, spiralSingleMoonMode } = storeToRefs(configStore);
+const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralShowTitle, spiralVerticalMode } = storeToRefs(configStore);
 
 // SEO Meta tags
 const metaTitle = "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien";
@@ -392,6 +419,7 @@ useHead({
 let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation } = storeToRefs(contextStore);
 let showPositionChangedNotification = ref(false);
 const isMenuOpen = ref(false);
+const containerSize = ref(333);
 
 // Time travel setup
 const travelSpeeds = [
@@ -429,6 +457,7 @@ const toggleTutorial = async () => {
   spiralTutorialMode.value = !spiralTutorialMode.value;
   isMenuOpen.value = false;
   closeTimeTravel();
+  spiralVerticalMode.value = false;
   // Wait for DOM update before recalculating scale
   await nextTick();
   updateScale();
@@ -440,7 +469,6 @@ const toggleTimeTravel = () => {
   if (spiralTimeTravelMode.value) {
     spiralActivePanel.value = null;
     spiralTutorialMode.value = false;
-    spiralSingleMoonMode.value = false;
   }
 };
 
@@ -492,25 +520,13 @@ onMounted(() => {
 
 // Spiral Sizing
 const yearWrapper = ref(null);
-const yearStyle = ref({});
 let resizeObserver = null;
 
 const updateScale = () => {
-  const wrapperWidth = yearWrapper.value.offsetWidth;
-  const wrapperHeight = yearWrapper.value.offsetHeight;
-  const divWidth = spiralSkin.value.singleMoonView ? 471 : 1472;
-  const divHeight = spiralSkin.value.singleMoonView ? 471 : 896;
+	const maxWidth = yearWrapper.value.offsetWidth;
+	const maxHeight = yearWrapper.value.offsetHeight;
 
-  const scaleX = wrapperWidth / divWidth;
-  const scaleY = wrapperHeight / divHeight;
-  const scale = Math.min(scaleX, scaleY, 1);
-
-  yearStyle.value = {
-    width: `${divWidth}px`,
-    height: `${divHeight}px`,
-    transform: `scale(${scale})`,
-    transformOrigin: 'center center'
-  };
+  containerSize.value = !spiralVerticalMode.value ? Math.min(maxWidth / 4.01, maxHeight / 4.01 * 7 / 4) : maxWidth / 2; // 4.01 is the magic number to avoid problems with large aspect ratio screens
 };
 
 onMounted(() => {
@@ -519,11 +535,6 @@ onMounted(() => {
   resizeObserver = new ResizeObserver(updateScale);
   if (yearWrapper.value) {
     resizeObserver.observe(yearWrapper.value);
-  }
-
-  const currentMoon = document.querySelector('.currentMoon');
-  if (currentMoon) {
-    currentMoon.scrollIntoView({ behavior: 'smooth' });
   }
 });
 
@@ -545,8 +556,8 @@ const openTimeTravelAtDate = (date) => {
 
 const displayDate = computed(() => context.value.naturalDate);
 
-const toggleSingleMoonMode = async () => {
-  spiralSingleMoonMode.value = !spiralSingleMoonMode.value;
+const toggleVerticalMode = async () => {
+  spiralVerticalMode.value = !spiralVerticalMode.value;
   // Wait for DOM update before recalculating scale
   await nextTick();
   updateScale();
@@ -558,79 +569,83 @@ watch([spiralTutorialCurrentStep], async () => {
   updateScale();
 });
 
+// Add this computed property
+const displayOrder = computed(() => {
+  if (!spiralVerticalMode.value) return 100;
+  return today.value.moon * 10 + 5; 
+});
+
 </script>
 
 
 <style lang="scss">
 
 #year {
-  transform: scale(0.4);
-
 	#moon-1 { 
-    order: 1; 
+    order: 10; 
     .moon-left { @apply rounded-tl-xl rounded-bl-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-2 { 
-    order: 2; 
+    order: 20; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-3 { 
-    order: 3; 
+    order: 30; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-4 { 
-    order: 4; 
+    order: 40; 
     .moon-center { @apply rounded-tr-xl; }
     .moon-top, .moon-right { @apply hidden; }
   }
 	#moon-5 { 
-    order: 8; 
+    order: 80; 
     .moon-left, .moon-right { @apply hidden; }
   }
 	#moon-6 { 
-    order: 11; 
+    order: 110; 
     .moon-left, .moon-right { @apply hidden; }
   }
 	#moon-7 { 
-    order: 15; 
+    order: 150; 
     .moon-center { @apply rounded-br-xl; }
     .moon-bottom, .moon-right { @apply hidden; }
   }
 	#moon-8 { 
-    order: 14; 
+    order: 140; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-9 { 
-    order: 13; 
+    order: 130; 
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-10 { 
-    order: 12; 
+    order: 120; 
     .moon-center { @apply rounded-bl-xl; }
     .moon-bottom, .moon-left { @apply hidden; }
   }
 	#moon-11 { 
-    order: 9; 
+    order: 90; 
    .moon-left, .moon-right { @apply hidden; }
   }
 	#moon-12 { 
-    order: 5; 
+    order: 50; 
     .moon-center { @apply rounded-tl-xl; }
     .moon-top, .moon-left { @apply hidden; }
   }
 	#moon-13 { 
-    order: 6; 
+    order: 60; 
     .moon-right { @apply rounded-tr-xl rounded-br-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-14 { 
-    order: 7; 
+    order: 70; 
     .moon-top, .moon-bottom, .moon-left, .moon-right { @apply hidden; }
   }
 
 	#display {
-		order: 10;
+		order: 100;
 		.center-me {
 			top: 60%;
 			left: 52%;
@@ -647,40 +662,74 @@ watch([spiralTutorialCurrentStep], async () => {
 }
 
 #year {
-  &.single-moon-mode {
+  &.vertical-mode {
+    @apply flex-col items-center gap-4 pt-20 min-h-screen;
+    
+    #moon-1 { order: 10; }
+    #moon-2 { order: 20; }
+    #moon-3 { order: 30; }
+    #moon-4 { order: 40; }
+    #moon-5 { order: 50; }
+    #moon-6 { order: 60; }
+    #moon-7 { order: 70; }
+    #moon-8 { order: 80; }
+    #moon-9 { order: 90; }
+    #moon-10 { order: 100; }
+    #moon-11 { order: 110; }
+    #moon-12 { order: 120; }
+    #moon-13 { order: 130; }
+    #moon-14 { order: 140; background-color: transparent; &::after { display: none; } }
+
     #display {
-      order: 16;
-      @apply w-full h-32;
-      .digit{
-        @apply text-5xl;
+      order: 140;
+      @apply w-full pt-8 pb-36 -translate-y-6;
+      .digit { @apply text-3xl; }
+      .label { @apply text-xl; }
+    }
+
+    .moon-left, .moon-right, .moon-top, .moon-bottom {
+      @apply hidden !important;
+    }
+
+    [id^="moon-"] {
+      @apply w-full flex justify-center p-6 my-4 bg-white/30 rounded-xl relative;
+      .moon-center {
+        @apply bg-opacity-0;
       }
-      .label{
-        @apply text-2xl;
+      .day-of-moon:not(.isToday) .day-of-moon-number {
+        @apply text-gray-500;
+      }
+      // Add permanent moon number display
+      &:not(#moon-14)::after {
+        opacity: 1;
+      }
+    }
+    .past-moon {
+      @apply bg-gray-100;
+      .day-of-moon.isPast:not(:hover){
+        @apply border-opacity-10;
       }
     }
   }
+}
 
-  .current-moon-component {
-    transition: all 0.3s ease-in-out;
-    .moon-top, .moon-bottom, .moon-left, .moon-right { @apply hidden; }
+#moons-view {
+  &:not(.vertical-mode) {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: none;
+    touch-action: none;
+  }
+
+  &.vertical-mode {
+    overscroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: auto;
   }
 }
 
-.view-transition-enter-active,
-.view-transition-leave-active {
-  transition: all 0.5s ease-in-out;
-}
-
-.view-transition-enter-from,
-.view-transition-leave-to {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
-.nt-animate {
-  transition-property: all;
-  transition-duration: var(--nt-animation-speed);
-  transition-timing-function: ease;
+.overflow-y-auto {
+  scroll-behavior: smooth;
+  position: relative !important;
 }
 
 .fade-enter-active,
@@ -693,35 +742,21 @@ watch([spiralTutorialCurrentStep], async () => {
   opacity: 0;
 }
 
-.scale-with-delay-enter-active,
-.scale-with-delay-leave-active {
-  transition: opacity var(--nt-animation-speed),
-              transform 1s cubic-bezier(0.25, 0.1, 0.25, 2) 1s;
+.fade-zoom-enter-active,
+.fade-zoom-leave-active {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.scale-with-delay-enter-from,
-.scale-with-delay-leave-to {
+.fade-zoom-enter-from,
+.fade-zoom-leave-to {
   opacity: 0;
-  transform: scale(0.75);
+  transform: scale(0.95);
 }
 
-#year {
-  &, .current-moon-component {
-    transition: all var(--nt-animation-speed) ease-in-out;
-  }
+.fade-zoom-enter-to,
+.fade-zoom-leave-from {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.view-transition-enter-active,
-.view-transition-leave-active {
-  transition: all var(--nt-animation-speed) ease-in-out;
-}
-
-#moons-view {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  overscroll-behavior: none;
-  -webkit-overflow-scrolling: none;
-  touch-action: none;
-}
 </style>

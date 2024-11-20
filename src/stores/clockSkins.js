@@ -363,7 +363,7 @@ export const clockSkins = {
         titleText: 'Les nombres du cadran ne sont pas essentiels...',
         descriptionText: "L'horloge naturelle est avant tout une expérience visuelle",
         animationSpeed: 2,
-        mustachesDisplay: false,
+        mustachesDisplay: true,
         handDisplay: true,
         dotsDisplay: false,
         numbersDisplay: false,

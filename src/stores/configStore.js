@@ -53,7 +53,7 @@ export const useConfigStore = defineStore('appConfig', () => {
   const spiralWelcomeMode = ref(true);
   const spiralTutorialMode = ref(false);
   const spiralTimeTravelMode = ref(false);
-  const spiralSingleMoonMode = ref(false);
+  const spiralVerticalMode = ref(false);
   const spiralTutorialStepsTotal = computed(() => Object.keys(spiralSkins.full.tutorial).length - 1);
   const spiralTutorialCurrentStep = ref(0);
   
@@ -66,8 +66,6 @@ export const useConfigStore = defineStore('appConfig', () => {
     ...spiralSkins.full.default,
     // Hide title
     ...((!spiralWelcomeMode.value && spiralShowTitle.value === false) && spiralSkins.full.hideTitle),
-    // Single moon mode
-    ...(spiralSingleMoonMode.value && spiralSkins.full.singleMoon),
     // Welcome spiralSkin
     ...(!spiralActivePanel.value && spiralWelcomeMode.value ? spiralSkins.full.welcome : {}),
     // Tutorial spiralSkin
@@ -105,7 +103,7 @@ export const useConfigStore = defineStore('appConfig', () => {
     spiralTutorialCurrentStep,
     spiralActivePanel,
     spiralShowTitle,
-    spiralSingleMoonMode,
+    spiralVerticalMode,
     clockSkin,
     spiralSkin,
     hemisphereNotificationDismissed,
