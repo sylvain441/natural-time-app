@@ -36,7 +36,7 @@
 					<div class="nt-box-outer rotate-180">
 						<div class="nt-box-outer text-center nt-animate" 
 							 :style="{
-								 transform: `scale(${context.sun.altitude*0.50 + 100}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`
+								 transform: `scale(${context.sun.altitude*0.30 + 111}%) rotate(${context.naturalDate.time * context.hemisphere}deg)`
 							 }">
 							<div class="inline-block" :style="`width: ${BASESIZE * 0.1}px; height: ${BASESIZE * 0.1}px;`">
 								<div class="w-full h-full rounded-full bg-nt-yellow-dark" 
@@ -54,7 +54,7 @@
 			<!-- MOON -->
 			<Transition name="fade">
 				<div v-if="clockSkin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
-					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.30 + 100}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
+					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `scale(${context.moon.altitude*0.30 + 111}%) rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg)`}"> 
 						<div :style="`width: ${BASESIZE * 0.1}px; height: ${BASESIZE * 0.1}px; 
 									  box-shadow: 0 0 ${BASESIZE * 0.01875}px 0 rgba(0, 0, 100, 0.3), 
 												  0 0 ${BASESIZE * 0.035}px rgba(255, 255, 255, 0.5);
@@ -135,7 +135,7 @@
 					 :class="clockSkin.title">
 					<div class="nt-box-inner text-sm">
 						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">
-							<span class="font-bold">{{ location }}</span><br>
+							<span v-if="location" class="font-bold">{{ location }}<br></span>
 							<span class="font-normal">{{ context.naturalDate.toTimeString(0) }}&nbsp;{{ context.naturalDate.toLongitudeString(0) }}</span>
 						</h1>
 					</div>
@@ -295,7 +295,6 @@ onUnmounted(() => {
 	}
 });
 </script>
-
 <style lang="scss" scoped>
 	.nt-box-outer {
 		@apply absolute inset-0 w-full h-full bg-cover bg-center;

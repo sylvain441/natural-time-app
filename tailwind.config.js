@@ -52,7 +52,10 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin 20s linear infinite',
-      }
+      },
+      blur: {
+        xs: '1px',
+      },
     },
   },
   plugins: [],

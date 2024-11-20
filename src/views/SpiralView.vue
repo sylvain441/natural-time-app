@@ -4,12 +4,12 @@
          'flex flex-row bg-[#F2FFFF] dark:bg-slate-300 bg-[url(@/assets/debut-light.png)]',
          spiralVerticalMode ? 'min-h-dvh overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden relative'
        ]" 
-       @touchmove="handleTouchMove">
+       @touchmove.passive="handleTouchMove">
     
     <div :class="[
       'relative transition-all duration-300 ease-in-out ', 
       spiralActivePanel ? 'hidden md:block md:w-1/2 xl:w-2/3' : 'w-full',
-      spiralVerticalMode ? 'h-auto' : 'h-dvh'
+      spiralVerticalMode ? 'h-full overflow-y-auto' : 'h-dvh'
     ]">
       
       <!-- MAIN MENU -->  
@@ -40,7 +40,7 @@
                 :id="`moon-${context.naturalDate.moon}`"
                 :today="today"
                 :moon="context.naturalDate.moon"
-                :baseSize="containerSize * 1.75"
+                :baseSize="containerSize * 3"
                 :spacing="containerSize * 0.1"
                 class="transition-transform duration-500 shadow-xl bg-white rounded-xl"
                 @open-time-travel="openTimeTravelAtDate"
@@ -53,7 +53,7 @@
                class="w-full h-fit flex flex-wrap items-center justify-center gap-0 mx-auto" 
                :class="[
                  {'vertical-mode': spiralVerticalMode},
-                 {'blur-sm opacity-80': spiralSkin.singleMoonView}
+                 {'blur-xs md:blur-sm opacity-80': spiralSkin.singleMoonView}
                ]"
                :style="{ maxWidth: `${4.01 * containerSize}px`}">
             <!-- Display component -->
@@ -81,13 +81,13 @@
         </div>
         
         <!-- FOOTER -->
-        <footer class="z-20 absolute bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-8 w-full">
+        <footer class="z-20 fixed bottom-0 left-0 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full">
           <Transition name="fade">
             <div v-if="!spiralTimeTravelMode">
               <!-- TITLE -->
               <h1 
                 @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-                class="font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
+                class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
                 title="Modifier l'emplacement">
                 <span v-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && context.location" class="bg-nt-cyan-lighter px-3 py-1">
                   {{ context.location }}
@@ -106,7 +106,9 @@
               <!-- SUBTITLE -->
               <div v-if="!spiralTutorialMode && !spiralWelcomeMode && latitude && longitude">
                 <h2 class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
-                  <span class="font-extrabold text-lg bg-black text-nt-cyan-lighter font-mono px-2 py-0 mb-3">
+                  <span 
+                    @click="toggleTimeTravel"
+                    class="font-extrabold text-lg bg-black text-nt-cyan-lighter font-mono px-2 py-0 mb-3 cursor-pointer hover:bg-nt-cyan-light hover:text-black transition-colors duration-300">
                     {{ context.naturalDate.toTimeString() }}
                   </span>
                 </h2>
@@ -121,9 +123,9 @@
           
           <!-- TIME TRAVEL CONTROL PANEL -->
           <Transition name="fade">
-            <div v-if="spiralTimeTravelMode" class="fixed bottom-4 left-1/2 -translate-x-1/2 p-4">
+            <div v-if="spiralTimeTravelMode" class="mb-4">
               <div class="bg-nt-cyan-light max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
-                <div class="flex items-center justify-center space-x-2">
+                <div class="flex items-center justify-center space-x-4">
                   <!-- Minus button -->
                   <button 
                     @click.stop.prevent="decrementTime" 
@@ -574,7 +576,7 @@ const scrollToCurrentMoon = () => {
           block: 'center'
         });
       }
-    }, 555); // 555ms timeout
+    }, 888); 
   }
 };
 
@@ -597,9 +599,8 @@ watch([spiralTutorialCurrentStep], async () => {
 
 // Add this method to handle touch events
 const handleTouchMove = (event) => {
-  if (spiralVerticalMode.value) {
-    event.stopPropagation();
-  } else {
+  // Only prevent default touch behavior when NOT in vertical mode
+  if (!spiralVerticalMode.value) {
     event.preventDefault();
   }
 };
@@ -692,7 +693,8 @@ const handleTouchMove = (event) => {
 
 #year {
   &.vertical-mode {
-    @apply flex-col items-center gap-4 pt-20 min-h-screen;
+    @apply flex-col items-center gap-4 pt-20 pb-20;
+    min-height: 100%;
     
     #moon-1 { order: 10; }
     #moon-2 { order: 20; }
@@ -757,11 +759,11 @@ const handleTouchMove = (event) => {
     // Adjust display component position
     #display {
       order: 150;
-      @apply w-full pt-8 pb-48 -translate-y-6;
+      @apply w-full pt-8 pb-48 -translate-y-4;
       transform: translateX(0) !important; // Ensure display stays centered
       .digit { @apply text-3xl; }
       .label { @apply text-xl; }
-      .absolute { @apply top-[0%]; }
+      .absolute { @apply top-[20%]; }
     }
 
   }
@@ -778,14 +780,13 @@ const handleTouchMove = (event) => {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    height: 100%;
-    width: 100%;
   }
 }
 
 .overflow-y-auto {
   scroll-behavior: smooth;
-  position: relative !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
 }
 
 .fade-enter-active,

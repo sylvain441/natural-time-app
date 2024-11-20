@@ -14,19 +14,18 @@ export const useConfigStore = defineStore('appConfig', () => {
   const clockWelcomeMode = ref(true);
   const clockTutorialMode = ref(false);
   const clockTimeTravelMode = ref(false);
+  const clockSimplifiedMode = ref(false);
 
   const clockTutorialStepsTotal = computed(() => Object.keys(clockSkins.full.tutorial).length - 1);
   const clockTutorialCurrentStep = ref(0);
   
 	const clockActivePanel = ref(null);
 
-  const clockSimplifiedMode = ref(false);
-
   const clockSkin = computed(() => ({
 		// Default clockSkin
     ...clockSkins.full.default,
     // Remove graduations and animations in simplified mode
-    ...(!clockWelcomeMode.value && clockSimplifiedMode.value && clockSkins.full.simplifiedMode),
+    ...(!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value && clockSkins.full.simplifiedMode),
     // Welcome clockSkin
     ...(!clockActivePanel.value && clockWelcomeMode.value ? clockSkins.full.welcome : {}),
     // Tutorial clockSkin

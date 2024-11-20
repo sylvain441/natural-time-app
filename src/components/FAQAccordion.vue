@@ -81,28 +81,47 @@ const setupAccordion = () => {
     questions.forEach(({ question, answerElements }) => {
       question.classList.add('faq-question');
       
+      // Check if there are any answer elements
+      const hasAnswer = answerElements.length > 0;
+      
+      // Add 'no-answer' class if there are no answers
+      if (!hasAnswer) {
+        question.classList.add('no-answer');
+      }
+      
       // Wrap question text in a span
       const questionText = question.innerHTML;
       question.innerHTML = `<span class="question-text">${questionText}</span>`;
       
-      // Add arrow indicator
-      const arrow = document.createElement('span');
-      arrow.textContent = '▼';
-      arrow.classList.add('faq-arrow');
-      question.appendChild(arrow);
-      
-      const answerWrapper = document.createElement('div');
-      answerWrapper.classList.add('faq-answer', 'hidden');
-      answerWrapper.setAttribute('data-category', categoryId);
-      answerElements.forEach(el => answerWrapper.appendChild(el));
-      
-      question.parentNode.insertBefore(answerWrapper, question.nextSibling);
+      // Add arrow indicator only if there are answers
+      if (hasAnswer) {
+        const arrow = document.createElement('span');
+        arrow.textContent = '▼';
+        arrow.classList.add('faq-arrow');
+        question.appendChild(arrow);
+        
+        const answerWrapper = document.createElement('div');
+        answerWrapper.classList.add('faq-answer', 'hidden');
+        answerWrapper.setAttribute('data-category', categoryId);
+        answerElements.forEach(el => answerWrapper.appendChild(el));
+        
+        question.parentNode.insertBefore(answerWrapper, question.nextSibling);
 
-      question.addEventListener('click', () => {
-        answerWrapper.classList.toggle('hidden');
-        arrow.classList.toggle('rotated');
-        question.classList.toggle('open'); // Add this line
-      });
+        question.addEventListener('click', () => {
+          answerWrapper.classList.toggle('hidden');
+          arrow.classList.toggle('rotated');
+          question.classList.toggle('open');
+        });
+      } else {
+        // Wrap question text and no-answer message in separate divs
+        const questionContent = question.innerHTML;
+        question.innerHTML = `
+          <div class="question-wrapper">
+            <span class="question-text">${questionContent}</span>
+            <span class="no-answer-message">(En cours de rédaction)</span>
+          </div>
+        `;
+      }
     });
   });
 
@@ -136,6 +155,35 @@ onUnmounted(() => {
 <style lang="scss">
 
 #FAQ {
+
+  blockquote {
+    @apply mt-4 mb-12 p-6 rounded-lg bg-orange-50 dark:bg-orange-950/30 border-l-4 border-orange-400 
+           dark:border-orange-500 shadow-sm;
+
+    p {
+      @apply text-orange-800 dark:text-orange-200 mb-3 last:mb-0;
+    }
+
+    ul {
+      @apply my-4 pl-6 list-disc;
+      
+      li {
+        @apply mb-2 text-orange-800 dark:text-orange-200;
+      }
+      
+      a {
+        @apply font-medium text-orange-600 hover:text-orange-800 dark:text-orange-400 
+               dark:hover:text-orange-300 underline decoration-2 decoration-orange-400/50 
+               hover:decoration-orange-500;
+      }
+    }
+
+    // Emoji styling
+    p:first-child, p:last-child {
+      @apply text-center text-2xl tracking-wider;
+    }
+  }
+
   .faq-category {
     @apply text-3xl mb-4 text-gray-800 dark:text-gray-100 font-title underline decoration-4;
     &:not(:first-of-type) {
@@ -144,10 +192,15 @@ onUnmounted(() => {
   }
   .faq-question {
     @apply text-lg md:text-xl mt-2 mb-1 text-gray-700 dark:text-gray-300;
-    @apply cursor-pointer flex items-center justify-between;
-    &:hover, &.open {
-      .question-text {
-        @apply underline decoration-2;
+    @apply flex items-center justify-between;
+    
+    &:not(.no-answer) {
+      @apply cursor-pointer;
+      
+      &:hover, &.open {
+        .question-text {
+          @apply underline decoration-2;
+        }
       }
     }
   }
@@ -175,9 +228,6 @@ onUnmounted(() => {
         @apply font-bold underline decoration-2 text-sky-500 hover:decoration-sky-700
                dark:text-sky-400 dark:hover:text-sky-300;
       }
-    }
-    blockquote > * {
-      @apply italic text-orange-500 dark:text-orange-400;
     }
   }
   .faq-category[data-category="1"] {
@@ -219,5 +269,16 @@ onUnmounted(() => {
   .faq-question[data-category="4"] .faq-arrow {
     @apply text-nt-magenta-dark dark:text-pink-500;
   }
+}
+
+.faq-question.no-answer {
+  @apply opacity-75;
+  &:hover .question-text {
+    @apply no-underline;
+  }
+}
+
+.no-answer-message {
+  @apply text-sm text-gray-500 dark:text-gray-400 italic text-center sm:text-right sm:ml-2 mt-1 sm:mt-0;
 }
 </style>

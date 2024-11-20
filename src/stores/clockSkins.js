@@ -37,8 +37,13 @@ export const clockSkins = {
     simplifiedMode: {
       dotsDisplay: false,
       numbersDisplay: false,
-      mustachesDisplay: false,
       ntzDisplay: false,
+
+      mustachesEquinox: 'text-slate-400/10',
+      mustachesSummerSunrise: 'text-slate-400/10',
+      mustachesWinterSunrise: 'text-slate-400/10',
+      mustachesWinterSunset: 'text-slate-400/10',
+      mustachesSummerSunset: 'text-slate-400/10',
     },
     welcome: {
       context: {

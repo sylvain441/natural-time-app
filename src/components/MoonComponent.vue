@@ -37,13 +37,13 @@
         <div 
           @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 364, today.longitude))" 
           class="spinner cursor-pointer"
-          :class="{'is-active scale-110 animate-spin-slow': today.dayOfYear === 365}">
+          :class="{'is-active scale-110 animate-spin-slow': !spiralWelcomeMode && today.dayOfYear === 365}">
         </div>
         <div 
           v-if="today.yearDuration === 366" 
           @click="openTimeTravelForDay(new NaturalDate(today.yearStart + NaturalDate.MILLISECONDS_PER_DAY * 365, today.longitude))" 
           class="spinner cursor-pointer"
-          :class="{'is-active scale-110 animate-spin-slow': today.dayOfYear === 366}">
+          :class="{'is-active scale-110 animate-spin-slow': !spiralWelcomeMode && today.dayOfYear === 366}">
         </div>
       </div>
     </div>
@@ -267,7 +267,9 @@ const pastMoon = computed(() => {
     }
   }
   &.is-active, &:hover {
-    transition: all 0.8s ease-in-out;
+    &,&::before {
+      transition: all 0.8s ease-in-out;
+    }
   }
 }
 </style>

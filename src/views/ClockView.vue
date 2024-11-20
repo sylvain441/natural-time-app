@@ -23,6 +23,7 @@
 					class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
 
 					<!-- TITLE -->
+					<Transition name="fade">
 					<div v-if="!clockTimeTravelMode">
 						<h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
 							class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
@@ -54,7 +55,9 @@
 							<h2
 								class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
 								<span
-									class="font-extrabold text-xl bg-black text-nt-yellow-light font-mono px-2 py-1 mb-3">
+									@click="toggleTimeTravel"
+									class="font-extrabold text-xl bg-black text-nt-yellow-light font-mono px-2 py-1 mb-3 cursor-pointer hover:bg-slate-900 transition-colors duration-200"
+									title="Ouvrir le voyage temporel">
 									{{ context.naturalDate.toTimeString() }}
 								</span>
 							</h2>
@@ -65,16 +68,18 @@
 							</h2>
 						</div>
 					</div>
+					</Transition>
 
 					<!-- TIME TRAVEL CONTROL PANEL -->
+					<Transition name="fade">
 					<div v-if="clockTimeTravelMode">
 						<div class="bg-white/80 w-fit mx-auto mb-2 py-1 px-4 rounded-lg shadow-lg">
-							<p class="text-center font-mono text-xs">
-								<span class=" text-slate-500">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>&nbsp;
-								<span class="font-extrabold text-xl">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>&nbsp;
+							<p class="text-center text-gray-500 font-mono text-xs">
+								<span class=" ">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>&nbsp;
+								<span class="font-extrabold text-lg">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>&nbsp;
 								<span class="">UTC{{ new Date(context.naturalDate.unixTime).getTimezoneOffset() > 0 ? '-' : '+' }}{{ Math.abs(new Date(context.naturalDate.unixTime).getTimezoneOffset() / 60) }}</span>&nbsp;&nbsp;
 							</p>
-							<p class="text-center text-nt-yellow-darkest font-mono text-xs">
+							<p class="text-center text-gray-900 font-mono text-xs">
 								<span class="">{{ context.naturalDate.toDateString() }}</span>&nbsp;
 								<span class="font-extrabold text-xl">{{ context.naturalDate.toTimeString(0) }}</span>&nbsp;
 								<span class="">{{ context.naturalDate.toLongitudeString(0) }}</span>&nbsp;&nbsp;
@@ -114,8 +119,10 @@
 							</div>
 						</div>
 					</div>
+					</Transition>
 
 					<!-- TUTORIAL CONTROL PANEL -->
+					<Transition name="fade">
 					<div v-if="clockTutorialMode && clockTutorialCurrentStep < clockTutorialStepsTotal"
 						class="flex justify-center items-center bg-white space-x-4 mt-3 w-fit mx-auto font-mono text-sm font-extrabold px-6 py-2 rounded-full shadow-lg relative">
 
@@ -138,7 +145,7 @@
 							class="w-8 h-8 p-1 bg-nt-yellow-lighter rounded-full transition duration-300 ease-in-out transform disabled:opacity-10 select-none"
 							:class="clockTutorialCurrentStep < clockTutorialStepsTotal ? 'text-black hover:bg-nt-yellow-light cursor-pointer' : 'opacity-20'" />
 					</div>
-
+					</Transition>
 					<!-- BOTTOM BUTTONS -->
 					<div v-if="(clockWelcomeMode && !clockActivePanel) || (clockTutorialMode && clockTutorialCurrentStep == clockTutorialStepsTotal)"
 						class="flex flex-row items-center justify-center text-sm space-x-4 mt-3 mb-1">
@@ -197,11 +204,8 @@
 					:title="clockSimplifiedMode ? 'Design détaillé' : 'Design épuré'">
 					<component 
 						:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
-						class="w-6 h-6"
+						class="w-6 h-6 scale-[1.4]"
 					/>
-					<span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-nt-yellow-lighter text-black text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-						{{ clockSimplifiedMode ? 'Design détaillé' : 'Design épuré' }}
-					</span>
 				</button>
 
 				<!-- Menu button -->
@@ -217,7 +221,7 @@
 					</div>
 				</button>
 				<div v-if="isMenuOpen"
-					class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+					class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
 					<div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 						<!-- SETTINGS -->
 						<div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Paramètres
