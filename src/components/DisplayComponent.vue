@@ -1,5 +1,5 @@
 <template>
-  <div id="display" class="relative" :style="{ width: `${containerSize * 2}px` }">
+  <div id="display" class="relative" :style="{ width: `${containerSize}px` }">
     <!-- DISPLAY: PLACEHOLDER -->
     <div v-if="!spiralSkin.showDisplay && spiralWelcomeMode" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
       <div class="flex items-center font-extrabold display-container">

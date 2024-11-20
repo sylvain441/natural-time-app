@@ -2,13 +2,13 @@
   <div id="moons-view" 
        :class="[
          'flex flex-row bg-[#F2FFFF] dark:bg-slate-300 bg-[url(@/assets/debut-light.png)]',
-         spiralVerticalMode ? 'min-h-screen overflow-y-auto relative' : 'min-h-dvh overflow-hidden fixed w-full h-full'
+         spiralVerticalMode ? 'min-h-screen overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden fixed w-full h-full'
        ]" 
-       @touchmove.prevent="!spiralVerticalMode">
+       @touchmove="handleTouchMove">
     
     <div :class="[
-      'relative transition-all duration-300 ease-in-out', 
-      spiralVerticalMode ? 'w-full' : (spiralActivePanel ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full'),
+      'relative transition-all duration-300 ease-in-out ', 
+      spiralActivePanel ? 'hidden md:block md:w-1/2 xl:w-2/3' : 'w-full',
       spiralVerticalMode ? 'h-auto' : 'h-full'
     ]">
       
@@ -16,7 +16,7 @@
       <MainMenu />
       
       <div 
-        class="z-10 transition-all duration-300 ease-in-out"
+        class="z-10 w-full transition-all duration-300 ease-in-out"
         :class="[
           !spiralVerticalMode ? 'fixed h-full inset-0 px-3' : 'relative', 
           !spiralActivePanel && !spiralVerticalMode ? 'md:px-[14%] md:pt-10' : !spiralVerticalMode ? 'md:px-[3%]' : '', 
@@ -24,14 +24,13 @@
           (spiralShowTitle ? 'pb-40' : 'pb-10'), 
           (spiralTutorialMode ? 'pb-48' : ''), 
           (spiralTimeTravelMode ? 'pb-36' : ''), 
-          spiralVerticalMode ? 'px-0 pb-0 pt-0' : '']"
-        style="width: inherit;">
+          spiralVerticalMode ? 'px-0 pb-0 pt-0' : '']">
         
         <!-- MOONS COMPONENT -->
         <div ref="yearWrapper" 
              :class="[
                'w-full flex items-center justify-center drop-shadow-2xl relative',
-               spiralVerticalMode ? 'h-auto' : 'h-full'
+               spiralVerticalMode ? 'h-auto max-w-md mx-auto' : 'h-full'
              ]">
           
           <!-- Single Moon Overlay -->
@@ -63,7 +62,7 @@
               :display-date="displayDate"
               :context="context"
               :container-size="containerSize"
-              :style="{ order: displayOrder }"
+              :style="{ order: displayOrder, margin: spiralVerticalMode ? '0' : `0 ${containerSize/2}px` }"
             />
             
             <!-- All 13 Moons -->
@@ -204,7 +203,7 @@
     </div>
     
     <!-- RIGHT MODAL PANELS -->
-    <div v-if="spiralActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen md:w-1/2 xl:w-1/3 md:relative md:p-8">
+    <div v-if="spiralActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen max-h-screen md:w-1/2 xl:w-1/3 md:fixed md:right-0 md:bottom-0 md:top-0 md:p-8">
       <div class="overflow-hidden w-full h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
         <button v-if="spiralActivePanel" @click="spiralActivePanel = null" 
         class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
@@ -526,7 +525,7 @@ const updateScale = () => {
 	const maxWidth = yearWrapper.value.offsetWidth;
 	const maxHeight = yearWrapper.value.offsetHeight;
 
-  containerSize.value = !spiralVerticalMode.value ? Math.min(maxWidth / 4.01, maxHeight / 4.01 * 7 / 4) : maxWidth / 2; // 4.01 is the magic number to avoid problems with large aspect ratio screens
+  containerSize.value = !spiralVerticalMode.value ? Math.min(maxWidth / 4.01, maxHeight / 4.01 * 7 / 4) : maxWidth * 0.75 ; // 4.01 is the magic number to avoid problems with large aspect ratio screens
 };
 
 onMounted(() => {
@@ -561,6 +560,20 @@ const toggleVerticalMode = async () => {
   // Wait for DOM update before recalculating scale
   await nextTick();
   updateScale();
+
+  // Add scroll to current moon when switching to vertical mode
+  if (spiralVerticalMode.value) {
+    await nextTick(); // Wait for DOM to update with vertical layout
+    const currentMoonElement = document.getElementById(`moon-${today.value.moon}`);
+    if (currentMoonElement) {
+      setTimeout(() => {
+        currentMoonElement.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 555);
+    }
+  }
 };
 
 // Also add a watch for tutorial step changes
@@ -574,6 +587,15 @@ const displayOrder = computed(() => {
   if (!spiralVerticalMode.value) return 100;
   return today.value.moon * 10 + 5; 
 });
+
+// Add this method to handle touch events
+const handleTouchMove = (event) => {
+  if (spiralVerticalMode.value) {
+    event.stopPropagation();
+  } else {
+    event.preventDefault();
+  }
+};
 
 </script>
 
@@ -693,23 +715,51 @@ const displayOrder = computed(() => {
 
     [id^="moon-"] {
       @apply w-full flex justify-center p-6 my-4 bg-white/30 rounded-xl relative;
+      
+      // Add transform to create curve effect
+      &:nth-child(odd) {
+        transform: translateX(5%);
+      }
+      
+      &:nth-child(even) {
+        transform: translateX(-5%);
+      }
+
+      // Add subtle rotation
+      &:nth-child(4n+1) { transform: translateX(7%) rotate(1deg); }
+      &:nth-child(4n+2) { transform: translateX(-5%) rotate(-1deg); }
+      &:nth-child(4n+3) { transform: translateX(3%) rotate(0.5deg); }
+      &:nth-child(4n+4) { transform: translateX(-7%) rotate(-0.5deg); }
+
+      // Add transition for smooth hover effect
+      transition: all 0.3s ease-in-out;
+
+      // Hover effect to emphasize curve
+      &:hover {
+        transform: scale(1.02) translateX(0);
+        @apply shadow-lg;
+      }
+
+      // Rest of existing moon styles...
       .moon-center {
         @apply bg-opacity-0;
       }
       .day-of-moon:not(.isToday) .day-of-moon-number {
         @apply text-gray-500;
       }
-      // Add permanent moon number display
       &:not(#moon-14)::after {
         opacity: 1;
       }
     }
-    .past-moon {
-      @apply bg-gray-100;
-      .day-of-moon.isPast:not(:hover){
-        @apply border-opacity-10;
-      }
+
+    // Adjust display component position
+    #display {
+      order: 140;
+      @apply w-full pt-8 pb-36;
+      transform: translateX(0) !important; // Ensure display stays centered
     }
+
+    // Rest of existing vertical mode styles...
   }
 }
 
@@ -721,9 +771,11 @@ const displayOrder = computed(() => {
   }
 
   &.vertical-mode {
-    overscroll-behavior: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    touch-action: auto;
+    touch-action: pan-y;
+    height: 100%;
+    width: 100%;
   }
 }
 
