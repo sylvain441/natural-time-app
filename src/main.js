@@ -11,7 +11,9 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { ViteSSG } from 'vite-ssg'
 
 const migrateData = () => {
-  // If needed one day to display change log or other migration logic
+  // Clear both stores by removing their persisted data from localStorage
+  localStorage.removeItem('configStore')
+  localStorage.removeItem('contextStore')
   console.log('Migrating data from', localStorage.getItem('appVersion'), 'to', version)
 }
 
