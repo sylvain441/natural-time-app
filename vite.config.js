@@ -1,35 +1,49 @@
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
 import { version } from './package.json'
+
+// Plugins
 import vue from '@vitejs/plugin-vue'
 import vitePluginMarkdown, { Mode } from 'vite-plugin-markdown'
 import svgLoader from 'vite-svg-loader'
-
 import { VitePWA } from 'vite-plugin-pwa'
-
-//import { analyzer } from 'vite-bundle-analyzer'
 
 import 'vite-ssg'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
+  
+  // Plugin configurations
   plugins: [
+    // Vue plugin
     vue(),
+
+    // PWA configuration
     VitePWA({ 
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,woff2}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
-        skipWaiting: true
+        skipWaiting: true,
+        maximumFileSizeToCacheInBytes: 3_000_000,
+        runtimeCaching: [
+          {
+            urlPattern: /\.(?:js|css)$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'static-resources',
+            },
+          }
+        ],
       },
       manifest: {
+        id: 'naturaltime.app.pwa',
         name: 'Natural time',
         start_url: `https://naturaltime.app/startpwa/?v=${version}`,
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
-        theme_color: '#fff200',
-        background_color: "#d5f7fd",
+        theme_color: '#000000',
+        background_color: '#000000',
         icons: [
           {
             src: 'naturaltime-pwa-64x64.png',
@@ -48,7 +62,7 @@ export default defineConfig({
             purpose: 'any'  
           },
           {
-            src: 'naturaltime-maskable-512x512.png',
+            src: 'naturaltime-maskable-512x512.jpg',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -56,26 +70,27 @@ export default defineConfig({
         ]
       }
     }),
+
+    // Markdown plugin
     vitePluginMarkdown({
       mode: [Mode.HTML],
       enforce: 'pre'
     }),
+
+    // SVG loader
     svgLoader(),
-    /*analyzer({
-      analyzerPort: 8888
-    })*/
   ],
+
+  // Static Site Generation options
   ssgOptions: {
     script: 'async',
     formatting: 'prettify',
     crittersOptions: {
-      // Optimize critical CSS
       preload: 'js-lazy',
       preloadFonts: true,
     },
     dirStyle: 'nested',
     includedRoutes(paths, routes) {
-      // Define the routes to pre-render
       return [
         '/',
         '/fr/',
@@ -84,24 +99,28 @@ export default defineConfig({
       ]
     },
     onFinished() {
-      // Optional: Run any code after pre-rendering is complete
       console.log('Static site generation complete!')
     }
   },
+
+  // Build configuration
   build: {
-    ssrManifest: true, // Enable SSR manifest
+    ssrManifest: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-        }
+        sanitizeFileName: (name) => name.replace(/\x00/g, '').replace(/^_/, '')
       }
     }
   },
+
+  // Path aliases
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+
+  // CSS configuration
   css: {
     preprocessorOptions: {
       scss: {
