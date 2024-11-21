@@ -23,7 +23,7 @@ module.exports = {
           lighter: '#9EFCFF',
           light: '#00F2FF',
           dark: '#00d7e6',
-          darker: '#02B2B8',
+          darker: '#00b5c2',
           darkest: '#016b6e',
         },
         'nt-magenta': {

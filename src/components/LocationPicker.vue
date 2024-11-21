@@ -186,8 +186,7 @@
     </div>
 
     <p class="text-sm text-gray-500 dark:text-gray-400 px-4 pt-2 pb-4 italic text-center">
-      Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil.<br>
-      Aucune donnée personnelle n'est enregistrée.
+      Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil.
     </p>
   </div>
 </template>

@@ -30,8 +30,6 @@ export const useContextStore = defineStore('context', () => {
   const initDone = ref(false)
 
   const clearLocalStorageAndReload = () => {
-    localStorage?.clear();
-    window.location.reload();
     if (confirm('Es-tu sûr de vouloir effacer toutes les données enregistrées ?')) {
       localStorage?.clear();
       window.location.reload();

@@ -62,5 +62,14 @@ const router = createRouter({
   routes,
 })
 
+// Ignore Matomo in dev mode
+if (import.meta.env.PROD) {
+  router.afterEach((to) => {
+    // Track page view in Matomo
+    window._paq?.push(['setCustomUrl', to.fullPath])
+    window._paq?.push(['trackPageView'])
+  })
+}
+
 export { routes }
 export default router

@@ -1,13 +1,13 @@
 <template>
   <div id="moons-view" 
        :class="[
-         'flex flex-row bg-[#F2FFFF] dark:bg-slate-300 bg-[url(@/assets/debut-light.png)]',
+         'relative flex flex-row bg-white dark:bg-slate-300 bg-[url(@/assets/debut-light.png)] dark:bg-[url(@/assets/debut-dark.png)]',
          spiralVerticalMode ? 'min-h-dvh overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden relative'
        ]" 
        @touchmove.passive="handleTouchMove">
     
     <div :class="[
-      'relative transition-all duration-300 ease-in-out ', 
+      'relative z-10 transition-all duration-300 ease-in-out ', 
       spiralActivePanel ? 'hidden md:block md:w-1/2 xl:w-2/3' : 'w-full',
       spiralVerticalMode ? 'h-full overflow-y-auto' : 'h-dvh'
     ]">
@@ -42,7 +42,7 @@
                 :moon="context.naturalDate.moon"
                 :baseSize="containerSize * 3"
                 :spacing="containerSize * 0.1"
-                class="transition-transform duration-500 shadow-xl bg-white rounded-xl"
+                class="transition-transform duration-500 shadow-xl bg-white rounded-xl md:rounded-3xl"
                 @open-time-travel="openTimeTravelAtDate"
               />
             </div>
@@ -62,8 +62,7 @@
               :context="context"
               :container-size="containerSize"
               :style="{ 
-                margin: spiralVerticalMode ? '0' : `0 ${containerSize/2}px`,
-                cursor: spiralWelcomeMode ? 'default' : 'pointer' 
+                margin: spiralVerticalMode ? '0' : `0 ${containerSize/2}px`
               }"
             />
             
@@ -348,11 +347,11 @@
           </button>
           <div class="flex space-x-2">
             <button @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-                    class="bg-nt-cyan-light text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-nt-cyan-lighter">
+                    class="bg-nt-cyan-light text-black text-xs py-1 px-3 rounded-md transition duration-200 ease-in-out hover:bg-nt-cyan-lighter">
               Oui
             </button>
             <button @click="closeNotification" 
-                    class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
+                    class="bg-slate-100 text-black text-xs py-1 px-3 rounded-md transition duration-200 ease-in-out hover:bg-slate-200">
               Non
             </button>
           </div>
@@ -360,6 +359,14 @@
       </div>
     </div>
   </transition>
+  <!-- DEFINE GLOBAL CSS VARS -->
+  <component :is="'style'">
+    :root {
+    --hemisphere: {{ context.hemisphere }};
+    --day-progression: {{ context.dayProgression }};
+    --abs-day-progression: {{ Math.abs(context.dayProgression * 2 - 1) }}; /* close to sunrise and sunset */
+    }
+  </component>
 </div>
 </template>
 
@@ -368,6 +375,7 @@ import { ref, computed, defineAsyncComponent, onMounted, onUnmounted, watch, nex
 import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
+import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js/context';
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -437,9 +445,37 @@ const timeDelta = ref(0);
 const context = computed(() => {
   let theCurrentTime = spiralSkin.value.context?.currentTime ? spiralSkin.value.context.currentTime : currentTime.value + timeDelta.value;
   let theLongitude = spiralSkin.value.context?.longitude != null ? spiralSkin.value.context.longitude : longitude.value;
+	let theLatitude = spiralSkin.value.context?.latitude != null ? spiralSkin.value.context.latitude : latitude.value;
+  
+  const naturalDate = new NaturalDate(new Date(theCurrentTime), theLongitude);
+	
+  // Compute Sun data
+	let sun = {
+		...NaturalSunAltitude(naturalDate, theLatitude),
+		...NaturalSunEvents(naturalDate, theLatitude)
+	};
+
+  let hemisphere = theLatitude >= 0 ? 1 : -1;
+
+	// Calculate luminosity progression for day/night mode
+	let dayProgression = 0;
+
+	let dayPeriods = [
+		{ rangeStart: sun.morningGoldenHour, rangeStop: sun.eveningGoldenHour, start: 1, stop: 1 },
+		{ rangeStart: sun.nightEnd, rangeStop: sun.morningGoldenHour, start: 0, stop: 1 },
+		{ rangeStart: sun.eveningGoldenHour, rangeStop: sun.nightStart, start: 1, stop: 0 },
+	];
+
+	for (let step of dayPeriods) {
+		if (naturalDate.time >= step.rangeStart & naturalDate.time < step.rangeStop) {
+			dayProgression = step.start + (step.stop - step.start) * ((naturalDate.time - step.rangeStart) / (step.rangeStop - step.rangeStart));
+		}
+	}
   return {
     naturalDate: new NaturalDate(new Date(theCurrentTime), theLongitude),
-    location: location.value
+    location: location.value,
+    hemisphere: hemisphere,
+    dayProgression: dayProgression,
   };
 });
 
@@ -610,10 +646,35 @@ const handleTouchMove = (event) => {
 
 <style lang="scss">
 
+#moons-view {
+  &::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transition: var(--nt-animation-speed) ease-out;
+	}
+
+	// Night gradient
+	&::before {
+		background: radial-gradient(circle at center, #3e435b, #33303e);
+		opacity: calc((1 - var(--day-progression)) * 0.95);
+	}
+
+	// Day gradient
+	&::after {
+		background: radial-gradient(circle at center, #ffffff, #d5f7fd);
+		opacity: calc(var(--day-progression) *0.5);
+	}
+}
+
 #year {
 	#moon-1 { 
     order: 10; 
-    .moon-left { @apply rounded-tl-xl rounded-bl-xl; }
+    .moon-left { @apply rounded-tl-sm md:rounded-tl-xl rounded-bl-sm md:rounded-bl-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-2 { 
@@ -626,7 +687,7 @@ const handleTouchMove = (event) => {
   }
 	#moon-4 { 
     order: 40; 
-    .moon-center { @apply rounded-tr-xl; }
+    .moon-center { @apply rounded-tr-sm md:rounded-tr-xl; }
     .moon-top, .moon-right { @apply hidden; }
   }
 	#moon-5 { 
@@ -639,7 +700,7 @@ const handleTouchMove = (event) => {
   }
 	#moon-7 { 
     order: 150; 
-    .moon-center { @apply rounded-br-xl; }
+    .moon-center { @apply rounded-br-sm md:rounded-br-xl; }
     .moon-bottom, .moon-right { @apply hidden; }
   }
 	#moon-8 { 
@@ -652,7 +713,7 @@ const handleTouchMove = (event) => {
   }
 	#moon-10 { 
     order: 120; 
-    .moon-center { @apply rounded-bl-xl; }
+    .moon-center { @apply rounded-bl-sm md:rounded-bl-xl; }
     .moon-bottom, .moon-left { @apply hidden; }
   }
 	#moon-11 { 
@@ -661,12 +722,12 @@ const handleTouchMove = (event) => {
   }
 	#moon-12 { 
     order: 50; 
-    .moon-center { @apply rounded-tl-xl; }
+    .moon-center { @apply rounded-tl-sm md:rounded-tl-xl; }
     .moon-top, .moon-left { @apply hidden; }
   }
 	#moon-13 { 
     order: 60; 
-    .moon-right { @apply rounded-tr-xl rounded-br-xl; }
+    .moon-right { @apply rounded-tr-sm md:rounded-tr-xl rounded-br-sm md:rounded-br-xl; }
     .moon-top, .moon-bottom { @apply hidden; }
   }
 	#moon-14 { 
@@ -716,7 +777,11 @@ const handleTouchMove = (event) => {
     }
 
     [id^="moon-"] {
-      @apply w-full flex justify-center p-6 my-4 bg-white/30 rounded-xl relative;
+      @apply w-full flex justify-center p-6 my-4 bg-white/70 rounded-xl relative;
+
+      .moon-center {
+        @apply rounded-md;
+      }
       
       // Add transform to create curve effect
       &:nth-child(odd) {

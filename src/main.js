@@ -12,8 +12,8 @@ import { ViteSSG } from 'vite-ssg'
 
 const migrateData = () => {
   // Clear both stores by removing their persisted data from localStorage
-  localStorage.removeItem('configStore')
-  localStorage.removeItem('contextStore')
+  //localStorage.removeItem('configStore')
+  //localStorage.removeItem('contextStore')
   console.log('Migrating data from', localStorage.getItem('appVersion'), 'to', version)
 }
 

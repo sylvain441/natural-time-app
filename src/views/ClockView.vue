@@ -1,6 +1,6 @@
 <template>
 	<div id="day-view"
-		class="flex flex-row min-h-dvh overflow-hidden bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]" @touchmove.prevent>
+		class="flex flex-row min-h-dvh overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]" @touchmove.prevent>
 
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
@@ -575,9 +575,9 @@ onMounted(() => {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-  overscroll-behavior: none;
-  -webkit-overflow-scrolling: none;
-  touch-action: none;
+	overscroll-behavior: none;
+	-webkit-overflow-scrolling: none;
+	touch-action: none;
 
 	&::before,
 	&::after {
@@ -592,7 +592,7 @@ onMounted(() => {
 
 	// Night gradient
 	&::before {
-		background: radial-gradient(circle at center, #071135, #000000);
+		background: radial-gradient(circle at center, #171a26, #01000a);
 		opacity: calc((1 - var(--day-progression)) * 0.95);
 	}
 

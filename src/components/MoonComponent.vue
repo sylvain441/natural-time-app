@@ -123,12 +123,12 @@ const pastMoon = computed(() => {
 <style lang="scss">
 .moon-component {
 
-  .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white/40 }
+  .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white/60 }
   
   &.past-moon {
-    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-gray-50 }
+    .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white/90 }
     .day-of-moon.isPast:not(:hover):not(.isRainbowDay) {
-      @apply bg-white/90 text-gray-500 border-opacity-0;
+      @apply bg-transparent text-gray-600 border-opacity-0;
     }
   }
   .day-of-moon {
@@ -154,7 +154,7 @@ const pastMoon = computed(() => {
       @apply border-opacity-100 bg-opacity-100 text-white;
     }
     &.isFuture:not(:hover) {
-      @apply bg-opacity-0 text-gray-400;
+      @apply bg-opacity-0 text-gray-500;
     }
     &:hover:not(.spiralWelcomeMode) {
       @apply border-opacity-100 text-opacity-100;
@@ -245,7 +245,15 @@ const pastMoon = computed(() => {
   width: calc(var(--base-size) * 0.25);  // 25% of base size
   height: calc(var(--base-size) * 0.25);
   border-radius: 50%;
-  background: conic-gradient(rgba(var(--color-1), 0.9), rgba(var(--color-2), 0.9), rgba(var(--color-3), 0.9), rgba(var(--color-4), 0.9), rgba(var(--color-5), 0.9), rgba(var(--color-6), 0.9), rgba(var(--color-1), 0.9));
+  background: conic-gradient(
+    theme('colors.red.500'), 
+    theme('colors.orange.500'), 
+    theme('colors.yellow.500'), 
+    theme('colors.green.500'), 
+    theme('colors.sky.500'), 
+    theme('colors.violet.500'), 
+    theme('colors.red.500')
+  );
   &::before {
     content: "";
     background-color: white;

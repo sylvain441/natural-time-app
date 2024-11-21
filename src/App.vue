@@ -18,14 +18,27 @@
 @tailwind utilities;
 
 :root{
-	--color-0: 68, 68, 68;
-	--color-1: 215, 77, 64;
-	--color-2: 234, 169, 69;
-	--color-3: 223, 221, 69;
-	--color-4: 76, 175, 80;
-	--color-5: 73, 162, 240;
-	--color-6: 72, 52, 234;
-	--color-7: 128, 71, 235;
+	--color-1: theme('colors.red.500');
+	--color-2: theme('colors.orange.500');
+	--color-3: theme('colors.yellow.500');
+	--color-4: theme('colors.green.500');
+	--color-5: theme('colors.sky.500');
+	--color-6: theme('colors.indigo.500');
+	--color-7: theme('colors.violet.500');
+	--color-light-1: theme('colors.red.400');
+	--color-light-2: theme('colors.orange.400');
+	--color-light-3: theme('colors.yellow.400');
+	--color-light-4: theme('colors.green.400');
+	--color-light-5: theme('colors.sky.400');
+	--color-light-6: theme('colors.indigo.400');
+	--color-light-7: theme('colors.violet.400');
+	--color-dark-1: theme('colors.red.900 / 75%');
+	--color-dark-2: theme('colors.orange.900 / 75%');
+	--color-dark-3: theme('colors.yellow.900 / 75%');
+	--color-dark-4: theme('colors.green.900 / 75%');
+	--color-dark-5: theme('colors.sky.900 / 75%');
+	--color-dark-6: theme('colors.indigo.900 / 75%');
+	--color-dark-7: theme('colors.violet.900 / 75%');
 }
 
 @font-face {
@@ -35,15 +48,6 @@
 	font-style: normal;
 	font-display: swap;
 }
-
-
-.color-1{ color: rgb(var(--color-1))!important; fill: rgb(var(--color-1))!important; background-color: rgb(var(--color-1))!important; }
-.color-2{ color: rgb(var(--color-2))!important; fill: rgb(var(--color-2))!important; background-color: rgb(var(--color-2))!important; }
-.color-3{ color: rgb(var(--color-3))!important; fill: rgb(var(--color-3))!important; background-color: rgb(var(--color-3))!important; }
-.color-4{ color: rgb(var(--color-4))!important; fill: rgb(var(--color-4))!important; background-color: rgb(var(--color-4))!important; }
-.color-5{ color: rgb(var(--color-5))!important; fill: rgb(var(--color-5))!important; background-color: rgb(var(--color-5))!important; }
-.color-6{ color: rgb(var(--color-6))!important; fill: rgb(var(--color-6))!important; background-color: rgb(var(--color-6))!important; }
-.color-7{ color: rgb(var(--color-7))!important; fill: rgb(var(--color-7))!important; background-color: rgb(var(--color-7))!important; }
 
 .fade-enter-active, .fade-leave-active{
 	transition: .8s;

@@ -1,6 +1,6 @@
 import { NaturalDate } from "natural-time-js";
 
-let now = new NaturalDate(new Date(), 0);
+let now = new NaturalDate(new Date().setUTCHours(12,0,0,0), 0);
 
 export const spiralSkins = {
   full: {
@@ -152,7 +152,7 @@ export const spiralSkins = {
       },
       {
         context: {
-          currentTime: new Date(),
+          currentTime: new Date().setUTCHours(12,0,0,0),
           latitude: 42.42,
           longitude: 0,
         },
@@ -190,7 +190,7 @@ export const spiralSkins = {
       /////END OF TUTORIAL/////
       {
         context: {
-          currentTime: new Date(),
+          currentTime: new Date().setUTCHours(12,0,0,0),
           latitude: 42.42,
           longitude: 0,
         },

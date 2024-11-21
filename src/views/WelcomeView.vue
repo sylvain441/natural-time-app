@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-dvh bg-white dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
+  <div class="min-h-dvh bg-gray-50 dark:bg-slate-800 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
 
     <div class="max-w-6xl mx-auto">
       <!-- Title Section (Gray) -->
@@ -22,7 +22,7 @@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-light to-nt-yellow-lighter dark:from-nt-yellow-dark dark:to-nt-yellow-darker max-md:mx-2 max-md:my-4 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-dark/90 to-nt-yellow-darker/90 max-md:mx-2 max-md:my-4 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -47,7 +47,7 @@
 
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-10" ref="thirteenMoonsRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-light to-nt-cyan-lighter dark:from-nt-cyan-dark dark:to-nt-cyan-darker max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-dark/90 to-nt-cyan-darker/90 max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -75,7 +75,7 @@
       <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-8 md:mb-10">
         <p class="text-center text-lg md:text-2xl max-w-3xl mx-auto font-thin italic text-slate-800 dark:text-slate-100">
           Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
-          susceptible de remplacer ou compléter<br class="hidden md:block">
+          en mesure de remplacer (ou compléter)<br class="hidden md:block">
           l'horloge des 24 heures et le calendrier grégorien.
         </p>
       </section>

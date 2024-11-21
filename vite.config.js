@@ -7,7 +7,7 @@ import svgLoader from 'vite-svg-loader'
 
 import { VitePWA } from 'vite-plugin-pwa'
 
-import { analyzer } from 'vite-bundle-analyzer'
+//import { analyzer } from 'vite-bundle-analyzer'
 
 import 'vite-ssg'
 
@@ -26,7 +26,7 @@ export default defineConfig({
       },
       manifest: {
         name: 'Natural time',
-        start_url: `https://beta.naturaltime.app/startpwa/?v=${version}`,
+        start_url: `https://naturaltime.app/startpwa/?v=${version}`,
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
         theme_color: '#fff200',
         background_color: "#d5f7fd",

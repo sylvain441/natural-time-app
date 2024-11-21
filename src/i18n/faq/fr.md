@@ -74,9 +74,9 @@
 
 #### En quoi le calendrier grégorien est-il si mauvais ?
 
-#### Quand commence l'année naturelle ?
+#### Quand débute l'année naturelle ?
 
-#### Pourquoi 2012 correspond-elle à l'an 001 ?
+#### Pourquoi l'an 001 correspond-il à 2012 ?
 
 
 
@@ -86,18 +86,17 @@
 
 #### Le Temps Naturel est un projet open source. Pourquoi ?
 
- Cette application open source a été créée ([naturaltime.app](https://naturaltime.app)) pour comprendre et pour jouer avec l'horloge du temps naturel. Elle est hébergée sur [github](https://github.com/sylvain441/natural-time-app) et libérée sous licence Creative Common Zero.
-Les spécifications techniques complètes sont disponibles ici :  
-[github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time) (en anglais) 
+Le temps naturel est une convention universelle au même titre que le mètre ou le kilogramme. Il est donc tout à fait normal qu'il soit libre de faire son chemin en toute autonomie par rapport à son concepteur.
+
+Cette application a été créée ([naturaltime.app](https://naturaltime.app)) pour comprendre et pour jouer avec l'horloge du temps naturel. Elle est hébergée sur [github](https://github.com/sylvain441/natural-time-app) et libérée sous licence Creative Common Zero.
 
 Le code source du temps naturel est divisé en trois parties :
 
-- Spécifications complètes du temps naturel (no code) : [github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time)
+- Spécifications complètes du temps naturel (en anglais) : [github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time)
 - Librairie JavaScript de calcul du temps naturel : [github.com/sylvain441/natural-time-js](https://github.com/sylvain441/natural-time-js)
 - Application VueJs horloge du temps naturel : [github.com/sylvain441/natural-time-app](https://github.com/sylvain441/natural-time-app) — [naturaltime.app](https://naturaltime.app)
 
-Le code source et l'application appartiennent au domaine public sous licence CC0-1.0. Tu peux jouer à forker le code, le spooner ou le knifer même ! et pourquoi pas l'intégrer dans ta propre application ?
-
+N'hésite surtout pas à contribuer à l'évolution du temps naturel ; à te l'approprier ou le réinventer à ta façon !
 
 
 #### Comment installer l'application en mode hors-ligne ?
