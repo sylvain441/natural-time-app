@@ -1,0 +1,55 @@
+{
+    "version": 1.1,
+    "atDirectives": [
+        {
+            "name": "@tailwind",
+            "description": "Use the `@tailwind` directive to insert Tailwind's `base`, `components`, `utilities` and `screens` styles into your CSS.",
+            "references": [
+                {
+                    "name": "Tailwind Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives#tailwind"
+                }
+            ]
+        },
+        {
+            "name": "@apply",
+            "description": "Use the `@apply` directive to inline any existing utility classes into your own custom CSS.",
+            "references": [
+                {
+                    "name": "Tailwind Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives#apply"
+                }
+            ]
+        },
+        {
+            "name": "@responsive",
+            "description": "You can generate responsive variants of your own classes by wrapping their definitions in the `@responsive` directive.",
+            "references": [
+                {
+                    "name": "Tailwind Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives#responsive"
+                }
+            ]
+        },
+        {
+            "name": "@screen",
+            "description": "The `@screen` directive allows you to create media queries that reference your breakpoints by name.",
+            "references": [
+                {
+                    "name": "Tailwind Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives#screen"
+                }
+            ]
+        },
+        {
+            "name": "@variants",
+            "description": "Generate `hover`, `focus`, `active` and other variants of your own utilities.",
+            "references": [
+                {
+                    "name": "Tailwind Documentation",
+                    "url": "https://tailwindcss.com/docs/functions-and-directives#variants"
+                }
+            ]
+        }
+    ]
+} 

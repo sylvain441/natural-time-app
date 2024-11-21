@@ -1,45 +1,75 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
+import { useContextStore } from '../stores/contextStore'
 
-import DayView from '../views/DayView.vue'
-import MoonsView from '../views/MoonsView.vue'
-import About from '../views/About.vue'
+import WelcomeView from '../views/WelcomeView.vue'
+import ClockView from '../views/ClockView.vue'
+import SpiralView from '../views/SpiralView.vue'
+import NotFoundView from '../views/404.vue'
 
-const checkLatlngFormat = (to, from) => {
-  if(to.params.latlng !== undefined && !to.params.latlng.match(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/))
-    return false
-};
+const routes = [
+  {
+    path: '/',
+    redirect: '/fr/',
+    name: 'home',
+  },
+  { 
+    path: '/fr/', 
+    name: 'welcome', 
+    component: WelcomeView,
+  },
+  { 
+    path: '/fr/horloge-temps-naturel', 
+    name: 'time', 
+    component: ClockView,
+  },
+  { 
+    path: '/fr/spirale-13-lunes', 
+    name: '13moons', 
+    component: SpiralView,
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFoundView,
+  },
+  // OLD ROUTES
+  { 
+    path: '/:latlng?/:location?', 
+    redirect: { name: 'time' }
+  },
+  { 
+    path: '/13moons/:latlng?/:location?', 
+    redirect: { name: '13moons' }
+  },
+  { 
+    path: '/about', 
+    redirect: { name: 'welcome' }
+  },
+  { 
+    path: '/startpwa',
+    name: 'startpwa',
+    redirect: to => {
+      const contextStore = useContextStore()
+      return contextStore.storedLatitude && contextStore.storedLongitude 
+        ? { name: 'time' }
+        : { name: 'welcome' }
+    }
+  },
+]
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
-  routes: [
-    { 
-      path: '/:latlng?/:location?', 
-      name: 'time', 
-      component: DayView,
-      beforeRouteEnter: checkLatlngFormat,
-    },
-    { 
-      path: '/13moons/:latlng?/:location?', 
-      name: 'date', 
-      component: MoonsView,
-      beforeRouteEnter: checkLatlngFormat,
-    },
-    { 
-      path: '/about', 
-      name: 'about', 
-      component: About,
-    },
-  ]
+  history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
+  routes,
 })
 
-/**
- * Prepopulate with defaults when first arrival
- */
-router.beforeEach((to, from) => {
-  if(!localStorage.latitude) localStorage.latitude = 42.42;
-  if(!localStorage.longitude) localStorage.longitude = 0;
-  if(!localStorage.location) localStorage.location = '';
-  if(!localStorage.coordinatesFrom) localStorage.coordinatesFrom = 'default';
-});
+// Ignore Matomo in dev mode
+if (import.meta.env.PROD) {
+  router.afterEach((to) => {
+    // Track page view in Matomo
+    window._paq?.push(['setCustomUrl', to.fullPath])
+    window._paq?.push(['trackPageView'])
+  })
+}
 
+export { routes }
 export default router

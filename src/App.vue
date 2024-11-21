@@ -1,178 +1,93 @@
+<template>
+	<div class="z-10 h-min-screen relative">
+		<router-view v-slot="{ Component }">
+			<transition name="fade" mode="out-in">
+				<component :is="Component"></component>
+			</transition>
+		</router-view>
+	</div>
+</template>
+
 <script setup>
-
-import { useRoute } from 'vue-router';
-import { useI18n }from 'vue-i18n/index'
-
-const route = useRoute();
-const i18n = useI18n();
-
-const meta = document.getElementsByTagName('meta');
-if(meta.description)
-  meta.description.content = i18n.t("meta.description");
 
 </script>
 
-<template>
-<div>
-  
-  <router-view v-slot="{Component}">
-    <transition name="fade" mode="out-in">
-      <component :is="Component"></component>
-    </transition>
-  </router-view>
-
-  <nav class="UI">
-    <router-link :to="{name: 'time', params: route.params}">{{ $t('nav.clock') }}</router-link>
-    <router-link :to="{name: 'date', params: route.params}">{{ $t('nav.moons') }}</router-link>
-    <router-link :to="{name: 'about'}">{{ $t('nav.about') }}</router-link>
-  </nav>
-
-</div>
-</template>
-
 <style lang="scss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root{
-  --color-0: #444;
-  --color-1: #d74d40;
-  --color-2: #eaa945;
-  --color-3: #dfdd45;
-  --color-4: #7fc663;
-  --color-5: #49a2f0;
-  --color-6: #443cea;
-  --color-7: #8047eb;
-
-  --top-row-height: 18%;
-  --left-column-width: 14%;
-
-  --yearloop-bg-color: #FFF;
-  --yearloop-radius: 6px
+	--color-1: theme('colors.red.500');
+	--color-2: theme('colors.orange.500');
+	--color-3: theme('colors.yellow.500');
+	--color-4: theme('colors.green.500');
+	--color-5: theme('colors.sky.500');
+	--color-6: theme('colors.indigo.500');
+	--color-7: theme('colors.violet.500');
+	--color-light-1: theme('colors.red.400');
+	--color-light-2: theme('colors.orange.400');
+	--color-light-3: theme('colors.yellow.400');
+	--color-light-4: theme('colors.green.400');
+	--color-light-5: theme('colors.sky.400');
+	--color-light-6: theme('colors.indigo.400');
+	--color-light-7: theme('colors.violet.400');
+	--color-dark-1: theme('colors.red.900 / 75%');
+	--color-dark-2: theme('colors.orange.900 / 75%');
+	--color-dark-3: theme('colors.yellow.900 / 75%');
+	--color-dark-4: theme('colors.green.900 / 75%');
+	--color-dark-5: theme('colors.sky.900 / 75%');
+	--color-dark-6: theme('colors.indigo.900 / 75%');
+	--color-dark-7: theme('colors.violet.900 / 75%');
 }
 
-/* Radio Canada 300 latin  */
 @font-face {
-  font-family: 'Radio Canada';
-  font-style: normal;
-  font-weight: 300;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(/fonts/radio-canada-300.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Radio Canada 400 latin */
-@font-face {
-  font-family: 'Radio Canada';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(/fonts/radio-canada-400.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Radio Canada 500 latin */
-@font-face {
-  font-family: 'Radio Canada';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(/fonts/radio-canada-500.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Radio Canada 600 latin */
-@font-face {
-  font-family: 'Radio Canada';
-  font-style: normal;
-  font-weight: 600;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(/fonts/radio-canada-600.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Radio Canada 700 latin */
-@font-face {
-  font-family: 'Radio Canada';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(/fonts/radio-canada-700.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-.color-1{ color: var(--color-1)!important; fill: var(--color-1)!important; background-color: var(--color-1)!important; }
-.color-2{ color: var(--color-2)!important; fill: var(--color-2)!important; background-color: var(--color-2)!important; }
-.color-3{ color: var(--color-3)!important; fill: var(--color-3)!important; background-color: var(--color-3)!important; }
-.color-4{ color: var(--color-4)!important; fill: var(--color-4)!important; background-color: var(--color-4)!important; }
-.color-5{ color: var(--color-5)!important; fill: var(--color-5)!important; background-color: var(--color-5)!important; }
-.color-6{ color: var(--color-6)!important; fill: var(--color-6)!important; background-color: var(--color-6)!important; }
-.color-7{ color: var(--color-7)!important; fill: var(--color-7)!important; background-color: var(--color-7)!important; }
-
-
-body {
-  margin: 0;
+	font-family: 'DM Serif Display';
+	src: url('@/assets/fonts/DMSerifDisplay-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 .fade-enter-active, .fade-leave-active{
-  transition: .8s;
+	transition: .8s;
 }
 .fade-enter-from, .fade-leave-to{
-  opacity: 0;
+	opacity: 0;
 }
 
-nav{
-  position: absolute;
-  z-index: 10000;
-  top: 1.5em;
-  left:50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  transform: translateX(-50%);
-  a{
-    margin: .5em;
-    transition: .4s;
-    font-size: .75em;
-    font-weight: 500;
-    font-family: "Radio Canada", sans-serif;
-    color: #597A82;
-    text-transform: uppercase;
-    text-decoration: none;
-    white-space: nowrap;
-    img{
-      width: 2em;
-      aspect-ratio: 1 / 1;
-    }
-    &:hover, &.router-link-active{
-      color: #597A82;
-      text-decoration: underline;
-      text-decoration-thickness: 3px;
-    }
-  }
-  span{
-    text-align: center;
-    color: #7B7A8B;
-    font-family: "Radio Canada", sans-serif;
-    font-weight: 500;
-    margin: .5em;
-    text-transform: uppercase;
-  }
+.menu-fade-enter-active,
+.menu-fade-leave-active {
+	transition: opacity 0.5s ease;
 }
 
-#menu-icon{
-  position: absolute;
-  z-index: 11000;
-  top: 1.5em;
-  right: 1.5em;
-  width: 2em;
-  transform: scale(.9);
-  transition: 0.4s;
-  cursor: pointer;
-  &:hover{
-    transform: scale(1);
-  }
+.menu-fade-enter-from,
+.menu-fade-leave-to {
+	opacity: 0;
 }
 
+.bg-texture{
+	background-color: #fff;
+	background-image: url('@/assets/debut-light.png');
+	background-repeat: repeat;
+}
+
+.bg-texture-dark{
+	background-color: #000;
+	background-image: url('@/assets/debut-dark.png');
+	background-repeat: repeat;
+}
+
+.section-header {
+  @apply relative font-mono font-bold px-4 mt-4 mb-0 pb-2 text-base text-slate-800 dark:text-gray-100 border-b-4;
+}
+
+svg {
+	transform-origin: center;
+}
+
+svg line {
+	transform-origin: center;
+}
 
 </style>

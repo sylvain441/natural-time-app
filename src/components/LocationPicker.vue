@@ -1,631 +1,729 @@
+<template>
+  <div id="settings-view" class="overflow-y-auto flex flex-col h-full dark:bg-gray-900" @submit.prevent>
+    <!-- Location Picker title -->
+    <h4 :class="[
+      viewType === 'spiral' ? 'border-nt-cyan-light dark:border-nt-cyan-darkest' : 'border-nt-yellow-light dark:border-nt-yellow-darkest'
+    ]" class="section-header flex flex-row items-center justify-between">
+      <span>Choisir un lieu</span>
+    </h4>
+    
+    <!-- Form -->
+    <div v-if="isOnline" :class="[
+      viewType === 'spiral' 
+        ? 'bg-nt-cyan-lighter dark:bg-nt-cyan-dark' 
+        : 'bg-nt-yellow-lighter dark:bg-nt-yellow-dark'
+    ]" class="px-4 pt-1 pb-4">
+      <!-- This form is here (at the top) so that is is visible when keyboard is open on mobile -->
+      <template v-if="markerPlaced && (shouldShowForm)">
+        <label for="locationName" :class="[
+          viewType === 'spiral' 
+            ? 'text-nt-cyan-darkest' 
+            : 'text-nt-yellow-darkest'
+        ]" class="text-sm font-mono font-extrabold">Donner un nom au lieu</label>
+        <div class="flex flex-row items-center justify-between">
+          <div class="grow flex items-center space-x-2 justify-start">
+            <input 
+            id="locationName" 
+            v-model="tempLocation" 
+            type="text" 
+            placeholder="(Facultatif)"
+            :class="[
+              viewType === 'spiral' 
+                ? 'border-nt-cyan-light focus:border-nt-cyan-dark dark:border-nt-cyan-light' 
+                : 'border-nt-yellow-light focus:border-nt-yellow-dark dark:border-nt-yellow-light'
+            ]"
+            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-white text-slate-900"
+            @keyup.enter="save"
+            />
+            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-dark hover:bg-nt-cyan-light dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white' : 'bg-nt-yellow-dark hover:bg-nt-yellow-darker dark:bg-slate-700 dark:hover:bg-slate-800 dark:text-white']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-200 disabled:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+              </svg>
+              Valider
+            </button>
+          </div>
+        </div>
+      </template>
+      
+      <div v-if="!markerPlaced || !shouldShowForm" class="flex items-center space-x-2 pt-2 text-slate-600">
+        <mapIcon class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+        <span class="italic">
+          {{ !markerPlaced ? 'Cliquer la carte pour choisir un lieu' : 'Cliquer la carte pour choisir un autre point' }}
+        </span>
+      </div>
+    </div>
+
+    <div id="map-container" class="relative h-full flex-grow touch-manipulation">
+      <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
+      <div class="w-full h-full flex flex-col items-center justify-center p-8">
+        <p v-if="!isOnline" class="text-center text-gray-600 dark:text-gray-400">
+          L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.
+        </p>
+        <div class="flex flex-col">
+          <div class="grow flex flex-col items-center space-y-2 justify-center hover:opacity-100 py-2" :class="[isOnline ? 'opacity-50' : '']">
+            <div class="dark:text-white">
+              <span>Latitude</span> 
+              <input 
+                autocomplete="off"
+                :placeholder="0" 
+                v-model="tempLatitude" 
+                @submit.prevent
+                @focus="preventZoom"
+                type="number" 
+                inputmode="decimal"
+                pattern="[0-9]*"
+                min="-90" 
+                max="90" 
+                class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+              />
+            </div>
+            <div class="dark:text-white">
+              <span>Longitude</span> 
+              <input 
+                autocomplete="off"
+                :placeholder="0" 
+                v-model="tempLongitude" 
+                @submit.prevent
+                @focus="preventZoom"
+                type="number" 
+                inputmode="decimal"
+                pattern="[0-9]*"
+                min="-180" 
+                max="180" 
+                class="w-24 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+              />
+            </div>
+            <div class="dark:text-white">
+              <span>Nom</span> 
+              <input 
+                autocomplete="off"
+                v-model="tempLocation" 
+                @submit.prevent
+                @focus="preventZoom"
+                type="text" 
+                placeholder="(Facultatif)" 
+                class="w-36 ml-2 p-2 border rounded text-xs dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                @keyup.enter="save" 
+              />
+            </div>
+          </div>
+          <div class="flex justify-center p-4">
+            <button @click="save" :class="[viewType === 'spiral' ? 'bg-nt-cyan-light hover:bg-nt-cyan-lighter' : 'bg-nt-yellow-light hover:bg-nt-yellow-darker']" class="text-black text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
+              </svg>
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div :class="[viewType === 'spiral' ? 'bg-nt-cyan-ultralight dark:bg-nt-cyan-light dark:bg-opacity-30' : 'bg-nt-yellow-ultralight dark:bg-nt-yellow-light dark:bg-opacity-30']" class="pt-2 pb-4 px-4">
+
+      <!-- Geolocation -->
+      <div class="flex items-center justify-between pt-2 text-slate-700 dark:text-slate-300">
+        <transition name="fadein">
+          <div v-if="enableGeolocation && geolocationStatus === 'searching'" class="flex items-center space-x-2">
+            <spinIcon class="h-6 w-6 animate-spin text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <span>Géolocalisation en cours...</span>
+          </div>
+          <div v-else-if="enableGeolocation && geolocationStatus === 'success'" class="flex items-center space-x-2">
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <span>Position GPS détectée</span> <button v-if="positionChanged" @click="acceptNewGeolocation()" class="text-blue-500 dark:text-blue-400 underline ml-2">Recentrer</button>
+          </div>
+          <div v-else-if="enableGeolocation" class="flex items-center space-x-2">
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <span>Géolocalisation activée</span>
+          </div>
+          <div v-else class="flex items-center space-x-2">
+            <geolocationIcon class="h-6 w-6 text-blue-500 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+            <span>Activer la géolocalisation</span>
+          </div>
+        </transition>
+        <ToggleButton v-model="enableGeolocation" class="bg-blue-500 dark:bg-blue-600" />
+      </div>
+
+      <div v-if="enableGeolocation" class="flex items-center space-x-2 text-sm">
+        <div class="w-full">
+          <transition name="fadein">
+            <!-- Errors -->
+            <div v-if="geolocationStatus === 'permission denied'" class="flex items-center mt-2">
+              <div class="flex items-center justify-between w-full">
+                <div class="flex items-center space-x-2">
+                  <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                  <span class="text-red-500 dark:text-red-400">Veuillez activer la géolocalisation dans votre navigateur</span>
+                </div>
+              </div>
+            </div>
+            <div v-else-if="geolocationStatus === 'position unavailable'" class="flex items-center mt-2">
+              <div class="flex items-center justify-between w-full space-x-2">
+                <div class="flex items-center space-x-2">
+                  <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                  <span class="text-red-500 dark:text-red-400">Position non disponible</span>
+                </div>
+              </div>
+              <button @click="getGeolocation()" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
+            </div>
+            <div v-else-if="geolocationStatus === 'timeout'" class="flex items-center mt-2">
+              <div class="flex items-center space-x-2">            
+                <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                <span class="text-red-500 dark:text-red-400">Délai de géolocalisation dépassé</span>
+              </div>
+              <button @click="getGeolocation" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
+            </div>
+            <div v-else-if="geolocationStatus === 'error'" class="flex items-center mt-2">
+              <div class="flex items-center space-x-2">
+                <infoIcon class="h-6 w-6 text-red-500 dark:text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
+                <span class="text-red-500 dark:text-red-400">Erreur de géolocalisation</span>
+              </div>
+              <button @click="getGeolocation" class="text-blue-500 dark:text-blue-400 underline ml-2">Réessayer</button>
+            </div>
+          
+          </transition>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-sm text-gray-500 dark:text-gray-400 px-4 pt-2 pb-4 italic text-center">
+      Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil.
+    </p>
+  </div>
+</template>
+
 <script setup>
-import { onMounted, ref, defineEmits, computed } from "vue";
-import { useRouter } from "vue-router";
-import { useI18n } from 'vue-i18n/index'
+import { ref, onMounted, nextTick, computed, onUnmounted, watch } from 'vue';
+import { useContextStore } from '@/stores/contextStore';
+import { storeToRefs } from 'pinia';
+import { useI18n } from 'vue-i18n';
+import ToggleButton from '@/components/ToggleButton.vue';
+import { useConfigStore } from '@/stores/configStore';
+
+// Import OpenLayers modules directly
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import OSM from 'ol/source/OSM';
 import { fromLonLat, toLonLat } from 'ol/proj';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { Style, Icon, Circle, Fill, Stroke } from 'ol/style';
+import ZoomControl from 'ol/control/Zoom';
 
-import Geocoder from "ol-geocoder/dist/ol-geocoder.js";
-import Control from 'ol/control/Control';
-import ElementIcon from '@/components/ElementIcon.vue';
-// import "ol-geocoder/dist/ol-geocoder.min.css"; // Overriden below
+// Icons
+import mapMarkerCyanIcon from '@/assets/icon/map-marker-cyan.png';
+import mapMarkerYellowIcon from '@/assets/icon/map-marker-yellow.png';
+import spinIcon from '@/assets/icon/spin-icon.svg';
+import infoIcon from '@/assets/icon/info-icon.svg';
+import mapIcon from '@/assets/icon/map-icon.svg';
+import geolocationIcon from '@/assets/icon/geolocation-icon.svg';
 
-import 'vue3-openlayers/dist/vue3-openlayers.css'
+// Store setup
+const contextStore = useContextStore();
+const { latitude, longitude, enableGeolocation, geolocationStatus, tempLatitude, tempLongitude, tempLocation, geolocationLatitude, geolocationLongitude, positionChanged } = storeToRefs(contextStore);
+const { getGeolocation } = contextStore;
 
-const router = useRouter();
+const configStore = useConfigStore();
+
+// Composables
 const i18n = useI18n();
-const emit = defineEmits(['close']);
 
-const urlroot = ref(window.location.origin);
-
-// ASK SOMETIMES FOR HTML5 GEO API CALL// TRACK GPS
-const trackGeolocation = ref(false);
-const geoLocChange = (loc) => {
-  view.value.fit([loc[0], loc[1], loc[0], loc[1]], { maxZoom: 7 });
-  trackGeolocation.value = false;
-}
-
-// GET LOCATION FROM LOCALSTORAGE
-const latitude = ref(localStorage.latitude);
-const longitude = ref(localStorage.longitude);
-const location = ref(localStorage.location?.replace(/_/g, " ") || "");
-
-// ONLINE / OFFLINE STATUS
-const isOnline = ref(window.navigator.onLine);
-window.addEventListener('online',  () => { isOnline.value = window.navigator.onLine });
-window.addEventListener('offline', () => { isOnline.value = window.navigator.onLine });
-
-// REFERENCE DOM ELEMENTS
+// Refs
+const isOnline = ref(false);
 const map = ref(null);
 const view = ref(null);
-const modal = ref(null);
-const locateButton = ref(null)
-;
-// OPENLAYER SETUP
-const zoomLevel = ref(localStorage.longitude ? 3 : 2)
-const setupCoordinates = fromLonLat([longitude.value, latitude.value]);
+const vectorSource = ref(null);
+const markerFeature = ref(null);
+const geolocationFeature = ref(null);
+const zoomLevel = ref(contextStore.longitude ? 5 : 4);
+const geocoder = ref(null);
+const mapInitialized = ref(false);
 
-// UPDATE LAT/LONG INPUTS WHEN USING THE MAP
-function centerChanged(center) {
-  latitude.value = parseFloat(toLonLat(center)[1].toFixed(2));
-  longitude.value = parseFloat(toLonLat(center)[0].toFixed(2));
-
-  if(String(location.value).startsWith(i18n.t('longitude')) || !location.value)
-    location.value = i18n.t('longitude') + " " + parseInt(longitude.value);
-}
-
-// UPDATE CENTER OF THE MAP WHEN CHANGING LAT/LONG INPUTS
-function updateCenter() {
-    view.value.setCenter(fromLonLat([longitude.value, latitude.value]));
-}
-
-onMounted(() => {
-    // Geolocation button
-    map.value.map.addControl( new Control({ element: locateButton.value }) );
-    
-    // Address search field
-    const geocoder = new Geocoder('nominatim', {
-        provider: 'photon',
-        lang: 'fr-FR',
-        placeholder: i18n.t('locationPicker.searchFor'),
-        targetType: 'text-input',
-        autoComplete: true,
-        autoCompleteMinLength: 4,
-        autoCompleteTimeout: 500,
-        limit: 4,
-        keepOpen: true,
-    });
-    geocoder.on('addresschosen', function(evt) {
-        location.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
-    });
-    map.value.map.addControl(geocoder);
-
-    // focus on the <div> to catch ESC events
-    modal.value.focus();
+// Update the pointerCoordinates computed property
+const pointerCoordinates = computed(() => {
+  if (tempLatitude.value && tempLongitude.value) {
+    return fromLonLat([parseFloat(tempLongitude.value), parseFloat(tempLatitude.value)]);
+  }
+  return null;
 });
 
-// SAVE AND GO TO THE CLOCK
-function save() {
-    let locationPrompt = window.prompt(i18n.t('locationPicker.promptLocationName'), location.value);
-    if(locationPrompt != null) {
-        localStorage.location = locationPrompt.replace(/\s/g, '_');
-        localStorage.longitude = longitude.value;
-        localStorage.latitude = latitude.value;
-        localStorage.coordinatesFrom = 'user';
+const markerPlaced = computed(() => {
+  return tempLatitude.value && tempLongitude.value;
+});
 
-        emit('close');
+const updateOnlineStatus = () => {
+  isOnline.value = window.navigator.onLine;
+  if (isOnline.value) {
+    // If coming back online, reinitialize the map
+    nextTick(() => {
+      initMap();
+    });
+  }
+};
 
-        router.push({name: router.currentRoute.value.name, params: {
-            location: localStorage.location,
-            latlng: localStorage.latitude + "," + localStorage.longitude
-        }});
+const initGeocoder = async () => {
+  const { default: Geocoder } = await import('ol-geocoder');
+  // Rest of your geocoder initialization code
+  if (!map.value) {
+    console.warn('Map not available, skipping geocoder setup');
+    return;
+  }
+  
+  geocoder.value = new Geocoder('nominatim', {
+    provider: 'photon',
+    lang: 'fr-FR',
+    placeholder: 'Rechercher un lieu',
+    targetType: 'text-input',
+    preventMarker: true,
+    limit: 3,
+    keepOpen: true
+  });
+  
+  geocoder.value.on('addresschosen', (evt) => {
+    tempLocation.value = evt.place.address.city || evt.place.address.name || evt.place.address.state || evt.place.address.country;
+    const coordinates = evt.coordinate;
+    if (coordinates && view.value) {
+      view.value.setZoom(12);
+      tempLatitude.value = toLonLat(coordinates)[1];
+      tempLongitude.value = toLonLat(coordinates)[0];
     }
+    
+    // Clear the geocoder input
+    const input = document.getElementById('gcd-input-query');
+    if (input) {
+      input.value = '';
+    }
+  });
+  
+  map.value.addControl(geocoder.value);
+  
+  // AUTOCOMPLETE
+  nextTick(() => {
+    const setupAutocomplete = () => {
+      const input = document.getElementById('gcd-input-query');
+      if (input && geocoder.value) {
+        const triggerAutocomplete = debounce(() => {
+          if (input.value.length >= 3) {
+            input.dispatchEvent(new KeyboardEvent('keypress', { keyCode: 13 }));
+          }
+        }, 700);
+        input.addEventListener('input', triggerAutocomplete, { bubbles: true, capture: true });
+      } else {
+        // If the input is not found, retry after a short delay
+        setTimeout(setupAutocomplete, 100);
+      }
+    };
+    
+    setupAutocomplete();
+  });
+};
+
+const save = () => {
+  contextStore.saveLocation();
+  emit('close');
+  emit('save');
+};
+
+const initialPosition = ref({
+  lat: tempLatitude.value,
+  lng: tempLongitude.value
+});
+
+const hasPositionChanged = computed(() => {
+  return initialPosition.value.lat !== tempLatitude.value || 
+         initialPosition.value.lng !== tempLongitude.value;
+});
+
+const shouldShowForm = computed(() => {
+  // Show form if:
+  // 1. Welcome mode is on for current view type (spiral or clock)
+  // 2. OR No initial position was set (new location selection)
+  // 3. OR if position has changed from initial position
+  return (props.viewType === 'spiral' && configStore.spiralWelcomeMode) || 
+         (props.viewType === 'clock' && configStore.clockWelcomeMode) || 
+         !initialPosition.value.lat || 
+         hasPositionChanged.value;
+});
+
+// Update handleMapClick to track position changes
+const handleMapClick = (event) => {
+  const clickedCoord = event.coordinate;
+  const lonLat = toLonLat(clickedCoord);
+  
+  // Only clear location name if position has significantly changed
+  if (Math.abs(tempLatitude.value - parseFloat(lonLat[1])) > 0.1 || 
+      Math.abs(tempLongitude.value - parseFloat(lonLat[0])) > 0.1) {
+    tempLocation.value = '';
+  }
+  
+  tempLatitude.value = parseFloat(lonLat[1]);
+  tempLongitude.value = parseFloat(lonLat[0]);
+};
+
+const acceptNewGeolocation = () => {
+  tempLatitude.value = geolocationLatitude.value;
+  tempLongitude.value = geolocationLongitude.value;
+  tempLocation.value = '';
+  const newCoordinates = fromLonLat([tempLongitude.value, tempLatitude.value]);
+  if (view.value) {
+    view.value.setCenter(newCoordinates);
+    view.value.setZoom(12);
+  }
 }
+
+// Update the geolocationCoordinates computed property
+const geolocationCoordinates = computed(() => {
+  if (geolocationLatitude.value && geolocationLongitude.value) {
+    return fromLonLat([parseFloat(geolocationLongitude.value), parseFloat(geolocationLatitude.value)]);
+  }
+  return null;
+});
+
+const safeDestroyMap = (map) => {
+  if (!map) return;
+  
+  try {
+    const mapTarget = map.getTarget();
+    if (mapTarget) {
+      // Remove all listeners
+      map.setTarget(null);
+      // Clear target element
+      if (typeof mapTarget === 'string') {
+        const element = document.getElementById(mapTarget);
+        if (element) {
+          element.innerHTML = '';
+        }
+      }
+    }
+  } catch (error) {
+    console.warn('Error during map cleanup:', error);
+  }
+};
+
+// Update the destroyMap function
+const destroyMap = () => {
+  if (!map.value) return;
+
+  try {
+    // Remove event listeners first
+    map.value.un('singleclick', handleMapClick);
+    
+    // Remove controls
+    if (geocoder.value) {
+      try {
+        map.value.removeControl(geocoder.value);
+        geocoder.value.dispose(); // Properly dispose geocoder
+      } catch (e) {
+        console.warn('Error removing geocoder:', e);
+      }
+      geocoder.value = null;
+    }
+    
+    // Clear vector source
+    if (vectorSource.value) {
+      vectorSource.value.clear();
+      vectorSource.value = null;
+    }
+    
+    // Clear features
+    markerFeature.value = null;
+    geolocationFeature.value = null;
+    
+    // Safely destroy map
+    safeDestroyMap(map.value);
+    map.value = null;
+    
+    // Clear view
+    if (view.value) {
+      view.value.setCenter(null);
+      view.value.setZoom(undefined);
+      view.value = null;
+    }
+    
+    mapInitialized.value = false;
+  } catch (error) {
+    console.warn('Error during map destruction:', error);
+  }
+};
+
+// Update initMap function
+const initMap = () => {
+  if (!isOnline.value || mapInitialized.value) return;
+
+  try {
+    destroyMap();
+    
+    // Add error boundary
+    const mapElement = document.getElementById('map-canvas');
+    if (!mapElement) {
+      console.warn('Map canvas element not found');
+      return;
+    }
+
+    vectorSource.value = new VectorSource({
+      wrapX: false // Prevent wrapping around globe
+    });
+    
+    view.value = new View({
+      center: fromLonLat([longitude.value || 0, latitude.value || 0]),
+      zoom: zoomLevel.value,
+      constrainResolution: true, // Prevent fractional zoom levels
+      maxZoom: 18
+    });
+
+    map.value = new Map({
+      target: 'map-canvas',
+      layers: [
+        new TileLayer({
+          source: new OSM({
+            crossOrigin: 'anonymous'
+          })
+        }),
+        new VectorLayer({
+          source: vectorSource.value,
+          updateWhileAnimating: false, // Optimize performance
+          updateWhileInteracting: false
+        })
+      ],
+      view: view.value,
+      controls: [new ZoomControl()],
+      pixelRatio: 2 // Better rendering on high-DPI displays
+    });
+
+    // Add touch-specific interactions
+    map.value.on('pointermove', (e) => {
+      e.preventDefault(); // Prevent unwanted scrolling
+    });
+
+    map.value.on('singleclick', handleMapClick);
+
+    updateMarker();
+    updateGeolocationMarker();
+
+    // Setup geocoder after ensuring map is ready
+    map.value.once('postrender', () => {
+      mapInitialized.value = true;
+      initGeocoder();
+    });
+
+  } catch (error) {
+    console.error('Error initializing map:', error);
+    mapInitialized.value = false;
+  }
+};
+
+const updateMarker = () => {
+  if (markerFeature.value) {
+    vectorSource.value.removeFeature(markerFeature.value);
+  }
+  if (pointerCoordinates.value) {
+    markerFeature.value = new Feature({
+      geometry: new Point(pointerCoordinates.value)
+    });
+    markerFeature.value.setStyle(new Style({
+      image: new Icon({
+        src: props.viewType === 'spiral' ? mapMarkerCyanIcon : mapMarkerYellowIcon,
+        scale: 0.5,
+        anchor: [0.5, 0.95]
+      })
+    }));
+    vectorSource.value.addFeature(markerFeature.value);
+  }
+};
+
+const updateGeolocationMarker = () => {
+  if (geolocationFeature.value) {
+    vectorSource.value.removeFeature(geolocationFeature.value);
+  }
+  if (enableGeolocation.value && geolocationCoordinates.value) {
+    geolocationFeature.value = new Feature({
+      geometry: new Point(geolocationCoordinates.value)
+    });
+    geolocationFeature.value.setStyle(new Style({
+      image: new Circle({
+        radius: 6,
+        fill: new Fill({ color: 'blue' }),
+        stroke: new Stroke({ color: 'white', width: 2 })
+      })
+    }));
+    vectorSource.value.addFeature(geolocationFeature.value);
+  }
+};
+
+onMounted(() => {
+  nextTick(() => {
+    if (isOnline.value) {
+      initMap();
+    }
+    if (enableGeolocation.value) {
+      getGeolocation();
+    }
+  });
+
+  // Event listeners
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+  updateOnlineStatus();
+});
+
+onUnmounted(() => {
+  // Remove event listeners
+  window.removeEventListener('online', updateOnlineStatus);
+  window.removeEventListener('offline', updateOnlineStatus);
+  
+  contextStore.resetLocation();
+  destroyMap();
+});
+
+// Watchers for updating markers
+watch(pointerCoordinates, updateMarker);
+watch([enableGeolocation, geolocationCoordinates], updateGeolocationMarker);
+
+// Add a watch for isOnline
+watch(isOnline, (newValue) => {
+  if (newValue) {
+    // If coming back online, reinitialize the map
+    nextTick(() => {
+      initMap();
+    });
+  } else {
+    // If going offline, destroy the map
+    destroyMap();
+  }
+});
+
+// Emits
+const emit = defineEmits(['close', 'save']);
+
+// Custom debounce function instead of heavy lodash
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Add this prop
+const props = defineProps({
+  viewType: {
+    type: String,
+    default: 'clock', // 'clock' or 'spiral'
+    required: true
+  }
+});
 
 </script>
 
-<template>
-<div id="modal" ref="modal" @keydown.esc="emit('close');" tabindex="-1">
-    <h1>
-        {{ $t('locationPicker.title.line1') }}
-        <small>{{ $t('locationPicker.title.line2') }}</small>
-        <span>{{ $t('locationPicker.title.line3') }}</span>
-        <div id="close-location-picker" @click="emit('close');">&#x2715;</div>
-    </h1>
-
-    <div id="map">
-        <ol-map id="map-canvas" :loadTilesWhileAnimating="true" :loadTilesWhileInteracting="true" ref="map">
-
-          <ol-view ref="view" :center="setupCoordinates" :zoom="zoomLevel" @centerChanged="centerChanged" />
-          <ol-geolocation :tracking="trackGeolocation" @positionChanged="geoLocChange"></ol-geolocation>
-
-          <ol-zoom-control />
-
-          <div class="ol-control ol-unselectable locate" ref="locateButton" :class="{'is-tracking': trackGeolocation}">
-            <button :title="i18n.t('locationPicker.locateMe')" @click="trackGeolocation = true"><img src="@/assets/icon/geolocation.svg"></button>
-          </div>
-
-          <ol-tile-layer>
-              <ol-source-osm />
-          </ol-tile-layer>
-            
-        </ol-map>
-
-        <span class="reticule"></span>
-
-        <div id="form">
-            <label for="latitude">{{ $t('locationPicker.form.latitude') }}&nbsp;<input type="number" name="latitude" step=".01" size="5" v-model="latitude" @change="updateCenter"></label>&nbsp;&nbsp;
-            <label for="longitude">{{ $t('locationPicker.form.longitude') }}&nbsp;&nbsp;<input type="number" name="longitude" step=".01" size="5" v-model="longitude" @change="updateCenter"></label>
-        </div>
-    </div>
-
-    <p>
-      <button @click="save">{{ $t('locationPicker.form.save') }}</button>
-      {{ $t('locationPicker.advise') }}
-    </p>
-
-    <div id="decoration">
-        <div v-for="color = 1 in 7">
-            <ElementIcon :element="4 - Math.abs(4 - color)" :color="color"></ElementIcon>
-        </div>
-    </div>
-</div>
-</template>
-
-<style lang="scss" scoped>
-
-#modal{
-    padding: 100px 20px;
-    font-size: min(calc(100vw * 0.04), 20px);
-    max-width: 500px;
-    margin: auto;
-    border-radius: 10px;
-    &:focus{
-        outline: none;
-    }
-}
-
-h1{
-    position: relative;
-    margin: 0;
-    font-family: "Radio Canada", sans-serif;
-    font-weight: 700;
-    color: #4D4D59;
-    span, small{
-        display: block;
-    }
-    small{
-        line-height: 1.25;
-        font-weight: 500;
-        font-size: .6em;
-    }
-    span{
-        line-height: 1.2;
-        font-size: 1.1em;
-        text-transform: uppercase;
-    }
-
-    #close-location-picker{
-        z-index: 1000;
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: .8em;
-        font-weight: bold;
-        transform: translateY(-25%);
-        cursor: pointer;
-        color: #4D4D59;
-        &:hover{
-            color: #292930;
-        }
-    }
-}
-
-#clock{
-  position: absolute;
-  top: 0;
-  right: 2%;
-  width: 40%;
-  transform: rotate(4deg) translateY(-65%);
-  filter: blur(1px);
-  opacity: .25;
-  font-size: 16px;
-}
-
-#map{
-    position: relative;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    aspect-ratio: 1.44 / 1;
-    #map-canvas{
-        width: 100%;
-        height: 100%;
-        border-radius: 16px;
-        overflow: hidden;
-        background-color: #ABD3DD;
-    }
-    span.reticule{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      display: block;
-      width: 20px;
-      aspect-ratio: 1 / 1;
-      background: url('@/assets/icon/reticule.svg') center no-repeat;
-      background-size: cover;
-    }
-
-    #form{
-        display: block;
-        position: absolute;
-        bottom: .5em;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        font-size: 0.8em;
-        font-family: "Helvetica Neue", sans-serif;
-        font-style: italic;
-        padding: 3px 20px;
-        color: rgb(66, 66, 66);
-        background-color: rgba(255, 255, 255, 0.9);
-        border-radius: 6px;
-        p{
-            margin-top: 0;
-            input{
-                margin: 4px 0;
-            }
-        }
-        label{
-            white-space: nowrap;
-        }
-        input{
-            display: inline-block;
-            border: none;
-            padding: 3px 7px;
-            margin: 3px 0;
-            border-radius: 3px;
-            background-color: rgb(234, 234, 234);
-        }
-    }
-
-
-    @media screen and (-webkit-min-device-pixel-ratio:0) {
-      input{
-        max-width: 60px;
-        &:focus {
-        font-size: 16px;
-      }
-      }
-    }
-
-}
-
-p{
-    font-family: "Helvetica Neue", sans-serif;
-    font-style: italic;
-    font-size: 0.6em;
-    color: #999999;
-    button{
-      display: inline-block;
-      float: right;
-      padding: .4em .8em;
-      margin: 0 .8em;
-      background-color: #eaeaeb;
-    font-size: 1.2em;
-      font-style: normal;
-      border-radius: 6px;
-      cursor: pointer;
-      white-space: no-wrap;
-      &:hover{
-          box-shadow: 0 0 5px transparentize(#000, .8);
-      }
-    }
-}
-
-#decoration{
-  clear: both;
-    text-align: center;
-    opacity: .8;
-    transform: translateY(1.3em);
-    height: 0;
-    div{
-        display: inline-block;
-        width: 1.4em;
-        padding: 0.4em;
-    }
-}
-
-@media screen and (min-width: 700px) and (min-height: 700px) {
-    #modal{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: max(80vmin, calc(100vmin - calc((100vmin - 350px) / 2)));
-        max-width: 700px;
-        padding: 40px;
-    }
-    #map{
-        width: 100%;
-        aspect-ratio: 1.618 / 1;
-    }
-}
-
-</style>
-
 <style lang="scss">
+@import 'ol-geocoder/dist/ol-geocoder.min.css';
 
-// Those styles need to be unscoped
-
-.locate{
+.ol-geocoder {
+  &.gcd-txt-container {
+    width: 35%;
+    min-width: 200px;
+    height: auto;
     top: .5em;
+    left: auto;
     right: .5em;
-    cursor: pointer;
-    &.is-tracking{
-        animation: beam 2s linear infinite;
+    padding: 0;
+    z-index: 20;
+  }
+  
+  .gcd-txt-control {
+    position: relative;
+    width: 100%;
+    height: 2.4em;
+  }
+  
+  .gcd-txt-input {
+    height: 100%;
+    padding: 5px 30px 4px 8px;
+  }
+  
+  .gcd-txt-search::after {
+    content: "\23CE";
+    font-size: 1em;
+  }
+  
+  .gcd-txt-glass {
+    display: none;
+  }
+  
+  ul.gcd-txt-result {
+    top: 2.8em;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    box-shadow: none;
+    z-index: 21;
+    
+    > li {
+      &:nth-child(odd) {
+        background-color: #f1f1f1;
+      }
+      
+      > a:hover {
+        background-color: #fff9c5;
+      }
     }
-    @keyframes beam {  
-        50% { opacity: 0; }
-    }
+  }
 }
-
-/*!
- * ol-geocoder - v4.1.2
- * A geocoder extension for OpenLayers.
- * https://github.com/jonataswalker/ol-geocoder
- * Built: Wed Jan 20 2021 10:05:07 GMT-0300 (Brasilia Standard Time)
- */
-.ol-touch .ol-control.gcd-gl-control button {
-  font-size: 1.14em; }
-
-.ol-touch .ol-geocoder.gcd-gl-container {
-  font-size: 1.1em; }
-
-.ol-geocoder.gcd-gl-container {
-  position: absolute;
-  top: calc(50% - 4.8em);
+.ol-zoom{
+  top: .5em;
   left: .5em;
-  box-sizing: border-box;
-  font-size: 0.9em; }
-  .ol-geocoder.gcd-gl-container *,
-  .ol-geocoder.gcd-gl-container *::before,
-  .ol-geocoder.gcd-gl-container *::after {
-    box-sizing: inherit; }
-
-.ol-geocoder .gcd-gl-control {
-  width: 1.9em;
-  height: 1.9em;
-  overflow: hidden;
-  transition: width 200ms, height 200ms; }
-
-.ol-geocoder .gcd-gl-expanded {
-  width: 15.625em;
-  //! height: 2.1875em; 
-  }
-
-.ol-geocoder .gcd-gl-input {
-  position: absolute;
-  z-index: 99;
-  top: 0.25em;
-  left: 2.5em;
-  width: 14.84375em;
-  padding: 5px;
-  border: 1px solid #ccc;
-  font-family: inherit;
-  font-size: 0.875em;
-  background-color: #fff;
-  color: #222; }
-  .ol-geocoder .gcd-gl-input:focus {
-    border: none;
-    outline: none;
-    box-shadow: inset 0 0 0 1px #4d90fe, inset 0 0 5px #4d90fe; }
-
-  @media screen and (-webkit-min-device-pixel-ratio:0) {
-    #gcd-input-query{
-      font-size: 16px;
-    }
-  }
-
-.ol-geocoder .gcd-gl-reset {
-  position: absolute;
-  z-index: 100;
-  top: 0em;
-  right: 0.4em;
-  width: 1.4em;
-  height: 1.4em;
-  line-height: 1.4;
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  outline: 0;
-  cursor: pointer; }
-  .ol-geocoder .gcd-gl-reset::after {
-    content: "\d7";
-    display: inline-block;
-    color: #333;
-    font-size: 1.4em;
-    cursor: pointer; }
-
-.ol-geocoder .gcd-gl-btn {
-  position: absolute;
-  width: 1.5625em;
-  height: 1.5625em;
-  top: 0.135em;
-  left: 0.125em;
-  background-size: 1.2em;
-  background-image: url("@/assets/icon/search.svg");
-  background-repeat: no-repeat;
-  background-position: center center; }
-
-.ol-geocoder ul.gcd-gl-result {
-  position: absolute;
-  top: 2.1875em;
-  left: 2.3em;
-  width: 16.25em;
-  max-height: 18.75em;
-  white-space: normal;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: white;
-  border-radius: 4px;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  //box-shadow: 0 1px 7px rgba(0, 0, 0, 0.8);
-  transition: max-height 300ms ease-in; }
-  .ol-geocoder ul.gcd-gl-result > li {
-    width: 100%;
-    overflow: hidden;
-    border-bottom: 1px solid #eee;
-    padding: 0;
-    line-height: 0.875rem; }
-    .ol-geocoder ul.gcd-gl-result > li > a {
-      display: block;
-      text-decoration: none;
-      padding: 3px 5px; }
-      .ol-geocoder ul.gcd-gl-result > li > a:hover {
-        background-color: #d4d4d4; }
-  .ol-geocoder ul.gcd-gl-result > li:nth-child(odd) {
-    background-color: #f1f1f1; }
-
-.ol-geocoder ul.gcd-gl-result:empty {
-  display: none; }
-
-#gcd-container .gcd-txt-control{
 }
-.ol-geocoder.gcd-txt-container {
-  position: absolute;
-  width: 40%; //width: 25em;
-  height: auto; //height: 4.375em;
-  top: 0; //top: .5em;
-  right: 2.5em; //left: calc(50% - 12.5em);
-  padding: 10px; //!
-  box-sizing: border-box; }
-  .ol-geocoder.gcd-txt-container *,
-  .ol-geocoder.gcd-txt-container *::before,
-  .ol-geocoder.gcd-txt-container *::after {
-    box-sizing: inherit; }
 
-.ol-geocoder .gcd-txt-control {
-  position: relative;
-  width: 100%;
-  border-radius: 6px; //!
-  height: 1.6em; //height: 4.375em;
-  border: none; //border: 1px solid #ccc;
-  background-color: #fff;
-  overflow: hidden; }
-
-.ol-geocoder .gcd-txt-input {
-  position: absolute;
-  z-index: 99;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 2px 40px 2px 15px;
-  border: none;
-  //!text-indent: 6px;
-  background-color: transparent;
-  font-family: inherit;
-  font-size: 0.875em; }
-  .ol-geocoder .gcd-txt-input:focus {
-    outline: none;
-    box-shadow: inset 0 0 0 1px #4d90fe55, inset 0 0 6px #4d90fe55; }
-
-.ol-geocoder .gcd-txt-reset {
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  right: 0;
-  width: 2.5em;
-  height: 100%;
-  line-height: 100%;
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  vertical-align: middle;
-  outline: 0;
-  cursor: pointer; }
-  .ol-geocoder .gcd-txt-reset::after {
-    content: "\d7";
-    display: inline-block;
-    color: #333;
-    font-size: 2em;
-    cursor: pointer; }
-
-.ol-geocoder .gcd-txt-glass {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  display: inline-block;
-  display: none;
-  width: 2.2em;
-  height: 100%;
-  background-size: 1em; //background-size: 1.38889em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%23333' d='M29.156 29.961l-.709.709a2.006 2.006 0 0 1-2.838 0l-5.676-5.674c-.656-.658-.729-1.644-.281-2.412l-3.104-3.102a9.975 9.975 0 0 1-5.965 1.979C5.043 21.461.552 16.97.552 11.43S5.043 1.398 10.583 1.398c5.541 0 10.031 4.491 10.031 10.032 0 2.579-.98 4.923-2.58 6.7l3.035 3.035c.768-.447 1.754-.375 2.41.283l5.676 5.674c.784.785.784 2.056.001 2.839zM18.088 11.389c0-4.155-3.369-7.523-7.524-7.523a7.523 7.523 0 1 0-.001 15.046 7.525 7.525 0 0 0 7.525-7.523z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center center; }
-
-.ol-geocoder ul.gcd-txt-result {
-  //! position: absolute;
-  //! top: 4.575em;
-  //! left: 0;
-  margin: .4em 0;
-  width: 100%; //width: 25em;
-  max-height: 18.75em;
-  white-space: normal;
-  list-style: none;
-  padding: 0;
-  background-color: white;
-  border-radius: 6px; //border-radius: 4px;
-  border-top: none;
-  //! border-top-left-radius: 0;
-  //! border-top-right-radius: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  //! box-shadow: 0 1px 7px rgba(0, 0, 0, 0.8);
-  transition: max-height 300ms ease-in; }
-  .ol-geocoder ul.gcd-txt-result > li {
-    width: 100%;
-    overflow: hidden;
-    border-bottom: 1px solid #eee;
-    padding: 0;
-    line-height: 0.875rem; }
-    .ol-geocoder ul.gcd-txt-result > li > a {
-      display: block;
-      text-decoration: none;
-      padding: 3px 5px; }
-      .ol-geocoder ul.gcd-txt-result > li > a:hover {
-        background-color: #d4d4d4; }
-  .ol-geocoder ul.gcd-txt-result > li:nth-child(odd) {
-    background-color: #eeeeee; }
-
-.ol-geocoder ul.gcd-txt-result:empty {
-  display: none; }
-
-.ol-geocoder .gcd-hidden {
+.fadein-enter-active {
+  transition: opacity 0.5s;
+}
+.fadein-enter, .fadein-leave-to {
   opacity: 0;
-  visibility: hidden; }
+}
 
-.ol-geocoder .gcd-pseudo-rotate::after {
-  -webkit-animation: spin .7s linear infinite;
-          animation: spin .7s linear infinite; }
+// Add OpenLayers default styles
+@import 'ol/ol.css';
 
-@-webkit-keyframes spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+#map-canvas {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+.ol-control {
+  /* Prevent text selection on controls */
+  -webkit-user-select: none;
+  user-select: none;
+}
 
-.gcd-address {
-  font-size: 0.875em;
-  font-weight: 500;
-  color: #333; }
+/* Add these styles to prevent unwanted zoom behavior */
+input[type="number"],
+input[type="text"] {
+  font-size: 16px; /* Prevents iOS zoom */
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
 
-.gcd-road {
-  font-size: 0.875em;
-  font-weight: 500;
-  color: #333; }
+/* Prevent double-tap zoom */
+* {
+  touch-action: manipulation;
+}
 
-.gcd-city {
-  font-size: 0.75em;
-  font-weight: normal;
-  color: #333; }
+/* Add these new styles */
+#map-container {
+  isolation: isolate;
+}
 
-.gcd-country {
-  font-size: 0.75em;
-  font-weight: lighter;
-  color: #333; }
-
+.gcd-txt-input {
+  font-size: 16px !important;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
 </style>

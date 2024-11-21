@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2352,-1321)">
+        <g id="_13-moon-icon" serif:id="13-moon-icon" transform="matrix(0.0166431,0,0,0.0166667,2306.83,1321)">
+            <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
+            <g transform="matrix(45.9262,0,0,31.4853,-124803,-39766.1)">
+                <path d="M2777.54,1276.99L2777.54,1270.76L2805.54,1270.76C2806.34,1270.76 2806.99,1271.71 2806.99,1272.88L2806.99,1298.87C2806.99,1300.04 2806.34,1300.99 2805.54,1300.99L2779,1300.99C2778.2,1300.99 2777.54,1300.04 2777.54,1298.87L2777.54,1281.76C2777.54,1280.59 2778.2,1279.64 2779,1279.64L2792.89,1279.64L2792.89,1285.87L2782.99,1285.87L2782.99,1294.76L2801.54,1294.76L2801.54,1276.99L2777.54,1276.99ZM2797.32,1279.67C2798.49,1279.67 2799.44,1281.06 2799.44,1282.77C2799.44,1284.47 2798.49,1285.86 2797.32,1285.86C2796.14,1285.86 2795.19,1284.47 2795.19,1282.77C2795.19,1281.06 2796.14,1279.67 2797.32,1279.67Z"/>
+            </g>
+        </g>
+    </g>
+</svg>
