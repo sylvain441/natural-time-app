@@ -92,7 +92,7 @@ export default defineConfig({
     dirStyle: 'nested',
     includedRoutes(paths, routes) {
       return [
-        '/',
+        '/', '/startpwa/',
         '/fr/',
         '/fr/horloge-temps-naturel',
         '/fr/spirale-13-lunes',
