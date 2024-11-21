@@ -150,7 +150,7 @@ useHead({
     { name: 'description', content: metaDescription },
     { property: 'og:title', content: metaTitle },
     { property: 'og:description', content: metaDescription },
-    { property: 'og:image', content: '/public/natural-time-social.jpg' },
+    { property: 'og:image', content: 'https://naturaltime.app/natural-time-social.jpg' },
     { property: 'og:url', content: 'https://naturaltime.app' },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
