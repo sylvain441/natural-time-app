@@ -200,7 +200,7 @@
               @click="() => { spiralTutorialMode = false; openPanel(AVAILABLE_PANELS.locationPicker); }" 
               class="flex items-center text-black hover:bg-slate-300 font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg"
               :class="spiralTutorialMode && spiralTutorialCurrentStep == spiralTutorialStepsTotal ? 'bg-nt-cyan-light': 'bg-slate-200'">
-              Configurer
+              {{ spiralWelcomeMode && !spiralTutorialMode ? 'Je connais déjà' : 'Configurer' }}
             </button>
           </div>
         </footer>
@@ -269,6 +269,21 @@
           class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
           role="menuitem">
           <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Choisir un lieu
+        </a>
+        <!-- Dark Mode Toggle -->
+        <a @click="configStore.toggleDarkMode"
+          class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between"
+          role="menuitem">
+          <div class="flex items-center">
+            <sunIcon v-if="configStore.darkMode" class="w-6 h-6 mr-2" fill="currentColor" />
+            <moonIcon v-else class="w-6 h-6 mr-2" fill="currentColor" />
+            Dark mode
+          </div>
+          <div class="relative inline-flex h-5 w-9 items-center rounded-full bg-slate-200 dark:bg-nt-yellow-light transition-colors duration-200">
+            <div class="absolute h-4 w-4 transform rounded-full bg-white dark:bg-slate-700 shadow-md transition-transform duration-200"
+              :class="configStore.darkMode ? 'translate-x-4' : 'translate-x-1'">
+            </div>
+          </div>
         </a>
         
         <!-- SPECIAL MODES -->
@@ -401,6 +416,8 @@ import verticalSpiralIcon from '@/assets/icon/vertical-spiral-icon.svg';
 import thirteenMoonIcon from '@/assets/icon/13-moon-icon.svg';
 import plusIcon from '@/assets/icon/plus-icon.svg';
 import minusIcon from '@/assets/icon/minus-icon.svg';
+import sunIcon from '@/assets/icon/sun-icon.svg';
+import moonIcon from '@/assets/icon/moon-icon.svg';
 
 // Store setup
 const contextStore = useContextStore()
