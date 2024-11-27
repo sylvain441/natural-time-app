@@ -9,11 +9,6 @@ export const AVAILABLE_PANELS = {
 }
 
 export const useConfigStore = defineStore('appConfig', () => {
-  const darkMode = ref(
-    typeof window !== 'undefined' 
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches 
-      : false
-  );
   
   // CLOCK
   const clockWelcomeMode = ref(true);
@@ -81,10 +76,6 @@ export const useConfigStore = defineStore('appConfig', () => {
   const hemisphereNotificationDismissed = ref(false);
   const hemisphereNotificationDismissedAt = ref(null);
 
-  const toggleDarkMode = () => {
-    darkMode.value = !darkMode.value;
-  };
-
   return {
     AVAILABLE_PANELS,
     clockWelcomeMode,
@@ -106,8 +97,6 @@ export const useConfigStore = defineStore('appConfig', () => {
     spiralSkin,
     hemisphereNotificationDismissed,
     hemisphereNotificationDismissedAt,
-    darkMode,
-    toggleDarkMode,
   };
 }, {
   persist: {

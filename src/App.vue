@@ -1,5 +1,5 @@
 <template>
-	<div class="z-10 h-min-screen relative" :class="{ 'dark': darkMode }">
+	<div class="z-10 h-min-screen relative">
 		<router-view v-slot="{ Component }">
 			<transition name="fade" mode="out-in">
 				<component :is="Component"></component>
@@ -9,11 +9,7 @@
 </template>
 
 <script setup>
-import { useConfigStore } from '@/stores/configStore';	
-import { storeToRefs } from 'pinia';
 
-const configStore = useConfigStore();
-const { darkMode } = storeToRefs(configStore);
 </script>
 
 <style lang="scss">
