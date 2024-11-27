@@ -99,39 +99,41 @@ export const useContextStore = defineStore('context', () => {
 
   const getGeolocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          geolocationLatitude.value = parseFloat(position.coords.latitude);
-          geolocationLongitude.value = parseFloat(position.coords.longitude);
-          // Set success state
-          geolocationStatus.value = 'success';
-        },
-        (error) => {
-          console.warn(error);
-          geolocationLatitude.value = null;
-          geolocationLongitude.value = null;
-          // Differentiate error types°
-          switch (error.code) {
-            case error.PERMISSION_DENIED:
-              geolocationStatus.value = 'permission denied';
-              break;
-            case error.POSITION_UNAVAILABLE:
-              geolocationStatus.value = 'position unavailable';
-              break;
-            case error.TIMEOUT:
-              geolocationStatus.value = 'timeout';
-              break;
-            default:
-              geolocationStatus.value = 'error';
-              break;
-          }
-        },
-        {
-          timeout: 14400,
-          enableHighAccuracy: false
-        }
-      );
       geolocationStatus.value = 'searching';
+      setTimeout(() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            geolocationLatitude.value = parseFloat(position.coords.latitude);
+            geolocationLongitude.value = parseFloat(position.coords.longitude);
+            // Set success state
+            geolocationStatus.value = 'success';
+          },
+          (error) => {
+            console.warn(error);
+            geolocationLatitude.value = null;
+            geolocationLongitude.value = null;
+            // Differentiate error types
+            switch (error.code) {
+              case error.PERMISSION_DENIED:
+                geolocationStatus.value = 'permission denied';
+                break;
+              case error.POSITION_UNAVAILABLE:
+                geolocationStatus.value = 'position unavailable';
+                break;
+              case error.TIMEOUT:
+                geolocationStatus.value = 'timeout';
+                break;
+              default:
+                geolocationStatus.value = 'error';
+                break;
+            }
+          },
+          {
+            timeout: 14400,
+            enableHighAccuracy: false
+          }
+        );
+      }, 5000); // Delay of 5000 milliseconds (5 seconds)
     } else {
       console.error("Geolocation is not supported by this browser.");
       geolocationStatus.value = 'error';
