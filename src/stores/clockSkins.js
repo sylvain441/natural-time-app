@@ -1,7 +1,7 @@
 export const clockSkins = {
   full: {
     default: {
-      animationSpeed: .4,
+      animationSpeed: 0.4,
       mustachesDisplay: true,
       dialDisplay: true,
       handDisplay: true,
@@ -65,8 +65,8 @@ export const clockSkins = {
       dotsMultipleOf10: 'bg-slate-300',
 
       numbersMultipleOf90: 'text-slate-800 font-black',
-      numbersMultipleOf30: 'text-slate-400 font-extrabold',
-      numbersMultipleOf10: 'text-slate-300 font-thin',
+      numbersMultipleOf30: 'text-slate-200 font-extrabold',
+      numbersMultipleOf10: 'text-white font-thin',
     },
     tutorial: [
       {

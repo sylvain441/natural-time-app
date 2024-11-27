@@ -22,7 +22,7 @@
 
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16" ref="naturalClockRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-dark/90 to-nt-yellow-darker/90 max-md:mx-2 max-md:my-4 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-yellow-dark/70 to-nt-yellow-darker/70 max-md:mx-2 max-md:my-4 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <ClockSVG @click="router.push('time')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -47,7 +47,7 @@
 
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-10" ref="thirteenMoonsRef">
-        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-dark/90 to-nt-cyan-darker/90 max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
+        <div class="max-w-4xl mx-auto bg-gradient-to-r from-nt-cyan-dark/70 to-nt-cyan-darker/70 max-md:m-2 max-md:rounded-xl md:rounded-3xl md:py-12">
           <div class="flex flex-col md:flex-row">
             <div class="w-full md:w-2/5 flex items-center justify-center px-8 pt-8 pb-6">
               <YearSVG @click="router.push('13moons')" class="w-48 h-48 md:w-64 md:h-64 transform transition-all duration-300 hover:scale-105 cursor-pointer" />
@@ -75,14 +75,14 @@
       <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-8 md:mb-10">
         <p class="text-center text-lg md:text-2xl max-w-3xl mx-auto font-thin italic text-slate-800 dark:text-slate-100">
           Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
-          en mesure de remplacer (ou compléter)<br class="hidden md:block">
+          en mesure de remplacer ou compléter<br class="hidden md:block">
           l'horloge des 24 heures et le calendrier grégorien.
         </p>
       </section>
 
       <!-- FAQ Section -->
       <section class="w-full md:px-6 md:mb-12" ref="faqRef">
-        <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 md:rounded-3xl p-4 md:p-12">
+        <div class="max-w-4xl mx-auto bg-white/70 dark:bg-slate-800/70 md:rounded-3xl p-4 md:p-12">
           <div class="flex flex-col">
             <h2 class="text-5xl my-8 font-title text-center dark:text-white">FAQ</h2>
             <FAQAccordion class="pb-16" />
@@ -124,7 +124,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import FAQAccordion from '@/components/FAQAccordion.vue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the store
 import { version } from '../../package.json';
@@ -136,13 +136,11 @@ const naturalClockRef = ref(null);
 const thirteenMoonsRef = ref(null);
 const faqRef = ref(null);
 
-import MainMenu from '@/components/MainMenu.vue';
-
 import ClockSVG from '@/assets/icon/clock.svg';
 import YearSVG from '@/assets/icon/year.svg';
 
 const metaTitle = "Temps Naturel - Une nouvelle façon de mesurer le temps, inspirée du vivant";
-const metaDescription = "Découvrir l'horloge naturelle de 360° synchro avec le soleil et la spirale des 13 lunes de 28 jours";
+const metaDescription = "Découvrir et comprendre l'horloge naturelle de 360° synchro avec le soleil et la spirale des 13 lunes de 28 jours";
 
 useHead({
   title: metaTitle,
@@ -157,17 +155,6 @@ useHead({
   ],
 });
 
-onMounted(() => {
-  
-});
-
-const scrollToNaturalClock = () => {
-  naturalClockRef.value?.scrollIntoView({ behavior: 'smooth' });
-};
-
-const scrollToThirteenMoons = () => {
-  thirteenMoonsRef.value?.scrollIntoView({ behavior: 'smooth' });
-};
 </script>
 
 <style scoped>
