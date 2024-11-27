@@ -9,7 +9,11 @@ export const AVAILABLE_PANELS = {
 }
 
 export const useConfigStore = defineStore('appConfig', () => {
-  const darkMode = ref(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const darkMode = ref(
+    typeof window !== 'undefined' 
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches 
+      : false
+  );
   
   // CLOCK
   const clockWelcomeMode = ref(true);
@@ -107,6 +111,6 @@ export const useConfigStore = defineStore('appConfig', () => {
   };
 }, {
   persist: {
-    key: 'configStore',
+    storage: typeof window !== 'undefined' ? localStorage : null,
   },
 });
