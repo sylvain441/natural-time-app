@@ -14,7 +14,7 @@ export const useContextStore = defineStore('context', () => {
   const geolocationLatitude = ref(null)
   const geolocationLongitude = ref(null)
 
-  const currentTime = ref(Date.now())
+  const currentTime = ref(null)
   const timer = ref(null)
   const enableGeolocation = ref(false)
   const geolocationStatus = ref(null); // 'searching', 'success', 'error'
@@ -39,6 +39,7 @@ export const useContextStore = defineStore('context', () => {
   const init = () => {
     if (initDone.value) return
 
+    currentTime.value = Date.now()
     timer.value = setInterval(() => currentTime.value = Date.now(), 2400);
     if (enableGeolocation.value === true) {
       getGeolocation();
