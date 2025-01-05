@@ -75,7 +75,7 @@
       <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-8 md:mb-10">
         <p class="text-center text-lg md:text-2xl max-w-3xl mx-auto font-thin italic text-slate-800 dark:text-slate-100">
           Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
-          en mesure de remplacer ou compléter<br class="hidden md:block">
+          imaginé pour pouvoir remplacer ou compléter<br class="hidden md:block">
           l'horloge des 24 heures et le calendrier grégorien.
         </p>
       </section>
