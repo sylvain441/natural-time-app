@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 324 266" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
-    <g transform="matrix(1,0,0,1,-2734,-939)">
-        <g id="year" transform="matrix(0.223988,0,0,0.183681,2126.44,939.75)">
+<svg width="100%" height="100%" viewBox="0 0 324 234" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2734,-955)">
+        <g id="year" transform="matrix(0.223988,0,0,0.162358,2126.44,955.102)">
             <rect x="2714.03" y="0" width="1442.04" height="1440" style="fill:none;"/>
-            <g transform="matrix(19.2527,0,0,28.2868,-58038.9,-113345)">
+            <g transform="matrix(19.2527,0,0,32.0017,-58038.9,-128325)">
                 <path d="M3167.89,4018.56L3219.66,4018.56L3219.66,4049.51L3166.35,4049.51L3166.35,4028.81L3184.12,4028.81" style="fill:none;stroke:white;stroke-width:1.28px;"/>
             </g>
-            <g transform="matrix(1.79844,0,0,2.19309,-2962.63,-7303.37)">
+            <g transform="matrix(1.79844,0,0,2.48111,-2962.63,-8357.11)">
                 <circle cx="3655.8" cy="3613.13" r="47.983" style="fill:white;"/>
                 <clipPath id="_clip1">
                     <circle cx="3655.8" cy="3613.13" r="47.983"/>
                 </clipPath>
                 <g clip-path="url(#_clip1)">
                     <g transform="matrix(0.135943,0,0,0.135943,3597.34,3558.96)">
-                        <g transform="matrix(18.2609,-0,-0,18.2609,-3249.59,-1696.56)">
-                            <use xlink:href="#_Image2" x="182.172" y="95.401" width="39px" height="39px"/>
+                        <g transform="matrix(18.2609,-0,-0,18.2609,-3249.59,-1404.39)">
+                            <use xlink:href="#_Image2" x="182.172" y="79.401" width="39px" height="39px"/>
                         </g>
                     </g>
                 </g>
             </g>
-            <g transform="matrix(0.485113,1.94862,-1.59796,0.591566,7618.41,-8648.12)">
+            <g transform="matrix(0.485113,2.20453,-1.59796,0.669258,7618.41,-9878.47)">
                 <circle cx="3655.8" cy="3613.13" r="47.983" style="fill:white;"/>
                 <clipPath id="_clip3">
                     <circle cx="3655.8" cy="3613.13" r="47.983"/>
                 </clipPath>
                 <g clip-path="url(#_clip3)">
                     <g transform="matrix(0.135943,0,0,0.135943,3597.34,3558.96)">
-                        <g transform="matrix(5.71269,-18.8176,18.8176,5.71269,-2862,3568.63)">
-                            <use xlink:href="#_Image4" x="184.927" y="95.401" width="36px" height="36px"/>
+                        <g transform="matrix(5.71269,-18.8176,18.8176,5.71269,-2560.92,3660.04)">
+                            <use xlink:href="#_Image4" x="184.927" y="79.401" width="36px" height="36px"/>
                         </g>
                     </g>
                 </g>
             </g>
-            <g transform="matrix(4.46453,-0,-0,5.44423,2712.49,-4.08196)">
-                <use xlink:href="#_Image5" x="15.606" y="30.863" width="296px" height="207px"/>
+            <g transform="matrix(4.46453,-0,-0,6.15923,2712.49,-0.630219)">
+                <use xlink:href="#_Image5" x="15.606" y="14.863" width="296px" height="207px"/>
             </g>
-            <g transform="matrix(10.8077,0,0,13.1793,-34795.5,-43846.9)">
+            <g transform="matrix(10.8077,0,0,14.9102,-34795.5,-49700)">
                 <circle cx="3553.18" cy="3371.39" r="7.471"/>
             </g>
         </g>
