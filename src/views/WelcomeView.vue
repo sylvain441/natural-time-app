@@ -88,6 +88,13 @@
           l'horloge des 24 heures et le calendrier grégorien.
         </p>
       </div>
+      
+      <!-- Video Grid -->
+      <div class="flex justify-center mb-24 px-6">
+        <div class="w-full max-w-lg rounded-2xl overflow-hidden shadow-lg shadow-black/30">
+          <YouTubePlayer videoId="XP8XYidlgKA" />
+        </div>
+      </div>
 
       <!-- FAQ Section -->
       <div class="py-20">
@@ -134,6 +141,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import FAQAccordion from '@/components/FAQAccordion.vue';
+import YouTubePlayer from '@/components/YouTubePlayer.vue';
 import { ref } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the store
