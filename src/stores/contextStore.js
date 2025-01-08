@@ -98,48 +98,81 @@ export const useContextStore = defineStore('context', () => {
     tempLocation.value = storedLocation.value
   }
 
-  const getGeolocation = () => {
-    if (navigator.geolocation) {
-      geolocationStatus.value = 'searching';
-      setTimeout(() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            geolocationLatitude.value = parseFloat(position.coords.latitude);
-            geolocationLongitude.value = parseFloat(position.coords.longitude);
-            // Set success state
-            geolocationStatus.value = 'success';
-          },
-          (error) => {
-            console.warn(error);
-            geolocationLatitude.value = null;
-            geolocationLongitude.value = null;
-            // Differentiate error types
-            switch (error.code) {
-              case error.PERMISSION_DENIED:
-                geolocationStatus.value = 'permission denied';
-                break;
-              case error.POSITION_UNAVAILABLE:
-                geolocationStatus.value = 'position unavailable';
-                break;
-              case error.TIMEOUT:
-                geolocationStatus.value = 'timeout';
-                break;
-              default:
-                geolocationStatus.value = 'error';
-                break;
-            }
-          },
-          {
-            timeout: 14400,
-            enableHighAccuracy: false
-          }
-        );
-      }, 5000); // Delay of 5000 milliseconds (5 seconds)
-    } else {
+  // Add new function to check geolocation permission
+  const checkGeolocationPermission = async () => {
+    try {
+      // Check if the Permissions API is supported
+      if (navigator.permissions && navigator.permissions.query) {
+        const result = await navigator.permissions.query({ name: 'geolocation' });
+        
+        if (result.state === 'granted') {
+          enableGeolocation.value = true;
+          return true;
+        } else if (result.state === 'prompt') {
+          // Will show the permission prompt
+          return true;
+        }
+        // If denied, don't even try
+        return false;
+      }
+      // If Permissions API not supported, fallback to normal behavior
+      return true;
+    } catch (error) {
+      console.warn('Error checking geolocation permission:', error);
+      return true; // Fallback to normal behavior
+    }
+  };
+
+  const getGeolocation = async () => {
+    if (!navigator.geolocation) {
       console.error("Geolocation is not supported by this browser.");
       geolocationStatus.value = 'error';
+      return;
     }
-  }
+
+    // Check permission first
+    const canProceed = await checkGeolocationPermission();
+    if (!canProceed) {
+      geolocationStatus.value = 'permission denied';
+      return;
+    }
+
+    geolocationStatus.value = 'searching';
+    
+    try {
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          timeout: 14400,
+          enableHighAccuracy: false
+        });
+      });
+      
+      geolocationLatitude.value = parseFloat(position.coords.latitude);
+      geolocationLongitude.value = parseFloat(position.coords.longitude);
+      geolocationStatus.value = 'success';
+      enableGeolocation.value = true;
+    } catch (error) {
+      console.warn(error);
+      geolocationLatitude.value = null;
+      geolocationLongitude.value = null;
+      
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          geolocationStatus.value = 'permission denied';
+          enableGeolocation.value = false;
+          break;
+        case error.POSITION_UNAVAILABLE:
+          geolocationStatus.value = 'position unavailable';
+          break;
+        case error.TIMEOUT:
+          geolocationStatus.value = 'timeout';
+          break;
+        default:
+          geolocationStatus.value = 'error';
+          break;
+      }
+    }
+  };
 
   /**
    * Check is there is a significant change in the user's position

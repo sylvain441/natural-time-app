@@ -549,12 +549,13 @@ const updateGeolocationMarker = () => {
 };
 
 onMounted(() => {
-  nextTick(() => {
+  nextTick(async () => {
     if (isOnline.value) {
       initMap();
     }
+    // Check permission on mount
     if (enableGeolocation.value) {
-      getGeolocation();
+      await getGeolocation();
     }
   });
 
@@ -562,6 +563,21 @@ onMounted(() => {
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
   updateOnlineStatus();
+
+  // Add permission change listener if supported
+  if (navigator.permissions && navigator.permissions.query) {
+    navigator.permissions.query({ name: 'geolocation' }).then(permissionStatus => {
+      permissionStatus.onchange = () => {
+        if (permissionStatus.state === 'granted') {
+          enableGeolocation.value = true;
+          getGeolocation();
+        } else if (permissionStatus.state === 'denied') {
+          enableGeolocation.value = false;
+          geolocationStatus.value = 'permission denied';
+        }
+      };
+    }).catch(console.warn);
+  }
 });
 
 onUnmounted(() => {
