@@ -153,28 +153,24 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
-
 #FAQ {
-
   blockquote {
-    @apply mt-4 mb-12 p-6 rounded-lg bg-orange-50 dark:bg-orange-950/30 border-l-4 border-orange-400 
-           dark:border-orange-500 shadow-sm;
+    @apply mt-4 mb-12 p-6 rounded-lg bg-orange-950/30 border-l-4 border-orange-500 shadow-sm;
 
     p {
-      @apply text-orange-800 dark:text-orange-200 mb-3 last:mb-0;
+      @apply text-orange-200 mb-3 last:mb-0;
     }
 
     ul {
       @apply my-4 pl-6 list-disc;
       
       li {
-        @apply mb-2 text-orange-800 dark:text-orange-200;
+        @apply mb-2 text-orange-200;
       }
       
       a {
-        @apply font-medium text-orange-600 hover:text-orange-800 dark:text-orange-400 
-               dark:hover:text-orange-300 underline decoration-2 decoration-orange-400/50 
-               hover:decoration-orange-500;
+        @apply font-medium text-orange-400 hover:text-orange-300 underline decoration-2 
+               decoration-orange-400/50 hover:decoration-orange-500;
       }
     }
 
@@ -185,13 +181,14 @@ onUnmounted(() => {
   }
 
   .faq-category {
-    @apply text-3xl mb-4 text-gray-800 dark:text-gray-100 font-title underline decoration-4;
+    @apply text-3xl mb-4 text-gray-100 font-title underline decoration-4;
     &:not(:first-of-type) {
       @apply mt-12;
     }
   }
+
   .faq-question {
-    @apply text-lg md:text-xl mt-2 mb-1 text-gray-700 dark:text-gray-300;
+    @apply text-lg md:text-xl mt-2 mb-1 text-gray-300 font-light;
     @apply flex items-center justify-between;
     
     &:not(.no-answer) {
@@ -204,70 +201,83 @@ onUnmounted(() => {
       }
     }
   }
+
   .faq-arrow {
     @apply text-sm ml-2 transition-transform duration-300 ease-in-out;
     &.rotated {
       @apply transform rotate-180;
     }
   }
+
   .faq-answer {
-    @apply transition-all duration-300 ease-in-out mb-4 mt-2 px-4 py-1 border-l-2 border-gray-300 dark:border-gray-700;
+    @apply transition-all duration-300 ease-in-out mb-8 mt-4 px-6 py-2 border-l-2 border-zinc-600 font-light;
     p {
-      @apply mb-2 dark:text-gray-300;
+      @apply mb-2 text-gray-300;
     }
-    a {
-      @apply underline decoration-2 decoration-sky-500 hover:decoration-sky-700 
-             dark:decoration-sky-400 dark:hover:decoration-sky-300;
+    a, ul a {
+      @apply underline text-sky-400 hover:text-sky-300;
     }
     &.hidden {
       @apply h-0 overflow-hidden opacity-0;
     }
+    &:not(.hidden) {
+      @apply bg-gradient-to-tr from-gray-50/5 to-transparent rounded-lg;
+    }
     ul {
-      @apply list-disc pl-8 mb-3 dark:text-gray-300;
-      a {
-        @apply font-bold underline decoration-2 text-sky-500 hover:decoration-sky-700
-               dark:text-sky-400 dark:hover:text-sky-300;
-      }
+      @apply list-disc pl-8 mb-3 text-gray-300;
     }
   }
+
   .faq-category[data-category="1"] {
-    @apply decoration-emerald-400 dark:decoration-emerald-500;
+    @apply decoration-emerald-500;
   }
   .faq-question[data-category="1"] .question-text {
-    @apply decoration-emerald-400 dark:decoration-emerald-500;
+    @apply decoration-emerald-500;
   }
   .faq-question[data-category="1"] .faq-arrow {
-    @apply text-emerald-400 dark:text-emerald-500;
+    @apply text-emerald-500;
+  }
+  .faq-answer[data-category="1"] {
+    @apply border-emerald-500;
   }
 
   .faq-category[data-category="2"] {
-    @apply decoration-nt-yellow-dark dark:decoration-yellow-500;
+    @apply decoration-yellow-500;
   }
   .faq-question[data-category="2"] .question-text {
-    @apply decoration-nt-yellow-dark dark:decoration-yellow-500;
+    @apply decoration-yellow-500;
   }
   .faq-question[data-category="2"] .faq-arrow {
-    @apply text-nt-yellow-dark dark:text-yellow-500;
+    @apply text-yellow-500;
+  }
+  .faq-answer[data-category="2"] {
+    @apply border-yellow-500;
   }
 
   .faq-category[data-category="3"] {
-    @apply decoration-nt-cyan-dark dark:decoration-cyan-500;
+    @apply decoration-cyan-500;
   }
   .faq-question[data-category="3"] .question-text {
-    @apply decoration-nt-cyan-dark dark:decoration-cyan-500;
+    @apply decoration-cyan-500;
   }
   .faq-question[data-category="3"] .faq-arrow {
-    @apply text-nt-cyan-dark dark:text-cyan-500;
+    @apply text-cyan-500;
   }
-
+  .faq-answer[data-category="3"] {
+    @apply border-cyan-500;
+  }
+  
   .faq-category[data-category="4"] {
-    @apply decoration-nt-magenta-dark dark:decoration-pink-500;
+    @apply decoration-pink-500;
   }
   .faq-question[data-category="4"] .question-text {
-    @apply decoration-nt-magenta-dark dark:decoration-pink-500;
+    @apply decoration-pink-500;
   }
   .faq-question[data-category="4"] .faq-arrow {
-    @apply text-nt-magenta-dark dark:text-pink-500;
+    @apply text-pink-500;
+  }
+  .faq-answer[data-category="4"] {
+    @apply border-pink-500;
   }
 }
 
@@ -279,6 +289,6 @@ onUnmounted(() => {
 }
 
 .no-answer-message {
-  @apply text-sm text-gray-500 dark:text-gray-400 italic text-center sm:text-right sm:ml-2 mt-1 sm:mt-0;
+  @apply text-sm text-gray-400 italic text-center sm:text-right sm:ml-2 mt-1 sm:mt-0;
 }
 </style>

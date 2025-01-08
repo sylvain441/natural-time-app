@@ -1,13 +1,11 @@
-
-> 🚧 🚧 🚧 🚧 🚧   
->  
-> La rédaction d'une FAQ complète et détaillée est en cours et nécessite du temps.  
-> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+> La rédaction d'une FAQ complète nécessite du temps. 
 >
-> - Faire un don sur [Tipeee](https://fr.tipeee.com/sylvain-biquette)
-> - Découvrir mes autres projets sur [biquette.xyz](https://biquette.xyz)
-> - Visiter ma boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Faire un tour sur ma chaine [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> Entre temps, si tu apprécie cette initiative et souhaite soutenir son développement, tu peux :
+> - Découvrir mes autres projets sur [BIQUETTE.xyz](https://biquette.xyz)
+> - T'inscrire à ma [NEWSLETTER](http://biquette.xyz/#/portal/signup/free)
+> - M'acheter une horloge sur [shop.biquette.xyz](https://shop.biquette.xyz)
+> - Faire un tour sur [ma chaine youtube](https://youtube.com/sylvainbiquette)
+> - Contribuer au projet sur [GitHub](https://github.com/sylvain441/natural-time-app)
 >
 > Merci pour ta patience et ton soutien ! 🙏  
 > Sylvain
@@ -26,13 +24,14 @@
 
 #### Comment contribuer à ce projet ?
 
-#### \[Publicité\] Où peut-on acheter une horloge naturelle ?
-
-
-
-
 
 ### Horloge Naturelle
+
+#### \[PUB\] Où peut-on acheter une horloge naturelle ?
+
+Le temps naturel est un concept libre que chacun peut s'approprier et réinventer. Actuellement, le projet est porté par son créateur, [Sylvain](https://biquette.xyz), qui consacre du temps à la recherche et au développement de ce concept.
+
+Pour soutenir ce travail et financer le développement continu du projet, des horloges naturelles physiques originales sont créées et disponibles à l'achat sur sa boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz).
 
 #### Comment lire une horloge naturelle ?
 

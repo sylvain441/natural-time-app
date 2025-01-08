@@ -70,53 +70,63 @@
           </div>
         </div>
       </section>
-
-      <!-- Mission Statement -->
-      <section class="w-full flex flex-col items-center justify-center px-4 py-6 md:py-8 md:mb-10">
-        <p class="text-center text-lg md:text-2xl max-w-3xl mx-auto font-thin italic text-slate-800 dark:text-slate-100">
-          Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
-          imaginé pour pouvoir remplacer ou compléter<br class="hidden md:block">
-          l'horloge des 24 heures et le calendrier grégorien.
-        </p>
-      </section>
-
-      <!-- FAQ Section -->
-      <section class="w-full md:px-6 md:mb-12" ref="faqRef">
-        <div class="max-w-4xl mx-auto bg-white/70 dark:bg-slate-800/70 md:rounded-3xl p-4 md:p-12">
-          <div class="flex flex-col">
-            <h2 class="text-5xl my-8 font-title text-center dark:text-white">FAQ</h2>
-            <FAQAccordion class="pb-16" />
-          </div>
-        </div>
-      </section>
-
-      <section class="w-full md:px-6 md:mb-12">
-        <p class="text-center text-sm md:text-lg md:mb-8 max-w-3xl mx-auto pb-4 md:py-6 py-4 px-4 md:px-0 italic text-gray-600 dark:text-gray-300">
-            Nous avons créé des machines pour mesurer le temps.<br class="hidden md:block">
-            Puis nous sommes devenus leurs esclaves...<br class="hidden md:block">
-            Le Temps Naturel inverse cette tendance.<br class="hidden md:block">
-            La vie a déja prévu la plus belle des horloges...<br class="hidden md:block">
-            On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant.<br><br>
-            <span class="text-2xl not-italic md:text-4xl">🌞</span>
-          </p>
-      </section>
     </div>
 
+    <!-- Understanding Natural Time Section -->
+    <section class="w-full bg-zinc-900 bg-[url('@/assets/debut-dark.png')] py-24 mt-28">
+      <h2 class="text-4xl md:text-5xl my-4 font-title text-center text-white">
+        <span class="">Tout comprendre</span>
+        <br class="hidden md:block">
+        <span class="text-2xl md:text-3xl text-slate-100 block mt-3 uppercase font-bold font-mono">sur le temps naturel</span>
+      </h2>
+
+      <!-- Mission Statement -->
+      <div class="mb-24">
+        <p class="text-center text-xl md:text-3xl max-w-4xl mx-auto my-16 font-extralight leading-relaxed px-6 bg-gradient-to-tr from-nt-cyan-light to-nt-yellow-light bg-clip-text text-transparent">
+          Le Temps Naturel est un système de mesure du temps<br class="hidden md:block">
+          imaginé pour remplacer (ou compléter)<br class="hidden md:block">
+          l'horloge des 24 heures et le calendrier grégorien.
+        </p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="py-20">
+        <h2 class="text-3xl md:text-4xl mb-16 font-mono uppercase text-center text-white">Foire aux questions</h2>
+        <div class="max-w-4xl mx-auto px-6">
+          <FAQAccordion class="pb-8" />
+        </div>
+      </div>
+    </section>
+
     <!-- Footer (Black) -->
-    <footer class="md:mt-12 w-full text-center py-4 text-sm bg-black text-white">
-      <p>
-        Created by <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Sylvain</a> | 
-        <a href="https://github.com/sylvain441/natural-time" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Open sourced on GitHub</a>
-        <span class="ml-2 text-gray-500">
-          <button 
-            @click="contextStore.clearLocalStorageAndReload"
-            class="ml-1 hover:text-gray-300"
-            title="Réinitialiser les données"
-          >
-            v{{ version }}
-          </button>
-        </span>
-      </p>
+    <footer class="w-full bg-black text-white">
+      <!-- Closing Statement -->
+      <div class="py-20">
+        <p class="text-center text-lg md:text-xl max-w-4xl mx-auto font-light text-slate-300 leading-relaxed px-6">
+          Nous avons créé des machines pour mesurer le temps.<br class="hidden md:block">
+          Puis nous sommes devenus esclaves de leur tic tac.<br class="hidden md:block">
+          Le Temps Naturel inverse cette tendance.<br class="hidden md:block">
+          La vie a déja prévu la plus belle des horloges...<br class="hidden md:block">
+          On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant.<br><br>
+          <span class="text-5xl md:text-6xl block mt-8">🌞</span>
+        </p>
+      </div>
+      
+      <div class="text-center py-4 text-sm border-t border-white/10">
+        <p>
+          Created by <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Sylvain</a> | 
+          <a href="https://github.com/sylvain441/natural-time" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-300">Open sourced on GitHub</a>
+          <span class="ml-2 text-gray-500">
+            <button 
+              @click="contextStore.clearLocalStorageAndReload"
+              class="ml-1 hover:text-gray-300"
+              title="Réinitialiser les données"
+            >
+              v{{ version }}
+            </button>
+          </span>
+        </p>
+      </div>
     </footer>
   </div>
 </template>

@@ -209,9 +209,9 @@
     
     <!-- RIGHT MODAL PANELS -->
     <div v-if="spiralActivePanel !== null" class="z-30 transition-all duration-300 ease-in-out w-screen max-h-screen md:w-1/2 xl:w-1/3 md:fixed md:right-0 md:bottom-0 md:top-0 md:p-8">
-      <div class="overflow-hidden w-full h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
+      <div class="overflow-hidden w-full h-full bg-slate-800 md:rounded-2xl md:shadow-2xl">
         <button v-if="spiralActivePanel" @click="spiralActivePanel = null" 
-        class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
+        class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-700">
         <closeIcon class="w-6 h-6" fill="currentColor" />
       </button>
       
@@ -296,7 +296,7 @@
           @click="openPanel(AVAILABLE_PANELS.faq)" 
           class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
           role="menuitem">
-          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>FAQ
+          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>Comprendre
         </a>
       </div>
     </div>

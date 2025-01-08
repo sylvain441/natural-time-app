@@ -175,9 +175,9 @@
 
 			<!-- Close button -->
 			<div
-				class="overflow-hidden w-full h-[calc(100dvh-0px)] md:h-full bg-white dark:bg-slate-800 md:rounded-2xl md:shadow-2xl">
+				class="overflow-hidden w-full h-[calc(100dvh-0px)] md:h-full bg-slate-800 md:rounded-2xl md:shadow-2xl">
 				<button v-if="clockActivePanel" @click="clockActivePanel = null"
-					class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-400 dark:bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-600 dark:hover:bg-slate-700">
+					class="absolute z-50 top-2 right-3 md:top-4 md:right-4 md:p-2 p-1 rounded-full bg-slate-600 text-slate-50 focus:outline-none transition-all duration-300 hover:bg-slate-700">
 					<closeIcon class="w-6 h-6" fill="currentColor" />
 				</button>
 
@@ -254,7 +254,7 @@
 						<a @click="openPanel(AVAILABLE_PANELS.faq)"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center"
 							role="menuitem">
-							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />FAQ
+							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />Comprendre
 						</a>
 					</div>
 				</div>
