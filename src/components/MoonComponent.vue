@@ -61,12 +61,14 @@ const { spiralSkin, spiralWelcomeMode } = storeToRefs(configStore);
 
 const props = defineProps({
   today: {
-    type: NaturalDate,
-    required: true
+    type: Object,
+    required: true,
+    validator: (value) => value instanceof NaturalDate
   },
   moon: {
     type: Number,
-    required: true
+    required: true,
+    validator: (value) => value >= 1 && value <= 14
   },
   baseSize: {
     type: Number,
@@ -94,7 +96,7 @@ const daysOfMoon = computed(() => {
     allDays[i] = {
       date: date,
       dayClasses: {
-        isToday: props.today.toDateString() == date.toDateString(),
+        isToday: props.today.toDateString() === date.toDateString(),
         isPast: props.today.toDateString() > date.toDateString(),
         isFuture: props.today.toDateString() < date.toDateString(),
         isRainbowDay: props.today.isRainbowDay,
