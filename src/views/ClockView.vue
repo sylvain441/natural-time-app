@@ -1,6 +1,6 @@
 <template>
 	<div id="day-view"
-		class="flex flex-row min-h-dvh overflow-hidden bg-white dark:bg-slate-300 bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]" @touchmove.prevent>
+		class="flex flex-row min-h-dvh overflow-hidden bg-slate-200 bg-[url('@/assets/debut-light.png')]" @touchmove.prevent>
 
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
@@ -63,7 +63,7 @@
 							</h2>
 						</div>
 						<div v-else>
-							<h2 class="text-slate-500 dark:text-slate-200 text-md md:text-xl">
+							<h2 class="text-slate-500 text-md md:text-xl">
 								{{ clockSkin.descriptionText }}
 							</h2>
 						</div>
@@ -200,7 +200,7 @@
 				<!-- Simplified mode button -->
 				<button 
 					@click="toggleSimplifiedMode" 
-					class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-100"
+					class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-white text-black hover:bg-slate-100"
 					:title="clockSimplifiedMode ? 'Design détaillé' : 'Design épuré'">
 					<component 
 						:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
@@ -221,38 +221,38 @@
 					</div>
 				</button>
 				<div v-if="isMenuOpen"
-					class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+					class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
 					<div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 						<!-- SETTINGS -->
-						<div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Paramètres
+						<div class="px-4 pt-2 pb-0 text-sm text-nt-yellow-dark font-bold">Paramètres
 						</div>
 						<!-- Location Picker -->
 						<a @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
 							role="menuitem">
 							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />Choisir un lieu
 						</a>
 						<!-- SPECIAL MODES -->
-						<div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Mode
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Mode
 							spéciaux</div>
 						<!-- Tutorial -->
 						<a @click="toggleTutorial"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-yellow-lighter dark:hover:bg-nt-yellow-darker dark:hover:bg-opacity-30 flex items-center"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							role="menuitem">
 							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />Tutoriel Horloge
 						</a>
 						<!-- Time Travel -->
 						<a @click="toggleTimeTravel"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-yellow-lighter dark:hover:bg-nt-yellow-darker dark:hover:bg-opacity-30 flex items-center"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
 							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />Voyage temporel
 						</a>
 
 						<!-- UNDERSTAND -->
-						<div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-yellow-dark font-bold">Aide</div>
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Aide</div>
 						<!-- FAQ -->
 						<a @click="openPanel(AVAILABLE_PANELS.faq)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
 							role="menuitem">
 							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />Comprendre
 						</a>
@@ -262,7 +262,7 @@
 			<!-- Add overlay -->
 			<div v-if="isMenuOpen" 
 				@click="toggleMenu"
-				class="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1]">
+				class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]">
 			</div>
 		</div>
 
@@ -289,12 +289,12 @@
 		<!-- NOTIFICATION: Geolocation changed -->
 		<transition name="fade">
 			<div v-if="showPositionChangedNotification && shouldShowNotification && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
-				class="fixed bottom-4 right-4 z-50 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
+				class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
 				<div class="p-4">
-					<p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Position GPS modifiée. Mettre à jour ?</p>
+					<p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
 					<div class="flex justify-between space-x-2">
 						<button @click="preventNotificationForOneDay"
-							class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
+							class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
 							Ignorer aujourd'hui
 						</button>
 						<div class="flex space-x-2">
@@ -315,9 +315,9 @@
 		<!-- NOTIFICATION: Southern Hemisphere -->
 		<transition name="fade">
 			<div v-if="context.hemisphere === -1 && (!hemisphereNotificationDismissed || shouldShowHemisphereNotification)"
-				class="fixed bottom-4 left-4 right-4 md:left-4 md:right-auto z-20 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto md:mx-0">
+				class="fixed bottom-4 left-4 right-4 md:left-4 md:right-auto z-20 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto md:mx-0">
 				<div class="p-4">
-					<p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+					<p class="text-sm text-gray-700 mb-3">
 						🔄 <strong>Hémisphère Sud :</strong> l'horloge tourne dans le sens inverse (de droite à gauche)
 						car c'est ainsi que se déplace le soleil dans cet hémisphère.
 					</p>

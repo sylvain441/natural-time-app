@@ -1,7 +1,7 @@
 <template>
   <div id="moons-view" 
        :class="[
-         'relative flex flex-row bg-white dark:bg-slate-300 bg-[url(@/assets/debut-light.png)] dark:bg-[url(@/assets/debut-dark.png)]',
+         'relative flex flex-row bg-slate-200 dark:bg-slate-800 bg-[url(@/assets/debut-light.png)] dark:bg-[url(@/assets/debut-dark.png)]',
          spiralVerticalMode ? 'min-h-dvh overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden relative'
        ]" 
        @touchmove.passive="handleTouchMove">
@@ -122,7 +122,7 @@
           
           <!-- TIME TRAVEL CONTROL PANEL -->
           <Transition name="fade">
-            <div v-if="spiralTimeTravelMode" class="mb-4">
+            <div v-if="spiralTimeTravelMode">
               <div class="bg-nt-cyan-light max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
                 <div class="flex items-center justify-center space-x-4">
                   <!-- Minus button -->
@@ -227,85 +227,82 @@
   </div>
   
   <!-- TOP RIGHT MENU -->
-  <div v-if="!spiralActivePanel && !spiralWelcomeMode && !spiralTutorialMode && !spiralTimeTravelMode" class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
-    <div class="relative flex flex-col gap-2">
-      <!-- Top row with menu and single moon buttons -->
-      <div class="flex gap-2 items-center">
-        <!-- Vertical mode button -->
-        <button 
-          @click="toggleVerticalMode" 
-          class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-slate-200 text-black hover:bg-slate-100"
-          :title="spiralVerticalMode ? 'Afficher en spiral' : 'Afficher en vertical'">
-          <component 
-            :is="spiralVerticalMode ? thirteenMoonIcon : verticalSpiralIcon" 
-            class="w-6 h-6"
-          />
-          <span class="absolute right-full mr-2 top-1/2 -translate-y-1/2 px-2 py-1 bg-nt-cyan-lighter text-black text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-            {{ spiralVerticalMode ? 'Affichage spiral' : 'Affichage vertical' }}
-          </span>
-        </button>
+  <div v-if="!spiralActivePanel && !spiralWelcomeMode && !spiralTutorialMode && !spiralTimeTravelMode" 
+       class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
+    <div class="relative flex gap-2">
+      <!-- Vertical mode button -->
+      <button 
+        @click="toggleVerticalMode" 
+        class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-white text-black hover:bg-slate-100"
+        :title="spiralVerticalMode ? 'Afficher en spiral' : 'Afficher en vertical'">
+        <component 
+          :is="spiralVerticalMode ? thirteenMoonIcon : verticalSpiralIcon" 
+          class="w-6 h-6"
+        />
+      </button>
 
-        <!-- Menu button -->
-        <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-lighter text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-light">
-          <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
-            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
-              isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
-            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
-              isMenuOpen ? 'opacity-0' : '']"></span>
-            <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
-              isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
-          </div>
-        </button>
-      </div>
+      <!-- Menu button -->
+      <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-lighter">
+        <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
+          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
+            isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
+          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+            isMenuOpen ? 'opacity-0' : '']"></span>
+          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
+            isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
+        </div>
+      </button>
+    </div>
 
-      <!-- Menu Dropdown -->
-      <div v-if="isMenuOpen"
-        class="absolute right-0 mt-12 pb-2 w-48 max-w-screen rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5">
+    <!-- Menu Dropdown -->
+    <div v-if="isMenuOpen"
+      class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
+      <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
         <!-- SETTINGS -->
-        <div class="px-4 pt-2 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Paramètres</div>
+        <div class="px-4 pt-2 pb-0 text-sm text-nt-cyan-dark font-bold">Paramètres</div>
         <!-- Location Picker -->
         <a 
           @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
-          class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
           role="menuitem">
           <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Choisir un lieu
         </a>
         
         <!-- SPECIAL MODES -->
-        <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Mode spéciaux</div>
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Mode spéciaux</div>
         <!-- Tutorial -->
         <a 
           @click="toggleTutorial" 
-          class="px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-cyan-darker hover:bg-opacity-30 flex items-center" 
           role="menuitem">
           <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel 13 lunes
         </a>
         <!-- Time Travel -->
         <a 
           @click="toggleTimeTravel" 
-          class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-nt-cyan-lighter dark:hover:bg-slate-700 flex items-center" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-cyan-darker hover:bg-opacity-30 flex items-center" 
           :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
           role="menuitem">
           <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
         </a>
         
         <!-- UNDERSTAND -->
-        <div class="px-4 pt-3 pb-0 text-sm text-slate-400 dark:text-nt-cyan-dark font-bold">Aide</div>
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Aide</div>
         <!-- FAQ -->
         <a 
           @click="openPanel(AVAILABLE_PANELS.faq)" 
-          class=" px-4 py-2 cursor-pointer text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
           role="menuitem">
           <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>Comprendre
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Add overlay -->
-    <div v-if="isMenuOpen" 
-      @click="toggleMenu"
-      class="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1]">
-    </div>
+  <!-- Add overlay -->
+  <div v-if="isMenuOpen" 
+    @click="toggleMenu"
+    class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]">
   </div>
 
   <!-- TUTORIAL CLOSE BUTTON -->
@@ -331,18 +328,18 @@
     v-if="spiralTimeTravelMode"
     :disabled="!timeDelta"
     @click="resetTime" 
-    class="fixed z-40 top-16 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
+    class="fixed z-40 top-14 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
     Remettre à zéro
   </button>
 
   <!-- Update the notification to use context.location -->
   <transition name="fade">
     <div v-if="showPositionChangedNotification && shouldShowNotification && spiralActivePanel !== AVAILABLE_PANELS.locationPicker" 
-         class="fixed bottom-4 right-4 z-50 bg-white dark:bg-slate-800 shadow-lg rounded-lg overflow-hidden max-w-sm">
+         class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
       <div class="p-4">
-        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">Position GPS modifiée. Mettre à jour ?</p>
+        <p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
         <div class="flex justify-between space-x-2">
-          <button @click="preventNotificationForOneDay" class="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
+          <button @click="preventNotificationForOneDay" class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
             Ignorer aujourd'hui
           </button>
           <div class="flex space-x-2">
@@ -363,8 +360,6 @@
   <component :is="'style'">
     :root {
     --hemisphere: {{ context.hemisphere }};
-    --day-progression: {{ context.dayProgression }};
-    --abs-day-progression: {{ Math.abs(context.dayProgression * 2 - 1) }}; /* close to sunrise and sunset */
     }
   </component>
 </div>
@@ -457,25 +452,10 @@ const context = computed(() => {
 
   let hemisphere = theLatitude >= 0 ? 1 : -1;
 
-	// Calculate luminosity progression for day/night mode
-	let dayProgression = 0;
-
-	let dayPeriods = [
-		{ rangeStart: sun.morningGoldenHour, rangeStop: sun.eveningGoldenHour, start: 1, stop: 1 },
-		{ rangeStart: sun.nightEnd, rangeStop: sun.morningGoldenHour, start: 0, stop: 1 },
-		{ rangeStart: sun.eveningGoldenHour, rangeStop: sun.nightStart, start: 1, stop: 0 },
-	];
-
-	for (let step of dayPeriods) {
-		if (naturalDate.time >= step.rangeStart & naturalDate.time < step.rangeStop) {
-			dayProgression = step.start + (step.stop - step.start) * ((naturalDate.time - step.rangeStart) / (step.rangeStop - step.rangeStart));
-		}
-	}
   return {
     naturalDate: new NaturalDate(new Date(theCurrentTime), theLongitude),
     location: location.value,
     hemisphere: hemisphere,
-    dayProgression: dayProgression,
   };
 });
 
@@ -646,31 +626,6 @@ const handleTouchMove = (event) => {
 
 <style lang="scss">
 
-#moons-view {
-  &::before,
-	&::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		transition: var(--nt-animation-speed) ease-out;
-	}
-
-	// Night gradient
-	&::before {
-		background: radial-gradient(circle at center, #3e435b, #33303e);
-		opacity: calc((1 - var(--day-progression)) * 0.95);
-	}
-
-	// Day gradient
-	&::after {
-		background: radial-gradient(circle at center, #ffffff, #d5f7fd);
-		opacity: calc(var(--day-progression) *0.5);
-	}
-}
-
 #year {
 	#moon-1 { 
     order: 10; 
@@ -809,9 +764,6 @@ const handleTouchMove = (event) => {
       // Rest of existing moon styles...
       .moon-center {
         @apply bg-opacity-0;
-      }
-      .day-of-moon:not(.isToday) .day-of-moon-number {
-        @apply text-gray-500;
       }
       .day-of-moon.isFuture {
         @apply opacity-50;

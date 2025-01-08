@@ -23,22 +23,22 @@
     <!-- DISPLAY: YEAR ) MOON ) DAY -->
     <div v-else-if="!displayDate.isRainbowDay" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center space-x-2 space-y-4">
       <div class="flex items-center font-extrabold display-container text-white/95">
-        <div class="text-center opacity-80" :style="displayStyle">
+        <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toYearString()}}</div>
           <div class="label uppercase">Année</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
-        <div class="text-center opacity-80" :style="displayStyle">
+        <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toMoonString()}}</div>
           <div class="label uppercase">Lune</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
-        <div class="text-center opacity-80" :style="displayStyle">
+        <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
           <div class="label uppercase">Jour</div>
         </div>
       </div>
-      <div v-if="spiralTimeTravelMode" class="text-slate-800 italic gregorian-date">
+      <div v-if="spiralTimeTravelMode" :style="displayStyle" class="text-slate-800 dark:text-slate-200 italic gregorian-date">
         ({{ new Date(context.naturalDate.unixTime).toLocaleDateString('fr-FR', { 
           weekday: 'long', 
           year: 'numeric', 
@@ -92,8 +92,8 @@ const configStore = useConfigStore();
 const { spiralSkin, spiralTimeTravelMode, spiralWelcomeMode } = storeToRefs(configStore);
 
 const displayStyle = computed(() => ({
-  filter: `brightness(var(--day-progression)) drop-shadow(0 0 ${props.containerSize * 0.02}px rgba(255,255,255,0.2))`,
-  color: `var(--color-dark-${props.displayDate.dayOfWeek})`
+  color: `var(--color-dark-${props.displayDate.dayOfWeek})`,
+  opacity: '0.95'
 }));
 </script>
 
@@ -103,16 +103,19 @@ const displayStyle = computed(() => ({
   line-height: 1.1;
 }
 
+.display-container, .gregorian-date {
+  @apply dark:brightness-[4];
+}
+
 .label {
   font-size: v-bind('`${props.containerSize * 0.08}px`');
 }
 
 .separator {
   font-size: v-bind('`${props.containerSize * 0.17}px`');
-  filter: none;
 }
 
 .gregorian-date {
-  font-size: v-bind('`${props.containerSize * 0.05}px`');
+  font-size: v-bind('`${props.containerSize * 0.06}px`');
 }
 </style>

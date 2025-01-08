@@ -14,9 +14,9 @@
       <!-- Natural Clock Section (Yellow) -->
       <section class="w-full md:px-6 md:mb-16 relative overflow-hidden" ref="naturalClockRef">
         <div class="relative bg-gradient-to-r from-nt-yellow-darker/20 to-nt-yellow-dark/10 backdrop-blur-sm md:bg-none md:backdrop-blur-none">
-          <div class="max-w-5xl mx-auto max-md:mx-2 max-md:my-4 py-8 md:translate-x-[-5%]">
-            <div class="flex flex-col md:flex-row items-center justify-end gap-12 relative">
-              <div class="w-full md:w-1/2 flex flex-col justify-center px-4 md:px-8 pb-6 md:pb-0 z-10 md:order-2">
+          <div class="max-w-5xl mx-auto max-md:mx-2 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-end md:gap-6 lg:gap-12 relative">
+              <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-4 md:px-8 pb-6 md:pb-0 z-10 md:order-2">
                 <h2 class="text-3xl md:text-5xl mb-4 font-title dark:text-nt-yellow-light/90">Horloge Naturelle</h2>
                 <p class="mb-6 text-black dark:text-slate-100 md:text-lg">
                   Je suis une horloge inspirée du vivant.<br>
@@ -24,8 +24,8 @@
                   Je suis la course du soleil dans le ciel,<br>
                   tranquillement... selon un cadran de 360°.
                 </p>
-                <div class="flex justify-center md:justify-start mt-8 mb-4 max-md:mr-16">
-                  <router-link :to="{ name: 'time' }" class="group bg-gradient-to-r from-nt-yellow-light/80 to-nt-yellow-light/70 text-black max-md:mr-16 px-12 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
+                <div class="flex justify-center lg:justify-start mt-8 mb-4 max-md:translate-x-[-25%]">
+                  <router-link :to="{ name: 'time' }" class="group bg-gradient-to-r from-nt-yellow-light/90 to-nt-yellow-light/80 text-black px-12 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
                     <span class="flex items-center gap-2">
                       {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} l'horloge
                       <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -49,18 +49,18 @@
       <!-- 13 Moons Section (Cyan) -->
       <section class="w-full md:px-6 md:mb-16 relative overflow-hidden" ref="thirteenMoonsRef">
         <div class="relative bg-gradient-to-r from-nt-cyan-light/20 to-nt-cyan-light/10 backdrop-blur-sm md:bg-none md:backdrop-blur-none">
-          <div class="max-w-5xl mx-auto max-md:mx-2 max-md:my-4 py-8 md:translate-x-[5%]">
-            <div class="flex flex-col md:flex-row items-center justify-start gap-12 relative">
-              <div class="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-8 pb-6 md:pb-0 z-10">
+          <div class="max-w-5xl mx-auto max-md:mx-2 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-start md:gap-6 lg:gap-12 relative">
+              <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-6 md:px-8 pb-6 md:pb-0 z-10">
                 <h2 class="text-3xl md:text-5xl mb-4 font-title dark:text-nt-cyan-light/90 md:text-right">Spirale 13 Lunes</h2>
                 <p class="mb-6 text-black dark:text-slate-100 md:text-lg md:text-right">
                   Inspirés des traditions du monde entier,<br>
                   mes 13 mois de 28 jours remplacent<br>
                   notre vieux calendrier tout tordu.<br>
-                  Le jour arc-en-ciel cloture l'année.
+                  Le jour arc-en-ciel clôture l'année.
                 </p>
-                <div class="flex justify-center md:justify-end mt-8 mb-4 max-md:mr-16">
-                  <router-link :to="{ name: '13moons' }" class="group bg-gradient-to-r from-nt-cyan-light/80 to-nt-cyan-light/70 text-black max-md:mr-16 px-12 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
+                <div class="flex justify-center lg:justify-end mt-8 mb-4 max-md:translate-x-[-25%]">
+                  <router-link :to="{ name: '13moons' }" class="group bg-gradient-to-r from-nt-cyan-light/90 to-nt-cyan-light/80 text-black px-12 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
                     <span class="flex items-center gap-2">
                       {{ contextStore.isEmpty ? 'Découvrir' : 'Ouvrir' }} les 13 lunes
                       <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -93,7 +93,7 @@
     </div>
 
     <!-- Understanding Natural Time Section -->
-    <section class="w-full bg-zinc-900 bg-[url('@/assets/debut-dark.png')] py-24 mt-12 md:mt-28">
+    <section class="w-full bg-slate-900 bg-[url('@/assets/debut-dark.png')] py-24 mt-4 md:mt-28">
       <h2 class="text-4xl md:text-5xl my-4 font-title text-center text-white">
         <span class="">Tout comprendre</span>
         <br class="hidden md:block">

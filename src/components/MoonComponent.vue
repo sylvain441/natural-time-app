@@ -150,13 +150,13 @@ const pastMoon = computed(() => {
     &:nth-child(7n+6){ @apply border-indigo-500 text-indigo-500 bg-indigo-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &:nth-child(7n+0){ @apply border-violet-500 text-violet-500 bg-violet-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &.isPast:not(:hover):not(.isRainbowDay) {
-      @apply bg-gray-50 text-gray-500 border-opacity-80;
+      @apply text-gray-100/70 border-opacity-100 bg-opacity-100;
     }
     &.isToday {
-      @apply border-opacity-100 bg-opacity-100 text-white;
+      @apply border-opacity-100 border-white/20 bg-opacity-100 text-white;
     }
     &.isFuture:not(:hover) {
-      @apply bg-opacity-0 text-gray-500;
+      @apply bg-opacity-0 text-gray-500/50;
     }
     &:hover:not(.spiralWelcomeMode) {
       @apply border-opacity-100 text-opacity-100;

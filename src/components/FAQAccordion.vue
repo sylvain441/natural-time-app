@@ -155,17 +155,17 @@ onUnmounted(() => {
 <style lang="scss">
 #FAQ {
   blockquote {
-    @apply mt-4 mb-12 p-6 rounded-lg bg-orange-950/30 border-l-4 border-orange-500 shadow-sm;
+    @apply mt-4 mb-12 p-6 rounded-lg bg-orange-950/30 border-l-4 border-orange-500/50 shadow-sm;
 
     p {
-      @apply text-orange-200 mb-3 last:mb-0;
+      @apply text-orange-300/80 mb-3 last:mb-0;
     }
 
     ul {
       @apply my-4 pl-6 list-disc;
       
       li {
-        @apply mb-2 text-orange-200;
+        @apply mb-2 text-orange-300/80;
       }
       
       a {
@@ -210,7 +210,7 @@ onUnmounted(() => {
   }
 
   .faq-answer {
-    @apply transition-all duration-300 ease-in-out mb-8 mt-4 px-6 py-2 border-l-2 border-zinc-600 font-light;
+    @apply transition-all duration-300 ease-in-out mb-8 mt-4 px-6 py-2 border-l-2 border-slate-600 font-light;
     p {
       @apply mb-2 text-gray-300;
     }
