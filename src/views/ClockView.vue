@@ -288,25 +288,22 @@
 
 		<!-- NOTIFICATION: Geolocation changed -->
 		<transition name="fade">
-			<div v-if="showPositionChangedNotification && shouldShowNotification && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
+			<div v-if="contextStore.newPlaceName && contextStore.positionChanged && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
 				class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
 				<div class="p-4">
-					<p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
-					<div class="flex justify-between space-x-2">
-						<button @click="preventNotificationForOneDay"
-							class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
-							Ignorer aujourd'hui
+					<p class="text-sm text-gray-700 mb-3">
+						Nouvelle position détectée : <span class="font-semibold">{{ contextStore.newPlaceName }}</span>
+						<span class="text-slate-500 ml-1">(NT{{ Math.round(contextStore.geolocationLongitude) >= 0 ? '+' : ''}}{{ Math.round(contextStore.geolocationLongitude) }})</span>
+					</p>
+					<div class="flex justify-end space-x-2">
+						<button @click="contextStore.dismissGeolocationChange"
+							class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
+							Ignorer
 						</button>
-						<div class="flex space-x-2">
-							<button @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-								class="bg-nt-yellow-light text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-nt-yellow-lighter">
-								Oui
-							</button>
-							<button @click="closeNotification"
-								class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
-								Non
-							</button>
-						</div>
+						<button @click="contextStore.acceptNewGeolocation"
+							class="bg-nt-yellow-light text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-nt-yellow-lighter">
+							Mettre à jour
+						</button>
 					</div>
 				</div>
 			</div>

@@ -151,6 +151,11 @@ export const useContextStore = defineStore('context', () => {
       geolocationLongitude.value = parseFloat(position.coords.longitude);
       geolocationStatus.value = 'success';
       enableGeolocation.value = true;
+
+      // If position has changed significantly, get the place name
+      if (positionChanged.value) {
+        await getPlaceNameFromCoordinates();
+      }
     } catch (error) {
       console.warn(error);
       geolocationLatitude.value = null;
@@ -172,6 +177,44 @@ export const useContextStore = defineStore('context', () => {
           break;
       }
     }
+  };
+
+  // New state for place name
+  const newPlaceName = ref(null);
+
+  const getPlaceNameFromCoordinates = async () => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${geolocationLatitude.value}&lon=${geolocationLongitude.value}&format=json&accept-language=fr`
+      );
+      const data = await response.json();
+      
+      // Try to get the most relevant name (city, town, village, or region)
+      newPlaceName.value = data.address.city || 
+                          data.address.town || 
+                          data.address.village || 
+                          data.address.county ||
+                          data.address.state ||
+                          'Position inconnue';
+    } catch (error) {
+      console.warn('Error getting place name:', error);
+      newPlaceName.value = 'Position inconnue';
+    }
+  };
+
+  const acceptNewGeolocation = () => {
+    tempLatitude.value = geolocationLatitude.value;
+    tempLongitude.value = geolocationLongitude.value;
+    if (newPlaceName.value) {
+      tempLocation.value = newPlaceName.value;
+    }
+    saveLocation();
+    // Reset the notification state
+    newPlaceName.value = null;
+  };
+
+  const dismissGeolocationChange = () => {
+    newPlaceName.value = null;
   };
 
   /**
@@ -214,6 +257,9 @@ export const useContextStore = defineStore('context', () => {
     positionChanged,
     geolocationNotificationDismissedAt,
     clearLocalStorageAndReload,
+    newPlaceName,
+    acceptNewGeolocation,
+    dismissGeolocationChange,
   }
 }, {
   persist: {
