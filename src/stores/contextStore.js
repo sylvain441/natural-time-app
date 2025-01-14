@@ -41,9 +41,14 @@ export const useContextStore = defineStore('context', () => {
 
     currentTime.value = Date.now()
     timer.value = setInterval(() => currentTime.value = Date.now(), 2400);
+    
+    // Replace immediate geolocation with delayed version
     if (enableGeolocation.value === true) {
-      getGeolocation();
+      setTimeout(() => {
+        getGeolocation();
+      }, 11111); // 11 seconds delay
     }
+    
     tempLatitude.value = storedLatitude.value;
     tempLongitude.value = storedLongitude.value;
     tempLocation.value = storedLocation.value;
