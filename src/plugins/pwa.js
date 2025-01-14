@@ -3,16 +3,25 @@ import { registerSW } from 'virtual:pwa-register'
 export function initializePWA() {
   const updateSW = registerSW({
     immediate: true,
+    onRegisteredSW(swUrl, r) {
+      console.log('Service Worker registered:', swUrl);
+      // Check for updates every hour
+      setInterval(() => r?.update(), 60 * 60 * 1000);
+    },
     onOfflineReady() {
-      console.log('This app is now available offline');
-      // You can show a notification to the user here if desired
+      console.log('App is ready for offline use');
     },
     onNeedRefresh() {
-      console.log('New content is available; please refresh.');
-      // Prompt the user to refresh
-    },
-  })
+      console.log('New content available, reloading...');
+      updateSW(true);
+    }
+  });
 
-  // Return the updateSW function in case it's needed elsewhere
+  // Add event listener for PWA installation
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA was installed');
+    localStorage.setItem('pwa_installed', 'true');
+  });
+
   return updateSW;
 }

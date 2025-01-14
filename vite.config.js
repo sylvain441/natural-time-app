@@ -28,10 +28,14 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 3_000_000,
         runtimeCaching: [
           {
-            urlPattern: /\.(?:js|css)$/i,
-            handler: 'StaleWhileRevalidate',
+            urlPattern: /\.(?:js|css|png|jpg|jpeg|svg|gif|ico)$/i,
+            handler: 'CacheFirst',
             options: {
-              cacheName: 'static-resources',
+              cacheName: 'assets',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+              }
             },
           }
         ],
@@ -39,10 +43,13 @@ export default defineConfig({
       manifest: {
         id: 'naturaltime.app.pwa',
         name: 'Natural time',
+        short_name: 'Natural time',
         start_url: `https://naturaltime.app/startpwa/`,
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
         theme_color: '#000000',
         background_color: '#000000',
+        display: 'standalone',
+        orientation: 'portrait',
         icons: [
           {
             src: 'naturaltime-pwa-64x64.png',
