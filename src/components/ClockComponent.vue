@@ -75,7 +75,7 @@
 			<!-- HAND NTZ-->
 			<Transition name="fade">
 				<div v-if="clockSkin.ntzDisplay" class="clock-hand-ntz nt-box-outer rotate-180" :class="clockSkin.ntzHand">
-					<div class="nt-box-outer nt-animate" :style="{ transform: `rotate(${(context.naturalDate.time - context.naturalDate.longitude) * context.hemisphere}deg) scaleX(${context.hemisphere})`}">
+					<div class="nt-box-outer nt-animate" :style="{ transform: `rotate(${(context.naturalDate.time - context.naturalDate.longitude) * context.hemisphere}deg) scaleX(${context.hemisphere}) translateZ(0)`}">
 						<HandNtzSVG fill="currentColor"/>
 					</div>
 				</div>
@@ -210,7 +210,7 @@
 			<!-- HAND -->
 			<Transition name="fade">
 				<div v-if="clockSkin.handDisplay" class="clock-hand nt-box-outer rotate-180" :class="clockSkin.hand">
-					<div class="nt-box-inner nt-animate" :style="{ transform: `rotate(${context.naturalDate.time * context.hemisphere}deg)` }">
+					<div class="nt-box-inner nt-animate" :style="{ transform: `rotate(${context.naturalDate.time * context.hemisphere}deg) translateZ(0)` }">
 						<HandSVG fill="currentColor" />
 					</div>
 				</div>
@@ -326,6 +326,9 @@ onUnmounted(() => {
 	transition-property: transform, opacity;
 	transition-duration: var(--nt-animation-speed);
 	transition-timing-function: ease;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	will-change: transform;
 }
 
 .fade-enter-active,
