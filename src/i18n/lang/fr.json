@@ -1,0 +1,397 @@
+{
+  "welcome": {
+    "title": "Le Temps Naturel",
+    "subtitle": "Une nouvelle convention du temps",
+    "naturalClock": {
+      "title": "Horloge Naturelle",
+      "description": "Je suis une horloge inspirée du vivant.\nMon aiguille tourne une fois par jour seulement...\nJe suis la course du soleil dans le ciel,\ntranquillement... selon un cadran de 360°.",
+      "cta": {
+        "discover": "Découvrir l'horloge",
+        "open": "Ouvrir l'horloge",
+        "tutorial": "Voir le tutoriel"
+      }
+    },
+    "thirteenMoons": {
+      "title": "Spirale 13 Lunes",
+      "description": "Inspirés des traditions du monde entier,\nmes 13 mois de 28 jours remplacent\nnotre vieux calendrier tout tordu.\nLe jour arc-en-ciel clôture l'année.",
+      "cta": {
+        "discover": "Découvrir les 13 lunes",
+        "open": "Ouvrir les 13 lunes",
+        "tutorial": "Voir le tutoriel"
+      }
+    },
+    "hero": {
+      "description": "Le Temps Naturel réinvente notre façon de mesurer le temps.\nAvec {clock} et {spiral},\nle soleil retrouve sa place comme référence universelle\ndu temps qui passe...",
+      "clockLink": "l'horloge de 360°",
+      "spiralLink": "la spirale de 13 lunes"
+    },
+    "understanding": {
+      "title": "Tout comprendre",
+      "subtitle": "sur le temps naturel",
+      "mission": "Le Temps Naturel est un système de mesure du temps\nimaginé pour remplacer (ou compléter)\nl'horloge des 24 heures et le calendrier grégorien."
+    },
+    "faq": {
+      "title": "Foire aux questions"
+    },
+    "footer": {
+      "closing": {
+        "line1": "Nous avons créé des machines pour mesurer le temps.",
+        "line2": "Puis nous sommes devenus esclaves de leur tic tac.",
+        "line3": "Le Temps Naturel inverse cette tendance.",
+        "line4": "La vie a déja prévu la plus belle des horloges...",
+        "line5": "On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant."
+      },
+      "credits": "Created by {author} | {github}",
+      "author": "Sylvain",
+      "github": "Open sourced on GitHub",
+      "resetData": "Réinitialiser les données"
+    },
+    "meta": {
+      "title": "Temps Naturel - Une nouvelle façon de mesurer le temps, inspirée du vivant",
+      "description": "Découvrir et comprendre l'horloge naturelle de 360° synchro avec le soleil et la spirale des 13 lunes de 28 jours",
+      "ogImage": "https://naturaltime.app/natural-time-social-fr.jpg",
+      "ogUrl": "https://naturaltime.app/fr"
+    }
+  },
+  "navigation": {
+    "clock": "Horloge",
+    "spiral": "13 Lunes",
+    "faq": "FAQ"
+  },
+  "tutorials": {
+    "clock": {
+      "welcome": {
+        "description": "Découvrir une façon plus simple et plus logique de mesurer le temps qui passe dans une journée"
+      },
+      "step1": {
+        "title": "Je suis une horloge naturelle",
+        "description": "Je pointe à chaque instant en direction du soleil"
+      },
+      "step2": {
+        "title": "Mon unique aiguille",
+        "description": "Tourne lentement, une seule fois par jour"
+      },
+      "step3": {
+        "title": "Mon cadran est gradué en 360°",
+        "description": "Bye bye les 24 heures 60 minutes et 60 secondes"
+      },
+      "step4": {
+        "title": "180° est le véritable midi",
+        "description": "Lorsque le soleil est au zénith"
+      },
+      "step5": {
+        "title": "0° marque le vrai milieu de la nuit",
+        "description": "Lorsque le soleil est de l'autre côté de la Terre"
+      },
+      "step6": {
+        "title": "Les moustaches représentent le jour et la nuit",
+        "description": "En fonction de la saison et de la latitude"
+      },
+      "step7": {
+        "title": "Au solstice d'été...",
+        "description": "Le soleil se lève par ici"
+      },
+      "step8": {
+        "title": "Au solstice d'été...",
+        "description": "Puis se couche par là"
+      },
+      "step9": {
+        "title": "Au solstice d'hiver...",
+        "description": "Le soleil se lève ici"
+      },
+      "step10": {
+        "title": "Au solstice d'hiver...",
+        "description": "Et se couche par là"
+      },
+      "step11": {
+        "title": "Les jours d'équinoxes (seulement)",
+        "description": "La durée du jour est égale à celle de la nuit"
+      },
+      "step12": {
+        "title": "On ne dit plus \"Quelle heure est-il ?\"",
+        "description": "Mais plutôt : \"Où est le soleil dans le ciel ?\""
+      },
+      "step13": {
+        "title": "Le soleil est à 222°",
+        "description": "(par exemple)"
+      },
+      "step14": {
+        "title": "Les numéros sont facultatifs",
+        "description": "L'horloge naturelle est avant tout une expérience visuelle"
+      },
+      "end": {
+        "title": "Tutoriel terminé !",
+        "description": "Pour continuer, l'application a besoin de configurer une position géographique"
+      }
+    },
+    "spiral": {
+      "welcome": {
+        "description": "Découvrir la Spirale des 13 lunes, calendrier universel 100% basé sur la nature"
+      },
+      "step1": {
+        "title": "Je suis un calendrier avec 13 mois de 28 jours",
+        "description": "On m'appelle la \"Spirale des 13 lunes\""
+      },
+      "step2": {
+        "title": "1 lune = 4 semaines de 7 jours",
+        "description": "Soit exactement 28 jours, sans exception"
+      },
+      "step3": {
+        "title": "À chaque jour de la semaine, une couleur",
+        "description": "1er jour = Rouge"
+      },
+      "step4": {
+        "title": "Puis Orange, Jaune, Vert, Bleu, Indigo",
+        "description": "Et enfin le 7ème jour : Violet"
+      },
+      "step5": {
+        "title": "Les 13 lunes sont disposées en spirale",
+        "description": "Car le temps n'est pas linéaire mais plutôt cyclique"
+      },
+      "step6": {
+        "title": "Voici le 5ème jour de la 5ème lune",
+        "description": "Par exemple..."
+      },
+      "step7": {
+        "title": "Et ici : le 11ème jour de la lune 11",
+        "description": "Un jour vert... Quelque soit l'année, le siècle, le millénaire..."
+      },
+      "step8": {
+        "title": "Le savais tu ? 13 x 28 = 364 jours 🤩",
+        "description": "Avec un jour de plus, on obtient 365 jours"
+      },
+      "step9": {
+        "title": "Il s'appelle le jour arc-en-ciel 🌈",
+        "description": "Un jour de célébration qui a lieu lors du solstice d'hiver de l'hémisphère nord"
+      },
+      "step10": {
+        "title": "Certaines années ont 366 jours au lieu de 365",
+        "description": "C'est l'occasion de fêter deux jours consécutifs de vie en dehors du temps"
+      },
+      "step11": {
+        "title": "Une date naturelle s'écrit : ANNEE ) LUNE ) JOUR",
+        "description": "Par exemple, aujourd'hui nous sommes le "
+      },
+      "step12": {
+        "title": "Le 1er jour de l'an 001",
+        "description": "correspond au 22 décembre 2012 dans le calendrier grégorien (voir FAQ)"
+      },
+      "step13": {
+        "title": "Dernier détail important",
+        "description": "Les 28 jours ne correspondent pas aux 29,53 jours du cycles pleine/nouvelle lune (Voir FAQ)"
+      },
+      "end": {
+        "title": "Tutoriel terminé !",
+        "description": "Pour continuer, l'application a besoin de configurer une position géographique"
+      }
+    }
+  },
+  "clock": {
+    "title": "Horloge du Temps Naturel",
+    "subtitle": "Une seule aiguille synchro avec le soleil",
+    "meta": {
+      "description": "Découvrir l'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel",
+      "title": "Horloge du Temps Naturel - Une seule aiguille synchro avec le soleil",
+      "ogImage": "https://naturaltime.app/natural-time-social-fr.jpg",
+      "ogUrl": "https://naturaltime.app/fr/clock"
+    },
+    "timeTravel": {
+      "title": "Voyage temporel",
+      "speedSelector": "Vitesse de voyage",
+      "resetButton": "Remettre à zéro",
+      "exitButton": "Quitter le voyage temporel",
+      "speeds": [
+        {
+          "value": "001°",
+          "equivalentTo": "4min"
+        },
+        {
+          "value": "005°",
+          "equivalentTo": "20min"
+        },
+        {
+          "value": "015°",
+          "equivalentTo": "1h"
+        },
+        {
+          "value": "360°",
+          "equivalentTo": "1j"
+        },
+        {
+          "value": "7 jours",
+          "equivalentTo": ""
+        },
+        {
+          "value": "28 jours",
+          "equivalentTo": ""
+        }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Lancer le tutoriel",
+      "skipButton": "Passer le tutoriel",
+      "tutorialStep": "Tutoriel",
+      "configureButton": "Configurer",
+      "skipWelcomeButton": "Passer"
+    },
+    "menu": {
+      "settings": "Paramètres",
+      "locationPicker": "Choisir un lieu",
+      "simplifiedMode": {
+        "title": "Design épuré",
+        "fullMode": "Design complet"
+      },
+      "understanding": "Comprendre",
+      "startTutorial": "Lancer le tutoriel",
+      "faq": "Foire aux questions",
+      "specialMode": "Mode spécial",
+      "timeTravel": "Voyage temporel"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "Nouvelle position détectée",
+        "ignoreButton": "Ignorer",
+        "updateButton": "Mettre à jour"
+      },
+      "southernHemisphere": {
+        "title": "Hémisphère Sud",
+        "description": "l'horloge tourne dans le sens inverse (de droite à gauche) car c'est ainsi que se déplace le soleil dans cet hémisphère.",
+        "dismissButton": "Okay, compris"
+      }
+    },
+    "component": {
+      "title": "Temps Naturel"
+    }
+  },
+  "spiral": {
+    "title": "Spirale des 13 lunes",
+    "subtitle": "Une alternative au calendrier Grégorien",
+    "meta": {
+      "title": "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien",
+      "description": "Découvrir la spirale des 13 lunes de 28 jours qui remplace avec élégance nos 12 mois tout tordus",
+      "ogImage": "https://naturaltime.app/natural-time-social-fr.jpg",
+      "ogUrl": "https://naturaltime.app/fr/spiral"
+    },
+    "timeTravel": {
+      "title": "Voyage temporel",
+      "speedSelector": "Vitesse de voyage",
+      "resetButton": "Remettre à zéro",
+      "exitButton": "Quitter le voyage temporel",
+      "speeds": [
+        {
+          "label": "1 jour"
+        },
+        {
+          "label": "1 semaine"
+        },
+        {
+          "label": "1 lune"
+        }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Lancer le tutoriel",
+      "skipButton": "Passer le tutoriel",
+      "tutorialStep": "Tutoriel",
+      "configureButton": "Configurer",
+      "skipWelcomeButton": "Passer"
+    },
+    "menu": {
+      "settings": "Paramètres",
+      "locationPicker": "Choisir un lieu",
+      "viewMode": {
+        "spiralTitle": "Afficher en spiral",
+        "verticalTitle": "Afficher en vertical"
+      },
+      "understanding": "Comprendre",
+      "startTutorial": "Lancer le tutoriel",
+      "faq": "Foire aux questions",
+      "specialMode": "Mode spécial",
+      "timeTravel": "Voyage temporel"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "Position GPS modifiée. Mettre à jour ?",
+        "ignoreButton": "Ignorer aujourd'hui",
+        "updateButton": "Oui",
+        "dismissButton": "Non"
+      }
+    }
+  },
+  "faq": {
+    "inProgress": "(En cours de rédaction)"
+  },
+  "locationPicker": {
+    "title": "Choisir un lieu",
+    "nameLabel": {
+      "new": "Donner un nom au lieu",
+      "edit": "Modifier le nom du lieu"
+    },
+    "optional": "(Facultatif)",
+    "validate": "Valider",
+    "clickMap": "Cliquer la carte pour choisir un lieu",
+    "offline": "L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "name": "Nom",
+    "geolocation": {
+      "enable": "Activer la géolocalisation",
+      "enabled": "Géolocalisation activée",
+      "searching": "Géolocalisation en cours...",
+      "detected": "Position GPS détectée",
+      "recenter": "Recentrer",
+      "errors": {
+        "denied": "Veuillez activer la géolocalisation dans votre navigateur",
+        "unavailable": "Position non disponible",
+        "timeout": "Délai de géolocalisation dépassé",
+        "error": "Erreur de géolocalisation"
+      },
+      "retry": "Réessayer"
+    },
+    "explanation": "Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil."
+  },
+  "moon": {
+    "title": {
+      "moon": "Lune #{number}",
+      "rainbowDay": "Jour arc-en-ciel",
+      "rainbowDays": "Jours arc-en-ciel"
+    },
+    "dayTooltip": {
+      "naturalTime": "Temps Naturel => {date}",
+      "artificialTime": "Temps artificiel => {date}"
+    }
+  },
+  "mainMenu": {
+    "homeTooltip": "Accueil naturaltime.app"
+  },
+  "display": {
+    "year": "Année",
+    "moon": "Lune",
+    "day": "Jour",
+    "rainbow": {
+      "arc": "Arc",
+      "day": "Jour",
+      "sky": "Ciel"
+    },
+    "dateFormat": "fr-FR"
+  },
+  "mainMenuLegacy": {
+    "title": "Temps Naturel",
+    "clock": "Horloge",
+    "spiral": "13 Lunes",
+    "home": "← Accueil",
+    "reset": "reset",
+    "aria": {
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu"
+    }
+  },
+  "youtubePlayer": {
+    "thumbnail": "Comprendre le Temps Naturel en 10 minutes"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page non trouvée.",
+    "button": "Retour à l'accueil"
+  }
+}

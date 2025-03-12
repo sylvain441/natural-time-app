@@ -1,7 +1,9 @@
 import { createI18n } from "vue-i18n";
-import fr from './lang/fr.js';
-import en from './lang/en.js';
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from './config';
+
+// Import JSON files
+import fr from './lang/fr.json';
+import en from './lang/en.json';
 
 // Function to detect browser language and check if it's supported
 function detectBrowserLanguage() {
