@@ -1,6 +1,11 @@
 <template>
   <div class="min-h-dvh bg-gray-50 dark:bg-[rgb(24,35,55)] bg-[url('@/assets/debut-light.png')] dark:bg-[url('@/assets/debut-dark.png')]">
 
+    <!-- Language Switcher in top right corner -->
+    <div class="fixed top-4 md:top-6 right-4 md:right-6 z-50">
+      <LanguageSwitcher />
+    </div>
+
     <div class="max-w-6xl mx-auto">
       <!-- Title Section (Gray) -->
       <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-800 dark:text-slate-100">
@@ -26,7 +31,7 @@
                   {{ $t('welcome.naturalClock.description') }}
                 </p>
                 <div class="flex flex-col justify-center items-center mt-8 mb-4 gap-3 px-4">
-                  <router-link :to="{ name: 'time' }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-yellow-light/90 to-nt-yellow-light/80 text-black px-6 md:px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:scale-105">
+                  <router-link :to="{ name: getLocalizedRouteName('time', locale) }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-yellow-light/90 to-nt-yellow-light/80 text-black px-6 md:px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:scale-105">
                     <span class="flex items-center justify-center gap-2 whitespace-nowrap">
                       {{ contextStore.isEmpty ? $t('welcome.naturalClock.cta.discover') : $t('welcome.naturalClock.cta.open') }}
                       <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -44,7 +49,7 @@
                   shadow-[0_0_0_1px_rgba(251,191,36,0.1),0_0_0_10px_rgba(251,191,36,0.08),0_0_0_20px_rgba(251,191,36,0.05),0_0_0_30px_rgba(251,191,36,0.03)]
                   hover:shadow-[0_0_0_1px_rgba(251,191,36,0.2),0_0_0_15px_rgba(251,191,36,0.15),0_0_0_30px_rgba(251,191,36,0.1),0_0_0_45px_rgba(251,191,36,0.05)]
                   hover:bg-gradient-to-tl transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
-                  <ClockSVG @click="router.push({ name: 'time' })" class="w-36 h-36 md:w-52 md:h-52 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
+                  <ClockSVG @click="goToTimePage" class="w-36 h-36 md:w-52 md:h-52 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
                 </div>
               </div>
             </div>
@@ -67,7 +72,7 @@
                   {{ $t('welcome.thirteenMoons.description') }}
                 </p>
                 <div class="flex flex-col justify-center items-center mt-8 mb-4 gap-3 px-4">
-                  <router-link :to="{ name: '13moons' }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-cyan-light/90 to-nt-cyan-light/80 text-black px-6 md:px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
+                  <router-link :to="{ name: getLocalizedRouteName('13moons', locale) }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-cyan-light/90 to-nt-cyan-light/80 text-black px-6 md:px-8 py-4 rounded-2xl text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
                     <span class="flex items-center justify-center gap-2 whitespace-nowrap">
                       {{ contextStore.isEmpty ? $t('welcome.thirteenMoons.cta.discover') : $t('welcome.thirteenMoons.cta.open') }}
                       <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -86,7 +91,7 @@
                   hover:shadow-[0_0_0_1px_rgba(6,182,212,0.2),0_0_0_15px_rgba(6,182,212,0.15),0_0_0_30px_rgba(6,182,212,0.1),0_0_0_45px_rgba(6,182,212,0.05)]
                   hover:bg-gradient-to-tl
                   transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
-                  <YearSVG @click="router.push({ name: '13moons' })" class="w-36 h-28 md:w-52 md:h-40 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
+                  <YearSVG @click="goToSpiralPage" class="w-36 h-28 md:w-52 md:h-40 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
                 </div>
               </div>
             </div>
@@ -173,17 +178,21 @@
 import { useRouter } from 'vue-router';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import YouTubePlayer from '@/components/YouTubePlayer.vue';
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { ref, computed } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the context store
 import { useConfigStore } from '@/stores/configStore'; // Import the config store
 import { version } from '../../package.json';
 import { useI18n } from 'vue-i18n';
+import { getLocalizedRouteName } from '../i18n/config';
+import ClockSVG from '@/assets/icon/clock.svg';
+import YearSVG from '@/assets/icon/year.svg';
 
 const router = useRouter();
 const contextStore = useContextStore();
 const configStore = useConfigStore();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const naturalClockRef = ref(null);
 const thirteenMoonsRef = ref(null);
@@ -198,22 +207,19 @@ const heroTextWithLinks = computed(() => {
 });
 
 // Hidden router links for the hero section
-const goToTimePage = () => router.push({ name: 'time' });
-const goToSpiralPage = () => router.push({ name: '13moons' });
+const goToTimePage = () => router.push({ name: getLocalizedRouteName('time', locale.value) });
+const goToSpiralPage = () => router.push({ name: getLocalizedRouteName('13moons', locale.value) });
 
 // Functions to handle tutorial mode
 const openClockTutorial = () => {
   configStore.clockTutorialMode = true;
-  router.push({ name: 'time' });
+  router.push({ name: getLocalizedRouteName('time', locale.value) });
 };
 
 const openSpiralTutorial = () => {
   configStore.spiralTutorialMode = true;
-  router.push({ name: '13moons' });
+  router.push({ name: getLocalizedRouteName('13moons', locale.value) });
 };
-
-import ClockSVG from '@/assets/icon/clock.svg';
-import YearSVG from '@/assets/icon/year.svg';
 
 useHead({
   title: t('welcome.meta.title'),
