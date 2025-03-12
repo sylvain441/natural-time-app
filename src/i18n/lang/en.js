@@ -208,5 +208,17 @@ export default {
       retry: 'Try again'
     },
     explanation: 'Natural time needs geographic coordinates to determine the position of the sun.'
+  },
+  // MoonComponent translations
+  moon: {
+    title: {
+      moon: 'Moon #{number}',
+      rainbowDay: 'Rainbow Day',
+      rainbowDays: 'Rainbow Days'
+    },
+    dayTooltip: {
+      naturalTime: 'Natural Time => {date}',
+      artificialTime: 'Artificial Time => {date}'
+    }
   }
 } 

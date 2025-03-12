@@ -5,7 +5,7 @@
          'past-moon': pastMoon,
          'isRainbowDay': today.isRainbowDay
        }"
-       :title="moon === 14 ? (today.yearDuration === 366 ? 'Jours arc-en-ciel' : 'Jour arc-en-ciel') : `Lune #${moon}`">
+       :title="moon === 14 ? (today.yearDuration === 366 ? $t('moon.title.rainbowDays') : $t('moon.title.rainbowDay')) : $t('moon.title.moon', { number: moon })">
 
     <div v-if="moon < 14" class="moon-top absolute" :style="{ top: 0, left: `${spacing}px`, right: `${spacing}px`, height: `${spacing}px` }"></div>
     <div v-if="moon < 14" class="moon-bottom absolute" :style="{ bottom: 0, left: `${spacing}px`, right: `${spacing}px`, height: `${spacing}px` }"></div>
@@ -26,7 +26,7 @@
           {'show-animation': spiralSkin.showAnimation},
           {'cursor-pointer': !spiralWelcomeMode}
         ]"
-        :title="isClient ? 'Temps Naturel => ' + day.date.toDateString() + '\n' + 'Temps artificiel => ' + new Date(day.date.unixTime).toLocaleDateString() : ''"
+        :title="isClient ? $t('moon.dayTooltip.naturalTime', { date: day.date.toDateString() }) + '\n' + $t('moon.dayTooltip.artificialTime', { date: new Date(day.date.unixTime).toLocaleDateString() }) : ''"
         @click="!spiralWelcomeMode && openTimeTravelForDay(day.date)">
         <span v-if="spiralSkin.showDaysNumber" class="day-of-moon-number font-mono font-bold">{{day.date.toDayOfMoonString()}}</span>
       </div>
@@ -56,8 +56,11 @@ import { computed, ref, onMounted } from 'vue';
 import { NaturalDate } from 'natural-time-js';
 import { useConfigStore } from '@/stores/configStore';
 import { storeToRefs } from 'pinia';
+import { useI18n } from 'vue-i18n';
+
 const configStore = useConfigStore();
 const { spiralSkin, spiralWelcomeMode } = storeToRefs(configStore);
+const { t } = useI18n();
 
 const props = defineProps({
   today: {

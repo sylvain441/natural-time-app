@@ -208,5 +208,17 @@ export default {
       retry: 'Réessayer'
     },
     explanation: 'Le temps naturel a besoin d\'une position géographique pour déterminer la position du soleil.'
+  },
+  // MoonComponent translations
+  moon: {
+    title: {
+      moon: 'Lune #{number}',
+      rainbowDay: 'Jour arc-en-ciel',
+      rainbowDays: 'Jours arc-en-ciel'
+    },
+    dayTooltip: {
+      naturalTime: 'Temps Naturel => {date}',
+      artificialTime: 'Temps artificiel => {date}'
+    }
   }
 } 
