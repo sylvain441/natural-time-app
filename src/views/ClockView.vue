@@ -153,7 +153,7 @@
 						<!-- Start tutorial -->
 						<button v-if="!clockTutorialMode" @click="clockTutorialMode = true"
 							class="flex item-center justify-center text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-							Commencer ici
+							Lancer le tutoriel
 						</button>
 
 						<!-- Configure -->
@@ -162,7 +162,7 @@
 							@click="() => { clockTutorialMode = false; openPanel(AVAILABLE_PANELS.locationPicker); }"
 							class="flex items-center text-black hover:bg-slate-300 font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg"
 							:class="clockTutorialMode && clockTutorialCurrentStep == clockTutorialStepsTotal ? 'bg-nt-yellow-light' : 'bg-slate-200'">
-							{{ clockWelcomeMode && !clockTutorialMode ? 'Je connais déjà' : 'Configurer' }}
+							{{ clockWelcomeMode && !clockTutorialMode ? 'Passer' : 'Configurer' }}
 						</button>
 					</div>
 				</footer>
@@ -197,17 +197,6 @@
 		<div v-if="!clockActivePanel && !clockWelcomeMode && !clockTutorialMode && !clockTimeTravelMode"
 			class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
 			<div class="relative flex gap-2">
-				<!-- Simplified mode button -->
-				<button 
-					@click="toggleSimplifiedMode" 
-					class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-white text-black hover:bg-slate-100"
-					:title="clockSimplifiedMode ? 'Design détaillé' : 'Design épuré'">
-					<component 
-						:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
-						class="w-6 h-6 scale-[1.4]"
-					/>
-				</button>
-
 				<!-- Menu button -->
 				<button @click="toggleMenu"
 					class="p-2 rounded-full bg-nt-yellow-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-yellow-lighter">
@@ -232,29 +221,41 @@
 							role="menuitem">
 							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />Choisir un lieu
 						</a>
-						<!-- SPECIAL MODES -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Mode
-							spéciaux</div>
+						<!-- Simplified mode -->
+						<a @click="toggleSimplifiedMode"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+							:class="clockSimplifiedMode ? 'bg-slate-700 bg-opacity-50' : ''"
+							role="menuitem">
+							<component 
+								:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
+								class="w-6 h-6 mr-2 bg-white/90 p-0.5 rounded-full text-black" 
+								fill="currentColor" 
+							/>
+							{{ clockSimplifiedMode ? 'Design détaillé' : 'Design épuré' }}
+						</a>
+						
+						<!-- HELP SECTION -->
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Comprendre</div>
 						<!-- Tutorial -->
 						<a @click="toggleTutorial"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							role="menuitem">
-							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />Tutoriel Horloge
+							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />Lancer le tutoriel
 						</a>
+						<!-- FAQ -->
+						<a @click="openPanel(AVAILABLE_PANELS.faq)"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+							role="menuitem">
+							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />Foire aux questions
+						</a>
+						
+						<!-- SPECIAL MODES -->
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Mode spécial</div>
 						<!-- Time Travel -->
 						<a @click="toggleTimeTravel"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
 							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />Voyage temporel
-						</a>
-
-						<!-- UNDERSTAND -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Aide</div>
-						<!-- FAQ -->
-						<a @click="openPanel(AVAILABLE_PANELS.faq)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
-							role="menuitem">
-							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />Comprendre
 						</a>
 					</div>
 				</div>
@@ -546,6 +547,7 @@ const dismissHemisphereNotification = () => {
 // Add new method
 const toggleSimplifiedMode = () => {
 	clockSimplifiedMode.value = !clockSimplifiedMode.value;
+	isMenuOpen.value = false;
 };
 
 // Lifecycle hooks

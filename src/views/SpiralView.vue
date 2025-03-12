@@ -191,7 +191,7 @@
               v-if="!spiralTutorialMode" 
               @click="spiralTutorialMode = true" 
               class="flex item-center justify-center text-black bg-nt-cyan-light hover:bg-nt-cyan-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-              Commencer ici
+              Lancer le tutoriel
             </button>
             
             <!-- Configure -->
@@ -200,7 +200,7 @@
               @click="() => { spiralTutorialMode = false; openPanel(AVAILABLE_PANELS.locationPicker); }" 
               class="flex items-center text-black hover:bg-slate-300 font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg"
               :class="spiralTutorialMode && spiralTutorialCurrentStep == spiralTutorialStepsTotal ? 'bg-nt-cyan-light': 'bg-slate-200'">
-              {{ spiralWelcomeMode && !spiralTutorialMode ? 'Je connais déjà' : 'Configurer' }}
+              {{ spiralWelcomeMode && !spiralTutorialMode ? 'Passer' : 'Configurer' }}
             </button>
           </div>
         </footer>
@@ -268,15 +268,25 @@
           <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Choisir un lieu
         </a>
         
-        <!-- SPECIAL MODES -->
-        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Mode spéciaux</div>
+        <!-- HELP SECTION -->
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Comprendre</div>
         <!-- Tutorial -->
         <a 
           @click="toggleTutorial" 
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-cyan-darker hover:bg-opacity-30 flex items-center" 
           role="menuitem">
-          <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Tutoriel 13 lunes
+          <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Lancer le tutoriel
         </a>
+        <!-- FAQ -->
+        <a 
+          @click="openPanel(AVAILABLE_PANELS.faq)" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
+          role="menuitem">
+          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>Foire aux questions
+        </a>
+        
+        <!-- SPECIAL MODES -->
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Mode spécial</div>
         <!-- Time Travel -->
         <a 
           @click="toggleTimeTravel" 
@@ -284,16 +294,6 @@
           :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
           role="menuitem">
           <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
-        </a>
-        
-        <!-- UNDERSTAND -->
-        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Aide</div>
-        <!-- FAQ -->
-        <a 
-          @click="openPanel(AVAILABLE_PANELS.faq)" 
-          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
-          role="menuitem">
-          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>Comprendre
         </a>
       </div>
     </div>
@@ -598,6 +598,7 @@ const scrollToCurrentMoon = () => {
 
 const toggleVerticalMode = async () => {
   spiralVerticalMode.value = !spiralVerticalMode.value;
+  isMenuOpen.value = false;
   await nextTick();
   updateScale();
 
