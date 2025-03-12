@@ -27,7 +27,7 @@
             v-model="tempLocation" 
             type="text" 
             placeholder="(Facultatif)"
-            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-slate-100 text-slate-900"
+            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-slate-100 bg-opacity-80 focus:bg-opacity-100 text-slate-500 focus:text-slate-900"
             @keyup.enter="save"
           />
           <button @click="save" :class="[
@@ -291,6 +291,12 @@ const initGeocoder = async () => {
     if (input) {
       input.value = '';
     }
+    
+    // Hide the search button after selection
+    const searchButton = document.querySelector('.gcd-txt-search');
+    if (searchButton) {
+      searchButton.style.display = 'none';
+    }
   });
   
   map.value.addControl(geocoder.value);
@@ -305,7 +311,16 @@ const initGeocoder = async () => {
             input.dispatchEvent(new KeyboardEvent('keypress', { keyCode: 13 }));
           }
         }, 700);
+        
         input.addEventListener('input', triggerAutocomplete, { bubbles: true, capture: true });
+        
+        // Show search button when user starts typing
+        input.addEventListener('input', () => {
+          const searchButton = document.querySelector('.gcd-txt-search');
+          if (searchButton) {
+            searchButton.style.display = 'block';
+          }
+        });
       } else {
         // If the input is not found, retry after a short delay
         setTimeout(setupAutocomplete, 100);
@@ -652,16 +667,52 @@ const props = defineProps({
     position: relative;
     width: 100%;
     height: 2.4em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
   }
   
   .gcd-txt-input {
     height: 100%;
-    padding: 5px 30px 4px 8px;
+    padding: 8px 35px 8px 12px;
+    border-radius: 8px;
+    border: 2px solid #fde68a;
+    background-color: white;
+    font-size: 16px !important;
+    font-weight: 500;
+    color: #1e293b;
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #facc15;
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.3);
+      outline: none;
+    }
+    
+    &::placeholder {
+      color: #94a3b8;
+      font-style: italic;
+    }
   }
   
-  .gcd-txt-search::after {
-    content: "\23CE";
-    font-size: 1em;
+  .gcd-txt-search {
+    background-color: #eab308;
+    border-radius: 0 8px 8px 0;
+    
+    &::after {
+      content: "\23CE";
+      font-size: 1.1em;
+      color: white;
+    }
+    
+    &:hover {
+      background-color: #ca8a04;
+    }
   }
   
   .gcd-txt-glass {
@@ -671,18 +722,28 @@ const props = defineProps({
   ul.gcd-txt-result {
     top: 2.8em;
     width: 100%;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    box-shadow: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 21;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
     
     > li {
+      padding: 10px 12px;
+      transition: background-color 0.2s ease;
+      
       &:nth-child(odd) {
-        background-color: #f1f1f1;
+        background-color: #f8fafc;
       }
       
-      > a:hover {
-        background-color: #fff9c5;
+      > a {
+        color: #334155;
+        font-weight: 500;
+        
+        &:hover {
+          background-color: #dbeafe;
+          color: #1e40af;
+        }
       }
     }
   }
@@ -737,5 +798,22 @@ input[type="text"] {
   font-size: 16px !important;
   touch-action: manipulation;
   -webkit-text-size-adjust: 100%;
+}
+
+/* Add a pulsing animation to draw attention to the search input when the map loads */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(250, 204, 21, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0);
+  }
+}
+
+.ol-geocoder .gcd-txt-control {
+  animation: pulse-border 2s ease-out 1s;
 }
 </style>
