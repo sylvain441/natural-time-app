@@ -39,11 +39,11 @@ export const clockSkins = {
       numbersDisplay: false,
       ntzDisplay: false,
 
-      mustachesEquinox: 'text-slate-400/10',
-      mustachesSummerSunrise: 'text-slate-400/10',
-      mustachesWinterSunrise: 'text-slate-400/10',
-      mustachesWinterSunset: 'text-slate-400/10',
-      mustachesSummerSunset: 'text-slate-400/10',
+      mustachesEquinox: 'text-slate-400/40',
+      mustachesSummerSunrise: 'text-slate-400/40',
+      mustachesWinterSunrise: 'text-slate-400/40',
+      mustachesWinterSunset: 'text-slate-400/40',
+      mustachesSummerSunset: 'text-slate-400/40',
     },
     welcome: {
       context: {
@@ -89,7 +89,7 @@ export const clockSkins = {
       },
       {
         context: {
-          currentTime: new Date(1356099900000),
+          currentTime: new Date(1356085600000 + 1000*60*60*1),
           latitude: 42.42,
           longitude: 0,
         },
@@ -181,7 +181,7 @@ export const clockSkins = {
       },
       {
         context: {
-          currentTime: new Date(1356134400000),
+          currentTime: new Date(1340252400000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -205,7 +205,7 @@ export const clockSkins = {
       },
       {
         context: {
-          currentTime: new Date(1340252400000 + 1000*60*20),
+          currentTime: new Date(1340252760000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -219,16 +219,16 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        hand: 'text-nt-cyan-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesWinterSunrise: 'text-slate-400',
+        hand: 'text-nt-yellow-dark',
+        mustachesEquinox: 'text-slate-200',
+        mustachesWinterSunrise: 'text-slate-200',
         mustachesSummerSunrise: 'text-nt-yellow-dark',
         mustachesSummerSunset: 'text-nt-yellow-dark',
-        mustachesWinterSunset: 'text-slate-400',
+        mustachesWinterSunset: 'text-slate-200',
       },
       {
         context: {
-          currentTime: new Date(1340307600000 - 1000*60*20),
+          currentTime: new Date(1340307120000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -242,16 +242,16 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        hand: 'text-nt-cyan-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesWinterSunrise: 'text-slate-400',
+        hand: 'text-nt-yellow-dark',
+        mustachesEquinox: 'text-slate-200',
+        mustachesWinterSunrise: 'text-slate-200',
         mustachesSummerSunrise: 'text-nt-yellow-dark',
         mustachesSummerSunset: 'text-nt-yellow-dark',
-        mustachesWinterSunset: 'text-slate-400',
+        mustachesWinterSunset: 'text-slate-200',
       },
       {
         context: {
-          currentTime: new Date(1356161400000 + 1000*60*20),
+          currentTime: new Date(1356161760000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -265,16 +265,16 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        hand: 'text-nt-cyan-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
+        hand: 'text-nt-yellow-dark',
+        mustachesEquinox: 'text-slate-200',
+        mustachesSummerSunrise: 'text-slate-200',
         mustachesWinterSunrise: 'text-nt-yellow-dark',
         mustachesWinterSunset: 'text-nt-yellow-dark',
-        mustachesSummerSunset: 'text-slate-400',
+        mustachesSummerSunset: 'text-slate-200',
       },
       {
         context: {
-          currentTime: new Date(1356193800000 - 1000*60*20),
+          currentTime: new Date(1356193440000),
           latitude: 42.42,
           longitude: 0,
         },
@@ -288,12 +288,12 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        hand: 'text-nt-cyan-dark',
-        mustachesEquinox: 'text-slate-400',
-        mustachesSummerSunrise: 'text-slate-400',
+        hand: 'text-nt-yellow-dark',
+        mustachesEquinox: 'text-slate-200',
+        mustachesSummerSunrise: 'text-slate-200',
         mustachesWinterSunrise: 'text-nt-yellow-dark',
         mustachesWinterSunset: 'text-nt-yellow-dark',
-        mustachesSummerSunset: 'text-slate-400',
+        mustachesSummerSunset: 'text-slate-200',
       },
       {
         context: {
@@ -359,7 +359,7 @@ export const clockSkins = {
           latitude: 42.42,
           longitude: 0,
         },
-        titleText: 'Mais... les nombres ne sont pas essentiels',
+        titleText: 'Les numéros sont facultatifs',
         descriptionText: "L'horloge naturelle est avant tout une expérience visuelle",
         animationSpeed: 2,
         mustachesDisplay: true,
@@ -370,7 +370,6 @@ export const clockSkins = {
         ntzDisplay: false,
         sunDisplay: true,
         dayNightRingDisplay: true,
-        mustachesDisplay: false,
       },
       {
         context: {
