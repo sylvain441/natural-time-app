@@ -49,7 +49,9 @@ export default {
     },
     meta: {
       title: 'Temps Naturel - Une nouvelle façon de mesurer le temps, inspirée du vivant',
-      description: 'Découvrir et comprendre l\'horloge naturelle de 360° synchro avec le soleil et la spirale des 13 lunes de 28 jours'
+      description: 'Découvrir et comprendre l\'horloge naturelle de 360° synchro avec le soleil et la spirale des 13 lunes de 28 jours',
+      ogImage: 'https://naturaltime.app/natural-time-social-fr.jpg',
+      ogUrl: 'https://naturaltime.app/fr'
     }
   },
   navigation: {
@@ -64,6 +66,63 @@ export default {
     },
     spiral: {
       // Les étapes du tutoriel de la spirale seront ajoutées ici
+    }
+  },
+  // Clock view translations
+  clock: {
+    title: 'Horloge du Temps Naturel',
+    subtitle: 'Une seule aiguille synchro avec le soleil',
+    meta: {
+      description: 'Découvrir l\'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel',
+      title: 'Horloge du Temps Naturel - Une seule aiguille synchro avec le soleil',
+      ogImage: 'https://naturaltime.app/natural-time-social-fr.jpg',
+      ogUrl: 'https://naturaltime.app/fr/clock'
+    },
+    timeTravel: {
+      title: 'Voyage temporel',
+      speedSelector: 'Vitesse de voyage',
+      resetButton: 'Remettre à zéro',
+      exitButton: 'Quitter le voyage temporel',
+      speeds: [
+        { value: '001°', equivalentTo: '4min' },
+        { value: '005°', equivalentTo: '20min' },
+        { value: '015°', equivalentTo: '1h' },
+        { value: '360°', equivalentTo: '1j' },
+        { value: '7 jours', equivalentTo: '' },
+        { value: '28 jours', equivalentTo: '' }
+      ]
+    },
+    tutorial: {
+      startButton: 'Lancer le tutoriel',
+      skipButton: 'Passer le tutoriel',
+      tutorialStep: 'Tutoriel',
+      configureButton: 'Configurer',
+      skipWelcomeButton: 'Passer'
+    },
+    menu: {
+      settings: 'Paramètres',
+      locationPicker: 'Choisir un lieu',
+      simplifiedMode: {
+        title: 'Design épuré',
+        fullMode: 'Design complet'
+      },
+      understanding: 'Comprendre',
+      startTutorial: 'Lancer le tutoriel',
+      faq: 'Foire aux questions',
+      specialMode: 'Mode spécial',
+      timeTravel: 'Voyage temporel'
+    },
+    notifications: {
+      geolocation: {
+        title: 'Nouvelle position détectée',
+        ignoreButton: 'Ignorer',
+        updateButton: 'Mettre à jour'
+      },
+      southernHemisphere: {
+        title: 'Hémisphère Sud',
+        description: 'l\'horloge tourne dans le sens inverse (de droite à gauche) car c\'est ainsi que se déplace le soleil dans cet hémisphère.',
+        dismissButton: 'Okay, compris'
+      }
     }
   }
 } 

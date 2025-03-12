@@ -49,7 +49,9 @@ export default {
     },
     meta: {
       title: 'Natural Time - A new way to measure time, inspired by nature',
-      description: 'Discover and understand the 360° natural clock synchronized with the sun and the 13 moons spiral of 28 days'
+      description: 'Discover and understand the 360° natural clock synchronized with the sun and the 13 moons spiral of 28 days',
+      ogImage: 'https://naturaltime.app/natural-time-social-en.jpg',
+      ogUrl: 'https://naturaltime.app/en'
     }
   },
   navigation: {
@@ -64,6 +66,63 @@ export default {
     },
     spiral: {
       // Spiral tutorial steps will be added here
+    }
+  },
+  // Clock view translations
+  clock: {
+    title: 'Natural Time Clock',
+    subtitle: 'A single hand synchronized with the sun',
+    meta: {
+      description: 'Discover the 360° natural clock that slowly rotates following exactly the course of the sun in the sky',
+      title: 'Natural Time Clock - A single hand synchronized with the sun',
+      ogImage: 'https://naturaltime.app/natural-time-social-en.jpg',
+      ogUrl: 'https://naturaltime.app/en/clock'
+    },
+    timeTravel: {
+      title: 'Time Travel',
+      speedSelector: 'Travel speed',
+      resetButton: 'Reset to zero',
+      exitButton: 'Exit time travel',
+      speeds: [
+        { value: '001°', equivalentTo: '4min' },
+        { value: '005°', equivalentTo: '20min' },
+        { value: '015°', equivalentTo: '1h' },
+        { value: '360°', equivalentTo: '1day' },
+        { value: '7 days', equivalentTo: '' },
+        { value: '28 days', equivalentTo: '' }
+      ]
+    },
+    tutorial: {
+      startButton: 'Start tutorial',
+      skipButton: 'Skip tutorial',
+      tutorialStep: 'Tutorial',
+      configureButton: 'Configure',
+      skipWelcomeButton: 'Skip'
+    },
+    menu: {
+      settings: 'Settings',
+      locationPicker: 'Choose location',
+      simplifiedMode: {
+        title: 'Simplified design',
+        fullMode: 'Full design'
+      },
+      understanding: 'Understanding',
+      startTutorial: 'Start tutorial',
+      faq: 'Frequently asked questions',
+      specialMode: 'Special mode',
+      timeTravel: 'Time travel'
+    },
+    notifications: {
+      geolocation: {
+        title: 'New position detected',
+        ignoreButton: 'Ignore',
+        updateButton: 'Update'
+      },
+      southernHemisphere: {
+        title: 'Southern Hemisphere',
+        description: 'the clock rotates counterclockwise (right to left) because that\'s how the sun moves in this hemisphere.',
+        dismissButton: 'Okay, got it'
+      }
     }
   }
 } 

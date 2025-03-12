@@ -102,7 +102,7 @@
 										v-model="selectedSpeed"
 										class="bg-white border-none text-black text-sm rounded-lg focus:ring-nt-yellow-light focus:border-nt-yellow-light block w-full p-2.5 text-center"
 									>
-										<option value="" disabled>Vitesse de voyage</option>
+										<option value="" disabled>{{ $t('clock.timeTravel.speedSelector') }}</option>
 										<option v-for="(speed, index) in travelSpeeds" :key="index" :value="index" class="text-center">
 											{{ speed.label }} {{ speed.equivalentTo ? `(${speed.equivalentTo})` : '' }}
 										</option>
@@ -134,7 +134,7 @@
 							:class="clockTutorialCurrentStep > 0 ? 'text-black hover:bg-nt-yellow-lighter cursor-pointer' : 'opacity-20'" />
 
 						<!-- Tutorial step -->
-						<span v-if="clockTutorialMode" class="text-md text-slate-600">Tutoriel <span class="">{{
+						<span v-if="clockTutorialMode" class="text-md text-slate-600">{{ $t('clock.tutorial.tutorialStep') }} <span class="">{{
 							String(clockTutorialCurrentStep + 1).padStart(2, '0') }}/{{
 									String(clockTutorialStepsTotal + 1).padStart(2, '0') }}</span></span>
 
@@ -153,7 +153,7 @@
 						<!-- Start tutorial -->
 						<button v-if="!clockTutorialMode" @click="clockTutorialMode = true"
 							class="flex item-center justify-center text-black bg-nt-yellow-light hover:bg-nt-yellow-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-							Lancer le tutoriel
+							{{ $t('clock.tutorial.startButton') }}
 						</button>
 
 						<!-- Configure -->
@@ -162,7 +162,7 @@
 							@click="() => { clockTutorialMode = false; openPanel(AVAILABLE_PANELS.locationPicker); }"
 							class="flex items-center text-black hover:bg-slate-300 font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg"
 							:class="clockTutorialMode && clockTutorialCurrentStep == clockTutorialStepsTotal ? 'bg-nt-yellow-light' : 'bg-slate-200'">
-							{{ clockWelcomeMode && !clockTutorialMode ? 'Passer' : 'Configurer' }}
+							{{ clockWelcomeMode && !clockTutorialMode ? $t('clock.tutorial.skipWelcomeButton') : $t('clock.tutorial.configureButton') }}
 						</button>
 					</div>
 				</footer>
@@ -213,13 +213,13 @@
 					class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
 					<div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 						<!-- SETTINGS -->
-						<div class="px-4 pt-2 pb-0 text-sm text-nt-yellow-dark font-bold">Paramètres
+						<div class="px-4 pt-2 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.settings') }}
 						</div>
 						<!-- Location Picker -->
 						<a @click="openPanel(AVAILABLE_PANELS.locationPicker)"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
 							role="menuitem">
-							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />Choisir un lieu
+							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.locationPicker') }}
 						</a>
 						<!-- Simplified mode -->
 						<a @click="toggleSimplifiedMode"
@@ -231,31 +231,31 @@
 								class="w-6 h-6 mr-2 bg-white/90 p-0.5 rounded-full text-black" 
 								fill="currentColor" 
 							/>
-							{{ clockSimplifiedMode ? 'Design détaillé' : 'Design épuré' }}
+							{{ clockSimplifiedMode ? $t('clock.menu.simplifiedMode.fullMode') : $t('clock.menu.simplifiedMode.title') }}
 						</a>
 						
 						<!-- HELP SECTION -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Comprendre</div>
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.understanding') }}</div>
 						<!-- Tutorial -->
 						<a @click="toggleTutorial"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							role="menuitem">
-							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />Lancer le tutoriel
+							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.startTutorial') }}
 						</a>
 						<!-- FAQ -->
 						<a @click="openPanel(AVAILABLE_PANELS.faq)"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
 							role="menuitem">
-							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />Foire aux questions
+							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.faq') }}
 						</a>
 						
 						<!-- SPECIAL MODES -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">Mode spécial</div>
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.specialMode') }}</div>
 						<!-- Time Travel -->
 						<a @click="toggleTimeTravel"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
-							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />Voyage temporel
+							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.timeTravel') }}
 						</a>
 					</div>
 				</div>
@@ -270,21 +270,21 @@
 		<!-- TUTORIAL CLOSE BUTTON -->
 		<button v-if="clockTutorialMode" @click="clockTutorialMode = false"
 			class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
-			<span>Passer le tutoriel</span>
+			<span>{{ $t('clock.tutorial.skipButton') }}</span>
 			<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
 		</button>
 
 		<!-- TIME TRAVEL CLOSE BUTTON -->
 		<button v-if="clockTimeTravelMode" @click="closeTimeTravel"
 			class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
-			<span>Quitter le voyage temporel</span>
+			<span>{{ $t('clock.timeTravel.exitButton') }}</span>
 			<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
 		</button>
 
 		<!-- TIME TRAVEL RESET BUTTON -->
 		<button v-if="clockTimeTravelMode" :disabled="!timeDelta" @click="resetTime"
 			class="block absolute z-40 top-16 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
-			Remettre à zéro
+			{{ $t('clock.timeTravel.resetButton') }}
 		</button>
 
 		<!-- NOTIFICATION: Geolocation changed -->
@@ -293,17 +293,17 @@
 				class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
 				<div class="p-4">
 					<p class="text-sm text-gray-700 mb-3">
-						Nouvelle position détectée : <span class="font-semibold">{{ contextStore.newPlaceName }}</span>
+						{{ $t('clock.notifications.geolocation.title') }}: <span class="font-semibold">{{ contextStore.newPlaceName }}</span>
 						<span class="text-slate-500 ml-1">(NT{{ Math.round(contextStore.geolocationLongitude) >= 0 ? '+' : ''}}{{ Math.round(contextStore.geolocationLongitude) }})</span>
 					</p>
 					<div class="flex justify-end space-x-2">
 						<button @click="contextStore.dismissGeolocationChange"
 							class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
-							Ignorer
+							{{ $t('clock.notifications.geolocation.ignoreButton') }}
 						</button>
 						<button @click="contextStore.acceptNewGeolocation"
 							class="bg-nt-yellow-light text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-nt-yellow-lighter">
-							Mettre à jour
+							{{ $t('clock.notifications.geolocation.updateButton') }}
 						</button>
 					</div>
 				</div>
@@ -316,13 +316,12 @@
 				class="fixed bottom-4 left-4 right-4 md:left-4 md:right-auto z-20 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm mx-auto md:mx-0">
 				<div class="p-4">
 					<p class="text-sm text-gray-700 mb-3">
-						🔄 <strong>Hémisphère Sud :</strong> l'horloge tourne dans le sens inverse (de droite à gauche)
-						car c'est ainsi que se déplace le soleil dans cet hémisphère.
+						🔄 <strong>{{ $t('clock.notifications.southernHemisphere.title') }}:</strong> {{ $t('clock.notifications.southernHemisphere.description') }}
 					</p>
 					<div class="flex justify-end">
 						<button @click="dismissHemisphereNotification"
 							class="bg-slate-100 text-black text-xs py-1 px-3 rounded transition duration-200 ease-in-out hover:bg-slate-200">
-							Okay, compris
+							{{ $t('clock.notifications.southernHemisphere.dismissButton') }}
 						</button>
 					</div>
 				</div>
@@ -389,14 +388,14 @@ let showPositionChangedNotification = ref(false);
 const isMenuOpen = ref(false);
 
 // Time travel setup
-const travelSpeeds = [
-	{ value: 1000 * 60 * 4, label: '001°', equivalentTo: '4min' },
-	{ value: 1000 * 60 * 20, label: '005°', equivalentTo: '20min' },
-	{ value: 1000 * 60 * 40, label: '015°', equivalentTo: '1h' },
-	{ value: 1000 * 60 * 60 * 24, label: '360°', equivalentTo: '1j' },
-	{ value: 1000 * 60 * 60 * 24 * 7, label: '7 jours' },
-	{ value: 1000 * 60 * 60 * 24 * 28, label: '28 jours' },
-];
+const travelSpeeds = computed(() => [
+	{ value: 1000 * 60 * 4, label: i18n.t('clock.timeTravel.speeds[0].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[0].equivalentTo') },
+	{ value: 1000 * 60 * 20, label: i18n.t('clock.timeTravel.speeds[1].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[1].equivalentTo') },
+	{ value: 1000 * 60 * 40, label: i18n.t('clock.timeTravel.speeds[2].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[2].equivalentTo') },
+	{ value: 1000 * 60 * 60 * 24, label: i18n.t('clock.timeTravel.speeds[3].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[3].equivalentTo') },
+	{ value: 1000 * 60 * 60 * 24 * 7, label: i18n.t('clock.timeTravel.speeds[4].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[4].equivalentTo') },
+	{ value: 1000 * 60 * 60 * 24 * 28, label: i18n.t('clock.timeTravel.speeds[5].value'), equivalentTo: i18n.t('clock.timeTravel.speeds[5].equivalentTo') },
+]);
 const selectedSpeed = ref(1);
 const timeDelta = ref(0);
 
@@ -450,14 +449,16 @@ const context = computed(() => {
 });
 
 // SEO Meta tags - MOVED AFTER context is defined
-const metaTitle = "Horloge du Temps Naturel - Une seule aiguille synchro avec le soleil";
-const metaDescription = "Découvrir l'horloge naturelle de 360° qui tourne lentement en suivant exactement la course du soleil dans le ciel";
+const metaTitle = i18n.t('clock.meta.title');
+const metaDescription = i18n.t('clock.meta.description');
+const metaOgImage = i18n.t('clock.meta.ogImage');
+const metaOgUrl = i18n.t('clock.meta.ogUrl');
 
 const pageTitle = computed(() => {
 	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
 		return metaTitle;
 	}
-	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | Temps Naturel`;
+	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
 });
 
 useHead({
@@ -466,8 +467,8 @@ useHead({
 		{ name: 'description', content: metaDescription },
 		{ property: 'og:title', content: metaTitle },
 		{ property: 'og:description', content: metaDescription },
-		{ property: 'og:image', content: 'https://naturaltime.app/natural-time-social.jpg' },
-		{ property: 'og:url', content: 'https://naturaltime.app' },
+		{ property: 'og:image', content: metaOgImage },
+		{ property: 'og:url', content: metaOgUrl },
 		{ property: 'og:type', content: 'website' },
 		{ name: 'twitter:card', content: 'summary_large_image' },
 	],
@@ -534,8 +535,8 @@ const closeTimeTravel = () => {
 	timeDelta.value = 0;
 };
 
-const incrementTime = () => timeDelta.value += travelSpeeds[selectedSpeed.value].value;
-const decrementTime = () => timeDelta.value -= travelSpeeds[selectedSpeed.value].value;
+const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;
+const decrementTime = () => timeDelta.value -= travelSpeeds.value[selectedSpeed.value].value;
 const resetTime = () => timeDelta.value = 0;
 
 // Method to dismiss notification
