@@ -223,5 +223,9 @@ export default {
       naturalTime: 'Temps Naturel => {date}',
       artificialTime: 'Temps artificiel => {date}'
     }
+  },
+  // MainMenu translations
+  mainMenu: {
+    homeTooltip: 'Accueil naturaltime.app'
   }
 } 
