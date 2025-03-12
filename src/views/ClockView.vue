@@ -345,7 +345,7 @@ import { ref, computed, defineAsyncComponent, onMounted, watch } from 'vue';
 import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
-import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from 'natural-time-js/context';
+import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from 'natural-time-js';
 import { useI18n } from 'vue-i18n'
 
 // Store imports

@@ -370,7 +370,7 @@ import { ref, computed, defineAsyncComponent, onMounted, onUnmounted, watch, nex
 import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
-import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js/context';
+import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js';
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
