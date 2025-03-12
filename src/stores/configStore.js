@@ -21,16 +21,92 @@ export const useConfigStore = defineStore('appConfig', () => {
   
 	const clockActivePanel = ref(null);
 
-  const clockSkin = computed(() => ({
-		// Default clockSkin
-    ...clockSkins.full.default,
-    // Remove graduations and animations in simplified mode
-    ...(!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value && clockSkins.full.simplifiedMode),
-    // Welcome clockSkin
-    ...(!clockActivePanel.value && clockWelcomeMode.value ? clockSkins.full.welcome : {}),
-    // Tutorial clockSkin
-    ...(clockTutorialMode.value ? clockSkins.full.tutorial[clockTutorialCurrentStep.value] : {}),
-  }));
+  // Fonction pour traduire les textes du skin de l'horloge
+  const getTranslatedClockSkin = (t) => {
+    // Base skin with default properties
+    let skin = {
+      ...clockSkins.full.default,
+    };
+    
+    // Apply simplified mode if needed
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.simplifiedMode
+      };
+    }
+    
+    // Apply welcome skin if in welcome mode
+    if (!clockActivePanel.value && clockWelcomeMode.value) {
+      const welcomeSkin = { ...clockSkins.full.welcome };
+      
+      // Translate welcome description if key exists
+      if (welcomeSkin.descriptionTextKey) {
+        welcomeSkin.descriptionText = t(welcomeSkin.descriptionTextKey);
+      }
+      
+      skin = {
+        ...skin,
+        ...welcomeSkin
+      };
+    }
+    
+    // Apply tutorial skin if in tutorial mode
+    if (clockTutorialMode.value) {
+      const tutorialStep = { ...clockSkins.full.tutorial[clockTutorialCurrentStep.value] };
+      
+      // Translate tutorial texts if keys exist
+      if (tutorialStep.titleTextKey) {
+        tutorialStep.titleText = t(tutorialStep.titleTextKey);
+      }
+      
+      if (tutorialStep.descriptionTextKey) {
+        tutorialStep.descriptionText = t(tutorialStep.descriptionTextKey);
+      }
+      
+      skin = {
+        ...skin,
+        ...tutorialStep
+      };
+    }
+    
+    return skin;
+  };
+
+  // Computed property qui sera utilisée par les composants
+  const clockSkin = computed(() => {
+    // Retourne un objet sans traduction, les composants utiliseront getTranslatedClockSkin
+    // Base skin with default properties
+    let skin = {
+      ...clockSkins.full.default,
+    };
+    
+    // Apply simplified mode if needed
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.simplifiedMode
+      };
+    }
+    
+    // Apply welcome skin if in welcome mode
+    if (!clockActivePanel.value && clockWelcomeMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.welcome
+      };
+    }
+    
+    // Apply tutorial skin if in tutorial mode
+    if (clockTutorialMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.tutorial[clockTutorialCurrentStep.value]
+      };
+    }
+    
+    return skin;
+  });
 
   // When closing tutorial, rewind to step #1
   watch(clockTutorialMode, (newValue, oldValue) => {
@@ -53,16 +129,92 @@ export const useConfigStore = defineStore('appConfig', () => {
 
   const spiralShowTitle = ref(true);
 
-  const spiralSkin = computed(() => ({
-		// Default clockSkin
-    ...spiralSkins.full.default,
-    // Hide title
-    ...((!spiralWelcomeMode.value && spiralShowTitle.value === false) && spiralSkins.full.hideTitle),
-    // Welcome spiralSkin
-    ...(!spiralActivePanel.value && spiralWelcomeMode.value ? spiralSkins.full.welcome : {}),
-    // Tutorial spiralSkin
-    ...(spiralTutorialMode.value ? spiralSkins.full.tutorial[spiralTutorialCurrentStep.value] : {}),
-  }));
+  // Fonction pour traduire les textes du skin de la spirale
+  const getTranslatedSpiralSkin = (t) => {
+    // Base skin with default properties
+    let skin = {
+      ...spiralSkins.full.default,
+    };
+    
+    // Hide title if needed
+    if (!spiralWelcomeMode.value && spiralShowTitle.value === false) {
+      skin = {
+        ...skin,
+        ...spiralSkins.full.hideTitle
+      };
+    }
+    
+    // Apply welcome skin if in welcome mode
+    if (!spiralActivePanel.value && spiralWelcomeMode.value) {
+      const welcomeSkin = { ...spiralSkins.full.welcome };
+      
+      // Translate welcome description if key exists
+      if (welcomeSkin.descriptionTextKey) {
+        welcomeSkin.descriptionText = t(welcomeSkin.descriptionTextKey);
+      }
+      
+      skin = {
+        ...skin,
+        ...welcomeSkin
+      };
+    }
+    
+    // Apply tutorial skin if in tutorial mode
+    if (spiralTutorialMode.value) {
+      const tutorialStep = { ...spiralSkins.full.tutorial[spiralTutorialCurrentStep.value] };
+      
+      // Translate tutorial texts if keys exist
+      if (tutorialStep.titleTextKey) {
+        tutorialStep.titleText = t(tutorialStep.titleTextKey);
+      }
+      
+      if (tutorialStep.descriptionTextKey) {
+        tutorialStep.descriptionText = t(tutorialStep.descriptionTextKey);
+      }
+      
+      skin = {
+        ...skin,
+        ...tutorialStep
+      };
+    }
+    
+    return skin;
+  };
+
+  // Computed property qui sera utilisée par les composants
+  const spiralSkin = computed(() => {
+    // Retourne un objet sans traduction, les composants utiliseront getTranslatedSpiralSkin
+    // Base skin with default properties
+    let skin = {
+      ...spiralSkins.full.default,
+    };
+    
+    // Hide title if needed
+    if (!spiralWelcomeMode.value && spiralShowTitle.value === false) {
+      skin = {
+        ...skin,
+        ...spiralSkins.full.hideTitle
+      };
+    }
+    
+    // Apply welcome skin if in welcome mode
+    if (!spiralActivePanel.value && spiralWelcomeMode.value) {
+      skin = {
+        ...skin,
+        ...spiralSkins.full.welcome
+      };
+    }
+    
+    // Apply tutorial skin if in tutorial mode
+    if (spiralTutorialMode.value) {
+      skin = {
+        ...skin,
+        ...spiralSkins.full.tutorial[spiralTutorialCurrentStep.value]
+      };
+    }
+    
+    return skin;
+  });
 
   // When closing spiral tutorial, rewind to step #1
   watch(spiralTutorialMode, (newValue, oldValue) => {
@@ -95,6 +247,8 @@ export const useConfigStore = defineStore('appConfig', () => {
     spiralVerticalMode,
     clockSkin,
     spiralSkin,
+    getTranslatedClockSkin,
+    getTranslatedSpiralSkin,
     hemisphereNotificationDismissed,
     hemisphereNotificationDismissedAt,
   };

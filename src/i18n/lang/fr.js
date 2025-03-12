@@ -62,10 +62,130 @@ export default {
   // Espace réservé pour les traductions des tutoriels
   tutorials: {
     clock: {
-      // Les étapes du tutoriel de l'horloge seront ajoutées ici
+      welcome: {
+        description: "Découvrir une façon plus simple et plus logique de mesurer le temps qui passe dans une journée"
+      },
+      step1: {
+        title: "Je suis une horloge naturelle",
+        description: "Je pointe à chaque instant en direction du soleil"
+      },
+      step2: {
+        title: "Mon unique aiguille",
+        description: "Tourne lentement, une seule fois par jour"
+      },
+      step3: {
+        title: "Mon cadran est gradué en 360°",
+        description: "Bye bye les 24 heures 60 minutes et 60 secondes"
+      },
+      step4: {
+        title: "180° est le véritable midi",
+        description: "Lorsque le soleil est au zénith"
+      },
+      step5: {
+        title: "0° marque le vrai milieu de la nuit",
+        description: "Lorsque le soleil est de l'autre côté de la Terre"
+      },
+      step6: {
+        title: "Les moustaches représentent le jour et la nuit",
+        description: "En fonction de la saison et de la latitude"
+      },
+      step7: {
+        title: "Au solstice d'été...",
+        description: "Le soleil se lève par ici"
+      },
+      step8: {
+        title: "Au solstice d'été...",
+        description: "Puis se couche par là"
+      },
+      step9: {
+        title: "Au solstice d'hiver...",
+        description: "Le soleil se lève ici"
+      },
+      step10: {
+        title: "Au solstice d'hiver...",
+        description: "Et se couche par là"
+      },
+      step11: {
+        title: "Les jours d'équinoxes (seulement)",
+        description: "La durée du jour est égale à celle de la nuit"
+      },
+      step12: {
+        title: "On ne dit plus \"Quelle heure est-il ?\"",
+        description: "Mais plutôt : \"Où est le soleil dans le ciel ?\""
+      },
+      step13: {
+        title: "Le soleil est à 222°",
+        description: "(par exemple)"
+      },
+      step14: {
+        title: "Les numéros sont facultatifs",
+        description: "L'horloge naturelle est avant tout une expérience visuelle"
+      },
+      end: {
+        title: "Tutoriel terminé !",
+        description: "Pour continuer, l'application a besoin de configurer une position géographique"
+      }
     },
     spiral: {
-      // Les étapes du tutoriel de la spirale seront ajoutées ici
+      welcome: {
+        description: "Découvrir la Spirale des 13 lunes, calendrier universel 100% basé sur la nature"
+      },
+      step1: {
+        title: "Je suis un calendrier avec 13 mois de 28 jours",
+        description: "On m'appelle la \"Spirale des 13 lunes\""
+      },
+      step2: {
+        title: "1 lune = 4 semaines de 7 jours",
+        description: "Soit exactement 28 jours, sans exception"
+      },
+      step3: {
+        title: "À chaque jour de la semaine, une couleur",
+        description: "1er jour = Rouge"
+      },
+      step4: {
+        title: "Puis Orange, Jaune, Vert, Bleu, Indigo",
+        description: "Et enfin le 7ème jour : Violet"
+      },
+      step5: {
+        title: "Les 13 lunes sont disposées en spirale",
+        description: "Car le temps n'est pas linéaire mais plutôt cyclique"
+      },
+      step6: {
+        title: "Voici le 5ème jour de la 5ème lune",
+        description: "Par exemple..."
+      },
+      step7: {
+        title: "Et ici : le 11ème jour de la lune 11",
+        description: "Un jour vert... Quelque soit l'année, le siècle, le millénaire..."
+      },
+      step8: {
+        title: "Le savais tu ? 13 x 28 = 364 jours 🤩",
+        description: "Avec un jour de plus, on obtient 365 jours"
+      },
+      step9: {
+        title: "Il s'appelle le jour arc-en-ciel 🌈",
+        description: "Un jour de célébration qui a lieu lors du solstice d'hiver de l'hémisphère nord"
+      },
+      step10: {
+        title: "Certaines années ont 366 jours au lieu de 365",
+        description: "C'est l'occasion de fêter deux jours consécutifs de vie en dehors du temps"
+      },
+      step11: {
+        title: "Une date naturelle s'écrit : ANNEE ) LUNE ) JOUR",
+        description: "Par exemple, aujourd'hui nous sommes le " // La date sera ajoutée dynamiquement
+      },
+      step12: {
+        title: "Le 1er jour de l'an 001",
+        description: "correspond au 22 décembre 2012 dans le calendrier grégorien (voir FAQ)"
+      },
+      step13: {
+        title: "Dernier détail important",
+        description: "Les 28 jours ne correspondent pas aux 29,53 jours du cycles pleine/nouvelle lune (Voir FAQ)"
+      },
+      end: {
+        title: "Tutoriel terminé !",
+        description: "Pour continuer, l'application a besoin de configurer une position géographique"
+      }
     }
   },
   // Clock view translations

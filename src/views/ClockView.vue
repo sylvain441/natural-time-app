@@ -377,7 +377,7 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { clockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockSimplifiedMode, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
+const { clockSkin: rawClockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockSimplifiedMode, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
 
 // I18n setup
 const i18n = useI18n();
@@ -398,6 +398,11 @@ const travelSpeeds = computed(() => [
 ]);
 const selectedSpeed = ref(1);
 const timeDelta = ref(0);
+
+// Computed property pour obtenir le skin traduit
+const clockSkin = computed(() => {
+	return configStore.getTranslatedClockSkin(i18n.t);
+});
 
 // Context computed property
 const context = computed(() => {

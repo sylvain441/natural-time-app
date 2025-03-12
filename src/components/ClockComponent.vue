@@ -240,10 +240,15 @@ const props = defineProps({
 
 // Store
 const configStore = useConfigStore();
-const { clockSkin, clockSimplifiedMode } = storeToRefs(configStore);
+const { clockSkin: rawClockSkin, clockSimplifiedMode } = storeToRefs(configStore);
 const contextStore = useContextStore();
 const { location } = storeToRefs(contextStore);
 const { t } = useI18n();
+
+// Computed property pour obtenir le skin traduit
+const clockSkin = computed(() => {
+	return configStore.getTranslatedClockSkin(t);
+});
 
 // Refs
 const clockWrapper = ref(null);

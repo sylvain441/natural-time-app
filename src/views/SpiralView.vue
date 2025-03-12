@@ -403,10 +403,15 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralVerticalMode } = storeToRefs(configStore);
+const { spiralSkin: rawSpiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralVerticalMode } = storeToRefs(configStore);
 
 // I18n setup
 const i18n = useI18n();
+
+// Computed property pour obtenir le skin traduit
+const spiralSkin = computed(() => {
+  return configStore.getTranslatedSpiralSkin(i18n.t);
+});
 
 // SEO Meta tags
 const metaTitle = i18n.t('spiral.meta.title');

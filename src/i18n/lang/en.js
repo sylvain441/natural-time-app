@@ -62,10 +62,130 @@ export default {
   // Reserved space for tutorial translations
   tutorials: {
     clock: {
-      // Clock tutorial steps will be added here
+      welcome: {
+        description: "Discover a simpler and more logical way to measure the passing of time in a day"
+      },
+      step1: {
+        title: "I am a natural clock",
+        description: "I point towards the sun at all times"
+      },
+      step2: {
+        title: "My single hand",
+        description: "Turns slowly, only once a day"
+      },
+      step3: {
+        title: "My dial is graduated in 360°",
+        description: "Goodbye to 24 hours, 60 minutes, and 60 seconds"
+      },
+      step4: {
+        title: "180° marks true noon",
+        description: "When the sun is at its zenith"
+      },
+      step5: {
+        title: "0° marks the true middle of the night",
+        description: "When the sun is on the other side of the Earth"
+      },
+      step6: {
+        title: "The mustaches represent day and night",
+        description: "According to the season and latitude"
+      },
+      step7: {
+        title: "At the summer solstice...",
+        description: "The sun rises here"
+      },
+      step8: {
+        title: "At the summer solstice...",
+        description: "And sets over there"
+      },
+      step9: {
+        title: "At the winter solstice...",
+        description: "The sun rises here"
+      },
+      step10: {
+        title: "At the winter solstice...",
+        description: "And sets over there"
+      },
+      step11: {
+        title: "On equinox days (only)",
+        description: "The duration of day equals that of night"
+      },
+      step12: {
+        title: "We no longer ask \"What time is it?\"",
+        description: "But rather: \"Where is the sun in the sky?\""
+      },
+      step13: {
+        title: "The sun is at 222°",
+        description: "(for example)"
+      },
+      step14: {
+        title: "The numbers are optional",
+        description: "The natural clock is above all a visual experience"
+      },
+      end: {
+        title: "Tutorial completed!",
+        description: "To continue, the application needs to configure a geographic location"
+      }
     },
     spiral: {
-      // Spiral tutorial steps will be added here
+      welcome: {
+        description: "Discover the 13 Moons Spiral, a universal calendar 100% based on nature"
+      },
+      step1: {
+        title: "I am a calendar with 13 months of 28 days",
+        description: "I'm called the \"13 Moons Spiral\""
+      },
+      step2: {
+        title: "1 moon = 4 weeks of 7 days",
+        description: "Exactly 28 days, without exception"
+      },
+      step3: {
+        title: "Each day of the week has a color",
+        description: "1st day = Red"
+      },
+      step4: {
+        title: "Then Orange, Yellow, Green, Blue, Indigo",
+        description: "And finally the 7th day: Violet"
+      },
+      step5: {
+        title: "The 13 moons are arranged in a spiral",
+        description: "Because time is not linear but rather cyclical"
+      },
+      step6: {
+        title: "Here is the 5th day of the 5th moon",
+        description: "For example..."
+      },
+      step7: {
+        title: "And here: the 11th day of the 11th moon",
+        description: "A green day... Regardless of the year, century, or millennium..."
+      },
+      step8: {
+        title: "Did you know? 13 x 28 = 364 days 🤩",
+        description: "With one more day, we get 365 days"
+      },
+      step9: {
+        title: "It's called the rainbow day 🌈",
+        description: "A day of celebration that takes place during the winter solstice of the northern hemisphere"
+      },
+      step10: {
+        title: "Some years have 366 days instead of 365",
+        description: "It's an opportunity to celebrate two consecutive days outside of time"
+      },
+      step11: {
+        title: "A natural date is written: YEAR ) MOON ) DAY",
+        description: "For example, today we are " // The date will be added dynamically
+      },
+      step12: {
+        title: "The 1st day of year 001",
+        description: "corresponds to December 22, 2012 in the Gregorian calendar (see FAQ)"
+      },
+      step13: {
+        title: "Last important detail",
+        description: "The 28 days do not correspond to the 29.53 days of the full/new moon cycle (See FAQ)"
+      },
+      end: {
+        title: "Tutorial completed!",
+        description: "To continue, the application needs to configure a geographic location"
+      }
     }
   },
   // Clock view translations
