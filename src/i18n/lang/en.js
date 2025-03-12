@@ -227,5 +227,39 @@ export default {
   // MainMenu translations
   mainMenu: {
     homeTooltip: 'Home naturaltime.app'
+  },
+  // DisplayComponent translations
+  display: {
+    year: 'Year',
+    moon: 'Moon',
+    day: 'Day',
+    rainbow: {
+      arc: 'Rain',
+      day: 'bow',
+      sky: 'Day'
+    },
+    dateFormat: 'en-US'
+  },
+  // MainMenuLegacy translations
+  mainMenuLegacy: {
+    title: 'Natural Time',
+    clock: 'Clock',
+    spiral: '13 Moons',
+    home: '← Home',
+    reset: 'reset',
+    aria: {
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu'
+    }
+  },
+  // YouTubePlayer translations
+  youtubePlayer: {
+    thumbnail: 'Understand Natural Time in 10 minutes'
+  },
+  // 404 view translations
+  notFound: {
+    title: '404',
+    message: 'Oops! Page not found.',
+    button: 'Back to home'
   }
 } 

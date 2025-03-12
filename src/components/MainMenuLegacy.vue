@@ -8,27 +8,27 @@
               :to="{ name: 'welcome' }" 
               @click="closeMenu"
               class="text-4xl md:text-6xl font-title text-black dark:text-white transition-all duration-300 transform px-4 py-2 underline decoration-nt-yellow-light mb-4 text-center">
-              <span>Temps Naturel</span>
+              <span>{{ $t('mainMenuLegacy.title') }}</span>
             </router-link>
             <router-link 
               :to="{ name: 'time' }" 
               @click="closeMenu"
               class="flex flex-row items-center justify-center text-3xl md:text-4xl font-black text-black dark:text-slate-900 transition-all duration-300 transform bg-nt-yellow-lighter hover:bg-nt-yellow-light dark:bg-nt-yellow-light dark:hover:bg-nt-yellow-lighter uppercase px-4 py-2 rounded-full">
               <ClockIcon class="w-16 h-16 mr-2"/>
-              <span>Horloge</span>
+              <span>{{ $t('mainMenuLegacy.clock') }}</span>
             </router-link>
             <router-link 
               :to="{ name: '13moons' }" 
               @click="closeMenu"
               class="flex flex-row items-center justify-center text-3xl md:text-4xl font-black text-black dark:text-slate-900 transition-all duration-300 transform bg-nt-cyan-lighter hover:bg-nt-cyan-light dark:bg-nt-cyan-light dark:hover:bg-nt-cyan-lighter uppercase px-4 py-2 rounded-full">
               <SpiralIcon class="w-16 h-16 mr-2"/>
-              <span>13 Lunes</span>
+              <span>{{ $t('mainMenuLegacy.spiral') }}</span>
             </router-link>
             <router-link 
               :to="{ name: 'welcome' }" 
               @click="closeMenu"
               class="nav-link flex flex-row items-center justify-center text-2xl font-normal text-slate-700 dark:text-slate-300 transition-all duration-300 transform hover:bg-slate-200 dark:hover:bg-slate-800 px-4 py-2 rounded-full" >
-              <span>← Accueil</span>
+              <span>{{ $t('mainMenuLegacy.home') }}</span>
             </router-link>
             <div class="absolute bottom-2 right-2 text-xs text-slate-400 dark:text-slate-600">
               v{{ version }}
@@ -36,7 +36,7 @@
                 @click="clearLocalStorageAndReload"
                 class="ml-2 hover:text-slate-600 dark:hover:text-slate-400"
               >
-                reset
+                {{ $t('mainMenuLegacy.reset') }}
               </button>
             </div>
           </div>
@@ -47,7 +47,7 @@
       <button 
         @click="toggleMenu" 
         :class="['fixed top-3 md:top-4 left-3 md:left-4 p-2 rounded-full bg-slate-800 dark:bg-slate-700 text-white focus:outline-none transition-all duration-300 hover:bg-slate-700 dark:hover:bg-slate-600 hover:shadow-lg', isMenuOpen ? 'z-50' : 'z-30']"
-        :aria-label="isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
+        :aria-label="isMenuOpen ? $t('mainMenuLegacy.aria.closeMenu') : $t('mainMenuLegacy.aria.openMenu')"
         :aria-expanded="isMenuOpen"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 md:h-6 w-5 md:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -65,7 +65,9 @@
   import ClockIcon from "@/assets/icon/clock-icon.svg";
   import SpiralIcon from "@/assets/icon/spiral-icon.svg";
   import { version } from '../../package.json';
+  import { useI18n } from 'vue-i18n';
 
+  const { t } = useI18n();
   const contextStore = useContextStore();
   const { clearLocalStorageAndReload } = contextStore;
 

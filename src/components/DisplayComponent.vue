@@ -5,17 +5,17 @@
       <div class="flex items-center font-extrabold display-container">
         <div class="text-center" :style="displayStyle">
           <div class="digit">xxx</div>
-          <div class="label uppercase">Année</div>
+          <div class="label uppercase">{{ $t('display.year') }}</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
         <div class="text-center" :style="displayStyle">
           <div class="digit">xx</div>
-          <div class="label uppercase">Lune</div>
+          <div class="label uppercase">{{ $t('display.moon') }}</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
         <div class="text-center" :style="displayStyle">
           <div class="digit">xx</div>
-          <div class="label uppercase">Jour</div>
+          <div class="label uppercase">{{ $t('display.day') }}</div>
         </div>
       </div>
     </div>
@@ -25,21 +25,21 @@
       <div class="flex items-center font-extrabold display-container text-white/95">
         <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toYearString()}}</div>
-          <div class="label uppercase">Année</div>
+          <div class="label uppercase">{{ $t('display.year') }}</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
         <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toMoonString()}}</div>
-          <div class="label uppercase">Lune</div>
+          <div class="label uppercase">{{ $t('display.moon') }}</div>
         </div>
         <div class="mx-3 separator font-normal" :style="displayStyle">)</div>
         <div class="text-center" :style="displayStyle">
           <div class="digit">{{displayDate.toDayOfMoonString()}}</div>
-          <div class="label uppercase">Jour</div>
+          <div class="label uppercase">{{ $t('display.day') }}</div>
         </div>
       </div>
       <div v-if="spiralTimeTravelMode" :style="displayStyle" class="text-slate-800 dark:text-slate-200 italic gregorian-date">
-        ({{ new Date(context.naturalDate.unixTime).toLocaleDateString('fr-FR', { 
+        ({{ new Date(context.naturalDate.unixTime).toLocaleDateString($t('display.dateFormat'), { 
           weekday: 'long', 
           year: 'numeric', 
           month: 'short', 
@@ -53,15 +53,15 @@
       <div class="flex items-center font-extrabold display-container">
         <div class="text-center" :style="displayStyle">
           <div class="digit">&nbsp;</div>
-          <div class="label uppercase">Arc</div>
+          <div class="label uppercase">{{ $t('display.rainbow.arc') }}</div>
         </div>
         <div class="text-center" :style="displayStyle">
-          <div class="digit">Jour</div>
-          <div class="label uppercase">En</div>
+          <div class="digit">{{ $t('display.rainbow.day') }}</div>
+          <div class="label uppercase">{{ $t('display.rainbow.sky') }}</div>
         </div>
         <div class="text-center" :style="displayStyle">
           <div class="digit">&nbsp;</div>
-          <div class="label uppercase">Ciel</div>
+          <div class="label uppercase">{{ $t('display.rainbow.sky') }}</div>
         </div>
       </div>
     </div>
@@ -72,6 +72,9 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useConfigStore } from '@/stores/configStore';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   displayDate: {

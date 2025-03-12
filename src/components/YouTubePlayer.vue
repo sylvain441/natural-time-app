@@ -1,5 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   videoId: {
@@ -31,7 +34,7 @@ const getThumbnailUrl = (videoId) => {
     <template v-if="!playerLoaded">
       <img 
         :src="getThumbnailUrl(videoId)" 
-        alt="Video thumbnail"
+        :alt="$t('youtubePlayer.thumbnail')"
         class="w-full h-full object-cover"
       />
       <button 

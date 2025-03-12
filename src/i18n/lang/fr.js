@@ -227,5 +227,39 @@ export default {
   // MainMenu translations
   mainMenu: {
     homeTooltip: 'Accueil naturaltime.app'
+  },
+  // DisplayComponent translations
+  display: {
+    year: 'Année',
+    moon: 'Lune',
+    day: 'Jour',
+    rainbow: {
+      arc: 'Arc',
+      day: 'Jour',
+      sky: 'Ciel'
+    },
+    dateFormat: 'fr-FR'
+  },
+  // MainMenuLegacy translations
+  mainMenuLegacy: {
+    title: 'Temps Naturel',
+    clock: 'Horloge',
+    spiral: '13 Lunes',
+    home: '← Accueil',
+    reset: 'reset',
+    aria: {
+      openMenu: 'Ouvrir le menu',
+      closeMenu: 'Fermer le menu'
+    }
+  },
+  // YouTubePlayer translations
+  youtubePlayer: {
+    thumbnail: 'Comprendre le Temps Naturel en 10 minutes'
+  },
+  // 404 view translations
+  notFound: {
+    title: '404',
+    message: 'Oops! Page non trouvée.',
+    button: 'Retour à l\'accueil'
   }
 } 
