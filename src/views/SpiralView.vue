@@ -98,7 +98,7 @@
                   {{ spiralSkin.titleText }}
                 </span>
                 <span v-else class="px-3 py-1 bg-nt-cyan-lighter">
-                  {{  "Temps Naturel" }}
+                  {{  $t('spiral.title') }}
                 </span>
               </h1>
               
@@ -114,7 +114,7 @@
               </div>
               <div v-else>
                 <h2 class="text-slate-500 text-md md:text-xl">
-                  {{ spiralSkin.descriptionText }}
+                  {{ spiralSkin.descriptionText || $t('spiral.subtitle') }}
                 </h2>
               </div>
             </div>
@@ -139,7 +139,7 @@
                       id="speed-selector"
                       v-model="selectedSpeed"
                       class="bg-white border-none text-black text-sm rounded-lg focus:ring-nt-cyan-light focus:border-nt-cyan-light block w-full p-2.5 text-center">
-                      <option value="" disabled>Vitesse de voyage</option>
+                      <option value="" disabled>{{ $t('spiral.timeTravel.speedSelector') }}</option>
                       <option v-for="(speed, index) in travelSpeeds" :key="index" :value="index" class="text-center">
                         {{ speed.label }}
                       </option>
@@ -172,7 +172,7 @@
               :class="spiralTutorialCurrentStep > 0 ? 'text-black hover:bg-nt-cyan-lighter cursor-pointer' : 'opacity-20'"  />
             
               <!-- Tutorial step -->
-            <span v-if="spiralTutorialMode" class="text-md text-slate-600">Tutoriel <span class="">{{ String(spiralTutorialCurrentStep + 1).padStart(2, '0') }}/{{ String(spiralTutorialStepsTotal + 1).padStart(2, '0') }}</span></span>
+            <span v-if="spiralTutorialMode" class="text-md text-slate-600">{{ $t('spiral.tutorial.tutorialStep') }} <span class="">{{ String(spiralTutorialCurrentStep + 1).padStart(2, '0') }}/{{ String(spiralTutorialStepsTotal + 1).padStart(2, '0') }}</span></span>
             
             <!-- Next step -->
             <arrowsIcon 
@@ -191,7 +191,7 @@
               v-if="!spiralTutorialMode" 
               @click="spiralTutorialMode = true" 
               class="flex item-center justify-center text-black bg-nt-cyan-light hover:bg-nt-cyan-lighter font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg">
-              Lancer le tutoriel
+              {{ $t('spiral.tutorial.startButton') }}
             </button>
             
             <!-- Configure -->
@@ -200,7 +200,7 @@
               @click="() => { spiralTutorialMode = false; openPanel(AVAILABLE_PANELS.locationPicker); }" 
               class="flex items-center text-black hover:bg-slate-300 font-bold py-2 px-4 transition duration-300 ease-in-out transform rounded-lg"
               :class="spiralTutorialMode && spiralTutorialCurrentStep == spiralTutorialStepsTotal ? 'bg-nt-cyan-light': 'bg-slate-200'">
-              {{ spiralWelcomeMode && !spiralTutorialMode ? 'Passer' : 'Configurer' }}
+              {{ spiralWelcomeMode && !spiralTutorialMode ? $t('spiral.tutorial.skipWelcomeButton') : $t('spiral.tutorial.configureButton') }}
             </button>
           </div>
         </footer>
@@ -234,7 +234,7 @@
       <button 
         @click="toggleVerticalMode" 
         class="group p-2 rounded-full focus:outline-none transition-all duration-300 bg-white text-black hover:bg-slate-100"
-        :title="spiralVerticalMode ? 'Afficher en spiral' : 'Afficher en vertical'">
+        :title="spiralVerticalMode ? $t('spiral.menu.viewMode.spiralTitle') : $t('spiral.menu.viewMode.verticalTitle')">
         <component 
           :is="spiralVerticalMode ? thirteenMoonIcon : verticalSpiralIcon" 
           class="w-6 h-6"
@@ -259,41 +259,41 @@
       class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
       <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
         <!-- SETTINGS -->
-        <div class="px-4 pt-2 pb-0 text-sm text-nt-cyan-dark font-bold">Paramètres</div>
+        <div class="px-4 pt-2 pb-0 text-sm text-nt-cyan-dark font-bold">{{ $t('spiral.menu.settings') }}</div>
         <!-- Location Picker -->
         <a 
           @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
           role="menuitem">
-          <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>Choisir un lieu
+          <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>{{ $t('spiral.menu.locationPicker') }}
         </a>
         
         <!-- HELP SECTION -->
-        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Comprendre</div>
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">{{ $t('spiral.menu.understanding') }}</div>
         <!-- Tutorial -->
         <a 
           @click="toggleTutorial" 
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-cyan-darker hover:bg-opacity-30 flex items-center" 
           role="menuitem">
-          <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>Lancer le tutoriel
+          <learnIcon class="w-6 h-6 mr-2" fill="currentColor"/>{{ $t('spiral.menu.startTutorial') }}
         </a>
         <!-- FAQ -->
         <a 
           @click="openPanel(AVAILABLE_PANELS.faq)" 
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
           role="menuitem">
-          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>Foire aux questions
+          <faqIcon class="w-6 h-6 mr-2" fill="currentColor"/>{{ $t('spiral.menu.faq') }}
         </a>
         
         <!-- SPECIAL MODES -->
-        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">Mode spécial</div>
+        <div class="px-4 pt-3 pb-0 text-sm text-nt-cyan-dark font-bold">{{ $t('spiral.menu.specialMode') }}</div>
         <!-- Time Travel -->
         <a 
           @click="toggleTimeTravel" 
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-cyan-darker hover:bg-opacity-30 flex items-center" 
           :class="spiralTimeTravelMode ? 'bg-nt-cyan-ultralight' : ''"
           role="menuitem">
-          <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>Voyage temporel
+          <timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor"/>{{ $t('spiral.menu.timeTravel') }}
         </a>
       </div>
     </div>
@@ -310,7 +310,7 @@
     v-if="spiralTutorialMode"
     @click="spiralTutorialMode = false" 
     class=" absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
-    <span>Passer le tutoriel</span>
+    <span>{{ $t('spiral.tutorial.skipButton') }}</span>
     <closeIcon class="w-4 h-4 bg-black rounded-full text-nt-cyan-light" fill="currentColor" />
   </button>
 
@@ -319,7 +319,7 @@
     v-if="spiralTimeTravelMode"
     @click="closeTimeTravel" 
     class="fixed z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-cyan-light text-black hover:bg-nt-cyan-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
-    <span>Quitter le voyage temporel</span>
+    <span>{{ $t('spiral.timeTravel.exitButton') }}</span>
     <closeIcon class="w-4 h-4 bg-black rounded-full text-white" fill="currentColor" />
   </button>
 
@@ -329,7 +329,7 @@
     :disabled="!timeDelta"
     @click="resetTime" 
     class="fixed z-40 top-14 right-4 bg-slate-200 hover:bg-slate-300 text-xs text-black font-bold py-2 px-4 rounded transition duration-300 ease-in-out disabled:opacity-0">
-    Remettre à zéro
+    {{ $t('spiral.timeTravel.resetButton') }}
   </button>
 
   <!-- Update the notification to use context.location -->
@@ -337,19 +337,19 @@
     <div v-if="showPositionChangedNotification && shouldShowNotification && spiralActivePanel !== AVAILABLE_PANELS.locationPicker" 
          class="fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-sm">
       <div class="p-4">
-        <p class="text-sm text-gray-700 mb-3">Position GPS modifiée. Mettre à jour ?</p>
+        <p class="text-sm text-gray-700 mb-3">{{ $t('spiral.notifications.geolocation.title') }}</p>
         <div class="flex justify-between space-x-2">
           <button @click="preventNotificationForOneDay" class="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-200">
-            Ignorer aujourd'hui
+            {{ $t('spiral.notifications.geolocation.ignoreButton') }}
           </button>
           <div class="flex space-x-2">
             <button @click="openPanel(AVAILABLE_PANELS.locationPicker)" 
                     class="bg-nt-cyan-light text-black text-xs py-1 px-3 rounded-md transition duration-200 ease-in-out hover:bg-nt-cyan-lighter">
-              Oui
+              {{ $t('spiral.notifications.geolocation.updateButton') }}
             </button>
             <button @click="closeNotification" 
                     class="bg-slate-100 text-black text-xs py-1 px-3 rounded-md transition duration-200 ease-in-out hover:bg-slate-200">
-              Non
+              {{ $t('spiral.notifications.geolocation.dismissButton') }}
             </button>
           </div>
         </div>
@@ -371,6 +371,7 @@ import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js';
+import { useI18n } from 'vue-i18n'
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -404,9 +405,14 @@ contextStore.init();
 const configStore = useConfigStore()
 const { spiralSkin, spiralWelcomeMode, spiralTutorialMode, spiralTutorialStepsTotal, spiralTutorialCurrentStep, spiralTimeTravelMode, spiralActivePanel, spiralVerticalMode } = storeToRefs(configStore);
 
+// I18n setup
+const i18n = useI18n();
+
 // SEO Meta tags
-const metaTitle = "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien";
-const metaDescription = "Découvrir la spirale des 13 lunes de 28 jours qui remplace avec élégance nos 12 mois tout tordus";
+const metaTitle = i18n.t('spiral.meta.title');
+const metaDescription = i18n.t('spiral.meta.description');
+const metaOgImage = i18n.t('spiral.meta.ogImage');
+const metaOgUrl = i18n.t('spiral.meta.ogUrl');
 
 useHead({
   title: metaTitle,
@@ -414,8 +420,8 @@ useHead({
     { name: 'description', content: metaDescription },
     { property: 'og:title', content: metaTitle },
     { property: 'og:description', content: metaDescription },
-    { property: 'og:image', content: 'https://naturaltime.app/natural-time-social.jpg' },
-    { property: 'og:url', content: 'https://naturaltime.app' },
+    { property: 'og:image', content: metaOgImage },
+    { property: 'og:url', content: metaOgUrl },
     { property: 'og:type', content: 'website' },
     { name: 'twitter:card', content: 'summary_large_image' },
   ],
@@ -428,11 +434,11 @@ const isMenuOpen = ref(false);
 const containerSize = ref(333);
 
 // Time travel setup
-const travelSpeeds = [
-  { value: 1000 * 60 * 60 * 24, label: '1 jour'},
-  { value: 1000 * 60 * 60 * 24 * 7, label: '1 semaine'},
-  { value: 1000 * 60 * 60 * 24 * 28, label: '1 lune'},
-];
+const travelSpeeds = computed(() => [
+  { value: 1000 * 60 * 60 * 24, label: i18n.t('spiral.timeTravel.speeds[0].label') },
+  { value: 1000 * 60 * 60 * 24 * 7, label: i18n.t('spiral.timeTravel.speeds[1].label') },
+  { value: 1000 * 60 * 60 * 24 * 28, label: i18n.t('spiral.timeTravel.speeds[2].label') },
+]);
 const selectedSpeed = ref(0);
 const timeDelta = ref(0);
 
@@ -513,8 +519,8 @@ const closeTimeTravel = () => {
   timeDelta.value = 0;
 };
 
-const incrementTime = () => timeDelta.value += travelSpeeds[selectedSpeed.value].value;	
-const decrementTime = () => timeDelta.value -= travelSpeeds[selectedSpeed.value].value;
+const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;	
+const decrementTime = () => timeDelta.value -= travelSpeeds.value[selectedSpeed.value].value;
 const resetTime = () => timeDelta.value = 0;
 
 // Lifecycle hooks

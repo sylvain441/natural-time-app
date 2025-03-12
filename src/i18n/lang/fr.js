@@ -124,5 +124,55 @@ export default {
         dismissButton: 'Okay, compris'
       }
     }
+  },
+  // Spiral view translations
+  spiral: {
+    title: 'Spirale des 13 lunes',
+    subtitle: 'Une alternative au calendrier Grégorien',
+    meta: {
+      title: 'Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien',
+      description: 'Découvrir la spirale des 13 lunes de 28 jours qui remplace avec élégance nos 12 mois tout tordus',
+      ogImage: 'https://naturaltime.app/natural-time-social-fr.jpg',
+      ogUrl: 'https://naturaltime.app/fr/spiral'
+    },
+    timeTravel: {
+      title: 'Voyage temporel',
+      speedSelector: 'Vitesse de voyage',
+      resetButton: 'Remettre à zéro',
+      exitButton: 'Quitter le voyage temporel',
+      speeds: [
+        { label: '1 jour' },
+        { label: '1 semaine' },
+        { label: '1 lune' }
+      ]
+    },
+    tutorial: {
+      startButton: 'Lancer le tutoriel',
+      skipButton: 'Passer le tutoriel',
+      tutorialStep: 'Tutoriel',
+      configureButton: 'Configurer',
+      skipWelcomeButton: 'Passer'
+    },
+    menu: {
+      settings: 'Paramètres',
+      locationPicker: 'Choisir un lieu',
+      viewMode: {
+        spiralTitle: 'Afficher en spiral',
+        verticalTitle: 'Afficher en vertical'
+      },
+      understanding: 'Comprendre',
+      startTutorial: 'Lancer le tutoriel',
+      faq: 'Foire aux questions',
+      specialMode: 'Mode spécial',
+      timeTravel: 'Voyage temporel'
+    },
+    notifications: {
+      geolocation: {
+        title: 'Position GPS modifiée. Mettre à jour ?',
+        ignoreButton: 'Ignorer aujourd\'hui',
+        updateButton: 'Oui',
+        dismissButton: 'Non'
+      }
+    }
   }
 } 

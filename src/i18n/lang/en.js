@@ -124,5 +124,55 @@ export default {
         dismissButton: 'Okay, got it'
       }
     }
+  },
+  // Spiral view translations
+  spiral: {
+    title: '13 Moons Spiral',
+    subtitle: 'An alternative to the Gregorian calendar',
+    meta: {
+      title: '13 Moons Spiral - Natural Time - An alternative to the Gregorian calendar',
+      description: 'Discover the 13 moons spiral of 28 days that elegantly replaces our twisted 12 months',
+      ogImage: 'https://naturaltime.app/natural-time-social-en.jpg',
+      ogUrl: 'https://naturaltime.app/en/spiral'
+    },
+    timeTravel: {
+      title: 'Time Travel',
+      speedSelector: 'Travel speed',
+      resetButton: 'Reset to zero',
+      exitButton: 'Exit time travel',
+      speeds: [
+        { label: '1 day' },
+        { label: '1 week' },
+        { label: '1 moon' }
+      ]
+    },
+    tutorial: {
+      startButton: 'Start tutorial',
+      skipButton: 'Skip tutorial',
+      tutorialStep: 'Tutorial',
+      configureButton: 'Configure',
+      skipWelcomeButton: 'Skip'
+    },
+    menu: {
+      settings: 'Settings',
+      locationPicker: 'Choose location',
+      viewMode: {
+        spiralTitle: 'Show as spiral',
+        verticalTitle: 'Show vertically'
+      },
+      understanding: 'Understanding',
+      startTutorial: 'Start tutorial',
+      faq: 'Frequently asked questions',
+      specialMode: 'Special mode',
+      timeTravel: 'Time travel'
+    },
+    notifications: {
+      geolocation: {
+        title: 'GPS position changed. Update?',
+        ignoreButton: 'Ignore today',
+        updateButton: 'Yes',
+        dismissButton: 'No'
+      }
+    }
   }
 } 
