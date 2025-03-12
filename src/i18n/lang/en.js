@@ -174,5 +174,39 @@ export default {
         dismissButton: 'No'
       }
     }
+  },
+  // FAQ component translations
+  faq: {
+    inProgress: '(Work in progress)'
+  },
+  // LocationPicker component translations
+  locationPicker: {
+    title: 'Choose a location',
+    nameLabel: {
+      new: 'Give a name to this location',
+      edit: 'Edit location name'
+    },
+    optional: '(Optional)',
+    validate: 'Confirm',
+    clickMap: 'Click on the map to choose a location',
+    offline: 'The device appears to be offline. Please check your internet connection or enter your GPS coordinates manually.',
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    name: 'Name',
+    geolocation: {
+      enable: 'Enable geolocation',
+      enabled: 'Geolocation enabled',
+      searching: 'Searching for location...',
+      detected: 'GPS position detected',
+      recenter: 'Recenter',
+      errors: {
+        denied: 'Please enable geolocation in your browser',
+        unavailable: 'Position unavailable',
+        timeout: 'Geolocation timeout',
+        error: 'Geolocation error'
+      },
+      retry: 'Try again'
+    },
+    explanation: 'Natural time needs geographic coordinates to determine the position of the sun.'
   }
 } 

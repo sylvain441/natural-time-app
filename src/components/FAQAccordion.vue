@@ -19,7 +19,7 @@ const props = defineProps({
   }
 });
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 const filteredFaq = computed(() => {
   const content = faqContent[locale.value] || faqContent.en;
@@ -118,7 +118,7 @@ const setupAccordion = () => {
         question.innerHTML = `
           <div class="question-wrapper">
             <span class="question-text">${questionContent}</span>
-            <span class="no-answer-message">(En cours de rédaction)</span>
+            <span class="no-answer-message">${t('faq.inProgress')}</span>
           </div>
         `;
       }

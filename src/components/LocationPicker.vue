@@ -4,7 +4,7 @@
     <h4 :class="[
       viewType === 'spiral' ? 'border-nt-cyan-darkest' : 'border-nt-yellow-darkest'
     ]" class="section-header flex flex-row items-center justify-between">
-      <span>Choisir un lieu</span>
+      <span>{{ $t('locationPicker.title') }}</span>
     </h4>
     
     <!-- Form -->
@@ -19,14 +19,14 @@
           for="locationName" 
           class="text-sm font-mono font-extrabold text-slate-800"
         >
-          {{ hasPositionChanged ? 'Donner un nom au lieu' : 'Modifier le nom du lieu' }}
+          {{ hasPositionChanged ? $t('locationPicker.nameLabel.new') : $t('locationPicker.nameLabel.edit') }}
         </label>
         <div class="flex flex-row items-center justify-between space-x-2">
           <input 
             id="locationName" 
             v-model="tempLocation" 
             type="text" 
-            placeholder="(Facultatif)"
+            :placeholder="$t('locationPicker.optional')"
             class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-slate-100 bg-opacity-80 focus:bg-opacity-100 text-slate-500 focus:text-slate-900"
             @keyup.enter="save"
           />
@@ -38,14 +38,14 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
             </svg>
-            Valider
+            {{ $t('locationPicker.validate') }}
           </button>
         </div>
       </template>
       
       <div v-else class="flex items-center space-x-2 pt-2 text-slate-600">
         <mapIcon class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-        <span class="italic">Cliquer la carte pour choisir un lieu</span>
+        <span class="italic">{{ $t('locationPicker.clickMap') }}</span>
       </div>
     </div>
 
@@ -53,12 +53,12 @@
       <div id="map-canvas" v-if="isOnline" class="absolute inset-0 w-full h-full cursor-move min-h-16 min-w-16 z-10 bg-white" style="-webkit-transform: translateZ(0); transform: translateZ(0);"></div>
       <div class="w-full h-full flex flex-col items-center justify-center p-8">
         <p v-if="!isOnline" class="text-center text-gray-400">
-          L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.
+          {{ $t('locationPicker.offline') }}
         </p>
         <div class="flex flex-col">
           <div class="grow flex flex-col items-center space-y-2 justify-center hover:opacity-100 py-2" :class="[isOnline ? 'opacity-50' : '']">
             <div class="text-white">
-              <span>Latitude</span> 
+              <span>{{ $t('locationPicker.latitude') }}</span> 
               <input 
                 autocomplete="off"
                 :placeholder="0" 
@@ -74,7 +74,7 @@
               />
             </div>
             <div class="text-white">
-              <span>Longitude</span> 
+              <span>{{ $t('locationPicker.longitude') }}</span> 
               <input 
                 autocomplete="off"
                 :placeholder="0" 
@@ -90,14 +90,14 @@
               />
             </div>
             <div class="text-white">
-              <span>Nom</span> 
+              <span>{{ $t('locationPicker.name') }}</span> 
               <input 
                 autocomplete="off"
                 v-model="tempLocation" 
                 @submit.prevent
                 @focus="preventZoom"
                 type="text" 
-                placeholder="(Facultatif)" 
+                :placeholder="$t('locationPicker.optional')" 
                 class="w-36 ml-2 p-2 border rounded text-xs bg-gray-700 border-gray-600 text-white" 
                 @keyup.enter="save" 
               />
@@ -108,7 +108,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
               </svg>
-              Valider
+              {{ $t('locationPicker.validate') }}
             </button>
           </div>
         </div>
@@ -122,19 +122,19 @@
         <transition name="fadein">
           <div v-if="enableGeolocation && geolocationStatus === 'searching'" class="flex items-center space-x-2">
             <spinIcon class="h-6 w-6 animate-spin text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-            <span>Géolocalisation en cours...</span>
+            <span>{{ $t('locationPicker.geolocation.searching') }}</span>
           </div>
           <div v-else-if="enableGeolocation && geolocationStatus === 'success'" class="flex items-center space-x-2">
             <geolocationIcon class="h-6 w-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-            <span>Position GPS détectée</span> <button v-if="positionChanged" @click="acceptNewGeolocation()" class="text-blue-400 underline ml-2">Recentrer</button>
+            <span>{{ $t('locationPicker.geolocation.detected') }}</span> <button v-if="positionChanged" @click="acceptNewGeolocation()" class="text-blue-400 underline ml-2">{{ $t('locationPicker.geolocation.recenter') }}</button>
           </div>
           <div v-else-if="enableGeolocation" class="flex items-center space-x-2">
             <geolocationIcon class="h-6 w-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-            <span>Géolocalisation activée</span>
+            <span>{{ $t('locationPicker.geolocation.enabled') }}</span>
           </div>
           <div v-else class="flex items-center space-x-2">
             <geolocationIcon class="h-6 w-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-            <span>Activer la géolocalisation</span>
+            <span>{{ $t('locationPicker.geolocation.enable') }}</span>
           </div>
         </transition>
         <ToggleButton v-model="enableGeolocation" class="bg-blue-600" />
@@ -148,7 +148,7 @@
               <div class="flex items-center justify-between w-full">
                 <div class="flex items-center space-x-2">
                   <infoIcon class="h-6 w-6 text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                  <span class="text-red-400">Veuillez activer la géolocalisation dans votre navigateur</span>
+                  <span class="text-red-400">{{ $t('locationPicker.geolocation.errors.denied') }}</span>
                 </div>
               </div>
             </div>
@@ -156,24 +156,24 @@
               <div class="flex items-center justify-between w-full space-x-2">
                 <div class="flex items-center space-x-2">
                   <infoIcon class="h-6 w-6 text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                  <span class="text-red-400">Position non disponible</span>
+                  <span class="text-red-400">{{ $t('locationPicker.geolocation.errors.unavailable') }}</span>
                 </div>
               </div>
-              <button @click="getGeolocation()" class="text-blue-400 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation()" class="text-blue-400 underline ml-2">{{ $t('locationPicker.geolocation.retry') }}</button>
             </div>
             <div v-else-if="geolocationStatus === 'timeout'" class="flex items-center mt-2">
               <div class="flex items-center space-x-2">            
                 <infoIcon class="h-6 w-6 text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                <span class="text-red-400">Délai de géolocalisation dépassé</span>
+                <span class="text-red-400">{{ $t('locationPicker.geolocation.errors.timeout') }}</span>
               </div>
-              <button @click="getGeolocation" class="text-blue-400 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation" class="text-blue-400 underline ml-2">{{ $t('locationPicker.geolocation.retry') }}</button>
             </div>
             <div v-else-if="geolocationStatus === 'error'" class="flex items-center mt-2">
               <div class="flex items-center space-x-2">
                 <infoIcon class="h-6 w-6 text-red-400" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
-                <span class="text-red-400">Erreur de géolocalisation</span>
+                <span class="text-red-400">{{ $t('locationPicker.geolocation.errors.error') }}</span>
               </div>
-              <button @click="getGeolocation" class="text-blue-400 underline ml-2">Réessayer</button>
+              <button @click="getGeolocation" class="text-blue-400 underline ml-2">{{ $t('locationPicker.geolocation.retry') }}</button>
             </div>
           
           </transition>
@@ -182,7 +182,7 @@
     </div>
 
     <p class="text-sm bg-slate-900 text-gray-400 px-4 pt-2 pb-4 italic text-center">
-      Le temps naturel a besoin d'une position géographique pour déterminer la position du soleil.
+      {{ $t('locationPicker.explanation') }}
     </p>
   </div>
 </template>

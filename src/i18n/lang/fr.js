@@ -174,5 +174,39 @@ export default {
         dismissButton: 'Non'
       }
     }
+  },
+  // FAQ component translations
+  faq: {
+    inProgress: '(En cours de rédaction)'
+  },
+  // LocationPicker component translations
+  locationPicker: {
+    title: 'Choisir un lieu',
+    nameLabel: {
+      new: 'Donner un nom au lieu',
+      edit: 'Modifier le nom du lieu'
+    },
+    optional: '(Facultatif)',
+    validate: 'Valider',
+    clickMap: 'Cliquer la carte pour choisir un lieu',
+    offline: 'L\'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.',
+    latitude: 'Latitude',
+    longitude: 'Longitude',
+    name: 'Nom',
+    geolocation: {
+      enable: 'Activer la géolocalisation',
+      enabled: 'Géolocalisation activée',
+      searching: 'Géolocalisation en cours...',
+      detected: 'Position GPS détectée',
+      recenter: 'Recentrer',
+      errors: {
+        denied: 'Veuillez activer la géolocalisation dans votre navigateur',
+        unavailable: 'Position non disponible',
+        timeout: 'Délai de géolocalisation dépassé',
+        error: 'Erreur de géolocalisation'
+      },
+      retry: 'Réessayer'
+    },
+    explanation: 'Le temps naturel a besoin d\'une position géographique pour déterminer la position du soleil.'
   }
 } 
