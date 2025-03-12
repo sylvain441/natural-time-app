@@ -123,6 +123,8 @@ const pastMoon = computed(() => {
 </script>
 
 <style lang="scss">
+@use 'sass:math';
+
 .moon-component {
 
   .moon-center, .moon-top, .moon-bottom, .moon-left, .moon-right { @apply bg-white/60 }
@@ -166,48 +168,48 @@ const pastMoon = computed(() => {
       &.show-animation {
         @apply animate-ping;
         &:nth-child(11n+1){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+2){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+3){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+4){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+5){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+6){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+7){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+8){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+9){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+10){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
         &:nth-child(11n+11){ 
-          animation-delay: calc(random() * 9000ms); 
-          animation-duration: calc(10000ms + random() * 6000ms);
+          animation-delay: calc(math.random() * 9000ms); 
+          animation-duration: calc(10000ms + math.random() * 6000ms);
         }
       }
     }
