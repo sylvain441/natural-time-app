@@ -4,7 +4,7 @@
     "subtitle": "A new time convention",
     "naturalClock": {
       "title": "Natural Clock",
-      "description": "I am a clock inspired by nature.\nMy hand turns only once a day...\nI follow the course of the sun in the sky,\nquietly... on a 360° dial.",
+      "description": "I'm a clock inspired by nature.\nMy only hand completes just one rotation daily...\nTracking the sun's path across the sky,\nseamlessly... on a 360° dial.",
       "cta": {
         "discover": "Discover the clock",
         "open": "Open the clock",
@@ -13,7 +13,7 @@
     },
     "thirteenMoons": {
       "title": "13 Moons Spiral",
-      "description": "Inspired by traditions from around the world,\nmy 13 months of 28 days replace\nour old twisted calendar.\nThe rainbow day closes the year.",
+      "description": "Drawing from global traditions,\nmy 13 months with 28 days each\nreplaces our conventional calendar.\nThe year concludes with the Rainbow Day.",
       "cta": {
         "discover": "Discover the 13 moons",
         "open": "Open the 13 moons",
@@ -21,14 +21,14 @@
       }
     },
     "hero": {
-      "description": "Natural Time reinvents our way of measuring time.\nWith the {clock} and the {spiral},\nthe sun regains its place as a universal reference\nfor the passing of time...",
+      "description": "Natural Time reimagines how we measure time.\nThrough the {clock} and the {spiral},\nthe sun reclaims its role as the universal reference point\nfor the passage of time...",
       "clockLink": "360° clock",
       "spiralLink": "13 moons spiral"
     },
     "understanding": {
       "title": "Understanding",
       "subtitle": "natural time",
-      "mission": "Natural Time is a time measurement system\ndesigned to replace (or complement)\nthe 24-hour clock and the Gregorian calendar."
+      "mission": "Natural Time is a time measurement system\ndesigned to complement or replace\nthe conventional 24-hour clock and Gregorian calendar."
     },
     "faq": {
       "title": "Frequently Asked Questions"
@@ -38,8 +38,8 @@
         "line1": "We created machines to measure time.",
         "line2": "Then we became slaves to their ticking.",
         "line3": "Natural Time reverses this trend.",
-        "line4": "Life has already provided the most beautiful clock...",
-        "line5": "We call it the sun! Master of time and conductor of all living things."
+        "line4": "Nature has already given us the perfect timekeeper...",
+        "line5": "The sun! The ultimate orchestrator of all living things."
       },
       "credits": "Created by {author} | {github}",
       "author": "Sylvain",
@@ -61,7 +61,7 @@
   "tutorials": {
     "clock": {
       "welcome": {
-        "description": "Discover a simpler and more logical way to measure the passing of time in a day"
+        "description": "Discover a simpler, more intuitive way to track the passage of time throughout the day"
       },
       "step1": {
         "title": "I am a natural clock",
@@ -72,8 +72,8 @@
         "description": "Turns slowly, only once a day"
       },
       "step3": {
-        "title": "My dial is graduated in 360°",
-        "description": "Goodbye to 24 hours, 60 minutes, and 60 seconds"
+        "title": "The dial is marked in 360°",
+        "description": "Say goodbye to the akward 24h/60min/60sec"
       },
       "step4": {
         "title": "180° marks true noon",
@@ -84,8 +84,8 @@
         "description": "When the sun is on the other side of the Earth"
       },
       "step6": {
-        "title": "The mustaches represent day and night",
-        "description": "According to the season and latitude"
+        "title": "The mustaches represent daylight and nighttime",
+        "description": "Varying with season and latitude"
       },
       "step7": {
         "title": "At the summer solstice...",
@@ -105,11 +105,11 @@
       },
       "step11": {
         "title": "On equinox days (only)",
-        "description": "The duration of day equals that of night"
+        "description": "Day and night are exactly equal in length"
       },
       "step12": {
-        "title": "We no longer ask \"What time is it?\"",
-        "description": "But rather: \"Where is the sun in the sky?\""
+        "title": "Instead of asking \"What time is it?\"",
+        "description": "We now ask: \"Where is the sun in the sky?\""
       },
       "step13": {
         "title": "The sun is at 222°",
@@ -117,16 +117,16 @@
       },
       "step14": {
         "title": "The numbers are optional",
-        "description": "The natural clock is above all a visual experience"
+        "description": "The natural clock is primarily a visual experience"
       },
       "end": {
         "title": "Tutorial completed!",
-        "description": "To continue, the application needs to configure a geographic location"
+        "description": "To continue, the app needs a geographic location"
       }
     },
     "spiral": {
       "welcome": {
-        "description": "Discover the 13 Moons Spiral, a universal calendar 100% based on nature"
+        "description": "Discover the 13 Moons Spiral, a universal calendar entirely based on natural cycles"
       },
       "step1": {
         "title": "I am a calendar with 13 months of 28 days",
@@ -145,8 +145,8 @@
         "description": "And finally the 7th day: Violet"
       },
       "step5": {
-        "title": "The 13 moons are arranged in a spiral",
-        "description": "Because time is not linear but rather cyclical"
+        "title": "The 13 moons form a spiral",
+        "description": "Because time isn't linear but rathercyclical"
       },
       "step6": {
         "title": "Here is the 5th day of the 5th moon",
@@ -157,16 +157,16 @@
         "description": "A green day... Regardless of the year, century, or millennium..."
       },
       "step8": {
-        "title": "Did you know? 13 x 28 = 364 days 🤩",
-        "description": "With one more day, we get 365 days"
+        "title": "Did you know? 13 × 28 = 364 days 🤩",
+        "description": "Add one more day to reach 365"
       },
       "step9": {
-        "title": "It's called the rainbow day 🌈",
-        "description": "A day of celebration that takes place during the winter solstice of the northern hemisphere"
+        "title": "This is the Rainbow Day 🌈",
+        "description": "A celebration day that coincides with the northern hemisphere's winter solstice"
       },
       "step10": {
         "title": "Some years have 366 days instead of 365",
-        "description": "It's an opportunity to celebrate two consecutive days outside of time"
+        "description": "A chance to celebrate two consecutive days out of time"
       },
       "step11": {
         "title": "A natural date is written: YEAR ) MOON ) DAY",
@@ -182,15 +182,15 @@
       },
       "end": {
         "title": "Tutorial completed!",
-        "description": "To continue, the application needs to configure a geographic location"
+        "description": "To continue, the app needs a geographic location"
       }
     }
   },
   "clock": {
     "title": "Natural Time Clock",
-    "subtitle": "A single hand synchronized with the sun",
+    "subtitle": "A single hand in sync with the sun",
     "meta": {
-      "description": "Discover the 360° natural clock that slowly rotates following exactly the course of the sun in the sky",
+      "description": "Explore the 360° natural clock that rotates in perfect harmony with the sun's journey across the sky",
       "title": "Natural Time Clock - A single hand synchronized with the sun",
       "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
       "ogUrl": "https://naturaltime.app/en/clock"
@@ -198,7 +198,7 @@
     "timeTravel": {
       "title": "Time Travel",
       "speedSelector": "Travel speed",
-      "resetButton": "Reset to zero",
+      "resetButton": "Reset",
       "exitButton": "Exit time travel",
       "speeds": [
         {
@@ -249,14 +249,14 @@
     },
     "notifications": {
       "geolocation": {
-        "title": "New position detected",
+        "title": "New location detected",
         "ignoreButton": "Ignore",
         "updateButton": "Update"
       },
       "southernHemisphere": {
         "title": "Southern Hemisphere",
-        "description": "the clock rotates counterclockwise (right to left) because that's how the sun moves in this hemisphere.",
-        "dismissButton": "Okay, got it"
+        "description": "In this hemisphere, the clock rotates counterclockwise (right to left) to match the sun's movement in the sky.",
+        "dismissButton": "Got it"
       }
     },
     "component": {
@@ -265,10 +265,10 @@
   },
   "spiral": {
     "title": "13 Moons Spiral",
-    "subtitle": "An alternative to the Gregorian calendar",
+    "subtitle": "A natural alternative to the Gregorian calendar",
     "meta": {
-      "title": "13 Moons Spiral - Natural Time - An alternative to the Gregorian calendar",
-      "description": "Discover the 13 moons spiral of 28 days that elegantly replaces our twisted 12 months",
+      "title": "13 Moons Spiral - Natural Time - A natural alternative to the Gregorian calendar",
+      "description": "Discover the elegant 13 moons spiral of 28 days that replaces our artificial 12-month calendar",
       "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
       "ogUrl": "https://naturaltime.app/en/spiral"
     },
@@ -348,7 +348,7 @@
       },
       "retry": "Try again"
     },
-    "explanation": "Natural time needs geographic coordinates to determine the position of the sun."
+    "explanation": "Natural Time needs a location to accurately track the sun's position."
   },
   "moon": {
     "title": {
