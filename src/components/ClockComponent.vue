@@ -245,7 +245,7 @@ const contextStore = useContextStore();
 const { location } = storeToRefs(contextStore);
 const { t } = useI18n();
 
-// Computed property pour obtenir le skin traduit
+// Computed property to get the translated skin
 const clockSkin = computed(() => {
 	return configStore.getTranslatedClockSkin(t);
 });

@@ -21,7 +21,7 @@ export const useConfigStore = defineStore('appConfig', () => {
   
 	const clockActivePanel = ref(null);
 
-  // Fonction pour traduire les textes du skin de l'horloge
+  // Translates clock skin texts
   const getTranslatedClockSkin = (t) => {
     // Base skin with default properties
     let skin = {
@@ -73,9 +73,9 @@ export const useConfigStore = defineStore('appConfig', () => {
     return skin;
   };
 
-  // Computed property qui sera utilisée par les composants
+  // Computed property that will be used by components
   const clockSkin = computed(() => {
-    // Retourne un objet sans traduction, les composants utiliseront getTranslatedClockSkin
+    // Returns an object without translation, components will use getTranslatedClockSkin
     // Base skin with default properties
     let skin = {
       ...clockSkins.full.default,
@@ -129,7 +129,7 @@ export const useConfigStore = defineStore('appConfig', () => {
 
   const spiralShowTitle = ref(true);
 
-  // Fonction pour traduire les textes du skin de la spirale
+  // Translate spiral skin texts
   const getTranslatedSpiralSkin = (t) => {
     // Base skin with default properties
     let skin = {
@@ -181,9 +181,9 @@ export const useConfigStore = defineStore('appConfig', () => {
     return skin;
   };
 
-  // Computed property qui sera utilisée par les composants
+  // Computed property that will be used by components
   const spiralSkin = computed(() => {
-    // Retourne un objet sans traduction, les composants utiliseront getTranslatedSpiralSkin
+    // Returns an object without translation, components will use getTranslatedSpiralSkin
     // Base skin with default properties
     let skin = {
       ...spiralSkins.full.default,

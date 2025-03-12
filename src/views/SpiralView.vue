@@ -408,7 +408,7 @@ const { spiralSkin: rawSpiralSkin, spiralWelcomeMode, spiralTutorialMode, spiral
 // I18n setup
 const i18n = useI18n();
 
-// Computed property pour obtenir le skin traduit
+// Computed property to get the translated skin
 const spiralSkin = computed(() => {
   return configStore.getTranslatedSpiralSkin(i18n.t);
 });

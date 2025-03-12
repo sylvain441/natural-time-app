@@ -399,7 +399,7 @@ const travelSpeeds = computed(() => [
 const selectedSpeed = ref(1);
 const timeDelta = ref(0);
 
-// Computed property pour obtenir le skin traduit
+// Computed property to get the translated skin
 const clockSkin = computed(() => {
 	return configStore.getTranslatedClockSkin(i18n.t);
 });
