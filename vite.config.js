@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
+import { AVAILABLE_LANGUAGES, ROUTE_PATHS } from './src/i18n/config'
 
 // Plugins
 import vue from '@vitejs/plugin-vue'
@@ -8,6 +9,25 @@ import svgLoader from 'vite-svg-loader'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import 'vite-ssg'
+
+// Function to generate routes for all languages
+function generateRoutesForAllLanguages() {
+  const routes = ['/', '/startpwa/']
+  
+  AVAILABLE_LANGUAGES.forEach(lang => {
+    // Add the base route for each language
+    routes.push(`/${lang}/`)
+    
+    // Add routes for each page type defined in ROUTE_PATHS
+    Object.keys(ROUTE_PATHS).forEach(routeKey => {
+      if (ROUTE_PATHS[routeKey][lang]) {
+        routes.push(`/${lang}/${ROUTE_PATHS[routeKey][lang]}`)
+      }
+    })
+  })
+  
+  return routes
+}
 
 export default defineConfig({
   base: '/',
@@ -97,12 +117,7 @@ export default defineConfig({
     },
     dirStyle: 'nested',
     includedRoutes(paths, routes) {
-      return [
-        '/', '/startpwa/',
-        '/fr/',
-        '/fr/horloge-temps-naturel',
-        '/fr/spirale-13-lunes',
-      ]
+      return generateRoutesForAllLanguages()
     },
     onFinished() {
       console.log('Static site generation complete!')
