@@ -80,6 +80,11 @@ const changeLanguage = (lang) => {
   // Change the language
   locale.value = lang;
   
+  // Save the language preference to localStorage
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('user-language', lang);
+  }
+  
   // Close the dropdown
   isOpen.value = false;
   

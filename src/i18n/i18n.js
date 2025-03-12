@@ -1,5 +1,6 @@
 import { createI18n } from "vue-i18n";
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from './config';
+import { watch } from 'vue';
 
 // Import JSON files
 import fr from './lang/fr.json';
@@ -19,8 +20,21 @@ function detectBrowserLanguage() {
   return DEFAULT_LANGUAGE;
 }
 
-// Use browser language in client-side, default in SSR
-const locale = typeof navigator !== 'undefined' ? detectBrowserLanguage() : DEFAULT_LANGUAGE;
+// Check if there's a saved language preference in localStorage
+function getSavedLanguage() {
+  if (typeof localStorage !== 'undefined') {
+    const savedLang = localStorage.getItem('user-language');
+    if (savedLang && AVAILABLE_LANGUAGES.includes(savedLang)) {
+      return savedLang;
+    }
+  }
+  return null;
+}
+
+// Use saved language if available, otherwise use browser language in client-side, default in SSR
+const locale = typeof navigator !== 'undefined' 
+  ? (getSavedLanguage() || detectBrowserLanguage()) 
+  : DEFAULT_LANGUAGE;
 
 const i18n = createI18n({
     locale,
@@ -33,5 +47,8 @@ const i18n = createI18n({
     },
     legacy: false,
 })
+
+// We'll set up the watcher after the app is mounted in the main.js file
+// since we need access to the app instance
 
 export default i18n;

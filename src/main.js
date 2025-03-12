@@ -5,6 +5,7 @@ import i18n from './i18n/i18n'
 import longClickDirective from './directive/longclick'
 import Vue3TouchEvents from "vue3-touch-events";
 import { version } from '../package.json'
+import { watch } from 'vue'
 
 import { initializePWA } from './plugins/pwa'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
@@ -61,6 +62,13 @@ export const createApp = ViteSSG(
       app
         .use(Vue3TouchEvents, {rollOverFrequency: 500})
         .directive('longclick', longClickDirective({delay: 200, interval: 50}));
+
+      // Set up watcher for locale changes
+      watch(() => i18n.global.locale.value, (newLocale) => {
+        if (typeof localStorage !== 'undefined' && newLocale) {
+          localStorage.setItem('user-language', newLocale);
+        }
+      });
 
       // Dynamic import for Matomo
       import('./plugins/matomo').then(({ setupMatomo }) => {

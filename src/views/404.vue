@@ -14,11 +14,14 @@
   <script setup>
   import { useRouter } from 'vue-router';
   import { useI18n } from 'vue-i18n';
+  import { getLocalizedRouteName } from '../i18n/config';
   
   const router = useRouter();
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   
   const goToMenu = () => {
-    router.push({ name: 'welcome' });
+    // Use the current language to build the route name
+    const localizedRouteName = getLocalizedRouteName('welcome', locale.value);
+    router.push({ name: localizedRouteName });
   };
   </script>

@@ -96,6 +96,17 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFoundView,
+    beforeEnter: (to, from, next) => {
+      // Make sure the locale is defined even for the 404 page
+      const locale = i18n.global.locale.value || DEFAULT_LANGUAGE;
+      
+      // Update locale if necessary
+      if (i18n.global.locale.value !== locale) {
+        i18n.global.locale.value = locale;
+      }
+      
+      next();
+    }
   },
 ]
 
@@ -112,6 +123,11 @@ router.beforeEach((to, from, next) => {
   // Update i18n locale
   if (i18n.global.locale.value !== locale) {
     i18n.global.locale.value = locale
+    
+    // Save the language preference to localStorage
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('user-language', locale)
+    }
   }
   
   next()
