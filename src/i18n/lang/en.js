@@ -123,6 +123,9 @@ export default {
         description: 'the clock rotates counterclockwise (right to left) because that\'s how the sun moves in this hemisphere.',
         dismissButton: 'Okay, got it'
       }
+    },
+    component: {
+      title: 'Natural Time'
     }
   },
   // Spiral view translations

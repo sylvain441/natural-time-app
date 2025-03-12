@@ -126,7 +126,7 @@
 					 :style="{ fontSize: `${BASESIZE * 0.03}px` }"
 					 :class="clockSkin.title">
 					<div class="nt-box-inner">
-						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">Temps Naturel</h1>
+						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">{{ $t('clock.component.title') }}</h1>
 					</div>
 				</div>
 				<div v-else
@@ -228,6 +228,7 @@ import HandNtzSVG from '@/assets/clock/hand-ntz-default.svg';
 import MustacheEquinoxSVG from '@/assets/clock/mustache-equinox-default.svg';
 import MustacheSVG from '@/assets/clock/mustache-default.svg';
 import { useContextStore } from '@/stores/contextStore';
+import { useI18n } from 'vue-i18n';
 
 // Props
 const props = defineProps({
@@ -242,6 +243,7 @@ const configStore = useConfigStore();
 const { clockSkin, clockSimplifiedMode } = storeToRefs(configStore);
 const contextStore = useContextStore();
 const { location } = storeToRefs(contextStore);
+const { t } = useI18n();
 
 // Refs
 const clockWrapper = ref(null);

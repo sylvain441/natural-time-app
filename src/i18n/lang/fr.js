@@ -123,6 +123,9 @@ export default {
         description: 'l\'horloge tourne dans le sens inverse (de droite à gauche) car c\'est ainsi que se déplace le soleil dans cet hémisphère.',
         dismissButton: 'Okay, compris'
       }
+    },
+    component: {
+      title: 'Temps Naturel'
     }
   },
   // Spiral view translations
