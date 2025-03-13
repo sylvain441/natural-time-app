@@ -121,23 +121,27 @@
           <span class="text-xl sm:text-2xl md:text-2xl text-slate-100 block mt-2 sm:mt-3 uppercase font-bold font-mono">{{ $t('welcome.understanding.subtitle') }}</span>
         </h2>
 
-        <!-- Mission Statement -->
-        <div class="mb-16 sm:mb-20 md:mb-24">
-          <p class="text-center text-lg sm:text-xl md:text-xl lg:text-2xl max-w-3xl mx-auto my-12 sm:my-16 text-slate-100 font-extralight leading-relaxed px-6 whitespace-pre-line">
-            {{ $t('welcome.understanding.mission') }}
-          </p>
-        </div>
-        
-        <!-- Video Grid -->
-        <div class="flex justify-center mb-24 px-6">
-          <div class="w-full max-w-2xl rounded-2xl overflow-hidden shadow-lg shadow-black/30 transition-transform duration-300 hover:scale-[1.02]">
-            <YouTubePlayer videoId="XP8XYidlgKA" />
+        <!-- Mission Statement and Video in Two Columns -->
+        <div class="max-w-6xl mx-auto px-6 my-12 sm:my-16">
+          <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
+            <!-- Video Column (now first) -->
+            <div class="w-full md:w-1/2">
+              <div class="w-full rounded-2xl overflow-hidden shadow-lg shadow-black/30 transition-transform duration-300 hover:scale-[1.02]">
+                <YouTubePlayer videoId="XP8XYidlgKA" />
+              </div>
+            </div>
+            
+            <!-- Mission Statement Column (now second) -->
+            <div class="w-full md:w-1/2 mt-8 md:mt-0">
+              <p class="text-lg sm:text-xl md:text-xl lg:text-2xl text-slate-100 font-extralight leading-snug whitespace-pre-line text-center">
+                {{ $t('welcome.understanding.mission') }}
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- FAQ Section -->
         <div class="py-12 sm:py-16 md:py-20">
-          <h2 class="text-3xl sm:text-4xl md:text-4xl mb-12 sm:mb-16 font-mono uppercase text-center text-white">{{ $t('welcome.faq.title') }}</h2>
           <div class="max-w-4xl mx-auto px-6">
             <FAQAccordion class="pb-8" />
           </div>
