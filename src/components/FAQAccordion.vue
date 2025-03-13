@@ -176,7 +176,7 @@ onUnmounted(() => {
 
     // Emoji styling
     p:first-child, p:last-child {
-      @apply text-center text-2xl tracking-wider;
+      @apply text-center text-xl tracking-wider;
     }
   }
 
@@ -194,10 +194,8 @@ onUnmounted(() => {
     &:not(.no-answer) {
       @apply cursor-pointer;
       
-      &:hover, &.open {
-        .question-text {
-          @apply underline decoration-2;
-        }
+      &:hover:not(.open) .question-text {
+        @apply underline decoration-2;
       }
     }
   }
@@ -211,20 +209,82 @@ onUnmounted(() => {
 
   .faq-answer {
     @apply transition-all duration-300 ease-in-out mb-8 mt-4 px-6 py-2 border-l-2 border-slate-600 font-light;
+    
     p {
       @apply mb-2 text-gray-300;
     }
+    
     a, ul a {
       @apply underline text-sky-400 hover:text-sky-300;
     }
+    
     &.hidden {
       @apply h-0 overflow-hidden opacity-0;
     }
+    
     &:not(.hidden) {
-      @apply bg-gradient-to-tr from-gray-50/5 to-transparent rounded-lg;
+      @apply bg-gradient-to-tr from-gray-800/70 via-gray-900/50 to-gray-900/30 rounded-lg shadow-inner p-4 border border-gray-700/50;
     }
+    
     ul {
       @apply list-disc pl-8 mb-3 text-gray-300;
+    }
+    
+    // Amélioration pour les éléments de mise en forme markdown
+    strong, b {
+      @apply font-bold text-gray-100;
+    }
+    
+    em, i {
+      @apply italic text-gray-200;
+    }
+    
+    code {
+      @apply px-1.5 py-0.5 rounded bg-gray-800 text-gray-200 font-mono text-sm;
+    }
+    
+    pre {
+      @apply p-4 my-4 rounded-lg bg-gray-800/50 overflow-x-auto;
+      
+      code {
+        @apply bg-transparent p-0;
+      }
+    }
+    
+    h5 {
+      @apply text-lg font-medium text-gray-200 mt-4 mb-2;
+    }
+    
+    h6 {
+      @apply text-base font-medium text-gray-300 mt-3 mb-1;
+    }
+    
+    img {
+      @apply max-w-full rounded-lg my-4 mx-auto;
+    }
+    
+    table {
+      @apply w-full my-4 border-collapse;
+      
+      th {
+        @apply bg-gray-800 text-gray-200 p-2 text-left font-medium border border-gray-700;
+      }
+      
+      td {
+        @apply p-2 border border-gray-700 text-gray-300;
+      }
+      
+      tr:nth-child(even) {
+        @apply bg-gray-800/30;
+      }
+    }
+    
+    hr {
+      @apply my-6 border-gray-700;
+    }
+    
+    blockquote {
+      @apply pl-4 border-l-2 border-gray-600 italic text-gray-400 my-4;
     }
   }
 
@@ -239,6 +299,9 @@ onUnmounted(() => {
   }
   .faq-answer[data-category="1"] {
     @apply border-emerald-500;
+    &:not(.hidden) {
+      @apply bg-gradient-to-tr from-emerald-900/50 via-emerald-950/40 to-gray-900/30 border-emerald-800/50;
+    }
   }
 
   .faq-category[data-category="2"] {
@@ -252,6 +315,9 @@ onUnmounted(() => {
   }
   .faq-answer[data-category="2"] {
     @apply border-yellow-500;
+    &:not(.hidden) {
+      @apply bg-gradient-to-tr from-yellow-900/50 via-yellow-950/40 to-gray-900/30 border-yellow-800/50;
+    }
   }
 
   .faq-category[data-category="3"] {
@@ -265,6 +331,9 @@ onUnmounted(() => {
   }
   .faq-answer[data-category="3"] {
     @apply border-cyan-500;
+    &:not(.hidden) {
+      @apply bg-gradient-to-tr from-cyan-900/50 via-cyan-950/40 to-gray-900/30 border-cyan-800/50;
+    }
   }
   
   .faq-category[data-category="4"] {
@@ -278,6 +347,38 @@ onUnmounted(() => {
   }
   .faq-answer[data-category="4"] {
     @apply border-pink-500;
+    &:not(.hidden) {
+      @apply bg-gradient-to-tr from-pink-900/50 via-pink-950/40 to-gray-900/30 border-pink-800/50;
+    }
+  }
+  
+  // Styles pour les éléments markdown dans tout le FAQ (pas seulement dans les réponses)
+  strong, b {
+    @apply font-bold text-gray-100;
+  }
+  
+  em, i {
+    @apply italic text-gray-200;
+  }
+  
+  code {
+    @apply px-1.5 py-0.5 rounded bg-gray-800 text-gray-200 font-mono text-sm;
+  }
+  
+  pre {
+    @apply p-4 my-4 rounded-lg bg-gray-800/50 overflow-x-auto;
+    
+    code {
+      @apply bg-transparent p-0;
+    }
+  }
+  
+  h5 {
+    @apply text-lg font-medium text-gray-200 mt-4 mb-2;
+  }
+  
+  h6 {
+    @apply text-base font-medium text-gray-300 mt-3 mb-1;
   }
 }
 
