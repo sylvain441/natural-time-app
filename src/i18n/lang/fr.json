@@ -63,29 +63,33 @@
       "welcome": {
         "description": "Découvrir une façon plus simple et plus logique de mesurer le temps qui passe dans une journée"
       },
+      "notification": {
+        "title": "Tutoriel horloge naturelle",
+        "message": "Bienvenue ! Ce guide visuel explique en un clin d'œil le fonctionnement de l'horloge naturelle"
+      },
       "step1": {
         "title": "Je suis une horloge naturelle",
-        "description": "Je pointe à chaque instant en direction du soleil"
+        "description": "Je pointe constamment vers la position du soleil"
       },
       "step2": {
         "title": "Mon unique aiguille",
-        "description": "Tourne lentement, une seule fois par jour"
+        "description": "Fait un seul tour complet par jour, très lentement"
       },
       "step3": {
         "title": "Mon cadran est gradué en 360°",
-        "description": "Bye bye les 24 heures 60 minutes et 60 secondes"
+        "description": "Adieu les 24h/60min/60sec compliqués"
       },
       "step4": {
-        "title": "180° est le véritable midi",
-        "description": "Lorsque le soleil est au zénith"
+        "title": "180° marque le véritable midi",
+        "description": "Quand le soleil est au plus haut dans le ciel"
       },
       "step5": {
-        "title": "0° marque le vrai milieu de la nuit",
-        "description": "Lorsque le soleil est de l'autre côté de la Terre"
+        "title": "0° indique le milieu de la nuit",
+        "description": "Quand le soleil est à l'opposé de notre position"
       },
       "step6": {
         "title": "Les moustaches représentent le jour et la nuit",
-        "description": "En fonction de la saison et de la latitude"
+        "description": "La durée jour/nuit varie selon la saison et la latitude"
       },
       "step7": {
         "title": "Au solstice d'été...",
@@ -93,7 +97,7 @@
       },
       "step8": {
         "title": "Au solstice d'été...",
-        "description": "Puis se couche par là"
+        "description": "Et se couche par là-bas"
       },
       "step9": {
         "title": "Au solstice d'hiver...",
@@ -101,15 +105,15 @@
       },
       "step10": {
         "title": "Au solstice d'hiver...",
-        "description": "Et se couche par là"
+        "description": "Et se couche par là-bas"
       },
       "step11": {
-        "title": "Les jours d'équinoxes (seulement)",
+        "title": "Aux équinoxes uniquement",
         "description": "La durée du jour est égale à celle de la nuit"
       },
       "step12": {
         "title": "On ne dit plus \"Quelle heure est-il ?\"",
-        "description": "Mais plutôt : \"Où est le soleil dans le ciel ?\""
+        "description": "Mais \"Où est le soleil dans le ciel ?\""
       },
       "step13": {
         "title": "Le soleil est à 222°",
@@ -128,16 +132,20 @@
       "welcome": {
         "description": "Découvrir la Spirale des 13 lunes, calendrier universel 100% basé sur la nature"
       },
+      "notification": {
+        "title": "Tutoriel 13 lunes",
+        "message": "Bienvenue ! Ce guide visuel explique en un clin d'œil le fonctionnement du calendrier des 13 lunes"
+      },
       "step1": {
-        "title": "Je suis un calendrier avec 13 mois de 28 jours",
+        "title": "Je suis un calendrier de 13 mois de 28 jours",
         "description": "On m'appelle la \"Spirale des 13 lunes\""
       },
       "step2": {
         "title": "1 lune = 4 semaines de 7 jours",
-        "description": "Soit exactement 28 jours, sans exception"
+        "description": "Exactement 28 jours, sans exception"
       },
       "step3": {
-        "title": "À chaque jour de la semaine, une couleur",
+        "title": "Chaque jour porte le nom d'une couleur",
         "description": "1er jour = Rouge"
       },
       "step4": {
@@ -146,7 +154,7 @@
       },
       "step5": {
         "title": "Les 13 lunes sont disposées en spirale",
-        "description": "Car le temps n'est pas linéaire mais plutôt cyclique"
+        "description": "Car le temps est cyclique, non linéaire"
       },
       "step6": {
         "title": "Voici le 5ème jour de la 5ème lune",
@@ -154,31 +162,31 @@
       },
       "step7": {
         "title": "Et ici : le 11ème jour de la lune 11",
-        "description": "Un jour vert... Quelque soit l'année, le siècle, le millénaire..."
+        "description": "Un jour vert, quelle que soit l'année ou le siècle"
       },
       "step8": {
-        "title": "Le savais tu ? 13 x 28 = 364 jours 🤩",
-        "description": "Avec un jour de plus, on obtient 365 jours"
+        "title": "Le savais-tu ? 13 × 28 = 364 jours 🤩",
+        "description": "Ajoutons un jour pour atteindre 365"
       },
       "step9": {
-        "title": "Il s'appelle le jour arc-en-ciel 🌈",
-        "description": "Un jour de célébration qui a lieu lors du solstice d'hiver de l'hémisphère nord"
+        "title": "C'est le jour arc-en-ciel 🌈",
+        "description": "Jour de célébration au solstice d'hiver (hémisphère nord)"
       },
       "step10": {
-        "title": "Certaines années ont 366 jours au lieu de 365",
-        "description": "C'est l'occasion de fêter deux jours consécutifs de vie en dehors du temps"
+        "title": "Certaines années ont 366 jours",
+        "description": "C'est l'occasion de fêter deux jours consécutifs en dehors du temps"
       },
       "step11": {
-        "title": "Une date naturelle s'écrit : ANNEE ) LUNE ) JOUR",
-        "description": "Par exemple, aujourd'hui nous sommes le "
+        "title": "Une date naturelle s'écrit : ANNÉE ) LUNE ) JOUR",
+        "description": "Format qui permet un tri alphabétique"
       },
       "step12": {
         "title": "Le 1er jour de l'an 001",
-        "description": "correspond au 22 décembre 2012 dans le calendrier grégorien (voir FAQ)"
+        "description": "correspond au 22 décembre 2012 (voir FAQ)"
       },
       "step13": {
-        "title": "Dernier détail important",
-        "description": "Les 28 jours ne correspondent pas aux 29,53 jours du cycles pleine/nouvelle lune (Voir FAQ)"
+        "title": "Précision importante",
+        "description": "Les 28 jours diffèrent du cycle lunaire de 29,53 jours (voir FAQ)"
       },
       "end": {
         "title": "Tutoriel terminé !",

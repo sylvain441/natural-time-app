@@ -373,6 +373,7 @@ import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js';
 import { useI18n } from 'vue-i18n'
+import { createApp } from 'vue';
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -386,6 +387,7 @@ import DisplayComponent from '@/components/DisplayComponent.vue';
 
 // Lazy loaded components
 const LocationPicker = defineAsyncComponent(() => import('@/components/LocationPicker.vue'));
+const TutorialWelcomeNotification = defineAsyncComponent(() => import('@/components/TutorialWelcomeNotification.vue'));
 
 // Icon imports
 import mapIcon from '@/assets/icon/map-icon.svg';
@@ -542,11 +544,60 @@ onMounted(() => {
         showPositionChangedNotification.value = true;
       }
     }, 10000);
-  }  
+  }
+  
+  // Show tutorial welcome notification if tutorial mode is active
+  if (spiralTutorialMode.value && spiralTutorialCurrentStep.value === 0) {
+    // Dynamically create and mount the tutorial welcome notification
+    const app = createApp(TutorialWelcomeNotification, {
+      title: i18n.t('tutorials.spiral.notification.title'),
+      message: i18n.t('tutorials.spiral.notification.message'),
+      autoHideDelay: 5000,
+      type: 'spiral'
+    });
+    
+    // Find or create notification container
+    let container = document.getElementById('tutorial-notification-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'tutorial-notification-container';
+      document.body.appendChild(container);
+    }
+    
+    // Mount the notification
+    app.use(i18n);
+    app.mount(container);
+  }
+  
   // Watchers
   watch([() => spiralSkin.value.animationSpeed, () => spiralTimeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
     document.documentElement.style.setProperty('--nt-animation-speed', newSpeed && !newTimeTravelMode ? `${newSpeed}s` : '0s');
   }, { immediate: true });
+  
+  // Watch for tutorial mode changes to show welcome notification
+  watch(() => spiralTutorialMode.value, (newValue) => {
+    if (newValue && spiralTutorialCurrentStep.value === 0) {
+      // Dynamically create and mount the tutorial welcome notification
+      const app = createApp(TutorialWelcomeNotification, {
+        title: i18n.t('tutorials.spiral.notification.title'),
+        message: i18n.t('tutorials.spiral.notification.message'),
+        autoHideDelay: 5000,
+        type: 'spiral'
+      });
+      
+      // Find or create notification container
+      let container = document.getElementById('tutorial-notification-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'tutorial-notification-container';
+        document.body.appendChild(container);
+      }
+      
+      // Mount the notification
+      app.use(i18n);
+      app.mount(container);
+    }
+  });
 });
 
 // Spiral Sizing
