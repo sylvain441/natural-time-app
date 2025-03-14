@@ -6,115 +6,116 @@
       <LanguageSwitcher />
     </div>
 
-    <div class="max-w-6xl mx-auto">
-      <!-- Title Section (Gray) -->
-      <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-800 dark:text-slate-100">
+    <!-- Title Section (Gray) -->
+    <section class="w-full flex flex-col items-center justify-center px-4 md:py-2 md:p-6 text-slate-800 dark:text-slate-100">
+      <div class="max-w-6xl mx-auto w-full">
         <h1 class="w-full text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold pt-6 pb-2 sm:pt-12 md:pt-16 lg:pt-24 sm:pb-6 md:pb-10 lg:pb-16">
           <strong class="font-title underline decoration-nt-yellow-light transition-all duration-300">{{ $t('welcome.title') }}</strong>
           <br>
           <small class="text-xs sm:text-sm md:text-xl lg:text-2xl uppercase font-bold sm:mt-2 md:mt-3 block opacity-90">{{ $t('welcome.subtitle') }}</small>
         </h1>
-      </section>
+      </div>
+    </section>
 
-      <!-- Natural Clock Section (Yellow) -->
-      <section class="max-w-[calc(100%-24px)] mx-auto sm:max-w-[480px] md:max-w-none md:mx-0 my-6 sm:my-8 md:my-0 rounded-2xl w-full md:px-6 md:mb-12 lg:mb-16 relative overflow-hidden transform transition-transform duration-500" ref="naturalClockRef">
+    <!-- Natural Clock Section (Yellow) -->
+    <section class="w-full my-6 sm:my-8 md:my-0 md:mb-12 lg:mb-16 relative overflow-hidden transform transition-transform duration-500" ref="naturalClockRef">
+      <div class="mx-4 sm:mx-6 md:mx-auto max-w-6xl lg:max-w-7xl xl:max-w-screen-2xl rounded-2xl relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none">
           <div class="absolute inset-0 bg-gradient-to-r via-nt-yellow-light/5 via-75% from-nt-yellow-light/10 to-transparent"></div>
           <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr via-nt-yellow-light/8 via-75% from-nt-yellow-light/15 to-transparent rounded-full blur-3xl transform translate-x-[-30%]"></div>
         </div>
-        <div class="relative">
-          <div class="max-w-5xl mx-auto px-2 md:px-0 py-8 md:pt-16 md:pb-12">
-            <div class="flex flex-col md:flex-row items-center justify-end md:gap-6 lg:gap-12 relative">
-              <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-4 md:px-8 pb-6 md:pb-0 z-10 md:order-2">
-                <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 font-title dark:text-nt-yellow-light/90">{{ $t('welcome.naturalClock.title') }}</h2>
-                <p class="mb-4 sm:mb-6 text-black dark:text-slate-100 sm:text-base md:text-lg whitespace-pre-line">
-                  {{ $t('welcome.naturalClock.description') }}
-                </p>
-                <div class="flex flex-col justify-center items-center mt-6 sm:mt-8 mb-4 gap-3 px-4">
-                  <router-link :to="{ name: getLocalizedRouteName('time', locale) }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-yellow-light/90 to-nt-yellow-light/80 text-black px-6 md:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:scale-105">
-                    <span class="flex items-center justify-center gap-2 whitespace-nowrap">
-                      {{ contextStore.isEmpty ? $t('welcome.naturalClock.cta.discover') : $t('welcome.naturalClock.cta.open') }}
-                      <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </span>
-                  </router-link>
-                  <button @click="openClockTutorial" class="w-full md:w-3/4 lg:w-1/2 group text-black dark:text-white/80 px-4 py-4 text-sm font-medium transition-all duration-300 hover:text-nt-yellow-darker dark:hover:text-nt-yellow-light/90">
-                    <span class="flex items-center justify-center whitespace-nowrap">
-                      {{ $t('welcome.naturalClock.cta.tutorial') }}
-                    </span>
-                  </button>
-                </div>
+        <div class="px-2 md:px-6 py-8 md:pt-16 md:pb-12 relative">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-end md:gap-6 lg:gap-12 relative">
+            <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-4 md:px-8 pb-6 md:pb-0 z-10 md:order-2">
+              <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 font-title dark:text-nt-yellow-light/90">{{ $t('welcome.naturalClock.title') }}</h2>
+              <p class="mb-4 sm:mb-6 text-black dark:text-slate-100 sm:text-base md:text-lg whitespace-pre-line">
+                {{ $t('welcome.naturalClock.description') }}
+              </p>
+              <div class="flex flex-col justify-center items-center mt-6 sm:mt-8 mb-4 gap-3 px-4">
+                <router-link :to="{ name: getLocalizedRouteName('time', locale) }" class="w-full md:w-3/4 lg:w-1/2 group bg-gradient-to-r from-nt-yellow-light/90 to-nt-yellow-light/80 text-black px-6 md:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(251,191,36,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:scale-105">
+                  <span class="flex items-center justify-center gap-2 whitespace-nowrap">
+                    {{ contextStore.isEmpty ? $t('welcome.naturalClock.cta.discover') : $t('welcome.naturalClock.cta.open') }}
+                    <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
+                </router-link>
+                <button @click="openClockTutorial" class="w-full md:w-3/4 lg:w-1/2 group text-black dark:text-white/80 px-4 py-4 text-sm font-medium transition-all duration-300 hover:text-nt-yellow-darker dark:hover:text-nt-yellow-light/90">
+                  <span class="flex items-center justify-center whitespace-nowrap">
+                    {{ $t('welcome.naturalClock.cta.tutorial') }}
+                  </span>
+                </button>
               </div>
-              <div class="max-md:absolute max-md:-right-16 max-md:top-[75%] transition-all duration-500 md:order-1">
-                <div class="rounded-full bg-gradient-to-tl from-nt-yellow-light/40 to-nt-yellow-light/20 md:from-nt-yellow-light/90 md:to-nt-yellow-light/80 p-5 
-                  shadow-[0_0_0_1px_rgba(251,191,36,0.1),0_0_0_10px_rgba(251,191,36,0.08),0_0_0_20px_rgba(251,191,36,0.05),0_0_0_30px_rgba(251,191,36,0.03)]
-                  hover:shadow-[0_0_0_1px_rgba(251,191,36,0.2),0_0_0_15px_rgba(251,191,36,0.15),0_0_0_30px_rgba(251,191,36,0.1),0_0_0_45px_rgba(251,191,36,0.05)]
-                  hover:bg-gradient-to-tl transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
-                  <ClockSVG @click="goToTimePage" class="w-36 h-36 md:w-52 md:h-52 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
-                </div>
+            </div>
+            <div class="max-md:absolute max-md:-right-16 max-md:top-[75%] transition-all duration-500 md:order-1">
+              <div class="rounded-full bg-gradient-to-tl from-nt-yellow-light/40 to-nt-yellow-light/20 md:from-nt-yellow-light/90 md:to-nt-yellow-light/80 p-5 
+                shadow-[0_0_0_1px_rgba(251,191,36,0.1),0_0_0_10px_rgba(251,191,36,0.08),0_0_0_20px_rgba(251,191,36,0.05),0_0_0_30px_rgba(251,191,36,0.03)]
+                hover:shadow-[0_0_0_1px_rgba(251,191,36,0.2),0_0_0_15px_rgba(251,191,36,0.15),0_0_0_30px_rgba(251,191,36,0.1),0_0_0_45px_rgba(251,191,36,0.05)]
+                hover:bg-gradient-to-tl transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
+                <ClockSVG @click="goToTimePage" class="w-40 h-40 md:w-64 md:h-64 lg:w-72 lg:h-72 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Hero Section (White) -->
-      <section class="w-full flex flex-col items-center justify-center px-4 py-4 sm:py-6 md:py-8 lg:pb-16 text-slate-800 dark:text-slate-100">
+    <!-- Hero Section (White) -->
+    <section class="w-full flex flex-col items-center justify-center px-4 py-4 sm:py-6 md:py-8 lg:pb-16 text-slate-800 dark:text-slate-100">
+      <div class="max-w-6xl mx-auto w-full">
         <div class="sm:text-center text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto py-2 px-6 md:px-0 sm:pt-3 md:pt-4 sm:pb-8 md:pb-12" v-html="heroTextWithLinks"></div>
         <!-- Hidden links for JavaScript click handlers -->
         <button data-router-link-to-time @click="goToTimePage" class="hidden"></button>
         <button data-router-link-to-spiral @click="goToSpiralPage" class="hidden"></button>
-      </section>
+      </div>
+    </section>
 
-      <!-- 13 Moons Section (Cyan) -->
-      <section class="max-w-[calc(100%-24px)] mx-auto sm:max-w-[480px] md:max-w-none md:mx-0 my-6 sm:my-8 md:my-0 rounded-2xl w-full md:px-6 md:mb-12 lg:mb-16 relative overflow-hidden transform transition-transform duration-500" ref="thirteenMoonsRef">
+    <!-- 13 Moons Section (Cyan) -->
+    <section class="w-full my-6 sm:my-8 md:my-0 md:mb-12 lg:mb-16 relative overflow-hidden transform transition-transform duration-500" ref="thirteenMoonsRef">
+      <div class="mx-4 sm:mx-6 md:mx-auto max-w-6xl lg:max-w-7xl xl:max-w-screen-2xl rounded-2xl relative overflow-hidden">
         <div class="absolute inset-0 pointer-events-none">
           <div class="absolute inset-0 bg-gradient-to-l via-nt-cyan-light/5 via-75% from-nt-cyan-light/10 to-transparent"></div>
           <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr via-nt-cyan-light/8 via-75% from-nt-cyan-light/15 to-transparent rounded-full blur-3xl transform translate-x-1/3"></div>
         </div>
-        <div class="relative">
-          <div class="max-w-5xl mx-auto px-2 md:px-0 py-8 md:pt-16 md:pb-12">
-            <div class="flex flex-col md:flex-row items-center justify-start md:gap-6 lg:gap-12 relative">
-              <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-6 md:px-8 md:pl-18 lg:pl-28 pb-6 md:pb-0 z-10">
-                <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 font-title dark:text-nt-cyan-light/90">
-                  {{ $t('welcome.thirteenMoons.title') }}
-                  <sup class="text-xs sm:text-sm font-normal text-nt-cyan-light/70 dark:text-nt-cyan-light/70 ml-1">(beta)</sup>
-                </h2>
-                <p class="mb-4 sm:mb-6 text-black dark:text-slate-100 sm:text-base md:text-lg whitespace-pre-line">
-                  {{ $t('welcome.thirteenMoons.description') }}
-                </p>
-                <div class="flex flex-col justify-center items-center mt-6 sm:mt-8 mb-4 gap-3 px-4">
-                  <router-link :to="{ name: getLocalizedRouteName('13moons', locale) }" class="w-full md:w-3/4 lg:w-3/5 group bg-gradient-to-r from-nt-cyan-light/90 to-nt-cyan-light/80 text-black px-6 md:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
-                    <span class="flex items-center justify-center gap-2 whitespace-nowrap">
-                      {{ contextStore.isEmpty ? $t('welcome.thirteenMoons.cta.discover') : $t('welcome.thirteenMoons.cta.open') }}
-                      <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </span>
-                  </router-link>
-                  <button @click="openSpiralTutorial" class="w-full md:w-3/4 lg:w-1/2 group text-black dark:text-white/80 px-4 py-4 text-sm font-medium transition-all duration-300 hover:text-nt-cyan-darker dark:hover:text-nt-cyan-light/90">
-                    <span class="flex items-center justify-center whitespace-nowrap">
-                      {{ $t('welcome.thirteenMoons.cta.tutorial') }}
-                    </span>
-                  </button>
-                </div>
+        <div class="px-2 md:px-6 py-8 md:pt-16 md:pb-12 relative">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-start md:gap-6 lg:gap-12 relative">
+            <div class="w-full md:w-2/3 lg:w-[55%] flex flex-col justify-center px-6 md:px-8 md:pl-18 lg:pl-28 pb-6 md:pb-0 z-10">
+              <h2 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 font-title dark:text-nt-cyan-light/90">
+                {{ $t('welcome.thirteenMoons.title') }}
+                <sup class="text-xs sm:text-sm font-normal text-nt-cyan-dark/70 dark:text-nt-cyan-light/70 ml-1">(beta)</sup>
+              </h2>
+              <p class="mb-4 sm:mb-6 text-black dark:text-slate-100 sm:text-base md:text-lg whitespace-pre-line">
+                {{ $t('welcome.thirteenMoons.description') }}
+              </p>
+              <div class="flex flex-col justify-center items-center mt-6 sm:mt-8 mb-4 gap-3 px-4">
+                <router-link :to="{ name: getLocalizedRouteName('13moons', locale) }" class="w-full md:w-3/4 lg:w-3/5 group bg-gradient-to-r from-nt-cyan-light/90 to-nt-cyan-light/80 text-black px-6 md:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-semibold transition-all duration-300 hover:shadow-[4px_4px_0_0_rgba(6,182,212,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px]">
+                  <span class="flex items-center justify-center gap-2 whitespace-nowrap">
+                    {{ contextStore.isEmpty ? $t('welcome.thirteenMoons.cta.discover') : $t('welcome.thirteenMoons.cta.open') }}
+                    <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
+                </router-link>
+                <button @click="openSpiralTutorial" class="w-full md:w-3/4 lg:w-1/2 group text-black dark:text-white/80 px-4 py-4 text-sm font-medium transition-all duration-300 hover:text-nt-cyan-darker dark:hover:text-nt-cyan-light/90">
+                  <span class="flex items-center justify-center whitespace-nowrap">
+                    {{ $t('welcome.thirteenMoons.cta.tutorial') }}
+                  </span>
+                </button>
               </div>
-              <div class="max-md:absolute max-md:-right-16 max-md:top-[75%] transition-all duration-500">
-                <div class="rounded-2xl bg-gradient-to-tl from-nt-cyan-light/30 to-nt-cyan-light/20 md:from-nt-cyan-light/90 md:to-nt-cyan-light/80 p-5
-                  shadow-[0_0_0_1px_rgba(6,182,212,0.1),0_0_0_10px_rgba(6,182,212,0.08),0_0_0_20px_rgba(6,182,212,0.05),0_0_0_30px_rgba(6,182,212,0.03)]
-                  hover:shadow-[0_0_0_1px_rgba(6,182,212,0.2),0_0_0_15px_rgba(6,182,212,0.15),0_0_0_30px_rgba(6,182,212,0.1),0_0_0_45px_rgba(6,182,212,0.05)]
-                  hover:bg-gradient-to-tl
-                  transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
-                  <YearSVG @click="goToSpiralPage" class="w-36 h-28 md:w-52 md:h-40 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
-                </div>
+            </div>
+            <div class="max-md:absolute max-md:-right-16 max-md:top-[75%] transition-all duration-500">
+              <div class="rounded-2xl bg-gradient-to-tl from-nt-cyan-light/30 to-nt-cyan-light/20 md:from-nt-cyan-light/90 md:to-nt-cyan-light/80 p-5
+                shadow-[0_0_0_1px_rgba(6,182,212,0.1),0_0_0_10px_rgba(6,182,212,0.08),0_0_0_20px_rgba(6,182,212,0.05),0_0_0_30px_rgba(6,182,212,0.03)]
+                hover:shadow-[0_0_0_1px_rgba(6,182,212,0.2),0_0_0_15px_rgba(6,182,212,0.15),0_0_0_30px_rgba(6,182,212,0.1),0_0_0_45px_rgba(6,182,212,0.05)]
+                hover:bg-gradient-to-tl
+                transition-all duration-500 max-md:rotate-[5deg] hover:rotate-0">
+                <YearSVG @click="goToSpiralPage" class="w-40 h-32 md:w-64 md:h-52 lg:w-72 lg:h-60 max-md:transform max-md:transition-all max-md:duration-500 max-md:hover:scale-105 cursor-pointer max-md:opacity-50 max-md:hover:opacity-100" />
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
     <!-- Understanding Natural Time Section -->
     <section class="w-full bg-black bg-[url('@/assets/debut-dark.png')] py-16 sm:py-20 md:py-24 mt-4 sm:mt-16 md:mt-28 relative">
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900 pointer-events-none"></div>
-      <div class="relative">
+      <div class="relative max-w-7xl xl:max-w-screen-2xl mx-auto">
         <h2 class="text-4xl sm:text-5xl md:text-5xl my-4 font-title text-center text-white">
           <span class="">{{ $t('welcome.understanding.title') }}</span>
           <br class="hidden md:block">
@@ -150,9 +151,9 @@
     </section>
 
     <!-- Footer (Black) -->
-    <footer class="w-full bg-gradient-to-b from-black to-slate-900 text-white">
+    <footer class="w-full bg-black text-white">
       <!-- Closing Statement -->
-      <div class="py-12 sm:py-16 md:py-20">
+      <div class="py-12 sm:py-16 md:py-20 max-w-7xl xl:max-w-screen-2xl mx-auto">
         <p class="text-center text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed px-6">
           <span class="font-normal text-white">{{ $t('welcome.footer.closing.line1') }}</span> <br class="hidden md:block">
           <span class="font-light text-slate-300">{{ $t('welcome.footer.closing.line2') }}</span> <br class="hidden md:block">
