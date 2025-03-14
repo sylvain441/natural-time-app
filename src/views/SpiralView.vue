@@ -1,7 +1,7 @@
 <template>
   <div id="moons-view" 
        :class="[
-         'relative flex flex-row bg-slate-200 dark:bg-slate-800 bg-[url(@/assets/debut-light.png)] dark:bg-[url(@/assets/debut-dark.png)]',
+         'relative flex flex-row bg-slate-200 bg-[url(@/assets/debut-light.png)]',
          spiralVerticalMode ? 'min-h-dvh overflow-y-auto relative touch-pan-y' : 'min-h-dvh overflow-hidden relative'
        ]" 
        @touchmove.passive="handleTouchMove">
@@ -70,6 +70,7 @@
             <Moon v-for="moon in 14" 
               :key="moon"
               :id="`moon-${moon}`"
+              :class="{'current-moon': today.moon === moon}"
               :today="today" 
               :moon="moon" 
               :baseSize="containerSize"
@@ -744,7 +745,7 @@ const handleTouchMove = (event) => {
     }
 
     [id^="moon-"] {
-      @apply w-full flex justify-center p-6 my-4 bg-white/70 rounded-xl relative;
+      @apply w-full flex justify-center p-6 my-4 bg-white rounded-xl relative;
 
       .moon-center {
         @apply rounded-md;

@@ -38,7 +38,7 @@
           <div class="label uppercase">{{ $t('display.day') }}</div>
         </div>
       </div>
-      <div v-if="spiralTimeTravelMode" :style="displayStyle" class="text-slate-800 dark:text-slate-200 italic gregorian-date">
+      <div v-if="spiralTimeTravelMode" :style="displayStyle" class="text-slate-800 italic gregorian-date">
         ({{ new Date(context.naturalDate.unixTime).toLocaleDateString($t('display.dateFormat'), { 
           weekday: 'long', 
           year: 'numeric', 
@@ -104,10 +104,6 @@ const displayStyle = computed(() => ({
 .display-container {
   font-size: v-bind('`${props.containerSize * 0.2}px`');
   line-height: 1.1;
-}
-
-.display-container, .gregorian-date {
-  @apply dark:brightness-[4];
 }
 
 .label {

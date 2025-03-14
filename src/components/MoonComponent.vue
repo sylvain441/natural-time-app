@@ -1,5 +1,5 @@
 <template>
-  <div class="moon-component relative" :style="{ width: `${baseSize}px`, height: `${(baseSize - spacing * 2) * 4 / 7 + spacing * 2}px`, '--border-width': `${baseSize * 0.008}px`, '--font-size': `${baseSize * 0.0425}px`, '--base-size': `${baseSize}px` }"
+  <div class="moon-component relative" :style="{ width: `${baseSize}px`, height: `${(baseSize - spacing * 2) * 4 / 7 + spacing * 2}px`, '--border-width': `${baseSize * 0.008}px`, '--font-size': `${baseSize * 0.067}px`, '--base-size': `${baseSize}px` }"
        :class="{
          'opacity-100': today.moon >= moon,
          'past-moon': pastMoon,
@@ -154,18 +154,37 @@ const pastMoon = computed(() => {
     &:nth-child(7n+5){ @apply border-sky-500 text-sky-500 bg-sky-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &:nth-child(7n+6){ @apply border-indigo-500 text-indigo-500 bg-indigo-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
     &:nth-child(7n+0){ @apply border-violet-500 text-violet-500 bg-violet-500 border-opacity-0 text-opacity-100 bg-opacity-20 }
-    &.isPast:not(:hover):not(.isRainbowDay) {
-      @apply text-gray-100/70 border-opacity-100 bg-opacity-100;
+    
+    .past-moon &.isPast:not(:hover):not(.isRainbowDay) {
+      @apply bg-transparent text-gray-600 border-opacity-0;
     }
+    
     &.isToday {
       @apply border-opacity-100 border-white/20 bg-opacity-100 text-white;
     }
+    
+    .current-moon & {      
+      &.isPast:not(.isToday):not(:hover):not(.isRainbowDay) {
+        @apply border-opacity-100 bg-opacity-30;
+      }
+      
+      &.isFuture:not(:hover) {
+        @apply bg-opacity-10 border-opacity-100 text-gray-800;
+      }
+      
+      &:hover:not(.isToday):not(.spiralWelcomeMode) {
+        @apply border-opacity-100 bg-opacity-100 text-white;
+      }
+    }
+    
     &.isFuture:not(:hover) {
       @apply bg-opacity-0 text-gray-500/50;
     }
+    
     &:hover:not(.spiralWelcomeMode) {
       @apply border-opacity-100 text-opacity-100;
     }
+    
     &.isRainbowDay {
       @apply border-opacity-50 scale-75;
       &.show-animation {
@@ -229,7 +248,7 @@ const pastMoon = computed(() => {
     background-color: cyan;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
-    font-size: calc(var(--font-size) * 1.3);
+    font-size: calc(var(--font-size) * 0.85);
     font-weight: 800;
     pointer-events: none;
     z-index: 50;
