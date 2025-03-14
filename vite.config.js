@@ -29,6 +29,30 @@ function generateRoutesForAllLanguages() {
   return routes
 }
 
+// Map to store language for each route
+const routeLanguageMap = {};
+
+// Populate the route language map
+AVAILABLE_LANGUAGES.forEach(lang => {
+  // Base route for each language
+  routeLanguageMap[`/${lang}/`] = lang;
+  
+  // Routes for each page type defined in ROUTE_PATHS
+  Object.keys(ROUTE_PATHS).forEach(routeKey => {
+    if (ROUTE_PATHS[routeKey][lang]) {
+      routeLanguageMap[`/${lang}/${ROUTE_PATHS[routeKey][lang]}`] = lang;
+      // Also add versions with trailing slash for consistency
+      routeLanguageMap[`/${lang}/${ROUTE_PATHS[routeKey][lang]}/`] = lang;
+    }
+  });
+});
+
+// Default routes use the default language
+routeLanguageMap['/'] = AVAILABLE_LANGUAGES[0];
+routeLanguageMap['/startpwa/'] = AVAILABLE_LANGUAGES[0];
+
+console.log('Route language map:', routeLanguageMap);
+
 export default defineConfig({
   base: '/',
   
@@ -119,8 +143,71 @@ export default defineConfig({
     includedRoutes(paths, routes) {
       return generateRoutesForAllLanguages()
     },
-    onFinished() {
+    async onFinished() {
       console.log('Static site generation complete!')
+      
+      // Fix language tags in HTML files
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        const distDir = path.resolve('./dist');
+        
+        // Fix lang attribute in each HTML file based on its path
+        async function fixLangAttribute(filePath, targetLang) {
+          try {
+            const data = await fs.promises.readFile(filePath, 'utf8');
+            const result = data.replace(/<html lang="<!--app-lang-->">/, `<html lang="${targetLang}">`);
+            await fs.promises.writeFile(filePath, result, 'utf8');
+            console.log(`Fixed lang attribute for ${filePath}`);
+          } catch (err) {
+            console.error(`Error fixing lang attribute in ${filePath}:`, err);
+          }
+        }
+        
+        // Process each language directory
+        for (const lang of AVAILABLE_LANGUAGES) {
+          const langDir = path.join(distDir, lang);
+          
+          if (fs.existsSync(langDir)) {
+            // Fix the main index.html for this language
+            await fixLangAttribute(path.join(langDir, 'index.html'), lang);
+            
+            // Process HTML files in this language directory
+            const files = await fs.promises.readdir(langDir);
+            for (const file of files) {
+              if (file.endsWith('.html')) {
+                await fixLangAttribute(path.join(langDir, file), lang);
+              } else {
+                const subdir = path.join(langDir, file);
+                try {
+                  const stats = await fs.promises.stat(subdir);
+                  if (stats.isDirectory()) {
+                    const subdirFiles = await fs.promises.readdir(subdir);
+                    for (const subdirFile of subdirFiles) {
+                      if (subdirFile.endsWith('.html')) {
+                        await fixLangAttribute(path.join(subdir, subdirFile), lang);
+                      }
+                    }
+                  }
+                } catch (err) {
+                  // Not a directory or can't access, skip
+                }
+              }
+            }
+          }
+        }
+        
+        // Fix root files (defaults to default language)
+        const rootFiles = ['index.html', 'startpwa/index.html'];
+        for (const file of rootFiles) {
+          const filePath = path.join(distDir, file);
+          if (fs.existsSync(filePath)) {
+            await fixLangAttribute(filePath, AVAILABLE_LANGUAGES[0]);
+          }
+        }
+      } catch (err) {
+        console.error('Error during post-build processing:', err);
+      }
     }
   },
 

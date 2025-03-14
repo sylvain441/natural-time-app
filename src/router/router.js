@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import { useContextStore } from '../stores/contextStore'
 import i18n from '../i18n/i18n'
+import { languageService } from '../i18n/i18n'
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, getLocalizedPath, getLocalizedRouteName } from '../i18n/config'
 
 import WelcomeView from '../views/WelcomeView.vue'
@@ -49,8 +50,8 @@ const routes = [
   {
     path: '/',
     redirect: to => {
-      // Detect browser language on initial visit
-      const detectedLocale = i18n.global.locale.value || DEFAULT_LANGUAGE;
+      // Use language service to detect the browser language
+      const detectedLocale = languageService.getCurrentLanguage();
       return `/${detectedLocale}/`;
     },
     name: 'home',
@@ -62,7 +63,7 @@ const routes = [
     name: 'startpwa',
     redirect: to => {
       const contextStore = useContextStore()
-      const locale = i18n.global.locale.value || DEFAULT_LANGUAGE
+      const locale = languageService.getCurrentLanguage()
       return contextStore.storedLatitude && contextStore.storedLongitude 
         ? { name: getLocalizedRouteName('time', locale) }
         : { name: getLocalizedRouteName('welcome', locale) }
@@ -81,7 +82,7 @@ const routes = [
     path: '/:latlng/:location?',
     beforeEnter: (to, from, next) => {
       const latlngRegex = /^[0-9.,]+$/
-      const locale = i18n.global.locale.value || DEFAULT_LANGUAGE
+      const locale = languageService.getCurrentLanguage()
       if (latlngRegex.test(to.params.latlng)) {
         next({ name: getLocalizedRouteName('time', locale) })
       } else {
@@ -94,14 +95,8 @@ const routes = [
     name: 'not-found',
     component: NotFoundView,
     beforeEnter: (to, from, next) => {
-      // Make sure the locale is defined even for the 404 page
-      const locale = i18n.global.locale.value || DEFAULT_LANGUAGE;
-      
-      // Update locale if necessary
-      if (i18n.global.locale.value !== locale) {
-        i18n.global.locale.value = locale;
-      }
-      
+      // Make sure the locale is defined for the 404 page using language service
+      const locale = languageService.getCurrentLanguage();
       next();
     }
   },
@@ -114,20 +109,26 @@ const router = createRouter({
 
 // Navigation guard to change language based on URL
 router.beforeEach((to, from, next) => {
-  // Extract locale from route
-  const locale = to.meta.locale || DEFAULT_LANGUAGE
+  // Extract language from route using centralized logic
+  let locale = DEFAULT_LANGUAGE;
   
-  // Update i18n locale
-  if (i18n.global.locale.value !== locale) {
-    i18n.global.locale.value = locale
-    
-    // Save the language preference to localStorage
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('user-language', locale)
+  // Check if the route has a locale in meta
+  if (to.meta.locale) {
+    locale = to.meta.locale;
+  } 
+  // Otherwise, try to extract from path
+  else {
+    locale = languageService.getLanguageFromURL(to.path) || DEFAULT_LANGUAGE;
+    // Set the meta for future reference
+    if (to.matched.length && to.matched[0].meta) {
+      to.matched[0].meta.locale = locale;
     }
   }
   
-  next()
+  // Update language using the language service
+  languageService.setLanguage(locale);
+  
+  next();
 })
 
 // Ignore Matomo in dev mode

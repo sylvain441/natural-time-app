@@ -12,7 +12,36 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { languageService } from './i18n/i18n';
 
+const route = useRoute();
+const { locale } = useI18n();
+
+// During SSG, use language service to determine language from route path
+if (import.meta.env.SSR) {
+  // Use language service to determine language from route path
+  const pathLang = languageService.determineAndSetLanguage({
+    isSSR: true,
+    pathname: route.path
+  });
+  
+  // Set the i18n locale value (language service already does this, but we set locale.value for components using it)
+  locale.value = pathLang;
+}
+
+// In client, use language service to ensure URL-based language is set correctly
+onMounted(() => {
+  // Use language service to determine and set language based on URL
+  const detectedLang = languageService.determineAndSetLanguage({
+    pathname: window.location.pathname
+  });
+  
+  // Update the locale reference for components using it
+  locale.value = detectedLang;
+});
 </script>
 
 <style lang="scss">

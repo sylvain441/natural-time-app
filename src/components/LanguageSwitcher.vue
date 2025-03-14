@@ -33,13 +33,15 @@
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { computed, ref, onMounted, onUnmounted } from 'vue';
-import { AVAILABLE_LANGUAGES, getLocalizedRouteName } from '../i18n/config';
+import { getLocalizedRouteName } from '../i18n/config';
+import { languageService } from '../i18n/i18n';
 
 const router = useRouter();
 const { locale, t } = useI18n();
 
-const currentLocale = computed(() => locale.value);
-const availableLocales = computed(() => AVAILABLE_LANGUAGES);
+// Use language service for current locale and available locales
+const currentLocale = computed(() => languageService.getCurrentLanguage());
+const availableLocales = computed(() => languageService.AVAILABLE_LANGUAGES);
 const isOpen = ref(false);
 
 // Get the full language title for the title attribute
@@ -77,13 +79,11 @@ const changeLanguage = (lang) => {
   // Do nothing if it's already the current language
   if (lang === currentLocale.value) return;
   
-  // Change the language
-  locale.value = lang;
+  // Change the language using language service
+  languageService.setLanguage(lang);
   
-  // Save the language preference to localStorage
-  if (typeof localStorage !== 'undefined') {
-    localStorage.setItem('user-language', lang);
-  }
+  // Update the locale reference for components using it
+  locale.value = lang;
   
   // Close the dropdown
   isOpen.value = false;
