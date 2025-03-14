@@ -5,6 +5,9 @@
 				<component :is="Component"></component>
 			</transition>
 		</router-view>
+		
+		<!-- Notification container -->
+		<div id="notification-container"></div>
 	</div>
 </template>
 

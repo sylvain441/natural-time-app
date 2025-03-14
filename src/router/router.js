@@ -42,11 +42,8 @@ const createLocalizedRoutes = (lang) => [
   },
 ]
 
-// Generate routes for all configured languages
-let localizedRoutes = []
-AVAILABLE_LANGUAGES.forEach(lang => {
-  localizedRoutes = [...localizedRoutes, ...createLocalizedRoutes(lang)]
-})
+// Create routes for all available languages
+const localizedRoutes = AVAILABLE_LANGUAGES.flatMap(createLocalizedRoutes)
 
 const routes = [
   {

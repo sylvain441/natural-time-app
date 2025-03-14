@@ -46,7 +46,11 @@ export const createApp = ViteSSG(
         
         if (!storedVersion || storedVersion !== version) {
           migrateData()
-          localStorage.setItem('appVersion', version)
+          // Only set the version for first-time users
+          // Let the PWA plugin handle version updates for existing users
+          if (!storedVersion) {
+            localStorage.setItem('appVersion', version)
+          }
         }
         
         next()

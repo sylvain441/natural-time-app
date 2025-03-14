@@ -393,5 +393,9 @@
     "title": "404",
     "message": "Oops! Page non trouvée.",
     "button": "Retour à l'accueil"
+  },
+  "update": {
+    "title": "Application mise à jour !",
+    "v2_2_0": "Maintenant disponible en Anglais. Et désormais la Foire aux Questions est pleine de nouvelles réponses."
   }
 }
