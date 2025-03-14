@@ -39,15 +39,12 @@ export const createApp = ViteSSG(
       
       // Determine the language from route path for SSR using language service
       const routePath = router.currentRoute.value?.path || '';
-      console.log(`Current route path: ${routePath}`);
       
       // Use language service to determine language from route path
       const lang = languageService.determineAndSetLanguage({
         isSSR: true,
         pathname: routePath
       });
-      
-      console.log(`Using language: ${lang} for route: ${routePath}`);
       
       // Set HTML attributes 
       head.htmlAttrs = { lang };

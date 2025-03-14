@@ -51,8 +51,6 @@ AVAILABLE_LANGUAGES.forEach(lang => {
 routeLanguageMap['/'] = AVAILABLE_LANGUAGES[0];
 routeLanguageMap['/startpwa/'] = AVAILABLE_LANGUAGES[0];
 
-console.log('Route language map:', routeLanguageMap);
-
 export default defineConfig({
   base: '/',
   
@@ -144,8 +142,6 @@ export default defineConfig({
       return generateRoutesForAllLanguages()
     },
     async onFinished() {
-      console.log('Static site generation complete!')
-      
       // Fix language tags in HTML files
       try {
         const fs = await import('fs');
@@ -158,7 +154,6 @@ export default defineConfig({
             const data = await fs.promises.readFile(filePath, 'utf8');
             const result = data.replace(/<html lang="<!--app-lang-->">/, `<html lang="${targetLang}">`);
             await fs.promises.writeFile(filePath, result, 'utf8');
-            console.log(`Fixed lang attribute for ${filePath}`);
           } catch (err) {
             console.error(`Error fixing lang attribute in ${filePath}:`, err);
           }
