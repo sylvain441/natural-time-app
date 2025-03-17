@@ -42,8 +42,10 @@ const show = ref(false);
 
 // Get version-specific message if available
 const versionSpecificMessage = computed(() => {
-  // Convert version to a format usable in i18n keys (e.g., 3.3.0 -> v3_3_0)
-  const versionKey = `v${version.replace(/\./g, '_')}`;
+  // Convert version to a format usable in i18n keys (e.g., 3.3.0 -> v3_3)
+  // Only use major and minor version numbers
+  const [major, minor] = version.split('.');
+  const versionKey = `v${major}_${minor}`;
   const key = `update.${versionKey}`;
   
   // Check if there's a message for this specific version
