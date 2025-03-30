@@ -1,6 +1,6 @@
 <template>
 	<div id="day-view"
-		class="flex flex-row min-h-dvh overflow-hidden bg-slate-200 bg-[url('@/assets/debut-light.png')]" @touchmove.prevent>
+		class="flex flex-row min-h-dvh overflow-hidden bg-slate-200 bg-[url('@/assets/debut-light.png')]" @touchmove="handleTouchMove">
 
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
@@ -186,7 +186,7 @@
 					<LocationPicker viewType="clock" v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker"
 						@save="() => { clockActivePanel = null; clockWelcomeMode = false; }" />
 					<!-- FAQ -->
-					<div class="py-6 px-4 h-full overflow-auto">
+					<div class="py-6 px-4 h-full overflow-auto touch-pan-y">
 						<FAQAccordion v-if="clockActivePanel === AVAILABLE_PANELS.faq" :categories="[2]" />
 					</div>
 				</div>
@@ -556,6 +556,16 @@ const dismissHemisphereNotification = () => {
 const toggleSimplifiedMode = () => {
 	clockSimplifiedMode.value = !clockSimplifiedMode.value;
 	isMenuOpen.value = false;
+};
+
+// Add touch event handler
+const handleTouchMove = (event) => {
+  // Allow scrolling if we're in the FAQ panel
+  if (event.target.closest('.overflow-auto')) {
+    return;
+  }
+  // Prevent default behavior for the rest of the app
+  event.preventDefault();
 };
 
 // Lifecycle hooks

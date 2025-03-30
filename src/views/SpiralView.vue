@@ -220,7 +220,7 @@
         <!-- LOCATION PICKER -->
         <LocationPicker viewType="spiral" v-if="spiralActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { spiralActivePanel = null; spiralWelcomeMode = false; }" />
         <!-- FAQ -->
-        <div class="py-6 px-4 h-full overflow-auto">
+        <div class="py-6 px-4 h-full overflow-auto touch-pan-y">
           <FAQAccordion v-if="spiralActivePanel === AVAILABLE_PANELS.faq" :categories="[3]" />
         </div>
       </div>
@@ -679,10 +679,12 @@ watch([spiralTutorialCurrentStep], async () => {
 
 // Add this method to handle touch events
 const handleTouchMove = (event) => {
-  // Only prevent default touch behavior when NOT in vertical mode
-  if (!spiralVerticalMode.value) {
-    event.preventDefault();
+  // Allow scrolling if we're in the FAQ panel or in vertical mode
+  if (spiralVerticalMode.value || event.target.closest('.overflow-auto')) {
+    return;
   }
+  // Prevent default behavior for the rest of the app
+  event.preventDefault();
 };
 
 </script>
@@ -854,7 +856,9 @@ const handleTouchMove = (event) => {
   &:not(.vertical-mode) {
     overscroll-behavior: none;
     -webkit-overflow-scrolling: none;
-    touch-action: none;
+    &:not(.overflow-auto) {
+      touch-action: none;
+    }
   }
 
   &.vertical-mode {
@@ -864,10 +868,11 @@ const handleTouchMove = (event) => {
   }
 }
 
-.overflow-y-auto {
+.overflow-auto {
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch !important;
   overscroll-behavior-y: contain;
+  touch-action: pan-y !important;
 }
 
 .fade-enter-active,
