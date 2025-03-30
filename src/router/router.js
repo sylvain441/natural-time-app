@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import { useContextStore } from '../stores/contextStore'
+import { useConfigStore } from '../stores/configStore'
 import i18n from '../i18n/i18n'
 import { languageService } from '../i18n/i18n'
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE, getLocalizedPath, getLocalizedRouteName } from '../i18n/config'
@@ -17,6 +18,10 @@ const createLocalizedRoutes = (lang) => [
     component: WelcomeView,
     meta: { locale: lang },
     beforeEnter: (to, from, next) => {
+      // Clear navigation state when changing routes
+      const configStore = useConfigStore()
+      configStore.clearNavigationState()
+
       // if PWA is saved with the old v1 start_url scheme, redirect to time view (or welcome view as fallback)
       if (to.fullPath.includes('utm_source=web_app_manifest')) {
         const contextStore = useContextStore()
@@ -33,13 +38,23 @@ const createLocalizedRoutes = (lang) => [
     path: `/${lang}/${getLocalizedPath('time', lang)}`, 
     name: getLocalizedRouteName('time', lang), 
     component: ClockView,
-    meta: { locale: lang }
+    meta: { locale: lang },
+    beforeEnter: (to, from, next) => {
+      const configStore = useConfigStore()
+      configStore.clearNavigationState()
+      next()
+    }
   },
   { 
     path: `/${lang}/${getLocalizedPath('13moons', lang)}`, 
     name: getLocalizedRouteName('13moons', lang), 
     component: SpiralView,
-    meta: { locale: lang }
+    meta: { locale: lang },
+    beforeEnter: (to, from, next) => {
+      const configStore = useConfigStore()
+      configStore.clearNavigationState()
+      next()
+    }
   },
 ]
 

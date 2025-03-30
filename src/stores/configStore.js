@@ -228,6 +228,16 @@ export const useConfigStore = defineStore('appConfig', () => {
   const hemisphereNotificationDismissed = ref(false);
   const hemisphereNotificationDismissedAt = ref(null);
 
+  // Function to clear navigation state when changing routes
+  const clearNavigationState = () => {
+    clockTimeTravelMode.value = false;
+    spiralTimeTravelMode.value = false;
+    clockTutorialMode.value = false;
+    spiralTutorialMode.value = false;
+    clockActivePanel.value = null;
+    spiralActivePanel.value = null;
+  };
+
   return {
     AVAILABLE_PANELS,
     clockWelcomeMode,
@@ -251,6 +261,7 @@ export const useConfigStore = defineStore('appConfig', () => {
     getTranslatedSpiralSkin,
     hemisphereNotificationDismissed,
     hemisphereNotificationDismissedAt,
+    clearNavigationState,
   };
 }, {
   persist: {
