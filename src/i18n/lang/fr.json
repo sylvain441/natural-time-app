@@ -192,6 +192,12 @@
         "title": "Tutoriel terminé !",
         "description": "Pour continuer, l'application a besoin de configurer une position géographique"
       }
+    },
+    "timeTravel": {
+      "notification": {
+        "title": "Mode voyage temporel",
+        "message": "Pour naviguer dans le passé ou le futur :\nÉtape 1 : Selectionner une vitesse\nÉtape 2 : Utiliser les boutons - et +\nAstuce : Maintenir les boutons appuyés pour un déplacement continu"
+      }
     }
   },
   "clock": {

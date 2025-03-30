@@ -387,7 +387,7 @@ import DisplayComponent from '@/components/DisplayComponent.vue';
 
 // Lazy loaded components
 const LocationPicker = defineAsyncComponent(() => import('@/components/LocationPicker.vue'));
-const TutorialWelcomeNotification = defineAsyncComponent(() => import('@/components/TutorialWelcomeNotification.vue'));
+const ModalNotification = defineAsyncComponent(() => import('@/components/ModalNotification.vue'));
 
 // Icon imports
 import mapIcon from '@/assets/icon/map-icon.svg';
@@ -502,6 +502,25 @@ const toggleTimeTravel = () => {
   if (spiralTimeTravelMode.value) {
     spiralActivePanel.value = null;
     spiralTutorialMode.value = false;
+    
+    // Show time travel welcome notification
+    const app = createApp(ModalNotification, {
+      title: i18n.t('tutorials.timeTravel.notification.title'),
+      message: i18n.t('tutorials.timeTravel.notification.message'),
+      type: 'spiral'
+    });
+    
+    // Find or create notification container
+    let container = document.getElementById('tutorial-notification-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'tutorial-notification-container';
+      document.body.appendChild(container);
+    }
+    
+    // Mount the notification
+    app.use(i18n);
+    app.mount(container);
   }
 };
 
@@ -549,10 +568,9 @@ onMounted(() => {
   // Show tutorial welcome notification if tutorial mode is active
   if (spiralTutorialMode.value && spiralTutorialCurrentStep.value === 0) {
     // Dynamically create and mount the tutorial welcome notification
-    const app = createApp(TutorialWelcomeNotification, {
+    const app = createApp(ModalNotification, {
       title: i18n.t('tutorials.spiral.notification.title'),
       message: i18n.t('tutorials.spiral.notification.message'),
-      autoHideDelay: 5000,
       type: 'spiral'
     });
     
@@ -578,10 +596,9 @@ onMounted(() => {
   watch(() => spiralTutorialMode.value, (newValue) => {
     if (newValue && spiralTutorialCurrentStep.value === 0) {
       // Dynamically create and mount the tutorial welcome notification
-      const app = createApp(TutorialWelcomeNotification, {
+      const app = createApp(ModalNotification, {
         title: i18n.t('tutorials.spiral.notification.title'),
         message: i18n.t('tutorials.spiral.notification.message'),
-        autoHideDelay: 5000,
         type: 'spiral'
       });
       

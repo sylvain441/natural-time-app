@@ -192,6 +192,12 @@
         "title": "Tutorial completed!",
         "description": "To continue, the app needs a geographic location"
       }
+    },
+    "timeTravel": {
+      "notification": {
+        "title": "Time Travel Mode",
+        "message": "To navigate through past and future:\nStep 1: Select a speed\nStep 2: Use the - and + buttons\nTip: Long press the buttons for continuous movement"
+      }
     }
   },
   "clock": {

@@ -6,21 +6,20 @@
     <!-- Notification -->
     <Transition name="notification-fade">
       <div v-if="show" 
-           class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 rounded-lg shadow-lg z-50 max-w-xs notification-gradient"
+           class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-white shadow-lg rounded-lg overflow-hidden w-[90%] md:w-auto md:max-w-sm"
+           :class="[
+             type === 'clock' ? 'bg-nt-yellow-light' : 'bg-nt-cyan-light'
+           ]"
            role="alert">
-        <div class="flex items-start">
-          <div class="flex-1">
-            <div class="flex items-center mb-2">
-              <learnIcon class="notification-icon mr-2 w-6 h-6" fill="currentColor" />
-              <h4 class="text-white font-bold text-base">{{ title }}</h4>
-            </div>
-            <p class="text-white text-sm">
-              {{ message }}
-            </p>
-          </div>
-          <button @click="close" class="ml-4 text-white hover:text-gray-200 transition-colors" aria-label="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+        <div class="p-4">
+          <h3 class="text-base md:text-lg font-bold mb-2 text-black">{{ title }}</h3>
+          <p class="text-sm md:text-base text-gray-700 whitespace-pre-line">{{ message }}</p>
+          <button 
+            @click="close" 
+            class="absolute top-2 right-2 p-1 rounded-full bg-black/10 hover:bg-black/20 transition-colors duration-200"
+            aria-label="Close">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -42,10 +41,6 @@ const props = defineProps({
     type: String,
     required: true
   },
-  autoHideDelay: {
-    type: Number,
-    default: 7000 // 7 seconds by default
-  },
   type: {
     type: String,
     default: 'clock', // 'clock' or 'spiral'
@@ -56,25 +51,15 @@ const props = defineProps({
 const show = ref(false);
 
 function close() {
-  console.log('Closing tutorial notification');
   show.value = false;
 }
 
 function open() {
-  console.log('Opening tutorial notification');
   show.value = true;
-  
-  // Auto-hide after specified delay
-  if (props.autoHideDelay > 0) {
-    setTimeout(() => {
-      close();
-    }, props.autoHideDelay);
-  }
 }
 
 // Auto-open the notification when mounted
 onMounted(() => {
-  console.log('TutorialWelcomeNotification component mounted');
   // Delay opening slightly to ensure everything is ready
   setTimeout(() => {
     open();
@@ -112,12 +97,16 @@ defineExpose({
 
 .notification-fade-enter-active,
 .notification-fade-leave-active {
-  transition: opacity 0.5s, transform 0.5s;
+  transition: all 0.3s ease-out;
 }
 
-.notification-fade-enter-from,
-.notification-fade-leave-to {
+.notification-fade-enter-from {
   opacity: 0;
   transform: translate(-50%, -40%);
+}
+
+.notification-fade-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -60%);
 }
 </style>
