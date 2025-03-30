@@ -3,10 +3,10 @@
     <div class="relative">
       <button 
         @click="toggleDropdown" 
-        class="dropdown-toggle p-2 rounded-md flex items-center bg-white/40 hover:bg-white/50 dark:bg-slate-700/60 dark:hover:bg-slate-700/80 text-slate-800 dark:text-white"
+        class="dropdown-toggle p-1 sm:p-2 rounded-md flex items-center bg-white/40 hover:bg-white/50 dark:bg-slate-700/60 dark:hover:bg-slate-700/80 text-slate-800 dark:text-white"
       >
-        <span class="text-sm font-medium uppercase">{{ currentLocale }}</span>
-        <span class="ml-1 text-xs opacity-70">▼</span>
+        <span class="text-xs sm:text-sm font-medium uppercase">{{ currentLocale }}</span>
+        <span class="ml-0.5 sm:ml-1 text-[10px] sm:text-xs opacity-70">▼</span>
       </button>
       
       <div 
@@ -17,12 +17,12 @@
           v-for="lang in availableLocales" 
           :key="lang" 
           @click="changeLanguage(lang)"
-          class="lang-option w-full p-2 text-left flex items-center hover:bg-gray-100 dark:hover:bg-slate-700 text-slate-800 dark:text-white"
+          class="lang-option w-full p-1.5 sm:p-2 text-left flex items-center hover:bg-gray-100 dark:hover:bg-slate-700 text-slate-800 dark:text-white"
           :class="{ 'bg-gray-100 dark:bg-slate-700': currentLocale === lang }"
           :title="getLanguageTitle(lang)"
         >
-          <span class="text-lg mr-2">{{ getLanguageFlag(lang) }}</span>
-          <span class="text-sm">{{ getLanguageTitle(lang) }}</span>
+          <span class="text-base sm:text-lg mr-1.5 sm:mr-2">{{ getLanguageFlag(lang) }}</span>
+          <span class="text-xs sm:text-sm">{{ getLanguageTitle(lang) }}</span>
         </button>
       </div>
     </div>
