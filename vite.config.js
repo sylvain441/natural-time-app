@@ -29,6 +29,75 @@ function generateRoutesForAllLanguages() {
   return routes
 }
 
+// Function to generate sitemap XML content
+function generateSitemapXml() {
+  const baseUrl = 'https://naturaltime.app'
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+  
+  // Add entries for each language
+  AVAILABLE_LANGUAGES.forEach(lang => {
+    // Add the base route for each language
+    xml += `  <url>\n`
+    xml += `    <loc>${baseUrl}/${lang}/</loc>\n`
+    xml += `    <changefreq>weekly</changefreq>\n`
+    xml += `    <priority>1.0</priority>\n`
+    xml += `  </url>\n`
+    
+    // Add routes for each page type defined in ROUTE_PATHS
+    Object.keys(ROUTE_PATHS).forEach(routeKey => {
+      if (ROUTE_PATHS[routeKey][lang]) {
+        xml += `  <url>\n`
+        xml += `    <loc>${baseUrl}/${lang}/${ROUTE_PATHS[routeKey][lang]}</loc>\n`
+        xml += `    <changefreq>weekly</changefreq>\n`
+        xml += `    <priority>0.8</priority>\n`
+        xml += `  </url>\n`
+      }
+    })
+  })
+  
+  xml += '</urlset>'
+  return xml
+}
+
+// Function to inject SEO meta tags
+async function injectSEOTags(filePath, lang) {
+  try {
+    const fs = await import('fs');
+    let content = await fs.promises.readFile(filePath, 'utf8');
+    
+    // Get the relative path from the dist directory
+    const relativePath = filePath.split('dist/')[1].replace('index.html', '');
+    const canonicalPath = relativePath.endsWith('/') ? relativePath : `${relativePath}/`;
+    
+    // Get the equivalent paths in other languages
+    const currentRoute = canonicalPath.split('/')[1] || '';
+    const alternateLinks = AVAILABLE_LANGUAGES.map(alternateLang => {
+      if (alternateLang === lang) return '';
+      const alternatePath = currentRoute ? ROUTE_PATHS[currentRoute]?.[alternateLang] || currentRoute : '';
+      return `<link rel="alternate" hreflang="${alternateLang}" href="https://naturaltime.app/${alternateLang}/${alternatePath}" />`;
+    }).filter(Boolean).join('\n    ');
+    
+    // Only add essential SEO tags that don't conflict with component meta tags
+    const seoTags = `
+    <meta charset="UTF-8" />
+    ${alternateLinks}
+    <link rel="canonical" href="https://naturaltime.app/${canonicalPath}" />`;
+    
+    // Remove only duplicate canonical and alternate links
+    content = content.replace(/<link rel="alternate" hreflang[^>]*>/g, '')
+                    .replace(/<link rel="canonical"[^>]*>/g, '')
+                    .replace(/<meta charset[^>]*>/g, '');
+    
+    // Insert the tags after the opening head tag
+    content = content.replace(/<head>/, `<head>${seoTags}`);
+    
+    await fs.promises.writeFile(filePath, content, 'utf8');
+  } catch (err) {
+    console.error(`Error injecting SEO tags in ${filePath}:`, err);
+  }
+}
+
 // Map to store language for each route
 const routeLanguageMap = {};
 
@@ -148,12 +217,35 @@ export default defineConfig({
         const path = await import('path');
         const distDir = path.resolve('./dist');
         
-        // Fix lang attribute in each HTML file based on its path
+        // Generate and write sitemap.xml
+        const sitemapContent = generateSitemapXml();
+        await fs.promises.writeFile(path.join(distDir, 'sitemap.xml'), sitemapContent, 'utf8');
+        
+        // Generate robots.txt with additional SEO-friendly directives
+        const robotsContent = `User-agent: *
+Allow: /
+Disallow: /startpwa
+
+# Crawl-delay: 10
+# Allow crawling of JavaScript and CSS
+Allow: *.js
+Allow: *.css
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.png
+Allow: *.svg
+
+Sitemap: https://naturaltime.app/sitemap.xml`;
+        await fs.promises.writeFile(path.join(distDir, 'robots.txt'), robotsContent, 'utf8');
+        
+        // Fix lang attribute and inject SEO tags in each HTML file
         async function fixLangAttribute(filePath, targetLang) {
           try {
             const data = await fs.promises.readFile(filePath, 'utf8');
             const result = data.replace(/<html lang="<!--app-lang-->">/, `<html lang="${targetLang}">`);
             await fs.promises.writeFile(filePath, result, 'utf8');
+            await injectSEOTags(filePath, targetLang);
           } catch (err) {
             console.error(`Error fixing lang attribute in ${filePath}:`, err);
           }
