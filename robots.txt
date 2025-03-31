@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
+Disallow: /startpwa
+
+# Crawl-delay: 10
+# Allow crawling of JavaScript and CSS
+Allow: *.js
+Allow: *.css
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.png
+Allow: *.svg
 
 Sitemap: https://naturaltime.app/sitemap.xml
