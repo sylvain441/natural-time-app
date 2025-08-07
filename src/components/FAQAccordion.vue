@@ -79,6 +79,8 @@ const setupAccordion = () => {
     }
 
     questions.forEach(({ question, answerElements }) => {
+      // Skip if already enhanced to avoid duplicate listeners
+      if (question.dataset.enhanced === 'true') return;
       question.classList.add('faq-question');
       
       // Check if there are any answer elements
@@ -122,6 +124,9 @@ const setupAccordion = () => {
           </div>
         `;
       }
+
+      // mark as enhanced
+      question.dataset.enhanced = 'true';
     });
   });
 

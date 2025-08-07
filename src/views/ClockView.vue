@@ -348,6 +348,7 @@ import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from 'natural-time-js';
 import { useI18n } from 'vue-i18n'
 import { createApp } from 'vue';
+import { showModalNotification, hideModalNotification } from '@/utils/notificationManager';
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -514,28 +515,16 @@ const toggleTutorial = () => {
 const toggleTimeTravel = () => {
 	clockTimeTravelMode.value = !clockTimeTravelMode.value;
 	isMenuOpen.value = false;
-	if (clockTimeTravelMode.value) {
+    if (clockTimeTravelMode.value) {
 		clockActivePanel.value = null;
 		clockTutorialMode.value = false;
 		
-		// Show time travel welcome notification
-		const app = createApp(ModalNotification, {
-			title: i18n.t('tutorials.timeTravel.notification.title'),
-			message: i18n.t('tutorials.timeTravel.notification.message'),
-			type: 'clock'
-		});
-		
-		// Find or create notification container
-		let container = document.getElementById('tutorial-notification-container');
-		if (!container) {
-			container = document.createElement('div');
-			container.id = 'tutorial-notification-container';
-			document.body.appendChild(container);
-		}
-		
-		// Mount the notification
-		app.use(i18n);
-		app.mount(container);
+      // Show time travel welcome notification through manager
+      showModalNotification({
+        title: i18n.t('tutorials.timeTravel.notification.title'),
+        message: i18n.t('tutorials.timeTravel.notification.message'),
+        type: 'clock'
+      }, i18n);
 	}
 };
 
@@ -543,8 +532,9 @@ const openPanel = (panel) => {
 	clockActivePanel.value = panel;
 	isMenuOpen.value = false;
 	clockTutorialMode.value = false;
-	closeNotification();
+    closeNotification();
 	closeTimeTravel();
+    hideModalNotification();
 };
 
 const preventNotificationForOneDay = () => {
@@ -559,6 +549,7 @@ const closeNotification = () => {
 const closeTimeTravel = () => {
 	clockTimeTravelMode.value = false;
 	timeDelta.value = 0;
+    hideModalNotification();
 };
 
 const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;
@@ -598,26 +589,13 @@ onMounted(() => {
 		}, 10000);
 	}
 	
-	// Show tutorial welcome notification if tutorial mode is active
+  // Show tutorial welcome notification if tutorial mode is active
 	if (clockTutorialMode.value && clockTutorialCurrentStep.value === 0) {
-		// Dynamically create and mount the tutorial welcome notification
-		const app = createApp(ModalNotification, {
-			title: i18n.t('tutorials.clock.notification.title'),
-			message: i18n.t('tutorials.clock.notification.message'),
-			type: 'clock'
-		});
-		
-		// Find or create notification container
-		let container = document.getElementById('tutorial-notification-container');
-		if (!container) {
-			container = document.createElement('div');
-			container.id = 'tutorial-notification-container';
-			document.body.appendChild(container);
-		}
-		
-		// Mount the notification
-		app.use(i18n);
-		app.mount(container);
+    showModalNotification({
+      title: i18n.t('tutorials.clock.notification.title'),
+      message: i18n.t('tutorials.clock.notification.message'),
+      type: 'clock'
+    }, i18n);
 	}
 	
 	// Watchers
@@ -628,24 +606,11 @@ onMounted(() => {
 	// Watch for tutorial mode changes to show welcome notification
 	watch(() => clockTutorialMode.value, (newValue) => {
 		if (newValue && clockTutorialCurrentStep.value === 0) {
-			// Dynamically create and mount the tutorial welcome notification
-			const app = createApp(ModalNotification, {
-				title: i18n.t('tutorials.clock.notification.title'),
-				message: i18n.t('tutorials.clock.notification.message'),
-				type: 'clock'
-			});
-			
-			// Find or create notification container
-			let container = document.getElementById('tutorial-notification-container');
-			if (!container) {
-				container = document.createElement('div');
-				container.id = 'tutorial-notification-container';
-				document.body.appendChild(container);
-			}
-			
-			// Mount the notification
-			app.use(i18n);
-			app.mount(container);
+      showModalNotification({
+        title: i18n.t('tutorials.clock.notification.title'),
+        message: i18n.t('tutorials.clock.notification.message'),
+        type: 'clock'
+      }, i18n);
 		}
 	});
 });

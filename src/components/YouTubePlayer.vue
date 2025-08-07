@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
@@ -14,10 +14,20 @@ const props = defineProps({
 const isOnline = ref(false)
 const playerLoaded = ref(false)
 
+let onLineHandler = null
+let offLineHandler = null
+
 onMounted(() => {
   isOnline.value = navigator.onLine
-  window.addEventListener('online', () => isOnline.value = true)
-  window.addEventListener('offline', () => isOnline.value = false)
+  onLineHandler = () => { isOnline.value = true }
+  offLineHandler = () => { isOnline.value = false }
+  window.addEventListener('online', onLineHandler)
+  window.addEventListener('offline', offLineHandler)
+})
+
+onUnmounted(() => {
+  if (onLineHandler) window.removeEventListener('online', onLineHandler)
+  if (offLineHandler) window.removeEventListener('offline', offLineHandler)
 })
 
 const loadPlayer = () => {

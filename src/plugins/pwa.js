@@ -1,5 +1,6 @@
 import { registerSW } from 'virtual:pwa-register'
 import { version } from '../../package.json'
+import { showUpdateNotification } from '@/utils/notificationManager'
 
 /**
  * Compares two semantic version strings to determine if there's a major or minor version bump
@@ -26,43 +27,12 @@ function isSignificantUpdate(oldVersion, newVersion) {
  * Shows the update notification
  * @param {string} storedVersion - The previously stored version
  */
-async function showUpdateNotification(storedVersion) {
+async function showUpdateNotificationInternal(storedVersion) {
   console.log(`Showing update notification for update from ${storedVersion} to ${version}`);
   
   try {
-    // Dynamically import the required modules
-    const { createApp } = await import('vue');
-    const UpdateNotification = (await import('../components/UpdateNotification.vue')).default;
-    
-    // Find the notification container or create one if it doesn't exist
-    let container = document.getElementById('notification-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'notification-container';
-      document.body.appendChild(container);
-    }
-    
-    // Import the main i18n instance instead of creating a new one
     const i18n = (await import('../i18n/i18n')).default;
-    
-    // Create a new Vue app with the notification component
-    const notificationApp = createApp(UpdateNotification, { 
-      fromVersion: storedVersion 
-    });
-    
-    // Use the main i18n instance
-    notificationApp.use(i18n);
-    
-    // Mount the component
-    const vm = notificationApp.mount(container);
-    
-    // Call the open method directly on the component instance
-    if (typeof vm.open === 'function') {
-      vm.open();
-      console.log('Notification opened successfully');
-    } else {
-      console.error('open method not found on notification component', vm);
-    }
+    await showUpdateNotification({ fromVersion: storedVersion }, i18n);
     
     // Store the new version after showing the notification
     localStorage.setItem('appVersion', version);
@@ -123,7 +93,7 @@ export function initializePWA() {
           isSignificantUpdate(storedVersion, version)) {
         
         console.log('Significant version change detected, showing notification');
-        showUpdateNotification(storedVersion);
+        showUpdateNotificationInternal(storedVersion);
       } else if (storedVersion !== version) {
         // Always update the stored version, even if we don't show a notification
         console.log(`Updating stored version from ${storedVersion} to ${version} (no notification)`);

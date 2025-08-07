@@ -13,7 +13,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { languageService } from './i18n/i18n';
 
@@ -32,7 +32,10 @@ if (import.meta.env.SSR) {
   locale.value = pathLang;
 }
 
+let keydownHandler = null;
+
 // In client, use language service to ensure URL-based language is set correctly
+
 onMounted(() => {
   // Use language service to determine and set language based on URL
   const detectedLang = languageService.determineAndSetLanguage({
@@ -41,6 +44,21 @@ onMounted(() => {
   
   // Update the locale reference for components using it
   locale.value = detectedLang;
+
+  // Global keyboard shortcut (CMD/CTRL + K) once at app level
+  keydownHandler = (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+      if (confirm('Es-tu sûr de vouloir effacer toutes les données enregistrées ?')) {
+        localStorage?.clear();
+        window.location.reload();
+      }
+    }
+  };
+  window.addEventListener('keydown', keydownHandler);
+});
+
+onUnmounted(() => {
+  if (keydownHandler) window.removeEventListener('keydown', keydownHandler);
 });
 </script>
 

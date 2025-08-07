@@ -374,6 +374,7 @@ import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents } from 'natural-time-js';
 import { useI18n } from 'vue-i18n'
 import { createApp } from 'vue';
+import { showModalNotification, hideModalNotification } from '@/utils/notificationManager';
 
 // Store imports
 import { useContextStore } from '@/stores/contextStore'
@@ -503,24 +504,12 @@ const toggleTimeTravel = () => {
     spiralActivePanel.value = null;
     spiralTutorialMode.value = false;
     
-    // Show time travel welcome notification
-    const app = createApp(ModalNotification, {
-      title: i18n.t('tutorials.timeTravel.notification.title'),
-      message: i18n.t('tutorials.timeTravel.notification.message'),
-      type: 'spiral'
-    });
-    
-    // Find or create notification container
-    let container = document.getElementById('tutorial-notification-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'tutorial-notification-container';
-      document.body.appendChild(container);
-    }
-    
-    // Mount the notification
-    app.use(i18n);
-    app.mount(container);
+      // Show time travel welcome notification through manager
+      showModalNotification({
+        title: i18n.t('tutorials.timeTravel.notification.title'),
+        message: i18n.t('tutorials.timeTravel.notification.message'),
+        type: 'spiral'
+      }, i18n);
   }
 };
 
@@ -530,6 +519,7 @@ const openPanel = (panel) => {
   spiralTutorialMode.value = false;
   closeNotification();
   closeTimeTravel();
+    hideModalNotification();
 };
 
 const preventNotificationForOneDay = () => {
@@ -544,6 +534,7 @@ const closeNotification = () => {
 const closeTimeTravel = () => {
   spiralTimeTravelMode.value = false;
   timeDelta.value = 0;
+    hideModalNotification();
 };
 
 const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;	
@@ -567,24 +558,11 @@ onMounted(() => {
   
   // Show tutorial welcome notification if tutorial mode is active
   if (spiralTutorialMode.value && spiralTutorialCurrentStep.value === 0) {
-    // Dynamically create and mount the tutorial welcome notification
-    const app = createApp(ModalNotification, {
+    showModalNotification({
       title: i18n.t('tutorials.spiral.notification.title'),
       message: i18n.t('tutorials.spiral.notification.message'),
       type: 'spiral'
-    });
-    
-    // Find or create notification container
-    let container = document.getElementById('tutorial-notification-container');
-    if (!container) {
-      container = document.createElement('div');
-      container.id = 'tutorial-notification-container';
-      document.body.appendChild(container);
-    }
-    
-    // Mount the notification
-    app.use(i18n);
-    app.mount(container);
+    }, i18n);
   }
   
   // Watchers
@@ -595,24 +573,11 @@ onMounted(() => {
   // Watch for tutorial mode changes to show welcome notification
   watch(() => spiralTutorialMode.value, (newValue) => {
     if (newValue && spiralTutorialCurrentStep.value === 0) {
-      // Dynamically create and mount the tutorial welcome notification
-      const app = createApp(ModalNotification, {
+      showModalNotification({
         title: i18n.t('tutorials.spiral.notification.title'),
         message: i18n.t('tutorials.spiral.notification.message'),
         type: 'spiral'
-      });
-      
-      // Find or create notification container
-      let container = document.getElementById('tutorial-notification-container');
-      if (!container) {
-        container = document.createElement('div');
-        container.id = 'tutorial-notification-container';
-        document.body.appendChild(container);
-      }
-      
-      // Mount the notification
-      app.use(i18n);
-      app.mount(container);
+      }, i18n);
     }
   });
 });

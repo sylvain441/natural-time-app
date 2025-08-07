@@ -52,12 +52,30 @@ export default ({delay = 400, interval = 50}) => ({
     ;['click', 'mouseout', 'touchend', 'touchcancel'].forEach(e => {
       el.addEventListener(e, cancel, { passive: true })
     })
+    
+    // Store references for cleanup
+    el.__longclick__ = { start, cancel }
   }
   ,
   created() {}, // new
   mounted() {},
   beforeUpdate() {}, // new
   updated() {},
-  beforeUnmount() {}, // new
-  unmounted() {}
+  beforeUnmount(el) {
+    // Ensure timers are cleared if the element unmounts mid-press
+    try { el.__longclick__?.cancel?.() } catch (e) {}
+  }, // new
+  unmounted(el) {
+    // Remove all listeners to avoid leaks
+    if (el && el.__longclick__) {
+      const { start, cancel } = el.__longclick__
+      ;['mousedown', 'touchstart'].forEach(e => {
+        el.removeEventListener(e, start)
+      })
+      ;['click', 'mouseout', 'touchend', 'touchcancel'].forEach(e => {
+        el.removeEventListener(e, cancel)
+      })
+      delete el.__longclick__
+    }
+  }
 })
