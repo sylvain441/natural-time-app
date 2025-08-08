@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'url'
 import { defineConfig } from 'vite'
-import { AVAILABLE_LANGUAGES, ROUTE_PATHS } from './src/i18n/config'
+import { AVAILABLE_LANGUAGES, ROUTE_PATHS, DEFAULT_LANGUAGE } from './src/i18n/config'
 
 // Plugins
 import vue from '@vitejs/plugin-vue'
@@ -68,21 +68,69 @@ async function injectSEOTags(filePath, lang) {
     
     // Get the relative path from the dist directory
     const relativePath = filePath.split('dist/')[1].replace('index.html', '');
-    const canonicalPath = relativePath.endsWith('/') ? relativePath : `${relativePath}/`;
+    let canonicalPath = relativePath.endsWith('/') ? relativePath : `${relativePath}/`;
+    // Normalize to avoid double slashes (e.g., //)
+    canonicalPath = canonicalPath.replace(/\/+/g, '/');
     
-    // Get the equivalent paths in other languages
-    const currentRoute = canonicalPath.split('/')[1] || '';
-    const alternateLinks = AVAILABLE_LANGUAGES.map(alternateLang => {
+    // Build canonical href without producing double slashes for root
+    const canonicalHref = canonicalPath === '/' ? '' : canonicalPath.replace(/^\//, '');
+    
+    // Detect startpwa (utility page): avoid indexing and canonical to root
+    const isStartPwa = canonicalPath.startsWith('startpwa/');
+
+    // Helper: build slug->routeKey map for a given lang
+    const slugToRouteKey = (language) => {
+      const map = {};
+      Object.keys(ROUTE_PATHS).forEach((key) => {
+        const slug = ROUTE_PATHS[key]?.[language];
+        if (slug) map[slug.replace(/\/$/, '')] = key;
+      });
+      return map;
+    };
+    const currentSlugToKey = slugToRouteKey(lang);
+    
+    // Determine page slug (part after lang/), if any
+    // canonicalPath is like "en/" or "en/natural-time-clock/" or "" for root
+    let pageSlug = '';
+    if (canonicalPath && canonicalPath !== '/' && lang && canonicalPath.startsWith(`${lang}/`)) {
+      pageSlug = canonicalPath.slice(lang.length + 1).replace(/\/$/, '');
+    }
+    
+    const alternateLinks = isStartPwa ? '' : AVAILABLE_LANGUAGES.map((alternateLang) => {
       if (alternateLang === lang) return '';
-      const alternatePath = currentRoute ? ROUTE_PATHS[currentRoute]?.[alternateLang] || currentRoute : '';
-      return `<link rel="alternate" hreflang="${alternateLang}" href="https://naturaltime.app/${alternateLang}/${alternatePath}" />`;
+      // Root page (no lang in path): alternate homepages
+      if (!canonicalPath || canonicalPath === '/') {
+        return `<link rel="alternate" hreflang="${alternateLang}" href="https://naturaltime.app/${alternateLang}/" />`;
+      }
+      // Language homepage
+      if (pageSlug === '') {
+        return `<link rel="alternate" hreflang="${alternateLang}" href="https://naturaltime.app/${alternateLang}/" />`;
+      }
+      // Content page: map slug -> route key -> alternate slug
+      const routeKey = currentSlugToKey[pageSlug];
+      const altSlug = routeKey ? (ROUTE_PATHS[routeKey]?.[alternateLang] || pageSlug) : pageSlug;
+      return `<link rel="alternate" hreflang="${alternateLang}" href="https://naturaltime.app/${alternateLang}/${altSlug}/" />`;
     }).filter(Boolean).join('\n    ');
+
+    // Add x-default alternate
+    let xDefaultHref = 'https://naturaltime.app/';
+    if (canonicalPath && canonicalPath !== '/' && pageSlug) {
+      const routeKey = currentSlugToKey[pageSlug];
+      const defaultSlug = routeKey ? (ROUTE_PATHS[routeKey]?.[DEFAULT_LANGUAGE] || pageSlug) : pageSlug;
+      xDefaultHref = `https://naturaltime.app/${DEFAULT_LANGUAGE}/${defaultSlug}/`;
+    } else {
+      // For language homepages and root, point x-default to site root
+      xDefaultHref = 'https://naturaltime.app/';
+    }
+    const xDefaultLink = `<link rel="alternate" hreflang="x-default" href="${isStartPwa ? 'https://naturaltime.app/' : xDefaultHref}" />`;
     
     // Only add essential SEO tags that don't conflict with component meta tags
     const seoTags = `
     <meta charset="UTF-8" />
     ${alternateLinks}
-    <link rel="canonical" href="https://naturaltime.app/${canonicalPath}" />`;
+    ${xDefaultLink}
+    <meta name="robots" content="${isStartPwa ? 'noindex,follow' : 'index,follow'}" />
+    <link rel="canonical" href="https://naturaltime.app/${isStartPwa ? '' : canonicalHref}" />`;
     
     // Remove only duplicate canonical and alternate links
     content = content.replace(/<link rel="alternate" hreflang[^>]*>/g, '')

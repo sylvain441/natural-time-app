@@ -50,7 +50,7 @@
       "title": "Natural Time - A new way to measure time, inspired by nature",
       "description": "Discover and understand the 360° natural clock synchronized with the sun and the 13 moons spiral of 28 days",
       "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
-      "ogUrl": "https://naturaltime.app/en"
+      "ogUrl": "https://naturaltime.app/en/"
     }
   },
   "navigation": {
@@ -207,7 +207,7 @@
       "description": "Explore the 360° natural clock that rotates in perfect harmony with the sun's journey across the sky",
       "title": "Natural Time Clock - A single hand synchronized with the sun",
       "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
-      "ogUrl": "https://naturaltime.app/en/clock"
+      "ogUrl": "https://naturaltime.app/en/natural-time-clock/"
     },
     "timeTravel": {
       "title": "Time Travel",
@@ -284,7 +284,7 @@
       "title": "13 Moons Spiral - Natural Time - A natural alternative to the Gregorian calendar",
       "description": "Discover the elegant 13 moons spiral of 28 days that replaces our artificial 12-month calendar",
       "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
-      "ogUrl": "https://naturaltime.app/en/spiral"
+      "ogUrl": "https://naturaltime.app/en/13-moons-spiral/"
     },
     "timeTravel": {
       "title": "Time Travel",
