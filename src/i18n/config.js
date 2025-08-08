@@ -6,7 +6,7 @@
 export const AVAILABLE_LANGUAGES = ['fr', 'en', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'it', 'ru', 'el', 'zh', 'ja'];
 
 // Default language
-export const DEFAULT_LANGUAGE = 'fr';
+export const DEFAULT_LANGUAGE = 'en';
 
 // URL path configuration by language
 export const ROUTE_PATHS = {

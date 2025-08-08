@@ -384,5 +384,9 @@
     "title": "Applicazione aggiornata!",
     "v2_2": "Ora disponibile in inglese. E la sezione Domande frequenti è piena di nuovi contenuti.",
     "v2_3": "Versione spagnola ora disponibile! È anche l'occasione per rileggere la sezione Domande frequenti."
+  },
+  "common": {
+    "loading": "Caricamento…",
+    "confirmReset": "Sei sicuro di voler cancellare tutti i dati salvati?"
   }
 }

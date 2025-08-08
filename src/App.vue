@@ -18,7 +18,7 @@ import { useI18n } from 'vue-i18n';
 import { languageService } from './i18n/i18n';
 
 const route = useRoute();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 
 // During SSG, use language service to determine language from route path
 if (import.meta.env.SSR) {
@@ -48,7 +48,7 @@ onMounted(() => {
   // Global keyboard shortcut (CMD/CTRL + K) once at app level
   keydownHandler = (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-      if (confirm('Es-tu sûr de vouloir effacer toutes les données enregistrées ?')) {
+      if (confirm(t('common.confirmReset'))) {
         localStorage?.clear();
         window.location.reload();
       }
@@ -138,6 +138,35 @@ svg {
 
 svg line {
 	transform-origin: center;
+}
+
+/* Locale-specific font stacks (no external calls; uses system fonts or locally packaged fonts if added) */
+html[lang="ja"] body {
+  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+html[lang="ja"] .font-title {
+  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif !important;
+}
+
+html[lang="zh"] body {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+html[lang="zh"] .font-title {
+  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'Source Han Serif SC', 'PingFang SC', serif !important;
+}
+
+html[lang="ru"] body {
+  font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
+}
+html[lang="ru"] .font-title {
+  font-family: 'Noto Serif', 'Times New Roman', serif !important;
+}
+
+html[lang="el"] body {
+  font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
+}
+html[lang="el"] .font-title {
+  font-family: 'Noto Serif', 'Times New Roman', serif !important;
 }
 
 </style>

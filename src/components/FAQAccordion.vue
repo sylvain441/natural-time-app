@@ -1,7 +1,7 @@
 <template>
   <div id="FAQ" ref="faqRef">
     <div v-if="faqHtml" v-html="filteredFaq"></div>
-    <div v-else class="text-gray-400 italic">Loading…</div>
+    <div v-else class="text-gray-400 italic">{{ $t('common.loading') }}</div>
   </div>
 </template>
 
