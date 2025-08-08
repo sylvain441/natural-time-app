@@ -25,16 +25,16 @@
 					<!-- TITLE -->
 					<Transition name="fade">
 					<div v-if="!clockTimeTravelMode">
-						<h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
-							class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
-							title="Modifier l'emplacement">
+                        <h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
+                            class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
+                            :title="$t('locationPicker.title')">
 							<div
 								v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude === null"
-								class="px-3 py-1 bg-nt-yellow-light">
-								Choisir un emplacement
+                                class="px-3 py-1 bg-nt-yellow-light">
+                                {{ $t('locationPicker.title') }}
 							</div>
-							<div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
-								{{ location || "Temps Naturel" }}
+                            <div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
+                                {{ location || $t('welcome.title') }}
 								<span v-if="latitude && longitude" class="font-normal">
 									| {{ context.naturalDate.toLongitudeString(0) }}
 								</span>
@@ -47,17 +47,17 @@
 						<!-- SUBTITLE -->
 						<div
 							v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude === null">
-							<h2 class="text-slate-500 text-md md:text-xl">
-								L'application a besoin d'une position géographique pour fonctionner
-							</h2>
+                            <h2 class="text-slate-500 text-md md:text-xl">
+                                {{ $t('locationPicker.explanation') }}
+                            </h2>
 						</div>
 						<div v-else-if="!clockTutorialMode && latitude && longitude">
 							<h2
 								class="flex justify-evenly items-center text-slate-400 font-medium text-sm md:text-xl space-x-4">
-								<span
-									@click="toggleTimeTravel"
-									class="font-extrabold text-xl bg-black text-nt-yellow-light font-mono px-2 py-1 mb-3 cursor-pointer hover:bg-slate-900 transition-colors duration-200"
-									title="Ouvrir le voyage temporel">
+                                <span
+                                    @click="toggleTimeTravel"
+                                    class="font-extrabold text-xl bg-black text-nt-yellow-light font-mono px-2 py-1 mb-3 cursor-pointer hover:bg-slate-900 transition-colors duration-200"
+                                    :title="$t('clock.timeTravel.title')">
 									{{ context.naturalDate.toTimeString() }}
 								</span>
 							</h2>
@@ -74,9 +74,9 @@
 					<Transition name="fade">
 					<div v-if="clockTimeTravelMode">
 						<div class="bg-white/80 w-fit mx-auto mb-2 py-1 px-4 rounded-lg shadow-lg">
-							<p class="text-center text-gray-500 font-mono text-xs">
-								<span class=" ">{{ new Date(context.naturalDate.unixTime).toLocaleDateString() }}</span>&nbsp;
-								<span class="font-extrabold text-lg">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}) }}</span>&nbsp;
+                            <p class="text-center text-gray-500 font-mono text-xs">
+                                <span class=" ">{{ new Date(context.naturalDate.unixTime).toLocaleDateString($t('display.dateFormat')) }}</span>&nbsp;
+                                <span class="font-extrabold text-lg">{{ new Date(context.naturalDate.unixTime).toLocaleTimeString($t('display.dateFormat'), {hour: '2-digit', minute: '2-digit'}) }}</span>&nbsp;
 								<span class="">UTC{{ new Date(context.naturalDate.unixTime).getTimezoneOffset() > 0 ? '-' : '+' }}{{ Math.abs(new Date(context.naturalDate.unixTime).getTimezoneOffset() / 60) }}</span>&nbsp;&nbsp;
 							</p>
 							<p class="text-center text-gray-900 font-mono text-xs">

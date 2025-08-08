@@ -1,12 +1,12 @@
 <template>
   <div id="FAQ" ref="faqRef">
     <div v-if="faqHtml" v-html="filteredFaq"></div>
-    <div v-else class="text-gray-400 italic">Loading…</div>
+    <div v-else class="text-gray-400 italic">{{ $t('common.loading') }}</div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch, nextTick, onServerPrefetch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { loadFaqHtmlForLocale } from '@/i18n/faq/faqLoader';
 
@@ -27,6 +27,11 @@ const faqHtml = ref('');
 async function refreshFaq() {
   faqHtml.value = await loadFaqHtmlForLocale(locale.value);
 }
+
+// SSR: pre-render FAQ HTML so it appears in the static markup
+onServerPrefetch(async () => {
+  faqHtml.value = await loadFaqHtmlForLocale(locale.value);
+});
 
 const filteredFaq = computed(() => {
   const content = faqHtml.value || '';

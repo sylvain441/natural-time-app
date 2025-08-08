@@ -49,7 +49,7 @@
     "meta": {
       "title": "自然时间 - 一种受自然启发的全新计时方式",
       "description": "发现并理解与太阳同步的 360° 自然时钟，以及 13 月 28 天的螺旋日历",
-      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogImage": "https://naturaltime.app/natural-time-social-zh.jpg",
       "ogUrl": "https://naturaltime.app/zh/"
     }
   },
@@ -246,6 +246,10 @@
     "title": "应用已更新！",
     "v2_2": "现已提供英文版本。同时我们的 FAQ 也新增了很多内容。",
     "v2_3": "西班牙语版本现已上线！也欢迎前往 FAQ 查看。"
+  },
+  "common": {
+    "loading": "加载中…",
+    "confirmReset": "确定要清除所有已保存的数据吗？"
   }
 }
 

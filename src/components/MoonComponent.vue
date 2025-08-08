@@ -26,7 +26,7 @@
           {'show-animation': spiralSkin.showAnimation},
           {'cursor-pointer': !spiralWelcomeMode}
         ]"
-        :title="isClient ? $t('moon.dayTooltip.naturalTime', { date: day.date.toDateString() }) + '\n' + $t('moon.dayTooltip.artificialTime', { date: new Date(day.date.unixTime).toLocaleDateString() }) : ''"
+        :title="isClient ? $t('moon.dayTooltip.naturalTime', { date: day.date.toDateString() }) + '\n' + $t('moon.dayTooltip.artificialTime', { date: new Date(day.date.unixTime).toLocaleDateString($t('display.dateFormat')) }) : ''"
         @click="!spiralWelcomeMode && openTimeTravelForDay(day.date)">
         <span v-if="spiralSkin.showDaysNumber" class="day-of-moon-number font-mono font-bold">{{day.date.toDayOfMoonString()}}</span>
       </div>

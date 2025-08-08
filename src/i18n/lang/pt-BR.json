@@ -146,7 +146,8 @@
   "mainMenuLegacy": { "title": "Tempo Natural", "clock": "Relógio", "spiral": "13 Luas", "home": "← Início", "reset": "reset", "aria": { "openMenu": "Abrir menu", "closeMenu": "Fechar menu" } },
   "youtubePlayer": { "thumbnail": "Entender o Tempo Natural em 10 minutos" },
   "notFound": { "title": "404", "message": "Ops! Página não encontrada.", "button": "Voltar ao início" },
-  "update": { "title": "Aplicativo atualizado!", "v2_2": "Agora disponível em inglês. Dê também uma olhada na nova seção de FAQ.", "v2_3": "Versão em espanhol agora disponível! Esta também é uma boa oportunidade para ler nossa seção de FAQ." }
+  "update": { "title": "Aplicativo atualizado!", "v2_2": "Agora disponível em inglês. Dê também uma olhada na nova seção de FAQ.", "v2_3": "Versão em espanhol agora disponível! Esta também é uma boa oportunidade para ler nossa seção de FAQ." },
+  "common": { "loading": "Carregando…", "confirmReset": "Tem certeza de que deseja limpar todos os dados salvos?" }
 }
 
 

@@ -2,19 +2,27 @@ import { createI18n } from "vue-i18n";
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from './config';
 import { watch } from 'vue';
 
-// Import JSON files
-import fr from './lang/fr.json';
-import en from './lang/en.json';
-import es from './lang/es.json';
-import es419 from './lang/es-419.json';
-import pt from './lang/pt.json';
-import ptBR from './lang/pt-BR.json';
-import de from './lang/de.json';
-import it from './lang/it.json';
-import ru from './lang/ru.json';
-import el from './lang/el.json';
-import zh from './lang/zh.json';
-import ja from './lang/ja.json';
+// Lazy import map by locale code (CSR)
+const lazyMessages = {
+  fr: () => import('./lang/fr.json'),
+  en: () => import('./lang/en.json'),
+  es: () => import('./lang/es.json'),
+  'es-419': () => import('./lang/es-419.json'),
+  pt: () => import('./lang/pt.json'),
+  'pt-BR': () => import('./lang/pt-BR.json'),
+  de: () => import('./lang/de.json'),
+  it: () => import('./lang/it.json'),
+  ru: () => import('./lang/ru.json'),
+  el: () => import('./lang/el.json'),
+  zh: () => import('./lang/zh.json'),
+  ja: () => import('./lang/ja.json'),
+};
+
+// Eager import map for SSR to guarantee availability during first render
+// Note: Only evaluated on server; does not bloat client bundle
+const ssrMessages = import.meta.env.SSR
+  ? import.meta.glob('./lang/*.json', { eager: true })
+  : null;
 
 // Language detection and management methods
 // -------------------------------------
@@ -133,25 +141,78 @@ const initialLocale = import.meta.env.SSR
 const i18n = createI18n({
   locale: initialLocale,
   fallbackLocale: DEFAULT_LANGUAGE,
-  missingWarn: false,
-  fallbackWarn: false,
-  messages: {
-    fr,
-    en,
-    es,
-    'es-419': es419,
-    pt,
-    'pt-BR': ptBR,
-    de,
-    it,
-    ru,
-    el,
-    zh,
-    ja
-  },
+  // Show missing/fallback warnings only in development
+  missingWarn: import.meta.env.DEV,
+  fallbackWarn: import.meta.env.DEV,
+  messages: {},
   legacy: false,
-  allowComposition: true
+  allowComposition: true,
+  // Ensure `$t` is available in templates during both SSR and CSR
+  globalInjection: true
 });
+
+// Preload current locale synchronously for CSR; SSR will set per-route later
+export async function ensureLocaleMessages(locale) {
+  const code = locale || DEFAULT_LANGUAGE;
+  // In SSR, load messages synchronously from eagerly imported modules
+  if (import.meta.env.SSR) {
+    if (!i18n.global.getLocaleMessage(code) || Object.keys(i18n.global.getLocaleMessage(code)).length === 0) {
+      const key = `./lang/${code}.json`;
+      const mod = ssrMessages?.[key];
+      const msgs = mod?.default || {};
+      i18n.global.setLocaleMessage(code, msgs);
+    }
+    return;
+  }
+  // In CSR, load messages lazily
+  if (!i18n.global.getLocaleMessage(code) || Object.keys(i18n.global.getLocaleMessage(code)).length === 0) {
+    const mod = await (lazyMessages[code]?.());
+    const msgs = mod?.default || {};
+    i18n.global.setLocaleMessage(code, msgs);
+  }
+}
+
+// On-demand font CSS per locale (fallbacks to system fonts offline)
+async function ensureLocaleFonts(locale) {
+  // Avoid importing font CSS during SSR; it is only needed client-side
+  if (import.meta.env.SSR) return;
+  try {
+    if (locale === 'ja') {
+      await Promise.all([
+        import('@fontsource/noto-sans-jp/400.css'),
+        import('@fontsource/noto-sans-jp/700.css'),
+        import('@fontsource/noto-serif-jp/400.css'),
+        import('@fontsource/noto-serif-jp/700.css'),
+      ]);
+    } else if (locale === 'zh') {
+      await Promise.all([
+        import('@fontsource/noto-sans-sc/400.css'),
+        import('@fontsource/noto-sans-sc/700.css'),
+        import('@fontsource/noto-serif-sc/400.css'),
+        import('@fontsource/noto-serif-sc/700.css'),
+      ]);
+    } else if (['ru', 'el'].includes(locale)) {
+      await Promise.all([
+        import('@fontsource/noto-sans/400.css'),
+        import('@fontsource/noto-sans/700.css'),
+        import('@fontsource/noto-serif/400.css'),
+        import('@fontsource/noto-serif/700.css'),
+      ]);
+    }
+  } catch (_) {
+    // If offline or not needed, system fonts will be used
+  }
+}
+
+// Expose a helper to preload assets for a given locale (CSR only)
+export async function preloadLocaleAssets(locale) {
+  if (import.meta.env.SSR) return;
+  const code = locale || initialLocale;
+  await Promise.all([
+    ensureLocaleMessages(code),
+    ensureLocaleFonts(code),
+  ]);
+}
 
 // Export language service methods
 // -------------------------------------
@@ -169,7 +230,13 @@ export const languageService = {
     }
     
     if (i18n.global.locale.value !== lang) {
-      i18n.global.locale.value = lang;
+      // Ensure messages are loaded before switching
+      Promise.all([
+        ensureLocaleMessages(lang),
+        ensureLocaleFonts(lang),
+      ]).then(() => {
+        i18n.global.locale.value = lang;
+      });
       
       // Save preference if requested
       if (persistPreference) {

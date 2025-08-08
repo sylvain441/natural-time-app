@@ -49,7 +49,7 @@
     "meta": {
       "title": "自然時間 - いのちに学ぶ新しい時間の測り方",
       "description": "太陽と同期する360°の自然時間の時計と、28日×13か月のスパイラルを発見し、理解しよう",
-      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogImage": "https://naturaltime.app/natural-time-social-ja.jpg",
       "ogUrl": "https://naturaltime.app/ja/"
     }
   },
@@ -378,6 +378,10 @@
     "title": "アプリが更新されました！",
     "v2_2": "英語版を公開しました。FAQにも新しい回答がたくさん追加されました。",
     "v2_3": "スペイン語版が登場！ あわせて FAQ もチェックしてみてください。"
+  },
+  "common": {
+    "loading": "読み込み中…",
+    "confirmReset": "保存されているデータをすべて削除しますか？"
   }
 }
 

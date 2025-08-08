@@ -2,7 +2,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/router'
 import i18n from './i18n/i18n'
-import { languageService } from './i18n/i18n'
+import { languageService, preloadLocaleAssets, ensureLocaleMessages } from './i18n/i18n'
 import longClickDirective from './directive/longclick'
 import Vue3TouchEvents from "vue3-touch-events";
 import { version } from '../package.json'
@@ -11,6 +11,9 @@ import { watch } from 'vue'
 import { initializePWA } from './plugins/pwa'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { ViteSSG } from 'vite-ssg'
+
+// Self-hosted fonts (subset imports; WOFF2 bundled offline)
+// Fonts are now loaded on-demand per locale in i18n service
 
 const migrateData = () => {
   // Clear both stores by removing their persisted data from localStorage
@@ -25,7 +28,7 @@ export const createApp = ViteSSG(
     base: '/',
     routes: router.options.routes,
   },
-  ({ app, router, initialState, head }) => {
+  async ({ app, router, initialState, head }) => {
 
     // PINIA LOGIC
     const pinia = createPinia();
@@ -45,6 +48,10 @@ export const createApp = ViteSSG(
         isSSR: true,
         pathname: routePath
       });
+      // Ensure messages are available for SSR before rendering head
+      await ensureLocaleMessages(lang);
+      // Set locale synchronously for SSR so components render translated strings
+      i18n.global.locale.value = lang;
       
       // Set HTML attributes 
       head.htmlAttrs = { lang };
@@ -111,6 +118,14 @@ export const createApp = ViteSSG(
 
     // CLIENT SIDE ONLY LOGIC
     if (!import.meta.env.SSR) {
+      // Ensure the proper locale is selected and its messages are loaded
+      // BEFORE any component mounts/hydrates, to avoid rendering translation keys.
+      const initialPathLang = languageService.determineAndSetLanguage({ pathname: window.location.pathname });
+      await ensureLocaleMessages(initialPathLang);
+      i18n.global.locale.value = initialPathLang;
+      // Preload fonts/messages for the initial locale
+      await preloadLocaleAssets(initialPathLang);
+
       app
         .use(Vue3TouchEvents, {rollOverFrequency: 500})
         .directive('longclick', longClickDirective({delay: 200, interval: 50}));
@@ -119,6 +134,11 @@ export const createApp = ViteSSG(
       watch(() => i18n.global.locale.value, (newLocale) => {
         if (typeof localStorage !== 'undefined' && newLocale) {
           localStorage.setItem('user-language', newLocale);
+        }
+        // Load fonts/messages for the new locale on demand
+        if (newLocale) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          preloadLocaleAssets(newLocale);
         }
       });
 

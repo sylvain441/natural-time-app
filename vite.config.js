@@ -179,8 +179,9 @@ export default defineConfig({
     // PWA configuration
     VitePWA({ 
       registerType: 'autoUpdate',
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,woff2}'],
+        workbox: {
+        // Do not precache font files; they are loaded at runtime per locale
+        globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
@@ -196,6 +197,17 @@ export default defineConfig({
                 maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
               }
             },
+          },
+          {
+            urlPattern: /\.(?:woff2)$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'font-assets',
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 180 * 24 * 60 * 60 // 180 days
+              }
+            }
           }
         ],
       },
@@ -337,7 +349,7 @@ Sitemap: https://naturaltime.app/sitemap.xml`;
         for (const file of rootFiles) {
           const filePath = path.join(distDir, file);
           if (fs.existsSync(filePath)) {
-            await fixLangAttribute(filePath, AVAILABLE_LANGUAGES[0]);
+            await fixLangAttribute(filePath, DEFAULT_LANGUAGE);
           }
         }
       } catch (err) {

@@ -252,6 +252,10 @@
     "title": "Aplicação atualizada!",
     "v2_2": "Agora disponível em inglês. Dá também uma vista de olhos na nossa secção de FAQ.",
     "v2_3": "Versão em espanhol agora disponível! É também uma boa oportunidade para ler a nossa secção de FAQ."
+  },
+  "common": {
+    "loading": "A carregar…",
+    "confirmReset": "Tens a certeza de que queres apagar todos os dados guardados?"
   }
 }
 

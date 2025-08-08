@@ -8,6 +8,12 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@fontsource/noto-sans": "^5.2.7",
+    "@fontsource/noto-sans-jp": "^5.2.6",
+    "@fontsource/noto-sans-sc": "^5.2.6",
+    "@fontsource/noto-serif": "^5.2.7",
+    "@fontsource/noto-serif-jp": "^5.2.6",
+    "@fontsource/noto-serif-sc": "^5.2.6",
     "natural-time-js": "^2.0.4",
     "ol": "^10.2.0",
     "ol-geocoder": "^4.3.3",

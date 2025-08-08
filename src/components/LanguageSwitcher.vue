@@ -53,11 +53,12 @@ const getLanguageTitle = (lang) => {
     'es-419': 'Español (Latinoamérica)',
     pt: 'Português',
     'pt-BR': 'Português (Brasil)',
-      de: 'Deutsch',
-      it: 'Italiano',
-      ru: 'Русский',
-      el: 'Ελληνικά',
-      zh: '中文（简体）',
+    de: 'Deutsch',
+    it: 'Italiano',
+    ru: 'Русский',
+    el: 'Ελληνικά',
+    zh: '中文（简体）',
+    ja: '日本語',
     // Add other languages here
   };
   return titles[lang] || lang;
@@ -77,6 +78,7 @@ const getLanguageFlag = (lang) => {
     ru: '🇷🇺',
     el: '🇬🇷',
     zh: '🇨🇳',
+    ja: '🇯🇵',
     // Add other languages here
   };
   return flags[lang] || lang.toUpperCase();

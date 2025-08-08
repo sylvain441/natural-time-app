@@ -389,6 +389,10 @@
     "title": "App aktualisiert!",
     "v2_2": "Jetzt auch auf Englisch verfügbar. Außerdem gibt es viele neue Inhalte in der FAQ.",
     "v2_3": "Spanische Version jetzt verfügbar! Eine gute Gelegenheit, die FAQ zu lesen."
+  },
+  "common": {
+    "loading": "Laden…",
+    "confirmReset": "Möchtest du wirklich alle gespeicherten Daten löschen?"
   }
 }
 
