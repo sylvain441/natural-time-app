@@ -3,7 +3,7 @@
  */
 
 // List of available languages
-export const AVAILABLE_LANGUAGES = ['fr', 'en'];
+export const AVAILABLE_LANGUAGES = ['fr', 'en', 'es'];
 
 // Default language
 export const DEFAULT_LANGUAGE = 'fr';
@@ -14,12 +14,14 @@ export const ROUTE_PATHS = {
   time: {
     fr: 'horloge-temps-naturel',
     en: 'natural-time-clock',
+    es: 'reloj-tiempo-natural',
     // Add other languages here
   },
   // Paths for the spiral page
   '13moons': {
     fr: 'spirale-13-lunes',
     en: '13-moons-spiral',
+    es: 'espiral-13-lunas',
     // Add other languages here
   },
   // Add other pages here if needed

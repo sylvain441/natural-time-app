@@ -49,6 +49,7 @@ const getLanguageTitle = (lang) => {
   const titles = {
     fr: 'Français',
     en: 'English',
+    es: 'Español',
     // Add other languages here
   };
   return titles[lang] || lang;
@@ -59,6 +60,7 @@ const getLanguageFlag = (lang) => {
   const flags = {
     fr: '🇫🇷',
     en: '🇬🇧',
+    es: '🇪🇸',
     // Add other languages here
   };
   return flags[lang] || lang.toUpperCase();

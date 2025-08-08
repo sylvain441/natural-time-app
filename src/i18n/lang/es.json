@@ -1,0 +1,393 @@
+{
+  "welcome": {
+    "title": "Tiempo Natural",
+    "subtitle": "Una nueva convención del tiempo",
+    "naturalClock": {
+      "title": "Reloj Natural",
+      "description": "Soy un reloj inspirado en la naturaleza.\nMi única aguja completa una sola vuelta al día...\nSigo el recorrido del sol por el cielo,\nsuavemente... sobre un dial de 360°.",
+      "cta": {
+        "discover": "Descubrir el reloj",
+        "open": "Abrir el reloj",
+        "tutorial": "Ver tutorial"
+      }
+    },
+    "thirteenMoons": {
+      "title": "Espiral de 13 Lunas",
+      "description": "Inspirado en tradiciones del mundo,\nmis 13 meses de 28 días\nreemplazan nuestro calendario convencional.\nEl año termina con el Día Arcoíris.",
+      "cta": {
+        "discover": "Descubrir las 13 lunas",
+        "open": "Abrir las 13 lunas",
+        "tutorial": "Ver tutorial"
+      }
+    },
+    "hero": {
+      "description": "Tiempo Natural reimagina cómo medimos el tiempo.\nA través del {clock} y la {spiral},\nel sol recupera su papel como referencia universal\ndel paso del tiempo...",
+      "clockLink": "reloj de 360°",
+      "spiralLink": "espiral de 13 lunas"
+    },
+    "understanding": {
+      "title": "Comprender",
+      "subtitle": "el tiempo natural",
+      "mission": "Soy un sistema de medición del tiempo\ncreado para reemplazar (o complementar)\nel reloj de 24 horas\ny el calendario gregoriano."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes"
+    },
+    "footer": {
+      "closing": {
+        "line1": "Creamos máquinas para medir el tiempo.",
+        "line2": "Luego nos volvimos esclavos de su tic-tac.",
+        "line3": "Tiempo Natural invierte esta tendencia.",
+        "line4": "La naturaleza ya nos dio el reloj perfecto...",
+        "line5": "¡El sol! El gran orquestador de todo lo vivo."
+      },
+      "credits": "Creado por {author} | {github}",
+      "author": "Sylvain",
+      "github": "Código abierto en GitHub",
+      "resetData": "Restablecer datos"
+    },
+    "meta": {
+      "title": "Tiempo Natural - Una nueva forma de medir el tiempo, inspirada en la naturaleza",
+      "description": "Descubre y comprende el reloj natural de 360° sincronizado con el sol y la espiral de 13 lunas de 28 días",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/es/"
+    }
+  },
+  "navigation": {
+    "clock": "Reloj",
+    "spiral": "13 Lunas",
+    "faq": "FAQ"
+  },
+  "tutorials": {
+    "clock": {
+      "welcome": {
+        "description": "Descubre una manera más simple e intuitiva de seguir el paso del día"
+      },
+      "notification": {
+        "title": "Tutorial del Reloj Natural",
+        "message": "¡Bienvenido! Esta guía visual explica el reloj natural de 360° en un abrir y cerrar de ojos"
+      },
+      "step1": {
+        "title": "Soy un reloj natural",
+        "description": "Apunto constantemente a la posición del sol"
+      },
+      "step2": {
+        "title": "Mi única aguja",
+        "description": "Hace una sola vuelta completa al día, muy lentamente"
+      },
+      "step3": {
+        "title": "Mi dial está graduado en 360°",
+        "description": "Adiós al complicado sistema 24h/60min/60s"
+      },
+      "step4": {
+        "title": "180° marca el verdadero mediodía",
+        "description": "Cuando el sol está más alto en el cielo"
+      },
+      "step5": {
+        "title": "0° indica la medianoche",
+        "description": "Cuando el sol está al otro lado de nuestra posición"
+      },
+      "step6": {
+        "title": "Los bigotes representan día y noche",
+        "description": "La duración día/noche varía según estación y latitud"
+      },
+      "step7": {
+        "title": "En el solsticio de verano...",
+        "description": "El sol sale por aquí"
+      },
+      "step8": {
+        "title": "En el solsticio de verano...",
+        "description": "Y se pone por allá"
+      },
+      "step9": {
+        "title": "En el solsticio de invierno...",
+        "description": "El sol sale aquí"
+      },
+      "step10": {
+        "title": "En el solsticio de invierno...",
+        "description": "Y se pone por allá"
+      },
+      "step11": {
+        "title": "Solo en los equinoccios",
+        "description": "El día y la noche duran exactamente lo mismo"
+      },
+      "step12": {
+        "title": "Ya no preguntamos \"¿Qué hora es?\"",
+        "description": "Sino \"¿Dónde está el sol en el cielo?\""
+      },
+      "step13": {
+        "title": "El sol está a 222°",
+        "description": "(por ejemplo)"
+      },
+      "step14": {
+        "title": "Los números son opcionales",
+        "description": "El reloj natural es ante todo una experiencia visual"
+      },
+      "end": {
+        "title": "¡Tutorial completado!",
+        "description": "Para continuar, la app necesita una ubicación geográfica"
+      }
+    },
+    "spiral": {
+      "welcome": {
+        "description": "Descubre la Espiral de 13 Lunas, un calendario universal basado 100% en ciclos naturales"
+      },
+      "notification": {
+        "title": "Tutorial 13 Lunas",
+        "message": "¡Bienvenido! Esta guía visual explica cómo funciona el calendario de 13 lunas"
+      },
+      "step1": {
+        "title": "Soy un calendario de 13 meses de 28 días",
+        "description": "Me llaman la \"Espiral de 13 Lunas\""
+      },
+      "step2": {
+        "title": "1 luna = 4 semanas de 7 días",
+        "description": "Exactamente 28 días, sin excepción"
+      },
+      "step3": {
+        "title": "Cada día lleva el nombre de un color",
+        "description": "1er día = Rojo"
+      },
+      "step4": {
+        "title": "Luego Naranja, Amarillo, Verde, Azul, Índigo",
+        "description": "Y finalmente el 7º día: Violeta"
+      },
+      "step5": {
+        "title": "Las 13 lunas están dispuestas en espiral",
+        "description": "Porque el tiempo es cíclico, no lineal"
+      },
+      "step6": {
+        "title": "Aquí el día 5 de la luna 5",
+        "description": "Por ejemplo..."
+      },
+      "step7": {
+        "title": "Y aquí: el día 11 de la luna 11",
+        "description": "Un día verde, sea cual sea el año o siglo"
+      },
+      "step8": {
+        "title": "¿Sabías? 13 × 28 = 364 días 🤩",
+        "description": "Añadamos un día más para llegar a 365"
+      },
+      "step9": {
+        "title": "Este es el Día Arcoíris 🌈",
+        "description": "Un día de celebración cerca del solsticio de invierno (hemisferio norte)"
+      },
+      "step10": {
+        "title": "Algunos años tienen 366 días",
+        "description": "La oportunidad de celebrar dos días consecutivos fuera del tiempo"
+      },
+      "step11": {
+        "title": "Una fecha natural se escribe: AÑO ) LUNA ) DÍA",
+        "description": "Un formato que permite un orden alfabético"
+      },
+      "step12": {
+        "title": "El día 1 del año 001",
+        "description": "corresponde al 22 de diciembre de 2012 (ver FAQ)"
+      },
+      "step13": {
+        "title": "Nota importante",
+        "description": "Los 28 días difieren del ciclo lunar de 29,53 días (ver FAQ)"
+      },
+      "end": {
+        "title": "¡Tutorial completado!",
+        "description": "Para continuar, la app necesita una ubicación geográfica"
+      }
+    },
+    "timeTravel": {
+      "notification": {
+        "title": "Modo viaje en el tiempo",
+        "message": "Para navegar por pasado y futuro:\nPaso 1: Elige una velocidad\nPaso 2: Usa los botones - y +\nConsejo: Mantén pulsados los botones para movimiento continuo"
+      }
+    }
+  },
+  "clock": {
+    "title": "Reloj de Tiempo Natural",
+    "subtitle": "Una sola aguja sincronizada con el sol",
+    "meta": {
+      "description": "Explora el reloj natural de 360° que gira en armonía con el recorrido del sol por el cielo",
+      "title": "Reloj de Tiempo Natural - Una sola aguja sincronizada con el sol",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/es/reloj-tiempo-natural/"
+    },
+    "timeTravel": {
+      "title": "Viaje en el tiempo",
+      "speedSelector": "Velocidad de viaje",
+      "resetButton": "Restablecer",
+      "exitButton": "Salir del viaje",
+      "speeds": [
+        { "value": "001°", "equivalentTo": "4min" },
+        { "value": "005°", "equivalentTo": "20min" },
+        { "value": "015°", "equivalentTo": "1h" },
+        { "value": "360°", "equivalentTo": "1día" },
+        { "value": "7 días", "equivalentTo": "" },
+        { "value": "28 días", "equivalentTo": "" }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Iniciar tutorial",
+      "skipButton": "Saltar tutorial",
+      "tutorialStep": "Tutorial",
+      "configureButton": "Configurar",
+      "skipWelcomeButton": "Saltar"
+    },
+    "menu": {
+      "settings": "Ajustes",
+      "locationPicker": "Elegir ubicación",
+      "simplifiedMode": {
+        "title": "Diseño simplificado",
+        "fullMode": "Diseño completo"
+      },
+      "understanding": "Comprender",
+      "startTutorial": "Iniciar tutorial",
+      "faq": "Preguntas frecuentes",
+      "specialMode": "Modo especial",
+      "timeTravel": "Viaje en el tiempo"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "Nueva ubicación detectada",
+        "ignoreButton": "Ignorar",
+        "updateButton": "Actualizar"
+      },
+      "southernHemisphere": {
+        "title": "Hemisferio Sur",
+        "description": "En este hemisferio, el reloj gira en sentido antihorario (de derecha a izquierda) para coincidir con el movimiento del sol.",
+        "dismissButton": "Entendido"
+      }
+    },
+    "component": {
+      "title": "Tiempo Natural"
+    }
+  },
+  "spiral": {
+    "title": "Espiral de 13 Lunas",
+    "subtitle": "Una alternativa natural al calendario gregoriano",
+    "meta": {
+      "title": "Espiral de 13 Lunas - Tiempo Natural - Una alternativa natural al calendario gregoriano",
+      "description": "Descubre la elegante espiral de 13 lunas de 28 días que sustituye nuestro calendario de 12 meses",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/es/espiral-13-lunas/"
+    },
+    "timeTravel": {
+      "title": "Viaje en el tiempo",
+      "speedSelector": "Velocidad de viaje",
+      "resetButton": "Restablecer",
+      "exitButton": "Salir del viaje",
+      "speeds": [
+        { "label": "1 día" },
+        { "label": "1 semana" },
+        { "label": "1 luna" }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Iniciar tutorial",
+      "skipButton": "Saltar tutorial",
+      "tutorialStep": "Tutorial",
+      "configureButton": "Configurar",
+      "skipWelcomeButton": "Saltar"
+    },
+    "menu": {
+      "settings": "Ajustes",
+      "locationPicker": "Elegir ubicación",
+      "viewMode": {
+        "spiralTitle": "Mostrar en espiral",
+        "verticalTitle": "Mostrar en vertical"
+      },
+      "understanding": "Comprender",
+      "startTutorial": "Iniciar tutorial",
+      "faq": "Preguntas frecuentes",
+      "specialMode": "Modo especial",
+      "timeTravel": "Viaje en el tiempo"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "Posición GPS cambiada. ¿Actualizar?",
+        "ignoreButton": "Ignorar hoy",
+        "updateButton": "Sí",
+        "dismissButton": "No"
+      }
+    }
+  },
+  "faq": {
+    "inProgress": "(En preparación)"
+  },
+  "locationPicker": {
+    "title": "Elegir una ubicación",
+    "nameLabel": {
+      "new": "Dar un nombre a esta ubicación",
+      "edit": "Editar nombre de la ubicación"
+    },
+    "optional": "(Opcional)",
+    "validate": "Confirmar",
+    "clickMap": "Haz clic en el mapa para elegir una ubicación",
+    "offline": "El dispositivo parece estar sin conexión. Verifica tu conexión o introduce tus coordenadas manualmente.",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "name": "Nombre",
+    "geolocation": {
+      "enable": "Activar geolocalización",
+      "enabled": "Geolocalización activada",
+      "searching": "Buscando ubicación...",
+      "detected": "Posición GPS detectada",
+      "recenter": "Recentrar",
+      "errors": {
+        "denied": "Por favor, activa la geolocalización en tu navegador",
+        "unavailable": "Posición no disponible",
+        "timeout": "Tiempo de espera excedido",
+        "error": "Error de geolocalización"
+      },
+      "retry": "Intentar de nuevo"
+    },
+    "explanation": "Tiempo Natural necesita una ubicación para seguir la posición del sol con precisión."
+  },
+  "moon": {
+    "title": {
+      "moon": "Luna #{number}",
+      "rainbowDay": "Día Arcoíris",
+      "rainbowDays": "Días Arcoíris"
+    },
+    "dayTooltip": {
+      "naturalTime": "Tiempo Natural => {date}",
+      "artificialTime": "Tiempo artificial => {date}"
+    }
+  },
+  "mainMenu": {
+    "homeTooltip": "Inicio naturaltime.app"
+  },
+  "display": {
+    "year": "Año",
+    "moon": "Luna",
+    "day": "Día",
+    "rainbow": {
+      "arc": "Arco",
+      "day": "Día",
+      "sky": "Íris"
+    },
+    "dateFormat": "es-ES"
+  },
+  "mainMenuLegacy": {
+    "title": "Tiempo Natural",
+    "clock": "Reloj",
+    "spiral": "13 Lunas",
+    "home": "← Inicio",
+    "reset": "reset",
+    "aria": {
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú"
+    }
+  },
+  "youtubePlayer": {
+    "thumbnail": "Entender Tiempo Natural en 10 minutos"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "¡Ups! Página no encontrada.",
+    "button": "Volver al inicio"
+  },
+  "update": {
+    "title": "¡Aplicación actualizada!",
+    "v2_2": "Ahora disponible en inglés. Consulta también el nuevo contenido en nuestra sección de FAQ."
+  }
+}
+
+
