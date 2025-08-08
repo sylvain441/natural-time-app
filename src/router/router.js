@@ -42,6 +42,10 @@ const createLocalizedRoutes = (lang) => [
     beforeEnter: (to, from, next) => {
       const configStore = useConfigStore()
       configStore.clearNavigationState()
+      // Enable tutorial mode if requested via query param
+      if (to.query && (to.query.tutorial === '1' || to.query.tutorial === 1 || to.query.tutorial === true)) {
+        configStore.clockTutorialMode = true
+      }
       next()
     }
   },
@@ -53,6 +57,10 @@ const createLocalizedRoutes = (lang) => [
     beforeEnter: (to, from, next) => {
       const configStore = useConfigStore()
       configStore.clearNavigationState()
+      // Enable tutorial mode if requested via query param
+      if (to.query && (to.query.tutorial === '1' || to.query.tutorial === 1 || to.query.tutorial === true)) {
+        configStore.spiralTutorialMode = true
+      }
       next()
     }
   },

@@ -191,7 +191,6 @@ import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 import { ref, computed } from 'vue';
 import { useHead } from '@unhead/vue';
 import { useContextStore } from '@/stores/contextStore'; // Import the context store
-import { useConfigStore } from '@/stores/configStore'; // Import the config store
 import { version } from '../../package.json';
 import { useI18n } from 'vue-i18n';
 import { getLocalizedRouteName } from '../i18n/config';
@@ -200,7 +199,6 @@ import YearSVG from '@/assets/icon/year.svg';
 
 const router = useRouter();
 const contextStore = useContextStore();
-const configStore = useConfigStore();
 const { t, locale } = useI18n();
 
 const naturalClockRef = ref(null);
@@ -221,13 +219,11 @@ const goToSpiralPage = () => router.push({ name: getLocalizedRouteName('13moons'
 
 // Functions to handle tutorial mode
 const openClockTutorial = () => {
-  configStore.clockTutorialMode = true;
-  router.push({ name: getLocalizedRouteName('time', locale.value) });
+  router.push({ name: getLocalizedRouteName('time', locale.value), query: { tutorial: '1' } });
 };
 
 const openSpiralTutorial = () => {
-  configStore.spiralTutorialMode = true;
-  router.push({ name: getLocalizedRouteName('13moons', locale.value) });
+  router.push({ name: getLocalizedRouteName('13moons', locale.value), query: { tutorial: '1' } });
 };
 
 useHead({
