@@ -9,6 +9,8 @@ import es from './lang/es.json';
 import es419 from './lang/es-419.json';
 import pt from './lang/pt.json';
 import ptBR from './lang/pt-BR.json';
+import de from './lang/de.json';
+import it from './lang/it.json';
 
 // Language detection and management methods
 // -------------------------------------
@@ -135,7 +137,9 @@ const i18n = createI18n({
     es,
     'es-419': es419,
     pt,
-    'pt-BR': ptBR
+    'pt-BR': ptBR,
+    de,
+    it
   },
   legacy: false,
   allowComposition: true
