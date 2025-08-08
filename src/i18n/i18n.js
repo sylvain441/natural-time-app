@@ -11,6 +11,7 @@ import pt from './lang/pt.json';
 import ptBR from './lang/pt-BR.json';
 import de from './lang/de.json';
 import it from './lang/it.json';
+import ru from './lang/ru.json';
 
 // Language detection and management methods
 // -------------------------------------
@@ -139,7 +140,8 @@ const i18n = createI18n({
     pt,
     'pt-BR': ptBR,
     de,
-    it
+    it,
+    ru
   },
   legacy: false,
   allowComposition: true

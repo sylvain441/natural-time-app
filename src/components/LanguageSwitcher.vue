@@ -55,6 +55,7 @@ const getLanguageTitle = (lang) => {
     'pt-BR': 'Português (Brasil)',
       de: 'Deutsch',
       it: 'Italiano',
+      ru: 'Русский',
     // Add other languages here
   };
   return titles[lang] || lang;
@@ -71,6 +72,7 @@ const getLanguageFlag = (lang) => {
     'pt-BR': '🇧🇷',
       de: '🇩🇪',
       it: '🇮🇹',
+      ru: '🇷🇺',
     // Add other languages here
   };
   return flags[lang] || lang.toUpperCase();

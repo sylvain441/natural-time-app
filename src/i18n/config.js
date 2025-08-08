@@ -3,7 +3,7 @@
  */
 
 // List of available languages
-export const AVAILABLE_LANGUAGES = ['fr', 'en', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'it'];
+export const AVAILABLE_LANGUAGES = ['fr', 'en', 'es', 'es-419', 'pt', 'pt-BR', 'de', 'it', 'ru'];
 
 // Default language
 export const DEFAULT_LANGUAGE = 'fr';
@@ -20,6 +20,7 @@ export const ROUTE_PATHS = {
     'pt-BR': 'relogio-tempo-natural',
     de: 'uhr-natuerliche-zeit',
     it: 'orologio-tempo-naturale',
+    ru: 'chasy-estestvennogo-vremeni',
     // Add other languages here
   },
   // Paths for the spiral page
@@ -32,6 +33,7 @@ export const ROUTE_PATHS = {
     'pt-BR': 'espiral-13-luas',
     de: 'spirale-13-monde',
     it: 'spirale-13-lune',
+    ru: 'spiral-13-lun',
     // Add other languages here
   },
   // Add other pages here if needed
