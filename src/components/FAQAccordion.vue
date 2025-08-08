@@ -1,13 +1,14 @@
 <template>
   <div id="FAQ" ref="faqRef">
-    <div v-html="filteredFaq"></div>
+    <div v-if="faqHtml" v-html="filteredFaq"></div>
+    <div v-else class="text-gray-400 italic">Loading…</div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { faqContent } from '@/i18n/faq/faqLoader';
+import { loadFaqHtmlForLocale } from '@/i18n/faq/faqLoader';
 
 const faqRef = ref(null);
 const observer = ref(null);
@@ -21,8 +22,14 @@ const props = defineProps({
 
 const { locale, t } = useI18n();
 
+const faqHtml = ref('');
+
+async function refreshFaq() {
+  faqHtml.value = await loadFaqHtmlForLocale(locale.value);
+}
+
 const filteredFaq = computed(() => {
-  const content = faqContent[locale.value] || faqContent.en;
+  const content = faqHtml.value || '';
   
   if (props.categories.length === 0) {
     return content;
@@ -130,12 +137,20 @@ const setupAccordion = () => {
     });
   });
 
-  if (observer.value) {
-    observer.value.disconnect();
-  }
+  // Do not disconnect the observer here; we want it to keep listening for DOM changes
 };
 
 onMounted(() => {
+  refreshFaq();
+  watch(() => locale.value, () => {
+    refreshFaq();
+  });
+  // Re-apply accordion behavior after the DOM updates whenever the HTML changes
+  watch(() => filteredFaq.value, async () => {
+    await nextTick();
+    setupAccordion();
+  }, { flush: 'post' });
+
   setupAccordion();
 
   observer.value = new MutationObserver((mutations) => {
