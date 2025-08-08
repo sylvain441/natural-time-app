@@ -13,6 +13,7 @@ import de from './lang/de.json';
 import it from './lang/it.json';
 import ru from './lang/ru.json';
 import el from './lang/el.json';
+import zh from './lang/zh.json';
 
 // Language detection and management methods
 // -------------------------------------
@@ -143,7 +144,8 @@ const i18n = createI18n({
     de,
     it,
     ru,
-    el
+    el,
+    zh
   },
   legacy: false,
   allowComposition: true

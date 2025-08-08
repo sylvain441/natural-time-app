@@ -57,6 +57,7 @@ const getLanguageTitle = (lang) => {
       it: 'Italiano',
       ru: 'Русский',
       el: 'Ελληνικά',
+      zh: '中文（简体）',
     // Add other languages here
   };
   return titles[lang] || lang;
@@ -68,13 +69,14 @@ const getLanguageFlag = (lang) => {
     fr: '🇫🇷',
     en: '🇬🇧',
     es: '🇪🇸',
-    'es-419': '🇲🇽🇦🇷',
+    'es-419': '🌎',
     pt: '🇵🇹',
     'pt-BR': '🇧🇷',
-      de: '🇩🇪',
-      it: '🇮🇹',
-      ru: '🇷🇺',
-      el: '🇬🇷',
+    de: '🇩🇪',
+    it: '🇮🇹',
+    ru: '🇷🇺',
+    el: '🇬🇷',
+    zh: '🇨🇳',
     // Add other languages here
   };
   return flags[lang] || lang.toUpperCase();
