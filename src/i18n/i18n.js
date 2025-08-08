@@ -6,6 +6,7 @@ import { watch } from 'vue';
 import fr from './lang/fr.json';
 import en from './lang/en.json';
 import es from './lang/es.json';
+import pt from './lang/pt.json';
 
 // Language detection and management methods
 // -------------------------------------
@@ -129,7 +130,8 @@ const i18n = createI18n({
   messages: {
     fr,
     en,
-    es
+    es,
+    pt
   },
   legacy: false,
   allowComposition: true
