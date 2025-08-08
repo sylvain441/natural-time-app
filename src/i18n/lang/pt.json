@@ -235,7 +235,7 @@
     "year": "Ano",
     "moon": "Lua",
     "day": "Dia",
-    "rainbow": { "arc": "Arco", "day": "Dia", "sky": "Íris" },
+    "rainbow": "Dia do Arco‑íris",
     "dateFormat": "pt-PT"
   },
   "mainMenuLegacy": {

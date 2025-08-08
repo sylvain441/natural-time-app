@@ -382,11 +382,7 @@
     "year": "Année",
     "moon": "Lune",
     "day": "Jour",
-    "rainbow": {
-      "arc": "Arc",
-      "day": "Jour",
-      "sky": "Ciel"
-    },
+    "rainbow": "Jour Arc-En-Ciel",
     "dateFormat": "fr-FR"
   },
   "mainMenuLegacy": {

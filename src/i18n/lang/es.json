@@ -358,11 +358,7 @@
     "year": "Año",
     "moon": "Luna",
     "day": "Día",
-    "rainbow": {
-      "arc": "Arco",
-      "day": "Día",
-      "sky": "Íris"
-    },
+    "rainbow": "Día Arcoíris",
     "dateFormat": "es-ES"
   },
   "mainMenuLegacy": {

@@ -48,20 +48,19 @@
       </div>
     </div>
 
-    <!-- DISPLAY: RAINBOW DAY -->
+    <!-- DISPLAY: RAINBOW DAY (simplified, larger text) -->
     <div v-else class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-      <div class="flex items-center font-extrabold display-container">
-        <div class="text-center" :style="displayStyle">
-          <div class="digit">&nbsp;</div>
-          <div class="label uppercase">{{ $t('display.rainbow.arc') }}</div>
-        </div>
-        <div class="text-center" :style="displayStyle">
-          <div class="digit">{{ $t('display.rainbow.day') }}</div>
-          <div class="label uppercase">{{ $t('display.rainbow.sky') }}</div>
-        </div>
-        <div class="text-center" :style="displayStyle">
-          <div class="digit">&nbsp;</div>
-          <div class="label uppercase">{{ $t('display.rainbow.sky') }}</div>
+      <div 
+        class="font-extrabold rainbow-display text-center"
+        :style="{ color: displayStyle.color, opacity: displayStyle.opacity, fontSize: `${props.containerSize * 0.13}px`, lineHeight: 1 }"
+      >
+        <div class="rainbow-digit">{{ $t('moon.title.rainbowDay') }}</div>
+        <div class="rainbow-indicator text-gray-600" :style="{ fontSize: `${props.containerSize * 0.1}px` }">
+          <span v-if="displayDate.yearDuration === 365">🌈</span>
+          <span v-else-if="displayDate.yearDuration === 366">
+            <span v-if="displayDate.dayOfYear === 365">1/2</span>
+            <span v-else-if="displayDate.dayOfYear === 366">2/2</span>
+          </span>
         </div>
       </div>
     </div>
@@ -73,12 +72,13 @@ import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useConfigStore } from '@/stores/configStore';
 import { useI18n } from 'vue-i18n';
+import { NaturalDate } from 'natural-time-js';
 
 const { t } = useI18n();
 
 const props = defineProps({
   displayDate: {
-    type: Object,
+    type: NaturalDate,
     required: true
   },
   context: {
@@ -116,5 +116,21 @@ const displayStyle = computed(() => ({
 
 .gregorian-date {
   font-size: v-bind('`${props.containerSize * 0.06}px`');
+}
+
+/* Rainbow day specific: allow larger, single-line label */
+.rainbow-display {
+  max-width: 100%;
+}
+
+.rainbow-digit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
+}
+
+.rainbow-indicator {
+  margin-top: 0.5em;
 }
 </style>

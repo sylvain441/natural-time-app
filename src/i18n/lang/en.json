@@ -382,11 +382,7 @@
     "year": "Year",
     "moon": "Moon",
     "day": "Day",
-    "rainbow": {
-      "arc": "Rain",
-      "day": "bow",
-      "sky": "Day"
-    },
+    "rainbow": "Rainbow Day",
     "dateFormat": "en-US"
   },
   "mainMenuLegacy": {
