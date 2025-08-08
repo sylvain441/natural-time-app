@@ -218,7 +218,7 @@
         { "value": "001°", "equivalentTo": "4min" },
         { "value": "005°", "equivalentTo": "20min" },
         { "value": "015°", "equivalentTo": "1h" },
-        { "value": "360°", "equivalentTo": "1día" },
+        { "value": "360°", "equivalentTo": "1 día" },
         { "value": "7 días", "equivalentTo": "" },
         { "value": "28 días", "equivalentTo": "" }
       ]
@@ -366,14 +366,14 @@
     "clock": "Reloj",
     "spiral": "13 Lunas",
     "home": "← Inicio",
-    "reset": "reset",
+    "reset": "Restablecer",
     "aria": {
       "openMenu": "Abrir menú",
       "closeMenu": "Cerrar menú"
     }
   },
   "youtubePlayer": {
-    "thumbnail": "Entender Tiempo Natural en 10 minutos"
+    "thumbnail": "Entender el Tiempo Natural en 10 minutos"
   },
   "notFound": {
     "title": "404",

@@ -51,7 +51,7 @@ Esta reinvención contemporánea se inspira en sabidurías ancestrales a la vez 
 El Tiempo Natural es un concepto abierto que cualquiera puede adoptar, mejorar y difundir. Participar en esta revolución temporal puede tomar varias formas:
 
 - Explorar el código fuente en GitHub y proponer mejoras
-- Crear tu propio reloj natural y compartir su diseño
+- Crear tu propio reloj natural y compartir tu diseño
 - Integrar el tiempo natural en tu día a día y observar los cambios
 - Hablar del concepto a tu alrededor y organizar encuentros basados en tiempo natural
 - Imaginar nuevas aplicaciones o usos del tiempo natural en diversos ámbitos
@@ -101,7 +101,7 @@ Entre todas las posibilidades de dividir el dial, se eligió la convención del 
 - Esta convención se enseña universalmente en geometría y no requiere aprendizaje adicional
 - La mayoría de las personas puede visualizar fácilmente un ángulo de 90° (un cuarto de día) o de 180° (medio día)
 
-Cada quien puede subdividir esos 360° según sus preferencias. Esta flexibilidad permite adaptar la lectura del tiempo a las necesidades propias, manteniendo una referencia común.
+Cada uno puede subdividir esos 360° según sus preferencias. Esta flexibilidad permite adaptar la lectura del tiempo a las necesidades propias, manteniendo una referencia común.
 
 #### ¿Qué representan los bigotes en el centro del dial?
 
