@@ -6,7 +6,9 @@ import { watch } from 'vue';
 import fr from './lang/fr.json';
 import en from './lang/en.json';
 import es from './lang/es.json';
+import es419 from './lang/es-419.json';
 import pt from './lang/pt.json';
+import ptBR from './lang/pt-BR.json';
 
 // Language detection and management methods
 // -------------------------------------
@@ -131,7 +133,9 @@ const i18n = createI18n({
     fr,
     en,
     es,
-    pt
+    'es-419': es419,
+    pt,
+    'pt-BR': ptBR
   },
   legacy: false,
   allowComposition: true

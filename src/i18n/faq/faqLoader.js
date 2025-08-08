@@ -7,5 +7,7 @@ export const faqContent = {
   en: enFaq,
   fr: frFaq,
   es: esFaq,
+  'es-419': esFaq,
   pt: ptFaq,
+  'pt-BR': ptFaq,
 };
