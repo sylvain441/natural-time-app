@@ -118,6 +118,14 @@ export const createApp = ViteSSG(
 
     // CLIENT SIDE ONLY LOGIC
     if (!import.meta.env.SSR) {
+      // Ensure the proper locale is selected and its messages are loaded
+      // BEFORE any component mounts/hydrates, to avoid rendering translation keys.
+      const initialPathLang = languageService.determineAndSetLanguage({ pathname: window.location.pathname });
+      await ensureLocaleMessages(initialPathLang);
+      i18n.global.locale.value = initialPathLang;
+      // Preload fonts/messages for the initial locale
+      await preloadLocaleAssets(initialPathLang);
+
       app
         .use(Vue3TouchEvents, {rollOverFrequency: 500})
         .directive('longclick', longClickDirective({delay: 200, interval: 50}));

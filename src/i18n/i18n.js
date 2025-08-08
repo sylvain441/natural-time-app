@@ -2,7 +2,7 @@ import { createI18n } from "vue-i18n";
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from './config';
 import { watch } from 'vue';
 
-// Lazy import map by locale code
+// Lazy import map by locale code (CSR)
 const lazyMessages = {
   fr: () => import('./lang/fr.json'),
   en: () => import('./lang/en.json'),
@@ -17,6 +17,12 @@ const lazyMessages = {
   zh: () => import('./lang/zh.json'),
   ja: () => import('./lang/ja.json'),
 };
+
+// Eager import map for SSR to guarantee availability during first render
+// Note: Only evaluated on server; does not bloat client bundle
+const ssrMessages = import.meta.env.SSR
+  ? import.meta.glob('./lang/*.json', { eager: true })
+  : null;
 
 // Language detection and management methods
 // -------------------------------------
@@ -148,6 +154,17 @@ const i18n = createI18n({
 // Preload current locale synchronously for CSR; SSR will set per-route later
 export async function ensureLocaleMessages(locale) {
   const code = locale || DEFAULT_LANGUAGE;
+  // In SSR, load messages synchronously from eagerly imported modules
+  if (import.meta.env.SSR) {
+    if (!i18n.global.getLocaleMessage(code) || Object.keys(i18n.global.getLocaleMessage(code)).length === 0) {
+      const key = `./lang/${code}.json`;
+      const mod = ssrMessages?.[key];
+      const msgs = mod?.default || {};
+      i18n.global.setLocaleMessage(code, msgs);
+    }
+    return;
+  }
+  // In CSR, load messages lazily
   if (!i18n.global.getLocaleMessage(code) || Object.keys(i18n.global.getLocaleMessage(code)).length === 0) {
     const mod = await (lazyMessages[code]?.());
     const msgs = mod?.default || {};
