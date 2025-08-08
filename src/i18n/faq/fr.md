@@ -136,9 +136,9 @@ Voici comment cela fonctionne :
 2. **Le soleil parcourt ces 360 méridiens en une journée**
 3. **Quand l'aiguille se déplace d'un degré sur l'horloge naturelle**, cela signifie que le soleil a parcouru un degré autour de la Terre
 
-Cette approche peut sembler complexe comparée aux fuseaux horaires actuels, mais ces derniers créent des situations paradoxales. Prenons un exemple concret : la Bretagne et l'Albanie partagent le même fuseau horaire (Europe centrale), alors qu'une grand distance' les sépare. Résultat ? Toutes les horloges conventionnelles y indiquent la même heure, mais la réalité solaire est très différente. Quand le soleil se lève en Bretagne, il brille déjà depuis 1h40 en Albanie !
+Cette approche peut sembler complexe comparée aux fuseaux horaires actuels, mais ces derniers créent des situations paradoxales. Prenons un exemple concret : la Bretagne et l'Albanie partagent le même fuseau horaire (Europe centrale), alors qu'une grande distance les sépare. Résultat ? Toutes les horloges conventionnelles y indiquent la même heure, mais la réalité solaire est très différente. Quand le soleil se lève en Bretagne, il brille déjà depuis 1h40 en Albanie !
 
-Comme les humains choisissent de suivre l'horloge plutôt que le soleil, cela crée une distorsion artificielle qui  déconnecte du rythmedu vivant. Le temps naturel, lui, reflète fidèlement la position réelle du soleil à chaque endroit.
+Comme les humains choisissent de suivre l'horloge plutôt que le soleil, cela crée une distorsion artificielle qui déconnecte du rythme du vivant. Le temps naturel, lui, reflète fidèlement la position réelle du soleil à chaque endroit.
 
 **Important :** Seule la longitude influence la position de l'aiguille. Du pôle sud en passant l'équateur jusqu'au pôle Nord, tous ceux qui vivent sur le même méridien ont la même heure naturelle. La latitude fait uniquement varier la forme des moustaches (durée du jour et de la nuit), mais pas la position du soleil sur l'horloge.
 
@@ -161,7 +161,7 @@ Cette notation peut sembler complexe au premier abord, mais elle offre une cohé
 
 Le calcul est étonnamment simple : la différence de longitude entre deux lieux = la différence d'angle entre leurs horloges naturelles.
 
-**En pratique :** si vous êtes à 30° à l'est de votre ami, votre horloge naturelle aura 30° de plus que la sienne
+**En pratique :** si tu es à 30° à l'est de ton ami, ton horloge naturelle aura 30° de plus que la sienne
 
 **Exemple :** Entre Paris et Buenos Aires (environ 60° de différence), quand il est midi solaire à Paris (180°), l'horloge naturelle à Buenos Aires indique 120°. Cette différence est constante et ne change jamais, contrairement aux fuseaux horaires qui peuvent être modifiés par décisions politiques.
 
@@ -174,7 +174,7 @@ Cette notation permet de savoir immédiatement où se situe l'horloge par rappor
 
 **Pour les rendez-vous internationaux :** On pourrait utiliser le méridien 0 comme référence universelle, avec la notation "NTZ" (Natural Time Zero). Par exemple, "rendez-vous à 210° NTZ" signifie le moment où l'horloge naturelle à Greenwich indique 210°.
 
-**Pour convertir NTZ en temps local :** Ajoutez votre longitude (si vous êtes à l'est) ou soustrayez-la (si vous êtes à l'ouest). À 30° Est, 210° NTZ devient 240° sur votre horloge locale (NT+030).
+**Pour convertir NTZ en temps local :** Ajoute ta longitude (si tu es à l'est) ou soustrais-la (si tu es à l'ouest). À 30° Est, 210° NTZ devient 240° sur ton horloge locale (NT+030).
 
 **À l'échelle régionale :** Dans la vie quotidienne, les habitants d'une même région peuvent simplement utiliser un lieu central comme référence, avec des ajustements minimes de quelques degrés selon leur position exacte.
 
@@ -309,13 +309,13 @@ Bien que le calendrier grégorien ait prouvé sa robustesse depuis son adoption 
 - Son histoire inclut des anomalies comme la disparition de 10 jours lors de son adoption (à des dates différentes selon les pays)
 - Sa règle pour les années bissextiles est complexe (tous les 4 ans, sauf tous les 100 ans, mais pas tous les 400 ans)
 
-Si on voulais comparer le calendrier à un outil de mesure, le calendrier grégorien serait comme une règle dont chaque centimètre a une longueur différente - un outil de mesure incohérent.
+Si l'on voulait comparer le calendrier à un outil de mesure, le calendrier grégorien serait comme une règle dont chaque centimètre a une longueur différente - un outil de mesure incohérent.
 
 #### Quand débute l'année naturelle ?
 
-L'année naturelle commence après le solstice d'hiver dans l'hémisphère nord, c'est à dire aux alentours du 21 décembre dans le calendrier grégorien.
+L'année naturelle commence après le solstice d'hiver dans l'hémisphère nord, c'est-à-dire aux alentours du 21 décembre dans le calendrier grégorien.
 
-Pour déterminer précisément le début de l'année, un calcul astronomique est effectué : on détermine d'abord la position exacte du soleil par rapport à la Terre au moment du solstice, puis on attend que le soleil franchisse la ligne de changement de date située à l'antiméridian (+180°E) dans l'océan Pacifique. Ce moment marque "officiellement" le début de la nouvelle année naturelle globale.
+Pour déterminer précisément le début de l'année, un calcul astronomique est effectué : on détermine d'abord la position exacte du soleil par rapport à la Terre au moment du solstice, puis on attend que le soleil franchisse la ligne de changement de date située à l'antiméridien (+180°E) dans l'océan Pacifique. Ce moment marque "officiellement" le début de la nouvelle année naturelle globale.
 
 Localement, l'année commence au prochain minuit local (0°) après ce moment global. Ainsi, chaque région de la Terre entre dans la nouvelle année à son propre minuit suivant le solstice, créant une vague naturelle de célébrations qui suit la rotation de la Terre.
 
@@ -348,9 +348,9 @@ Le code source du temps naturel est divisé en trois parties :
 N'hésite surtout pas à contribuer à l'évolution du temps naturel ; à te l'approprier ou le réinventer à ta façon !
 
 
-#### Comment installer l'application en mode hors-ligne ?
+#### Comment installer l'application en mode hors ligne ?
 
-Ceci n'est pas vraiment une application... Mais plutôt un site web qui peut fonctionner hors-ligne. Ne la cherche donc pas dans l'AppStore ni le PlayStore, il suffit simplement de se rendre sur [naturaltime.app](https://naturaltime.app) puis de cliquer sur :
+Ceci n'est pas vraiment une application... mais plutôt un site web qui peut fonctionner hors ligne. Ne la cherche donc pas dans l'App Store ni le Play Store, il suffit simplement d'aller sur [naturaltime.app](https://naturaltime.app) puis de cliquer sur :
 
 - iOS Safari : *Partager > Sur l'écran d'accueil*
 - Android Chrome : *Menu > Ajouter à l'écran d'accueil*
@@ -367,7 +367,7 @@ N'oublie pas de changer la position géographique lors de tes déplacements. Tu 
 
 #### Comment sont gérées et protégées les données utilisateur ?
 
-Les calculs astronomiques sont entièrement réalisés sur ton appareil. Aucune donnée personnelle n'est enregistrée. L'application fonctionne parfaitement hors-ligne d'ailleurs (sauf la carte interactive)
+Les calculs astronomiques sont entièrement réalisés sur ton appareil. Aucune donnée personnelle n'est enregistrée. L'application fonctionne parfaitement hors ligne d'ailleurs (sauf la carte interactive).
 
 Pour avoir une idée de la fréquentation de l'application, un serveur Matomo (équivalent open source de Google Analytics) auto-hébergé est utilisé. Ce serveur enregistre uniquement le nombre de visiteurs uniques et le nombre de pages vues. Aucune donnée personnelle n'est enregistrée.
 
@@ -378,8 +378,8 @@ Gratitude infinie pour Toto et Uncle Skywalker, deux explorateurs du temps. Merc
 
 Remerciement à Don Cross l'auteur d'[astronomy engine](https://github.com/cosinekitty/astronomy/) qui permet à l'application de calculer le mouvement des astres dans le ciel. Merci également à tout l'univers open source qui offre au monde des solutions et des ressources abouties telles que Vue3, Vite, OpenLayers, OpenStreetMap, ... utilisées pour créer cette application
 
-Le temps naturel est né dans les Alpes Françaises lors du printemps/été 2022.  
-Pour toutes questions : [sylvain441@pm.me](mailto:sylvain441@pm.me) – [@sylvain441](https://t.me/sylvain441) (telegram).
+Le temps naturel est né dans les Alpes françaises lors du printemps/été 2022.  
+Pour toute question : [sylvain441@pm.me](mailto:sylvain441@pm.me) – [@sylvain441](https://t.me/sylvain441) (Telegram).
 
 🌍 One love 🌎  
 🏔 🐐 🌞 🌈

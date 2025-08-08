@@ -38,12 +38,12 @@
         "line1": "Nous avons créé des machines pour mesurer le temps.",
         "line2": "Puis nous sommes devenus esclaves de leur tic tac.",
         "line3": "Le Temps Naturel inverse cette tendance.",
-        "line4": "La vie a déja prévu la plus belle des horloges...",
+        "line4": "La vie a déjà prévu la plus belle des horloges...",
         "line5": "On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant."
       },
-      "credits": "Created by {author} | {github}",
+      "credits": "Créé par {author} | {github}",
       "author": "Sylvain",
-      "github": "Open sourced on GitHub",
+      "github": "Code source sur GitHub",
       "resetData": "Réinitialiser les données"
     },
     "meta": {
@@ -196,7 +196,7 @@
     "timeTravel": {
       "notification": {
         "title": "Mode voyage temporel",
-        "message": "Pour naviguer dans le passé ou le futur :\nÉtape 1 : Selectionner une vitesse\nÉtape 2 : Utiliser les boutons - et +\nAstuce : Maintenir les boutons appuyés pour un déplacement continu"
+        "message": "Pour naviguer dans le passé ou le futur :\nÉtape 1 : Sélectionner une vitesse\nÉtape 2 : Utiliser les boutons - et +\nAstuce : Maintenir les boutons appuyés pour un déplacement continu"
       }
     }
   },
@@ -269,7 +269,7 @@
       },
       "southernHemisphere": {
         "title": "Hémisphère Sud",
-        "description": "l'horloge tourne dans le sens inverse (de droite à gauche) car c'est ainsi que se déplace le soleil dans cet hémisphère.",
+        "description": "L'horloge tourne dans le sens inverse (de droite à gauche) car c'est ainsi que se déplace le soleil dans cet hémisphère.",
         "dismissButton": "Okay, compris"
       }
     },
@@ -279,9 +279,9 @@
   },
   "spiral": {
     "title": "Spirale des 13 lunes",
-    "subtitle": "Une alternative au calendrier Grégorien",
+    "subtitle": "Une alternative au calendrier grégorien",
     "meta": {
-      "title": "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier Grégorien",
+      "title": "Spirale des 13 lunes - Temps naturel - Une alternative au calendrier grégorien",
       "description": "Découvrir la spirale des 13 lunes de 28 jours qui remplace avec élégance nos 12 mois tout tordus",
       "ogImage": "https://naturaltime.app/natural-time-social-fr.jpg",
       "ogUrl": "https://naturaltime.app/fr/spirale-13-lunes/"
@@ -314,7 +314,7 @@
       "settings": "Paramètres",
       "locationPicker": "Choisir un lieu",
       "viewMode": {
-        "spiralTitle": "Afficher en spiral",
+        "spiralTitle": "Afficher en spirale",
         "verticalTitle": "Afficher en vertical"
       },
       "understanding": "Comprendre",
@@ -343,8 +343,8 @@
     },
     "optional": "(Facultatif)",
     "validate": "Valider",
-    "clickMap": "Cliquer la carte pour choisir un lieu",
-    "offline": "L'appareil semble hors-ligne. Veuillez vérifier votre connexion internet ou entrer vos coordonnées GPS manuellement.",
+    "clickMap": "Cliquer sur la carte pour choisir un lieu",
+    "offline": "Ton appareil semble hors ligne. Vérifie ta connexion internet ou entre tes coordonnées GPS manuellement.",
     "latitude": "Latitude",
     "longitude": "Longitude",
     "name": "Nom",
@@ -355,7 +355,7 @@
       "detected": "Position GPS détectée",
       "recenter": "Recentrer",
       "errors": {
-        "denied": "Veuillez activer la géolocalisation dans votre navigateur",
+        "denied": "Active la géolocalisation dans ton navigateur",
         "unavailable": "Position non disponible",
         "timeout": "Délai de géolocalisation dépassé",
         "error": "Erreur de géolocalisation"
@@ -382,7 +382,7 @@
     "year": "Année",
     "moon": "Lune",
     "day": "Jour",
-    "rainbow": "Jour Arc-En-Ciel",
+    "rainbow": "Jour arc-en-ciel",
     "dateFormat": "fr-FR"
   },
   "mainMenuLegacy": {
@@ -390,7 +390,7 @@
     "clock": "Horloge",
     "spiral": "13 Lunes",
     "home": "← Accueil",
-    "reset": "reset",
+    "reset": "Réinitialiser",
     "aria": {
       "openMenu": "Ouvrir le menu",
       "closeMenu": "Fermer le menu"
