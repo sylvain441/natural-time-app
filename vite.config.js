@@ -241,7 +241,7 @@ export default defineConfig({
         id: 'naturaltime.app.pwa',
         name: 'Natural time',
         short_name: 'Natural time',
-        start_url: `https://naturaltime.app/startpwa/`,
+        start_url: `/startpwa/`,
         description: 'Natural time is a fresh, elegant, and coherent way of measuring the movements of time here on the Earth. This new time standard is based on common sense and the observation of natural cycles',
         theme_color: '#000000',
         background_color: '#000000',
