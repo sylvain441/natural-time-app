@@ -180,8 +180,21 @@ export default defineConfig({
     VitePWA({ 
       registerType: 'autoUpdate',
         workbox: {
-        // Do not precache font files; they are loaded at runtime per locale
-        globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg}'],
+        // Precache essential assets
+        globPatterns: [
+          '**/*.{js,css,ico,jpg,png,svg,ttf}', // Inclure les polices TTF
+          'index.html',
+          'startpwa/index.html',
+          'manifest.webmanifest'
+        ],
+        // Exclude language-specific HTML files from precaching (but keep startpwa)
+        // Automatically generated from AVAILABLE_LANGUAGES config
+        globIgnores: [
+          // Exclude language root pages (e.g., fr/index.html, de/index.html)
+          ...AVAILABLE_LANGUAGES.map(lang => `${lang}/index.html`),
+          // Exclude all HTML files in language directories (e.g., fr/**/*.html)
+          ...AVAILABLE_LANGUAGES.map(lang => `${lang}/**/*.html`)
+        ],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
@@ -206,6 +219,19 @@ export default defineConfig({
               expiration: {
                 maxEntries: 30,
                 maxAgeSeconds: 180 * 24 * 60 * 60 // 180 days
+              }
+            }
+          },
+          {
+            // Cache language-specific HTML pages on demand
+            // Automatically generated from AVAILABLE_LANGUAGES config
+            urlPattern: new RegExp(`^https://naturaltime\\.app/(${AVAILABLE_LANGUAGES.join('|')})/`),
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'language-pages',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 7 * 24 * 60 * 60 // 7 days
               }
             }
           }

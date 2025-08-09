@@ -151,31 +151,31 @@ svg line {
 
 /* Locale-specific font stacks (no external calls; uses system fonts or locally packaged fonts if added) */
 html[lang="ja"] body {
-  font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 html[lang="ja"] .font-title {
-  font-family: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif !important;
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS Mincho', serif !important;
 }
 
 html[lang="zh"] body {
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 html[lang="zh"] .font-title {
-  font-family: 'Noto Serif SC', 'Songti SC', 'STSong', 'Source Han Serif SC', 'PingFang SC', serif !important;
+  font-family: 'Songti SC', 'STSong', 'Source Han Serif SC', 'PingFang SC', serif !important;
 }
 
 html[lang="ru"] body {
-  font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
 }
 html[lang="ru"] .font-title {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
+  font-family: 'Times New Roman', serif !important;
 }
 
 html[lang="el"] body {
-  font-family: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Arial', sans-serif;
 }
 html[lang="el"] .font-title {
-  font-family: 'Noto Serif', 'Times New Roman', serif !important;
+  font-family: 'Times New Roman', serif !important;
 }
 
 </style>

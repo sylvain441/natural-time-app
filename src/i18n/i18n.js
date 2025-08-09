@@ -172,36 +172,10 @@ export async function ensureLocaleMessages(locale) {
   }
 }
 
-// On-demand font CSS per locale (fallbacks to system fonts offline)
+// Fonts are now handled via system fonts in App.vue CSS
 async function ensureLocaleFonts(locale) {
-  // Avoid importing font CSS during SSR; it is only needed client-side
-  if (import.meta.env.SSR) return;
-  try {
-    if (locale === 'ja') {
-      await Promise.all([
-        import('@fontsource/noto-sans-jp/400.css'),
-        import('@fontsource/noto-sans-jp/700.css'),
-        import('@fontsource/noto-serif-jp/400.css'),
-        import('@fontsource/noto-serif-jp/700.css'),
-      ]);
-    } else if (locale === 'zh') {
-      await Promise.all([
-        import('@fontsource/noto-sans-sc/400.css'),
-        import('@fontsource/noto-sans-sc/700.css'),
-        import('@fontsource/noto-serif-sc/400.css'),
-        import('@fontsource/noto-serif-sc/700.css'),
-      ]);
-    } else if (['ru', 'el'].includes(locale)) {
-      await Promise.all([
-        import('@fontsource/noto-sans/400.css'),
-        import('@fontsource/noto-sans/700.css'),
-        import('@fontsource/noto-serif/400.css'),
-        import('@fontsource/noto-serif/700.css'),
-      ]);
-    }
-  } catch (_) {
-    // If offline or not needed, system fonts will be used
-  }
+  // No dynamic font loading needed - using system fonts for all locales
+  return;
 }
 
 // Expose a helper to preload assets for a given locale (CSR only)
