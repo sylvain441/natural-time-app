@@ -51,7 +51,7 @@ async function showUpdateNotificationInternal(storedVersion) {
     
     // Store the new version after showing the notification
     localStorage.setItem('appVersion', version);
-    console.log(`Updated version in localStorage from ${storedVersion} to ${version}`);
+    // Updated version in localStorage
   } catch (error) {
     console.error('Failed to show update notification:', error);
     // Still update the version even if notification fails
@@ -90,12 +90,7 @@ export function initializePWA() {
     const storedVersion = localStorage.getItem('appVersion');
     const wasUpdated = sessionStorage.getItem('pwa_update_detected') === 'true';
     
-    console.log('Checking for updates:', { 
-      storedVersion, 
-      currentVersion: version, 
-      wasUpdated,
-      isSignificant: storedVersion ? isSignificantUpdate(storedVersion, version) : false
-    });
+    // Debug: checking for updates
     
     // Clear the update flag from session storage
     sessionStorage.removeItem('pwa_update_detected');
@@ -103,11 +98,11 @@ export function initializePWA() {
     // Handle version changes
     if (storedVersion && storedVersion !== version) {
       if (isSignificantUpdate(storedVersion, version)) {
-        console.log('Significant version change detected, showing notification');
+        // Significant version change detected
         showUpdateNotificationInternal(storedVersion);
       } else {
         // Minor version change - just migrate and update version without notification
-        console.log(`Updating stored version from ${storedVersion} to ${version} (no notification)`);
+        // Minor version update, no notification needed
         migrateData(storedVersion, version);
         localStorage.setItem('appVersion', version);
       }

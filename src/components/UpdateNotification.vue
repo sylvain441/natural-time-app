@@ -55,18 +55,15 @@ const versionSpecificMessage = computed(() => {
 });
 
 function close() {
-  console.log('Closing notification');
   show.value = false;
 }
 
 function open() {
-  console.log('Opening notification');
   show.value = true;
 }
 
 // Auto-open the notification when mounted
 onMounted(() => {
-  console.log('UpdateNotification component mounted');
   // Delay opening slightly to ensure everything is ready
   setTimeout(() => {
     open();
