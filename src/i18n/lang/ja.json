@@ -355,17 +355,6 @@
     "rainbow": "虹の日",
     "dateFormat": "ja-JP"
   },
-  "mainMenuLegacy": {
-    "title": "自然時間",
-    "clock": "時計",
-    "spiral": "13の月",
-    "home": "← ホーム",
-    "reset": "リセット",
-    "aria": {
-      "openMenu": "メニューを開く",
-      "closeMenu": "メニューを閉じる"
-    }
-  },
   "youtubePlayer": {
     "thumbnail": "10分で自然時間を理解する"
   },
@@ -381,7 +370,8 @@
   },
   "common": {
     "loading": "読み込み中…",
-    "confirmReset": "保存されているデータをすべて削除しますか？"
+    "confirmReset": "保存されているデータをすべて削除しますか？",
+    "selectLanguage": "言語を選択"
   }
 }
 

@@ -14,6 +14,7 @@
     "@fontsource/noto-serif": "^5.2.7",
     "@fontsource/noto-serif-jp": "^5.2.6",
     "@fontsource/noto-serif-sc": "^5.2.6",
+    "@vueuse/core": "^13.6.0",
     "natural-time-js": "^2.0.4",
     "ol": "^10.2.0",
     "ol-geocoder": "^4.3.3",

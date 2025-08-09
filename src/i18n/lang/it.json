@@ -1,6 +1,6 @@
 {
   "welcome": {
-    "title": "Il Tempo Naturale",
+    "title": "Tempo Naturale",
     "subtitle": "Una nuova convenzione del tempo",
     "naturalClock": {
       "title": "Orologio Naturale",
@@ -361,17 +361,6 @@
     "rainbow": "Giorno arcobaleno",
     "dateFormat": "it-IT"
   },
-  "mainMenuLegacy": {
-    "title": "Tempo Naturale",
-    "clock": "Orologio",
-    "spiral": "13 Lune",
-    "home": "← Home",
-    "reset": "Reimposta",
-    "aria": {
-      "openMenu": "Apri menu",
-      "closeMenu": "Chiudi menu"
-    }
-  },
   "youtubePlayer": {
     "thumbnail": "Capire il Tempo Naturale in 10 minuti"
   },
@@ -387,6 +376,7 @@
   },
   "common": {
     "loading": "Caricamento…",
-    "confirmReset": "Sei sicuro di voler cancellare tutti i dati salvati?"
+    "confirmReset": "Sei sicuro di voler cancellare tutti i dati salvati?",
+    "selectLanguage": "Scegli la lingua"
   }
 }

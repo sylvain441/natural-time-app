@@ -385,17 +385,6 @@
     "rainbow": "Rainbow Day",
     "dateFormat": "en-US"
   },
-  "mainMenuLegacy": {
-    "title": "Natural Time",
-    "clock": "Clock",
-    "spiral": "13 Moons",
-    "home": "← Home",
-    "reset": "reset",
-    "aria": {
-      "openMenu": "Open menu",
-      "closeMenu": "Close menu"
-    }
-  },
   "youtubePlayer": {
     "thumbnail": "Understand Natural Time in 10 minutes"
   },
@@ -411,6 +400,7 @@
   },
   "common": {
     "loading": "Loading…",
-    "confirmReset": "Are you sure you want to clear all saved data?"
+    "confirmReset": "Are you sure you want to clear all saved data?",
+    "selectLanguage": "Select language"
   }
 }

@@ -210,16 +210,47 @@
 					</div>
 				</button>
 				<div v-if="isMenuOpen"
-					class="absolute right-0 mt-12 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
+					class="absolute right-0 mt-12 w-[212px] max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
 					<div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 						<!-- SETTINGS -->
 						<div class="px-4 pt-2 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.settings') }}
 						</div>
-						<!-- Location Picker -->
-						<a @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+                        <!-- Location Picker -->
+                        <a @click="openPanel(AVAILABLE_PANELS.locationPicker)"
+                            class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+                            role="menuitem">
+                            <mapIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.locationPicker') }}
+                        </a>
+                        <!-- Language Picker (just after location) -->
+                        <a @click="openLanguagePicker"
+                            class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+                            role="menuitem">
+                            <span class="text-xl mr-2">{{ getCurrentLanguageFlag() }}</span>{{ $t('common.selectLanguage') }}
+                        </a>
+
+						<!-- HELP SECTION -->
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.understanding') }}</div>
+						<!-- Tutorial -->
+						<a @click="toggleTutorial"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
 							role="menuitem">
-							<mapIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.locationPicker') }}
+							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.startTutorial') }}
+						</a>
+                        <!-- FAQ -->
+                        <a @click="openPanel(AVAILABLE_PANELS.faq)"
+                            class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
+                            role="menuitem">
+                            <faqIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.faq') }}
+                        </a>
+
+						
+						<!-- SPECIAL MODES -->
+						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.specialMode') }}</div>
+						<!-- Time Travel -->
+						<a @click="toggleTimeTravel"
+							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
+							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
+							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.timeTravel') }}
 						</a>
 						<!-- Simplified mode -->
 						<a @click="toggleSimplifiedMode"
@@ -232,30 +263,6 @@
 								fill="currentColor" 
 							/>
 							{{ clockSimplifiedMode ? $t('clock.menu.simplifiedMode.fullMode') : $t('clock.menu.simplifiedMode.title') }}
-						</a>
-						
-						<!-- HELP SECTION -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.understanding') }}</div>
-						<!-- Tutorial -->
-						<a @click="toggleTutorial"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
-							role="menuitem">
-							<learnIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.startTutorial') }}
-						</a>
-						<!-- FAQ -->
-						<a @click="openPanel(AVAILABLE_PANELS.faq)"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
-							role="menuitem">
-							<faqIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.faq') }}
-						</a>
-						
-						<!-- SPECIAL MODES -->
-						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.specialMode') }}</div>
-						<!-- Time Travel -->
-						<a @click="toggleTimeTravel"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
-							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
-							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.timeTravel') }}
 						</a>
 					</div>
 				</div>
@@ -375,6 +382,7 @@ import plusIcon from '@/assets/icon/plus-icon.svg';
 import simpleClockIcon from '@/assets/icon/simple-clock-icon.svg';
 import advancedClockIcon from '@/assets/icon/advanced-clock-icon.svg';
 
+
 // Store setup
 const contextStore = useContextStore()
 contextStore.init();
@@ -384,6 +392,27 @@ const { clockSkin: rawClockSkin, clockWelcomeMode, clockTutorialMode, clockTutor
 
 // I18n setup
 const i18n = useI18n();
+import { languageService } from '../i18n/i18n';
+
+// Get current language flag
+const getCurrentLanguageFlag = () => {
+  const flags = {
+    fr: '🇫🇷',
+    en: '🇬🇧',
+    es: '🇪🇸',
+    'es-419': '🌎',
+    pt: '🇵🇹',
+    'pt-BR': '🇧🇷',
+    de: '🇩🇪',
+    it: '🇮🇹',
+    ru: '🇷🇺',
+    el: '🇬🇷',
+    zh: '🇨🇳',
+    ja: '🇯🇵'
+  };
+  const currentLang = languageService.getCurrentLanguage();
+  return flags[currentLang] || currentLang.toUpperCase();
+};
 
 // Refs and computed properties first
 let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation } = storeToRefs(contextStore);
@@ -566,6 +595,12 @@ const dismissHemisphereNotification = () => {
 const toggleSimplifiedMode = () => {
 	clockSimplifiedMode.value = !clockSimplifiedMode.value;
 	isMenuOpen.value = false;
+};
+
+// Open global language picker overlay
+const openLanguagePicker = () => {
+  isMenuOpen.value = false;
+  window.dispatchEvent(new CustomEvent('open-language-picker'));
 };
 
 // Add touch event handler

@@ -232,14 +232,7 @@
   },
   "mainMenu": { "homeTooltip": "主页 naturaltime.app" },
   "display": { "year": "年", "moon": "月", "day": "日", "rainbow": "彩虹日", "dateFormat": "zh-CN" },
-  "mainMenuLegacy": {
-    "title": "自然时间",
-    "clock": "时钟",
-    "spiral": "13 月",
-    "home": "← 主页",
-    "reset": "重置",
-    "aria": { "openMenu": "打开菜单", "closeMenu": "关闭菜单" }
-  },
+
   "youtubePlayer": { "thumbnail": "10 分钟了解自然时间" },
   "notFound": { "title": "404", "message": "哎呀！页面未找到。", "button": "返回主页" },
   "update": {
@@ -249,7 +242,8 @@
   },
   "common": {
     "loading": "加载中…",
-    "confirmReset": "确定要清除所有已保存的数据吗？"
+    "confirmReset": "确定要清除所有已保存的数据吗？",
+    "selectLanguage": "选择语言"
   }
 }
 

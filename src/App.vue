@@ -5,6 +5,8 @@
 				<component :is="Component"></component>
 			</transition>
 		</router-view>
+    <!-- Global Language Picker listener without trigger (only when not on welcome page) -->
+    <LanguageSwitcher v-if="!isWelcomePage" :renderTrigger="false" :listenForOpenEvent="true" />
 		
 		<!-- Notification container -->
 		<div id="notification-container"></div>
@@ -13,12 +15,19 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-import { onMounted, onUnmounted } from 'vue';
+import { onMounted, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { languageService } from './i18n/i18n';
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 const route = useRoute();
 const { locale, t } = useI18n();
+
+// Check if we're on the welcome page
+const isWelcomePage = computed(() => {
+  const routeName = route.name;
+  return routeName && routeName.toString().startsWith('welcome');
+});
 
 // During SSG, use language service to determine language from route path
 if (import.meta.env.SSR) {

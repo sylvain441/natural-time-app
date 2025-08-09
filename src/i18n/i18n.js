@@ -141,9 +141,9 @@ const initialLocale = import.meta.env.SSR
 const i18n = createI18n({
   locale: initialLocale,
   fallbackLocale: DEFAULT_LANGUAGE,
-  // Show missing/fallback warnings only in development
-  missingWarn: import.meta.env.DEV,
-  fallbackWarn: import.meta.env.DEV,
+  // Disable annoying fallback warnings that create noise during language switching
+  missingWarn: false,
+  fallbackWarn: false,
   messages: {},
   legacy: false,
   allowComposition: true,
@@ -231,7 +231,9 @@ export const languageService = {
     
     if (i18n.global.locale.value !== lang) {
       // Ensure messages are loaded before switching
+      // Always preload English as fallback along with the selected language
       Promise.all([
+        ensureLocaleMessages(DEFAULT_LANGUAGE), // Always load English first
         ensureLocaleMessages(lang),
         ensureLocaleFonts(lang),
       ]).then(() => {

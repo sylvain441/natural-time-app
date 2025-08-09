@@ -1,6 +1,6 @@
 {
   "welcome": {
-    "title": "Le Temps Naturel",
+    "title": "Temps Naturel",
     "subtitle": "Une nouvelle convention du temps",
     "naturalClock": {
       "title": "Horloge Naturelle",
@@ -385,17 +385,6 @@
     "rainbow": "Jour arc-en-ciel",
     "dateFormat": "fr-FR"
   },
-  "mainMenuLegacy": {
-    "title": "Temps Naturel",
-    "clock": "Horloge",
-    "spiral": "13 Lunes",
-    "home": "← Accueil",
-    "reset": "Réinitialiser",
-    "aria": {
-      "openMenu": "Ouvrir le menu",
-      "closeMenu": "Fermer le menu"
-    }
-  },
   "youtubePlayer": {
     "thumbnail": "Comprendre le Temps Naturel en 10 minutes"
   },
@@ -411,6 +400,7 @@
   },
   "common": {
     "loading": "Chargement…",
-    "confirmReset": "Es-tu sûr de vouloir effacer toutes les données enregistrées ?"
+    "confirmReset": "Es-tu sûr de vouloir effacer toutes les données enregistrées ?",
+    "selectLanguage": "Choisir la langue"
   }
 }

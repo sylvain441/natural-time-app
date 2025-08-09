@@ -257,7 +257,7 @@
 
     <!-- Menu Dropdown -->
     <div v-if="isMenuOpen"
-      class="absolute right-0 mt-2 w-48 max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
+      class="absolute right-0 mt-2 w-[212px] max-w-screen rounded-md shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5">
       <div class="pt-1 pb-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
         <!-- SETTINGS -->
         <div class="px-4 pt-2 pb-0 text-sm text-nt-cyan-dark font-bold">{{ $t('spiral.menu.settings') }}</div>
@@ -267,6 +267,13 @@
           class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
           role="menuitem">
           <mapIcon class="w-6 h-6 mr-2" fill="currentColor"/>{{ $t('spiral.menu.locationPicker') }}
+        </a>
+        <!-- Language Picker trigger (just after location) -->
+        <a 
+          @click="openLanguagePicker" 
+          class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center" 
+          role="menuitem">
+          <span class="text-xl mr-2">{{ getCurrentLanguageFlag() }}</span>{{ $t('common.selectLanguage') }}
         </a>
         
         <!-- HELP SECTION -->
@@ -402,6 +409,7 @@ import thirteenMoonIcon from '@/assets/icon/13-moon-icon.svg';
 import plusIcon from '@/assets/icon/plus-icon.svg';
 import minusIcon from '@/assets/icon/minus-icon.svg';
 
+
 // Store setup
 const contextStore = useContextStore()
 contextStore.init();
@@ -411,6 +419,27 @@ const { spiralSkin: rawSpiralSkin, spiralWelcomeMode, spiralTutorialMode, spiral
 
 // I18n setup
 const i18n = useI18n();
+import { languageService } from '../i18n/i18n';
+
+// Get current language flag
+const getCurrentLanguageFlag = () => {
+  const flags = {
+    fr: '🇫🇷',
+    en: '🇬🇧',
+    es: '🇪🇸',
+    'es-419': '🌎',
+    pt: '🇵🇹',
+    'pt-BR': '🇧🇷',
+    de: '🇩🇪',
+    it: '🇮🇹',
+    ru: '🇷🇺',
+    el: '🇬🇷',
+    zh: '🇨🇳',
+    ja: '🇯🇵'
+  };
+  const currentLang = languageService.getCurrentLanguage();
+  return flags[currentLang] || currentLang.toUpperCase();
+};
 
 // Computed property to get the translated skin
 const spiralSkin = computed(() => {
@@ -540,6 +569,12 @@ const closeTimeTravel = () => {
 const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;	
 const decrementTime = () => timeDelta.value -= travelSpeeds.value[selectedSpeed.value].value;
 const resetTime = () => timeDelta.value = 0;
+
+  // Open global language picker overlay
+  const openLanguagePicker = () => {
+    isMenuOpen.value = false;
+    window.dispatchEvent(new CustomEvent('open-language-picker'));
+  };
 
 // Lifecycle hooks
 onMounted(() => {

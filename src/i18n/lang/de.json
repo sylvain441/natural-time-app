@@ -364,17 +364,6 @@
     "day": "Tag",
     "rainbow": "Regenbogentag",
     "dateFormat": "de-DE"
-  },
-  "mainMenuLegacy": {
-    "title": "Natürliche Zeit",
-    "clock": "Uhr",
-    "spiral": "13 Monde",
-    "home": "← Start",
-    "reset": "Zurücksetzen",
-    "aria": {
-      "openMenu": "Menü öffnen",
-      "closeMenu": "Menü schließen"
-    }
   }
   ,
   "youtubePlayer": {
@@ -392,7 +381,8 @@
   },
   "common": {
     "loading": "Laden…",
-    "confirmReset": "Möchtest du wirklich alle gespeicherten Daten löschen?"
+    "confirmReset": "Möchtest du wirklich alle gespeicherten Daten löschen?",
+    "selectLanguage": "Sprache wählen"
   }
 }
 

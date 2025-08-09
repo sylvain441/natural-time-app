@@ -361,17 +361,6 @@
     "rainbow": "Día Arcoíris",
     "dateFormat": "es-ES"
   },
-  "mainMenuLegacy": {
-    "title": "Tiempo Natural",
-    "clock": "Reloj",
-    "spiral": "13 Lunas",
-    "home": "← Inicio",
-    "reset": "Restablecer",
-    "aria": {
-      "openMenu": "Abrir menú",
-      "closeMenu": "Cerrar menú"
-    }
-  },
   "youtubePlayer": {
     "thumbnail": "Entender el Tiempo Natural en 10 minutos"
   },
@@ -387,7 +376,8 @@
   },
   "common": {
     "loading": "Cargando…",
-    "confirmReset": "¿Seguro que quieres borrar todos los datos guardados?"
+    "confirmReset": "¿Seguro que quieres borrar todos los datos guardados?",
+    "selectLanguage": "Elegir idioma"
   }
 }
 

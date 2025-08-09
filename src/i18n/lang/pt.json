@@ -238,14 +238,6 @@
     "rainbow": "Dia do Arco‑íris",
     "dateFormat": "pt-PT"
   },
-  "mainMenuLegacy": {
-    "title": "Tempo Natural",
-    "clock": "Relógio",
-    "spiral": "13 Luas",
-    "home": "← Início",
-    "reset": "reset",
-    "aria": { "openMenu": "Abrir menu", "closeMenu": "Fechar menu" }
-  },
   "youtubePlayer": { "thumbnail": "Perceber o Tempo Natural em 10 minutos" },
   "notFound": { "title": "404", "message": "Ups! Página não encontrada.", "button": "Voltar ao início" },
   "update": {
@@ -255,7 +247,8 @@
   },
   "common": {
     "loading": "A carregar…",
-    "confirmReset": "Tens a certeza de que queres apagar todos os dados guardados?"
+    "confirmReset": "Tens a certeza de que queres apagar todos os dados guardados?",
+    "selectLanguage": "Escolher idioma"
   }
 }
 

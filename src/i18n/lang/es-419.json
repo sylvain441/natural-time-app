@@ -159,7 +159,7 @@
   "moon": { "title": { "moon": "Luna #{number}", "rainbowDay": "Día Arcoíris", "rainbowDays": "Días Arcoíris" }, "dayTooltip": { "naturalTime": "Tiempo Natural => {date}", "artificialTime": "Tiempo artificial => {date}" } },
   "mainMenu": { "homeTooltip": "Inicio naturaltime.app" },
   "display": { "year": "Año", "moon": "Luna", "day": "Día", "rainbow": "Día Arcoíris", "dateFormat": "es-419" },
-  "mainMenuLegacy": { "title": "Tiempo Natural", "clock": "Reloj", "spiral": "13 Lunas", "home": "← Inicio", "reset": "reset", "aria": { "openMenu": "Abrir menú", "closeMenu": "Cerrar menú" } },
+
   "youtubePlayer": { "thumbnail": "Entender Tiempo Natural en 10 minutos" },
   "notFound": { "title": "404", "message": "¡Ups! Página no encontrada.", "button": "Volver al inicio" },
   "update": { "title": "¡Aplicación actualizada!", "v2_2": "Ahora disponible en inglés. Consulta también el nuevo contenido en nuestra sección de FAQ.", "v2_3": "¡Versión en español ahora disponible! Esta es también una buena oportunidad para leer nuestra sección de FAQ." }
