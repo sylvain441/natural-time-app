@@ -96,7 +96,7 @@ const currentLocale = computed(() => languageService.getCurrentLanguage());
 const availableLocales = computed(() => languageService.AVAILABLE_LANGUAGES);
 const isOpen = ref(false);
 const overlayRef = ref(null);
-const isLocked = useScrollLock(document?.body ?? null);
+const isLocked = useScrollLock(typeof document !== 'undefined' ? document.body : null);
 
 // Get the full language title for the title attribute
 const getLanguageTitle = (lang) => {
