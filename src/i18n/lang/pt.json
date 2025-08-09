@@ -242,9 +242,7 @@
   "notFound": { "title": "404", "message": "Ups! Página não encontrada.", "button": "Voltar ao início" },
   "update": {
     "title": "Aplicação atualizada!",
-    "v2_2": "Agora disponível em inglês. Dá também uma vista de olhos na nossa secção de FAQ.",
-    "v2_3": "Versão em espanhol agora disponível! É também uma boa oportunidade para ler a nossa secção de FAQ.",
-    "v2_4": "🌍 Tempo Natural agora fala 12 idiomas! Alemão, Italiano, Russo, Grego, Chinês, Japonês e Português (Brasil) juntam-se à aventura."
+    "v2_4": "🌍 A aplicação Tempo Natural agora fala 12 idiomas! Alemão, Italiano, Russo, Grego, Chinês, Japonês e Português (Brasil) juntam-se à aventura."
   },
   "common": {
     "loading": "A carregar…",

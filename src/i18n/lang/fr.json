@@ -395,9 +395,7 @@
   },
   "update": {
     "title": "Application mise à jour !",
-    "v2_2": "Maintenant disponible en Anglais. Et désormais la Foire aux Questions est pleine de nouvelles réponses.",
-    "v2_3": "Version espagnole maintenant disponible ! C'est aussi l'occasion de relire la Foire aux Questions.",
-    "v2_4": "🌍 Temps Naturel parle maintenant 12 langues ! Allemand, Italien, Russe, Grec, Chinois, Japonais et Portugais (Brésil) rejoignent l'aventure."
+    "v2_4": "🌍 L'application Temps Naturel parle maintenant 12 langues ! Allemand, Italien, Russe, Grec, Chinois, Japonais et Portugais (Brésil) ont rejoint l'aventure."
   },
   "common": {
     "loading": "Chargement…",

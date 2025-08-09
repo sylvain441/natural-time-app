@@ -24,6 +24,18 @@ function isSignificantUpdate(oldVersion, newVersion) {
 }
 
 /**
+ * Handles data migration between versions
+ * @param {string} oldVersion - The old version
+ * @param {string} newVersion - The new version
+ */
+function migrateData(oldVersion, newVersion) {
+  // Clear both stores by removing their persisted data from localStorage
+  // localStorage.removeItem('configStore')
+  // localStorage.removeItem('contextStore')
+  console.log('Migrating data from', oldVersion, 'to', newVersion);
+}
+
+/**
  * Shows the update notification
  * @param {string} storedVersion - The previously stored version
  */
@@ -31,6 +43,9 @@ async function showUpdateNotificationInternal(storedVersion) {
   console.log(`Showing update notification for update from ${storedVersion} to ${version}`);
   
   try {
+    // Handle migration before showing notification
+    migrateData(storedVersion, version);
+    
     const i18n = (await import('../i18n/i18n')).default;
     await showUpdateNotification({ fromVersion: storedVersion }, i18n);
     
@@ -70,37 +85,59 @@ export function initializePWA() {
     localStorage.setItem('pwa_installed', 'true');
   });
   
-  // Check for version changes on page load
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const storedVersion = localStorage.getItem('appVersion');
-      const wasUpdated = sessionStorage.getItem('pwa_update_detected') === 'true';
-      
-      console.log('Checking for updates:', { 
-        storedVersion, 
-        currentVersion: version, 
-        wasUpdated,
-        isSignificant: storedVersion ? isSignificantUpdate(storedVersion, version) : false
-      });
-      
-      // Clear the update flag from session storage
-      sessionStorage.removeItem('pwa_update_detected');
-      
-      // For testing purposes, always show notification if there's a significant update
-      // regardless of whether it came from a PWA update
-      if (storedVersion && 
-          storedVersion !== version && 
-          isSignificantUpdate(storedVersion, version)) {
-        
+  // Function to check for version changes
+  function checkVersionUpdate() {
+    const storedVersion = localStorage.getItem('appVersion');
+    const wasUpdated = sessionStorage.getItem('pwa_update_detected') === 'true';
+    
+    console.log('Checking for updates:', { 
+      storedVersion, 
+      currentVersion: version, 
+      wasUpdated,
+      isSignificant: storedVersion ? isSignificantUpdate(storedVersion, version) : false
+    });
+    
+    // Clear the update flag from session storage
+    sessionStorage.removeItem('pwa_update_detected');
+    
+    // Handle version changes
+    if (storedVersion && storedVersion !== version) {
+      if (isSignificantUpdate(storedVersion, version)) {
         console.log('Significant version change detected, showing notification');
         showUpdateNotificationInternal(storedVersion);
-      } else if (storedVersion !== version) {
-        // Always update the stored version, even if we don't show a notification
+      } else {
+        // Minor version change - just migrate and update version without notification
         console.log(`Updating stored version from ${storedVersion} to ${version} (no notification)`);
+        migrateData(storedVersion, version);
         localStorage.setItem('appVersion', version);
       }
-    }, 1000);
+    }
+  }
+
+  // Check for version changes - use multiple triggers to ensure it runs
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkVersionUpdate);
+  } else {
+    // Document already loaded, run immediately
+    setTimeout(checkVersionUpdate, 100);
+  }
+  
+  // Backup: also listen for load event
+  window.addEventListener('load', () => {
+    setTimeout(checkVersionUpdate, 500);
   });
+
+  // Expose function for debugging
+  if (import.meta.env.DEV) {
+    window.forceVersionCheck = checkVersionUpdate;
+    window.debugVersion = () => {
+      console.log('=== DEBUG VERSION INFO ===');
+      console.log('Current version:', version);
+      console.log('Stored version:', localStorage.getItem('appVersion'));
+      console.log('Versions match:', localStorage.getItem('appVersion') === version);
+      console.log('Is significant update:', isSignificantUpdate(localStorage.getItem('appVersion'), version));
+    };
+  }
 
   return updateSW;
 }

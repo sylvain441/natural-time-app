@@ -15,12 +15,7 @@ import { ViteSSG } from 'vite-ssg'
 // Self-hosted fonts (subset imports; WOFF2 bundled offline)
 // Fonts are now loaded on-demand per locale in i18n service
 
-const migrateData = () => {
-  // Clear both stores by removing their persisted data from localStorage
-  //localStorage.removeItem('configStore')
-  //localStorage.removeItem('contextStore')
-  console.log('Migrating data from', localStorage.getItem('appVersion'), 'to', version)
-}
+
 
 export const createApp = ViteSSG(
   App, 
@@ -99,14 +94,12 @@ export const createApp = ViteSSG(
       router.beforeEach((to, from, next) => {
         const storedVersion = localStorage.getItem('appVersion')
         
-        if (!storedVersion || storedVersion !== version) {
-          migrateData()
-          // Only set the version for first-time users
-          // Let the PWA plugin handle version updates for existing users
-          if (!storedVersion) {
-            localStorage.setItem('appVersion', version)
-          }
+        // Only handle first-time users here, let PWA plugin handle version updates
+        if (!storedVersion) {
+          console.log('First-time user, setting initial version:', version)
+          localStorage.setItem('appVersion', version)
         }
+        // Migration is now handled by PWA plugin for existing users
         
         next()
       })
