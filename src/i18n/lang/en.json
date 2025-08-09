@@ -396,7 +396,8 @@
   "update": {
     "title": "Application updated!",
     "v2_2": "Now available in English. Please also check out the new content in our FAQ section.",
-    "v2_3": "Spanish version now available! This is also a good opportunity to check out our FAQ section."
+    "v2_3": "Spanish version now available! This is also a good opportunity to check out our FAQ section.",
+    "v2_4": "🌍 Natural Time now speaks 12 languages! German, Italian, Russian, Greek, Chinese, Japanese and Portuguese (Brazil) join the adventure."
   },
   "common": {
     "loading": "Loading…",
