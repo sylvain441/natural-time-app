@@ -178,4 +178,28 @@ html[lang="el"] .font-title {
   font-family: 'Times New Roman', serif !important;
 }
 
+/* Korean */
+html[lang="ko"] body {
+  font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Nanum Gothic', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+html[lang="ko"] .font-title {
+  font-family: 'Nanum Myeongjo', 'Batang', 'Apple Myungjo', serif !important;
+}
+
+/* Hindi (Devanagari) */
+html[lang="hi"] body {
+  font-family: 'Noto Sans Devanagari', 'Mangal', 'Kokila', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+html[lang="hi"] .font-title {
+  font-family: 'Noto Serif Devanagari', 'Aparajita', 'Kokila', serif !important;
+}
+
+/* Thai */
+html[lang="th"] body {
+  font-family: 'Thonburi', 'Tahoma', 'Noto Sans Thai', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+html[lang="th"] .font-title {
+  font-family: 'Sarabun', 'Thonburi', 'Angsana New', serif !important;
+}
+
 </style>

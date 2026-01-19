@@ -1,0 +1,405 @@
+{
+  "welcome": {
+    "title": "Naturlig Tid",
+    "subtitle": "En ny tidskonvention",
+    "naturalClock": {
+      "title": "Naturlig Klocka",
+      "description": "Jag är en klocka inspirerad av naturen.\nMin enda visare gör bara ett varv per dag...\nFöljer solens bana över himlen,\nsömlöst... på en 360° urtavla.",
+      "cta": {
+        "discover": "Upptäck klockan",
+        "open": "Öppna klockan",
+        "tutorial": "Visa tutorial"
+      }
+    },
+    "thirteenMoons": {
+      "title": "13 Månar Spiral",
+      "description": "Hämtad från globala traditioner,\nmina 13 månader med 28 dagar vardera\nersätter vår konventionella kalender.\nÅret avslutas med Regnbågsdagen.",
+      "cta": {
+        "discover": "Upptäck de 13 månarna",
+        "open": "Öppna de 13 månarna",
+        "tutorial": "Visa tutorial"
+      }
+    },
+    "hero": {
+      "description": "Naturlig Tid omformar hur vi mäter tid.\nGenom {clock} och {spiral},\nåtertar solen sin roll som universell referenspunkt\nför tidens gång...",
+      "clockLink": "360° klockan",
+      "spiralLink": "13 månar spiralen"
+    },
+    "understanding": {
+      "title": "Förstå",
+      "subtitle": "naturlig tid",
+      "mission": "Jag är ett tidmätningssystem\nSkapat för att ersätta (eller komplettera)\n24-timmarsklockan\noch den gregorianska kalendern."
+    },
+    "faq": {
+      "title": "Vanliga Frågor"
+    },
+    "footer": {
+      "closing": {
+        "line1": "Vi skapade maskiner för att mäta tid.",
+        "line2": "Sedan blev vi slavar under deras tickande.",
+        "line3": "Naturlig Tid vänder denna trend.",
+        "line4": "Naturen har redan gett oss den perfekta tidmätaren...",
+        "line5": "Solen! Den ultimata dirigenten för alla levande varelser."
+      },
+      "credits": "Skapad av {author} | {github}",
+      "author": "Sylvain",
+      "github": "Öppen källkod på GitHub",
+      "resetData": "Återställ data"
+    },
+    "meta": {
+      "title": "Naturlig Tid - Ett nytt sätt att mäta tid, inspirerat av naturen",
+      "description": "Upptäck och förstå den 360° naturliga klockan synkroniserad med solen och 13 månar spiralen med 28 dagar",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/sv/"
+    }
+  },
+  "navigation": {
+    "clock": "Klocka",
+    "spiral": "13 Månar",
+    "faq": "FAQ"
+  },
+  "tutorials": {
+    "clock": {
+      "welcome": {
+        "description": "Upptäck ett enklare, mer intuitivt sätt att följa tidens gång under dagen"
+      },
+      "notification": {
+        "title": "Naturlig Klocka Tutorial",
+        "message": "Välkommen! Denna visuella guide förklarar hur den 360° naturliga klockan fungerar på ett ögonblick"
+      },
+      "step1": {
+        "title": "Jag är en naturlig klocka",
+        "description": "Jag pekar ständigt på solens position"
+      },
+      "step2": {
+        "title": "Min enda visare",
+        "description": "Gör bara ett helt varv per dag, mycket långsamt"
+      },
+      "step3": {
+        "title": "Min urtavla är markerad i 360°",
+        "description": "Adjö till det komplicerade 24t/60m/60s systemet"
+      },
+      "step4": {
+        "title": "180° markerar sann middag",
+        "description": "När solen är högst på himlen"
+      },
+      "step5": {
+        "title": "0° indikerar midnatt",
+        "description": "När solen är på motsatta sidan av vår position"
+      },
+      "step6": {
+        "title": "Mustascherna representerar dag och natt",
+        "description": "Dag/natt-längden varierar med säsong och latitud"
+      },
+      "step7": {
+        "title": "Vid sommarsolståndet...",
+        "description": "Solen går upp här"
+      },
+      "step8": {
+        "title": "Vid sommarsolståndet...",
+        "description": "Och går ner där borta"
+      },
+      "step9": {
+        "title": "Vid vintersolståndet...",
+        "description": "Solen går upp här"
+      },
+      "step10": {
+        "title": "Vid vintersolståndet...",
+        "description": "Och går ner där borta"
+      },
+      "step11": {
+        "title": "Endast på dagjämningsdagarna",
+        "description": "Är dag och natt exakt lika långa"
+      },
+      "step12": {
+        "title": "Vi frågar inte längre \"Vad är klockan?\"",
+        "description": "Utan \"Var är solen på himlen?\""
+      },
+      "step13": {
+        "title": "Solen är på 222°",
+        "description": "(till exempel)"
+      },
+      "step14": {
+        "title": "Siffrorna är valfria",
+        "description": "Den naturliga klockan är främst en visuell upplevelse"
+      },
+      "end": {
+        "title": "Tutorial slutförd!",
+        "description": "För att fortsätta behöver appen en geografisk plats"
+      }
+    },
+    "spiral": {
+      "welcome": {
+        "description": "Upptäck 13 Månar Spiralen, en universell kalender helt baserad på naturliga cykler"
+      },
+      "notification": {
+        "title": "13 Månar Tutorial",
+        "message": "Välkommen! Denna visuella guide förklarar hur 13 månar kalendern fungerar på ett ögonblick"
+      },
+      "step1": {
+        "title": "Jag är en kalender med 13 månader om 28 dagar",
+        "description": "Jag kallas \"13 Månar Spiralen\""
+      },
+      "step2": {
+        "title": "1 måne = 4 veckor om 7 dagar",
+        "description": "Exakt 28 dagar, utan undantag"
+      },
+      "step3": {
+        "title": "Varje dag är namngiven efter en färg",
+        "description": "1:a dagen = Röd"
+      },
+      "step4": {
+        "title": "Sedan Orange, Gul, Grön, Blå, Indigo",
+        "description": "Och slutligen den 7:e dagen: Violett"
+      },
+      "step5": {
+        "title": "De 13 månarna är arrangerade i en spiral",
+        "description": "Eftersom tiden är cyklisk, inte linjär"
+      },
+      "step6": {
+        "title": "Här är den 5:e dagen i den 5:e månen",
+        "description": "Till exempel..."
+      },
+      "step7": {
+        "title": "Och här: den 11:e dagen i den 11:e månen",
+        "description": "En grön dag, oavsett år eller sekel"
+      },
+      "step8": {
+        "title": "Visste du? 13 × 28 = 364 dagar 🤩",
+        "description": "Låt oss lägga till en dag till för att nå 365"
+      },
+      "step9": {
+        "title": "Detta är Regnbågsdagen 🌈",
+        "description": "En firande dag runt vintersolståndet (norra halvklotet)"
+      },
+      "step10": {
+        "title": "Vissa år har 366 dagar",
+        "description": "En chans att fira två dagar i rad utanför tiden"
+      },
+      "step11": {
+        "title": "Ett naturligt datum skrivs: ÅR ) MÅNE ) DAG",
+        "description": "Ett format som möjliggör alfabetisk sortering"
+      },
+      "step12": {
+        "title": "Den 1:a dagen av år 001",
+        "description": "motsvarar 22 december 2012 (se FAQ)"
+      },
+      "step13": {
+        "title": "Viktig notering",
+        "description": "De 28 dagarna skiljer sig från måncykeln på 29,53 dagar (se FAQ)"
+      },
+      "end": {
+        "title": "Tutorial slutförd!",
+        "description": "För att fortsätta behöver appen en geografisk plats"
+      }
+    },
+    "timeTravel": {
+      "notification": {
+        "title": "Tidsreseläge",
+        "message": "För att navigera genom det förflutna och framtiden:\nSteg 1: Välj en hastighet\nSteg 2: Använd - och + knapparna\nTips: Håll knapparna intryckta för kontinuerlig rörelse"
+      }
+    }
+  },
+  "clock": {
+    "title": "Naturlig Tid Klocka",
+    "subtitle": "En enda visare i synk med solen",
+    "meta": {
+      "description": "Utforska den 360° naturliga klockan som roterar i perfekt harmoni med solens resa över himlen",
+      "title": "Naturlig Tid Klocka - En enda visare synkroniserad med solen",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/sv/naturlig-tid-klocka/"
+    },
+    "timeTravel": {
+      "title": "Tidsresa",
+      "speedSelector": "Resehastighet",
+      "resetButton": "Återställ",
+      "exitButton": "Avsluta tidsresa",
+      "speeds": [
+        {
+          "value": "001°",
+          "equivalentTo": "4min"
+        },
+        {
+          "value": "005°",
+          "equivalentTo": "20min"
+        },
+        {
+          "value": "015°",
+          "equivalentTo": "1t"
+        },
+        {
+          "value": "360°",
+          "equivalentTo": "1dag"
+        },
+        {
+          "value": "7 dagar",
+          "equivalentTo": ""
+        },
+        {
+          "value": "28 dagar",
+          "equivalentTo": ""
+        }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Starta tutorial",
+      "skipButton": "Hoppa över tutorial",
+      "tutorialStep": "Tutorial",
+      "configureButton": "Konfigurera",
+      "skipWelcomeButton": "Hoppa över"
+    },
+    "menu": {
+      "settings": "Inställningar",
+      "locationPicker": "Välj plats",
+      "simplifiedMode": {
+        "title": "Förenklad design",
+        "fullMode": "Full design"
+      },
+      "understanding": "Förståelse",
+      "startTutorial": "Starta tutorial",
+      "faq": "Vanliga frågor",
+      "specialMode": "Specialläge",
+      "timeTravel": "Tidsresa"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "Ny plats upptäckt",
+        "ignoreButton": "Ignorera",
+        "updateButton": "Uppdatera"
+      },
+      "southernHemisphere": {
+        "title": "Södra Halvklotet",
+        "description": "På detta halvklot roterar klockan moturs (höger till vänster) för att matcha solens rörelse på himlen.",
+        "dismissButton": "Förstått"
+      }
+    },
+    "component": {
+      "title": "Naturlig Tid"
+    }
+  },
+  "spiral": {
+    "title": "13 Månar Spiral",
+    "subtitle": "Ett naturligt alternativ till den gregorianska kalendern",
+    "meta": {
+      "title": "13 Månar Spiral - Naturlig Tid - Ett naturligt alternativ till den gregorianska kalendern",
+      "description": "Upptäck den eleganta 13 månar spiralen med 28 dagar som ersätter vår artificiella 12-månaders kalender",
+      "ogImage": "https://naturaltime.app/natural-time-social-en.jpg",
+      "ogUrl": "https://naturaltime.app/sv/13-manar-spiral/"
+    },
+    "timeTravel": {
+      "title": "Tidsresa",
+      "speedSelector": "Resehastighet",
+      "resetButton": "Återställ till noll",
+      "exitButton": "Avsluta tidsresa",
+      "speeds": [
+        {
+          "label": "1 dag"
+        },
+        {
+          "label": "1 vecka"
+        },
+        {
+          "label": "1 måne"
+        }
+      ]
+    },
+    "tutorial": {
+      "startButton": "Starta tutorial",
+      "skipButton": "Hoppa över tutorial",
+      "tutorialStep": "Tutorial",
+      "configureButton": "Konfigurera",
+      "skipWelcomeButton": "Hoppa över"
+    },
+    "menu": {
+      "settings": "Inställningar",
+      "locationPicker": "Välj plats",
+      "viewMode": {
+        "spiralTitle": "Visa som spiral",
+        "verticalTitle": "Visa vertikalt"
+      },
+      "understanding": "Förståelse",
+      "startTutorial": "Starta tutorial",
+      "faq": "Vanliga frågor",
+      "specialMode": "Specialläge",
+      "timeTravel": "Tidsresa"
+    },
+    "notifications": {
+      "geolocation": {
+        "title": "GPS-position ändrad. Uppdatera?",
+        "ignoreButton": "Ignorera idag",
+        "updateButton": "Ja",
+        "dismissButton": "Nej"
+      }
+    }
+  },
+  "faq": {
+    "inProgress": "(Pågående arbete)"
+  },
+  "locationPicker": {
+    "title": "Välj en plats",
+    "nameLabel": {
+      "new": "Ge denna plats ett namn",
+      "edit": "Redigera platsnamn"
+    },
+    "optional": "(Valfritt)",
+    "validate": "Bekräfta",
+    "clickMap": "Klicka på kartan för att välja en plats",
+    "offline": "Enheten verkar vara offline. Kontrollera din internetanslutning eller ange dina GPS-koordinater manuellt.",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "name": "Namn",
+    "geolocation": {
+      "enable": "Aktivera geolokalisering",
+      "enabled": "Geolokalisering aktiverad",
+      "searching": "Söker efter plats...",
+      "detected": "GPS-position upptäckt",
+      "recenter": "Centrera om",
+      "errors": {
+        "denied": "Vänligen aktivera geolokalisering i din webbläsare",
+        "unavailable": "Position ej tillgänglig",
+        "timeout": "Geolokaliseringstimeout",
+        "error": "Geolokaliseringsfel"
+      },
+      "retry": "Försök igen"
+    },
+    "explanation": "Naturlig Tid behöver en plats för att exakt spåra solens position."
+  },
+  "moon": {
+    "title": {
+      "moon": "Måne #{number}",
+      "rainbowDay": "Regnbågsdag",
+      "rainbowDays": "Regnbågsdagar"
+    },
+    "dayTooltip": {
+      "naturalTime": "Naturlig Tid => {date}",
+      "artificialTime": "Artificiell Tid => {date}"
+    }
+  },
+  "mainMenu": {
+    "homeTooltip": "Hem naturaltime.app"
+  },
+  "display": {
+    "year": "År",
+    "moon": "Måne",
+    "day": "Dag",
+    "rainbow": "Regnbågsdag",
+    "dateFormat": "sv-SE"
+  },
+  "youtubePlayer": {
+    "thumbnail": "Förstå Naturlig Tid på 10 minuter"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Hoppsan! Sidan hittades inte.",
+    "button": "Tillbaka till hem"
+  },
+  "update": {
+    "title": "Applikationen uppdaterad!",
+    "v2_4": "🌍 Naturlig Tid-applikationen talar nu 12 språk! Tyska, italienska, ryska, grekiska, kinesiska, japanska och portugisiska (Brasilien) ansluter sig till äventyret."
+  },
+  "common": {
+    "loading": "Laddar…",
+    "confirmReset": "Är du säker på att du vill radera all sparad data?",
+    "selectLanguage": "Välj språk"
+  }
+}

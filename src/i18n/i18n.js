@@ -16,6 +16,21 @@ const lazyMessages = {
   el: () => import('./lang/el.json'),
   zh: () => import('./lang/zh.json'),
   ja: () => import('./lang/ja.json'),
+  // New languages (2025)
+  sq: () => import('./lang/sq.json'),
+  pl: () => import('./lang/pl.json'),
+  nl: () => import('./lang/nl.json'),
+  tr: () => import('./lang/tr.json'),
+  ko: () => import('./lang/ko.json'),
+  id: () => import('./lang/id.json'),
+  vi: () => import('./lang/vi.json'),
+  sv: () => import('./lang/sv.json'),
+  fi: () => import('./lang/fi.json'),
+  no: () => import('./lang/no.json'),
+  da: () => import('./lang/da.json'),
+  is: () => import('./lang/is.json'),
+  hi: () => import('./lang/hi.json'),
+  th: () => import('./lang/th.json'),
 };
 
 // Eager import map for SSR to guarantee availability during first render
