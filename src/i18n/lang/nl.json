@@ -362,7 +362,8 @@
       },
       "retry": "Opnieuw proberen"
     },
-    "explanation": "Natuurlijke Tijd heeft een locatie nodig om de positie van de zon nauwkeurig te volgen."
+    "explanation": "Natuurlijke Tijd heeft een locatie nodig om de positie van de zon nauwkeurig te volgen.",
+    "searchPlaceholder": "Zoek een plaats"
   },
   "moon": {
     "title": {

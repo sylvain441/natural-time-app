@@ -338,7 +338,8 @@
       },
       "retry": "Riprova"
     },
-    "explanation": "Il Tempo Naturale ha bisogno di una posizione geografica per determinare la posizione del sole."
+    "explanation": "Il Tempo Naturale ha bisogno di una posizione geografica per determinare la posizione del sole.",
+    "searchPlaceholder": "Cerca un luogo"
   },
   "moon": {
     "title": {

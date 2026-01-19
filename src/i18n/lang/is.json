@@ -362,7 +362,8 @@
       },
       "retry": "Reyna aftur"
     },
-    "explanation": "Náttúrulegur Tími þarf staðsetningu til að fylgjast nákvæmlega með stöðu sólarinnar."
+    "explanation": "Náttúrulegur Tími þarf staðsetningu til að fylgjast nákvæmlega með stöðu sólarinnar.",
+    "searchPlaceholder": "Leita að stað"
   },
   "moon": {
     "title": {

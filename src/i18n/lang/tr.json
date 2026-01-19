@@ -362,7 +362,8 @@
       },
       "retry": "Tekrar dene"
     },
-    "explanation": "Doğal Zaman, güneşin konumunu doğru bir şekilde takip etmek için bir konuma ihtiyaç duyar."
+    "explanation": "Doğal Zaman, güneşin konumunu doğru bir şekilde takip etmek için bir konuma ihtiyaç duyar.",
+    "searchPlaceholder": "Bir yer ara"
   },
   "moon": {
     "title": {

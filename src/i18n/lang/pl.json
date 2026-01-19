@@ -362,7 +362,8 @@
       },
       "retry": "Spróbuj ponownie"
     },
-    "explanation": "Czas Naturalny potrzebuje lokalizacji, aby dokładnie śledzić pozycję słońca."
+    "explanation": "Czas Naturalny potrzebuje lokalizacji, aby dokładnie śledzić pozycję słońca.",
+    "searchPlaceholder": "Szukaj miejsca"
   },
   "moon": {
     "title": {

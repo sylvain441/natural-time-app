@@ -154,7 +154,8 @@
       "errors": { "denied": "Por favor, activa la geolocalización en tu navegador", "unavailable": "Posición no disponible", "timeout": "Tiempo de espera excedido", "error": "Error de geolocalización" },
       "retry": "Intentar de nuevo"
     },
-    "explanation": "Tiempo Natural necesita una ubicación para seguir la posición del sol con precisión."
+    "explanation": "Tiempo Natural necesita una ubicación para seguir la posición del sol con precisión.",
+    "searchPlaceholder": "Buscar un lugar"
   },
   "moon": { "title": { "moon": "Luna #{number}", "rainbowDay": "Día Arcoíris", "rainbowDays": "Días Arcoíris" }, "dayTooltip": { "naturalTime": "Tiempo Natural => {date}", "artificialTime": "Tiempo artificial => {date}" } },
   "mainMenu": { "homeTooltip": "Inicio naturaltime.app" },

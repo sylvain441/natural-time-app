@@ -113,7 +113,21 @@ const getLanguageTitle = (lang) => {
     el: 'Ελληνικά',
     zh: '中文（简体）',
     ja: '日本語',
-    // Add other languages here
+    // New languages (2025)
+    sq: 'Shqip',
+    pl: 'Polski',
+    nl: 'Nederlands',
+    tr: 'Türkçe',
+    ko: '한국어',
+    id: 'Bahasa Indonesia',
+    vi: 'Tiếng Việt',
+    sv: 'Svenska',
+    fi: 'Suomi',
+    no: 'Norsk',
+    da: 'Dansk',
+    is: 'Íslenska',
+    hi: 'हिन्दी',
+    th: 'ไทย',
   };
   return titles[lang] || lang;
 };
@@ -133,7 +147,21 @@ const getLanguageFlag = (lang) => {
     el: '🇬🇷',
     zh: '🇨🇳',
     ja: '🇯🇵',
-    // Add other languages here
+    // New languages (2025)
+    sq: '🇦🇱',
+    pl: '🇵🇱',
+    nl: '🇳🇱',
+    tr: '🇹🇷',
+    ko: '🇰🇷',
+    id: '🇮🇩',
+    vi: '🇻🇳',
+    sv: '🇸🇪',
+    fi: '🇫🇮',
+    no: '🇳🇴',
+    da: '🇩🇰',
+    is: '🇮🇸',
+    hi: '🇮🇳',
+    th: '🇹🇭',
   };
   return flags[lang] || lang.toUpperCase();
 };

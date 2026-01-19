@@ -338,7 +338,8 @@
       },
       "retry": "Intentar de nuevo"
     },
-    "explanation": "Tiempo Natural necesita una ubicación para seguir la posición del sol con precisión."
+    "explanation": "Tiempo Natural necesita una ubicación para seguir la posición del sol con precisión.",
+    "searchPlaceholder": "Buscar un lugar"
   },
   "moon": {
     "title": {

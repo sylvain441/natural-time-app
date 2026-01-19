@@ -332,7 +332,8 @@
       },
       "retry": "再試行"
     },
-    "explanation": "自然時間は、太陽の位置を知るために地理的な位置が必要です。"
+    "explanation": "自然時間は、太陽の位置を知るために地理的な位置が必要です。",
+    "searchPlaceholder": "場所を検索"
   },
   "moon": {
     "title": {

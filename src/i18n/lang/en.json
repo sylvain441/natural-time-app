@@ -362,7 +362,8 @@
       },
       "retry": "Try again"
     },
-    "explanation": "Natural Time needs a location to accurately track the sun's position."
+    "explanation": "Natural Time needs a location to accurately track the sun's position.",
+    "searchPlaceholder": "Search for a place"
   },
   "moon": {
     "title": {

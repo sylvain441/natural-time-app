@@ -362,7 +362,8 @@
       },
       "retry": "Thử lại"
     },
-    "explanation": "Thời Gian Tự Nhiên cần một vị trí để theo dõi chính xác vị trí của mặt trời."
+    "explanation": "Thời Gian Tự Nhiên cần một vị trí để theo dõi chính xác vị trí của mặt trời.",
+    "searchPlaceholder": "Tìm kiếm địa điểm"
   },
   "moon": {
     "title": {

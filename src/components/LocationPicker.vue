@@ -269,8 +269,8 @@ const initGeocoder = async () => {
   
   geocoder.value = new Geocoder('nominatim', {
     provider: 'photon',
-    lang: 'fr-FR',
-    placeholder: 'Rechercher un lieu',
+    lang: i18n.locale.value || 'en',
+    placeholder: i18n.t('locationPicker.searchPlaceholder'),
     targetType: 'text-input',
     preventMarker: true,
     limit: 3,

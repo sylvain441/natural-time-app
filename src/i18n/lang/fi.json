@@ -362,7 +362,8 @@
       },
       "retry": "Yritä uudelleen"
     },
-    "explanation": "Luonnollinen Aika tarvitsee sijainnin seuratakseen auringon sijaintia tarkasti."
+    "explanation": "Luonnollinen Aika tarvitsee sijainnin seuratakseen auringon sijaintia tarkasti.",
+    "searchPlaceholder": "Etsi paikkaa"
   },
   "moon": {
     "title": {

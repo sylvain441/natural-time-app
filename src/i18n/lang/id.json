@@ -362,7 +362,8 @@
       },
       "retry": "Coba lagi"
     },
-    "explanation": "Waktu Alami membutuhkan lokasi untuk melacak posisi matahari secara akurat."
+    "explanation": "Waktu Alami membutuhkan lokasi untuk melacak posisi matahari secara akurat.",
+    "searchPlaceholder": "Cari tempat"
   },
   "moon": {
     "title": {

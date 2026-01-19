@@ -341,9 +341,9 @@
       },
       "retry": "Erneut versuchen"
     },
-    "explanation": "Die Natürliche Zeit benötigt eine geografische Position, um die Stellung der Sonne zu bestimmen."
-  }
-  ,
+    "explanation": "Die Natürliche Zeit benötigt eine geografische Position, um die Stellung der Sonne zu bestimmen.",
+    "searchPlaceholder": "Ort suchen"
+  },
   "moon": {
     "title": {
       "moon": "Mond #{number}",

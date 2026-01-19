@@ -224,7 +224,8 @@
       },
       "retry": "重试"
     },
-    "explanation": "自然时间需要一个地理位置来确定太阳的位置。"
+    "explanation": "自然时间需要一个地理位置来确定太阳的位置。",
+    "searchPlaceholder": "搜索地点"
   },
   "moon": {
     "title": { "moon": "第 #{number} 月", "rainbowDay": "彩虹日", "rainbowDays": "彩虹日" },

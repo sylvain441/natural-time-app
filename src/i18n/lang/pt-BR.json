@@ -138,7 +138,8 @@
     "longitude": "Longitude",
     "name": "Nome",
     "geolocation": { "enable": "Ativar geolocalização", "enabled": "Geolocalização ativada", "searching": "Procurando localização...", "detected": "Posição do GPS detectada", "recenter": "Recentrar", "errors": { "denied": "Ative a geolocalização no seu navegador", "unavailable": "Posição indisponível", "timeout": "Tempo esgotado", "error": "Erro de geolocalização" }, "retry": "Tentar novamente" },
-    "explanation": "O Tempo Natural precisa de uma localização para acompanhar com precisão a posição do sol."
+    "explanation": "O Tempo Natural precisa de uma localização para acompanhar com precisão a posição do sol.",
+    "searchPlaceholder": "Pesquisar um local"
   },
   "moon": { "title": { "moon": "Lua #{number}", "rainbowDay": "Dia do Arco‑íris", "rainbowDays": "Dias do Arco‑íris" }, "dayTooltip": { "naturalTime": "Tempo Natural => {date}", "artificialTime": "Tempo artificial => {date}" } },
   "mainMenu": { "homeTooltip": "Início naturaltime.app" },

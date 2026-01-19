@@ -362,7 +362,8 @@
       },
       "retry": "다시 시도"
     },
-    "explanation": "자연 시간은 태양의 위치를 정확하게 추적하기 위해 위치가 필요합니다."
+    "explanation": "자연 시간은 태양의 위치를 정확하게 추적하기 위해 위치가 필요합니다.",
+    "searchPlaceholder": "장소 검색"
   },
   "moon": {
     "title": {

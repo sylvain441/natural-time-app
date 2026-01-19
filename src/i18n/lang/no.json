@@ -362,7 +362,8 @@
       },
       "retry": "Prøv igjen"
     },
-    "explanation": "Naturlig Tid trenger en plassering for å spore solens posisjon nøyaktig."
+    "explanation": "Naturlig Tid trenger en plassering for å spore solens posisjon nøyaktig.",
+    "searchPlaceholder": "Søk etter et sted"
   },
   "moon": {
     "title": {

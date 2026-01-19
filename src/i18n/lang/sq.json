@@ -362,7 +362,8 @@
       },
       "retry": "Provo përsëri"
     },
-    "explanation": "Koha Natyrale ka nevojë për një vendndodhje për të ndjekur me saktësi pozicionin e diellit."
+    "explanation": "Koha Natyrale ka nevojë për një vendndodhje për të ndjekur me saktësi pozicionin e diellit.",
+    "searchPlaceholder": "Kërko një vend"
   },
   "moon": {
     "title": {
