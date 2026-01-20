@@ -228,6 +228,22 @@ Per creare un orologio naturale basta:
 
 Creare il proprio orologio è un gesto simbolico forte. Rappresenta una ripresa di potere sul proprio tempo di vita: l'unica risorsa che tutti possiedono in egual misura sulla Terra. Alcuni hanno più denaro di altri, ma tutti dispongono di 360 gradi nella propria giornata.
 
+#### Come gestisce il Tempo Naturale le variazioni della rotazione terrestre?
+
+Il Tempo Naturale utilizza il tempo medio (come UTC) per livellare le variazioni naturali della rotazione terrestre.
+
+Osservando attentamente l'orologio naturale, si può notare che gli indicatori di alba e tramonto (colore giallo/arancione) non sono sempre perfettamente simmetrici rispetto all'asse 0°-180°. Questa asimmetria non è un errore, ma riflette un'affascinante realtà astronomica.
+
+Questa particolarità si spiega con due approcci diversi usati nell'applicazione:
+- Le albe e i tramonti sono calcolati da osservazioni reali e precise del sole in un dato luogo
+- Il mezzogiorno solare (180°) è determinato secondo il tempo medio (UTC), che livella le variazioni naturali della rotazione terrestre nell'arco di un anno completo.
+
+In realtà, la Terra non ruota a velocità costante durante tutto l'anno. Il Tempo Naturale, come UTC, utilizza una media di queste variazioni per creare un flusso temporale regolare e pratico per l'uso quotidiano, preservando la precisione delle osservazioni reali per albe e tramonti. È un equilibrio tra precisione astronomica pura e praticità quotidiana.
+
+Questo doppio approccio permette all'orologio naturale di essere sia preciso nelle sue indicazioni sia regolare nel suo movimento — un elegante compromesso tra la complessa realtà astronomica e il nostro bisogno umano di regolarità.
+
+Per essere onesti, quando diciamo che nel Tempo Naturale "180° corrisponde davvero a mezzogiorno", è una leggera semplificazione. In realtà, il vero mezzogiorno solare (il momento in cui il sole è esattamente allo zenit) varia leggermente ogni giorno. Usiamo una media per ragioni pratiche, non perché sia difficile da calcolare, ma perché aggiungerebbe una complessità inutile alla vita quotidiana.
+
 ### FAQ - Spirale delle 13 Lune
 
 #### Perché 13 mesi (lune) di 28 giorni?

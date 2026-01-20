@@ -272,6 +272,12 @@ Esta regularidad hace que las proyecciones temporales sean mucho más intuitivas
 
 Más importante aún, cuando alguien menciona una fecha como “el 21 de la próxima luna”, puedes visualizar inmediatamente su posición en el ciclo, transformando un dato abstracto en información visual que nuestro cerebro procesa de forma natural.
 
+#### ¿Qué simbolizan los 7 colores de los días de la semana?
+
+Los 7 colores pueden simbolizar lo que cada persona desee ver en ellos. El número 7 aparece en muchas armonías naturales: las 7 notas musicales, los 7 colores del arcoíris, los 7 chakras, etc.
+
+El uso de colores como nombres de los días de la semana es opcional, pero ofrece la ventaja de hacer el calendario más universal. Al llegar a un país extranjero, basta con aprender los nombres de los colores en el idioma local para conocer los días de la semana, lo que facilita enormemente la comunicación intercultural.
+
 #### ¿Por qué usar el término “Espiral” en lugar de “Calendario”?
 
 El término “calendario” proviene etimológicamente del latín “calendarium”, que significaba “libro de cuentas” o “registro de deudas”. Por tanto, está históricamente ligado a la idea de que el tiempo se asocia al dinero y a los impuestos. Los primeros calendarios se diseñaron en parte para regular la recaudación tributaria.
