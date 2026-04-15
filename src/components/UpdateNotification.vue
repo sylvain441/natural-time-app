@@ -12,8 +12,14 @@
           <p class="text-white text-sm" v-if="versionSpecificMessage">
             {{ versionSpecificMessage }}
           </p>
+          <a v-if="versionSpecificCta && versionSpecificUrl"
+             :href="versionSpecificUrl" target="_blank" rel="noopener noreferrer"
+             @click="close"
+             class="mt-3 inline-block w-full text-center bg-white/20 hover:bg-white/30 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
+            {{ versionSpecificCta }} →
+          </a>
         </div>
-        <button @click="close" class="ml-4 text-white hover:text-gray-200 transition-colors" aria-label="Close">
+        <button @click="close" class="ml-4 text-white hover:text-gray-200 transition-colors flex-shrink-0" aria-label="Close">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
@@ -40,18 +46,30 @@ const props = defineProps({
 
 const show = ref(false);
 
+// Derive the version key once (e.g. "v2_5")
+const versionKey = computed(() => {
+  const [major, minor] = version.split('.');
+  return `v${major}_${minor}`;
+});
+
 // Get version-specific message if available
 const versionSpecificMessage = computed(() => {
-  // Convert version to a format usable in i18n keys (e.g., 3.3.0 -> v3_3)
-  // Only use major and minor version numbers
-  const [major, minor] = version.split('.');
-  const versionKey = `v${major}_${minor}`;
-  const key = `update.${versionKey}`;
-  
-  // Check if there's a message for this specific version
-  const hasVersionMessage = t(key) !== key; // If translation exists, it won't return the key itself
-  
-  return hasVersionMessage ? t(key) : '';
+  const key = `update.${versionKey.value}`;
+  const msg = t(key);
+  return msg !== key ? msg : '';
+});
+
+// Get optional CTA label and URL for this version
+const versionSpecificCta = computed(() => {
+  const key = `update.${versionKey.value}_cta`;
+  const val = t(key);
+  return val !== key ? val : '';
+});
+
+const versionSpecificUrl = computed(() => {
+  const key = `update.${versionKey.value}_url`;
+  const val = t(key);
+  return val !== key ? val : '';
 });
 
 function close() {
