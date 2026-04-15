@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^13.6.0",
-    "natural-time-js": "^2.0.4",
+    "natural-time-js": "^2.1.0",
     "ol": "^10.2.0",
     "ol-geocoder": "^4.3.3",
     "pinia": "^2.2.2",
