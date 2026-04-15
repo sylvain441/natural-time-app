@@ -64,7 +64,7 @@
                             <div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
 								<span>{{ location || $t('welcome.title') }}</span>
 								<span v-if="latitude && longitude" class="font-normal">
-									| {{ context.naturalDate.toLongitudeString(0) }}
+									| {{ context.naturalDate.toLongitudeString() }}
 								</span>
 							</div>
 							<div v-else-if="clockSkin.titleText" class="px-3 py-1 bg-nt-yellow-light">
@@ -122,7 +122,7 @@
 							<p class="text-center text-gray-900 font-mono text-xs">
 								<span class="">{{ context.naturalDate.toDateString() }}</span>&nbsp;
 								<span class="font-extrabold text-xl">{{ context.naturalDate.toTimeString(0) }}</span>&nbsp;
-								<span class="">{{ context.naturalDate.toLongitudeString(0) }}</span>&nbsp;&nbsp;
+								<span class="">{{ context.naturalDate.toLongitudeString() }}</span>&nbsp;&nbsp;
 							</p>
 						</div>
 
@@ -356,7 +356,7 @@
 				<div class="p-4">
 					<p class="text-sm text-gray-700 mb-3">
 						{{ $t('clock.notifications.geolocation.title') }}: <span class="font-semibold">{{ contextStore.newPlaceName }}</span>
-						<span class="text-slate-500 ml-1">({{ Math.abs(contextStore.geolocationLongitude) < 1 ? 'NTZ' : 'NT' + (Math.trunc(contextStore.geolocationLongitude) > 0 ? '+' : '') + Math.trunc(contextStore.geolocationLongitude) }})</span>
+						<span class="text-slate-500 ml-1">({{ new NaturalDate(Date.now(), contextStore.geolocationLongitude).toLongitudeString() }})</span>
 					</p>
 					<div class="flex justify-end space-x-2">
 						<button @click="contextStore.dismissGeolocationChange"
@@ -518,10 +518,7 @@ const showGeolocationNotification = (type, message) => {
 // Get temp longitude string for LocationPicker display
 const getTempLongitudeString = () => {
 	if (contextStore.tempLongitude !== null) {
-		const lon = Math.trunc(contextStore.tempLongitude);
-		const sign = lon >= 0 ? '+' : '-';
-		const formattedLon = Math.abs(lon).toString().padStart(3, '0');
-		return `Longitude ${sign}${formattedLon}`;
+		return `Longitude ${new NaturalDate(Date.now(), contextStore.tempLongitude).toLongitudeString()}`;
 	}
 	return '';
 };
@@ -629,7 +626,7 @@ const pageTitle = computed(() => {
 	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
 		return metaTitle;
 	}
-	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString(0)} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
+	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
 });
 
 useHead({

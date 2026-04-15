@@ -136,7 +136,7 @@
 					<div class="nt-box-inner text-sm">
 						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">
 							<span v-if="location" class="font-bold">{{ location }}<br></span>
-							<span class="font-normal">{{ context.naturalDate.toTimeString(0) }}&nbsp;{{ context.naturalDate.toLongitudeString(0) }}</span>
+							<span class="font-normal">{{ context.naturalDate.toTimeString(0) }}&nbsp;{{ context.naturalDate.toLongitudeString() }}</span>
 						</h1>
 					</div>
 				</div>

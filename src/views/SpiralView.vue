@@ -110,7 +110,7 @@
                 <span v-else-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && context.location" class="bg-nt-cyan-lighter px-3 py-1">
                   <span>{{ context.location }}</span>
                   <span v-if="latitude && longitude" class="font-normal">
-                    | {{ context.naturalDate.toLongitudeString(0) }}
+                    | {{ context.naturalDate.toLongitudeString() }}
                   </span>
                 </span>
                 <span v-else-if="spiralSkin.titleText" class="px-3 py-1 bg-nt-cyan-lighter">
@@ -563,10 +563,7 @@ const showGeolocationNotification = (type, message) => {
 // Get temp longitude string for LocationPicker display
 const getTempLongitudeString = () => {
   if (contextStore.tempLongitude !== null) {
-    const lon = Math.trunc(contextStore.tempLongitude);
-    const sign = lon >= 0 ? '+' : '-';
-    const formattedLon = Math.abs(lon).toString().padStart(3, '0');
-    return `Longitude ${sign}${formattedLon}`;
+    return `Longitude ${new NaturalDate(Date.now(), contextStore.tempLongitude).toLongitudeString()}`;
   }
   return '';
 };

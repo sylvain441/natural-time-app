@@ -238,9 +238,118 @@ const geolocationFeature = ref(null);
 const zoomLevel = ref(contextStore.longitude ? 5 : 4);
 const geocoder = ref(null);
 const mapInitialized = ref(false);
+const ntTileLayer = ref(null);
 
 // Fetching place name state
 const isFetchingName = ref(false);
+
+// NT zone overlay — draws vertical degree lines and zone labels on the map canvas
+const drawNTZones = (event) => {
+  const ctx = event.context;
+  if (!ctx || !map.value) return;
+
+  const pixelRatio = event.frameState.pixelRatio || window.devicePixelRatio || 1;
+  const zoom = event.frameState.viewState.zoom;
+  const mapSize = map.value.getSize();
+  if (!mapSize) return;
+  const [mapWidth, mapHeight] = mapSize;
+
+  // Visible longitude range
+  const bl = toLonLat(map.value.getCoordinateFromPixel([0, mapHeight]));
+  const tr = toLonLat(map.value.getCoordinateFromPixel([mapWidth, 0]));
+  if (!bl || !tr) return;
+
+  ctx.save();
+
+  // --- CURRENT ZONE HIGHLIGHT ---
+  const currentLon = tempLongitude.value ?? longitude.value ?? 0;
+  const zone = Math.trunc(currentLon);
+  const zoneLabel = zone === 0 ? 'NTZ' : `NT${zone > 0 ? '+' : ''}${zone}`;
+
+  // Band boundaries: NTZ spans -1→+1 (2°), others span 1°
+  let bandStart, bandEnd;
+  if (zone === 0)       { bandStart = -1; bandEnd = 1; }
+  else if (zone > 0)    { bandStart = zone; bandEnd = zone + 1; }
+  else                  { bandStart = zone - 1; bandEnd = zone; }
+
+  const pBandL = map.value.getPixelFromCoordinate(fromLonLat([bandStart, 0]));
+  const pBandR = map.value.getPixelFromCoordinate(fromLonLat([bandEnd, 0]));
+
+  if (pBandL && pBandR) {
+    const xL = Math.min(pBandL[0], pBandR[0]) * pixelRatio;
+    const xR = Math.max(pBandL[0], pBandR[0]) * pixelRatio;
+    const bandW = xR - xL;
+
+    // Subtle yellow fill
+    ctx.fillStyle = 'rgba(250, 195, 0, 0.10)';
+    ctx.fillRect(xL, 0, bandW, mapHeight * pixelRatio);
+
+    // Reference border — solid yellow line on the side that names the zone:
+    // zone > 0 → left edge (lon = zone), zone < 0 → right edge (lon = zone), NTZ → prime meridian
+    const pRef = map.value.getPixelFromCoordinate(fromLonLat([zone, 0]));
+    if (pRef) {
+      const xRef = pRef[0] * pixelRatio;
+      ctx.setLineDash([]);
+      ctx.lineWidth = 2.5 * pixelRatio;
+      ctx.strokeStyle = 'rgba(250, 195, 0, 0.5)';
+      ctx.beginPath();
+      ctx.moveTo(xRef, 0);
+      ctx.lineTo(xRef, mapHeight * pixelRatio);
+      ctx.stroke();
+    }
+
+    // Zone label badge — centered in the visible portion of the band
+    // Clamp to map edges so the badge stays on screen even when band is partially off
+    const visibleXL = Math.max(xL, 0);
+    const visibleXR = Math.min(xR, mapWidth * pixelRatio);
+    if (visibleXR > visibleXL) {
+      const centerX = (visibleXL + visibleXR) / 2;
+      const labelFontSize = 13 * pixelRatio;
+      ctx.font = `bold ${labelFontSize}px monospace`;
+      const textW = ctx.measureText(zoneLabel).width;
+      const padX = 6 * pixelRatio;
+      const padY = 3 * pixelRatio;
+      const badgeW = textW + padX * 2;
+      const badgeH = labelFontSize + padY * 2;
+      // Keep badge fully within horizontal bounds
+      const badgeX = Math.max(4 * pixelRatio, Math.min(centerX - badgeW / 2, mapWidth * pixelRatio - badgeW - 4 * pixelRatio));
+      // Place at the bottom of the map
+      const badgeY = mapHeight * pixelRatio - badgeH - 10 * pixelRatio;
+
+      // Badge background
+      ctx.fillStyle = 'rgba(250, 195, 0, 0.82)';
+      ctx.fillRect(badgeX, badgeY, badgeW, badgeH);
+
+      // Badge text
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'top';
+      ctx.fillText(zoneLabel, badgeX + padX, badgeY + padY);
+    }
+  }
+
+  // --- DEGREE LINES (zoom >= 5 only) ---
+  if (zoom >= 5) {
+    const lonStart = Math.floor(bl[0]) - 1;
+    const lonEnd = Math.ceil(tr[0]) + 1;
+
+    ctx.lineWidth = 1.5 * pixelRatio;
+    ctx.setLineDash([3 * pixelRatio, 4 * pixelRatio]);
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.20)';
+
+    for (let lon = lonStart; lon <= lonEnd; lon++) {
+      const pLine = map.value.getPixelFromCoordinate(fromLonLat([lon, 0]));
+      if (!pLine) continue;
+      const x = pLine[0] * pixelRatio;
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, mapHeight * pixelRatio);
+      ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+};
 
 // Format coordinates in short format (e.g., "lat 45.12, long 2.34")
 const formatShortCoordinates = (lat, lon) => {
@@ -454,6 +563,12 @@ const destroyMap = () => {
       geocoder.value = null;
     }
     
+    // Remove NT overlay listener
+    if (ntTileLayer.value) {
+      ntTileLayer.value.un('postrender', drawNTZones);
+      ntTileLayer.value = null;
+    }
+
     // Clear vector source
     if (vectorSource.value) {
       vectorSource.value.clear();
@@ -498,7 +613,7 @@ const initMap = () => {
     vectorSource.value = new VectorSource({
       wrapX: false // Prevent wrapping around globe
     });
-    
+
     view.value = new View({
       center: fromLonLat([longitude.value || 0, latitude.value || 0]),
       zoom: zoomLevel.value,
@@ -506,14 +621,15 @@ const initMap = () => {
       maxZoom: 18
     });
 
+    ntTileLayer.value = new TileLayer({
+      source: new OSM({ crossOrigin: 'anonymous' })
+    });
+    ntTileLayer.value.on('postrender', drawNTZones);
+
     map.value = new Map({
       target: 'map-canvas',
       layers: [
-        new TileLayer({
-          source: new OSM({
-            crossOrigin: 'anonymous'
-          })
-        }),
+        ntTileLayer.value,
         new VectorLayer({
           source: vectorSource.value,
           updateWhileAnimating: false, // Optimize performance
