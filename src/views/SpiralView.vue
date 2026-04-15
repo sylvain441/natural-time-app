@@ -85,12 +85,30 @@
           <Transition name="fade">
             <div v-if="!spiralTimeTravelMode">
               <!-- TITLE -->
-              <h1 
-                @click="openPanel(AVAILABLE_PANELS.locationPicker)"
-                class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
-                title="Modifier l'emplacement">
-                <span v-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && context.location" class="bg-nt-cyan-lighter px-3 py-1">
-                  {{ context.location }}
+              <h1 class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black">
+                <!-- Refresh geolocation button (left) - opacity 0 when geolocation disabled to keep title centered -->
+                <button 
+                  v-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && latitude && longitude && spiralActivePanel !== AVAILABLE_PANELS.locationPicker"
+                  @click.stop="enableGeolocation ? handleRefreshGeolocation() : null"
+                  :disabled="isRefreshingGeolocation || !enableGeolocation"
+                  :class="[
+                    'p-1 mr-1 transition-opacity duration-500',
+                    !enableGeolocation ? 'opacity-0 cursor-default' : 
+                    showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+                  ]"
+                  :title="enableGeolocation ? $t('locationPicker.geolocation.refresh') : ''">
+                  <component
+                    :is="isRefreshingGeolocation ? spinIcon : refreshIcon"
+                    :class="['w-5 h-5', locationIconColor, isRefreshingGeolocation ? 'animate-spin' : '']"
+                  />
+                </button>
+
+                <!-- Title content -->
+                <span v-if="!spiralTutorialMode && spiralActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude !== null" class="bg-nt-cyan-lighter px-3 py-1">
+                  {{ getTempLongitudeString() }}
+                </span>
+                <span v-else-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && context.location" class="bg-nt-cyan-lighter px-3 py-1">
+                  <span>{{ context.location }}</span>
                   <span v-if="latitude && longitude" class="font-normal">
                     | {{ context.naturalDate.toLongitudeString(0) }}
                   </span>
@@ -101,6 +119,18 @@
                 <span v-else class="px-3 py-1 bg-nt-cyan-lighter">
                   {{  $t('spiral.title') }}
                 </span>
+
+                <!-- Edit location button (right) -->
+                <button 
+                  v-if="!spiralTutorialMode && (!spiralWelcomeMode || spiralActivePanel !== null) && latitude && longitude && spiralActivePanel !== AVAILABLE_PANELS.locationPicker"
+                  @click.stop="openPanel(AVAILABLE_PANELS.locationPicker)"
+                  :class="[
+                    'p-1 ml-1 transition-opacity duration-500',
+                    showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+                  ]"
+                  :title="$t('locationPicker.title')">
+                  <component :is="editIcon" :class="['w-5 h-5', locationIconColor]" />
+                </button>
               </h1>
               
               <!-- SUBTITLE -->
@@ -340,6 +370,21 @@
     {{ $t('spiral.timeTravel.resetButton') }}
   </button>
 
+  <!-- NOTIFICATION: Geolocation refresh result -->
+  <transition name="fade">
+    <div v-if="geolocationNotification"
+      :class="[
+        'fixed top-20 left-1/2 -translate-x-1/2 z-50 shadow-lg rounded-lg overflow-hidden max-w-sm px-4 py-3',
+        geolocationNotification.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+      ]">
+      <p class="text-sm font-medium flex items-center gap-2">
+        <span v-if="geolocationNotification.type === 'success'">✓</span>
+        <span v-else>✗</span>
+        {{ geolocationNotification.message }}
+      </p>
+    </div>
+  </transition>
+
   <!-- Update the notification to use context.location -->
   <transition name="fade">
     <div v-if="showPositionChangedNotification && shouldShowNotification && spiralActivePanel !== AVAILABLE_PANELS.locationPicker" 
@@ -408,6 +453,9 @@ import verticalSpiralIcon from '@/assets/icon/vertical-spiral-icon.svg';
 import thirteenMoonIcon from '@/assets/icon/13-moon-icon.svg';
 import plusIcon from '@/assets/icon/plus-icon.svg';
 import minusIcon from '@/assets/icon/minus-icon.svg';
+import refreshIcon from '@/assets/icon/refresh-icon.svg';
+import spinIcon from '@/assets/icon/spin-icon.svg';
+import editIcon from '@/assets/icon/edit-icon.svg';
 
 
 // Store setup
@@ -466,10 +514,83 @@ useHead({
 });
 
 // Refs and computed properties
-let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation } = storeToRefs(contextStore);
+let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation, geolocationStatus } = storeToRefs(contextStore);
 let showPositionChangedNotification = ref(false);
 const isMenuOpen = ref(false);
 const containerSize = ref(333);
+const isRefreshingGeolocation = ref(false);
+
+// Location icons visibility (show on mouse move / touch, hide after delay)
+const showLocationIcons = ref(false);
+let hideIconsTimeout = null;
+const ICONS_HIDE_DELAY = 5000; // 5 seconds
+
+const showIcons = () => {
+  showLocationIcons.value = true;
+  if (hideIconsTimeout) {
+    clearTimeout(hideIconsTimeout);
+  }
+  hideIconsTimeout = setTimeout(() => {
+    showLocationIcons.value = false;
+  }, ICONS_HIDE_DELAY);
+};
+
+const handleMouseMove = () => {
+  showIcons();
+};
+
+const handleTouchStart = () => {
+  showIcons();
+};
+
+// Icon color - cyan for spiral
+const locationIconColor = 'text-nt-cyan-dark';
+
+// Geolocation notification
+const geolocationNotification = ref(null); // { type: 'success' | 'error', message: string }
+let geolocationNotificationTimeout = null;
+
+const showGeolocationNotification = (type, message) => {
+  geolocationNotification.value = { type, message };
+  if (geolocationNotificationTimeout) {
+    clearTimeout(geolocationNotificationTimeout);
+  }
+  geolocationNotificationTimeout = setTimeout(() => {
+    geolocationNotification.value = null;
+  }, 4000);
+};
+
+// Get temp longitude string for LocationPicker display
+const getTempLongitudeString = () => {
+  if (contextStore.tempLongitude !== null) {
+    const lon = Math.trunc(contextStore.tempLongitude);
+    const sign = lon >= 0 ? '+' : '-';
+    const formattedLon = Math.abs(lon).toString().padStart(3, '0');
+    return `Longitude ${sign}${formattedLon}`;
+  }
+  return '';
+};
+
+// Refresh geolocation handler
+const handleRefreshGeolocation = async () => {
+  isRefreshingGeolocation.value = true;
+  await contextStore.refreshGeolocation();
+  isRefreshingGeolocation.value = false;
+  
+  // Show notification based on result
+  if (geolocationStatus.value === 'success') {
+    const placeName = location.value || i18n.t('welcome.title');
+    showGeolocationNotification('success', `${i18n.t('locationPicker.geolocation.updated')}: ${placeName}`);
+  } else if (geolocationStatus.value === 'permission denied') {
+    showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.denied'));
+  } else if (geolocationStatus.value === 'position unavailable') {
+    showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.unavailable'));
+  } else if (geolocationStatus.value === 'timeout') {
+    showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.timeout'));
+  } else if (geolocationStatus.value === 'error') {
+    showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.error'));
+  }
+};
 
 // Time travel setup
 const travelSpeeds = computed(() => [
@@ -600,6 +721,10 @@ onMounted(() => {
     }, i18n);
   }
   
+  // Add event listeners for location icons visibility
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('touchstart', handleTouchStart);
+  
   // Watchers
   watch([() => spiralSkin.value.animationSpeed, () => spiralTimeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
     document.documentElement.style.setProperty('--nt-animation-speed', newSpeed && !newTimeTravelMode ? `${newSpeed}s` : '0s');
@@ -647,6 +772,12 @@ onMounted(() => {
 onUnmounted(() => {
   if (resizeObserver) {
     resizeObserver.disconnect();
+  }
+  // Remove event listeners for location icons
+  document.removeEventListener('mousemove', handleMouseMove);
+  document.removeEventListener('touchstart', handleTouchStart);
+  if (hideIconsTimeout) {
+    clearTimeout(hideIconsTimeout);
   }
 });
 
@@ -917,6 +1048,17 @@ const handleTouchMove = (event) => {
 .fade-zoom-leave-from {
   opacity: 1;
   transform: scale(1);
+}
+
+// Location icons fade transition
+.fade-icon-enter-active,
+.fade-icon-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-icon-enter-from,
+.fade-icon-leave-to {
+  opacity: 0;
 }
 
 </style>

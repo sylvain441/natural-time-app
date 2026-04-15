@@ -5,8 +5,17 @@
 		<div
 			:class="['relative h-full transition-all duration-300 ease-in-out', (clockActivePanel) ? 'md:block md:w-1/2 xl:w-2/3' : 'w-full']">
 
-      <!-- MAIN MENU -->  
+      <!-- MAIN MENU -->
       <MainMenu />
+
+
+
+
+
+
+
+
+
 
 			<div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end transition-all duration-300 ease-in-out"
 				:class="clockTimeTravelMode || clockTutorialMode ? 'md:border-8 md:border-nt-yellow-light' : ''"
@@ -25,16 +34,35 @@
 					<!-- TITLE -->
 					<Transition name="fade">
 					<div v-if="!clockTimeTravelMode">
-                        <h1 v-on:click="openPanel(AVAILABLE_PANELS.locationPicker)"
-                            class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black cursor-pointer"
-                            :title="$t('locationPicker.title')">
+                        <h1 class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black">
+							<!-- Refresh geolocation button (left) - opacity 0 when geolocation disabled to keep title centered -->
+							<button 
+								v-if="!clockTutorialMode && latitude && longitude && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
+								@click.stop="enableGeolocation ? handleRefreshGeolocation() : null"
+								:disabled="isRefreshingGeolocation || !enableGeolocation"
+								:class="[
+									'p-1 mr-1 transition-opacity duration-500',
+									!enableGeolocation ? 'opacity-0 cursor-default' : 
+									showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+								]"
+								:title="enableGeolocation ? $t('locationPicker.geolocation.refresh') : ''">
+								<component
+									:is="isRefreshingGeolocation ? spinIcon : refreshIcon"
+									:class="['w-5 h-5', locationIconColor, isRefreshingGeolocation ? 'animate-spin' : '']"
+								/>
+							</button>
+
+							<!-- Title -->
 							<div
 								v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude === null"
                                 class="px-3 py-1 bg-nt-yellow-light">
                                 {{ $t('locationPicker.title') }}
 							</div>
+                            <div v-else-if="!clockTutorialMode && clockActivePanel === AVAILABLE_PANELS.locationPicker && contextStore.tempLongitude !== null" class="bg-nt-yellow-light px-3 py-1">
+								{{ getTempLongitudeString() }}
+							</div>
                             <div v-else-if="!clockTutorialMode" class="bg-nt-yellow-light px-3 py-1">
-                                {{ location || $t('welcome.title') }}
+								<span>{{ location || $t('welcome.title') }}</span>
 								<span v-if="latitude && longitude" class="font-normal">
 									| {{ context.naturalDate.toLongitudeString(0) }}
 								</span>
@@ -42,6 +70,18 @@
 							<div v-else-if="clockSkin.titleText" class="px-3 py-1 bg-nt-yellow-light">
 								{{ clockSkin.titleText }}
 							</div>
+
+							<!-- Edit location button (right) -->
+							<button 
+								v-if="!clockTutorialMode && latitude && longitude && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
+								@click.stop="openPanel(AVAILABLE_PANELS.locationPicker)"
+								:class="[
+									'p-1 ml-1 transition-opacity duration-500',
+									showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+								]"
+								:title="$t('locationPicker.title')">
+								<component :is="editIcon" :class="['w-5 h-5', locationIconColor]" />
+							</button>
 						</h1>
 
 						<!-- SUBTITLE -->
@@ -294,6 +334,21 @@
 			{{ $t('clock.timeTravel.resetButton') }}
 		</button>
 
+		<!-- NOTIFICATION: Geolocation refresh result -->
+		<transition name="fade">
+			<div v-if="geolocationNotification"
+				:class="[
+					'fixed top-20 left-1/2 -translate-x-1/2 z-50 shadow-lg rounded-lg overflow-hidden max-w-sm px-4 py-3',
+					geolocationNotification.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+				]">
+				<p class="text-sm font-medium flex items-center gap-2">
+					<span v-if="geolocationNotification.type === 'success'">✓</span>
+					<span v-else>✗</span>
+					{{ geolocationNotification.message }}
+				</p>
+			</div>
+		</transition>
+
 		<!-- NOTIFICATION: Geolocation changed -->
 		<transition name="fade">
 			<div v-if="contextStore.newPlaceName && contextStore.positionChanged && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
@@ -301,7 +356,7 @@
 				<div class="p-4">
 					<p class="text-sm text-gray-700 mb-3">
 						{{ $t('clock.notifications.geolocation.title') }}: <span class="font-semibold">{{ contextStore.newPlaceName }}</span>
-						<span class="text-slate-500 ml-1">(NT{{ Math.round(contextStore.geolocationLongitude) >= 0 ? '+' : ''}}{{ Math.round(contextStore.geolocationLongitude) }})</span>
+						<span class="text-slate-500 ml-1">({{ Math.abs(contextStore.geolocationLongitude) < 1 ? 'NTZ' : 'NT' + (Math.trunc(contextStore.geolocationLongitude) > 0 ? '+' : '') + Math.trunc(contextStore.geolocationLongitude) }})</span>
 					</p>
 					<div class="flex justify-end space-x-2">
 						<button @click="contextStore.dismissGeolocationChange"
@@ -348,7 +403,7 @@
 
 <script setup>
 // Imports
-import { ref, computed, defineAsyncComponent, onMounted, watch } from 'vue';
+import { ref, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from 'vue';
 import { useHead } from '@unhead/vue';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
@@ -381,6 +436,9 @@ import minusIcon from '@/assets/icon/minus-icon.svg';
 import plusIcon from '@/assets/icon/plus-icon.svg';
 import simpleClockIcon from '@/assets/icon/simple-clock-icon.svg';
 import advancedClockIcon from '@/assets/icon/advanced-clock-icon.svg';
+import refreshIcon from '@/assets/icon/refresh-icon.svg';
+import spinIcon from '@/assets/icon/spin-icon.svg';
+import editIcon from '@/assets/icon/edit-icon.svg';
 
 
 // Store setup
@@ -415,9 +473,79 @@ const getCurrentLanguageFlag = () => {
 };
 
 // Refs and computed properties first
-let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation } = storeToRefs(contextStore);
+let { latitude, longitude, location, currentTime, geolocationNotificationDismissedAt, positionChanged, enableGeolocation, geolocationStatus } = storeToRefs(contextStore);
 let showPositionChangedNotification = ref(false);
 const isMenuOpen = ref(false);
+const isRefreshingGeolocation = ref(false);
+
+// Location icons visibility (show on mouse move / touch, hide after delay)
+const showLocationIcons = ref(false);
+let hideIconsTimeout = null;
+const ICONS_HIDE_DELAY = 5000; // 5 seconds
+
+const showIcons = () => {
+	showLocationIcons.value = true;
+	if (hideIconsTimeout) {
+		clearTimeout(hideIconsTimeout);
+	}
+	hideIconsTimeout = setTimeout(() => {
+		showLocationIcons.value = false;
+	}, ICONS_HIDE_DELAY);
+};
+
+const handleMouseMove = () => {
+	showIcons();
+};
+
+const handleTouchStart = () => {
+	showIcons();
+};
+
+// Geolocation notification
+const geolocationNotification = ref(null); // { type: 'success' | 'error', message: string }
+let geolocationNotificationTimeout = null;
+
+const showGeolocationNotification = (type, message) => {
+	geolocationNotification.value = { type, message };
+	if (geolocationNotificationTimeout) {
+		clearTimeout(geolocationNotificationTimeout);
+	}
+	geolocationNotificationTimeout = setTimeout(() => {
+		geolocationNotification.value = null;
+	}, 4000);
+};
+
+// Get temp longitude string for LocationPicker display
+const getTempLongitudeString = () => {
+	if (contextStore.tempLongitude !== null) {
+		const lon = Math.trunc(contextStore.tempLongitude);
+		const sign = lon >= 0 ? '+' : '-';
+		const formattedLon = Math.abs(lon).toString().padStart(3, '0');
+		return `Longitude ${sign}${formattedLon}`;
+	}
+	return '';
+};
+
+// Refresh geolocation handler
+const handleRefreshGeolocation = async () => {
+	isRefreshingGeolocation.value = true;
+	await contextStore.refreshGeolocation();
+	isRefreshingGeolocation.value = false;
+	
+	// Show notification based on result
+	if (geolocationStatus.value === 'success') {
+		const placeName = location.value || i18n.t('welcome.title');
+		showGeolocationNotification('success', `${i18n.t('locationPicker.geolocation.updated')}: ${placeName}`);
+	} else if (geolocationStatus.value === 'permission denied') {
+		showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.denied'));
+	} else if (geolocationStatus.value === 'position unavailable') {
+		showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.unavailable'));
+	} else if (geolocationStatus.value === 'timeout') {
+		showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.timeout'));
+	} else if (geolocationStatus.value === 'error') {
+		showGeolocationNotification('error', i18n.t('locationPicker.geolocation.errors.error'));
+	}
+};
 
 // Time travel setup
 const travelSpeeds = computed(() => [
@@ -483,6 +611,12 @@ const context = computed(() => {
 		hemisphere: hemisphere,
 		dayProgression: dayProgression,
 	};
+});
+
+// Icon color based on day/night mode
+const locationIconColor = computed(() => {
+	// dayProgression > 0.5 means it's day, use dark color; otherwise use yellow
+	return context.value.dayProgression > 0.5 ? 'text-slate-700' : 'text-nt-yellow-dark';
 });
 
 // SEO Meta tags - MOVED AFTER context is defined
@@ -624,14 +758,18 @@ onMounted(() => {
 		}, 10000);
 	}
 	
-  // Show tutorial welcome notification if tutorial mode is active
+	// Show tutorial welcome notification if tutorial mode is active
 	if (clockTutorialMode.value && clockTutorialCurrentStep.value === 0) {
-    showModalNotification({
-      title: i18n.t('tutorials.clock.notification.title'),
-      message: i18n.t('tutorials.clock.notification.message'),
-      type: 'clock'
-    }, i18n);
+		showModalNotification({
+			title: i18n.t('tutorials.clock.notification.title'),
+			message: i18n.t('tutorials.clock.notification.message'),
+			type: 'clock'
+		}, i18n);
 	}
+	
+	// Add event listeners for location icons visibility
+	document.addEventListener('mousemove', handleMouseMove);
+	document.addEventListener('touchstart', handleTouchStart);
 	
 	// Watchers
 	watch([() => clockSkin.value.animationSpeed, () => clockTimeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
@@ -641,13 +779,22 @@ onMounted(() => {
 	// Watch for tutorial mode changes to show welcome notification
 	watch(() => clockTutorialMode.value, (newValue) => {
 		if (newValue && clockTutorialCurrentStep.value === 0) {
-      showModalNotification({
-        title: i18n.t('tutorials.clock.notification.title'),
-        message: i18n.t('tutorials.clock.notification.message'),
-        type: 'clock'
-      }, i18n);
+			showModalNotification({
+				title: i18n.t('tutorials.clock.notification.title'),
+				message: i18n.t('tutorials.clock.notification.message'),
+				type: 'clock'
+			}, i18n);
 		}
 	});
+});
+
+onUnmounted(() => {
+	// Remove event listeners
+	document.removeEventListener('mousemove', handleMouseMove);
+	document.removeEventListener('touchstart', handleTouchStart);
+	if (hideIconsTimeout) {
+		clearTimeout(hideIconsTimeout);
+	}
 });
 
 
@@ -694,5 +841,16 @@ onMounted(() => {
 	.faq-answer {
 		@apply text-sm;
 	}
+}
+
+// Location icons fade transition
+.fade-icon-enter-active,
+.fade-icon-leave-active {
+	transition: opacity 0.5s ease;
+}
+
+.fade-icon-enter-from,
+.fade-icon-leave-to {
+	opacity: 0;
 }
 </style>
