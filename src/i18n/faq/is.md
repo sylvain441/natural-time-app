@@ -7,6 +7,7 @@
 > - Fréttabréfið mitt: [Skráðu þig hér](http://biquette.xyz/#/portal/signup/free)
 > - Verslunin mín: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube rás: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X-reikningur: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### Algengar spurningar - Náttúrulegi tíminn
 

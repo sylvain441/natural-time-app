@@ -7,6 +7,7 @@
 > - मेरा न्यूज़लेटर: [यहाँ सदस्यता लें](http://biquette.xyz/#/portal/signup/free)
 > - मेरी दुकान: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube चैनल: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X अकाउंट: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - प्राकृतिक समय
 

@@ -7,6 +7,7 @@
 > - Το ενημερωτικό δελτίο μου: [Εγγραφή εδώ](http://biquette.xyz/#/portal/signup/free)
 > - Το κατάστημά μου: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - Κανάλι YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Λογαριασμός X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Φυσικός Χρόνος
 

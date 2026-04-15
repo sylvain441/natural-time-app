@@ -7,6 +7,7 @@
 > - Newsletter saya: [Berlangganan di sini](http://biquette.xyz/#/portal/signup/free)
 > - Toko saya: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - Kanal YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Akun X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Waktu Alami
 

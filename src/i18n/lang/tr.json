@@ -20,6 +20,14 @@
         "tutorial": "Eğitimi izle"
       }
     },
+    "pebble": {
+      "badge": "Yeni",
+      "title": "Pebble için Doğal Zaman",
+      "description": "Doğal Zaman artık Rebble üzerinden Pebble'da da mevcut. Bu e-ink saat, güneşin konumunu sade bir tasarımla 360° kadran üzerinde gösterir, 2 ila 4 hafta pil ömrü sunar.",
+      "cta": {
+        "download": "Rebble'da Gör"
+      }
+    },
     "hero": {
       "description": "Doğal Zaman, zamanı nasıl ölçtüğümüzü yeniden tasarlıyor.\n{clock} ve {spiral} aracılığıyla,\ngüneş evrensel referans noktası olarak rolünü\nzamanın geçişi için yeniden üstleniyor...",
       "clockLink": "360° saat",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Uygulama güncellendi!",
-    "v2_4": "🌍 Doğal Zaman uygulaması artık 12 dil konuşuyor! Almanca, İtalyanca, Rusça, Yunanca, Çince, Japonca ve Portekizce (Brezilya) maceraya katılıyor."
+    "v2_4": "🌍 Doğal Zaman uygulaması artık 12 dil konuşuyor! Almanca, İtalyanca, Rusça, Yunanca, Çince, Japonca ve Portekizce (Brezilya) maceraya katılıyor.",
+    "v2_5": "⌚ Doğal Zaman artık Pebble akıllı saatinde! Kadranı Rebble'dan indir.",
+    "v2_5_cta": "Rebble'dan İndir",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Yükleniyor…",

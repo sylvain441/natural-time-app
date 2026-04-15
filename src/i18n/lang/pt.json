@@ -20,6 +20,14 @@
         "tutorial": "Ver tutorial"
       }
     },
+    "pebble": {
+      "badge": "Novo",
+      "title": "Tempo Natural para Pebble",
+      "description": "O Tempo Natural também está disponível para Pebble no Rebble. Este relógio e-ink mostra a posição do sol num mostrador de 360° com um design simples, com 2 a 4 semanas de autonomia.",
+      "cta": {
+        "download": "Ver no Rebble"
+      }
+    },
     "hero": {
       "description": "O Tempo Natural reinventa a forma como medimos o tempo.\nAtravés do {clock} e da {spiral},\no sol volta a ser a referência universal\nda passagem do tempo...",
       "clockLink": "relógio de 360°",
@@ -245,7 +253,10 @@
   "notFound": { "title": "404", "message": "Ups! Página não encontrada.", "button": "Voltar ao início" },
   "update": {
     "title": "Aplicação atualizada!",
-    "v2_4": "🌍 A aplicação Tempo Natural agora fala 12 idiomas! Alemão, Italiano, Russo, Grego, Chinês, Japonês e Português (Brasil) juntam-se à aventura."
+    "v2_4": "🌍 A aplicação Tempo Natural agora fala 12 idiomas! Alemão, Italiano, Russo, Grego, Chinês, Japonês e Português (Brasil) juntam-se à aventura.",
+    "v2_5": "⌚ O Tempo Natural chegou ao teu relógio Pebble! Descarrega o mostrador no Rebble.",
+    "v2_5_cta": "Descarregar no Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "A carregar…",

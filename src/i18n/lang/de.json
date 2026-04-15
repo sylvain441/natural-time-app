@@ -20,6 +20,14 @@
         "tutorial": "Tutorial ansehen"
       }
     },
+    "pebble": {
+      "badge": "Neu",
+      "title": "Natürliche Zeit für Pebble",
+      "description": "Natürliche Zeit gibt es jetzt auch für Pebble über Rebble. Diese E-Ink-Uhr zeigt die Sonnenposition auf einem 360°-Zifferblatt in einem schlichten Design, mit 2 bis 4 Wochen Akkulaufzeit.",
+      "cta": {
+        "download": "Auf Rebble ansehen"
+      }
+    },
     "hero": {
       "description": "Die Natürliche Zeit erfindet unsere Art, Zeit zu messen, neu.\nMit {clock} und {spiral}\nkehrt die Sonne als universeller Bezugspunkt\nfür das Vergehen der Zeit zurück...",
       "clockLink": "Uhr mit 360°",
@@ -378,7 +386,10 @@
   },
   "update": {
     "title": "App aktualisiert!",
-    "v2_4": "🌍 Die Natürliche Zeit App spricht jetzt 12 Sprachen! Deutsch, Italienisch, Russisch, Griechisch, Chinesisch, Japanisch und Portugiesisch (Brasilien) sind dabei."
+    "v2_4": "🌍 Die Natürliche Zeit App spricht jetzt 12 Sprachen! Deutsch, Italienisch, Russisch, Griechisch, Chinesisch, Japanisch und Portugiesisch (Brasilien) sind dabei.",
+    "v2_5": "⌚ Natürliche Zeit ist jetzt auf deiner Pebble-Smartwatch! Lade das Zifferblatt auf Rebble herunter.",
+    "v2_5_cta": "Auf Rebble herunterladen",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Laden…",

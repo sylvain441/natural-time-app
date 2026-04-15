@@ -7,6 +7,7 @@
 > - Моя рассылка: [Подписаться здесь](http://biquette.xyz/#/portal/signup/free)
 > - Мой магазин: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - Канал YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Аккаунт X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Естественное время
 

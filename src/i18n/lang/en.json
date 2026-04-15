@@ -20,6 +20,14 @@
         "tutorial": "View tutorial"
       }
     },
+    "pebble": {
+      "badge": "New",
+      "title": "Natural Time for Pebble",
+      "description": "Natural Time is also available for Pebble on Rebble. This e-ink watch shows the sun position on a 360° dial in a simple layout, with 2 to 4 weeks of battery life.",
+      "cta": {
+        "download": "View on Rebble"
+      }
+    },
     "hero": {
       "description": "Natural Time reimagines how we measure time.\nThrough the {clock} and the {spiral},\nthe sun reclaims its role as the universal reference point\nfor the passage of time...",
       "clockLink": "360° clock",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Application updated!",
-    "v2_4": "🌍 Natural Time application now speaks 12 languages! German, Italian, Russian, Greek, Chinese, Japanese and Portuguese (Brazil) join the adventure."
+    "v2_4": "🌍 Natural Time application now speaks 12 languages! German, Italian, Russian, Greek, Chinese, Japanese and Portuguese (Brazil) join the adventure.",
+    "v2_5": "⌚ Natural Time is now on your Pebble smartwatch! Download the watchface on Rebble.",
+    "v2_5_cta": "Download on Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Loading…",

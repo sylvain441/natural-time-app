@@ -113,6 +113,55 @@
       </div>
     </section>
 
+    <!-- Pebble Watch App Section (Emerald) -->
+    <section class="w-full my-6 sm:my-8 md:my-0 md:mb-10 lg:mb-12 relative overflow-hidden transform transition-transform duration-500">
+      <div class="mx-4 sm:mx-6 md:mx-auto max-w-5xl">
+        <div class="mx-auto grid max-w-[880px] items-center gap-8 px-1 py-2 sm:px-2 md:grid-cols-[250px_minmax(0,500px)] md:justify-center md:gap-10 md:px-4">
+          <div class="order-2 flex justify-center md:order-1 md:justify-start">
+            <div class="relative w-[220px] sm:w-[250px]">
+              <img
+                :src="pebbleMockupGabbro"
+                alt="Pebble round watch mockup"
+                class="relative z-10 w-full"
+              />
+              <div class="absolute left-1/2 top-[50.43%] z-20 w-[72%] aspect-square -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full">
+                <div class="relative h-full w-full rounded-full bg-[#182234]">
+                  <img
+                    :src="pebblePreviewGif"
+                    alt="Natural Time Pebble watchface preview"
+                    class="h-full w-full object-cover object-center"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 mx-auto max-w-xl text-center md:order-2 md:mx-0 md:max-w-[500px] md:text-left">
+            <div class="mb-3 flex items-center justify-center gap-3 md:justify-start">
+              <span class="inline-flex items-center rounded-full border border-emerald-500/25 bg-emerald-400/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-800 dark:text-emerald-200">
+                {{ $t('welcome.pebble.badge') }}
+              </span>
+              <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-700/80 dark:text-emerald-300/75">
+                Pebble • Rebble
+              </p>
+            </div>
+            <h2 class="mb-3 text-2xl sm:text-3xl md:text-4xl font-title text-slate-900 dark:text-emerald-300/90">
+              {{ $t('welcome.pebble.title') }}
+            </h2>
+            <p class="text-sm leading-relaxed text-slate-700 dark:text-slate-200 sm:text-base md:text-lg">
+              {{ $t('welcome.pebble.description') }}
+            </p>
+            <div class="mt-5 flex items-center justify-center md:justify-start">
+              <a href="https://apps.repebble.com/ec836faa1fdf48b294e94560" target="_blank" rel="noopener noreferrer"
+                 class="group inline-flex items-center justify-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-400/10 px-5 py-2.5 text-sm font-medium text-slate-900 transition-all duration-300 hover:border-emerald-500/45 hover:bg-emerald-400/20 dark:text-slate-50 sm:text-base">
+                {{ $t('welcome.pebble.cta.download') }}
+                <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Understanding Natural Time Section -->
     <section class="w-full bg-black bg-[url('@/assets/debut-dark.png')] py-16 sm:py-20 md:py-24 mt-4 sm:mt-16 md:mt-28 relative">
       <div class="relative max-w-7xl xl:max-w-screen-2xl mx-auto">
@@ -196,6 +245,8 @@ import { useI18n } from 'vue-i18n';
 import { getLocalizedRouteName } from '../i18n/config';
 import ClockSVG from '@/assets/icon/clock.svg';
 import YearSVG from '@/assets/icon/year.svg';
+import pebbleMockupGabbro from '@/assets/pebble/screenshot_slider_background_gabbro.png';
+import pebblePreviewGif from '@/assets/pebble/natural-time-pebble-gabbro.gif';
 
 const router = useRouter();
 const contextStore = useContextStore();

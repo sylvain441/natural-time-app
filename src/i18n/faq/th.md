@@ -7,6 +7,7 @@
 > - จดหมายข่าว: [สมัครสมาชิกที่นี่](http://biquette.xyz/#/portal/signup/free)
 > - ร้านค้า: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - ช่อง YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - บัญชี X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - เวลาธรรมชาติ
 

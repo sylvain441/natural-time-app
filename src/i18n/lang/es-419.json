@@ -12,6 +12,14 @@
       "description": "Inspirado en tradiciones del mundo,\nmis 13 meses de 28 días\nreemplazan nuestro calendario convencional.\nEl año termina con el Día Arcoíris.",
       "cta": { "discover": "Descubrir las 13 lunas", "open": "Abrir las 13 lunas", "tutorial": "Ver tutorial" }
     },
+    "pebble": {
+      "badge": "Nuevo",
+      "title": "Tiempo Natural para Pebble",
+      "description": "Tiempo Natural también está disponible para Pebble en Rebble. Este reloj e-ink muestra la posición del sol en una esfera de 360° con un diseño sencillo, con 2 a 4 semanas de autonomía.",
+      "cta": {
+        "download": "Ver en Rebble"
+      }
+    },
     "hero": {
       "description": "Tiempo Natural reimagina cómo medimos el tiempo.\nA través del {clock} y la {spiral},\nel sol recupera su papel como referencia universal\ndel paso del tiempo...",
       "clockLink": "reloj de 360°",
@@ -165,7 +173,7 @@
 
   "youtubePlayer": { "thumbnail": "Entender Tiempo Natural en 10 minutos" },
   "notFound": { "title": "404", "message": "¡Ups! Página no encontrada.", "button": "Volver al inicio" },
-  "update": { "title": "¡Aplicación actualizada!", "v2_4": "🌍 ¡La aplicación Tiempo Natural ahora habla 12 idiomas! Alemán, Italiano, Ruso, Griego, Chino, Japonés y Portugués (Brasil) se unen a la aventura." }
+  "update": { "title": "¡Aplicación actualizada!", "v2_4": "🌍 ¡La aplicación Tiempo Natural ahora habla 12 idiomas! Alemán, Italiano, Ruso, Griego, Chino, Japonés y Portugués (Brasil) se unen a la aventura.", "v2_5": "⌚ ¡Tiempo Natural llega a tu reloj Pebble! Descarga la carátula en Rebble.", "v2_5_cta": "Descargar en Rebble", "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560" }
 }
 
 

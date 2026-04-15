@@ -20,6 +20,14 @@
         "tutorial": "Bekijk tutorial"
       }
     },
+    "pebble": {
+      "badge": "Nieuw",
+      "title": "Natuurlijke Tijd voor Pebble",
+      "description": "Natuurlijke Tijd is nu ook beschikbaar voor Pebble via Rebble. Dit e-ink horloge toont de zonpositie op een 360°-wijzerplaat in een eenvoudig ontwerp, met 2 tot 4 weken batterijduur.",
+      "cta": {
+        "download": "Bekijk op Rebble"
+      }
+    },
     "hero": {
       "description": "Natuurlijke Tijd herdenkt hoe we tijd meten.\nDoor de {clock} en de {spiral},\nherneemt de zon haar rol als universeel referentiepunt\nvoor het verstrijken van de tijd...",
       "clockLink": "360° klok",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Applicatie bijgewerkt!",
-    "v2_4": "🌍 Natuurlijke Tijd applicatie spreekt nu 12 talen! Duits, Italiaans, Russisch, Grieks, Chinees, Japans en Portugees (Brazilië) sluiten zich aan bij het avontuur."
+    "v2_4": "🌍 Natuurlijke Tijd applicatie spreekt nu 12 talen! Duits, Italiaans, Russisch, Grieks, Chinees, Japans en Portugees (Brazilië) sluiten zich aan bij het avontuur.",
+    "v2_5": "⌚ Natuurlijke Tijd is nu beschikbaar op je Pebble-smartwatch! Download de wijzerplaat op Rebble.",
+    "v2_5_cta": "Downloaden op Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Laden…",

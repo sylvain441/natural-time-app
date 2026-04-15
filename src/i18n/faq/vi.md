@@ -7,6 +7,7 @@
 > - Bản tin của tôi: [Đăng ký tại đây](http://biquette.xyz/#/portal/signup/free)
 > - Cửa hàng của tôi: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - Kênh YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Tài khoản X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Thời Gian Tự Nhiên
 

@@ -7,6 +7,7 @@
 > - 뉴스레터: [여기서 구독하기](http://biquette.xyz/#/portal/signup/free)
 > - 상점: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube 채널: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X 계정: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - 자연 시간
 

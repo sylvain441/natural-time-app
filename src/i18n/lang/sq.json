@@ -20,6 +20,14 @@
         "tutorial": "Shiko tutorialin"
       }
     },
+    "pebble": {
+      "badge": "E re",
+      "title": "Koha Natyrore për Pebble",
+      "description": "Koha Natyrore tani është e disponueshme edhe për Pebble nëpërmjet Rebble. Ky orë e-ink tregon pozicionin e diellit në një kuadrant 360° me dizajn të thjeshtë, me bateri që zgjat 2 deri 4 javë.",
+      "cta": {
+        "download": "Shiko në Rebble"
+      }
+    },
     "hero": {
       "description": "Koha Natyrale rimendon mënyrën si e matim kohën.\nNëpërmjet {clock} dhe {spiral},\ndielli rimarr rolin e tij si pikë referimi universale\npër kalimin e kohës...",
       "clockLink": "orës 360°",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Aplikacioni u përditësua!",
-    "v2_4": "🌍 Aplikacioni i Kohës Natyrale tani flet 12 gjuhë! Gjermanishtja, Italishtja, Russishtja, Greqishtja, Kinezçja, Japonishtja dhe Portugalishtja (Brazili) bashkohen në aventurë."
+    "v2_4": "🌍 Aplikacioni i Kohës Natyrale tani flet 12 gjuhë! Gjermanishtja, Italishtja, Russishtja, Greqishtja, Kinezçja, Japonishtja dhe Portugalishtja (Brazili) bashkohen në aventurë.",
+    "v2_5": "⌚ Koha Natyrore tani në orën tuaj Pebble! Shkarko kuadratin në Rebble.",
+    "v2_5_cta": "Shkarko në Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Duke ngarkuar…",

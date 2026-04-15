@@ -7,6 +7,7 @@
 > - Mitt nyhetsbrev: [Abonner her](http://biquette.xyz/#/portal/signup/free)
 > - Min butikk: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube-kanal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X-konto: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Naturlig Tid
 

@@ -7,6 +7,7 @@
 > - Uutiskirjeeni: [Tilaa täältä](http://biquette.xyz/#/portal/signup/free)
 > - Kauppani: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube-kanava: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X-tili: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### UKK - Luonnollinen Aika
 

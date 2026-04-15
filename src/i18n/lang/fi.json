@@ -20,6 +20,14 @@
         "tutorial": "Katso opastus"
       }
     },
+    "pebble": {
+      "badge": "Uusi",
+      "title": "Luonnollinen Aika Pebblelle",
+      "description": "Luonnollinen Aika on nyt saatavilla myös Pebblelle Rebblen kautta. Tämä e-ink-kello näyttää auringon sijainnin 360°-kellotaulussa yksinkertaisella muotoilulla, 2–4 viikon akunkestolla.",
+      "cta": {
+        "download": "Katso Rebblestä"
+      }
+    },
     "hero": {
       "description": "Luonnollinen Aika uudelleenkuvittelee tapamme mitata aikaa.\n{clock} ja {spiral} kautta,\naurinko ottaa takaisin roolinsa universaalina vertailupisteenä\najan kulkemiselle...",
       "clockLink": "360° kellon",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Sovellus päivitetty!",
-    "v2_4": "🌍 Luonnollinen Aika -sovellus puhuu nyt 12 kieltä! Saksa, italia, venäjä, kreikka, kiina, japani ja portugali (Brasilia) liittyvät seikkailuun."
+    "v2_4": "🌍 Luonnollinen Aika -sovellus puhuu nyt 12 kieltä! Saksa, italia, venäjä, kreikka, kiina, japani ja portugali (Brasilia) liittyvät seikkailuun.",
+    "v2_5": "⌚ Luonnollinen Aika on nyt Pebble-älykellossasi! Lataa kellotaulu Rebblestä.",
+    "v2_5_cta": "Lataa Rebblestä",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Ladataan…",

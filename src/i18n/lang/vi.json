@@ -20,6 +20,14 @@
         "tutorial": "Xem hướng dẫn"
       }
     },
+    "pebble": {
+      "badge": "Mới",
+      "title": "Thời Gian Tự Nhiên cho Pebble",
+      "description": "Thời Gian Tự Nhiên hiện có sẵn trên Pebble qua Rebble. Chiếc đồng hồ e-ink này hiển thị vị trí mặt trời trên mặt số 360° với thiết kế đơn giản, pin sử dụng từ 2 đến 4 tuần.",
+      "cta": {
+        "download": "Xem trên Rebble"
+      }
+    },
     "hero": {
       "description": "Thời Gian Tự Nhiên tái hình dung cách chúng ta đo thời gian.\nThông qua {clock} và {spiral},\nmặt trời lấy lại vai trò là điểm tham chiếu phổ quát\ncho sự trôi qua của thời gian...",
       "clockLink": "đồng hồ 360°",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Ứng dụng đã được cập nhật!",
-    "v2_4": "🌍 Ứng dụng Thời Gian Tự Nhiên hiện nói 12 ngôn ngữ! Tiếng Đức, Ý, Nga, Hy Lạp, Trung Quốc, Nhật Bản và Bồ Đào Nha (Brazil) tham gia cuộc phiêu lưu."
+    "v2_4": "🌍 Ứng dụng Thời Gian Tự Nhiên hiện nói 12 ngôn ngữ! Tiếng Đức, Ý, Nga, Hy Lạp, Trung Quốc, Nhật Bản và Bồ Đào Nha (Brazil) tham gia cuộc phiêu lưu.",
+    "v2_5": "⌚ Thời Gian Tự Nhiên đã có mặt trên đồng hồ Pebble của bạn! Tải mặt đồng hồ trên Rebble.",
+    "v2_5_cta": "Tải trên Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Đang tải…",

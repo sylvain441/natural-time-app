@@ -7,6 +7,7 @@
 > - 我的通讯（Newsletter）：[点此订阅](http://biquette.xyz/#/portal/signup/free)
 > - 我的商店：[shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube 频道：[youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X 账号：[x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - 自然时间
 

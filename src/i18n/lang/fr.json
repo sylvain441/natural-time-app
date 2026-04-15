@@ -20,6 +20,14 @@
         "tutorial": "Voir le tutoriel"
       }
     },
+    "pebble": {
+      "badge": "Nouveau",
+      "title": "Temps Naturel sur Pebble",
+      "description": "Le Temps Naturel existe désormais sur Pebble, via Rebble. Cette montre e-ink affiche la position du soleil sur un cadran de 360° en fonction de la position géographique, avec 2 à 4 semaines d'autonomie.",
+      "cta": {
+        "download": "Voir sur Rebble"
+      }
+    },
     "hero": {
       "description": "Le Temps Naturel réinvente notre façon de mesurer le temps.\nAvec {clock} et {spiral},\nle soleil retrouve sa place comme référence universelle\ndu temps qui passe...",
       "clockLink": "l'horloge de 360°",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Application mise à jour !",
-    "v2_4": "🌍 L'application Temps Naturel parle maintenant 12 langues ! Allemand, Italien, Russe, Grec, Chinois, Japonais et Portugais (Brésil) ont rejoint l'aventure."
+    "v2_4": "🌍 L'application Temps Naturel parle maintenant 12 langues ! Allemand, Italien, Russe, Grec, Chinois, Japonais et Portugais (Brésil) ont rejoint l'aventure.",
+    "v2_5": "⌚ Le Temps Naturel débarque sur ta montre Pebble ! Télécharge le cadran sur Rebble.",
+    "v2_5_cta": "Télécharger sur Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Chargement…",

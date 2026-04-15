@@ -7,6 +7,7 @@
 > - Buletini im: [Abonohuni këtu](http://biquette.xyz/#/portal/signup/free)
 > - Dyqani im: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - Kanali YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Llogaria X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Koha Natyrore
 

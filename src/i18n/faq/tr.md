@@ -7,6 +7,7 @@
 > - Bülten: [Buradan abone olun](http://biquette.xyz/#/portal/signup/free)
 > - Mağazam: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube kanalı: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X hesabı: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### SSS - Doğal Zaman
 

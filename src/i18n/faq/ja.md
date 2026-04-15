@@ -7,6 +7,7 @@
 > - ニュースレター：[こちらから購読](http://biquette.xyz/#/portal/signup/free)
 > - オンラインショップ：[shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube チャンネル：[youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - Xアカウント：[x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - 自然時間
 

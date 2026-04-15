@@ -20,6 +20,14 @@
         "tutorial": "Se vejledning"
       }
     },
+    "pebble": {
+      "badge": "Nyt",
+      "title": "Naturlig Tid til Pebble",
+      "description": "Naturlig Tid er nu også tilgængelig til Pebble via Rebble. Dette e-ink-ur viser solens position på en 360°-skive i et enkelt design, med 2 til 4 ugers batteritid.",
+      "cta": {
+        "download": "Se på Rebble"
+      }
+    },
     "hero": {
       "description": "Naturlig Tid gentænker hvordan vi måler tid.\nGennem {clock} og {spiral},\ngenvinder solen sin rolle som universelt referencepunkt\nfor tidens gang...",
       "clockLink": "360° uret",
@@ -398,7 +406,10 @@
   },
   "update": {
     "title": "Applikation opdateret!",
-    "v2_4": "🌍 Naturlig Tid-applikationen taler nu 12 sprog! Tysk, italiensk, russisk, græsk, kinesisk, japansk og portugisisk (Brasilien) slutter sig til eventyret."
+    "v2_4": "🌍 Naturlig Tid-applikationen taler nu 12 sprog! Tysk, italiensk, russisk, græsk, kinesisk, japansk og portugisisk (Brasilien) slutter sig til eventyret.",
+    "v2_5": "⌚ Naturlig Tid er nu på dit Pebble-smartwatch! Download urskiven på Rebble.",
+    "v2_5_cta": "Download på Rebble",
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {
     "loading": "Indlæser…",

@@ -7,6 +7,7 @@
 > - Mein Newsletter: [Hier abonnieren](http://biquette.xyz/#/portal/signup/free)
 > - Mein Shop: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube‑Kanal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X-Konto: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Natürliche Zeit
 

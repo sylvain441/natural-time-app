@@ -7,6 +7,7 @@
 > - Mijn nieuwsbrief: [Abonneer je hier](http://biquette.xyz/#/portal/signup/free)
 > - Mijn winkel: [shop.biquette.xyz](https://shop.biquette.xyz)
 > - YouTube-kanaal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
+> - X-account: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
 
 ### FAQ - Natuurlijke Tijd
 
