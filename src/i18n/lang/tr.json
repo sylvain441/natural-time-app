@@ -354,6 +354,8 @@
       "searching": "Konum aranıyor...",
       "detected": "GPS konumu algılandı",
       "recenter": "Yeniden ortala",
+      "refresh": "Konumu yenile",
+      "updated": "Konum güncellendi",
       "errors": {
         "denied": "Lütfen tarayıcınızda konum hizmetini etkinleştirin",
         "unavailable": "Konum kullanılamıyor",

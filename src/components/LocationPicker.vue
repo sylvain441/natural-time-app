@@ -12,30 +12,31 @@
       viewType === 'spiral' 
         ? 'bg-nt-cyan-dark' 
         : 'bg-nt-yellow-dark'
-    ]" class="px-4 pt-1 pb-4">
+    ]" class="px-4 py-2">
       <!-- Modified form section -->
       <template v-if="markerPlaced">
-        <label 
-          for="locationName" 
-          class="text-sm font-mono font-extrabold text-slate-800"
-        >
-          {{ hasPositionChanged ? $t('locationPicker.nameLabel.new') : $t('locationPicker.nameLabel.edit') }}
-        </label>
-        <div class="flex flex-row items-center justify-between space-x-2">
-          <input 
-            id="locationName" 
-            v-model="tempLocation" 
-            type="text" 
-            :placeholder="$t('locationPicker.optional')"
-            class="flex-grow py-2 px-3 border-2 rounded text-sm focus:outline-none bg-slate-100 bg-opacity-80 focus:bg-opacity-100 text-slate-500 focus:text-slate-900"
-            @keyup.enter="save"
-          />
-          <button @click="save" :class="[
-            viewType === 'spiral' 
-              ? 'bg-slate-700 hover:bg-slate-800 text-white' 
-              : 'bg-slate-700 hover:bg-slate-800 text-white'
-          ]" class="text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-600 disabled:text-gray-400">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Validate button with GPS coordinates -->
+        <div class="flex justify-between items-center">
+          <!-- GPS coordinates (short format, mono font) -->
+          <div v-if="tempLatitude && tempLongitude" class="flex items-center gap-1.5">
+            <component :is="pinpointIcon" class="h-3.5 w-3.5 text-slate-500" fill="currentColor" />
+            <span class="text-xs text-slate-500 font-mono">
+              {{ formatShortCoordinates(tempLatitude, tempLongitude) }}
+            </span>
+          </div>
+          <span v-else class="text-xs text-slate-400 italic">{{ $t('locationPicker.clickMap') }}</span>
+          
+          <button 
+            @click="save" 
+            :disabled="isFetchingName"
+            :class="[
+              viewType === 'spiral' 
+                ? 'bg-slate-700 hover:bg-slate-800 text-white' 
+                : 'bg-slate-700 hover:bg-slate-800 text-white'
+            ]" 
+            class="text-xs uppercase font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform flex items-center disabled:bg-gray-600 disabled:text-gray-400">
+            <spinIcon v-if="isFetchingName" class="h-5 w-5 mr-2 animate-spin" fill="currentColor" />
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
             </svg>
             {{ $t('locationPicker.validate') }}
@@ -43,7 +44,7 @@
         </div>
       </template>
       
-      <div v-else class="flex items-center space-x-2 pt-2 text-slate-600">
+      <div v-else class="flex items-center space-x-2 text-slate-600">
         <mapIcon class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="none" />
         <span class="italic">{{ $t('locationPicker.clickMap') }}</span>
       </div>
@@ -215,6 +216,7 @@ import spinIcon from '@/assets/icon/spin-icon.svg';
 import infoIcon from '@/assets/icon/info-icon.svg';
 import mapIcon from '@/assets/icon/map-icon.svg';
 import geolocationIcon from '@/assets/icon/geolocation-icon.svg';
+import pinpointIcon from '@/assets/icon/pinpoint-icon.svg';
 
 // Store setup
 const contextStore = useContextStore();
@@ -236,6 +238,16 @@ const geolocationFeature = ref(null);
 const zoomLevel = ref(contextStore.longitude ? 5 : 4);
 const geocoder = ref(null);
 const mapInitialized = ref(false);
+
+// Fetching place name state
+const isFetchingName = ref(false);
+
+// Format coordinates in short format (e.g., "lat 45.12, long 2.34")
+const formatShortCoordinates = (lat, lon) => {
+  const latFormatted = parseFloat(lat).toFixed(2);
+  const lonFormatted = parseFloat(lon).toFixed(2);
+  return `lat ${latFormatted}, long ${lonFormatted}`;
+};
 
 // Update the pointerCoordinates computed property
 const pointerCoordinates = computed(() => {
@@ -331,7 +343,17 @@ const initGeocoder = async () => {
   });
 };
 
-const save = () => {
+const save = async () => {
+  // If no name is set, fetch it automatically
+  if (!tempLocation.value && tempLatitude.value && tempLongitude.value) {
+    isFetchingName.value = true;
+    const placeName = await contextStore.fetchPlaceNameForCoordinates(tempLatitude.value, tempLongitude.value);
+    if (placeName) {
+      tempLocation.value = placeName;
+    }
+    isFetchingName.value = false;
+  }
+  
   contextStore.saveLocation();
   emit('close');
   emit('save');

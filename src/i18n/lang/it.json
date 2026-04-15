@@ -330,6 +330,8 @@
       "searching": "Geolocalizzazione in corso...",
       "detected": "Posizione GPS rilevata",
       "recenter": "Ricentra",
+      "refresh": "Aggiorna posizione",
+      "updated": "Posizione aggiornata",
       "errors": {
         "denied": "Attiva la geolocalizzazione nel tuo browser",
         "unavailable": "Posizione non disponibile",

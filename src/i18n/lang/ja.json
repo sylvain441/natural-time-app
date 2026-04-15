@@ -324,6 +324,8 @@
       "searching": "位置情報を検索中…",
       "detected": "GPS位置を検出しました",
       "recenter": "中心に戻る",
+      "refresh": "位置を更新",
+      "updated": "位置が更新されました",
       "errors": {
         "denied": "ブラウザで位置情報を有効にしてください",
         "unavailable": "位置情報を取得できません",

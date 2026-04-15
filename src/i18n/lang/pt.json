@@ -216,6 +216,8 @@
       "searching": "A procurar localização...",
       "detected": "Posição GPS detetada",
       "recenter": "Recentrar",
+      "refresh": "Atualizar localização",
+      "updated": "Posição atualizada",
       "errors": {
         "denied": "Ativa a geolocalização no teu navegador, por favor",
         "unavailable": "Posição indisponível",

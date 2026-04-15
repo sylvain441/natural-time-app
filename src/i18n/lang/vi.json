@@ -354,6 +354,8 @@
       "searching": "Đang tìm vị trí...",
       "detected": "Đã phát hiện vị trí GPS",
       "recenter": "Căn giữa lại",
+      "refresh": "Làm mới vị trí",
+      "updated": "Vị trí đã được cập nhật",
       "errors": {
         "denied": "Vui lòng bật định vị trong trình duyệt của bạn",
         "unavailable": "Vị trí không khả dụng",

@@ -19,6 +19,8 @@ import { onMounted, onUnmounted, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { languageService } from './i18n/i18n';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
+import { useContextStore } from '@/stores/contextStore';
+import { useConfigStore } from '@/stores/configStore';
 
 const route = useRoute();
 const { locale, t } = useI18n();
@@ -58,7 +60,29 @@ onMounted(() => {
   keydownHandler = (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
       if (confirm(t('common.confirmReset'))) {
-        localStorage?.clear();
+        // Reset stores BEFORE clearing localStorage to prevent pinia-plugin-persistedstate
+        // from re-saving old in-memory values between localStorage.clear() and the page reload
+        // (the 2400ms timer triggers state changes that cause pinia persist to re-write)
+        const contextStore = useContextStore();
+        const configStore = useConfigStore();
+        contextStore.$patch({
+          storedLatitude: null,
+          storedLongitude: null,
+          storedLocation: '',
+          enableGeolocation: false,
+          geolocationNotificationDismissedAt: null,
+        });
+        configStore.$patch({
+          clockWelcomeMode: true,
+          spiralWelcomeMode: true,
+          clockTutorialMode: false,
+          spiralTutorialMode: false,
+          clockTimeTravelMode: false,
+          spiralTimeTravelMode: false,
+          clockTutorialCurrentStep: 0,
+          spiralTutorialCurrentStep: 0,
+        });
+        localStorage.clear();
         window.location.reload();
       }
     }

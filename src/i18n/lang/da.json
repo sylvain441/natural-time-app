@@ -354,6 +354,8 @@
       "searching": "Søger efter placering...",
       "detected": "GPS-position registreret",
       "recenter": "Centrer igen",
+      "refresh": "Opdater position",
+      "updated": "Position opdateret",
       "errors": {
         "denied": "Aktiver venligst geolokalisering i din browser",
         "unavailable": "Position utilgængelig",

@@ -354,6 +354,8 @@
       "searching": "Searching for location...",
       "detected": "GPS position detected",
       "recenter": "Recenter",
+      "refresh": "Refresh location",
+      "updated": "Position updated",
       "errors": {
         "denied": "Please enable geolocation in your browser",
         "unavailable": "Position unavailable",

@@ -333,6 +333,8 @@
       "searching": "Geolokalisierung läuft...",
       "detected": "GPS‑Position erkannt",
       "recenter": "Zentrieren",
+      "refresh": "Position aktualisieren",
+      "updated": "Position aktualisiert",
       "errors": {
         "denied": "Aktiviere die Geolokalisierung in deinem Browser",
         "unavailable": "Position nicht verfügbar",

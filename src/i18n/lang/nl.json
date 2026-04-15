@@ -354,6 +354,8 @@
       "searching": "Locatie zoeken...",
       "detected": "GPS-positie gedetecteerd",
       "recenter": "Hercentreren",
+      "refresh": "Locatie vernieuwen",
+      "updated": "Positie bijgewerkt",
       "errors": {
         "denied": "Schakel geolocatie in uw browser in",
         "unavailable": "Positie niet beschikbaar",

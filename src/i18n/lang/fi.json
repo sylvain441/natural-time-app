@@ -354,6 +354,8 @@
       "searching": "Etsitään sijaintia...",
       "detected": "GPS-sijainti havaittu",
       "recenter": "Keskitä uudelleen",
+      "refresh": "Päivitä sijainti",
+      "updated": "Sijainti päivitetty",
       "errors": {
         "denied": "Ole hyvä ja ota paikannus käyttöön selaimessasi",
         "unavailable": "Sijainti ei saatavilla",

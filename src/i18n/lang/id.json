@@ -354,6 +354,8 @@
       "searching": "Mencari lokasi...",
       "detected": "Posisi GPS terdeteksi",
       "recenter": "Pusatkan kembali",
+      "refresh": "Perbarui lokasi",
+      "updated": "Posisi diperbarui",
       "errors": {
         "denied": "Silakan aktifkan geolokasi di browser Anda",
         "unavailable": "Posisi tidak tersedia",

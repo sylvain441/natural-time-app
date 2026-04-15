@@ -42,13 +42,6 @@ export const useContextStore = defineStore('context', () => {
     currentTime.value = Date.now()
     timer.value = setInterval(() => currentTime.value = Date.now(), 2400);
     
-    // Replace immediate geolocation with delayed version
-    if (enableGeolocation.value === true) {
-      setTimeout(() => {
-        getGeolocation();
-      }, 11111); // 11 seconds delay
-    }
-    
     tempLatitude.value = storedLatitude.value;
     tempLongitude.value = storedLongitude.value;
     tempLocation.value = storedLocation.value;
@@ -199,6 +192,27 @@ export const useContextStore = defineStore('context', () => {
     }
   };
 
+  // Fetch place name for any coordinates (used when manually selecting location)
+  const fetchPlaceNameForCoordinates = async (lat, lon) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=fr`
+      );
+      const data = await response.json();
+      
+      // Try to get the most relevant name (city, town, village, or region)
+      return data.address.city || 
+             data.address.town || 
+             data.address.village || 
+             data.address.county ||
+             data.address.state ||
+             null;
+    } catch (error) {
+      console.warn('Error getting place name:', error);
+      return null;
+    }
+  };
+
   const acceptNewGeolocation = () => {
     tempLatitude.value = geolocationLatitude.value;
     tempLongitude.value = geolocationLongitude.value;
@@ -212,6 +226,22 @@ export const useContextStore = defineStore('context', () => {
 
   const dismissGeolocationChange = () => {
     newPlaceName.value = null;
+  };
+
+  // Refresh geolocation and automatically update location
+  const refreshGeolocation = async () => {
+    await getGeolocation();
+    if (geolocationStatus.value === 'success' && geolocationLatitude.value && geolocationLongitude.value) {
+      tempLatitude.value = geolocationLatitude.value;
+      tempLongitude.value = geolocationLongitude.value;
+      // Fetch and set place name
+      await getPlaceNameFromCoordinates();
+      if (newPlaceName.value) {
+        tempLocation.value = newPlaceName.value;
+      }
+      saveLocation();
+      newPlaceName.value = null;
+    }
   };
 
   /**
@@ -257,6 +287,8 @@ export const useContextStore = defineStore('context', () => {
     newPlaceName,
     acceptNewGeolocation,
     dismissGeolocationChange,
+    refreshGeolocation,
+    fetchPlaceNameForCoordinates,
   }
 }, {
   persist: {

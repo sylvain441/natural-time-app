@@ -354,6 +354,8 @@
       "searching": "Géolocalisation en cours...",
       "detected": "Position GPS détectée",
       "recenter": "Recentrer",
+      "refresh": "Actualiser la position",
+      "updated": "Position mise à jour",
       "errors": {
         "denied": "Active la géolocalisation dans ton navigateur",
         "unavailable": "Position non disponible",

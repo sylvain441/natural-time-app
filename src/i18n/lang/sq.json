@@ -354,6 +354,8 @@
       "searching": "Duke kërkuar vendndodhjen...",
       "detected": "Pozicioni GPS i zbuluar",
       "recenter": "Riqendro",
+      "refresh": "Rifresko vendndodhjen",
+      "updated": "Pozicioni u përditësua",
       "errors": {
         "denied": "Ju lutem aktivizoni gjeolokalizimin në shfletuesin tuaj",
         "unavailable": "Pozicioni i padisponueshëm",

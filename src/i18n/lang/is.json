@@ -354,6 +354,8 @@
       "searching": "Leita að staðsetningu...",
       "detected": "GPS staðsetning greind",
       "recenter": "Miðja aftur",
+      "refresh": "Uppfæra staðsetningu",
+      "updated": "Staðsetning uppfærð",
       "errors": {
         "denied": "Vinsamlegast virkjaðu staðsetningu í vafranum þínum",
         "unavailable": "Staðsetning ekki tiltæk",

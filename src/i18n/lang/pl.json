@@ -354,6 +354,8 @@
       "searching": "Szukanie lokalizacji...",
       "detected": "Pozycja GPS wykryta",
       "recenter": "Wyśrodkuj",
+      "refresh": "Odśwież lokalizację",
+      "updated": "Pozycja zaktualizowana",
       "errors": {
         "denied": "Proszę włączyć geolokalizację w przeglądarce",
         "unavailable": "Pozycja niedostępna",

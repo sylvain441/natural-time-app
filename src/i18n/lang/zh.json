@@ -216,6 +216,8 @@
       "searching": "正在定位……",
       "detected": "已检测到 GPS 位置",
       "recenter": "回到中心",
+      "refresh": "刷新位置",
+      "updated": "位置已更新",
       "errors": {
         "denied": "请在浏览器中启用地理定位",
         "unavailable": "位置不可用",

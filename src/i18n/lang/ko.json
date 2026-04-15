@@ -354,6 +354,8 @@
       "searching": "위치 검색 중...",
       "detected": "GPS 위치 감지됨",
       "recenter": "다시 중앙에",
+      "refresh": "위치 새로고침",
+      "updated": "위치가 업데이트되었습니다",
       "errors": {
         "denied": "브라우저에서 위치 서비스를 활성화하세요",
         "unavailable": "위치를 사용할 수 없음",
