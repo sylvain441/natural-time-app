@@ -626,7 +626,7 @@ const pageTitle = computed(() => {
 	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
 		return metaTitle;
 	}
-	return `${context.value.naturalDate.toTimeString(2, 5)} ${context.value.naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
+	return `${context.value.naturalDate.toTimeString(2, 1)} ${context.value.naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
 });
 
 useHead({
