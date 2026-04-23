@@ -23,9 +23,9 @@
     "pebble": {
       "badge": "Nyhet",
       "title": "Naturlig Tid för Pebble",
-      "description": "Naturlig Tid finns nu även för Pebble via Rebble. Denna e-bläckklocka visar solens position på en 360°-urtavla i enkel design, med 2 till 4 veckors batteritid.",
+      "description": "Naturlig Tid finns nu även för Pebble via Pebble. Denna e-bläckklocka visar solens position på en 360°-urtavla i enkel design, med 2 till 4 veckors batteritid.",
       "cta": {
-        "download": "Visa på Rebble"
+        "download": "Visa på Pebble"
       }
     },
     "hero": {
@@ -407,8 +407,8 @@
   "update": {
     "title": "Applikationen uppdaterad!",
     "v2_4": "🌍 Naturlig Tid-applikationen talar nu 12 språk! Tyska, italienska, ryska, grekiska, kinesiska, japanska och portugisiska (Brasilien) ansluter sig till äventyret.",
-    "v2_5": "⌚ Naturlig Tid finns nu på din Pebble-smartwatch! Ladda ner urtavlan på Rebble.",
-    "v2_5_cta": "Ladda ner på Rebble",
+    "v2_5": "⌚ Naturlig Tid finns nu på din Pebble-smartwatch! Ladda ner urtavlan på Pebble.",
+    "v2_5_cta": "Ladda ner på Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {

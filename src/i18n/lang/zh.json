@@ -23,9 +23,9 @@
     "pebble": {
       "badge": "新",
       "title": "自然时间 Pebble 版",
-      "description": "自然时间现已登陆 Pebble，通过 Rebble 下载。这款电子墨水手表在 360° 表盘上以简洁的设计展示太阳位置，续航可达 2 至 4 周。",
+      "description": "自然时间现已登陆 Pebble，通过 Pebble 下载。这款电子墨水手表在 360° 表盘上以简洁的设计展示太阳位置，续航可达 2 至 4 周。",
       "cta": {
-        "download": "在 Rebble 查看"
+        "download": "在 Pebble 查看"
       }
     },
     "hero": {
@@ -249,8 +249,8 @@
   "update": {
     "title": "应用已更新！",
     "v2_4": "🌍 自然时间应用现在支持12种语言！德语、意大利语、俄语、希腊语、中文、日语和葡萄牙语（巴西）加入了这场冒险。",
-    "v2_5": "⌚ 自然时间登陆你的 Pebble 智能手表！在 Rebble 下载表盘。",
-    "v2_5_cta": "在 Rebble 下载",
+    "v2_5": "⌚ 自然时间登陆你的 Pebble 智能手表！在 Pebble 下载表盘。",
+    "v2_5_cta": "在 Pebble 下载",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {

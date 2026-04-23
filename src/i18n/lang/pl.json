@@ -23,9 +23,9 @@
     "pebble": {
       "badge": "Nowość",
       "title": "Czas Naturalny na Pebble",
-      "description": "Czas Naturalny jest teraz dostępny na Pebble przez Rebble. Ten zegarek e-ink pokazuje pozycję słońca na tarczy 360° w prostym stylu, z baterią na 2 do 4 tygodni.",
+      "description": "Czas Naturalny jest teraz dostępny na Pebble przez Pebble. Ten zegarek e-ink pokazuje pozycję słońca na tarczy 360° w prostym stylu, z baterią na 2 do 4 tygodni.",
       "cta": {
-        "download": "Zobacz na Rebble"
+        "download": "Zobacz na Pebble"
       }
     },
     "hero": {
@@ -407,8 +407,8 @@
   "update": {
     "title": "Aplikacja zaktualizowana!",
     "v2_4": "🌍 Aplikacja Czas Naturalny mówi teraz 12 językami! Niemiecki, włoski, rosyjski, grecki, chiński, japoński i portugalski (Brazylia) dołączają do przygody.",
-    "v2_5": "⌚ Czas Naturalny jest teraz na Twoim zegarku Pebble! Pobierz tarczę na Rebble.",
-    "v2_5_cta": "Pobierz na Rebble",
+    "v2_5": "⌚ Czas Naturalny jest teraz na Twoim zegarku Pebble! Pobierz tarczę na Pebble.",
+    "v2_5_cta": "Pobierz na Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {

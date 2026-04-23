@@ -23,9 +23,9 @@
     "pebble": {
       "badge": "Nýtt",
       "title": "Náttúrulegur Tími fyrir Pebble",
-      "description": "Náttúrulegur Tími er nú einnig fáanlegur fyrir Pebble í gegnum Rebble. Þetta e-ink úr sýnir staðsetningu sólarinnar á 360° skífu í einföldu útliti, með 2 til 4 vikna rafhlöðuendingu.",
+      "description": "Náttúrulegur Tími er nú einnig fáanlegur fyrir Pebble í gegnum Pebble. Þetta e-ink úr sýnir staðsetningu sólarinnar á 360° skífu í einföldu útliti, með 2 til 4 vikna rafhlöðuendingu.",
       "cta": {
-        "download": "Skoða á Rebble"
+        "download": "Skoða á Pebble"
       }
     },
     "hero": {
@@ -407,8 +407,8 @@
   "update": {
     "title": "Forrit uppfært!",
     "v2_4": "🌍 Náttúrulegs Tíma appið talar nú 12 tungumál! Þýska, ítalska, rússneska, gríska, kínverska, japanska og portúgalska (Brasilía) bætast í ævintýrið.",
-    "v2_5": "⌚ Náttúrulegur Tími er nú á Pebble-úrinu þínu! Sæktu skífuna á Rebble.",
-    "v2_5_cta": "Sækja á Rebble",
+    "v2_5": "⌚ Náttúrulegur Tími er nú á Pebble-úrinu þínu! Sæktu skífuna á Pebble.",
+    "v2_5_cta": "Sækja á Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
   "common": {

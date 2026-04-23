@@ -141,7 +141,7 @@
                 {{ $t('welcome.pebble.badge') }}
               </span>
               <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-700/80 dark:text-emerald-300/75">
-                Pebble • Rebble
+                Pebble
               </p>
             </div>
             <h2 class="mb-3 text-2xl sm:text-3xl md:text-4xl font-title text-slate-900 dark:text-emerald-300/90">

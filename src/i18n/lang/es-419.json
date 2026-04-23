@@ -15,9 +15,9 @@
     "pebble": {
       "badge": "Nuevo",
       "title": "Tiempo Natural para Pebble",
-      "description": "Tiempo Natural también está disponible para Pebble en Rebble. Este reloj e-ink muestra la posición del sol en una esfera de 360° con un diseño sencillo, con 2 a 4 semanas de autonomía.",
+      "description": "Tiempo Natural también está disponible para Pebble en Pebble. Este reloj e-ink muestra la posición del sol en una esfera de 360° con un diseño sencillo, con 2 a 4 semanas de autonomía.",
       "cta": {
-        "download": "Ver en Rebble"
+        "download": "Ver en Pebble"
       }
     },
     "hero": {
@@ -173,7 +173,7 @@
 
   "youtubePlayer": { "thumbnail": "Entender Tiempo Natural en 10 minutos" },
   "notFound": { "title": "404", "message": "¡Ups! Página no encontrada.", "button": "Volver al inicio" },
-  "update": { "title": "¡Aplicación actualizada!", "v2_4": "🌍 ¡La aplicación Tiempo Natural ahora habla 12 idiomas! Alemán, Italiano, Ruso, Griego, Chino, Japonés y Portugués (Brasil) se unen a la aventura.", "v2_5": "⌚ ¡Tiempo Natural llega a tu reloj Pebble! Descarga la carátula en Rebble.", "v2_5_cta": "Descargar en Rebble", "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560" }
+  "update": { "title": "¡Aplicación actualizada!", "v2_4": "🌍 ¡La aplicación Tiempo Natural ahora habla 12 idiomas! Alemán, Italiano, Ruso, Griego, Chino, Japonés y Portugués (Brasil) se unen a la aventura.", "v2_5": "⌚ ¡Tiempo Natural llega a tu reloj Pebble! Descarga la carátula en Pebble.", "v2_5_cta": "Descargar en Pebble", "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560" }
 }
 
 
