@@ -267,13 +267,37 @@
       "startTutorial": "Aloita opastus",
       "faq": "Usein kysytyt kysymykset",
       "specialMode": "Erikoistila",
-      "timeTravel": "Aikamatkailu"
+      "timeTravel": "Aikamatkailu",
+      "diyMode": "DIY-tila"
+    },
+    "diy": {
+      "exitButton": "Poistu DIY-tilasta",
+      "subtitle": "Kulmat luonnollisen kellosi asettamiseen",
+      "labels": {
+        "sun": "Auringon sijainti",
+        "sunrise": "Tämän päivän auringonnousu",
+        "sunset": "Tämän päivän auringonlasku",
+        "summerSunrise": "Kesäisen auringonnousun viiksiviiva",
+        "equinoxSunrise": "Päiväntasauksen auringonnousun viiksiviiva",
+        "winterSunrise": "Talvisen auringonnousun viiksiviiva",
+        "winterSunset": "Talvisen auringonlaskun viiksiviiva",
+        "equinoxSunset": "Päiväntasauksen auringonlaskun viiksiviiva",
+        "summerSunset": "Kesäisen auringonlaskun viiksiviiva"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Uusi sijainti havaittu",
         "ignoreButton": "Ohita",
         "updateButton": "Päivitä"
+      },
+      "routeLocation": {
+        "title": "Mitä sijaintia käytetään?",
+        "description": "Tämä linkki ehdottaa eri sijaintia kuin asetuksiisi tallennettu sijainti.",
+        "linkLabel": "Linkin pyytämä sijainti",
+        "savedLabel": "Tallennettu sijainti",
+        "keepSavedButton": "Pidä tallennettu sijainti",
+        "updateButton": "Käytä linkin sijaintia"
       },
       "southernHemisphere": {
         "title": "Eteläinen Pallonpuolisko",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ohita tänään",
         "updateButton": "Kyllä",
         "dismissButton": "Ei"
+      },
+      "routeLocation": {
+        "title": "Mitä sijaintia käytetään?",
+        "description": "Tämä linkki ehdottaa eri sijaintia kuin asetuksiisi tallennettu sijainti.",
+        "linkLabel": "Linkin pyytämä sijainti",
+        "savedLabel": "Tallennettu sijainti",
+        "keepSavedButton": "Pidä tallennettu sijainti",
+        "updateButton": "Käytä linkin sijaintia"
       }
     }
   },

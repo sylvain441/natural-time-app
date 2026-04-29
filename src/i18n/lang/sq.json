@@ -267,13 +267,37 @@
       "startTutorial": "Fillo tutorialin",
       "faq": "Pyetjet e bëra shpesh",
       "specialMode": "Mënyra speciale",
-      "timeTravel": "Udhëtim në kohë"
+      "timeTravel": "Udhëtim në kohë",
+      "diyMode": "Modaliteti DIY"
+    },
+    "diy": {
+      "exitButton": "Dil nga modaliteti DIY",
+      "subtitle": "Kënde për të rregulluar orën tënde natyrore",
+      "labels": {
+        "sun": "Pozicioni i diellit",
+        "sunrise": "Lindja e sotme e diellit",
+        "sunset": "Perëndimi i sotëm i diellit",
+        "summerSunrise": "Fije mustaqeje e lindjes së verës",
+        "equinoxSunrise": "Fije mustaqeje e lindjes së ekuinoksit",
+        "winterSunrise": "Fije mustaqeje e lindjes së dimrit",
+        "winterSunset": "Fije mustaqeje e perëndimit të dimrit",
+        "equinoxSunset": "Fije mustaqeje e perëndimit të ekuinoksit",
+        "summerSunset": "Fije mustaqeje e perëndimit të verës"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Vendndodhje e re e zbuluar",
         "ignoreButton": "Injoro",
         "updateButton": "Përditëso"
+      },
+      "routeLocation": {
+        "title": "Cili vendndodhje duhet përdorur?",
+        "description": "Kjo lidhje propozon një vendndodhje tjetër nga ajo e ruajtur te cilësimet.",
+        "linkLabel": "Vendndodhja e kërkuar nga lidhja",
+        "savedLabel": "Vendndodhja e ruajtur",
+        "keepSavedButton": "Mbaj vendndodhjen e ruajtur",
+        "updateButton": "Përdor vendndodhjen e lidhjes"
       },
       "southernHemisphere": {
         "title": "Hemisfera Jugore",
@@ -337,6 +361,14 @@
         "ignoreButton": "Injoro sot",
         "updateButton": "Po",
         "dismissButton": "Jo"
+      },
+      "routeLocation": {
+        "title": "Cili vendndodhje duhet përdorur?",
+        "description": "Kjo lidhje propozon një vendndodhje tjetër nga ajo e ruajtur te cilësimet.",
+        "linkLabel": "Vendndodhja e kërkuar nga lidhja",
+        "savedLabel": "Vendndodhja e ruajtur",
+        "keepSavedButton": "Mbaj vendndodhjen e ruajtur",
+        "updateButton": "Përdor vendndodhjen e lidhjes"
       }
     }
   },

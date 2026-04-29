@@ -18,17 +18,18 @@
 
 
 			<div class="fixed z-10 inset-0 h-full flex flex-col items-center justify-end transition-all duration-300 ease-in-out"
-				:class="clockTimeTravelMode || clockTutorialMode ? 'md:border-8 md:border-nt-yellow-light' : ''"
+				:class="clockTimeTravelMode || clockTutorialMode || clockDiyMode ? 'md:border-8 md:border-nt-yellow-light' : ''"
 				style="width: inherit;">
 
 				<!-- CLOCK COMPONENT -->
 				<ClockComponent class="absolute w-full h-full min-w-72"
-					:class="(clockWelcomeMode && !clockActivePanel) || clockTutorialMode || clockTimeTravelMode ? '-translate-y-8 md:-translate-y-14' : !clockSimplifiedMode ? '-translate-y-4 md:-translate-y-8' : '-translate-y-0 md:-translate-y-0'"
-					:context="context">
+					:class="(clockWelcomeMode && !clockActivePanel) || clockTutorialMode || clockTimeTravelMode || clockDiyMode ? '-translate-y-8 md:-translate-y-14' : !clockSimplifiedMode ? '-translate-y-4 md:-translate-y-8' : '-translate-y-0 md:-translate-y-0'"
+					:context="context"
+					:diy-mode="clockDiyMode">
 				</ClockComponent>
 
 				<!-- FOOTER -->
-				<footer v-if="!clockSimplifiedMode || clockTimeTravelMode || clockTutorialMode || clockWelcomeMode" 
+				<footer v-if="!clockSimplifiedMode || clockTimeTravelMode || clockTutorialMode || clockWelcomeMode || clockDiyMode"
 					class="z-20 text-center flex flex-col items-center p-6 pb-6 md:pb-10 w-full max-w-screen-sm">
 
 					<!-- TITLE -->
@@ -36,14 +37,14 @@
 					<div v-if="!clockTimeTravelMode">
                         <h1 class="flex justify-center items-center font-extrabold text-base md:text-xl mt-1 mb-2 text-black">
 							<!-- Refresh geolocation button (left) - opacity 0 when geolocation disabled to keep title centered -->
-							<button 
+							<button
 								v-if="!clockTutorialMode && latitude && longitude && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
 								@click.stop="enableGeolocation ? handleRefreshGeolocation() : null"
 								:disabled="isRefreshingGeolocation || !enableGeolocation"
 								:class="[
 									'p-1 mr-1 transition-opacity duration-500',
-									!enableGeolocation ? 'opacity-0 cursor-default' : 
-									showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+									!enableGeolocation ? 'opacity-0 cursor-default' :
+									clockDiyMode || showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
 								]"
 								:title="enableGeolocation ? $t('locationPicker.geolocation.refresh') : ''">
 								<component
@@ -72,12 +73,12 @@
 							</div>
 
 							<!-- Edit location button (right) -->
-							<button 
+							<button
 								v-if="!clockTutorialMode && latitude && longitude && clockActivePanel !== AVAILABLE_PANELS.locationPicker"
 								@click.stop="openPanel(AVAILABLE_PANELS.locationPicker)"
 								:class="[
 									'p-1 ml-1 transition-opacity duration-500',
-									showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
+									clockDiyMode || showLocationIcons ? 'opacity-100 hover:opacity-70' : 'opacity-0'
 								]"
 								:title="$t('locationPicker.title')">
 								<component :is="editIcon" :class="['w-5 h-5', locationIconColor]" />
@@ -90,6 +91,11 @@
                             <h2 class="text-slate-500 text-md md:text-xl">
                                 {{ $t('locationPicker.explanation') }}
                             </h2>
+						</div>
+						<div v-else-if="clockDiyMode">
+							<h2 class="text-slate-500 font-medium text-sm md:text-xl">
+								{{ $t('clock.diy.subtitle') }}
+							</h2>
 						</div>
 						<div v-else-if="!clockTutorialMode && latitude && longitude">
 							<h2
@@ -128,17 +134,17 @@
 
 						<div class="bg-nt-yellow-light max-w-md mx-auto font-extrabold py-3 px-8 rounded-full shadow-lg">
 							<div class="flex items-center justify-center space-x-4">
-								<button 
-									@click.stop.prevent="decrementTime" 
-									v-longclick="decrementTime" 
+								<button
+									@click.stop.prevent="decrementTime"
+									v-longclick="decrementTime"
 									class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-yellow-lighter cursor-pointer select-none"
 								>
 									<minusIcon class="w-4 h-4" fill="currentColor" />
 								</button>
 
 								<div class="flex flex-col items-center justify-center space-y-2">
-									<select 
-										id="speed-selector" 
+									<select
+										id="speed-selector"
 										v-model="selectedSpeed"
 										class="bg-white border-none text-black text-sm rounded-lg focus:ring-nt-yellow-light focus:border-nt-yellow-light block w-full p-2.5 text-center"
 									>
@@ -149,9 +155,9 @@
 									</select>
 								</div>
 
-								<button 
-									@click.stop.prevent="incrementTime" 
-									v-longclick="incrementTime" 
+								<button
+									@click.stop.prevent="incrementTime"
+									v-longclick="incrementTime"
 									class="w-8 h-8 flex items-center justify-center bg-white rounded-full transition duration-300 ease-in-out transform hover:bg-nt-yellow-lighter cursor-pointer select-none"
 								>
 									<plusIcon class="w-4 h-4" fill="currentColor" />
@@ -234,14 +240,14 @@
 		</div>
 
 		<!-- TOP RIGHT MENU -->
-		<div v-if="!clockActivePanel && !clockWelcomeMode && !clockTutorialMode && !clockTimeTravelMode"
+		<div v-if="!clockActivePanel && !clockWelcomeMode && !clockTutorialMode && !clockTimeTravelMode && !clockDiyMode"
 			class="fixed top-3 md:top-4 right-3 md:right-4 z-30">
 			<div class="relative flex gap-2">
 				<!-- Menu button -->
 				<button @click="toggleMenu"
 					class="p-2 rounded-full bg-nt-yellow-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-yellow-lighter">
 					<div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
-						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
+						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
 							isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
 						<span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
 							isMenuOpen ? 'opacity-0' : '']"></span>
@@ -283,24 +289,30 @@
                             <faqIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.faq') }}
                         </a>
 
-						
+
 						<!-- SPECIAL MODES -->
 						<div class="px-4 pt-3 pb-0 text-sm text-nt-yellow-dark font-bold">{{ $t('clock.menu.specialMode') }}</div>
 						<!-- Time Travel -->
-						<a @click="toggleTimeTravel"
-							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
-							:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
-							<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.timeTravel') }}
-						</a>
+							<a @click="toggleTimeTravel"
+								class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
+								:class="clockTimeTravelMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
+								<timeTravelIcon class="w-6 h-6 mr-2" fill="currentColor" />{{ $t('clock.menu.timeTravel') }}
+							</a>
+							<!-- DIY mode -->
+							<a @click="toggleDiyMode"
+								class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-nt-yellow-darker hover:bg-opacity-30 flex items-center"
+								:class="clockDiyMode ? 'bg-nt-yellow-ultralight' : ''" role="menuitem">
+								<compassIcon class="w-6 h-6 mr-2 text-white" fill="currentColor" />{{ $t('clock.menu.diyMode') }}
+							</a>
 						<!-- Simplified mode -->
 						<a @click="toggleSimplifiedMode"
 							class="px-4 py-2 cursor-pointer text-sm text-slate-300 hover:bg-slate-700 flex items-center"
 							:class="clockSimplifiedMode ? 'bg-slate-700 bg-opacity-50' : ''"
 							role="menuitem">
-							<component 
-								:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon" 
-								class="w-6 h-6 mr-2 bg-white/90 p-0.5 rounded-full text-black" 
-								fill="currentColor" 
+							<component
+								:is="clockSimplifiedMode ? advancedClockIcon : simpleClockIcon"
+								class="w-6 h-6 mr-2 bg-white/90 p-0.5 rounded-full text-black"
+								fill="currentColor"
 							/>
 							{{ clockSimplifiedMode ? $t('clock.menu.simplifiedMode.fullMode') : $t('clock.menu.simplifiedMode.title') }}
 						</a>
@@ -308,7 +320,7 @@
 				</div>
 			</div>
 			<!-- Add overlay -->
-			<div v-if="isMenuOpen" 
+			<div v-if="isMenuOpen"
 				@click="toggleMenu"
 				class="fixed inset-0 bg-black/20 backdrop-blur-sm z-[-1]">
 			</div>
@@ -325,6 +337,13 @@
 		<button v-if="clockTimeTravelMode" @click="closeTimeTravel"
 			class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
 			<span>{{ $t('clock.timeTravel.exitButton') }}</span>
+			<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
+		</button>
+
+		<!-- DIY MODE CLOSE BUTTON -->
+		<button v-if="clockDiyMode && !clockActivePanel" @click="closeDiyMode"
+			class="absolute z-40 top-4 right-4 flex items-center justify-center space-x-2 bg-nt-yellow-light text-black hover:bg-nt-yellow-lighter text-xs md:text-sm py-2 pl-4 pr-2 rounded transition duration-300 ease-in-out transform">
+			<span>{{ $t('clock.diy.exitButton') }}</span>
 			<closeIcon class="w-4 h-4 bg-black rounded-full text-nt-yellow-light" fill="currentColor" />
 		</button>
 
@@ -348,6 +367,9 @@
 				</p>
 			</div>
 		</transition>
+
+		<!-- MODAL: URL location differs from saved location -->
+		<RouteLocationModal i18n-namespace="clock.notifications.routeLocation" />
 
 		<!-- NOTIFICATION: Geolocation changed -->
 		<transition name="fade">
@@ -405,6 +427,7 @@
 // Imports
 import { ref, computed, defineAsyncComponent, onMounted, onUnmounted, watch } from 'vue';
 import { useHead } from '@unhead/vue';
+import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia'
 import { NaturalDate } from 'natural-time-js';
 import { NaturalSunAltitude, NaturalSunEvents, NaturalMoonPosition, NaturalMoonEvents, MustachesRange } from 'natural-time-js';
@@ -420,6 +443,7 @@ import { useConfigStore, AVAILABLE_PANELS } from '@/stores/configStore'
 import ClockComponent from '@/components/ClockComponent.vue';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import MainMenu from '@/components/MainMenu.vue';
+import RouteLocationModal from '@/components/RouteLocationModal.vue';
 
 // Lazy loaded components
 const LocationPicker = defineAsyncComponent(() => import('@/components/LocationPicker.vue'));
@@ -436,6 +460,7 @@ import minusIcon from '@/assets/icon/minus-icon.svg';
 import plusIcon from '@/assets/icon/plus-icon.svg';
 import simpleClockIcon from '@/assets/icon/simple-clock-icon.svg';
 import advancedClockIcon from '@/assets/icon/advanced-clock-icon.svg';
+import compassIcon from '@/assets/icon/compass-icon.svg';
 import refreshIcon from '@/assets/icon/refresh-icon.svg';
 import spinIcon from '@/assets/icon/spin-icon.svg';
 import editIcon from '@/assets/icon/edit-icon.svg';
@@ -446,11 +471,13 @@ const contextStore = useContextStore()
 contextStore.init();
 
 const configStore = useConfigStore()
-const { clockSkin: rawClockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockActivePanel, clockSimplifiedMode, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
+const { clockSkin: rawClockSkin, clockWelcomeMode, clockTutorialMode, clockTutorialStepsTotal, clockTutorialCurrentStep, clockTimeTravelMode, clockDiyMode, clockActivePanel, clockSimplifiedMode, hemisphereNotificationDismissed, hemisphereNotificationDismissedAt } = storeToRefs(configStore);
 
 // I18n setup
 const i18n = useI18n();
 import { languageService } from '../i18n/i18n';
+const route = useRoute();
+const router = useRouter();
 
 // Get current language flag
 const getCurrentLanguageFlag = () => {
@@ -528,7 +555,7 @@ const handleRefreshGeolocation = async () => {
 	isRefreshingGeolocation.value = true;
 	await contextStore.refreshGeolocation();
 	isRefreshingGeolocation.value = false;
-	
+
 	// Show notification based on result
 	if (geolocationStatus.value === 'success') {
 		const placeName = location.value || i18n.t('welcome.title');
@@ -623,7 +650,7 @@ const metaOgImage = i18n.t('clock.meta.ogImage');
 const metaOgUrl = i18n.t('clock.meta.ogUrl');
 
 const pageTitle = computed(() => {
-	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value) {
+	if (clockWelcomeMode.value || clockTutorialMode.value || clockTimeTravelMode.value || clockDiyMode.value) {
 		return metaTitle;
 	}
 	return `${context.value.naturalDate.toTimeString(2, 1)} ${context.value.naturalDate.toLongitudeString()} ${location.value ? " | " + location.value : ""} | ${context.value.naturalDate.toDateString()} | ${i18n.t('welcome.title')}`;
@@ -649,6 +676,11 @@ const shouldShowNotification = computed(() => {
 	return (new Date() - new Date(geolocationNotificationDismissedAt.value)) > oneDay;
 });
 
+const hasConfiguredLocation = computed(() =>
+	contextStore.hasRouteLocation ||
+	(contextStore.storedLatitude != null && contextStore.storedLongitude != null)
+);
+
 // Computed property to check if notification should be shown
 const shouldShowHemisphereNotification = computed(() => {
 	// Don't show notification during welcome mode
@@ -669,6 +701,7 @@ const toggleMenu = () => {
 const toggleTutorial = () => {
 	clockTutorialMode.value = !clockTutorialMode.value;
 	isMenuOpen.value = false;
+	clockDiyMode.value = false;
 	closeTimeTravel();
 };
 
@@ -678,7 +711,8 @@ const toggleTimeTravel = () => {
     if (clockTimeTravelMode.value) {
 		clockActivePanel.value = null;
 		clockTutorialMode.value = false;
-		
+		clockDiyMode.value = false;
+
       // Show time travel welcome notification through manager
       showModalNotification({
         title: i18n.t('tutorials.timeTravel.notification.title'),
@@ -710,6 +744,52 @@ const closeTimeTravel = () => {
 	clockTimeTravelMode.value = false;
 	timeDelta.value = 0;
     hideModalNotification();
+};
+
+// Sync the URL with DIY mode state so the link is shareable.
+// When entering DIY: write ?mode=diy&lat=...&lng=...
+// When leaving DIY: strip those params (only if they're present, never touch other queries)
+const setDiyQuery = (enabled) => {
+	const query = { ...route.query };
+	if (enabled) {
+		query.mode = 'diy';
+		query.lat = Number(latitude.value).toFixed(5);
+		query.lng = Number(longitude.value).toFixed(5);
+		delete query.lon;
+	} else if (query.mode === 'diy') {
+		delete query.mode;
+		delete query.lat;
+		delete query.lng;
+		delete query.lon;
+	} else {
+		return; // nothing to update
+	}
+	router.replace({ query });
+};
+
+const toggleDiyMode = () => {
+	isMenuOpen.value = false;
+	if (clockDiyMode.value) {
+		closeDiyMode();
+		return;
+	}
+	if (!hasConfiguredLocation.value) {
+		openPanel(AVAILABLE_PANELS.locationPicker);
+		return;
+	}
+
+	clockDiyMode.value = true;
+	clockWelcomeMode.value = false;
+	clockTutorialMode.value = false;
+	closeTimeTravel();
+	hideModalNotification();
+	setDiyQuery(true);
+};
+
+const closeDiyMode = () => {
+	clockDiyMode.value = false;
+	clockActivePanel.value = null;
+	setDiyQuery(false);
 };
 
 const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;
@@ -754,7 +834,7 @@ onMounted(() => {
 			}
 		}, 10000);
 	}
-	
+
 	// Show tutorial welcome notification if tutorial mode is active
 	if (clockTutorialMode.value && clockTutorialCurrentStep.value === 0) {
 		showModalNotification({
@@ -763,16 +843,16 @@ onMounted(() => {
 			type: 'clock'
 		}, i18n);
 	}
-	
+
 	// Add event listeners for location icons visibility
 	document.addEventListener('mousemove', handleMouseMove);
 	document.addEventListener('touchstart', handleTouchStart);
-	
+
 	// Watchers
 	watch([() => clockSkin.value.animationSpeed, () => clockTimeTravelMode.value], ([newSpeed, newTimeTravelMode]) => {
 		document.documentElement.style.setProperty('--nt-animation-speed', newSpeed && !newTimeTravelMode ? `${newSpeed}s` : '0s');
 	}, { immediate: true });
-	
+
 	// Watch for tutorial mode changes to show welcome notification
 	watch(() => clockTutorialMode.value, (newValue) => {
 		if (newValue && clockTutorialCurrentStep.value === 0) {

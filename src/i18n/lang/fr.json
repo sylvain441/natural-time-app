@@ -267,13 +267,37 @@
       "startTutorial": "Lancer le tutoriel",
       "faq": "Foire aux questions",
       "specialMode": "Mode spécial",
-      "timeTravel": "Voyage temporel"
+      "timeTravel": "Voyage temporel",
+      "diyMode": "Mode DIY"
+    },
+    "diy": {
+      "exitButton": "Quitter le mode DIY",
+      "subtitle": "Angles pour régler votre horloge naturelle",
+      "labels": {
+        "sun": "Position du soleil",
+        "sunrise": "Lever du soleil aujourd'hui",
+        "sunset": "Coucher du soleil aujourd'hui",
+        "summerSunrise": "Brin de lever d'été",
+        "equinoxSunrise": "Brin de lever d'équinoxe",
+        "winterSunrise": "Brin de lever d'hiver",
+        "winterSunset": "Brin de coucher d'hiver",
+        "equinoxSunset": "Brin de coucher d'équinoxe",
+        "summerSunset": "Brin de coucher d'été"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Nouvelle position détectée",
         "ignoreButton": "Ignorer",
         "updateButton": "Mettre à jour"
+      },
+      "routeLocation": {
+        "title": "Quelle position utiliser ?",
+        "description": "Le lien propose de définir une position différente de celle enregistrée dans vos paramètres.",
+        "linkLabel": "Position demandée par le lien",
+        "savedLabel": "Position enregistrée",
+        "keepSavedButton": "Garder la position enregistrée",
+        "updateButton": "Utiliser la position du lien"
       },
       "southernHemisphere": {
         "title": "Hémisphère Sud",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignorer aujourd'hui",
         "updateButton": "Oui",
         "dismissButton": "Non"
+      },
+      "routeLocation": {
+        "title": "Quelle position utiliser ?",
+        "description": "Le lien propose de définir une position différente de celle enregistrée dans vos paramètres.",
+        "linkLabel": "Position demandée par le lien",
+        "savedLabel": "Position enregistrée",
+        "keepSavedButton": "Garder la position enregistrée",
+        "updateButton": "Utiliser la position du lien"
       }
     }
   },

@@ -267,13 +267,37 @@
       "startTutorial": "Mulai tutorial",
       "faq": "Pertanyaan yang sering diajukan",
       "specialMode": "Mode khusus",
-      "timeTravel": "Perjalanan waktu"
+      "timeTravel": "Perjalanan waktu",
+      "diyMode": "Mode DIY"
+    },
+    "diy": {
+      "exitButton": "Keluar dari mode DIY",
+      "subtitle": "Sudut untuk mengatur jam alamimu",
+      "labels": {
+        "sun": "Posisi matahari",
+        "sunrise": "Matahari terbit hari ini",
+        "sunset": "Matahari terbenam hari ini",
+        "summerSunrise": "Garis kumis matahari terbit musim panas",
+        "equinoxSunrise": "Garis kumis matahari terbit ekuinoks",
+        "winterSunrise": "Garis kumis matahari terbit musim dingin",
+        "winterSunset": "Garis kumis matahari terbenam musim dingin",
+        "equinoxSunset": "Garis kumis matahari terbenam ekuinoks",
+        "summerSunset": "Garis kumis matahari terbenam musim panas"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Lokasi baru terdeteksi",
         "ignoreButton": "Abaikan",
         "updateButton": "Perbarui"
+      },
+      "routeLocation": {
+        "title": "Lokasi mana yang harus digunakan?",
+        "description": "Tautan ini mengusulkan lokasi yang berbeda dari yang tersimpan di pengaturanmu.",
+        "linkLabel": "Lokasi yang diminta tautan",
+        "savedLabel": "Lokasi tersimpan",
+        "keepSavedButton": "Pertahankan lokasi tersimpan",
+        "updateButton": "Gunakan lokasi dari tautan"
       },
       "southernHemisphere": {
         "title": "Belahan Bumi Selatan",
@@ -337,6 +361,14 @@
         "ignoreButton": "Abaikan hari ini",
         "updateButton": "Ya",
         "dismissButton": "Tidak"
+      },
+      "routeLocation": {
+        "title": "Lokasi mana yang harus digunakan?",
+        "description": "Tautan ini mengusulkan lokasi yang berbeda dari yang tersimpan di pengaturanmu.",
+        "linkLabel": "Lokasi yang diminta tautan",
+        "savedLabel": "Lokasi tersimpan",
+        "keepSavedButton": "Pertahankan lokasi tersimpan",
+        "updateButton": "Gunakan lokasi dari tautan"
       }
     }
   },

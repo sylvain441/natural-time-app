@@ -246,13 +246,37 @@
       "startTutorial": "チュートリアルを開始",
       "faq": "よくある質問",
       "specialMode": "スペシャルモード",
-      "timeTravel": "タイムトラベル"
+      "timeTravel": "タイムトラベル",
+      "diyMode": "DIYモード"
+    },
+    "diy": {
+      "exitButton": "DIYモードを終了",
+      "subtitle": "自然時計を合わせるための角度",
+      "labels": {
+        "sun": "太陽の位置",
+        "sunrise": "今日の日の出",
+        "sunset": "今日の日の入り",
+        "summerSunrise": "夏の日の出のヒゲ線",
+        "equinoxSunrise": "春分・秋分の日の出のヒゲ線",
+        "winterSunrise": "冬の日の出のヒゲ線",
+        "winterSunset": "冬の日の入りのヒゲ線",
+        "equinoxSunset": "春分・秋分の日の入りのヒゲ線",
+        "summerSunset": "夏の日の入りのヒゲ線"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "新しい位置を検出しました",
         "ignoreButton": "無視",
         "updateButton": "更新"
+      },
+      "routeLocation": {
+        "title": "どの場所を使用しますか？",
+        "description": "このリンクは、設定に保存されている場所とは別の場所を指定しています。",
+        "linkLabel": "リンクが指定した場所",
+        "savedLabel": "保存済みの場所",
+        "keepSavedButton": "保存済みの場所を使う",
+        "updateButton": "リンクの場所を使う"
       },
       "southernHemisphere": {
         "title": "南半球",
@@ -307,6 +331,14 @@
         "ignoreButton": "今日は無視",
         "updateButton": "はい",
         "dismissButton": "いいえ"
+      },
+      "routeLocation": {
+        "title": "どの場所を使用しますか？",
+        "description": "このリンクは、設定に保存されている場所とは別の場所を指定しています。",
+        "linkLabel": "リンクが指定した場所",
+        "savedLabel": "保存済みの場所",
+        "keepSavedButton": "保存済みの場所を使う",
+        "updateButton": "リンクの場所を使う"
       }
     }
   },

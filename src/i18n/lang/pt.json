@@ -153,10 +153,34 @@
       "startTutorial": "Iniciar tutorial",
       "faq": "Perguntas frequentes",
       "specialMode": "Modo especial",
-      "timeTravel": "Viagem no tempo"
+      "timeTravel": "Viagem no tempo",
+      "diyMode": "Modo DIY"
+    },
+    "diy": {
+      "exitButton": "Sair do modo DIY",
+      "subtitle": "Ângulos para ajustar o teu relógio natural",
+      "labels": {
+        "sun": "Posição do sol",
+        "sunrise": "Nascer do sol de hoje",
+        "sunset": "Pôr do sol de hoje",
+        "summerSunrise": "Fio do bigode do nascer do sol de verão",
+        "equinoxSunrise": "Fio do bigode do nascer do sol do equinócio",
+        "winterSunrise": "Fio do bigode do nascer do sol de inverno",
+        "winterSunset": "Fio do bigode do pôr do sol de inverno",
+        "equinoxSunset": "Fio do bigode do pôr do sol do equinócio",
+        "summerSunset": "Fio do bigode do pôr do sol de verão"
+      }
     },
     "notifications": {
       "geolocation": { "title": "Nova localização detetada", "ignoreButton": "Ignorar", "updateButton": "Atualizar" },
+      "routeLocation": {
+        "title": "Que localização deve ser usada?",
+        "description": "Este link propõe definir uma localização diferente da guardada nas tuas definições.",
+        "linkLabel": "Localização pedida pelo link",
+        "savedLabel": "Localização guardada",
+        "keepSavedButton": "Manter a localização guardada",
+        "updateButton": "Usar a localização do link"
+      },
       "southernHemisphere": {
         "title": "Hemisfério Sul",
         "description": "Neste hemisfério, o relógio gira no sentido anti‑horário (da direita para a esquerda) para corresponder ao movimento do sol no céu.",
@@ -204,6 +228,14 @@
         "ignoreButton": "Ignorar hoje",
         "updateButton": "Sim",
         "dismissButton": "Não"
+      },
+      "routeLocation": {
+        "title": "Que localização deve ser usada?",
+        "description": "Este link propõe definir uma localização diferente da guardada nas tuas definições.",
+        "linkLabel": "Localização pedida pelo link",
+        "savedLabel": "Localização guardada",
+        "keepSavedButton": "Manter a localização guardada",
+        "updateButton": "Usar a localização do link"
       }
     }
   },

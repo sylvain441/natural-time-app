@@ -249,13 +249,37 @@
       "startTutorial": "Iniciar tutorial",
       "faq": "Preguntas frecuentes",
       "specialMode": "Modo especial",
-      "timeTravel": "Viaje en el tiempo"
+      "timeTravel": "Viaje en el tiempo",
+      "diyMode": "Modo DIY"
+    },
+    "diy": {
+      "exitButton": "Salir del modo DIY",
+      "subtitle": "Ángulos para ajustar tu reloj natural",
+      "labels": {
+        "sun": "Posición del sol",
+        "sunrise": "Amanecer de hoy",
+        "sunset": "Atardecer de hoy",
+        "summerSunrise": "Hebra del bigote del amanecer de verano",
+        "equinoxSunrise": "Hebra del bigote del amanecer de equinoccio",
+        "winterSunrise": "Hebra del bigote del amanecer de invierno",
+        "winterSunset": "Hebra del bigote del atardecer de invierno",
+        "equinoxSunset": "Hebra del bigote del atardecer de equinoccio",
+        "summerSunset": "Hebra del bigote del atardecer de verano"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Nueva ubicación detectada",
         "ignoreButton": "Ignorar",
         "updateButton": "Actualizar"
+      },
+      "routeLocation": {
+        "title": "¿Qué ubicación se debe usar?",
+        "description": "Este enlace propone definir una ubicación distinta de la guardada en tus ajustes.",
+        "linkLabel": "Ubicación solicitada por el enlace",
+        "savedLabel": "Ubicación guardada",
+        "keepSavedButton": "Mantener la ubicación guardada",
+        "updateButton": "Usar la ubicación del enlace"
       },
       "southernHemisphere": {
         "title": "Hemisferio Sur",
@@ -313,6 +337,14 @@
         "ignoreButton": "Ignorar hoy",
         "updateButton": "Sí",
         "dismissButton": "No"
+      },
+      "routeLocation": {
+        "title": "¿Qué ubicación se debe usar?",
+        "description": "Este enlace propone definir una ubicación distinta de la guardada en tus ajustes.",
+        "linkLabel": "Ubicación solicitada por el enlace",
+        "savedLabel": "Ubicación guardada",
+        "keepSavedButton": "Mantener la ubicación guardada",
+        "updateButton": "Usar la ubicación del enlace"
       }
     }
   },

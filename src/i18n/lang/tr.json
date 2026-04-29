@@ -267,13 +267,37 @@
       "startTutorial": "Eğitimi başlat",
       "faq": "Sıkça sorulan sorular",
       "specialMode": "Özel mod",
-      "timeTravel": "Zaman yolculuğu"
+      "timeTravel": "Zaman yolculuğu",
+      "diyMode": "DIY modu"
+    },
+    "diy": {
+      "exitButton": "DIY modundan çık",
+      "subtitle": "Doğal saatini ayarlamak için açılar",
+      "labels": {
+        "sun": "Güneşin konumu",
+        "sunrise": "Bugünkü gün doğumu",
+        "sunset": "Bugünkü gün batımı",
+        "summerSunrise": "Yaz gün doğumu bıyık çizgisi",
+        "equinoxSunrise": "Ekinoks gün doğumu bıyık çizgisi",
+        "winterSunrise": "Kış gün doğumu bıyık çizgisi",
+        "winterSunset": "Kış gün batımı bıyık çizgisi",
+        "equinoxSunset": "Ekinoks gün batımı bıyık çizgisi",
+        "summerSunset": "Yaz gün batımı bıyık çizgisi"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Yeni konum algılandı",
         "ignoreButton": "Yoksay",
         "updateButton": "Güncelle"
+      },
+      "routeLocation": {
+        "title": "Hangi konum kullanılmalı?",
+        "description": "Bu bağlantı, ayarlarında kayıtlı olandan farklı bir konum ayarlamayı öneriyor.",
+        "linkLabel": "Bağlantının istediği konum",
+        "savedLabel": "Kayıtlı konum",
+        "keepSavedButton": "Kayıtlı konumu koru",
+        "updateButton": "Bağlantı konumunu kullan"
       },
       "southernHemisphere": {
         "title": "Güney Yarımküre",
@@ -337,6 +361,14 @@
         "ignoreButton": "Bugün yoksay",
         "updateButton": "Evet",
         "dismissButton": "Hayır"
+      },
+      "routeLocation": {
+        "title": "Hangi konum kullanılmalı?",
+        "description": "Bu bağlantı, ayarlarında kayıtlı olandan farklı bir konum ayarlamayı öneriyor.",
+        "linkLabel": "Bağlantının istediği konum",
+        "savedLabel": "Kayıtlı konum",
+        "keepSavedButton": "Kayıtlı konumu koru",
+        "updateButton": "Bağlantı konumunu kullan"
       }
     }
   },

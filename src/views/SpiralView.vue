@@ -385,6 +385,12 @@
     </div>
   </transition>
 
+  <!-- MODAL: URL location differs from saved location -->
+  <RouteLocationModal
+    i18n-namespace="spiral.notifications.routeLocation"
+    highlight-classes="border-nt-cyan-light bg-nt-cyan-light/20"
+    accept-button-classes="bg-nt-cyan-light hover:bg-nt-cyan-lighter" />
+
   <!-- Update the notification to use context.location -->
   <transition name="fade">
     <div v-if="showPositionChangedNotification && shouldShowNotification && spiralActivePanel !== AVAILABLE_PANELS.locationPicker" 
@@ -437,6 +443,7 @@ import Moon from '@/components/MoonComponent.vue';
 import FAQAccordion from '@/components/FAQAccordion.vue';
 import MainMenu from '@/components/MainMenu.vue';
 import DisplayComponent from '@/components/DisplayComponent.vue';
+import RouteLocationModal from '@/components/RouteLocationModal.vue';
 
 // Lazy loaded components
 const LocationPicker = defineAsyncComponent(() => import('@/components/LocationPicker.vue'));
@@ -684,7 +691,7 @@ const closeTimeTravel = () => {
     hideModalNotification();
 };
 
-const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;	
+const incrementTime = () => timeDelta.value += travelSpeeds.value[selectedSpeed.value].value;
 const decrementTime = () => timeDelta.value -= travelSpeeds.value[selectedSpeed.value].value;
 const resetTime = () => timeDelta.value = 0;
 

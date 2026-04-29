@@ -267,13 +267,37 @@
       "startTutorial": "Bắt đầu hướng dẫn",
       "faq": "Câu hỏi thường gặp",
       "specialMode": "Chế độ đặc biệt",
-      "timeTravel": "Du hành thời gian"
+      "timeTravel": "Du hành thời gian",
+      "diyMode": "Chế độ DIY"
+    },
+    "diy": {
+      "exitButton": "Thoát chế độ DIY",
+      "subtitle": "Các góc để chỉnh đồng hồ tự nhiên của bạn",
+      "labels": {
+        "sun": "Vị trí mặt trời",
+        "sunrise": "Bình minh hôm nay",
+        "sunset": "Hoàng hôn hôm nay",
+        "summerSunrise": "Sợi râu bình minh mùa hè",
+        "equinoxSunrise": "Sợi râu bình minh điểm phân",
+        "winterSunrise": "Sợi râu bình minh mùa đông",
+        "winterSunset": "Sợi râu hoàng hôn mùa đông",
+        "equinoxSunset": "Sợi râu hoàng hôn điểm phân",
+        "summerSunset": "Sợi râu hoàng hôn mùa hè"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Phát hiện vị trí mới",
         "ignoreButton": "Bỏ qua",
         "updateButton": "Cập nhật"
+      },
+      "routeLocation": {
+        "title": "Nên dùng vị trí nào?",
+        "description": "Liên kết này đề xuất đặt một vị trí khác với vị trí đã lưu trong cài đặt của bạn.",
+        "linkLabel": "Vị trí do liên kết yêu cầu",
+        "savedLabel": "Vị trí đã lưu",
+        "keepSavedButton": "Giữ vị trí đã lưu",
+        "updateButton": "Dùng vị trí từ liên kết"
       },
       "southernHemisphere": {
         "title": "Bán Cầu Nam",
@@ -337,6 +361,14 @@
         "ignoreButton": "Bỏ qua hôm nay",
         "updateButton": "Có",
         "dismissButton": "Không"
+      },
+      "routeLocation": {
+        "title": "Nên dùng vị trí nào?",
+        "description": "Liên kết này đề xuất đặt một vị trí khác với vị trí đã lưu trong cài đặt của bạn.",
+        "linkLabel": "Vị trí do liên kết yêu cầu",
+        "savedLabel": "Vị trí đã lưu",
+        "keepSavedButton": "Giữ vị trí đã lưu",
+        "updateButton": "Dùng vị trí từ liên kết"
       }
     }
   },

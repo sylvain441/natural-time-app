@@ -267,13 +267,37 @@
       "startTutorial": "Rozpocznij samouczek",
       "faq": "Często zadawane pytania",
       "specialMode": "Tryb specjalny",
-      "timeTravel": "Podróż w czasie"
+      "timeTravel": "Podróż w czasie",
+      "diyMode": "Tryb DIY"
+    },
+    "diy": {
+      "exitButton": "Opuść tryb DIY",
+      "subtitle": "Kąty do ustawienia twojego naturalnego zegara",
+      "labels": {
+        "sun": "Pozycja słońca",
+        "sunrise": "Dzisiejszy wschód słońca",
+        "sunset": "Dzisiejszy zachód słońca",
+        "summerSunrise": "Linia wąsów letniego wschodu słońca",
+        "equinoxSunrise": "Linia wąsów wschodu słońca w równonoc",
+        "winterSunrise": "Linia wąsów zimowego wschodu słońca",
+        "winterSunset": "Linia wąsów zimowego zachodu słońca",
+        "equinoxSunset": "Linia wąsów zachodu słońca w równonoc",
+        "summerSunset": "Linia wąsów letniego zachodu słońca"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Wykryto nową lokalizację",
         "ignoreButton": "Ignoruj",
         "updateButton": "Aktualizuj"
+      },
+      "routeLocation": {
+        "title": "Której lokalizacji użyć?",
+        "description": "Ten link proponuje ustawienie innej lokalizacji niż zapisana w ustawieniach.",
+        "linkLabel": "Lokalizacja z linku",
+        "savedLabel": "Zapisana lokalizacja",
+        "keepSavedButton": "Zachowaj zapisaną lokalizację",
+        "updateButton": "Użyj lokalizacji z linku"
       },
       "southernHemisphere": {
         "title": "Półkula Południowa",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignoruj dzisiaj",
         "updateButton": "Tak",
         "dismissButton": "Nie"
+      },
+      "routeLocation": {
+        "title": "Której lokalizacji użyć?",
+        "description": "Ten link proponuje ustawienie innej lokalizacji niż zapisana w ustawieniach.",
+        "linkLabel": "Lokalizacja z linku",
+        "savedLabel": "Zapisana lokalizacja",
+        "keepSavedButton": "Zachowaj zapisaną lokalizację",
+        "updateButton": "Użyj lokalizacji z linku"
       }
     }
   },

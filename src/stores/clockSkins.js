@@ -45,6 +45,25 @@ export const clockSkins = {
       mustachesWinterSunset: 'text-slate-400/40',
       mustachesSummerSunset: 'text-slate-400/40',
     },
+    diyMode: {
+      dotsDisplay: true,
+      numbersDisplay: false,
+      titleDisplay: false,
+
+      dial: 'bg-white/95 shadow-2xl ring-2 ring-slate-900/10',
+      hand: 'text-black',
+      ntzHand: 'text-slate-500/60',
+
+      mustachesEquinox: 'text-slate-400/70',
+      mustachesSummerSunrise: 'text-slate-400/70',
+      mustachesWinterSunrise: 'text-slate-400/70',
+      mustachesWinterSunset: 'text-slate-400/70',
+      mustachesSummerSunset: 'text-slate-400/70',
+
+      dotsMultipleOf90: 'bg-slate-700/20',
+      dotsMultipleOf30: 'bg-slate-500/15',
+      dotsMultipleOf10: 'bg-slate-500/20',
+    },
     welcome: {
       context: {
         currentTime: new Date(new Date().setUTCHours(10, 0, 0, 0)),

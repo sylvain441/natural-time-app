@@ -267,13 +267,37 @@
       "startTutorial": "Starta tutorial",
       "faq": "Vanliga frågor",
       "specialMode": "Specialläge",
-      "timeTravel": "Tidsresa"
+      "timeTravel": "Tidsresa",
+      "diyMode": "DIY-läge"
+    },
+    "diy": {
+      "exitButton": "Lämna DIY-läge",
+      "subtitle": "Vinklar för att ställa in din naturliga klocka",
+      "labels": {
+        "sun": "Solens position",
+        "sunrise": "Dagens soluppgång",
+        "sunset": "Dagens solnedgång",
+        "summerSunrise": "Mustaschlinje för sommarsoluppgång",
+        "equinoxSunrise": "Mustaschlinje för dagjämningssoluppgång",
+        "winterSunrise": "Mustaschlinje för vintersoluppgång",
+        "winterSunset": "Mustaschlinje för vintersolnedgång",
+        "equinoxSunset": "Mustaschlinje för dagjämningssolnedgång",
+        "summerSunset": "Mustaschlinje för sommarsolnedgång"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Ny plats upptäckt",
         "ignoreButton": "Ignorera",
         "updateButton": "Uppdatera"
+      },
+      "routeLocation": {
+        "title": "Vilken plats ska användas?",
+        "description": "Den här länken föreslår en annan plats än den som är sparad i dina inställningar.",
+        "linkLabel": "Plats som länken begär",
+        "savedLabel": "Sparad plats",
+        "keepSavedButton": "Behåll sparad plats",
+        "updateButton": "Använd platsen från länken"
       },
       "southernHemisphere": {
         "title": "Södra Halvklotet",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignorera idag",
         "updateButton": "Ja",
         "dismissButton": "Nej"
+      },
+      "routeLocation": {
+        "title": "Vilken plats ska användas?",
+        "description": "Den här länken föreslår en annan plats än den som är sparad i dina inställningar.",
+        "linkLabel": "Plats som länken begär",
+        "savedLabel": "Sparad plats",
+        "keepSavedButton": "Behåll sparad plats",
+        "updateButton": "Använd platsen från länken"
       }
     }
   },

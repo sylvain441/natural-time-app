@@ -267,13 +267,37 @@
       "startTutorial": "ट्यूटोरियल शुरू करें",
       "faq": "अक्सर पूछे जाने वाले प्रश्न",
       "specialMode": "विशेष मोड",
-      "timeTravel": "समय यात्रा"
+      "timeTravel": "समय यात्रा",
+      "diyMode": "DIY मोड"
+    },
+    "diy": {
+      "exitButton": "DIY मोड से बाहर निकलें",
+      "subtitle": "अपनी प्राकृतिक घड़ी सेट करने के कोण",
+      "labels": {
+        "sun": "सूर्य की स्थिति",
+        "sunrise": "आज का सूर्योदय",
+        "sunset": "आज का सूर्यास्त",
+        "summerSunrise": "ग्रीष्मकालीन सूर्योदय मूंछ रेखा",
+        "equinoxSunrise": "विषुव सूर्योदय मूंछ रेखा",
+        "winterSunrise": "शीतकालीन सूर्योदय मूंछ रेखा",
+        "winterSunset": "शीतकालीन सूर्यास्त मूंछ रेखा",
+        "equinoxSunset": "विषुव सूर्यास्त मूंछ रेखा",
+        "summerSunset": "ग्रीष्मकालीन सूर्यास्त मूंछ रेखा"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "नया स्थान पता चला",
         "ignoreButton": "अनदेखा करें",
         "updateButton": "अपडेट करें"
+      },
+      "routeLocation": {
+        "title": "कौन सा स्थान उपयोग करना है?",
+        "description": "यह लिंक आपकी सेटिंग्स में सहेजे गए स्थान से अलग स्थान सेट करने का सुझाव देता है।",
+        "linkLabel": "लिंक द्वारा अनुरोधित स्थान",
+        "savedLabel": "सहेजा गया स्थान",
+        "keepSavedButton": "सहेजा गया स्थान रखें",
+        "updateButton": "लिंक वाला स्थान उपयोग करें"
       },
       "southernHemisphere": {
         "title": "दक्षिणी गोलार्ध",
@@ -337,6 +361,14 @@
         "ignoreButton": "आज अनदेखा करें",
         "updateButton": "हाँ",
         "dismissButton": "नहीं"
+      },
+      "routeLocation": {
+        "title": "कौन सा स्थान उपयोग करना है?",
+        "description": "यह लिंक आपकी सेटिंग्स में सहेजे गए स्थान से अलग स्थान सेट करने का सुझाव देता है।",
+        "linkLabel": "लिंक द्वारा अनुरोधित स्थान",
+        "savedLabel": "सहेजा गया स्थान",
+        "keepSavedButton": "सहेजा गया स्थान रखें",
+        "updateButton": "लिंक वाला स्थान उपयोग करें"
       }
     }
   },

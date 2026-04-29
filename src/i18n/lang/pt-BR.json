@@ -116,8 +116,23 @@
       ]
     },
     "tutorial": { "startButton": "Iniciar tutorial", "skipButton": "Pular tutorial", "tutorialStep": "Tutorial", "configureButton": "Configurar", "skipWelcomeButton": "Pular" },
-    "menu": { "settings": "Configurações", "locationPicker": "Escolher localização", "simplifiedMode": { "title": "Design simplificado", "fullMode": "Design completo" }, "understanding": "Entender", "startTutorial": "Iniciar tutorial", "faq": "Perguntas frequentes", "specialMode": "Modo especial", "timeTravel": "Viagem no tempo" },
-    "notifications": { "geolocation": { "title": "Nova localização detectada", "ignoreButton": "Ignorar", "updateButton": "Atualizar" }, "southernHemisphere": { "title": "Hemisfério Sul", "description": "Neste hemisfério, o relógio gira no sentido anti‑horário (da direita para a esquerda) para corresponder ao movimento do sol no céu.", "dismissButton": "Entendi" } },
+    "menu": { "settings": "Configurações", "locationPicker": "Escolher localização", "simplifiedMode": { "title": "Design simplificado", "fullMode": "Design completo" }, "understanding": "Entender", "startTutorial": "Iniciar tutorial", "faq": "Perguntas frequentes", "specialMode": "Modo especial", "timeTravel": "Viagem no tempo", "diyMode": "Modo DIY" },
+    "diy": {
+      "exitButton": "Sair do modo DIY",
+      "subtitle": "Ângulos para ajustar seu relógio natural",
+      "labels": {
+        "sun": "Posição do sol",
+        "sunrise": "Nascer do sol de hoje",
+        "sunset": "Pôr do sol de hoje",
+        "summerSunrise": "Fio do bigode do nascer do sol de verão",
+        "equinoxSunrise": "Fio do bigode do nascer do sol do equinócio",
+        "winterSunrise": "Fio do bigode do nascer do sol de inverno",
+        "winterSunset": "Fio do bigode do pôr do sol de inverno",
+        "equinoxSunset": "Fio do bigode do pôr do sol do equinócio",
+        "summerSunset": "Fio do bigode do pôr do sol de verão"
+      }
+    },
+    "notifications": { "geolocation": { "title": "Nova localização detectada", "ignoreButton": "Ignorar", "updateButton": "Atualizar" }, "routeLocation": {"title":"Qual localização deve ser usada?","description":"Este link propõe definir uma localização diferente da salva nas suas configurações.","linkLabel":"Localização solicitada pelo link","savedLabel":"Localização salva","keepSavedButton":"Manter a localização salva","updateButton":"Usar a localização do link"}, "southernHemisphere": { "title": "Hemisfério Sul", "description": "Neste hemisfério, o relógio gira no sentido anti‑horário (da direita para a esquerda) para corresponder ao movimento do sol no céu.", "dismissButton": "Entendi" } },
     "component": { "title": "Tempo Natural" }
   },
   "spiral": {
@@ -132,7 +147,7 @@
     "timeTravel": { "title": "Viagem no tempo", "speedSelector": "Velocidade de viagem", "resetButton": "Redefinir", "exitButton": "Sair da viagem", "speeds": [ { "label": "1 dia" }, { "label": "1 semana" }, { "label": "1 lua" } ] },
     "tutorial": { "startButton": "Iniciar tutorial", "skipButton": "Pular tutorial", "tutorialStep": "Tutorial", "configureButton": "Configurar", "skipWelcomeButton": "Pular" },
     "menu": { "settings": "Configurações", "locationPicker": "Escolher localização", "viewMode": { "spiralTitle": "Mostrar em espiral", "verticalTitle": "Mostrar na vertical" }, "understanding": "Entender", "startTutorial": "Iniciar tutorial", "faq": "Perguntas frequentes", "specialMode": "Modo especial", "timeTravel": "Viagem no tempo" },
-    "notifications": { "geolocation": { "title": "Posição do GPS alterada. Atualizar?", "ignoreButton": "Ignorar hoje", "updateButton": "Sim", "dismissButton": "Não" } }
+    "notifications": { "geolocation": { "title": "Posição do GPS alterada. Atualizar?", "ignoreButton": "Ignorar hoje", "updateButton": "Sim", "dismissButton": "Não" }, "routeLocation": {"title":"Qual localização deve ser usada?","description":"Este link propõe definir uma localização diferente da salva nas suas configurações.","linkLabel":"Localização solicitada pelo link","savedLabel":"Localização salva","keepSavedButton":"Manter a localização salva","updateButton":"Usar a localização do link"} }
   },
   "faq": { "inProgress": "(Em preparação)" },
   "locationPicker": {

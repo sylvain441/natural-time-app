@@ -267,13 +267,37 @@
       "startTutorial": "Start tutorial",
       "faq": "Frequently asked questions",
       "specialMode": "Special mode",
-      "timeTravel": "Time travel"
+      "timeTravel": "Time travel",
+      "diyMode": "DIY mode"
+    },
+    "diy": {
+      "exitButton": "Exit DIY mode",
+      "subtitle": "Angles to set your natural clock",
+      "labels": {
+        "sun": "Sun position",
+        "sunrise": "Today's sunrise",
+        "sunset": "Today's sunset",
+        "summerSunrise": "Summer sunrise moustache strand",
+        "equinoxSunrise": "Equinox sunrise moustache strand",
+        "winterSunrise": "Winter sunrise moustache strand",
+        "winterSunset": "Winter sunset moustache strand",
+        "equinoxSunset": "Equinox sunset moustache strand",
+        "summerSunset": "Summer sunset moustache strand"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "New location detected",
         "ignoreButton": "Ignore",
         "updateButton": "Update"
+      },
+      "routeLocation": {
+        "title": "Which location should be used?",
+        "description": "This link proposes setting a different location from the one saved in your settings.",
+        "linkLabel": "Location requested by the link",
+        "savedLabel": "Saved location",
+        "keepSavedButton": "Keep the saved location",
+        "updateButton": "Use the link location"
       },
       "southernHemisphere": {
         "title": "Southern Hemisphere",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignore today",
         "updateButton": "Yes",
         "dismissButton": "No"
+      },
+      "routeLocation": {
+        "title": "Which location should be used?",
+        "description": "This link proposes setting a different location from the one saved in your settings.",
+        "linkLabel": "Location requested by the link",
+        "savedLabel": "Saved location",
+        "keepSavedButton": "Keep the saved location",
+        "updateButton": "Use the link location"
       }
     }
   },

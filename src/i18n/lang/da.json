@@ -267,13 +267,37 @@
       "startTutorial": "Start vejledning",
       "faq": "Ofte stillede spørgsmål",
       "specialMode": "Specialtilstand",
-      "timeTravel": "Tidsrejse"
+      "timeTravel": "Tidsrejse",
+      "diyMode": "DIY-tilstand"
+    },
+    "diy": {
+      "exitButton": "Forlad DIY-tilstand",
+      "subtitle": "Vinkler til at indstille dit naturlige ur",
+      "labels": {
+        "sun": "Solens position",
+        "sunrise": "Dagens solopgang",
+        "sunset": "Dagens solnedgang",
+        "summerSunrise": "Overskægslinje for sommersolopgang",
+        "equinoxSunrise": "Overskægslinje for jævndøgnssolopgang",
+        "winterSunrise": "Overskægslinje for vintersolopgang",
+        "winterSunset": "Overskægslinje for vintersolnedgang",
+        "equinoxSunset": "Overskægslinje for jævndøgnssolnedgang",
+        "summerSunset": "Overskægslinje for sommersolnedgang"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Ny placering registreret",
         "ignoreButton": "Ignorer",
         "updateButton": "Opdater"
+      },
+      "routeLocation": {
+        "title": "Hvilken placering skal bruges?",
+        "description": "Dette link foreslår en anden placering end den, der er gemt i dine indstillinger.",
+        "linkLabel": "Placering anmodet af linket",
+        "savedLabel": "Gemt placering",
+        "keepSavedButton": "Behold den gemte placering",
+        "updateButton": "Brug linkets placering"
       },
       "southernHemisphere": {
         "title": "Sydlige Halvkugle",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignorer i dag",
         "updateButton": "Ja",
         "dismissButton": "Nej"
+      },
+      "routeLocation": {
+        "title": "Hvilken placering skal bruges?",
+        "description": "Dette link foreslår en anden placering end den, der er gemt i dine indstillinger.",
+        "linkLabel": "Placering anmodet af linket",
+        "savedLabel": "Gemt placering",
+        "keepSavedButton": "Behold den gemte placering",
+        "updateButton": "Brug linkets placering"
       }
     }
   },

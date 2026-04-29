@@ -267,13 +267,37 @@
       "startTutorial": "Start tutorial",
       "faq": "Veelgestelde vragen",
       "specialMode": "Speciale modus",
-      "timeTravel": "Tijdreis"
+      "timeTravel": "Tijdreis",
+      "diyMode": "DIY-modus"
+    },
+    "diy": {
+      "exitButton": "DIY-modus verlaten",
+      "subtitle": "Hoeken om je natuurlijke klok in te stellen",
+      "labels": {
+        "sun": "Positie van de zon",
+        "sunrise": "Zonsopkomst van vandaag",
+        "sunset": "Zonsondergang van vandaag",
+        "summerSunrise": "Snorhaarlijn van de zomerzonsopkomst",
+        "equinoxSunrise": "Snorhaarlijn van de equinoxzonsopkomst",
+        "winterSunrise": "Snorhaarlijn van de winterzonsopkomst",
+        "winterSunset": "Snorhaarlijn van de winterzonsondergang",
+        "equinoxSunset": "Snorhaarlijn van de equinoxzonsondergang",
+        "summerSunset": "Snorhaarlijn van de zomerzonsondergang"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Nieuwe locatie gedetecteerd",
         "ignoreButton": "Negeren",
         "updateButton": "Bijwerken"
+      },
+      "routeLocation": {
+        "title": "Welke locatie moet worden gebruikt?",
+        "description": "Deze link stelt een andere locatie voor dan de locatie die in je instellingen is opgeslagen.",
+        "linkLabel": "Locatie uit de link",
+        "savedLabel": "Opgeslagen locatie",
+        "keepSavedButton": "Opgeslagen locatie behouden",
+        "updateButton": "Locatie uit de link gebruiken"
       },
       "southernHemisphere": {
         "title": "Zuidelijk Halfrond",
@@ -337,6 +361,14 @@
         "ignoreButton": "Vandaag negeren",
         "updateButton": "Ja",
         "dismissButton": "Nee"
+      },
+      "routeLocation": {
+        "title": "Welke locatie moet worden gebruikt?",
+        "description": "Deze link stelt een andere locatie voor dan de locatie die in je instellingen is opgeslagen.",
+        "linkLabel": "Locatie uit de link",
+        "savedLabel": "Opgeslagen locatie",
+        "keepSavedButton": "Opgeslagen locatie behouden",
+        "updateButton": "Locatie uit de link gebruiken"
       }
     }
   },

@@ -153,10 +153,34 @@
       "startTutorial": "开始教程",
       "faq": "常见问题",
       "specialMode": "特殊模式",
-      "timeTravel": "时间旅行"
+      "timeTravel": "时间旅行",
+      "diyMode": "DIY 模式"
+    },
+    "diy": {
+      "exitButton": "退出 DIY 模式",
+      "subtitle": "用于校准自然时钟的角度",
+      "labels": {
+        "sun": "太阳位置",
+        "sunrise": "今日日出",
+        "sunset": "今日日落",
+        "summerSunrise": "夏季日出须线",
+        "equinoxSunrise": "春秋分日出须线",
+        "winterSunrise": "冬季日出须线",
+        "winterSunset": "冬季日落须线",
+        "equinoxSunset": "春秋分日落须线",
+        "summerSunset": "夏季日落须线"
+      }
     },
     "notifications": {
       "geolocation": { "title": "检测到新位置", "ignoreButton": "忽略", "updateButton": "更新" },
+      "routeLocation": {
+        "title": "应使用哪个位置？",
+        "description": "此链接建议设置一个不同于你设置中已保存位置的位置。",
+        "linkLabel": "链接请求的位置",
+        "savedLabel": "已保存的位置",
+        "keepSavedButton": "保留已保存的位置",
+        "updateButton": "使用链接位置"
+      },
       "southernHemisphere": {
         "title": "南半球",
         "description": "在该半球，时钟按与太阳运动一致的方向逆时针（从右到左）旋转。",
@@ -204,6 +228,14 @@
         "ignoreButton": "今天忽略",
         "updateButton": "是",
         "dismissButton": "否"
+      },
+      "routeLocation": {
+        "title": "应使用哪个位置？",
+        "description": "此链接建议设置一个不同于你设置中已保存位置的位置。",
+        "linkLabel": "链接请求的位置",
+        "savedLabel": "已保存的位置",
+        "keepSavedButton": "保留已保存的位置",
+        "updateButton": "使用链接位置"
       }
     }
   },

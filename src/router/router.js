@@ -10,6 +10,57 @@ import ClockView from '../views/ClockView.vue'
 import SpiralView from '../views/SpiralView.vue'
 import NotFoundView from '../views/404.vue'
 
+const firstQueryValue = (value) => Array.isArray(value) ? value[0] : value
+
+const parseNumberQuery = (value) => {
+  const parsed = Number.parseFloat(firstQueryValue(value))
+  return Number.isFinite(parsed) ? parsed : null
+}
+
+const getRouteLocation = (query = {}) => {
+  const latitude = parseNumberQuery(query.lat ?? query.latitude)
+  const longitude = parseNumberQuery(query.lon ?? query.lng ?? query.long ?? query.longitude)
+  if (latitude == null || longitude == null) return null
+  if (latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180) return null
+  return {
+    latitude,
+    longitude,
+    location: firstQueryValue(query.location ?? query.place ?? '') || ''
+  }
+}
+
+const stripRouteLocationQuery = (query = {}) => {
+  const nextQuery = { ...query }
+  for (const key of ['lat', 'latitude', 'lon', 'lng', 'long', 'longitude', 'location', 'place']) {
+    delete nextQuery[key]
+  }
+  return nextQuery
+}
+
+const applyRouteLocation = (to) => {
+  const contextStore = useContextStore()
+  const routeLocation = getRouteLocation(to.query)
+  if (routeLocation) {
+    contextStore.setRouteLocation(routeLocation)
+    return true
+  } else {
+    contextStore.clearRouteLocation()
+    return false
+  }
+}
+
+const acceptFirstRouteLocation = (to, next, onAccepted) => {
+  const contextStore = useContextStore()
+  const hasStoredLocation = contextStore.storedLatitude != null && contextStore.storedLongitude != null
+  if (!contextStore.hasRouteLocation || hasStoredLocation) {
+    return false
+  }
+  contextStore.acceptRouteLocation()
+  onAccepted?.()
+  next({ path: to.path, query: stripRouteLocationQuery(to.query), replace: true })
+  return true
+}
+
 // Function to generate routes for each language
 const createLocalizedRoutes = (lang) => [
   { 
@@ -18,6 +69,8 @@ const createLocalizedRoutes = (lang) => [
     component: WelcomeView,
     meta: { locale: lang },
     beforeEnter: (to, from, next) => {
+      applyRouteLocation(to)
+      if (acceptFirstRouteLocation(to, next)) return
       // Clear navigation state when changing routes
       const configStore = useConfigStore()
       configStore.clearNavigationState()
@@ -40,11 +93,34 @@ const createLocalizedRoutes = (lang) => [
     component: ClockView,
     meta: { locale: lang },
     beforeEnter: (to, from, next) => {
+      const hasRouteLocation = applyRouteLocation(to)
       const configStore = useConfigStore()
+      if (acceptFirstRouteLocation(to, next, () => {
+        configStore.clockWelcomeMode = false
+      })) return
       configStore.clearNavigationState()
+      if (hasRouteLocation) {
+        configStore.clockWelcomeMode = false
+      }
       // Enable tutorial mode if requested via query param
       if (to.query && (to.query.tutorial === '1' || to.query.tutorial === 1 || to.query.tutorial === true)) {
         configStore.clockTutorialMode = true
+      }
+      if (to.query && to.query.mode === 'diy') {
+        const contextStore = useContextStore()
+        if (contextStore.hasRouteLocation || (contextStore.storedLatitude != null && contextStore.storedLongitude != null)) {
+          configStore.clockTutorialMode = false
+          configStore.clockWelcomeMode = false
+          configStore.clockDiyMode = true
+        } else {
+          const query = { ...to.query }
+          delete query.mode
+          delete query.lat
+          delete query.lng
+          delete query.lon
+          next({ path: to.path, query, replace: true })
+          return
+        }
       }
       next()
     }
@@ -55,8 +131,15 @@ const createLocalizedRoutes = (lang) => [
     component: SpiralView,
     meta: { locale: lang },
     beforeEnter: (to, from, next) => {
+      const hasRouteLocation = applyRouteLocation(to)
       const configStore = useConfigStore()
+      if (acceptFirstRouteLocation(to, next, () => {
+        configStore.spiralWelcomeMode = false
+      })) return
       configStore.clearNavigationState()
+      if (hasRouteLocation) {
+        configStore.spiralWelcomeMode = false
+      }
       // Enable tutorial mode if requested via query param
       if (to.query && (to.query.tutorial === '1' || to.query.tutorial === 1 || to.query.tutorial === true)) {
         configStore.spiralTutorialMode = true
@@ -118,6 +201,7 @@ const routes = [
     name: 'not-found',
     component: NotFoundView,
     beforeEnter: (to, from, next) => {
+      applyRouteLocation(to)
       // Make sure the locale is defined for the 404 page using language service
       const locale = languageService.getCurrentLanguage();
       next();

@@ -267,13 +267,37 @@
       "startTutorial": "Start veiledning",
       "faq": "Ofte stilte spørsmål",
       "specialMode": "Spesialmodus",
-      "timeTravel": "Tidsreise"
+      "timeTravel": "Tidsreise",
+      "diyMode": "DIY-modus"
+    },
+    "diy": {
+      "exitButton": "Gå ut av DIY-modus",
+      "subtitle": "Vinkler for å stille inn den naturlige klokken din",
+      "labels": {
+        "sun": "Solens posisjon",
+        "sunrise": "Dagens soloppgang",
+        "sunset": "Dagens solnedgang",
+        "summerSunrise": "Bartelinje for sommersoloppgang",
+        "equinoxSunrise": "Bartelinje for jevndøgnssoloppgang",
+        "winterSunrise": "Bartelinje for vintersoloppgang",
+        "winterSunset": "Bartelinje for vintersolnedgang",
+        "equinoxSunset": "Bartelinje for jevndøgnssolnedgang",
+        "summerSunset": "Bartelinje for sommersolnedgang"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Ny plassering oppdaget",
         "ignoreButton": "Ignorer",
         "updateButton": "Oppdater"
+      },
+      "routeLocation": {
+        "title": "Hvilken plassering skal brukes?",
+        "description": "Denne lenken foreslår en annen plassering enn den som er lagret i innstillingene dine.",
+        "linkLabel": "Plassering fra lenken",
+        "savedLabel": "Lagret plassering",
+        "keepSavedButton": "Behold lagret plassering",
+        "updateButton": "Bruk plasseringen fra lenken"
       },
       "southernHemisphere": {
         "title": "Sørlige Halvkule",
@@ -337,6 +361,14 @@
         "ignoreButton": "Ignorer i dag",
         "updateButton": "Ja",
         "dismissButton": "Nei"
+      },
+      "routeLocation": {
+        "title": "Hvilken plassering skal brukes?",
+        "description": "Denne lenken foreslår en annen plassering enn den som er lagret i innstillingene dine.",
+        "linkLabel": "Plassering fra lenken",
+        "savedLabel": "Lagret plassering",
+        "keepSavedButton": "Behold lagret plassering",
+        "updateButton": "Bruk plasseringen fra lenken"
       }
     }
   },

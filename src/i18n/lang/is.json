@@ -267,13 +267,37 @@
       "startTutorial": "Byrja leiðbeiningar",
       "faq": "Algengar spurningar",
       "specialMode": "Sérstök stilling",
-      "timeTravel": "Tímaferð"
+      "timeTravel": "Tímaferð",
+      "diyMode": "DIY-stilling"
+    },
+    "diy": {
+      "exitButton": "Hætta í DIY-stillingu",
+      "subtitle": "Horn til að stilla náttúrulegu klukkuna þína",
+      "labels": {
+        "sun": "Staða sólar",
+        "sunrise": "Sólarupprás dagsins",
+        "sunset": "Sólsetur dagsins",
+        "summerSunrise": "Yfirvararskeggslína sumarsólarupprásar",
+        "equinoxSunrise": "Yfirvararskeggslína jafndægrasólarupprásar",
+        "winterSunrise": "Yfirvararskeggslína vetrarsólarupprásar",
+        "winterSunset": "Yfirvararskeggslína vetrarsólseturs",
+        "equinoxSunset": "Yfirvararskeggslína jafndægrasólseturs",
+        "summerSunset": "Yfirvararskeggslína sumarsólseturs"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Ný staðsetning greind",
         "ignoreButton": "Hunsa",
         "updateButton": "Uppfæra"
+      },
+      "routeLocation": {
+        "title": "Hvaða staðsetningu á að nota?",
+        "description": "Þessi hlekkur leggur til aðra staðsetningu en þá sem er vistuð í stillingunum þínum.",
+        "linkLabel": "Staðsetning sem hlekkurinn biður um",
+        "savedLabel": "Vistuð staðsetning",
+        "keepSavedButton": "Halda vistuðu staðsetningunni",
+        "updateButton": "Nota staðsetningu hlekksins"
       },
       "southernHemisphere": {
         "title": "Suðurhvel",
@@ -337,6 +361,14 @@
         "ignoreButton": "Hunsa í dag",
         "updateButton": "Já",
         "dismissButton": "Nei"
+      },
+      "routeLocation": {
+        "title": "Hvaða staðsetningu á að nota?",
+        "description": "Þessi hlekkur leggur til aðra staðsetningu en þá sem er vistuð í stillingunum þínum.",
+        "linkLabel": "Staðsetning sem hlekkurinn biður um",
+        "savedLabel": "Vistuð staðsetning",
+        "keepSavedButton": "Halda vistuðu staðsetningunni",
+        "updateButton": "Nota staðsetningu hlekksins"
       }
     }
   },

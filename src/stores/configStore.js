@@ -15,6 +15,7 @@ export const useConfigStore = defineStore('appConfig', () => {
   const clockTutorialMode = ref(false);
   const clockTimeTravelMode = ref(false);
   const clockSimplifiedMode = ref(false);
+  const clockDiyMode = ref(false);
 
   const clockTutorialStepsTotal = computed(() => Object.keys(clockSkins.full.tutorial).length - 1);
   const clockTutorialCurrentStep = ref(0);
@@ -29,10 +30,18 @@ export const useConfigStore = defineStore('appConfig', () => {
     };
     
     // Apply simplified mode if needed
-    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value) {
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && !clockDiyMode.value && clockSimplifiedMode.value) {
       skin = {
         ...skin,
         ...clockSkins.full.simplifiedMode
+      };
+    }
+
+    // Apply diy mode (mutually exclusive with simplifiedMode by the guard above)
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockDiyMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.diyMode
       };
     }
     
@@ -82,10 +91,18 @@ export const useConfigStore = defineStore('appConfig', () => {
     };
     
     // Apply simplified mode if needed
-    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockSimplifiedMode.value) {
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && !clockDiyMode.value && clockSimplifiedMode.value) {
       skin = {
         ...skin,
         ...clockSkins.full.simplifiedMode
+      };
+    }
+
+    // Apply diy mode (mutually exclusive with simplifiedMode by the guard above)
+    if (!clockWelcomeMode.value && !clockTutorialMode.value && clockDiyMode.value) {
+      skin = {
+        ...skin,
+        ...clockSkins.full.diyMode
       };
     }
     
@@ -231,6 +248,7 @@ export const useConfigStore = defineStore('appConfig', () => {
   // Function to clear navigation state when changing routes
   const clearNavigationState = () => {
     clockTimeTravelMode.value = false;
+    clockDiyMode.value = false;
     spiralTimeTravelMode.value = false;
     clockTutorialMode.value = false;
     spiralTutorialMode.value = false;
@@ -243,6 +261,7 @@ export const useConfigStore = defineStore('appConfig', () => {
     clockWelcomeMode,
     clockTutorialMode,
     clockTimeTravelMode,
+    clockDiyMode,
     clockTutorialStepsTotal,
     clockTutorialCurrentStep,
     clockActivePanel,

@@ -250,13 +250,37 @@
       "startTutorial": "Tutorial starten",
       "faq": "Häufige Fragen",
       "specialMode": "Spezialmodus",
-      "timeTravel": "Zeitreise"
+      "timeTravel": "Zeitreise",
+      "diyMode": "DIY-Modus"
+    },
+    "diy": {
+      "exitButton": "DIY-Modus verlassen",
+      "subtitle": "Winkel zum Einstellen deiner natürlichen Uhr",
+      "labels": {
+        "sun": "Position der Sonne",
+        "sunrise": "Heutiger Sonnenaufgang",
+        "sunset": "Heutiger Sonnenuntergang",
+        "summerSunrise": "Schnurrbartlinie des Sommer-Sonnenaufgangs",
+        "equinoxSunrise": "Schnurrbartlinie des Tagundnachtgleichen-Sonnenaufgangs",
+        "winterSunrise": "Schnurrbartlinie des Winter-Sonnenaufgangs",
+        "winterSunset": "Schnurrbartlinie des Winter-Sonnenuntergangs",
+        "equinoxSunset": "Schnurrbartlinie des Tagundnachtgleichen-Sonnenuntergangs",
+        "summerSunset": "Schnurrbartlinie des Sommer-Sonnenuntergangs"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "Neue Position erkannt",
         "ignoreButton": "Ignorieren",
         "updateButton": "Aktualisieren"
+      },
+      "routeLocation": {
+        "title": "Welcher Ort soll verwendet werden?",
+        "description": "Dieser Link schlägt einen anderen Ort vor als den in deinen Einstellungen gespeicherten.",
+        "linkLabel": "Vom Link angefragter Ort",
+        "savedLabel": "Gespeicherter Ort",
+        "keepSavedButton": "Gespeicherten Ort behalten",
+        "updateButton": "Ort aus dem Link verwenden"
       },
       "southernHemisphere": {
         "title": "Südhalbkugel",
@@ -315,6 +339,14 @@
         "ignoreButton": "Heute ignorieren",
         "updateButton": "Ja",
         "dismissButton": "Nein"
+      },
+      "routeLocation": {
+        "title": "Welcher Ort soll verwendet werden?",
+        "description": "Dieser Link schlägt einen anderen Ort vor als den in deinen Einstellungen gespeicherten.",
+        "linkLabel": "Vom Link angefragter Ort",
+        "savedLabel": "Gespeicherter Ort",
+        "keepSavedButton": "Gespeicherten Ort behalten",
+        "updateButton": "Ort aus dem Link verwenden"
       }
     }
   }

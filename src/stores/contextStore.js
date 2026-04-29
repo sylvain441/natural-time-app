@@ -7,6 +7,9 @@ export const useContextStore = defineStore('context', () => {
   const storedLongitude = ref(null)
   const storedLocation = ref('')
 
+  const routeLatitude = ref(null)
+  const routeLongitude = ref(null)
+  const routeLocation = ref('')
   const tempLatitude = ref(42.42)
   const tempLongitude = ref(0)
   const tempLocation = ref('')
@@ -22,9 +25,16 @@ export const useContextStore = defineStore('context', () => {
   const geolocationNotificationDismissedAt = ref(null);
 
   // Getters
-  const latitude = computed(() => tempLatitude.value || storedLatitude.value || 42.42)
-  const longitude = computed(() => tempLongitude.value || storedLongitude.value || 0)
+  const latitude = computed(() => tempLatitude.value ?? storedLatitude.value ?? 42.42)
+  const longitude = computed(() => tempLongitude.value ?? storedLongitude.value ?? 0)
   const location = computed(() => tempLocation.value || storedLocation.value || "")
+  const hasRouteLocation = computed(() => routeLatitude.value != null && routeLongitude.value != null)
+  const routeLocationChanged = computed(() => {
+    if (!hasRouteLocation.value) return false
+    if (storedLatitude.value == null || storedLongitude.value == null) return false
+    return Math.abs(routeLatitude.value - storedLatitude.value) > 0.0001 ||
+           Math.abs(routeLongitude.value - storedLongitude.value) > 0.0001
+  })
 
   // Actions
   const initDone = ref(false)
@@ -42,9 +52,9 @@ export const useContextStore = defineStore('context', () => {
     currentTime.value = Date.now()
     timer.value = setInterval(() => currentTime.value = Date.now(), 2400);
     
-    tempLatitude.value = storedLatitude.value;
-    tempLongitude.value = storedLongitude.value;
-    tempLocation.value = storedLocation.value;
+    tempLatitude.value = routeLatitude.value ?? storedLatitude.value;
+    tempLongitude.value = routeLongitude.value ?? storedLongitude.value;
+    tempLocation.value = routeLocation.value || storedLocation.value;
 
 
     initDone.value = true
@@ -83,9 +93,38 @@ export const useContextStore = defineStore('context', () => {
   }
 
   const resetLocation = () => {
-    tempLatitude.value = storedLatitude.value
-    tempLongitude.value = storedLongitude.value
-    tempLocation.value = storedLocation.value
+    tempLatitude.value = routeLatitude.value ?? storedLatitude.value
+    tempLongitude.value = routeLongitude.value ?? storedLongitude.value
+    tempLocation.value = routeLocation.value || storedLocation.value
+  }
+
+  const setRouteLocation = ({ latitude, longitude, location = '' }) => {
+    routeLatitude.value = latitude
+    routeLongitude.value = longitude
+    routeLocation.value = typeof location === 'string' ? location.replace(/[<>]/g, '') : ''
+    tempLatitude.value = routeLatitude.value
+    tempLongitude.value = routeLongitude.value
+    tempLocation.value = routeLocation.value
+  }
+
+  const clearRouteLocation = () => {
+    routeLatitude.value = null
+    routeLongitude.value = null
+    routeLocation.value = ''
+    if (initDone.value) {
+      tempLatitude.value = storedLatitude.value
+      tempLongitude.value = storedLongitude.value
+      tempLocation.value = storedLocation.value
+    }
+  }
+
+  const acceptRouteLocation = () => {
+    if (!hasRouteLocation.value) return
+    tempLatitude.value = routeLatitude.value
+    tempLongitude.value = routeLongitude.value
+    tempLocation.value = routeLocation.value
+    saveLocation()
+    clearRouteLocation()
   }
 
   // Add new function to check geolocation permission
@@ -231,7 +270,7 @@ export const useContextStore = defineStore('context', () => {
   // Refresh geolocation and automatically update location
   const refreshGeolocation = async () => {
     await getGeolocation();
-    if (geolocationStatus.value === 'success' && geolocationLatitude.value && geolocationLongitude.value) {
+    if (geolocationStatus.value === 'success' && geolocationLatitude.value != null && geolocationLongitude.value != null) {
       tempLatitude.value = geolocationLatitude.value;
       tempLongitude.value = geolocationLongitude.value;
       // Fetch and set place name
@@ -249,11 +288,11 @@ export const useContextStore = defineStore('context', () => {
    * in comparison with the last stored position.
    */
   const positionChanged = computed(() => {
-    if(!geolocationLatitude.value && !geolocationLongitude.value) 
+    if(geolocationLatitude.value == null || geolocationLongitude.value == null)
       return false;
 
-    let relevantLatitude = tempLatitude.value || storedLatitude.value;
-    let relevantLongitude = tempLongitude.value || storedLongitude.value;
+    let relevantLatitude = tempLatitude.value ?? storedLatitude.value;
+    let relevantLongitude = tempLongitude.value ?? storedLongitude.value;
     return Math.abs(geolocationLatitude.value - relevantLatitude) > 0.1 || 
            Math.abs(geolocationLongitude.value - relevantLongitude) > 0.1;
   });
@@ -262,6 +301,12 @@ export const useContextStore = defineStore('context', () => {
     storedLatitude,
     storedLongitude,
     storedLocation,
+
+    routeLatitude,
+    routeLongitude,
+    routeLocation,
+    hasRouteLocation,
+    routeLocationChanged,
 
     tempLatitude,
     tempLongitude,
@@ -289,6 +334,9 @@ export const useContextStore = defineStore('context', () => {
     dismissGeolocationChange,
     refreshGeolocation,
     fetchPlaceNameForCoordinates,
+    setRouteLocation,
+    clearRouteLocation,
+    acceptRouteLocation,
   }
 }, {
   persist: {

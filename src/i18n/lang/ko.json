@@ -267,13 +267,37 @@
       "startTutorial": "튜토리얼 시작",
       "faq": "자주 묻는 질문",
       "specialMode": "특수 모드",
-      "timeTravel": "시간 여행"
+      "timeTravel": "시간 여행",
+      "diyMode": "DIY 모드"
+    },
+    "diy": {
+      "exitButton": "DIY 모드 종료",
+      "subtitle": "자연 시계를 맞추기 위한 각도",
+      "labels": {
+        "sun": "태양 위치",
+        "sunrise": "오늘의 일출",
+        "sunset": "오늘의 일몰",
+        "summerSunrise": "여름 일출 수염선",
+        "equinoxSunrise": "분점 일출 수염선",
+        "winterSunrise": "겨울 일출 수염선",
+        "winterSunset": "겨울 일몰 수염선",
+        "equinoxSunset": "분점 일몰 수염선",
+        "summerSunset": "여름 일몰 수염선"
+      }
     },
     "notifications": {
       "geolocation": {
         "title": "새 위치 감지됨",
         "ignoreButton": "무시",
         "updateButton": "업데이트"
+      },
+      "routeLocation": {
+        "title": "어떤 위치를 사용할까요?",
+        "description": "이 링크는 설정에 저장된 위치와 다른 위치를 제안합니다.",
+        "linkLabel": "링크에서 요청한 위치",
+        "savedLabel": "저장된 위치",
+        "keepSavedButton": "저장된 위치 유지",
+        "updateButton": "링크 위치 사용"
       },
       "southernHemisphere": {
         "title": "남반구",
@@ -337,6 +361,14 @@
         "ignoreButton": "오늘 무시",
         "updateButton": "예",
         "dismissButton": "아니오"
+      },
+      "routeLocation": {
+        "title": "어떤 위치를 사용할까요?",
+        "description": "이 링크는 설정에 저장된 위치와 다른 위치를 제안합니다.",
+        "linkLabel": "링크에서 요청한 위치",
+        "savedLabel": "저장된 위치",
+        "keepSavedButton": "저장된 위치 유지",
+        "updateButton": "링크 위치 사용"
       }
     }
   },

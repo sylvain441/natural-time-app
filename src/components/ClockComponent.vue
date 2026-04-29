@@ -1,12 +1,12 @@
 <template>
 	<div class="clock-wrapper flex items-center justify-center" ref="clockWrapper">
 		<div class="clock-box relative" :style="clockBoxStyle">
-			
+
 			<!-- DAY / NIGHT -->
 			<div class="clock-day-night nt-box-outer rotate-180">
 				<Transition name="fade">
-				<div v-if="configStore.clockShowAnimations" 
-					 class="nt-box-outer hidden md:block opacity-50" 
+				<div v-if="configStore.clockShowAnimations"
+					 class="nt-box-outer hidden md:block opacity-50"
 					 :style="`filter: blur(${BASESIZE * 0.12}px)`">
 					<svg class="w-full h-full" :viewBox="`0 0 ${BASESIZE} ${BASESIZE}`">
 						<path :d="dayPeriodPath(context.sun.sunrise, context.sun.sunset)" fill="#AFE0FF" />
@@ -21,10 +21,10 @@
 						 opacity: !clockSkin.dayNightRingDisplay ? 0 : 0.6 + (context.dayProgression * 0.4)
 					 }">
 					<svg class="w-full h-full" :viewBox="`0 0 ${BASESIZE} ${BASESIZE}`">
-						<path :d="dayPeriodPath(0.001, 359.999)" fill="currentColor" class="text-slate-800" /> 
-						<path :d="dayPeriodPath(Math.max(context.sun.sunrise, 0.001), Math.min(context.sun.sunset, 359.999))" fill="currentColor" class="text-nt-cyan-dark" />  
-						<path v-if="context.sun.sunrise % 180 != 0" :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="currentColor" class="text-nt-yellow-light" />  
-						<path v-if="context.sun.sunrise % 180 != 0"  :d="dayPeriodPath(context.sun.sunset - 3, context.sun.sunset + 3)" fill="currentColor" class="text-nt-yellow-light" /> 
+						<path :d="dayPeriodPath(0.001, 359.999)" fill="currentColor" class="text-slate-800" />
+						<path :d="dayPeriodPath(Math.max(context.sun.sunrise, 0.001), Math.min(context.sun.sunset, 359.999))" fill="currentColor" class="text-nt-cyan-dark" />
+						<path v-if="context.sun.sunrise % 180 != 0" :d="dayPeriodPath(context.sun.sunrise - 3, context.sun.sunrise + 3)" fill="currentColor" class="text-nt-yellow-light" />
+						<path v-if="context.sun.sunrise % 180 != 0"  :d="dayPeriodPath(context.sun.sunset - 3, context.sun.sunset + 3)" fill="currentColor" class="text-nt-yellow-light" />
 					</svg>
 				</div>
 				</Transition>
@@ -34,12 +34,12 @@
 			<Transition name="scale-with-delay">
 				<div v-if="clockSkin.sunDisplay" class="clock-sun nt-box-outer">
 					<div class="nt-box-outer rotate-180">
-						<div class="nt-box-outer text-center nt-animate" 
+						<div class="nt-box-outer text-center nt-animate"
 							 :style="{
 								 transform: `rotate(${context.naturalDate.time * context.hemisphere}deg) translateY(${-3 - context.sun.altitude * 0.32}%)`
 							 }">
 							<div class="inline-block" :style="`width: ${BASESIZE * 0.13}px; height: ${BASESIZE * 0.13}px;`">
-								<div class="w-full h-full rounded-full bg-nt-yellow-dark" 
+								<div class="w-full h-full rounded-full bg-nt-yellow-dark"
 									 :style="`
 										 box-shadow: 0 0 ${BASESIZE * 0.05}px 0 rgba(255, 205, 0, var(--day-progression));
 										 ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001}px);` : ''}
@@ -54,11 +54,11 @@
 			<!-- MOON -->
 			<Transition name="fade">
 				<div v-if="clockSkin.moonDisplay" class="clock-moon nt-box-outer rotate-180">
-					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg) translateY(${-3 - context.moon.altitude * 0.32}%)`}"> 
-						<div :style="`width: ${BASESIZE * 0.13}px; height: ${BASESIZE * 0.13}px; 
-									  box-shadow: 0 0 ${BASESIZE * 0.01875}px 0 rgba(0, 0, 100, 0.3), 
+					<div class="nt-box-outer flex justify-center nt-animate" :style="{transform: `rotate(${(context.naturalDate.time - context.moon.phase) * context.hemisphere}deg) translateY(${-3 - context.moon.altitude * 0.32}%)`}">
+						<div :style="`width: ${BASESIZE * 0.13}px; height: ${BASESIZE * 0.13}px;
+									  box-shadow: 0 0 ${BASESIZE * 0.01875}px 0 rgba(0, 0, 100, 0.3),
 												  0 0 ${BASESIZE * 0.035}px rgba(255, 255, 255, 0.5);
-									  ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001 * context.dayProgression}px);` : ''}`" 
+									  ${configStore.clockShowAnimations ? `filter: blur(${BASESIZE * 0.001 * context.dayProgression}px);` : ''}`"
 							 class="relative rounded-full overflow-hidden flex align-center">
 							<!-- LIGHT SIDE-->
 							<div class="w-1/2 h-full bg-slate-100" :class="{ 'order-1': context.moon.phase < 180 }"></div>
@@ -74,7 +74,7 @@
 
 			<!-- HAND NTZ-->
 			<Transition name="fade">
-				<div v-if="clockSkin.ntzDisplay" class="clock-hand-ntz nt-box-outer rotate-180" :class="clockSkin.ntzHand">
+				<div v-if="clockSkin.ntzDisplay && !diyMode" class="clock-hand-ntz nt-box-outer rotate-180" :class="clockSkin.ntzHand">
 					<div class="nt-box-outer nt-animate" :style="{ transform: `rotate(${(context.naturalDate.time - context.naturalDate.longitude) * context.hemisphere}deg) scaleX(${context.hemisphere}) translateZ(0)`}">
 						<HandNtzSVG fill="currentColor"/>
 					</div>
@@ -121,16 +121,16 @@
 
 			<!-- TITLE  -->
 			<Transition name="fade">
-				<div v-if="!clockSimplifiedMode" 
-					 class="clock-title nt-box-outer text-center font-bold" 
+				<div v-if="clockSkin.titleDisplay && !clockSimplifiedMode"
+					 class="clock-title nt-box-outer text-center font-bold"
 					 :style="{ fontSize: `${BASESIZE * 0.03}px` }"
 					 :class="clockSkin.title">
 					<div class="nt-box-inner">
 						<h1 :style="`padding-top: ${BASESIZE * 0.61}px;`">{{ $t('clock.component.title') }}</h1>
 					</div>
 				</div>
-				<div v-else
-					 class="clock-title nt-box-outer text-center" 
+				<div v-else-if="clockSkin.titleDisplay"
+					 class="clock-title nt-box-outer text-center"
 					 :style="{ fontSize: `${BASESIZE * 0.025}px` }"
 					 :class="clockSkin.title">
 					<div class="nt-box-inner text-sm">
@@ -147,22 +147,22 @@
 				<div v-if="clockSkin.numbersDisplay" class="clock-numbers nt-box-outer">
 					<div class="nt-box-outer rotate-180">
 						<div class="nt-box-inner absolute text-center"
-							v-for="n in 36" 
-							:key="`dial-number-${(n - 1) * 10}`" 
-							:data-time="(n - 1) * 10" 
-							:style="{ 
+							v-for="n in 36"
+							:key="`dial-number-${(n - 1) * 10}`"
+							:data-time="(n - 1) * 10"
+							:style="{
 								transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)`,
 								padding: `${BASESIZE * 0.03}px`,
-								fontSize: (n - 1) % 9 === 0 
-									? `${BASESIZE * 0.04}px` 
-									: (n - 1) % 3 === 0 
-										? `${BASESIZE * 0.025}px` 
+								fontSize: (n - 1) % 9 === 0
+									? `${BASESIZE * 0.04}px`
+									: (n - 1) % 3 === 0
+										? `${BASESIZE * 0.025}px`
 										: `${BASESIZE * 0.02}px`,
 								lineHeight: 0
 							}">
 							<span class="nt-animate inline-block align-baseline" :class="[
-								(n - 1) % 9 === 0 ? clockSkin.numbersMultipleOf90 : 
-								(n - 1) % 3 === 0 ? clockSkin.numbersMultipleOf30 : 
+								(n - 1) % 9 === 0 ? clockSkin.numbersMultipleOf90 :
+								(n - 1) % 3 === 0 ? clockSkin.numbersMultipleOf30 :
 								clockSkin.numbersMultipleOf10
 							]">{{ (n - 1) * 10 }}</span>
 						</div>
@@ -174,32 +174,32 @@
 			<Transition name="fade">
 				<div v-if="clockSkin.dotsDisplay" class="clock-dots nt-box-outer rotate-180">
 					<div class="nt-box-inner absolute flex justify-center"
-						v-for="n in 36" 
-						:key="`dot-${(n - 1) * 10}`" 
-						:style="{ 
+						v-for="n in 36"
+						:key="`dot-${(n - 1) * 10}`"
+						:style="{
 							transform: `rotate(${((n - 1) * 10 * context.hemisphere)}deg)`,
 							padding: `${BASESIZE * 0.05}px`
 						}">
-						<div class="rounded-full" 
+						<div class="rounded-full"
 							 :style="[
-								 (n - 1) % 9 === 0 
+								 (n - 1) % 9 === 0
 									 ? { width: `${BASESIZE * 0.02}px`,
-										 height: `${BASESIZE * 0.02}px`,		
+										 height: `${BASESIZE * 0.02}px`,
 										 marginTop: `${BASESIZE * 0.005}px`,
-									   } 
+									   }
 									 : (n - 1) % 3 === 0
-										 ? { width: `${BASESIZE * 0.015}px`,
-											 height: `${BASESIZE * 0.015}px`,
-											 marginTop: `${BASESIZE * 0.005}px`,
-										   }
-										 : { width: `${BASESIZE * 0.005}px`,
-											 height: `${BASESIZE * 0.005}px`,
-											 marginTop: `${BASESIZE * 0.005}px`,
-										   }
+											 ? { width: `${BASESIZE * 0.015}px`,
+												 height: `${BASESIZE * 0.015}px`,
+												 marginTop: `${BASESIZE * 0.005}px`,
+											   }
+											 : { width: `${BASESIZE * (diyMode ? 0.007 : 0.005)}px`,
+												 height: `${BASESIZE * (diyMode ? 0.007 : 0.005)}px`,
+												 marginTop: `${BASESIZE * 0.005}px`,
+											   }
 							 ]"
 							 :class="[
-								 (n - 1) % 9 === 0 ? clockSkin.dotsMultipleOf90 : 
-								 (n - 1) % 3 === 0 ? clockSkin.dotsMultipleOf30 : 
+								 (n - 1) % 9 === 0 ? clockSkin.dotsMultipleOf90 :
+								 (n - 1) % 3 === 0 ? clockSkin.dotsMultipleOf30 :
 								 clockSkin.dotsMultipleOf10
 							 ]">
 						</div>
@@ -212,6 +212,26 @@
 				<div v-if="clockSkin.handDisplay" class="clock-hand nt-box-outer rotate-180" :class="clockSkin.hand">
 					<div class="nt-box-inner nt-animate" :style="{ transform: `rotate(${context.naturalDate.time * context.hemisphere}deg) translateZ(0)` }">
 						<HandSVG fill="currentColor" />
+					</div>
+				</div>
+			</Transition>
+
+			<!-- DIY ANGLES -->
+			<Transition name="fade">
+				<div v-if="diyMode" class="diy-angles nt-box-outer pointer-events-none rotate-180">
+					<div
+						v-for="marker in diyMarkers"
+						:key="marker.id"
+						class="diy-angle-slot text-center nt-animate"
+						:class="[marker.outerLayer ? 'nt-box-outer absolute' : 'nt-box-inner absolute']"
+						:style="marker.slotStyle">
+						<span
+							class="diy-angle-label inline-block align-baseline"
+							:class="`diy-angle-label--${marker.kind}`"
+							:style="marker.labelStyle"
+							:title="marker.title">
+							{{ marker.label }}
+						</span>
 					</div>
 				</div>
 			</Transition>
@@ -235,6 +255,10 @@ const props = defineProps({
 	context: {
 		type: Object,
 		required: true
+	},
+	diyMode: {
+		type: Boolean,
+		default: false
 	}
 });
 
@@ -263,6 +287,94 @@ const clockBoxStyle = computed(() => ({
 	minHeight: `${BASESIZE.value}px`,
 }));
 
+const normalizeAngle = (angle) => ((angle % 360) + 360) % 360;
+
+const roundAngle = (angle) => Math.round(normalizeAngle(angle)) % 360;
+
+const angleDistance = (a, b) => {
+	const diff = Math.abs(normalizeAngle(a) - normalizeAngle(b));
+	return Math.min(diff, 360 - diff);
+};
+
+const layerRotation = (angle) => normalizeAngle(angle) * props.context.hemisphere;
+
+const labelFontSize = (marker) => BASESIZE.value * (marker.prominent ? 0.04 : marker.large ? 0.04 : 0.032);
+
+const labelSlotStyle = (marker) => {
+	return {
+		transform: [
+			`rotate(${layerRotation(marker.angle)}deg)`,
+			marker.translateY ? `translateY(${marker.translateY}%)` : '',
+		].filter(Boolean).join(' '),
+		padding: `${BASESIZE.value * marker.orbit}px`,
+		fontSize: `${labelFontSize(marker)}px`,
+		lineHeight: 0,
+	};
+};
+
+const isLowerHalf = (angle) => {
+	const normalized = normalizeAngle(angle);
+	return normalized >= 270 || normalized <= 90;
+};
+
+const shouldFlipLabel = (marker) => {
+	const normalized = normalizeAngle(marker.angle);
+	return marker.radial ? normalized > 180 : isLowerHalf(normalized);
+};
+
+const labelStyle = (marker) => ({
+	fontSize: `${labelFontSize(marker)}px`,
+	transform: [
+		marker.radial ? 'rotate(90deg)' : '',
+		shouldFlipLabel(marker) ? 'rotate(180deg)' : '',
+	].filter(Boolean).join(' ') || undefined,
+	color: marker.color,
+	opacity: marker.opacity,
+});
+
+const diyMarkers = computed(() => {
+	const sunAngle = normalizeAngle(props.context.naturalDate.time);
+	const mustacheAmplitude = props.context.mustaches.averageMustacheAngle;
+	const eventColor = '#ffd700';
+	const mustacheBranchOrbit = 0.15;
+	const mustacheEquinoxOrbit = 0.25;
+
+	const rawMarkers = [
+		{ id: 'sun', angle: sunAngle, label: `${roundAngle(sunAngle)}°`, title: t('clock.diy.labels.sun'), kind: 'sun', orbit: 0.03, prominent: true, lockOrbit: true },
+		{ id: 'sunrise', angle: props.context.sun.sunrise, label: `${roundAngle(props.context.sun.sunrise)}°`, title: t('clock.diy.labels.sunrise'), kind: 'event', orbit: 0, outerLayer: true, color: eventColor, translateY: -3, large: true },
+		{ id: 'sunset', angle: props.context.sun.sunset, label: `${roundAngle(props.context.sun.sunset)}°`, title: t('clock.diy.labels.sunset'), kind: 'event', orbit: 0, outerLayer: true, color: eventColor, translateY: -3, large: true },
+		{ id: 'mustache-summer-sunrise', angle: 90 - mustacheAmplitude, label: `${roundAngle(90 - mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		{ id: 'mustache-equinox-sunrise', angle: 90, label: '90°', title: t('clock.diy.labels.equinoxSunrise'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
+		{ id: 'mustache-winter-sunrise', angle: 90 + mustacheAmplitude, label: `${roundAngle(90 + mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		{ id: 'mustache-winter-sunset', angle: 270 - mustacheAmplitude, label: `${roundAngle(270 - mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		{ id: 'mustache-equinox-sunset', angle: 270, label: '270°', title: t('clock.diy.labels.equinoxSunset'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
+		{ id: 'mustache-summer-sunset', angle: 270 + mustacheAmplitude, label: `${roundAngle(270 + mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+	];
+
+	const placed = [];
+	for (const marker of rawMarkers) {
+		let orbit = marker.orbit;
+		while (!marker.lockOrbit && placed.some((placedMarker) => Math.abs(placedMarker.orbit - orbit) < 0.01 && angleDistance(marker.angle, placedMarker.angle) < 10)) {
+			orbit += 0.045;
+			if (orbit > 0.2) {
+				orbit = Math.max(0.015, marker.orbit - 0.025);
+				break;
+			}
+		}
+		const placedMarker = {
+			...marker,
+			orbit,
+		};
+		placed.push({
+			...placedMarker,
+			slotStyle: labelSlotStyle(placedMarker),
+			labelStyle: labelStyle(placedMarker),
+			fontSize: labelFontSize(placedMarker),
+		});
+	}
+	return placed;
+});
+
 // Methods
 const updateScale = () => {
 	if (!clockWrapper.value) return;
@@ -278,7 +390,7 @@ const dayPeriodPath = (start, end) => {
 	const radius = BASESIZE.value / 2;
 	const center = radius;
 	const adjustedEnd = end < start ? end + 360 : end;
-	const largeArcFlag = adjustedEnd - start <= 180 ? 0 : 1;  
+	const largeArcFlag = adjustedEnd - start <= 180 ? 0 : 1;
 	const startX = center + radius * Math.cos((start - 90) * Math.PI / 180);
 	const startY = center + radius * Math.sin((start - 90) * Math.PI / 180);
 	const endX = center + radius * Math.cos((end - 90) * Math.PI / 180);
@@ -289,7 +401,7 @@ const dayPeriodPath = (start, end) => {
 // Lifecycle hooks
 onMounted(() => {
 	updateScale();
-	
+
 	resizeObserver = new ResizeObserver(updateScale);
 	if (clockWrapper.value) {
 		resizeObserver.observe(clockWrapper.value);
@@ -364,5 +476,31 @@ onUnmounted(() => {
 .scale-with-delay-leave-from {
 	opacity: 1;
 	transform: scale(1);
+}
+
+.diy-angle-label {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+	font-variant-numeric: tabular-nums;
+	font-weight: 800;
+	letter-spacing: 0;
+	pointer-events: auto;
+	cursor: help;
+	text-shadow:
+		0 0 2px rgba(255, 255, 255, 0.95),
+		0 0 4px rgba(255, 255, 255, 0.95),
+		0 1px 8px rgba(15, 23, 42, 0.18);
+}
+
+.diy-angle-label--sun {
+	color: #000;
+}
+
+.diy-angle-label--event {
+	color: #0e7490;
+	text-shadow: none;
+}
+
+.diy-angle-label--mustache {
+	color: #64748b;
 }
 </style>

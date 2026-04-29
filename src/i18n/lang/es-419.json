@@ -121,9 +121,32 @@
       ]
     },
     "tutorial": { "startButton": "Iniciar tutorial", "skipButton": "Saltar tutorial", "tutorialStep": "Tutorial", "configureButton": "Configurar", "skipWelcomeButton": "Saltar" },
-    "menu": { "settings": "Ajustes", "locationPicker": "Elegir ubicación", "simplifiedMode": { "title": "Diseño simplificado", "fullMode": "Diseño completo" }, "understanding": "Comprender", "startTutorial": "Iniciar tutorial", "faq": "Preguntas frecuentes", "specialMode": "Modo especial", "timeTravel": "Viaje en el tiempo" },
+    "menu": { "settings": "Ajustes", "locationPicker": "Elegir ubicación", "simplifiedMode": { "title": "Diseño simplificado", "fullMode": "Diseño completo" }, "understanding": "Comprender", "startTutorial": "Iniciar tutorial", "faq": "Preguntas frecuentes", "specialMode": "Modo especial", "timeTravel": "Viaje en el tiempo", "diyMode": "Modo DIY" },
+    "diy": {
+      "exitButton": "Salir del modo DIY",
+      "subtitle": "Ángulos para ajustar tu reloj natural",
+      "labels": {
+        "sun": "Posición del sol",
+        "sunrise": "Amanecer de hoy",
+        "sunset": "Atardecer de hoy",
+        "summerSunrise": "Hebra del bigote del amanecer de verano",
+        "equinoxSunrise": "Hebra del bigote del amanecer de equinoccio",
+        "winterSunrise": "Hebra del bigote del amanecer de invierno",
+        "winterSunset": "Hebra del bigote del atardecer de invierno",
+        "equinoxSunset": "Hebra del bigote del atardecer de equinoccio",
+        "summerSunset": "Hebra del bigote del atardecer de verano"
+      }
+    },
     "notifications": {
       "geolocation": { "title": "Nueva ubicación detectada", "ignoreButton": "Ignorar", "updateButton": "Actualizar" },
+      "routeLocation": {
+        "title": "¿Qué ubicación se debe usar?",
+        "description": "Este enlace propone definir una ubicación distinta de la guardada en tus ajustes.",
+        "linkLabel": "Ubicación solicitada por el enlace",
+        "savedLabel": "Ubicación guardada",
+        "keepSavedButton": "Mantener la ubicación guardada",
+        "updateButton": "Usar la ubicación del enlace"
+      },
       "southernHemisphere": { "title": "Hemisferio Sur", "description": "En este hemisferio, el reloj gira en sentido antihorario (de derecha a izquierda) para coincidir con el movimiento del sol.", "dismissButton": "Entendido" }
     },
     "component": { "title": "Tiempo Natural" }
@@ -140,7 +163,7 @@
     "timeTravel": { "title": "Viaje en el tiempo", "speedSelector": "Velocidad de viaje", "resetButton": "Restablecer", "exitButton": "Salir del viaje", "speeds": [ { "label": "1 día" }, { "label": "1 semana" }, { "label": "1 luna" } ] },
     "tutorial": { "startButton": "Iniciar tutorial", "skipButton": "Saltar tutorial", "tutorialStep": "Tutorial", "configureButton": "Configurar", "skipWelcomeButton": "Saltar" },
     "menu": { "settings": "Ajustes", "locationPicker": "Elegir ubicación", "viewMode": { "spiralTitle": "Mostrar en espiral", "verticalTitle": "Mostrar en vertical" }, "understanding": "Comprender", "startTutorial": "Iniciar tutorial", "faq": "Preguntas frecuentes", "specialMode": "Modo especial", "timeTravel": "Viaje en el tiempo" },
-    "notifications": { "geolocation": { "title": "Posición GPS cambiada. ¿Actualizar?", "ignoreButton": "Ignorar hoy", "updateButton": "Sí", "dismissButton": "No" } }
+    "notifications": { "geolocation": { "title": "Posición GPS cambiada. ¿Actualizar?", "ignoreButton": "Ignorar hoy", "updateButton": "Sí", "dismissButton": "No" }, "routeLocation": {"title":"¿Qué ubicación se debe usar?","description":"Este enlace propone definir una ubicación distinta de la guardada en tus ajustes.","linkLabel":"Ubicación solicitada por el enlace","savedLabel":"Ubicación guardada","keepSavedButton":"Mantener la ubicación guardada","updateButton":"Usar la ubicación del enlace"} }
   },
   "faq": { "inProgress": "(En preparación)" },
   "locationPicker": {
