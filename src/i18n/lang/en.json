@@ -441,7 +441,8 @@
     "v2_4": "🌍 Natural Time application now speaks 12 languages! German, Italian, Russian, Greek, Chinese, Japanese and Portuguese (Brazil) join the adventure.",
     "v2_5": "⌚ Natural Time is now on your Pebble smartwatch! Download the watchface on Pebble.",
     "v2_5_cta": "Download on Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 New DIY mode: make your own natural sundial with the angles for the sun, sunrise, sunset, and moustaches."
   },
   "common": {
     "loading": "Loading…",

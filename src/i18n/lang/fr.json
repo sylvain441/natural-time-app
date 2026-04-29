@@ -441,7 +441,8 @@
     "v2_4": "🌍 L'application Temps Naturel parle maintenant 12 langues ! Allemand, Italien, Russe, Grec, Chinois, Japonais et Portugais (Brésil) ont rejoint l'aventure.",
     "v2_5": "⌚ Le Temps Naturel débarque sur ta montre Pebble ! Télécharge le cadran sur Pebble.",
     "v2_5_cta": "Télécharger sur Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Nouveau mode DIY : fabrique ton cadran solaire naturel avec les angles du soleil, du lever, du coucher et des moustaches."
   },
   "common": {
     "loading": "Chargement…",
