@@ -89,33 +89,39 @@
 			</Transition>
 
 			<!-- MUSTACHES -->
+			<!-- Display logic based on context.mustaches.averageMustacheAngle:
+				 - < 3°  (équatorial) : barre horizontale seule (les 4 moustaches se chevauchent et n'apportent pas d'info)
+				 - 3° à <90° (tempéré) : barre horizontale équinoxe + 4 moustaches solstices
+				 - >= 90° (polaire, au-delà du cercle polaire) : barre verticale seule (même div pivoté de 90°) -->
 			<Transition name="fade">
 				<div v-if="clockSkin.mustachesDisplay">
-					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-equinox nt-box-outer rotate-180" :class="clockSkin.mustachesEquinox">
-						<div class="nt-box-inner nt-animate">
+					<div class="clock-mustache-equinox nt-box-outer rotate-180" :class="clockSkin.mustachesEquinox">
+						<div class="nt-box-inner nt-animate" :style="{ transform: context.mustaches.averageMustacheAngle >= 90 ? 'rotate(90deg)' : 'none' }">
 							<MustacheEquinoxSVG fill="currentColor" />
 						</div>
 					</div>
-					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-winter-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunrise">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 + context.mustaches.averageMustacheAngle}deg)`}">
-							<MustacheSVG fill="currentColor" />
+					<template v-if="context.mustaches.averageMustacheAngle >= 3 && context.mustaches.averageMustacheAngle < 90">
+						<div class="clock-mustache-winter-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunrise">
+							<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 + context.mustaches.averageMustacheAngle}deg)`}">
+								<MustacheSVG fill="currentColor" />
+							</div>
 						</div>
-					</div>
-					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-summer-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesSummerSunrise">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 - context.mustaches.averageMustacheAngle}deg)`}">
-							<MustacheSVG fill="currentColor" />
+						<div class="clock-mustache-summer-sunrise nt-box-outer rotate-180" :class="clockSkin.mustachesSummerSunrise">
+							<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${90 - context.mustaches.averageMustacheAngle}deg)`}">
+								<MustacheSVG fill="currentColor" />
+							</div>
 						</div>
-					</div>
-					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-winter-sunset nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunset">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 - context.mustaches.averageMustacheAngle}deg)`}">
-							<MustacheSVG fill="currentColor" />
+						<div class="clock-mustache-winter-sunset nt-box-outer rotate-180" :class="clockSkin.mustachesWinterSunset">
+							<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 - context.mustaches.averageMustacheAngle}deg)`}">
+								<MustacheSVG fill="currentColor" />
+							</div>
 						</div>
-					</div>
-					<div v-if="clockSkin.mustachesDisplay" class="clock-mustache-summer-sunset nt-box-outer 		rotate-180" :class="clockSkin.mustachesSummerSunset">
-						<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 + context.mustaches.averageMustacheAngle}deg)`}">
-							<MustacheSVG fill="currentColor" />
+						<div class="clock-mustache-summer-sunset nt-box-outer 		rotate-180" :class="clockSkin.mustachesSummerSunset">
+							<div class="nt-box-inner nt-animate" :style="{transform: `rotate(${270 + context.mustaches.averageMustacheAngle}deg)`}">
+								<MustacheSVG fill="currentColor" />
+							</div>
 						</div>
-					</div>
+					</template>
 				</div>
 			</Transition>
 
@@ -339,17 +345,23 @@ const diyMarkers = computed(() => {
 	const mustacheBranchOrbit = 0.15;
 	const mustacheEquinoxOrbit = 0.25;
 
+	// Aligned with the mustache rendering rules above:
+	// - solstice labels (4) only in the tempered zone [3°, 90°[
+	// - equinox labels (90° / 270°) only when the horizontal bar is shown (i.e. < 90°)
+	const showSolsticeLabels = mustacheAmplitude >= 3 && mustacheAmplitude < 90;
+	const showEquinoxLabels = mustacheAmplitude < 90;
+
 	const rawMarkers = [
 		{ id: 'sun', angle: sunAngle, label: `${roundAngle(sunAngle)}°`, title: t('clock.diy.labels.sun'), kind: 'sun', orbit: 0.03, prominent: true, lockOrbit: true },
 		{ id: 'sunrise', angle: props.context.sun.sunrise, label: `${roundAngle(props.context.sun.sunrise)}°`, title: t('clock.diy.labels.sunrise'), kind: 'event', orbit: 0, outerLayer: true, color: eventColor, translateY: -3, large: true },
 		{ id: 'sunset', angle: props.context.sun.sunset, label: `${roundAngle(props.context.sun.sunset)}°`, title: t('clock.diy.labels.sunset'), kind: 'event', orbit: 0, outerLayer: true, color: eventColor, translateY: -3, large: true },
-		{ id: 'mustache-summer-sunrise', angle: 90 - mustacheAmplitude, label: `${roundAngle(90 - mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
-		{ id: 'mustache-equinox-sunrise', angle: 90, label: '90°', title: t('clock.diy.labels.equinoxSunrise'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
-		{ id: 'mustache-winter-sunrise', angle: 90 + mustacheAmplitude, label: `${roundAngle(90 + mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
-		{ id: 'mustache-winter-sunset', angle: 270 - mustacheAmplitude, label: `${roundAngle(270 - mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
-		{ id: 'mustache-equinox-sunset', angle: 270, label: '270°', title: t('clock.diy.labels.equinoxSunset'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
-		{ id: 'mustache-summer-sunset', angle: 270 + mustacheAmplitude, label: `${roundAngle(270 + mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
-	];
+		showSolsticeLabels && { id: 'mustache-summer-sunrise', angle: 90 - mustacheAmplitude, label: `${roundAngle(90 - mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		showEquinoxLabels && { id: 'mustache-equinox-sunrise', angle: 90, label: '90°', title: t('clock.diy.labels.equinoxSunrise'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
+		showSolsticeLabels && { id: 'mustache-winter-sunrise', angle: 90 + mustacheAmplitude, label: `${roundAngle(90 + mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunrise'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		showSolsticeLabels && { id: 'mustache-winter-sunset', angle: 270 - mustacheAmplitude, label: `${roundAngle(270 - mustacheAmplitude)}°`, title: t('clock.diy.labels.winterSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+		showEquinoxLabels && { id: 'mustache-equinox-sunset', angle: 270, label: '270°', title: t('clock.diy.labels.equinoxSunset'), kind: 'mustache', orbit: mustacheEquinoxOrbit, lockOrbit: true, radial: true },
+		showSolsticeLabels && { id: 'mustache-summer-sunset', angle: 270 + mustacheAmplitude, label: `${roundAngle(270 + mustacheAmplitude)}°`, title: t('clock.diy.labels.summerSunset'), kind: 'mustache', orbit: mustacheBranchOrbit, lockOrbit: true, radial: true },
+	].filter(Boolean);
 
 	const placed = [];
 	for (const marker of rawMarkers) {
