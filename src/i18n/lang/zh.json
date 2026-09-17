@@ -2,6 +2,79 @@
   "welcome": {
     "title": "自然时间",
     "subtitle": "一种全新的时间约定",
+    "clockHero": {
+      "titleLine1": "我是一座",
+      "titleLine2": "自然时钟",
+      "subtitle": "我随太阳的节奏运转。",
+      "cta": {
+        "howToRead": "它是如何运作的？"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "我是一条",
+      "titleLine2": "13 月螺旋",
+      "subtitle": "一年：13 个相同的月份，每月 28 天，再加上彩虹日",
+      "cta": {
+        "howToRead": "它是如何运作的？"
+      }
+    },
+    "moonsIntro": {
+      "lead": "自然时间也重新构想了我们计算日子的方式。",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "受到世界各地传统和{moon}的启发，这条螺旋遵循着简洁的节奏：{same}，每月 28 天。很简单，不是吗？",
+      "moonWord": "月亮",
+      "sameWord": "13 个相同的月份",
+      "links": {
+        "spiral": "打开 13 月螺旋",
+        "faq": "常见问题"
+      }
+    },
+    "intro": {
+      "lead": "自然时间重新构想了我们衡量时间的方式。",
+      "statement": "自然时钟只有{hand}和一个{dial}，让{sun}重新回到计时的核心，成为我们的{reference}。",
+      "handWord": "一根指针",
+      "dialWord": "360° 表盘",
+      "sunWord": "太阳",
+      "referenceWord": "普遍参照",
+      "video": {
+        "label": "观看介绍视频",
+        "offline": "重新联网后即可观看视频。"
+      },
+      "links": {
+        "clock": "启动时钟",
+        "faq": "常见问题"
+      }
+    },
+    "turn": {
+      "line1": "自然时间不只是一座时钟。",
+      "line2": "它也是一种“{spiral}”。",
+      "spiral": "历法"
+    },
+    "topbar": {
+      "before": "自然时间赢得了 Pebble ",
+      "long": "表盘设计大赛 ",
+      "after": "（智能手表品牌）",
+      "cta": "Pebble Store",
+      "close": "关闭公告"
+    },
+    "commons": {
+      "lead": "自然时间不是一件商品。",
+      "statement": "它是一种属于公共领域的{convention}，{units}。它不属于任何人，也属于每一位使用它的人。",
+      "conventionWord": "计时约定",
+      "unitsPhrase": "就像米一样",
+      "cta": "在 GitHub 上查看 Natural Time",
+      "author": {
+        "text": "自然时间由 Sylvain（网名“Biquette”）创立。",
+        "hunch": "一切源于一个简单的直觉：我们日常划分时间的方式复杂得毫无必要。长久照着它生活，我们便逐渐偏离了生命世界的周期。"
+      },
+      "links": {
+        "site": "Sylvain 的其他项目",
+        "shop": "购买时钟",
+        "donate": "捐助项目"
+      },
+      "supportLabel": "支持项目",
+      "support": "Natural Time 是一个自由开源项目。为了维持独立创作，Sylvain 亲手制作时钟，并根据你的所在地精确调校。每一件都是独一无二的作品或限量制作。"
+    },
     "naturalClock": {
       "title": "自然时钟",
       "description": "我是一座受自然启发的时钟。\n我的唯一指针一天只转一圈……\n我追随着太阳在天空中的轨迹，\n缓慢而从容……以 360° 刻度的表盘。",
@@ -49,7 +122,7 @@
         "line4": "大自然早已赐予我们最美的时钟……",
         "line5": "它叫太阳！时间的主人，万物的指挥。"
       },
-      "credits": "由 {author} 创建 | {github}",
+      "credits": "由 {author} 创建",
       "author": "Sylvain",
       "github": "开源于 GitHub",
       "resetData": "重置数据"
@@ -239,7 +312,7 @@
       }
     }
   },
-  "faq": { "inProgress": "（编写中）" },
+  "faq": { "title": "常见问题", "subtitle": "全面了解自然时间", "boardTitle": "差异一览", "inProgress": "（编写中）" },
   "locationPicker": {
     "title": "选择位置",
     "nameLabel": { "new": "为该位置命名", "edit": "编辑位置名称" },
@@ -283,7 +356,8 @@
     "v2_4": "🌍 自然时间应用现在支持12种语言！德语、意大利语、俄语、希腊语、中文、日语和葡萄牙语（巴西）加入了这场冒险。",
     "v2_5": "⌚ 自然时间登陆你的 Pebble 智能手表！在 Pebble 下载表盘。",
     "v2_5_cta": "在 Pebble 下载",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 全新 DIY 模式：利用太阳、日出、日落和季节弧线的角度，制作属于你的自然日晷。"
   },
   "common": {
     "loading": "加载中…",
@@ -291,4 +365,3 @@
     "selectLanguage": "选择语言"
   }
 }
-

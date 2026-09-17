@@ -1,15 +1,4 @@
-> Koha Natyrore është një projekt me burim të hapur  
-> Krijuar me ❤️ nga [Sylvain](https://biquette.xyz) (njohur si "Biquette")
-> 
-> Për ata që e vlerësojnë këtë koncept dhe dëshirojnë të mbështesin zhvillimin e tij:
-> - [Bëni një dhurim](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Projektet e mia të tjera: [biquette.xyz](https://biquette.xyz)
-> - Buletini im: [Abonohuni këtu](http://biquette.xyz/#/portal/signup/free)
-> - Dyqani im: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Kanali YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Llogaria X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Koha Natyrore
+### Koha Natyrore
 
 #### Çfarë është Koha Natyrore? Për çfarë shërben?
 
@@ -63,13 +52,21 @@ Koha Natyrore është një koncept i hapur që kushdo mund ta përvetësojë, p�
 
 Çdo person që adopton këtë perceptim të ri të kohës kontribuon në krijimin e një bote më në harmoni me ritmet natyrore që na rrethojnë.
 
-### FAQ - Ora Natyrore
+### Ora Natyrore
 
-#### \[REKLAMË\] Ku mund të blej një orë natyrore?
+<figure class="faq-board" data-category="2">
 
-Koha Natyrore është një koncept i lirë që kushdo mund ta përvetësojë dhe rikonceptojë. Aktualisht, projekti udhëhiqet nga krijuesi i tij, [Sylvain](https://biquette.xyz), i cili i kushton kohë kërkimit dhe zhvillimit të këtij koncepti.
+|  | Koha natyrore | *vs* Koha artificiale |
+|---|---|---|
+| Dielli është në pikën më të lartë | 180° | 12:00, 13:00, 13:37, 14:22 — sipas vendit, stinës dhe zonës orare |
+| Mesi i natës | 0° | 00:00, 01:00, 01:37, 02:22 |
+| Një rrotullim i plotë i kuadratit | 360°, një herë në ditë | 12 orë, të përshkuara dy herë në ditë |
+| Kina, 5 200 km nga lindja në perëndim | 62° mes dy skajeve | një zonë e vetme orare |
+| Kalimi në orën e dimrit | nuk ndodh asgjë | në orën 3 të mëngjesit është ora 2 |
+| Të caktosh një orë me dikë larg | 210° NTZ — këndi plus meridiani i referencës | 14:00, plus zona orare, plus ora e verës ose e dimrit |
 
-Për të mbështetur këtë punë dhe për të financuar zhvillimin e vazhdueshëm të projektit, orë natyrore fizike origjinale krijohen dhe janë të disponueshme për blerje në dyqanin e tij online [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Ora natyrore mat një gjë të vetme: ku ka arritur dielli në rrugën e tij, mbi vendin ku ndodhesh.</figcaption>
+</figure>
 
 #### Si lexohet një orë natyrore?
 
@@ -243,7 +240,27 @@ Kjo qasje e dyfishtë lejon që ora natyrore të jetë njëkohësisht e saktë n
 
 Për të qenë të sinqertë, kur themi se në kohën natyrore "180° korrespondon vërtet me mesditën", është një thjeshtësim i lehtë. Në realitet, mesdita e vërtetë diellore (momenti kur dielli është saktësisht në zenit) ndryshon pak çdo ditë. Përdorim një mesatare për arsye praktike, jo sepse është shumë e vështirë për t'u llogaritur, por sepse do të shtonte kompleksitet të panevojshëm në jetën e përditshme.
 
-### FAQ - Spirali i 13 Hënave
+#### Ku mund të blej një orë natyrore?
+
+Koha Natyrore është një koncept i lirë që kushdo mund ta përvetësojë dhe rikonceptojë. Aktualisht, projekti udhëhiqet nga krijuesi i tij, [Sylvain](https://biquette.xyz), i cili i kushton kohë kërkimit dhe zhvillimit të këtij koncepti.
+
+Për të mbështetur këtë punë dhe për të financuar zhvillimin e vazhdueshëm të projektit, orë natyrore fizike origjinale krijohen dhe janë të disponueshme për blerje në dyqanin e tij online [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Spirali i 13 Hënave
+
+<figure class="faq-board" data-category="3">
+
+|  | Koha natyrore | *vs* Koha artificiale |
+|---|---|---|
+| Gjatësia e një muaji | 28 ditë, trembëdhjetë herë | 31, 28 ose 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Dita e parë e muajit | një ditë e kuqe, gjithmonë | e hënë, e enjte, e shtunë — sipas muajit dhe vitit |
+| Muaji i nëntë | hëna e 9-të | shtator, nga latinishtja *septem*, «shtatë» |
+| Ditët e një viti | 364, plus dita ylber, ndonjëherë dy | 365, dhe 366 çdo katër vjet |
+| Fundi i vitit | solstici i dimrit | 31 dhjetor |
+| Rendi i një date të shkruar | vit)hënë)ditë | ditë/muaj/vit, muaj/ditë/vit ose vit-muaj-ditë |
+
+<figcaption>Spirali i 13 hënave e ndan vitin në trembëdhjetë periudha identike, të matura nga solstici i dimrit.</figcaption>
+</figure>
 
 #### Pse 13 muaj (hëna) prej 28 ditësh?
 
@@ -323,7 +340,7 @@ Për shumë njerëz, 2012 përfaqëson një ndryshim epoke ose ndërgjegjësimi.
 
 Megjithëse kjo zgjedhje është arbitrare (si çdo pikënisje kalendarike), rëndësia e saj simbolike e bën atë një pikë referimi kohore interesante për një sistem që kërkon të rinovojë marrëdhënien tonë me kohën.
 
-### FAQ - Aplikacioni
+### Aplikacioni
 
 #### Koha Natyrore është një projekt me burim të hapur. Pse?
 
@@ -361,6 +378,12 @@ Mos harroni të ndryshoni pozicionin gjeografik kur udhëtoni. Mund të aktivizo
 Llogaritjet astronomike kryhen tërësisht në pajisjen tuaj. Asnjë e dhënë personale nuk regjistrohet. Aplikacioni funksionon perfektisht jashtë linje gjithashtu (përveç hartës interaktive).
 
 Për të pasur një ide të trafikut të aplikacionit, përdoret një server Matomo i vetë-strehuar (ekuivalenti me burim të hapur i Google Analytics). Ky server regjistron vetëm numrin e vizitorëve unikë dhe numrin e faqeve të shikuara. Asnjë e dhënë personale nuk regjistrohet.
+
+#### Koha Natyrore në orën inteligjente Pebble
+
+Faqja e orës "Natural Time" fitoi **vendin e parë** në konkursin e faqeve të orëve të organizuar nga Pebble. Ajo ofrohet falas në dyqanin Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Ekrani me bojë elektronike tregon rrugëtimin e diellit në një faqe ore 360°, ndërsa bateria zgjat dy deri në katër javë. Faqja e orës konfigurohet automatikisht sipas vendndodhjes së përdoruesit.
 
 #### Falënderime
 

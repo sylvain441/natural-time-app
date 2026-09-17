@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Doğal Zaman",
     "subtitle": "Yeni bir zaman anlayışı",
+    "clockHero": {
+      "titleLine1": "Ben",
+      "titleLine2": "doğal bir saatim",
+      "subtitle": "Güneşin ritmiyle hareket ederim.",
+      "cta": {
+        "howToRead": "Nasıl çalışır?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Ben",
+      "titleLine2": "13 ay spiraliyim",
+      "subtitle": "Bir yıl: 28'er günlük 13 eşit ay ve Gökkuşağı Günü",
+      "cta": {
+        "howToRead": "Nasıl çalışır?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Doğal Zaman, günleri sayma biçimimizi de yeniden tasarlıyor.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Dünyanın dört bir yanındaki geleneklerden ve {moon} ilham alan spiral, basit bir ritim izler: Her biri 28 gün süren {same}. Basit, değil mi?",
+      "moonWord": "Ay'dan",
+      "sameWord": "13 özdeş ay",
+      "links": {
+        "spiral": "13 ayı aç",
+        "faq": "Sıkça sorulan sorular"
+      }
+    },
+    "intro": {
+      "lead": "Doğal Zaman, zamanı ölçme biçimimizi yeniden tasarlıyor.",
+      "statement": "{hand} ve {dial} ile doğal saat, {sun} zamanı ölçme biçimimizin merkezine, {reference} olarak geri koyuyor.",
+      "handWord": "tek bir ibre",
+      "dialWord": "360° kadran",
+      "sunWord": "güneşi",
+      "referenceWord": "evrensel referansımız",
+      "video": {
+        "label": "Tanıtımı izle",
+        "offline": "Çevrimiçi olduğunda video yeniden burada olacak."
+      },
+      "links": {
+        "clock": "Saati başlat",
+        "faq": "Sıkça sorulan sorular"
+      }
+    },
+    "turn": {
+      "line1": "Doğal Zaman bir saatten fazlasıdır.",
+      "line2": "Aynı zamanda bir “{spiral}”dir.",
+      "spiral": "takvim"
+    },
+    "topbar": {
+      "before": "Doğal Zaman, Pebble ",
+      "long": "saat kadranı yarışmasını kazandı ",
+      "after": "(akıllı saat markası)",
+      "cta": "Pebble Store",
+      "close": "Duyuruyu kapat"
+    },
+    "commons": {
+      "lead": "Doğal Zaman bir ürün değildir.",
+      "statement": "Bu, {units} kamuya ait {convention}. Kimseye ait değildir, onu kullanan herkese aittir.",
+      "conventionWord": "bir ölçüm standardıdır",
+      "unitsPhrase": "metre gibi",
+      "cta": "GitHub'da Doğal Zaman",
+      "author": {
+        "text": "Doğal Zaman, «Biquette» olarak da bilinen Sylvain tarafından yaratıldı.",
+        "hunch": "Her şey basit bir düşünceyle başladı: zamanı bölme biçimimiz gereksiz yere karmaşık. Bunu yeterince uzun süre izlediğimizde, canlı dünyanın döngüleriyle aramızdaki uyumu kaybediyoruz."
+      },
+      "links": {
+        "site": "Sylvain'in diğer projeleri",
+        "shop": "Bir saat satın al",
+        "donate": "Bağış yap"
+      },
+      "supportLabel": "Projeyi destekle",
+      "support": "Doğal Zaman ücretsiz ve açık kaynaklı bir projedir. Sylvain, bağımsız çalışmalarını sürdürebilmek için her biri yaşadığın yere özel olarak ayarlanmış el yapımı saatler üretiyor. Benzersiz parçalar ve sınırlı seriler."
+    },
     "naturalClock": {
       "title": "Doğal Saat",
       "description": "Ben doğadan ilham alan bir saatim.\nTek yelkovanım günde sadece bir tur atar...\nGüneşin gökyüzündeki yolculuğunu takip ederek,\nkesintisiz... 360°'lik bir kadran üzerinde.",
@@ -49,7 +122,7 @@
         "line4": "Doğa bize zaten mükemmel zaman ölçeri verdi...",
         "line5": "Güneş! Tüm canlıların nihai şefi."
       },
-      "credits": "{author} tarafından oluşturuldu | {github}",
+      "credits": "{author} tarafından oluşturuldu",
       "author": "Sylvain",
       "github": "GitHub'da açık kaynak",
       "resetData": "Verileri sıfırla"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "Sıkça sorulan sorular",
+    "subtitle": "Doğal zamanı anlamak",
+    "boardTitle": "Kısaca fark",
     "inProgress": "(Devam ediyor)"
   },
   "locationPicker": {
@@ -441,7 +517,8 @@
     "v2_4": "🌍 Doğal Zaman uygulaması artık 12 dil konuşuyor! Almanca, İtalyanca, Rusça, Yunanca, Çince, Japonca ve Portekizce (Brezilya) maceraya katılıyor.",
     "v2_5": "⌚ Doğal Zaman artık Pebble akıllı saatinde! Kadranı Pebble'dan indir.",
     "v2_5_cta": "Pebble'dan İndir",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Yeni Kendin Yap modu: güneş, gün doğumu, gün batımı ve bıyık açılarını kullanarak kendi doğal güneş saatini yap."
   },
   "common": {
     "loading": "Yükleniyor…",

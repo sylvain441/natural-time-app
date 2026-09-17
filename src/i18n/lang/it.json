@@ -2,6 +2,62 @@
   "welcome": {
     "title": "Tempo Naturale",
     "subtitle": "Una nuova convenzione del tempo",
+    "clockHero": {
+      "titleLine1": "Sono un",
+      "titleLine2": "orologio naturale",
+      "subtitle": "Mi muovo al ritmo del sole.",
+      "cta": { "howToRead": "Come funziona?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Sono una",
+      "titleLine2": "spirale di 13 lune",
+      "subtitle": "Un anno: 13 mesi uguali di 28 giorni, più il Giorno Arcobaleno",
+      "cta": { "howToRead": "Come funziona?" }
+    },
+    "moonsIntro": {
+      "lead": "Il Tempo Naturale reinventa anche il nostro modo di contare i giorni.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Ispirata alle tradizioni di tutto il mondo e alla {moon}, la spirale segue un ritmo semplice: {same} di 28 giorni ciascuno. Semplice, no?",
+      "moonWord": "luna",
+      "sameWord": "13 mesi uguali",
+      "links": { "spiral": "Apri le 13 lune", "faq": "FAQ" }
+    },
+    "intro": {
+      "lead": "Il Tempo Naturale reinventa il nostro modo di misurare il tempo.",
+      "statement": "Con {hand} e un {dial}, l'orologio naturale restituisce al {sun} il suo ruolo di {reference} del tempo che passa.",
+      "handWord": "una sola lancetta",
+      "dialWord": "quadrante a 360°",
+      "sunWord": "sole",
+      "referenceWord": "riferimento universale",
+      "video": { "label": "Guarda l'introduzione", "offline": "Il video tornerà non appena sarai online." },
+      "links": { "clock": "Avvia l'orologio", "faq": "FAQ" }
+    },
+    "turn": {
+      "line1": "Il Tempo Naturale è più di un orologio.",
+      "line2": "È anche un «{spiral}».",
+      "spiral": "calendario"
+    },
+    "topbar": {
+      "before": "Il Tempo Naturale ha vinto un concorso di quadranti Pebble ",
+      "long": "",
+      "after": "(marchio di smartwatch)",
+      "cta": "Pebble Store",
+      "close": "Chiudi l'annuncio"
+    },
+    "commons": {
+      "lead": "Il Tempo Naturale non è un prodotto.",
+      "statement": "È {convention} di dominio pubblico, {units}. Non appartiene a nessuno e appartiene a tutti coloro che la usano.",
+      "conventionWord": "una convenzione",
+      "unitsPhrase": "come il metro",
+      "cta": "Tempo Naturale su GitHub",
+      "author": {
+        "text": "Il Tempo Naturale è stato creato da Sylvain (alias «Biquette»).",
+        "hunch": "Tutto è nato da un'intuizione semplice: il modo in cui dividiamo il tempo è inutilmente complicato. A forza di adeguarci a questa divisione, perdiamo il ritmo dei cicli del mondo vivente."
+      },
+      "links": { "site": "Gli altri progetti di Sylvain", "shop": "Acquista un orologio", "donate": "Fai una donazione" },
+      "supportLabel": "Sostieni il progetto",
+      "support": "Il progetto Tempo Naturale è libero e open source. Per poter continuare a lavorare in modo indipendente, Sylvain costruisce orologi artigianali, ciascuno regolato sul luogo esatto in cui vivi. Pezzi unici e serie limitate."
+    },
     "naturalClock": {
       "title": "Orologio Naturale",
       "description": "Sono un orologio ispirato al vivente.\nLa mia unica lancetta compie un solo giro al giorno...\nSeguo il percorso del sole nel cielo,\ncon calma... su un quadrante di 360°.",
@@ -49,7 +105,7 @@
         "line4": "La vita ha già previsto l'orologio più bello...",
         "line5": "Si chiama sole! Maestro del tempo e direttore d'orchestra del vivente."
       },
-      "credits": "Creato da {author} | {github}",
+      "credits": "Creato da {author}",
       "author": "Sylvain",
       "github": "Codice sorgente su GitHub",
       "resetData": "Reimposta i dati"
@@ -349,6 +405,9 @@
     }
   },
   "faq": {
+    "title": "Domande frequenti",
+    "subtitle": "Capire tutto sul tempo naturale",
+    "boardTitle": "La differenza in breve",
     "inProgress": "(In corso di redazione)"
   },
   "locationPicker": {
@@ -417,7 +476,8 @@
     "v2_4": "🌍 L'applicazione Tempo Naturale ora parla 12 lingue! Tedesco, Italiano, Russo, Greco, Cinese, Giapponese e Portoghese (Brasile) si uniscono all'avventura.",
     "v2_5": "⌚ Il Tempo Naturale arriva sul tuo Pebble! Scarica il quadrante su Pebble.",
     "v2_5_cta": "Scarica su Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Nuova modalità fai da te: costruisci la tua meridiana naturale con gli angoli corrispondenti al sole, all'alba, al tramonto e ai baffi."
   },
   "common": {
     "loading": "Caricamento…",

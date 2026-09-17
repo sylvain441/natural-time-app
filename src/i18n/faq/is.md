@@ -1,15 +1,4 @@
-> Natural Time er opinn hugbúnaður  
-> Búið til með ❤️ af [Sylvain](https://biquette.xyz) (einnig þekktur sem "Biquette")
-> 
-> Fyrir þá sem meta þetta hugtak og vilja styðja þróun þess:
-> - [Gefa framlag](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Önnur verkefni mín: [biquette.xyz](https://biquette.xyz)
-> - Fréttabréfið mitt: [Skráðu þig hér](http://biquette.xyz/#/portal/signup/free)
-> - Verslunin mín: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube rás: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-reikningur: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### Algengar spurningar - Náttúrulegi tíminn
+### Náttúrulegi tíminn
 
 #### Hvað er Náttúrulegi tíminn? Til hvers er hann?
 
@@ -63,13 +52,21 @@ Náttúrulegi tíminn er opið hugtak sem hver sem er getur tekið upp, bætt og
 
 Hver einstaklingur sem tekur upp þessa nýju tímaskynjun leggur sitt af mörkum til að skapa heim í meira samræmi við náttúrulega rhythma sem umlykja okkur.
 
-### Algengar spurningar - Náttúrulega úrið
+### Náttúrulega úrið
 
-#### \[AUGLÝSING\] Hvar get ég keypt náttúrulegt úr?
+<figure class="faq-board" data-category="2">
 
-Náttúrulegi tíminn er frjálst hugtak sem hver sem er getur tekið upp og fundið upp að nýju. Eins og er er verkefnið leitt af skapara þess, [Sylvain](https://biquette.xyz), sem leggur tíma í rannsóknir og þróun þessa hugtaks.
+|  | Náttúrulegur tími | *vs* Tilbúinn tími |
+|---|---|---|
+| Sólin er hæst á lofti | 180° | 12, 13, 13:37, 14:22, eftir stað, árstíð og tímabelti |
+| Miðnætti í raun | 0° | 0, 1, 1:37, 2:22 |
+| Einn heill hringur á skífunni | 360°, einu sinni á dag | 12 klukkustundir, farnar tvisvar á dag |
+| Kína, 5 200 km frá austri til vesturs | 62° milli jaðranna tveggja | eitt einasta tímabelti |
+| Skiptin yfir á vetrartíma | ekkert gerist | klukkan 3 að nóttu er hún 2 |
+| Að mæla sér mót við einhvern fjarri | 210° NTZ, hornið auk viðmiðunarlengdarbaugs | 14, auk tímabeltis, auk sumar- eða vetrartíma |
 
-Til að styðja þessa vinnu og fjármagna áframhaldandi þróun verkefnisins eru upprunaleg líkamleg náttúruleg úr búin til og fáanleg til kaups í netverslun hans [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Náttúrulega úrið mælir aðeins eitt: hversu langt sólin er komin, yfir staðnum þar sem þú stendur.</figcaption>
+</figure>
 
 #### Hvernig les maður náttúrulegt úr?
 
@@ -243,7 +240,27 @@ Ef þú skoðar náttúrulega úrið vandlega gætirðu tekið eftir því að v
 
 Til að vera heiðarleg, þegar við segjum að í náttúrulegum tíma "180° samsvari virkilega hádegi," er það smá einföldun. Í raun og veru breytist raunverulegt sólhádegi (þegar sólin er nákvæmlega á hápunkti) örlítið á hverjum degi. Við notum meðaltal af hagnýtum ástæðum, ekki vegna þess að það er of erfitt að reikna, heldur vegna þess að það myndi bæta við óþarfa flækju í daglegu lífi.
 
-### Algengar spurningar - Spírall 13 tungla
+#### Hvar get ég keypt náttúrulegt úr?
+
+Náttúrulegi tíminn er frjálst hugtak sem hver sem er getur tekið upp og fundið upp að nýju. Eins og er er verkefnið leitt af skapara þess, [Sylvain](https://biquette.xyz), sem leggur tíma í rannsóknir og þróun þessa hugtaks.
+
+Til að styðja þessa vinnu og fjármagna áframhaldandi þróun verkefnisins eru upprunaleg líkamleg náttúruleg úr búin til og fáanleg til kaups í netverslun hans [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Spírall 13 tungla
+
+<figure class="faq-board" data-category="3">
+
+|  | Náttúrulegur tími | *vs* Tilbúinn tími |
+|---|---|---|
+| Lengd mánaðar | 28 dagar, þrettán sinnum | 31, 28 eða 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Fyrsti dagur mánaðarins | rauður dagur, alltaf | mánudagur, fimmtudagur, laugardagur, eftir mánuði og ári |
+| Níundi mánuðurinn | 9. tunglið | september, af latínu *septem*, „sjö“ |
+| Dagar ársins | 364, auk regnbogadagsins, stundum tveggja | 365, og 366 fjórða hvert ár |
+| Lok ársins | vetrarsólstöður | 31. desember |
+| Röðin í skrifaðri dagsetningu | ár)tungl)dagur | dagur/mánuður/ár, mánuður/dagur/ár eða ár-mánuður-dagur |
+
+<figcaption>Spírall 13 tungla skiptir árinu í þrettán eins löng tímabil, miðuð við vetrarsólstöður.</figcaption>
+</figure>
 
 #### Af hverju 13 mánuðir (tungl) með 28 dögum?
 
@@ -323,7 +340,7 @@ Fyrir marga táknar 2012 breytingu á tímum eða meðvitund. Í stað þess að
 
 Þó að þetta val sé handahófskennt (eins og hvaða upphafsstaður dagatals sem er), gerir táknræn merking þess það að áhugaverðri tímaviðmiðun fyrir kerfi sem leitast við að endurnýja samband okkar við tíma.
 
-### Algengar spurningar - Forritið
+### Forritið
 
 #### Natural Time er opinn hugbúnaður. Af hverju?
 
@@ -361,6 +378,12 @@ Ekki gleyma að breyta landfræðilegri staðsetningu þegar þú ferðast. Þú
 Stjörnufræðilegir útreikningar eru gerðir alveg á tækinu þínu. Engin persónuleg gögn eru skráð. Forritið virkar reyndar fullkomlega án nettengingar (nema gagnvirka kortið).
 
 Til að fá hugmynd um umferð forritsins er sjálfhýst Matomo þjónn (opinn hugbúnaður sem jafngildir Google Analytics) notuð. Þessi þjónn skráir aðeins fjölda einstakra gesta og fjölda síðuflettinga. Engin persónuleg gögn eru skráð.
+
+#### Natural Time á Pebble-snjallúrinu
+
+Úrskífan "Natural Time" hlaut **fyrsta sætið** í úrskífukeppni Pebble. Hún fæst ókeypis í Pebble-versluninni: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Rafbleksskjárinn sýnir ferð sólarinnar á 360° úrskífu og rafhlaðan endist í tvær til fjórar vikur. Úrskífan stillir sig sjálfkrafa eftir staðsetningu notandans.
 
 #### Þakkir
 

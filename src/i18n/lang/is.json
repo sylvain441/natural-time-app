@@ -2,6 +2,58 @@
   "welcome": {
     "title": "Náttúrulegur Tími",
     "subtitle": "Ný tímavenja",
+    "clockHero": {
+      "titleLine1": "Ég er",
+      "titleLine2": "náttúruleg klukka",
+      "subtitle": "Ég hreyfist í takt við sólina.",
+      "cta": { "howToRead": "Hvernig virkar þetta?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Ég er",
+      "titleLine2": "spírall 13 tungla",
+      "subtitle": "Eitt ár: 13 jafnlangir 28 daga mánuðir og Regnbogadagurinn",
+      "cta": { "howToRead": "Hvernig virkar þetta?" }
+    },
+    "moonsIntro": {
+      "lead": "Náttúrulegur Tími endurhugsar líka hvernig við teljum dagana.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Spírallinn sækir innblástur í hefðir alls staðar að úr heiminum og í {moon}. Hann fylgir einföldum takti: {same}, hver með 28 daga. Einfalt, ekki satt?",
+      "moonWord": "tunglið",
+      "sameWord": "13 eins mánuðir",
+      "links": { "spiral": "Opna 13 tunglin", "faq": "Algengar spurningar" }
+    },
+    "intro": {
+      "lead": "Náttúrulegur Tími endurhugsar hvernig við mælum tíma.",
+      "statement": "Með {hand} og {dial} setur náttúrulega klukkan {sun} aftur í miðju tímamælingarinnar sem {reference}.",
+      "handWord": "aðeins einum vísi",
+      "dialWord": "360° skífu",
+      "sunWord": "sólina",
+      "referenceWord": "algilda viðmiðun okkar",
+      "video": { "label": "Horfa á kynninguna", "offline": "Myndbandið birtist aftur um leið og þú tengist netinu." },
+      "links": { "clock": "Ræsa klukkuna", "faq": "Algengar spurningar" }
+    },
+    "turn": { "line1": "Náttúrulegur Tími er meira en klukka.", "line2": "Hann er líka \"{spiral}\".", "spiral": "dagatal" },
+    "topbar": {
+      "before": "Náttúrulegur Tími vann úrskífukeppni Pebble ",
+      "long": "",
+      "after": "(snjallúramerki)",
+      "cta": "Pebble Store",
+      "close": "Loka tilkynningunni"
+    },
+    "commons": {
+      "lead": "Náttúrulegur Tími er ekki vara.",
+      "statement": "Hann er {convention} í almenningseigu, {units}. Hann tilheyrir engum og öllum sem nota hann.",
+      "conventionWord": "samkomulag",
+      "unitsPhrase": "rétt eins og metrinn",
+      "cta": "Náttúrulegur Tími á GitHub",
+      "author": {
+        "text": "Sylvain, einnig þekktur sem \"Biquette\", skapaði Náttúrulegan Tíma.",
+        "hunch": "Allt hófst með einfaldri hugmynd: Það er óþarflega flókið hvernig við skiptum tímanum. Fylgjum við því nógu lengi færumst við úr takti við hringrásir lífríkisins."
+      },
+      "links": { "site": "Önnur verkefni Sylvains", "shop": "Kaupa klukku", "donate": "Styrkja verkefnið" },
+      "supportLabel": "Styðja verkefnið",
+      "support": "Náttúrulegur Tími er frjálst verkefni með opinn hugbúnað. Til að geta haldið sjálfstæðu starfi sínu áfram smíðar Sylvain klukkur í höndunum og stillir hverja þeirra nákvæmlega fyrir staðinn þar sem þú býrð. Einstök verk og takmarkaðar seríur."
+    },
     "naturalClock": {
       "title": "Náttúruleg Klukka",
       "description": "Ég er klukka innblásin af náttúrunni.\nEini vísirinn minn snýst aðeins einu sinni á dag...\nFylgist með leið sólarinnar yfir himininn,\nsamfelldur... á 360° skífu.",
@@ -49,7 +101,7 @@
         "line4": "Náttúran hefur þegar gefið okkur fullkominn tímamæli...",
         "line5": "Sólina! Æðsta hljómsveitarstjóra allra lifandi vera."
       },
-      "credits": "Búið til af {author} | {github}",
+      "credits": "Búið til af {author}",
       "author": "Sylvain",
       "github": "Opinn hugbúnaður á GitHub",
       "resetData": "Endurstilla gögn"
@@ -373,6 +425,9 @@
     }
   },
   "faq": {
+    "title": "Algengar spurningar",
+    "subtitle": "Skilja náttúrulegan tíma",
+    "boardTitle": "Munurinn í stuttu máli",
     "inProgress": "(Í vinnslu)"
   },
   "locationPicker": {
@@ -440,6 +495,7 @@
     "title": "Forrit uppfært!",
     "v2_4": "🌍 Náttúrulegs Tíma appið talar nú 12 tungumál! Þýska, ítalska, rússneska, gríska, kínverska, japanska og portúgalska (Brasilía) bætast í ævintýrið.",
     "v2_5": "⌚ Náttúrulegur Tími er nú á Pebble-úrinu þínu! Sæktu skífuna á Pebble.",
+    "v2_6": "🧭 Nýr gera-það-sjálfur hamur: búðu til þína eigin náttúrulegu sólskífu með hornum sólar, sólarupprásar, sólseturs og yfirvaraskeggjanna.",
     "v2_5_cta": "Sækja á Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },

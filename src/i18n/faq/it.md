@@ -1,15 +1,4 @@
-> Il Tempo Naturale è un progetto open source  
-> Immaginato con ❤️ da [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Per chi apprezza questo concetto e desidera sostenere il suo sviluppo:
-> - [Fai una donazione](https://biquette.xyz/#/portal/support) 🙏🥰
-> - I miei altri progetti: [biquette.xyz](https://biquette.xyz)
-> - La mia newsletter: [Iscriviti qui](http://biquette.xyz/#/portal/signup/free)
-> - Il mio shop: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Canale YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Account X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Tempo Naturale
+### Tempo Naturale
 
 #### Cos'è il Tempo Naturale? A cosa serve?
 
@@ -65,13 +54,21 @@ Ogni persona che adotta questa nuova percezione del tempo contribuisce a creare 
 
 
 
-### FAQ - Orologio Naturale
+### Orologio Naturale
 
-#### [PUBBLICITÀ] Dove si può comprare un orologio naturale?
+<figure class="faq-board" data-category="2">
 
-Il Tempo Naturale è un concetto libero che ognuno può fare proprio e reinventare. Attualmente, il progetto è portato avanti dal suo creatore, [Sylvain](https://biquette.xyz), che dedica tempo alla ricerca e allo sviluppo di questo concetto.
+|  | Tempo naturale | *vs* Tempo artificiale |
+|---|---|---|
+| Il sole è al punto più alto | 180° | 12, 13, 13:37, 14:22, a seconda del luogo, della stagione e del fuso |
+| La metà della notte | 0° | 0, 1, 1:37, 2:22 |
+| Un giro completo del quadrante | 360°, una volta al giorno | 12 ore, percorse due volte al giorno |
+| La Cina, 5 200 km da est a ovest | 62° fra i suoi due bordi | un solo fuso orario |
+| Il passaggio all'ora solare | non succede nulla | alle 3 del mattino sono le 2 |
+| Fissare un appuntamento a distanza | 210° NTZ, l'angolo più il meridiano di riferimento | le 14, più il fuso, più l'ora legale o solare |
 
-Per sostenere questo lavoro e finanziare lo sviluppo continuo del progetto, vengono creati orologi naturali fisici originali, disponibili all'acquisto sul suo shop online [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>L'orologio naturale misura una cosa sola: a che punto è il sole nella sua corsa, sopra il luogo in cui ci si trova.</figcaption>
+</figure>
 
 #### Come si legge un orologio naturale?
 
@@ -245,7 +242,27 @@ Questo doppio approccio permette all'orologio naturale di essere sia preciso nel
 
 Per essere onesti, quando diciamo che nel Tempo Naturale "180° corrisponde davvero a mezzogiorno", è una leggera semplificazione. In realtà, il vero mezzogiorno solare (il momento in cui il sole è esattamente allo zenit) varia leggermente ogni giorno. Usiamo una media per ragioni pratiche, non perché sia difficile da calcolare, ma perché aggiungerebbe una complessità inutile alla vita quotidiana.
 
-### FAQ - Spirale delle 13 Lune
+#### Dove si può comprare un orologio naturale?
+
+Il Tempo Naturale è un concetto libero che ognuno può fare proprio e reinventare. Attualmente, il progetto è portato avanti dal suo creatore, [Sylvain](https://biquette.xyz), che dedica tempo alla ricerca e allo sviluppo di questo concetto.
+
+Per sostenere questo lavoro e finanziare lo sviluppo continuo del progetto, vengono creati orologi naturali fisici originali, disponibili all'acquisto sul suo shop online [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Spirale delle 13 Lune
+
+<figure class="faq-board" data-category="3">
+
+|  | Tempo naturale | *vs* Tempo artificiale |
+|---|---|---|
+| La durata di un mese | 28 giorni, tredici volte | 31, 28 o 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Il primo giorno del mese | un giorno rosso, sempre | lunedì, giovedì, sabato, a seconda del mese e dell'anno |
+| Il nono mese | la 9ª luna | settembre, dal latino *septem*, «sette» |
+| I giorni di un anno | 364, più il giorno arcobaleno, a volte due | 365, e 366 un anno su quattro |
+| La fine dell'anno | il solstizio d'inverno | il 31 dicembre |
+| L'ordine di una data scritta | anno)luna)giorno | giorno/mese/anno, mese/giorno/anno o anno-mese-giorno |
+
+<figcaption>La spirale delle 13 lune divide l'anno in tredici periodi identici, fissati dal solstizio d'inverno.</figcaption>
+</figure>
 
 #### Perché 13 mesi (lune) di 28 giorni?
 
@@ -325,7 +342,7 @@ Per molti, il 2012 rappresenta un cambiamento d'era o di coscienza. Invece di sc
 
 Sebbene questa scelta sia arbitraria (come ogni punto di partenza calendariale), la sua portata simbolica ne fa un riferimento interessante per un sistema che cerca di rinnovare il nostro rapporto con il tempo.
 
-### FAQ - Applicazione
+### Applicazione
 
 #### Il Tempo Naturale è un progetto open source. Perché?
 
@@ -364,6 +381,12 @@ I calcoli astronomici sono eseguiti interamente sul tuo dispositivo. Nessun dato
 
 Per avere un'idea della frequentazione dell'applicazione, viene utilizzato un server Matomo (equivalente open source di Google Analytics) auto-ospitato. Questo server registra solo il numero di visitatori unici e il numero di pagine viste. Nessun dato personale è registrato.
 
+#### Il Tempo Naturale sullo smartwatch Pebble
+
+Il quadrante «Natural Time» ha conquistato il **primo posto** nel concorso di quadranti indetto da Pebble. È disponibile gratuitamente nello store Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Lo schermo a inchiostro elettronico mostra il percorso del sole su un quadrante a 360°, con un'autonomia da due a quattro settimane. Il quadrante si configura automaticamente in base alla posizione geografica di chi indossa l'orologio.
+
 #### Ringraziamenti
 
 Un grande grazie alle montagne, alle capre, ai lama e alle formiche per l'ispirazione.  
@@ -376,4 +399,3 @@ Per qualsiasi domanda: [sylvain441@pm.me](mailto:sylvain441@pm.me) – [@sylvain
 
 🌍 One love 🌎  
 🏔 🐐 🌞 🌈
-

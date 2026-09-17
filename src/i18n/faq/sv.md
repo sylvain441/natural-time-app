@@ -1,15 +1,4 @@
-> Natural Time är ett öppen källkodsprojekt  
-> Skapat med ❤️ av [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> För de som uppskattar detta koncept och vill stödja dess utveckling:
-> - [Ge en donation](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Mina andra projekt: [biquette.xyz](https://biquette.xyz)
-> - Mitt nyhetsbrev: [Prenumerera här](http://biquette.xyz/#/portal/signup/free)
-> - Min butik: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube-kanal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-konto: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Naturlig Tid
+### Naturlig Tid
 
 #### Vad är Naturlig Tid? Vad används det till?
 
@@ -63,13 +52,21 @@ Naturlig Tid är ett öppet koncept som vem som helst kan anamma, förbättra oc
 
 Varje person som anammar denna nya tidsuppfattning bidrar till att skapa en värld mer i harmoni med de naturliga rytmer som omger oss.
 
-### FAQ - Naturlig Klocka
+### Naturlig Klocka
 
-#### \[REKLAM\] Var kan jag köpa en naturlig klocka?
+<figure class="faq-board" data-category="2">
 
-Naturlig Tid är ett fritt koncept som vem som helst kan anamma och återuppfinna. För närvarande leds projektet av dess skapare, [Sylvain](https://biquette.xyz), som ägnar tid åt forskning och utveckling av detta koncept.
+|  | Naturlig tid | *vs* Konstgjord tid |
+|---|---|---|
+| Solen står som högst | 180° | 12, 13, 13:37, 14:22, beroende på plats, årstid och tidszon |
+| Mitt i natten | 0° | 0, 1, 1:37, 2:22 |
+| Ett helt varv på urtavlan | 360°, en gång om dagen | 12 timmar, genomlupna två gånger om dagen |
+| Kina, 5 200 km från öst till väst | 62° mellan de två kanterna | en enda tidszon |
+| Övergången till vintertid | det händer ingenting | klockan 3 på natten är den 2 |
+| Att bestämma en tid med någon långt bort | 210° NTZ, vinkeln plus referensmeridianen | 14, plus tidszonen, plus sommar- eller vintertid |
 
-För att stödja detta arbete och finansiera den pågående utvecklingen av projektet skapas och säljs originella fysiska naturliga klockor i hans onlinebutik [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Den naturliga klockan mäter en enda sak: hur långt solen hunnit, över platsen där man står.</figcaption>
+</figure>
 
 #### Hur läser man en naturlig klocka?
 
@@ -243,7 +240,27 @@ Denna dubbla approach tillåter den naturliga klockan att vara både exakt i sin
 
 För att vara ärlig, när vi säger att i naturlig tid "180° verkligen motsvarar middag," är det en lätt förenkling. I verkligheten varierar sann solmiddag (när solen är exakt i zenit) lite varje dag. Vi använder ett genomsnitt av praktiska skäl, inte för att det är för svårt att beräkna, utan för att det skulle tillföra onödig komplexitet till vardagen.
 
-### FAQ - 13 Månars Spiral
+#### Var kan jag köpa en naturlig klocka?
+
+Naturlig Tid är ett fritt koncept som vem som helst kan anamma och återuppfinna. För närvarande leds projektet av dess skapare, [Sylvain](https://biquette.xyz), som ägnar tid åt forskning och utveckling av detta koncept.
+
+För att stödja detta arbete och finansiera den pågående utvecklingen av projektet skapas och säljs originella fysiska naturliga klockor i hans onlinebutik [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### 13 Månars Spiral
+
+<figure class="faq-board" data-category="3">
+
+|  | Naturlig tid | *vs* Konstgjord tid |
+|---|---|---|
+| Längden på en månad | 28 dagar, tretton gånger | 31, 28 eller 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Månadens första dag | en röd dag, alltid | måndag, torsdag, lördag, beroende på månad och år |
+| Den nionde månaden | den 9:e månen | september, av latinets *septem*, ”sju” |
+| Dagarna på ett år | 364, plus regnbågsdagen, ibland två | 365, och 366 vart fjärde år |
+| Årets slut | vintersolståndet | den 31 december |
+| Ordningen i ett skrivet datum | år)måne)dag | dag/månad/år, månad/dag/år eller år-månad-dag |
+
+<figcaption>Spiralen med 13 månar delar året i tretton likadana perioder, fastlagda av vintersolståndet.</figcaption>
+</figure>
 
 #### Varför 13 månader (månar) med 28 dagar?
 
@@ -323,7 +340,7 @@ För många representerar 2012 ett epok- eller medvetandeförändring. Istället
 
 Även om detta val är godtyckligt (som vilken kalenderutgångspunkt som helst), gör dess symboliska betydelse det till en intressant tidsreferens för ett system som söker förnya vårt förhållande till tid.
 
-### FAQ - Applikation
+### Applikation
 
 #### Natural Time är ett öppen källkodsprojekt. Varför?
 
@@ -361,6 +378,12 @@ Glöm inte att ändra den geografiska positionen när du reser. Du kan också ak
 Astronomiska beräkningar utförs helt på din enhet. Inga personuppgifter registreras. Applikationen fungerar för övrigt perfekt offline (förutom den interaktiva kartan).
 
 För att få en uppfattning om applikationens trafik används en självhostrad Matomo-server (öppen källkods-motsvarighet till Google Analytics). Denna server registrerar bara antalet unika besökare och antalet sidvisningar. Inga personuppgifter registreras.
+
+#### Natural Time på Pebbles smartklocka
+
+Urtavlan "Natural Time" vann **förstaplatsen** i Pebbles tävling för urtavlor. Den finns gratis i Pebble-butiken: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+E-ink-skärmen visar solens gång på en 360° urtavla och batteriet räcker i två till fyra veckor. Urtavlan ställer automatiskt in sig efter användarens position.
 
 #### Tack
 

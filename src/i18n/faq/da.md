@@ -1,15 +1,4 @@
-> Natural Time er et open source-projekt  
-> Skabt med ❤️ af [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> For dem, der sætter pris på dette koncept og ønsker at støtte dets udvikling:
-> - [Giv en donation](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Mine andre projekter: [biquette.xyz](https://biquette.xyz)
-> - Mit nyhedsbrev: [Tilmeld dig her](http://biquette.xyz/#/portal/signup/free)
-> - Min butik: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube-kanal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-konto: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Naturlig Tid
+### Naturlig Tid
 
 #### Hvad er Naturlig Tid? Hvad bruges det til?
 
@@ -63,13 +52,21 @@ Naturlig Tid er et åbent koncept, som alle kan adoptere, forbedre og sprede. De
 
 Hver person, der adopterer denne nye tidsopfattelse, bidrager til at skabe en verden mere i harmoni med de naturlige rytmer, der omgiver os.
 
-### FAQ - Naturligt Ur
+### Naturligt Ur
 
-#### \[REKLAME\] Hvor kan jeg købe et naturligt ur?
+<figure class="faq-board" data-category="2">
 
-Naturlig Tid er et frit koncept, som alle kan adoptere og genopfinde. I øjeblikket ledes projektet af dets skaber, [Sylvain](https://biquette.xyz), som dedikerer tid til forskning og udvikling af dette koncept.
+|  | Naturlig tid | *vs* Kunstig tid |
+|---|---|---|
+| Solen står højest | 180° | 12, 13, 13:37, 14:22, alt efter sted, årstid og tidszone |
+| Midt om natten | 0° | 0, 1, 1:37, 2:22 |
+| En hel omgang på skiven | 360°, én gang om dagen | 12 timer, gennemløbet to gange om dagen |
+| Kina, 5 200 km fra øst til vest | 62° mellem de to kanter | én eneste tidszone |
+| Skiftet til vintertid | der sker ingenting | klokken 3 om natten er den 2 |
+| At aftale et tidspunkt med en langt væk | 210° NTZ, vinklen plus referencemeridianen | 14, plus tidszonen, plus sommer- eller vintertid |
 
-For at støtte dette arbejde og finansiere den løbende udvikling af projektet skabes og sælges originale fysiske naturlige ure i hans onlinebutik [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Det naturlige ur måler kun én ting: hvor langt solen er nået, over det sted man står.</figcaption>
+</figure>
 
 #### Hvordan læser man et naturligt ur?
 
@@ -243,7 +240,27 @@ Denne dobbelte tilgang tillader det naturlige ur at være både præcis i sine i
 
 For at være ærlig, når vi siger, at i naturlig tid "180° virkelig svarer til middag," er det en let forenkling. I virkeligheden varierer sand solmiddag (når solen er præcis i zenit) lidt hver dag. Vi bruger et gennemsnit af praktiske årsager, ikke fordi det er for svært at beregne, men fordi det ville tilføje unødvendig kompleksitet til hverdagen.
 
-### FAQ - 13 Måners Spiral
+#### Hvor kan jeg købe et naturligt ur?
+
+Naturlig Tid er et frit koncept, som alle kan adoptere og genopfinde. I øjeblikket ledes projektet af dets skaber, [Sylvain](https://biquette.xyz), som dedikerer tid til forskning og udvikling af dette koncept.
+
+For at støtte dette arbejde og finansiere den løbende udvikling af projektet skabes og sælges originale fysiske naturlige ure i hans onlinebutik [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### 13 Måners Spiral
+
+<figure class="faq-board" data-category="3">
+
+|  | Naturlig tid | *vs* Kunstig tid |
+|---|---|---|
+| Længden af en måned | 28 dage, tretten gange | 31, 28 eller 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Den første dag i måneden | en rød dag, altid | mandag, torsdag, lørdag, alt efter måned og år |
+| Den niende måned | den 9. måne | september, af latin *septem*, »syv« |
+| Dagene på et år | 364, plus regnbuedagen, nogle gange to | 365, og 366 hvert fjerde år |
+| Årets slutning | vintersolhverv | den 31. december |
+| Rækkefølgen i en skrevet dato | år)måne)dag | dag/måned/år, måned/dag/år eller år-måned-dag |
+
+<figcaption>Spiralen med 13 måner deler året i tretten ens perioder, fastlagt af vintersolhverv.</figcaption>
+</figure>
 
 #### Hvorfor 13 måneder (måner) på 28 dage?
 
@@ -323,7 +340,7 @@ For mange repræsenterer 2012 et æra- eller bevidsthedsskifte. I stedet for at 
 
 Selvom dette valg er vilkårligt (som ethvert kalenderudgangspunkt), gør dets symbolske betydning det til en interessant tidsreference for et system, der søger at forny vores forhold til tid.
 
-### FAQ - Applikation
+### Applikation
 
 #### Natural Time er et open source-projekt. Hvorfor?
 
@@ -361,6 +378,12 @@ Glem ikke at ændre den geografiske position, når du rejser. Du kan også aktiv
 Astronomiske beregninger udføres helt på din enhed. Ingen personlige data registreres. Applikationen fungerer i øvrigt perfekt offline (undtagen det interaktive kort).
 
 For at få en idé om applikationens trafik bruges en selvhostet Matomo-server (open source-ækvivalent til Google Analytics). Denne server registrerer kun antallet af unikke besøgende og antallet af sidevisninger. Ingen personlige data registreres.
+
+#### Natural Time på Pebble-smarturet
+
+Urskiven "Natural Time" vandt **førstepladsen** i Pebbles konkurrence for urskiver. Den findes gratis i Pebble-butikken: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+E-ink-skærmen viser solens gang på en 360° urskive og giver to til fire ugers batteritid. Urskiven indstiller sig automatisk efter brugerens position.
 
 #### Tak
 

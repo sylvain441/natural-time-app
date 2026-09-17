@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Natural Time",
     "subtitle": "A new time convention",
+    "clockHero": {
+      "titleLine1": "I am a",
+      "titleLine2": "natural clock",
+      "subtitle": "I move at the sun’s pace.",
+      "cta": {
+        "howToRead": "How does it work?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "I am a",
+      "titleLine2": "spiral of 13 moons",
+      "subtitle": "One year: 13 equal months of 28 days, plus Rainbow Day",
+      "cta": {
+        "howToRead": "How does it work?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Natural Time also reimagines how we count the days.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspired by traditions from around the world and by the {moon}, the spiral follows a simple rhythm: {same} of 28 days each. Simple, isn't it?",
+      "moonWord": "moon",
+      "sameWord": "13 identical months",
+      "links": {
+        "spiral": "Open the 13 moons",
+        "faq": "FAQ"
+      }
+    },
+    "intro": {
+      "lead": "Natural Time reimagines how we measure time.",
+      "statement": "With {hand} and a {dial}, the natural clock puts the {sun} back at the heart of how we tell time, as our {reference}.",
+      "handWord": "a single hand",
+      "dialWord": "360° dial",
+      "sunWord": "sun",
+      "referenceWord": "universal reference",
+      "video": {
+        "label": "Watch the introduction",
+        "offline": "The video comes back as soon as you are online."
+      },
+      "links": {
+        "clock": "Start the clock",
+        "faq": "FAQ"
+      }
+    },
+    "turn": {
+      "line1": "Natural Time is more than a clock.",
+      "line2": "It is also a “{spiral}”.",
+      "spiral": "calendar"
+    },
+    "topbar": {
+      "before": "Natural Time won a Pebble ",
+      "long": "watch face contest ",
+      "after": "(a smartwatch brand)",
+      "cta": "Pebble Store",
+      "close": "Close the announcement"
+    },
+    "commons": {
+      "lead": "Natural Time is not a product.",
+      "statement": "It is {convention} in the public domain, {units}. It belongs to no one, and to everyone who uses it.",
+      "conventionWord": "a convention",
+      "unitsPhrase": "like the metre",
+      "cta": "Natural Time on GitHub",
+      "author": {
+        "text": "Natural Time was created by Sylvain (alias “Biquette”).",
+        "hunch": "It began with a simple hunch: the way we divide time is needlessly complicated. Follow it long enough, and we drift out of step with the cycles of the living world."
+      },
+      "links": {
+        "site": "Sylvain's other projects",
+        "shop": "Buy a clock",
+        "donate": "Make a donation"
+      },
+      "supportLabel": "Support the project",
+      "support": "The Natural Time project is free and open source. To sustain his independent work as an inventor, Sylvain builds handmade clocks, each one set for the exact place you live. One-off pieces and limited runs."
+    },
     "naturalClock": {
       "title": "Natural Clock",
       "description": "I'm a clock inspired by nature.\nMy only hand completes just one rotation daily...\nTracking the sun's path across the sky,\nseamlessly... on a 360° dial.",
@@ -28,11 +101,6 @@
         "download": "View on Pebble"
       }
     },
-    "hero": {
-      "description": "Natural Time reimagines how we measure time.\nThrough the {clock} and the {spiral},\nthe sun reclaims its role as the universal reference point\nfor the passage of time...",
-      "clockLink": "360° clock",
-      "spiralLink": "13 moons spiral"
-    },
     "understanding": {
       "title": "Understanding",
       "subtitle": "natural time",
@@ -44,12 +112,12 @@
     "footer": {
       "closing": {
         "line1": "We created machines to measure time.",
-        "line2": "Then we became slaves to their ticking.",
-        "line3": "Natural Time reverses this trend.",
+        "line2": "Then we started obeying them.",
+        "line3": "Natural Time turns that relationship around.",
         "line4": "Nature has already given us the perfect timekeeper...",
         "line5": "The sun! The ultimate orchestrator of all living things."
       },
-      "credits": "Created by {author} | {github}",
+      "credits": "Created by {author}",
       "author": "Sylvain",
       "github": "Open sourced on GitHub",
       "resetData": "Reset data"
@@ -373,6 +441,9 @@
     }
   },
   "faq": {
+    "title": "Frequently asked questions",
+    "subtitle": "Understanding natural time",
+    "boardTitle": "The difference in brief",
     "inProgress": "(Work in progress)"
   },
   "locationPicker": {
@@ -429,7 +500,7 @@
     "dateFormat": "en-US"
   },
   "youtubePlayer": {
-    "thumbnail": "Understand Natural Time in 10 minutes"
+    "thumbnail": "Why invent a new clock?"
   },
   "notFound": {
     "title": "404",

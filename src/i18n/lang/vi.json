@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Thời Gian Tự Nhiên",
     "subtitle": "Một quy ước thời gian mới",
+    "clockHero": {
+      "titleLine1": "Tôi là một",
+      "titleLine2": "chiếc đồng hồ tự nhiên",
+      "subtitle": "Tôi chuyển động theo nhịp mặt trời.",
+      "cta": {
+        "howToRead": "Hoạt động như thế nào?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Tôi là một",
+      "titleLine2": "vòng xoắn 13 trăng",
+      "subtitle": "Một năm: 13 tháng giống nhau, mỗi tháng 28 ngày, cộng thêm Ngày Cầu Vồng",
+      "cta": {
+        "howToRead": "Hoạt động như thế nào?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Thời Gian Tự Nhiên cũng mang đến một cách mới để đếm ngày.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Lấy cảm hứng từ những truyền thống trên khắp thế giới và từ {moon}, vòng xoắn này đi theo một nhịp điệu đơn giản: {same}, mỗi tháng 28 ngày. Đơn giản, phải không?",
+      "moonWord": "mặt trăng",
+      "sameWord": "13 tháng giống nhau",
+      "links": {
+        "spiral": "Mở 13 trăng",
+        "faq": "Câu hỏi thường gặp"
+      }
+    },
+    "intro": {
+      "lead": "Thời Gian Tự Nhiên mang đến một cách mới để đo thời gian.",
+      "statement": "Với {hand} và {dial}, đồng hồ tự nhiên đặt {sun} trở lại vị trí trung tâm trong cách chúng ta xem giờ và lấy đó làm {reference}.",
+      "handWord": "một kim duy nhất",
+      "dialWord": "mặt số 360°",
+      "sunWord": "mặt trời",
+      "referenceWord": "điểm tham chiếu chung",
+      "video": {
+        "label": "Xem video giới thiệu",
+        "offline": "Video sẽ xem được khi bạn kết nối mạng trở lại."
+      },
+      "links": {
+        "clock": "Khởi động đồng hồ",
+        "faq": "Câu hỏi thường gặp"
+      }
+    },
+    "turn": {
+      "line1": "Thời Gian Tự Nhiên không chỉ là một chiếc đồng hồ.",
+      "line2": "Đó còn là một “{spiral}”.",
+      "spiral": "bộ lịch"
+    },
+    "topbar": {
+      "before": "Thời Gian Tự Nhiên đã thắng cuộc thi thiết kế mặt đồng hồ Pebble ",
+      "long": "",
+      "after": "(thương hiệu đồng hồ thông minh)",
+      "cta": "Pebble Store",
+      "close": "Đóng thông báo"
+    },
+    "commons": {
+      "lead": "Thời Gian Tự Nhiên không phải là một sản phẩm.",
+      "statement": "Đó là {convention} thuộc phạm vi công cộng, {units}. Nó không thuộc về riêng ai mà thuộc về tất cả những người sử dụng nó.",
+      "conventionWord": "một quy ước",
+      "unitsPhrase": "giống như mét",
+      "cta": "Natural Time trên GitHub",
+      "author": {
+        "text": "Thời Gian Tự Nhiên do Sylvain, biệt danh “Biquette”, sáng tạo.",
+        "hunch": "Mọi thứ bắt đầu từ một linh cảm đơn giản: cách chúng ta chia thời gian hằng ngày phức tạp một cách không cần thiết. Càng sống theo nó, chúng ta càng lệch khỏi nhịp điệu của thế giới sống."
+      },
+      "links": {
+        "site": "Các dự án khác của Sylvain",
+        "shop": "Mua đồng hồ",
+        "donate": "Quyên góp"
+      },
+      "supportLabel": "Ủng hộ dự án",
+      "support": "Natural Time là một dự án tự do và mã nguồn mở. Để tiếp tục công việc độc lập của mình, Sylvain làm đồng hồ thủ công và căn chỉnh chính xác theo nơi bạn sống. Mỗi chiếc là độc bản hoặc thuộc một đợt sản xuất giới hạn."
+    },
     "naturalClock": {
       "title": "Đồng Hồ Tự Nhiên",
       "description": "Tôi là một chiếc đồng hồ lấy cảm hứng từ thiên nhiên.\nKim duy nhất của tôi chỉ quay một vòng mỗi ngày...\nTheo dõi hành trình của mặt trời băng qua bầu trời,\nliền mạch... trên mặt số 360°.",
@@ -49,7 +122,7 @@
         "line4": "Thiên nhiên đã cho chúng ta người giữ thời gian hoàn hảo...",
         "line5": "Mặt trời! Nhạc trưởng tối thượng của mọi sinh vật."
       },
-      "credits": "Tạo bởi {author} | {github}",
+      "credits": "Tạo bởi {author}",
       "author": "Sylvain",
       "github": "Mã nguồn mở trên GitHub",
       "resetData": "Đặt lại dữ liệu"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "Câu hỏi thường gặp",
+    "subtitle": "Hiểu thời gian tự nhiên",
+    "boardTitle": "Tóm tắt sự khác biệt",
     "inProgress": "(Đang tiến hành)"
   },
   "locationPicker": {
@@ -441,7 +517,8 @@
     "v2_4": "🌍 Ứng dụng Thời Gian Tự Nhiên hiện nói 12 ngôn ngữ! Tiếng Đức, Ý, Nga, Hy Lạp, Trung Quốc, Nhật Bản và Bồ Đào Nha (Brazil) tham gia cuộc phiêu lưu.",
     "v2_5": "⌚ Thời Gian Tự Nhiên đã có mặt trên đồng hồ Pebble của bạn! Tải mặt đồng hồ trên Pebble.",
     "v2_5_cta": "Tải trên Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Chế độ DIY mới: tự làm đồng hồ mặt trời tự nhiên bằng các góc của mặt trời, bình minh, hoàng hôn và những cung theo mùa."
   },
   "common": {
     "loading": "Đang tải…",

@@ -1,15 +1,4 @@
-> Natural Time is an open source project  
-> Created with ❤️ by [Sylvain](https://biquette.xyz) (aka "Biquette")
-> 
-> For those who appreciate this concept and wish to support its development:
-> - [Make a donation](https://biquette.xyz/#/portal/support) 🙏🥰
-> - My other projects: [biquette.xyz](https://biquette.xyz)
-> - My newsletter: [Subscribe here](http://biquette.xyz/#/portal/signup/free)
-> - My shop: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube channel: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X account: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Natural Time
+### Natural Time
 
 #### What is Natural Time? What's it for?
 
@@ -63,13 +52,21 @@ Natural Time is an open concept that anyone can adopt, improve, and spread. Part
 
 Each person who adopts this new perception of time contributes to creating a world more in tune with the natural rhythms that surround us.
 
-### FAQ - Natural Clock
+### Natural Clock
 
-#### \[ADVERTISEMENT\] Where can I buy a natural clock?
+<figure class="faq-board" data-category="2">
 
-Natural Time is a free concept that anyone can adopt and reinvent. Currently, the project is led by its creator, [Sylvain](https://biquette.xyz), who dedicates time to research and development of this concept.
+|  | Natural time | *vs* Artificial time |
+|---|---|---|
+| The sun is at its highest | 180° | 12:00, 1 pm, 1:37 pm, 2:22 pm, depending on the place, the season and the time zone |
+| The middle of the night | 0° | 12 am, 1 am, 1:37 am, 2:22 am |
+| One full turn of the dial | 360°, once a day | 12 hours, gone round twice a day |
+| China, 5,200 km from east to west | 62° between its two edges | one single time zone |
+| The switch back to winter time | nothing happens | at 3 am it is 2 am |
+| Setting a time with someone far away | 210° NTZ, the angle plus the reference meridian | 2 pm, plus the time zone, plus summer or winter time |
 
-To support this work and fund the ongoing development of the project, original physical natural clocks are created and available for purchase on his online store [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>The natural clock measures one thing only: how far the sun has travelled, above the place where you stand.</figcaption>
+</figure>
 
 #### How do I read a natural clock?
 
@@ -243,7 +240,27 @@ This dual approach allows the natural clock to be both precise in its indication
 
 To be honest, when we say that in natural time "180° really corresponds to noon," it's a slight simplification. In reality, true solar noon (when the sun is exactly at its zenith) varies slightly each day. We use an average for practical reasons, not because it's too difficult to calculate, but because it would add unnecessary complexity to daily life.
 
-### FAQ - 13 Moons Spiral
+#### Where can I buy a natural clock?
+
+Natural Time is a free concept that anyone can adopt and reinvent. Currently, the project is led by its creator, [Sylvain](https://biquette.xyz), who dedicates time to research and development of this concept.
+
+To support this work and fund the ongoing development of the project, original physical natural clocks are created and available for purchase on his online store [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### 13 Moons Spiral
+
+<figure class="faq-board" data-category="3">
+
+|  | Natural time | *vs* Artificial time |
+|---|---|---|
+| The length of a month | 28 days, thirteen times | 31, 28 or 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| The first day of the month | a red day, always | Monday, Thursday, Saturday, depending on the month and the year |
+| The ninth month | the 9th moon | September, from the Latin *septem*, “seven” |
+| The days in a year | 364, plus the rainbow day, sometimes two | 365, and 366 every fourth year |
+| The end of the year | the winter solstice | 31 December |
+| The order of a written date | year)moon)day | day/month/year, month/day/year or year-month-day |
+
+<figcaption>The 13 moons spiral cuts the year into thirteen identical periods, set by the winter solstice.</figcaption>
+</figure>
 
 #### Why 13 months (moons) of 28 days?
 
@@ -323,7 +340,7 @@ For many, 2012 represents a change of era or consciousness. Rather than choosing
 
 Although this choice is arbitrary (like any calendar starting point), its symbolic significance makes it an interesting temporal reference for a system that seeks to renew our relationship with time.
 
-### FAQ - Application
+### Application
 
 #### Natural Time is an open source project. Why?
 
@@ -335,7 +352,7 @@ The source code of natural time is divided into three parts:
 
 - Complete specifications of natural time (in English): [github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time)
 - JavaScript library for calculating natural time: [github.com/sylvain441/natural-time-js](https://github.com/sylvain441/natural-time-js)
-- VueJs application for the natural time clock: [github.com/sylvain441/natural-time-app](https://github.com/sylvain441/natural-time-app) — [naturaltime.app](https://naturaltime.app)
+- VueJs application for the natural time clock: [github.com/sylvain441/natural-time-app](https://github.com/sylvain441/natural-time-app) · [naturaltime.app](https://naturaltime.app)
 
 Don't hesitate to contribute to the evolution of natural time; to make it your own or reinvent it in your own way!
 
@@ -361,6 +378,12 @@ Don't forget to change the geographic position when you travel. You can also act
 Astronomical calculations are entirely performed on your device. No personal data is recorded. The application works perfectly offline by the way (except for the interactive map).
 
 To get an idea of the application's traffic, a self-hosted Matomo server (open source equivalent of Google Analytics) is used. This server only records the number of unique visitors and the number of page views. No personal data is recorded.
+
+#### Natural Time on the Pebble smartwatch
+
+The "Natural Time" watch face won **first place** in the watch face contest run by Pebble. It is free on the Pebble store: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+E-ink shows the sun's course on a 360° dial, with two to four weeks of battery life. The face configures itself from the wearer's position.
 
 #### Acknowledgments
 

@@ -1,27 +1,16 @@
-> Le Temps Naturel est un projet open source  
-> Imaginé avec ❤️ par [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Pour celles et ceux qui apprécient ce concept et souhaitent soutenir son développement :
-> - [Faire un don](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Mes autres projets : [biquette.xyz](https://biquette.xyz)
-> - Ma newsletter : [S'abonner ici](http://biquette.xyz/#/portal/signup/free)
-> - Ma boutique : [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Chaîne YouTube : [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Compte X : [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Temps Naturel
+### Temps Naturel
 
 #### Le Temps Naturel, c'est quoi ? À quoi ça sert ?
 
 Le Temps Naturel est une révolution silencieuse - un retour aux fondamentaux de notre perception temporelle. C'est une façon de mesurer le temps basée sur la position réelle du soleil dans le ciel, plutôt que sur des conventions artificielles. Au fond, c'est simplement un retour au bon sens - le système de temps que l'humanité aurait dû choisir depuis le début, puisque le soleil est déjà une horloge naturelle parfaite.
 
-Un monde où midi signifie réellement que le soleil est au zénith. Où l'heure ne change jamais arbitrairement. Où la perception du temps est directement liée aux cycles naturels qui nous entourent. Voilà ce que propose le Temps Naturel.
+Un monde où midi signifie réellement que le soleil est au plus haut dans le ciel. Où l'heure ne change jamais arbitrairement. Où la perception du temps est directement liée aux cycles naturels qui nous entourent. Voilà ce que propose le Temps Naturel.
 
 Il reconnecte la conscience temporelle avec les rythmes cosmiques, simplifie la relation au temps, et libère des contraintes artificielles qui dictent les vies modernes.
 
 #### Pourquoi notre système de temps actuel est-il artificiel ?
 
-Le système horaire conventionnel est une construction purement humaine, déconnectée des réalités astronomiques. Pourquoi le soleil devrait-il être au zénith à des heures différentes selon les saisons ? Pourquoi "perdre" ou "gagner" une heure deux fois par an ?
+Le système horaire conventionnel est une construction purement humaine, déconnectée des réalités astronomiques. Pourquoi le soleil devrait-il être au plus haut dans le ciel à des heures différentes selon les saisons ? Pourquoi "perdre" ou "gagner" une heure deux fois par an ?
 
 Les fuseaux horaires créent des frontières temporelles invisibles où le temps peut littéralement "sauter" d'une heure simplement en traversant une ligne imaginaire.
 
@@ -31,7 +20,7 @@ Ce système, né des besoins de l'industrialisation et standardisé pour facilit
 
 L'expression "le temps, c'est de l'argent" est profondément ancrée dans notre culture. Ce n'est pas un hasard : étymologiquement, le mot "calendrier" vient du latin "calendarium" qui signifiait "livre des comptes" ou "registre des dettes".
 
-Notre conception moderne du temps est historiquement liée à l'idée que le temps doit être mesuré pour être monétisé. Les premiers calendriers ont été conçus en partie pour régulariser la collecte des impôts !
+Notre conception moderne du temps est historiquement liée à l'idée que le temps doit être mesuré pour être monétisé. Très tôt, les calendriers ont aussi servi à fixer des échéances, des dettes et des prélèvements.
 
 Le temps naturel propose une alternative à ce mariage forcé entre temps et argent. Il invite à considérer le temps non pas comme une ressource à exploiter, mais comme un cycle naturel à vivre pleinement. Comme le dit joliment la philosophie du temps naturel : "Le temps, c'est l'art des gens" plutôt que l'argent des banques.
 
@@ -39,9 +28,9 @@ Le temps naturel propose une alternative à ce mariage forcé entre temps et arg
 
 La manière dont on perçoit le temps façonne profondément l'expérience de vie. Vivre selon un temps artificiel crée une dissonance subtile mais constante entre les rythmes biologiques et l'organisation sociale.
 
-Le corps humain est naturellement synchronisé avec les cycles solaires - hormones, température corporelle et niveau d'énergie fluctuent en harmonie avec la position du soleil. Ignorer ces signaux pour suivre un temps abstrait crée un stress chronique que les scientifiques appellent "jet lag social".
+La lumière naturelle contribue à synchroniser nos rythmes biologiques, notamment le sommeil, la température corporelle et certaines sécrétions hormonales. Un décalage durable entre ces rythmes et l'organisation sociale peut contribuer à ce que les chronobiologistes appellent le « décalage horaire social ».
 
-Réaligner la perception du temps avec les cycles naturels peut améliorer le sommeil, réduire le stress, et aider à retrouver un rythme de vie plus organique et satisfaisant. C'est comme retrouver une danse ancienne que le corps n'a jamais oubliée.
+Se recaler davantage sur la lumière et les cycles naturels peut aider certaines personnes à mieux dormir et à retrouver un rythme de vie plus organique. C'est comme retrouver une danse ancienne que le corps n'a jamais oubliée.
 
 #### Qui a imaginé le concept de temps naturel ?
 
@@ -66,20 +55,28 @@ Chaque personne qui adopte cette nouvelle perception du temps contribue à crée
 
 
 
-### FAQ - Horloge Naturelle
+### Horloge Naturelle
 
-#### \[PUBLICITÉ\] Où peut-on acheter une horloge naturelle ?
+<figure class="faq-board" data-category="2">
 
-Le temps naturel est un concept libre que chacun peut s'approprier et réinventer. Actuellement, le projet est porté par son créateur, [Sylvain](https://biquette.xyz), qui consacre du temps à la recherche et au développement de ce concept.
+|  | Temps naturel | *vs* Temps artificiel |
+|---|---|---|
+| Nombre d'aiguilles | 1 | 3 <small>heures, minutes, secondes</small> |
+| Cadran | 0 → 360° <small>comme un cercle</small> | 0 → 12 heures (fois deux)<br>0 → 59 minutes<br>0 → 59 secondes |
+| Midi <small>soleil au plus haut</small> | 180° | très variable <small>selon le lieu, le fuseau horaire et le changement d'heure</small> |
+| Minuit <small>le vrai</small> | 0° | idem |
+| Fuseaux horaires | 360 <small>un par degré de longitude</small> | 38 <small>de UTC-12 à UTC+14, tracés le long des frontières, dont certains décalés d'une demi-heure et un d'un quart d'heure</small> |
+| Changements d'heure | jamais <small>le soleil ne change pas d'heure</small> | deux fois par an <small>dates et durée au bon vouloir des gouvernements</small> |
+| Optimisé pour | le monde vivant | le monde des machines <small>quoique...</small> |
 
-Pour soutenir ce travail et financer le développement continu du projet, des horloges naturelles physiques originales sont créées et disponibles à l'achat sur sa boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz).
+</figure>
 
 #### Comment lire une horloge naturelle ?
 
 L'horloge naturelle est une représentation directe de la position du soleil dans le ciel. Sa lecture est intuitive et ne nécessite pas de placer l'horloge dans une direction particulière.
 
 L'aiguille indique simplement où se trouve le soleil à l'instant présent :
-- Quand l'aiguille est tout en haut (à 180°), c'est le milieu de la journée, le soleil est au zénith
+- Quand l'aiguille est tout en haut (à 180°), c'est le milieu de la journée, le soleil est au plus haut dans le ciel
 - Quand elle est tout en bas (à 0°), c'est le milieu de la nuit
 - L'aiguille fait un tour complet en une journée, tournant aussi lentement que le soleil dans le ciel
 
@@ -91,7 +88,7 @@ C'est comparable à l'observation du soleil dans le ciel : l'angle entre le sole
 
 #### Quels sont les avantages de l'utiliser au quotidien ?
 
-L'horloge naturelle reconnecte à une conception ancestrale du temps marquée par le mouvement du soleil. Contrairement au système horaire conventionnel, complètement déconnecté du vivant, le temps naturel ne triche pas : le soleil est toujours au même endroit et se déplace toujours à la même vitesse, tout comme l'aiguille de l'horloge naturelle.
+L'horloge naturelle reconnecte à une conception ancestrale du temps marquée par le mouvement du soleil. Contrairement au système horaire conventionnel, complètement déconnecté du vivant, le temps naturel ne triche pas : la course apparente du soleil reste continue, sans saut arbitraire, tout comme le mouvement de l'aiguille.
 
 Cette approche s'affranchit des changements d'heure et des fuseaux horaires artificiels, permettant à l'horloge de coïncider véritablement avec le lieu d'habitation. Fini de "chercher midi à 14h" comme dans le système artificiel !
 
@@ -149,12 +146,12 @@ Le format complet du temps naturel combine la date, l'heure et la longitude en u
 
 Par exemple : 010)05)22 202°63 NT+5.2 signifie :
 - Année 10 (2022-2023 dans le calendrier grégorien)
-- 5ème lune
-- 22ème jour de cette lune
+- 5e lune
+- 22e jour de cette lune
 - Le soleil est à 202,63 degrés dans le ciel
 - À une longitude de 5,2 degrés Est
 
-Pour les jours arc-en-ciel, on utilise la notation YYY)RAINBOW pour le 365ème jour, et YYY)RAINBOW+ pour le 366ème jour (quand il existe).
+Pour les jours arc-en-ciel, on utilise la notation YYY)RAINBOW pour le 365e jour, et YYY)RAINBOW+ pour le 366e jour (quand il existe).
 
 Cette notation peut sembler complexe au premier abord, mais elle offre une cohérence que le format conventionnel (JJ/MM/AAAA) ne possède pas. Par exemple, en rangeant les dates par ordre alphabétique, elles se retrouvent automatiquement dans l'ordre chronologique.
 
@@ -179,9 +176,9 @@ Cette notation permet de savoir immédiatement où se situe l'horloge par rappor
 
 **À l'échelle régionale :** Dans la vie quotidienne, les habitants d'une même région peuvent simplement utiliser un lieu central comme référence, avec des ajustements minimes de quelques degrés selon leur position exacte.
 
-#### Que se passe-t-il lors des changements d'heures ?
+#### Que se passe-t-il lors des changements d'heure ?
 
-Pendant les changements d'heure conventionnels, on observe toute l'absurdité du système moderne : il est 2h du matin et une seconde plus tard, il est 3h du matin (ou inversement). Pourtant, le soleil ne fait jamais de saut dans sa course - il ne change jamais sa vitesse de croisière.
+Pendant les changements d'heure conventionnels, on observe toute l'absurdité du système moderne : il est 2h du matin et une seconde plus tard, il est 3h du matin (ou inversement). Pourtant, la course apparente du soleil reste continue : elle ne fait jamais de saut.
 
 Le temps naturel n'implémente pas ces ajustements artificiels. Ce qui compte, c'est uniquement la position du soleil. Alors que les activités humaines modernes s'affranchissent des conditions extérieures (aller au travail à la même heure hiver comme été), l'horloge naturelle reste fidèle au rythme solaire.
 
@@ -244,11 +241,33 @@ En réalité, la Terre ne tourne pas à vitesse constante tout au long de l'ann�
 
 Cette double approche permet à l'horloge naturelle d'être à la fois précise dans ses indications et régulière dans son mouvement - un compromis élégant entre la réalité astronomique complexe et notre besoin humain de régularité.
 
-Pour être honnête, quand on dit que dans le temps naturel "180° correspond vraiment à midi", c'est une légère simplification. En réalité, le vrai midi solaire (moment où le soleil est exactement au zénith) varie légèrement chaque jour. On utilise une moyenne pour des raisons pratiques, pas parce que c'est trop difficile à calculer, mais parce que cela ajouterait une complexité inutile au quotidien.
+Pour être honnête, quand on dit que dans le temps naturel "180° correspond vraiment à midi", c'est une légère simplification. En réalité, le vrai midi solaire (moment où le soleil atteint son point le plus haut dans le ciel) varie légèrement chaque jour. On utilise une moyenne pour des raisons pratiques, pas parce que c'est trop difficile à calculer, mais parce que cela ajouterait une complexité inutile au quotidien.
+
+#### Où peut-on acheter une horloge naturelle ?
+
+Le temps naturel est un concept libre que chacun peut s'approprier et réinventer. Actuellement, le projet est porté par son créateur, [Sylvain](https://biquette.xyz), qui consacre du temps à la recherche et au développement de ce concept.
+
+Pour soutenir ce travail et financer le développement continu du projet, des horloges naturelles physiques originales sont créées et disponibles à l'achat sur sa boutique en ligne [shop.biquette.xyz](https://shop.biquette.xyz).
 
 
 
-### FAQ - Spirale des 13 Lunes
+### Spirale des 13 Lunes
+
+<figure class="faq-board" data-category="3">
+
+|  | Temps naturel | *vs* Temps artificiel |
+|---|---|---|
+| Comment ça s'appelle | une spirale <small>le temps ne revient jamais au même point</small> | un calendrier <small>du latin *calendarium*, le livre des comptes, le registre des dettes</small> |
+| Nombre de mois | 13 <small>on les appelle des lunes</small> | 12 |
+| Durée d'un mois | 28 jours <small>toujours</small> | 31, 30, 28, parfois 29 <small>dans un ordre qu'il faut apprendre par cœur</small> |
+| Semaines dans un mois | 4 <small>exactement</small> | 4 + 2 ou 3 jours |
+| Premier jour du mois | Jour 01 (Rouge) <small>1er jour de la première semaine</small> | lundi, jeudi, samedi... <small>il faut regarder le calendrier</small> |
+| Jours dans l'année | 13 × 28 = 364<br>364 + 1 = 365 <small>les treize lunes, plus le jour arc-en-ciel</small> | 31 + 28 + 31 + 30 + 31 + 30<br>+ 31 + 31 + 30 + 31 + 30 + 31<br>= 365 |
+| Année bissextile | selon le ciel <small>deux jours arc-en-ciel certaines années, d'après la position réelle des astres</small> | tous les 4 ans <small>sauf les années multiples de 100, mais pas celles multiples de 400</small> |
+| Début de l'année | le solstice d'hiver <small>le jour où la lumière revient</small> | le 1er janvier <small>une dizaine de jours après le solstice, sans rapport avec le ciel</small> |
+| Écriture d'une date | année)lune)jour <small>partout, et triable par ordre alphabétique</small> | jour/mois/année, mois/jour/année ou année-mois-jour <small>selon le pays</small> |
+
+</figure>
 
 #### Pourquoi 13 mois (lunes) de 28 jours ?
 
@@ -279,7 +298,7 @@ L'avantage principal est de vivre dans des cycles cohérents et facilement compr
 Dans ce système :
 - Chaque lune commence toujours par le premier jour de la semaine
 - Chaque lune contient exactement 4 semaines
-- Le 14ème jour (par exemple) est toujours le dernier jour de la deuxième semaine, quel que soit le siècle ou le millénaire
+- Le 14e jour (par exemple) est toujours le dernier jour de la deuxième semaine, quel que soit le siècle ou le millénaire
 - L'année commence toujours par le premier jour de la semaine de la première lune
 
 Cette régularité rend les projections temporelles beaucoup plus intuitives. Par exemple, calculer le nombre de jours entre le 13ème jour de la première lune et le 27ème jour de la troisième lune devient simple, car toutes les lunes ont le même nombre de jours. Le même exercice avec le calendrier grégorien est si complexe.
@@ -294,7 +313,7 @@ L'utilisation des couleurs comme noms des jours de la semaine est facultative, m
 
 #### Pourquoi utiliser le terme "Spirale" plutôt que "Calendrier" ?
 
-Le terme "calendrier" vient étymologiquement du latin "calendarium", qui signifiait "livre des comptes" ou "registre des dettes". Il est donc historiquement lié à l'idée que le temps est associé à l'argent et aux taxes. Les premiers calendriers ont été conçus en partie pour régulariser la collecte des impôts.
+Le terme "calendrier" vient étymologiquement du latin "calendarium", qui signifiait "livre des comptes" ou "registre des dettes". Il est donc historiquement lié à l'idée que le temps est associé à l'argent et aux taxes. Très tôt, les calendriers ont aussi servi à fixer des échéances, des dettes et des prélèvements.
 
 Le système naturel préfère le terme "spirale" car il reflète mieux la nature du temps, qui n'est pas un cercle fermé mais une progression en spirale. Cette image est renforcée par la disposition des 13 lunes en forme de spirale, avec le jour arc-en-ciel au centre.
 
@@ -322,7 +341,7 @@ Localement, l'année commence au prochain minuit local (0°) après ce moment gl
 
 #### Pourquoi l'an 001 correspond-il à 2012 ?
 
-Le choix de faire correspondre l'an 001 du calendrier naturel à l'année 2012 du calendrier grégorien est arbitraire, mais symboliquement significatif. C'est un clin d'œil à la civilisation maya, ou du moins à l'interprétation moderne de leur calendrier, qui avait identifié cette période comme marquant un grand changement de cycle lors du solstice d'hiver de cette année-là. En gros le 21/12/2012 était comme un mega jubilé de l'an 2000 pour le "compte long" des mayas.
+Le choix de faire correspondre l'an 001 du calendrier naturel à l'année 2012 du calendrier grégorien est arbitraire, mais symboliquement significatif. C'est un clin d'œil à la civilisation maya, ou du moins à l'interprétation moderne de son calendrier, qui avait identifié cette période comme marquant un grand changement de cycle lors du solstice d'hiver de cette année-là. En gros, le 21/12/2012 était comme un méga-jubilé de l'an 2000 pour le « compte long » des Mayas.
 
 Pour beaucoup, 2012 représente un changement d'ère ou de conscience. Plutôt que de choisir une date ancienne comme point de départ, ce calendrier opte pour une date récente qui symbolise un nouveau commencement.
 
@@ -332,19 +351,19 @@ Bien que ce choix soit arbitraire (comme tout point de départ calendaire), sa p
 
 
 
-### FAQ - Application
+### Application
 
 #### Le Temps Naturel est un projet open source. Pourquoi ?
 
 Le temps naturel est une convention universelle au même titre que le mètre ou le kilogramme. Il est donc tout à fait normal qu'il soit libre de faire son chemin en toute autonomie par rapport à son concepteur.
 
-Cette application a été créée ([naturaltime.app](https://naturaltime.app)) pour comprendre et pour jouer avec l'horloge du temps naturel. Elle est hébergée sur [github](https://github.com/sylvain441/natural-time-app) et libérée sous licence Creative Common Zero.
+Cette application a été créée ([naturaltime.app](https://naturaltime.app)) pour comprendre et pour jouer avec l'horloge du temps naturel. Elle est hébergée sur [GitHub](https://github.com/sylvain441/natural-time-app) et libérée sous licence Creative Commons Zero.
 
 Le code source du temps naturel est divisé en trois parties :
 
 - Spécifications complètes du temps naturel (en anglais) : [github.com/sylvain441/natural-time](https://github.com/sylvain441/natural-time)
 - Librairie JavaScript de calcul du temps naturel : [github.com/sylvain441/natural-time-js](https://github.com/sylvain441/natural-time-js)
-- Application VueJs horloge du temps naturel : [github.com/sylvain441/natural-time-app](https://github.com/sylvain441/natural-time-app) — [naturaltime.app](https://naturaltime.app)
+- Application VueJs horloge du temps naturel : [github.com/sylvain441/natural-time-app](https://github.com/sylvain441/natural-time-app) · [naturaltime.app](https://naturaltime.app)
 
 N'hésite surtout pas à contribuer à l'évolution du temps naturel ; à te l'approprier ou le réinventer à ta façon !
 
@@ -371,6 +390,12 @@ N'oublie pas de changer la position géographique lors de tes déplacements. Tu 
 Les calculs astronomiques sont entièrement réalisés sur ton appareil. Aucune donnée personnelle n'est enregistrée. L'application fonctionne parfaitement hors ligne d'ailleurs (sauf la carte interactive).
 
 Pour avoir une idée de la fréquentation de l'application, un serveur Matomo (équivalent open source de Google Analytics) auto-hébergé est utilisé. Ce serveur enregistre uniquement le nombre de visiteurs uniques et le nombre de pages vues. Aucune donnée personnelle n'est enregistrée.
+
+#### Le temps naturel sur la montre connectée Pebble
+
+Le cadran « Natural Time » a remporté la **première place** du concours de cadrans organisé par Pebble. Il est disponible gratuitement sur le store Pebble : [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+L'encre électronique affiche la course du soleil sur un cadran de 360°, avec deux à quatre semaines d'autonomie. Le cadran s'autoconfigure en fonction de la position de l'utilisateur.
 
 #### Remerciements
 

@@ -1,15 +1,4 @@
-> Natural Time açık kaynaklı bir projedir  
-> [Sylvain](https://biquette.xyz) (diğer adıyla "Biquette") tarafından ❤️ ile oluşturulmuştur
-> 
-> Bu kavramı beğenen ve geliştirilmesini desteklemek isteyenler için:
-> - [Bağış yapın](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Diğer projelerim: [biquette.xyz](https://biquette.xyz)
-> - Bülten: [Buradan abone olun](http://biquette.xyz/#/portal/signup/free)
-> - Mağazam: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube kanalı: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X hesabı: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### SSS - Doğal Zaman
+### Doğal Zaman
 
 #### Doğal Zaman nedir? Ne işe yarar?
 
@@ -63,13 +52,21 @@ Doğal Zaman, herkesin benimseyebileceği, geliştirebileceği ve yayabileceği 
 
 Bu yeni zaman algısını benimseyen her kişi, bizi çevreleyen doğal ritimlerle daha uyumlu bir dünya yaratmaya katkıda bulunur.
 
-### SSS - Doğal Saat
+### Doğal Saat
 
-#### \[REKLAM\] Doğal saat nereden satın alınabilir?
+<figure class="faq-board" data-category="2">
 
-Doğal Zaman, herkesin benimseyebileceği ve yeniden icat edebileceği özgür bir kavramdır. Şu anda proje, bu kavramın araştırma ve geliştirilmesine zaman ayıran yaratıcısı [Sylvain](https://biquette.xyz) tarafından yürütülmektedir.
+|  | Doğal zaman | *vs* Yapay zaman |
+|---|---|---|
+| Güneş en yüksek noktasında | 180° | 12.00, 13.00, 13.37, 14.22 — yere, mevsime ve saat dilimine göre |
+| Gecenin ortası | 0° | 00.00, 01.00, 01.37, 02.22 |
+| Kadranın tam bir turu | 360°, günde bir kez | 12 saat, günde iki kez kat edilir |
+| Çin, doğudan batıya 5.200 km | iki ucu arasında 62° | tek bir saat dilimi |
+| Kış saatine geçiş | hiçbir şey olmaz | gece saat 3'te saat 2 olur |
+| Uzaktaki biriyle saat kararlaştırmak | 210° NTZ — açı, artı referans meridyeni | 14.00, artı saat dilimi, artı yaz ya da kış saati |
 
-Bu çalışmayı desteklemek ve projenin sürekli gelişimini finanse etmek için orijinal fiziksel doğal saatler üretilmekte ve çevrimiçi mağazası [shop.biquette.xyz](https://shop.biquette.xyz) üzerinden satışa sunulmaktadır.
+<figcaption>Doğal saat tek bir şeyi ölçer: bulunduğun yerin üzerinde güneşin yolculuğunda nereye geldiğini.</figcaption>
+</figure>
 
 #### Doğal saat nasıl okunur?
 
@@ -243,7 +240,27 @@ Bu çift yaklaşım, doğal saatin hem göstergelerinde kesin hem de hareketinde
 
 Dürüst olmak gerekirse, doğal zamanda "180° gerçekten öğlene karşılık gelir" dediğimizde, bu hafif bir basitleştirmedir. Gerçekte, gerçek güneş öğleni (güneşin tam olarak tepe noktasında olduğu an) her gün hafifçe değişir. Pratik nedenlerle bir ortalama kullanıyoruz, hesaplamak zor olduğu için değil, günlük hayata gereksiz karmaşıklık katacağı için.
 
-### SSS - 13 Ay Spirali
+#### Doğal saat nereden satın alınabilir?
+
+Doğal Zaman, herkesin benimseyebileceği ve yeniden icat edebileceği özgür bir kavramdır. Şu anda proje, bu kavramın araştırma ve geliştirilmesine zaman ayıran yaratıcısı [Sylvain](https://biquette.xyz) tarafından yürütülmektedir.
+
+Bu çalışmayı desteklemek ve projenin sürekli gelişimini finanse etmek için orijinal fiziksel doğal saatler üretilmekte ve çevrimiçi mağazası [shop.biquette.xyz](https://shop.biquette.xyz) üzerinden satışa sunulmaktadır.
+
+### 13 Ay Spirali
+
+<figure class="faq-board" data-category="3">
+
+|  | Doğal zaman | *vs* Yapay zaman |
+|---|---|---|
+| Bir ayın uzunluğu | 28 gün, on üç kez | 31, 28 ya da 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Ayın ilk günü | kırmızı bir gün, her zaman | pazartesi, perşembe, cumartesi — aya ve yıla göre |
+| Bir ayda kaç hafta | tam 4 hafta | 4 hafta ve 2 ya da 3 gün |
+| Bir yıldaki günler | 364, artı gökkuşağı günü, bazen iki | 365, dört yılda bir 366 |
+| Yılın sonu | kış gündönümü | 31 Aralık |
+| Yazılı bir tarihin sırası | yıl)ay)gün | gün/ay/yıl, ay/gün/yıl ya da yıl-ay-gün |
+
+<figcaption>13 Ay Spirali yılı, kış gündönümünden ölçülen on üç özdeş döneme böler.</figcaption>
+</figure>
 
 #### Neden 28 günlük 13 ay (ay)?
 
@@ -323,7 +340,7 @@ Birçokları için 2012, bir çağ veya bilinç değişikliğini temsil eder. Ba
 
 Bu seçim keyfi olsa da (herhangi bir takvim başlangıç noktası gibi), sembolik önemi onu zamanla ilişkimizi yenilemeye çalışan bir sistem için ilginç bir zamansal referans yapar.
 
-### SSS - Uygulama
+### Uygulama
 
 #### Natural Time açık kaynaklı bir projedir. Neden?
 
@@ -361,6 +378,12 @@ Seyahat ederken coğrafi konumu değiştirmeyi unutmayın. Uygulamanın konumunu
 Astronomik hesaplamalar tamamen cihazınızda gerçekleştirilir. Hiçbir kişisel veri kaydedilmez. Uygulama zaten mükemmel çevrimdışı çalışır (etkileşimli harita hariç).
 
 Uygulamanın trafiği hakkında fikir edinmek için, kendi kendine barındırılan bir Matomo sunucusu (Google Analytics'in açık kaynak eşdeğeri) kullanılmaktadır. Bu sunucu yalnızca benzersiz ziyaretçi sayısını ve sayfa görüntüleme sayısını kaydeder. Hiçbir kişisel veri kaydedilmez.
+
+#### Pebble akıllı saatinde Doğal Zaman
+
+"Natural Time" kadranı, Pebble'ın düzenlediği saat kadranı yarışmasında **birincilik** kazandı. Pebble mağazasında ücretsiz olarak sunuluyor: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Elektronik mürekkep ekran, güneşin hareketini 360° kadran üzerinde gösterir ve iki ila dört haftalık pil ömrü sunar. Kadran, kullanıcının konumuna göre kendini otomatik olarak ayarlar.
 
 #### Teşekkürler
 

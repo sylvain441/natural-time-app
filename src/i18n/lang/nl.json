@@ -2,6 +2,62 @@
   "welcome": {
     "title": "Natuurlijke Tijd",
     "subtitle": "Een nieuwe tijdsconventie",
+    "clockHero": {
+      "titleLine1": "Ik ben een",
+      "titleLine2": "natuurlijke klok",
+      "subtitle": "Ik volg het ritme van de zon.",
+      "cta": { "howToRead": "Hoe werkt het?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Ik ben een",
+      "titleLine2": "spiraal van 13 manen",
+      "subtitle": "Eén jaar: 13 gelijke maanden van 28 dagen, plus Regenboogdag",
+      "cta": { "howToRead": "Hoe werkt het?" }
+    },
+    "moonsIntro": {
+      "lead": "Natuurlijke Tijd geeft ook een nieuwe kijk op hoe we de dagen tellen.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Geïnspireerd door tradities uit de hele wereld en door de {moon} volgt de spiraal een eenvoudig ritme: {same} van elk 28 dagen. Simpel, toch?",
+      "moonWord": "maan",
+      "sameWord": "13 gelijke maanden",
+      "links": { "spiral": "Open de 13 manen", "faq": "FAQ" }
+    },
+    "intro": {
+      "lead": "Natuurlijke Tijd geeft een nieuwe kijk op hoe we tijd meten.",
+      "statement": "Met {hand} en een {dial} maakt de natuurlijke klok de {sun} weer tot het {reference} voor het verstrijken van de tijd.",
+      "handWord": "één wijzer",
+      "dialWord": "wijzerplaat van 360°",
+      "sunWord": "zon",
+      "referenceWord": "universele referentiepunt",
+      "video": { "label": "Bekijk de introductie", "offline": "De video komt terug zodra je online bent." },
+      "links": { "clock": "Start de klok", "faq": "FAQ" }
+    },
+    "turn": {
+      "line1": "Natuurlijke Tijd is meer dan een klok.",
+      "line2": "Het is ook een ‘{spiral}’.",
+      "spiral": "kalender"
+    },
+    "topbar": {
+      "before": "Natuurlijke Tijd won een Pebble-wedstrijd ",
+      "long": "voor wijzerplaten ",
+      "after": "(een smartwatchmerk)",
+      "cta": "Pebble Store",
+      "close": "Sluit de aankondiging"
+    },
+    "commons": {
+      "lead": "Natuurlijke Tijd is geen product.",
+      "statement": "Het is {convention} die tot het publieke domein behoort, {units}. Het is van niemand en van iedereen die het gebruikt.",
+      "conventionWord": "een conventie",
+      "unitsPhrase": "zoals de meter",
+      "cta": "Natuurlijke Tijd op GitHub",
+      "author": {
+        "text": "Natuurlijke Tijd is gemaakt door Sylvain (alias ‘Biquette’).",
+        "hunch": "Het begon met een eenvoudig inzicht: de manier waarop we tijd indelen is onnodig ingewikkeld. Hoe langer we ons ernaar richten, hoe verder we uit de pas raken met de cycli van de levende wereld."
+      },
+      "links": { "site": "Andere projecten van Sylvain", "shop": "Koop een klok", "donate": "Doe een donatie" },
+      "supportLabel": "Steun het project",
+      "support": "Het project Natuurlijke Tijd is vrij en opensource. Om onafhankelijk te kunnen blijven werken, maakt Sylvain klokken met de hand, precies afgesteld op de plek waar je woont. Unieke stukken en beperkte oplages."
+    },
     "naturalClock": {
       "title": "Natuurlijke Klok",
       "description": "Ik ben een klok geïnspireerd door de natuur.\nMijn enige wijzer maakt slechts één rotatie per dag...\nDe baan van de zon aan de hemel volgend,\nnaadloos... op een wijzerplaat van 360°.",
@@ -49,7 +105,7 @@
         "line4": "De natuur heeft ons al de perfecte tijdmeter gegeven...",
         "line5": "De zon! De ultieme dirigent van alle levende wezens."
       },
-      "credits": "Gemaakt door {author} | {github}",
+      "credits": "Gemaakt door {author}",
       "author": "Sylvain",
       "github": "Open source op GitHub",
       "resetData": "Gegevens resetten"
@@ -373,6 +429,9 @@
     }
   },
   "faq": {
+    "title": "Veelgestelde vragen",
+    "subtitle": "Natuurlijke tijd begrijpen",
+    "boardTitle": "Het verschil in het kort",
     "inProgress": "(Werk in uitvoering)"
   },
   "locationPicker": {
@@ -441,7 +500,8 @@
     "v2_4": "🌍 Natuurlijke Tijd applicatie spreekt nu 12 talen! Duits, Italiaans, Russisch, Grieks, Chinees, Japans en Portugees (Brazilië) sluiten zich aan bij het avontuur.",
     "v2_5": "⌚ Natuurlijke Tijd is nu beschikbaar op je Pebble-smartwatch! Download de wijzerplaat op Pebble.",
     "v2_5_cta": "Downloaden op Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Nieuwe doe-het-zelfmodus: maak je eigen natuurlijke zonnewijzer met de juiste hoeken voor de zon, zonsopgang, zonsondergang en de snorren."
   },
   "common": {
     "loading": "Laden…",

@@ -1,15 +1,4 @@
-> Tiempo Natural es un proyecto de código abierto  
-> Imaginado con ❤️ por [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Para quienes aprecian este concepto y desean apoyar su desarrollo:
-> - [Hacer una donación](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Mis otros proyectos: [biquette.xyz](https://biquette.xyz)
-> - Mi newsletter: [Suscribirse aquí](http://biquette.xyz/#/portal/signup/free)
-> - Mi tienda: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Canal de YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Cuenta X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Tiempo Natural
+### Tiempo Natural
 
 #### ¿Qué es el Tiempo Natural? ¿Para qué sirve?
 
@@ -59,13 +48,21 @@ El Tiempo Natural es un concepto abierto que cualquiera puede adoptar, mejorar y
 
 Cada persona que adopta esta nueva percepción del tiempo contribuye a crear un mundo más en sintonía con los ritmos naturales que nos rodean.
 
-### FAQ - Reloj Natural
+### Reloj Natural
 
-#### [ANUNCIO] ¿Dónde puedo comprar un reloj natural?
+<figure class="faq-board" data-category="2">
 
-El Tiempo Natural es un concepto libre que cualquiera puede adoptar y reinventar. Actualmente, el proyecto está impulsado por su creador, [Sylvain](https://biquette.xyz), quien dedica tiempo a la investigación y al desarrollo de este concepto.
+|  | Tiempo natural | *vs* Tiempo artificial |
+|---|---|---|
+| El sol está en su punto más alto | 180° | 12h, 13h, 13h37, 14h22, según el lugar, la estación y el huso horario |
+| La mitad de la noche | 0° | 0h, 1h, 1h37, 2h22 |
+| Una vuelta completa de la esfera | 360°, una vez al día | 12 horas, recorridas dos veces al día |
+| China, 5 200 km de este a oeste | 62° entre sus dos extremos | un solo huso horario |
+| El cambio al horario de invierno | no pasa nada | a las 3h de la madrugada son las 2h |
+| Citarse con alguien lejano | 210° NTZ, el ángulo más el meridiano de referencia | 14h, más el huso, más el horario de verano o de invierno |
 
-Para apoyar este trabajo y financiar el desarrollo continuo del proyecto, se crean relojes naturales físicos originales, disponibles para su compra en la tienda en línea [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>El reloj natural mide una sola cosa: por dónde va el sol en su recorrido, sobre el lugar donde uno está.</figcaption>
+</figure>
 
 #### ¿Cómo se lee un reloj natural?
 
@@ -235,7 +232,27 @@ En realidad, la Tierra no gira a velocidad constante durante todo el año. El Ti
 
 Para ser honestos, cuando decimos que en el Tiempo Natural “180° corresponde realmente al mediodía”, es una ligera simplificación. El verdadero mediodía solar (momento en el que el sol está exactamente en el cénit) varía un poco cada día. Se usa una media por razones prácticas, no porque sea difícil calcularlo, sino para evitar una complejidad innecesaria en la vida diaria.
 
-### FAQ - Espiral de 13 Lunas
+#### ¿Dónde puedo comprar un reloj natural?
+
+El Tiempo Natural es un concepto libre que cualquiera puede adoptar y reinventar. Actualmente, el proyecto está impulsado por su creador, [Sylvain](https://biquette.xyz), quien dedica tiempo a la investigación y al desarrollo de este concepto.
+
+Para apoyar este trabajo y financiar el desarrollo continuo del proyecto, se crean relojes naturales físicos originales, disponibles para su compra en la tienda en línea [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Espiral de 13 Lunas
+
+<figure class="faq-board" data-category="3">
+
+|  | Tiempo natural | *vs* Tiempo artificial |
+|---|---|---|
+| La duración de un mes | 28 días, trece veces | 31, 28 o 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| El primer día del mes | un día rojo, siempre | lunes, jueves, sábado, según el mes y el año |
+| El noveno mes | la 9.ª luna | septiembre, del latín *septem*, «siete» |
+| Los días de un año | 364, más el día arcoíris, a veces dos | 365, y 366 uno de cada cuatro años |
+| El final del año | el solsticio de invierno | el 31 de diciembre |
+| El orden de una fecha escrita | año)luna)día | día/mes/año, mes/día/año o año-mes-día |
+
+<figcaption>La espiral de 13 lunas divide el año en trece periodos idénticos, fijados por el solsticio de invierno.</figcaption>
+</figure>
 
 #### ¿Por qué 13 meses (lunas) de 28 días?
 
@@ -315,7 +332,7 @@ Para muchas personas, 2012 representa un cambio de era o de conciencia. En lugar
 
 Aun cuando la elección sea arbitraria (como cualquier origen calendárico), su alcance simbólico la convierte en un referente interesante para un sistema que busca renovar nuestra relación con el tiempo.
 
-### FAQ - Aplicación
+### Aplicación
 
 #### Tiempo Natural es un proyecto de código abierto. ¿Por qué?
 
@@ -348,6 +365,12 @@ No olvides cambiar la posición geográfica cuando viajes. También puedes activ
 Los cálculos astronómicos se realizan íntegramente en tu dispositivo. No se registra ningún dato personal. La aplicación funciona perfectamente sin conexión (excepto el mapa interactivo).
 
 Para hacerse una idea del tráfico de la aplicación, se utiliza un servidor Matomo autoalojado (equivalente de código abierto a Google Analytics). Este servidor registra únicamente el número de visitantes únicos y de páginas vistas. No se guarda ningún dato personal.
+
+#### Tiempo Natural en el reloj inteligente Pebble
+
+La esfera «Natural Time» obtuvo el **primer puesto** en el concurso de esferas organizado por Pebble. Está disponible gratis en la tienda de Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+La pantalla de tinta electrónica muestra el recorrido del sol en una esfera de 360°, con una autonomía de dos a cuatro semanas. La esfera se configura automáticamente según la ubicación de quien lleva el reloj.
 
 #### Agradecimientos
 

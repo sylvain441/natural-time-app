@@ -2,6 +2,62 @@
   "welcome": {
     "title": "Natürliche Zeit",
     "subtitle": "Eine neue Zeitkonvention",
+    "clockHero": {
+      "titleLine1": "Ich bin eine",
+      "titleLine2": "natürliche Uhr",
+      "subtitle": "Ich bewege mich im Rhythmus der Sonne.",
+      "cta": { "howToRead": "Wie funktioniert das?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Ich bin eine",
+      "titleLine2": "Spirale aus 13 Monden",
+      "subtitle": "Ein Jahr: 13 gleiche Monate mit je 28 Tagen, plus Regenbogentag",
+      "cta": { "howToRead": "Wie funktioniert das?" }
+    },
+    "moonsIntro": {
+      "lead": "Die Natürliche Zeit denkt auch unsere Art, die Tage zu zählen, neu.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspiriert von Traditionen aus aller Welt und vom {moon} folgt die Spirale einem einfachen Rhythmus: {same} mit jeweils 28 Tagen. Einfach, oder?",
+      "moonWord": "Mond",
+      "sameWord": "13 gleiche Monate",
+      "links": { "spiral": "13 Monde öffnen", "faq": "FAQ" }
+    },
+    "intro": {
+      "lead": "Die Natürliche Zeit denkt unsere Art, Zeit zu messen, neu.",
+      "statement": "Mit {hand} und {dial} macht die natürliche Uhr die {sun} wieder zum {reference} für das Vergehen der Zeit.",
+      "handWord": "nur einem Zeiger",
+      "dialWord": "einem 360°-Zifferblatt",
+      "sunWord": "Sonne",
+      "referenceWord": "universellen Bezugspunkt",
+      "video": { "label": "Einführung ansehen", "offline": "Das Video ist wieder da, sobald du online bist." },
+      "links": { "clock": "Uhr starten", "faq": "FAQ" }
+    },
+    "turn": {
+      "line1": "Die Natürliche Zeit ist mehr als eine Uhr.",
+      "line2": "Sie ist auch ein „{spiral}“.",
+      "spiral": "Kalender"
+    },
+    "topbar": {
+      "before": "Natural Time gewann einen Pebble-",
+      "long": "Zifferblattwettbewerb ",
+      "after": "(eine Smartwatch-Marke)",
+      "cta": "Pebble Store",
+      "close": "Ankündigung schließen"
+    },
+    "commons": {
+      "lead": "Die Natürliche Zeit ist kein Produkt.",
+      "statement": "Sie ist {convention} und gehört zum Gemeingut, {units}. Sie gehört niemandem und zugleich allen, die sie nutzen.",
+      "conventionWord": "eine Konvention",
+      "unitsPhrase": "wie der Meter",
+      "cta": "Natürliche Zeit auf GitHub",
+      "author": {
+        "text": "Die Natürliche Zeit wurde von Sylvain (alias „Biquette“) entwickelt.",
+        "hunch": "Am Anfang stand eine einfache Ahnung: Unsere Einteilung der Zeit ist unnötig kompliziert. Wenn wir ihr lange genug folgen, geraten wir aus dem Takt mit den Zyklen der lebendigen Welt."
+      },
+      "links": { "site": "Weitere Projekte von Sylvain", "shop": "Eine Uhr kaufen", "donate": "Spenden" },
+      "supportLabel": "Projekt unterstützen",
+      "support": "Das Projekt Natürliche Zeit ist frei und quelloffen. Damit er unabhängig weiterarbeiten kann, baut Sylvain Uhren von Hand, die genau auf deinen Wohnort eingestellt sind. Einzelstücke und limitierte Serien."
+    },
     "naturalClock": {
       "title": "Natürliche Uhr",
       "description": "Ich bin eine Uhr, inspiriert von der Natur.\nMein Zeiger dreht sich nur einmal pro Tag...\nIch folge der Bahn der Sonne am Himmel,\nruhig... auf einem in 360° skalierten Zifferblatt.",
@@ -49,7 +105,7 @@
         "line4": "Das Leben hat uns längst die schönste aller Uhren geschenkt...",
         "line5": "Die Sonne! Meisterin der Zeit und Dirigentin des Lebendigen."
       },
-      "credits": "Erstellt von {author} | {github}",
+      "credits": "Erstellt von {author}",
       "author": "Sylvain",
       "github": "Quellcode auf GitHub",
       "resetData": "Daten zurücksetzen"
@@ -352,6 +408,9 @@
   }
   ,
   "faq": {
+    "title": "Häufige Fragen",
+    "subtitle": "Alles verstehen zur Natürlichen Zeit",
+    "boardTitle": "Der Unterschied in Kürze",
     "inProgress": "(In Vorbereitung)"
   },
   "locationPicker": {
@@ -421,7 +480,8 @@
     "v2_4": "🌍 Die Natürliche Zeit App spricht jetzt 12 Sprachen! Deutsch, Italienisch, Russisch, Griechisch, Chinesisch, Japanisch und Portugiesisch (Brasilien) sind dabei.",
     "v2_5": "⌚ Natürliche Zeit ist jetzt auf deiner Pebble-Smartwatch! Lade das Zifferblatt auf Pebble herunter.",
     "v2_5_cta": "Auf Pebble herunterladen",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Neuer DIY-Modus: Baue deine eigene natürliche Sonnenuhr mit den passenden Winkeln für Sonne, Sonnenaufgang, Sonnenuntergang und Schnurrbart-Markierungen."
   },
   "common": {
     "loading": "Laden…",
@@ -429,4 +489,3 @@
     "selectLanguage": "Sprache wählen"
   }
 }
-

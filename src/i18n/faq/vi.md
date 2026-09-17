@@ -1,15 +1,4 @@
-> Natural Time là một dự án mã nguồn mở  
-> Được tạo với ❤️ bởi [Sylvain](https://biquette.xyz) (hay còn gọi là "Biquette")
-> 
-> Dành cho những ai yêu thích khái niệm này và muốn hỗ trợ phát triển:
-> - [Quyên góp](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Các dự án khác của tôi: [biquette.xyz](https://biquette.xyz)
-> - Bản tin của tôi: [Đăng ký tại đây](http://biquette.xyz/#/portal/signup/free)
-> - Cửa hàng của tôi: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Kênh YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Tài khoản X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Thời Gian Tự Nhiên
+### Thời Gian Tự Nhiên
 
 #### Thời Gian Tự Nhiên là gì? Nó dùng để làm gì?
 
@@ -63,13 +52,21 @@ Thời Gian Tự Nhiên là một khái niệm mở mà bất kỳ ai cũng có 
 
 Mỗi người áp dụng cách nhận thức thời gian mới này đều đóng góp vào việc tạo ra một thế giới hài hòa hơn với các nhịp điệu tự nhiên xung quanh chúng ta.
 
-### FAQ - Đồng Hồ Tự Nhiên
+### Đồng Hồ Tự Nhiên
 
-#### \[QUẢNG CÁO\] Mua đồng hồ tự nhiên ở đâu?
+<figure class="faq-board" data-category="2">
 
-Thời Gian Tự Nhiên là một khái niệm tự do mà bất kỳ ai cũng có thể áp dụng và tái tạo. Hiện tại, dự án được dẫn dắt bởi người sáng tạo, [Sylvain](https://biquette.xyz), người dành thời gian nghiên cứu và phát triển khái niệm này.
+|  | Thời gian tự nhiên | *vs* Thời gian nhân tạo |
+|---|---|---|
+| Mặt trời lên cao nhất | 180° | 12h, 13h, 13h37, 14h22 — tùy nơi, tùy mùa, tùy múi giờ |
+| Giữa đêm thật sự | 0° | 0h, 1h, 1h37, 2h22 |
+| Một vòng đầy đủ của mặt đồng hồ | 360°, một lần mỗi ngày | 12 giờ, đi hết hai lần mỗi ngày |
+| Trung Quốc, 5.200 km từ đông sang tây | 62° giữa hai rìa | chỉ một múi giờ duy nhất |
+| Chuyển sang giờ mùa đông | không có gì xảy ra | 3 giờ sáng thành 2 giờ sáng |
+| Hẹn giờ với người ở xa | 210° NTZ — góc, cộng kinh tuyến tham chiếu | 14h, cộng múi giờ, cộng giờ mùa hè hay mùa đông |
 
-Để hỗ trợ công việc này và tài trợ cho sự phát triển liên tục của dự án, các đồng hồ tự nhiên vật lý nguyên bản được tạo ra và có sẵn để mua tại cửa hàng trực tuyến của anh ấy [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Đồng hồ tự nhiên đo đúng một thứ: mặt trời đã đi tới đâu trên hành trình của nó, phía trên nơi ta đang đứng.</figcaption>
+</figure>
 
 #### Làm thế nào để đọc đồng hồ tự nhiên?
 
@@ -243,7 +240,27 @@ Cách tiếp cận kép này cho phép đồng hồ tự nhiên vừa chính xá
 
 Nói thật, khi chúng ta nói rằng trong thời gian tự nhiên "180° thực sự tương ứng với buổi trưa", đó là một sự đơn giản hóa nhẹ. Trong thực tế, giữa trưa mặt trời thực (khi mặt trời chính xác ở đỉnh cao) thay đổi nhẹ mỗi ngày. Chúng ta sử dụng trung bình vì lý do thực tế, không phải vì quá khó tính toán, mà vì nó sẽ thêm sự phức tạp không cần thiết cho cuộc sống hàng ngày.
 
-### FAQ - Vòng Xoắn 13 Trăng
+#### Mua đồng hồ tự nhiên ở đâu?
+
+Thời Gian Tự Nhiên là một khái niệm tự do mà bất kỳ ai cũng có thể áp dụng và tái tạo. Hiện tại, dự án được dẫn dắt bởi người sáng tạo, [Sylvain](https://biquette.xyz), người dành thời gian nghiên cứu và phát triển khái niệm này.
+
+Để hỗ trợ công việc này và tài trợ cho sự phát triển liên tục của dự án, các đồng hồ tự nhiên vật lý nguyên bản được tạo ra và có sẵn để mua tại cửa hàng trực tuyến của anh ấy [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Vòng Xoắn 13 Trăng
+
+<figure class="faq-board" data-category="3">
+
+|  | Thời gian tự nhiên | *vs* Thời gian nhân tạo |
+|---|---|---|
+| Độ dài một tháng | 28 ngày, mười ba lần | 31, 28 hoặc 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Ngày đầu tháng | một ngày đỏ, luôn luôn | thứ Hai, thứ Năm, thứ Bảy — tùy tháng và tùy năm |
+| Số tuần trong một tháng | đúng 4 tuần | 4 tuần và 2 hoặc 3 ngày |
+| Số ngày trong một năm | 364, cộng ngày cầu vồng, đôi khi hai | 365, và 366 bốn năm một lần |
+| Cuối năm | đông chí | ngày 31 tháng 12 |
+| Thứ tự của một ngày tháng viết ra | năm)trăng)ngày | ngày/tháng/năm, tháng/ngày/năm hoặc năm-tháng-ngày |
+
+<figcaption>Vòng xoắn 13 trăng chia năm thành mười ba chu kỳ giống hệt nhau, tính từ đông chí.</figcaption>
+</figure>
 
 #### Tại sao 13 tháng (trăng) với 28 ngày?
 
@@ -323,7 +340,7 @@ Việc chọn năm 001 của lịch tự nhiên tương ứng với năm 2012 c�
 
 Mặc dù lựa chọn này là tùy ý (như bất kỳ điểm bắt đầu lịch nào), ý nghĩa biểu tượng của nó làm cho nó trở thành một tham chiếu thời gian thú vị cho một hệ thống tìm cách đổi mới mối quan hệ của chúng ta với thời gian.
 
-### FAQ - Ứng Dụng
+### Ứng Dụng
 
 #### Natural Time là một dự án mã nguồn mở. Tại sao?
 
@@ -361,6 +378,12 @@ Kim của đồng hồ thời gian tự nhiên chỉ vị trí của mặt trờ
 Các tính toán thiên văn được thực hiện hoàn toàn trên thiết bị của bạn. Không có dữ liệu cá nhân nào được ghi lại. Ứng dụng hoạt động hoàn hảo ngoại tuyến (ngoại trừ bản đồ tương tác).
 
 Để có ý tưởng về lưu lượng truy cập của ứng dụng, một máy chủ Matomo tự lưu trữ (tương đương mã nguồn mở của Google Analytics) được sử dụng. Máy chủ này chỉ ghi lại số lượng khách truy cập duy nhất và số lượt xem trang. Không có dữ liệu cá nhân nào được ghi lại.
+
+#### Thời Gian Tự Nhiên trên đồng hồ thông minh Pebble
+
+Mặt đồng hồ “Natural Time” đã giành **giải nhất** trong cuộc thi thiết kế mặt đồng hồ do Pebble tổ chức. Bạn có thể tải miễn phí từ cửa hàng Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Màn hình mực điện tử hiển thị đường đi của mặt trời trên mặt số 360°, với thời lượng pin từ hai đến bốn tuần. Mặt đồng hồ tự động thiết lập theo vị trí của người đeo.
 
 #### Lời cảm ơn
 

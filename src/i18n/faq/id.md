@@ -1,15 +1,4 @@
-> Natural Time adalah proyek sumber terbuka  
-> Dibuat dengan ❤️ oleh [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Bagi mereka yang menghargai konsep ini dan ingin mendukung pengembangannya:
-> - [Berikan donasi](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Proyek saya lainnya: [biquette.xyz](https://biquette.xyz)
-> - Newsletter saya: [Berlangganan di sini](http://biquette.xyz/#/portal/signup/free)
-> - Toko saya: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Kanal YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Akun X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Waktu Alami
+### Waktu Alami
 
 #### Apa itu Waktu Alami? Untuk apa digunakan?
 
@@ -63,13 +52,21 @@ Waktu Alami adalah konsep terbuka yang dapat diadopsi, ditingkatkan, dan disebar
 
 Setiap orang yang mengadopsi persepsi waktu baru ini berkontribusi untuk menciptakan dunia yang lebih selaras dengan ritme alami yang mengelilingi kita.
 
-### FAQ - Jam Alami
+### Jam Alami
 
-#### \[IKLAN\] Di mana saya bisa membeli jam alami?
+<figure class="faq-board" data-category="2">
 
-Waktu Alami adalah konsep bebas yang dapat diadopsi dan diciptakan ulang oleh siapa saja. Saat ini, proyek ini dipimpin oleh penciptanya, [Sylvain](https://biquette.xyz), yang mendedikasikan waktu untuk penelitian dan pengembangan konsep ini.
+|  | Waktu alami | *vs* Waktu buatan |
+|---|---|---|
+| Matahari di titik tertinggi | 180° | 12.00, 13.00, 13.37, 14.22 — tergantung tempat, musim, dan zona waktu |
+| Tengah malam yang sebenarnya | 0° | 00.00, 01.00, 01.37, 02.22 |
+| Satu putaran penuh piringan jam | 360°, sekali sehari | 12 jam, dilalui dua kali sehari |
+| Tiongkok, 5.200 km dari timur ke barat | 62° antara kedua ujungnya | satu zona waktu saja |
+| Peralihan ke waktu musim dingin | tidak terjadi apa-apa | pukul 3 pagi menjadi pukul 2 |
+| Menentukan waktu dengan orang yang jauh | 210° NTZ — sudutnya, ditambah meridian acuan | pukul 14, ditambah zona waktu, ditambah waktu musim panas atau dingin |
 
-Untuk mendukung pekerjaan ini dan membiayai pengembangan berkelanjutan proyek, jam alami fisik asli dibuat dan tersedia untuk dibeli di toko online-nya [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Jam alami mengukur satu hal saja: sejauh mana matahari telah berjalan, di atas tempat kita berada.</figcaption>
+</figure>
 
 #### Bagaimana cara membaca jam alami?
 
@@ -243,7 +240,27 @@ Pendekatan ganda ini memungkinkan jam alami menjadi tepat dalam indikasinya dan 
 
 Sejujurnya, ketika kita mengatakan bahwa dalam waktu alami "180° benar-benar sesuai dengan tengah hari," itu adalah penyederhanaan ringan. Pada kenyataannya, tengah hari matahari sejati (ketika matahari tepat di titik tertinggi) bervariasi sedikit setiap hari. Kita menggunakan rata-rata untuk alasan praktis, bukan karena terlalu sulit dihitung, tetapi karena akan menambah kompleksitas yang tidak perlu dalam kehidupan sehari-hari.
 
-### FAQ - Spiral 13 Bulan
+#### Di mana saya bisa membeli jam alami?
+
+Waktu Alami adalah konsep bebas yang dapat diadopsi dan diciptakan ulang oleh siapa saja. Saat ini, proyek ini dipimpin oleh penciptanya, [Sylvain](https://biquette.xyz), yang mendedikasikan waktu untuk penelitian dan pengembangan konsep ini.
+
+Untuk mendukung pekerjaan ini dan membiayai pengembangan berkelanjutan proyek, jam alami fisik asli dibuat dan tersedia untuk dibeli di toko online-nya [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Spiral 13 Bulan
+
+<figure class="faq-board" data-category="3">
+
+|  | Waktu alami | *vs* Waktu buatan |
+|---|---|---|
+| Panjang sebuah bulan | 28 hari, tiga belas kali | 31, 28 atau 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Hari pertama bulan | hari merah, selalu | Senin, Kamis, Sabtu — tergantung bulan dan tahun |
+| Bulan kesembilan | bulan ke-9 | September, dari bahasa Latin *septem*, “tujuh” |
+| Hari dalam setahun | 364, ditambah hari pelangi, kadang dua | 365, dan 366 setiap empat tahun |
+| Akhir tahun | titik balik matahari musim dingin | 31 Desember |
+| Urutan tanggal tertulis | tahun)bulan)hari | hari/bulan/tahun, bulan/hari/tahun atau tahun-bulan-hari |
+
+<figcaption>Spiral 13 Bulan membagi tahun menjadi tiga belas periode yang identik, dihitung dari titik balik matahari musim dingin.</figcaption>
+</figure>
 
 #### Mengapa 13 bulan dengan 28 hari?
 
@@ -323,7 +340,7 @@ Bagi banyak orang, 2012 mewakili perubahan era atau kesadaran. Daripada memilih 
 
 Meskipun pilihan ini sewenang-wenang (seperti titik awal kalender mana pun), signifikansi simbolisnya menjadikannya referensi waktu yang menarik untuk sistem yang berusaha memperbarui hubungan kita dengan waktu.
 
-### FAQ - Aplikasi
+### Aplikasi
 
 #### Natural Time adalah proyek sumber terbuka. Mengapa?
 
@@ -361,6 +378,12 @@ Jangan lupa mengubah posisi geografis saat Anda bepergian. Anda juga dapat menga
 Perhitungan astronomi sepenuhnya dilakukan di perangkat Anda. Tidak ada data pribadi yang dicatat. Aplikasi ini bekerja dengan sempurna secara offline (kecuali peta interaktif).
 
 Untuk mendapatkan gambaran lalu lintas aplikasi, server Matomo yang di-host sendiri (setara sumber terbuka dari Google Analytics) digunakan. Server ini hanya mencatat jumlah pengunjung unik dan jumlah tampilan halaman. Tidak ada data pribadi yang dicatat.
+
+#### Waktu Alami di jam tangan pintar Pebble
+
+Tampilan jam “Natural Time” meraih **juara pertama** dalam kontes tampilan jam yang diadakan Pebble. Tampilan ini tersedia gratis di toko Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Layar e-ink menampilkan perjalanan matahari pada dial 360°, dengan daya tahan baterai dua hingga empat minggu. Tampilan jam menyesuaikan diri secara otomatis berdasarkan lokasi pemakainya.
 
 #### Terima Kasih
 

@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Waktu Alami",
     "subtitle": "Konvensi waktu baru",
+    "clockHero": {
+      "titleLine1": "Saya adalah",
+      "titleLine2": "jam alami",
+      "subtitle": "Saya bergerak mengikuti irama matahari.",
+      "cta": {
+        "howToRead": "Bagaimana cara kerjanya?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Saya adalah",
+      "titleLine2": "spiral 13 bulan",
+      "subtitle": "Satu tahun: 13 bulan yang sama, masing-masing 28 hari, ditambah Hari Pelangi",
+      "cta": {
+        "howToRead": "Bagaimana cara kerjanya?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Waktu Alami juga menawarkan cara baru untuk menghitung hari.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Terinspirasi oleh berbagai tradisi dunia dan oleh {moon}, spiral ini mengikuti irama sederhana: {same}, masing-masing 28 hari. Sederhana, bukan?",
+      "moonWord": "bulan",
+      "sameWord": "13 bulan yang sama",
+      "links": {
+        "spiral": "Buka 13 bulan",
+        "faq": "FAQ"
+      }
+    },
+    "intro": {
+      "lead": "Waktu Alami menawarkan cara baru untuk mengukur waktu.",
+      "statement": "Dengan {hand} dan {dial}, jam alami kembali menempatkan {sun} sebagai pusat penunjuk waktu dan {reference} kita.",
+      "handWord": "satu jarum",
+      "dialWord": "dial 360°",
+      "sunWord": "matahari",
+      "referenceWord": "acuan universal",
+      "video": {
+        "label": "Tonton pengantar",
+        "offline": "Video dapat ditonton kembali saat Anda online."
+      },
+      "links": {
+        "clock": "Mulai jam",
+        "faq": "FAQ"
+      }
+    },
+    "turn": {
+      "line1": "Waktu Alami bukan sekadar jam.",
+      "line2": "Ini juga sebuah “{spiral}”.",
+      "spiral": "kalender"
+    },
+    "topbar": {
+      "before": "Waktu Alami memenangkan kontes desain tampilan jam Pebble ",
+      "long": "",
+      "after": "(merek jam tangan pintar)",
+      "cta": "Pebble Store",
+      "close": "Tutup pengumuman"
+    },
+    "commons": {
+      "lead": "Waktu Alami bukan produk.",
+      "statement": "Ini adalah {convention} dalam domain publik, {units}. Konvensi ini bukan milik siapa pun, sekaligus milik semua orang yang menggunakannya.",
+      "conventionWord": "sebuah konvensi",
+      "unitsPhrase": "seperti meter",
+      "cta": "Natural Time di GitHub",
+      "author": {
+        "text": "Waktu Alami diciptakan oleh Sylvain (alias “Biquette”).",
+        "hunch": "Semuanya berawal dari firasat sederhana: cara kita membagi waktu sehari-hari terlalu rumit tanpa alasan. Semakin lama kita mengikutinya, semakin jauh kita dari siklus kehidupan."
+      },
+      "links": {
+        "site": "Proyek Sylvain lainnya",
+        "shop": "Beli jam",
+        "donate": "Beri donasi"
+      },
+      "supportLabel": "Dukung proyek",
+      "support": "Natural Time adalah proyek bebas dan sumber terbuka. Untuk melanjutkan karya independennya, Sylvain membuat jam dengan tangan dan menyetelnya secara tepat untuk tempat tinggal Anda. Setiap jam dibuat satu per satu atau dalam edisi terbatas."
+    },
     "naturalClock": {
       "title": "Jam Alami",
       "description": "Saya adalah jam yang terinspirasi oleh alam.\nJarum tunggal saya hanya melakukan satu putaran per hari...\nMengikuti perjalanan matahari melintasi langit,\ntanpa hambatan... pada dial 360°.",
@@ -49,7 +122,7 @@
         "line4": "Alam telah memberi kita pengukur waktu yang sempurna...",
         "line5": "Matahari! Konduktor utama semua makhluk hidup."
       },
-      "credits": "Dibuat oleh {author} | {github}",
+      "credits": "Dibuat oleh {author}",
       "author": "Sylvain",
       "github": "Sumber terbuka di GitHub",
       "resetData": "Reset data"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "Pertanyaan yang sering diajukan",
+    "subtitle": "Memahami waktu alami",
+    "boardTitle": "Perbedaannya secara singkat",
     "inProgress": "(Sedang dalam proses)"
   },
   "locationPicker": {
@@ -441,7 +517,8 @@
     "v2_4": "🌍 Aplikasi Waktu Alami sekarang berbicara 12 bahasa! Jerman, Italia, Rusia, Yunani, Cina, Jepang, dan Portugis (Brasil) bergabung dalam petualangan.",
     "v2_5": "⌚ Waktu Alami kini hadir di jam tangan Pebble kamu! Unduh tampilan jam di Pebble.",
     "v2_5_cta": "Unduh di Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Mode DIY baru: buat jam matahari alami Anda sendiri dengan sudut matahari, matahari terbit, matahari terbenam, dan lengkungan musim."
   },
   "common": {
     "loading": "Memuat…",

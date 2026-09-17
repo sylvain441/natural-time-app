@@ -1,15 +1,4 @@
-> Natural Time to projekt open source  
-> Stworzony z ❤️ przez [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Dla tych, którzy doceniają tę koncepcję i chcą wspierać jej rozwój:
-> - [Przekaż darowizną](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Moje inne projekty: [biquette.xyz](https://biquette.xyz)
-> - Mój newsletter: [Zapisz się tutaj](http://biquette.xyz/#/portal/signup/free)
-> - Mój sklep: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - Kanał YouTube: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - Konto X: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Czas Naturalny
+### Czas Naturalny
 
 #### Czym jest Czas Naturalny? Do czego służy?
 
@@ -63,13 +52,21 @@ Czas Naturalny to otwarta koncepcja, którą każdy może przyjąć, ulepszyć i
 
 Każda osoba, która przyjmuje to nowe postrzeganie czasu, przyczynia się do tworzenia świata bardziej zgodnego z naturalnymi rytmami, które nas otaczają.
 
-### FAQ - Zegar Naturalny
+### Zegar Naturalny
 
-#### \[REKLAMA\] Gdzie mogę kupić zegar naturalny?
+<figure class="faq-board" data-category="2">
 
-Czas Naturalny to wolna koncepcja, którą każdy może przyjąć i na nowo wymyślić. Obecnie projekt jest prowadzony przez jego twórcę, [Sylvaina](https://biquette.xyz), który poświęca czas na badania i rozwój tej koncepcji.
+|  | Czas naturalny | *vs* Czas sztuczny |
+|---|---|---|
+| Słońce jest najwyżej | 180° | 12:00, 13:00, 13:37, 14:22 — zależnie od miejsca, pory roku i strefy |
+| Środek nocy | 0° | 0:00, 1:00, 1:37, 2:22 |
+| Pełny obrót tarczy | 360°, raz na dobę | 12 godzin, przebiegane dwa razy dziennie |
+| Chiny, 5200 km ze wschodu na zachód | 62° między dwoma krańcami | jedna jedyna strefa czasowa |
+| Zmiana na czas zimowy | nic się nie dzieje | o 3 w nocy jest godzina 2 |
+| Umówić się z kimś daleko | 210° NTZ — kąt plus południk odniesienia | 14:00, plus strefa, plus czas letni albo zimowy |
 
-Aby wesprzeć tę pracę i sfinansować ciągły rozwój projektu, oryginalne fizyczne zegary naturalne są tworzone i dostępne do kupienia w jego sklepie internetowym [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Zegar naturalny mierzy jedno: jak daleko zaszło słońce nad miejscem, w którym się stoi.</figcaption>
+</figure>
 
 #### Jak czytać zegar naturalny?
 
@@ -243,7 +240,27 @@ To podwójne podejście pozwala zegarowi naturalnemu być zarówno precyzyjnym w
 
 Szczerze mówiąc, gdy mówimy, że w czasie naturalnym "180° naprawdę odpowiada południu", jest to lekkie uproszczenie. W rzeczywistości prawdziwe południe słoneczne (moment, gdy słońce jest dokładnie w zenicie) nieznacznie się zmienia każdego dnia. Używamy średniej z powodów praktycznych, nie dlatego, że jest to zbyt trudne do obliczenia, ale dlatego, że dodałoby to niepotrzebnej złożoności do codziennego życia.
 
-### FAQ - Spirala 13 Księżyców
+#### Gdzie mogę kupić zegar naturalny?
+
+Czas Naturalny to wolna koncepcja, którą każdy może przyjąć i na nowo wymyślić. Obecnie projekt jest prowadzony przez jego twórcę, [Sylvaina](https://biquette.xyz), który poświęca czas na badania i rozwój tej koncepcji.
+
+Aby wesprzeć tę pracę i sfinansować ciągły rozwój projektu, oryginalne fizyczne zegary naturalne są tworzone i dostępne do kupienia w jego sklepie internetowym [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### Spirala 13 Księżyców
+
+<figure class="faq-board" data-category="3">
+
+|  | Czas naturalny | *vs* Czas sztuczny |
+|---|---|---|
+| Długość miesiąca | 28 dni, trzynaście razy | 31, 28 lub 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Pierwszy dzień miesiąca | dzień czerwony, zawsze | poniedziałek, czwartek, sobota — zależnie od miesiąca i roku |
+| Tygodnie w miesiącu | 4 tygodnie, dokładnie | 4 tygodnie i 2 lub 3 dni |
+| Dni w roku | 364, plus dzień tęczy, czasem dwa | 365, a co czwarty rok 366 |
+| Koniec roku | przesilenie zimowe | 31 grudnia |
+| Kolejność zapisanej daty | rok)księżyc)dzień | dzień/miesiąc/rok, miesiąc/dzień/rok albo rok-miesiąc-dzień |
+
+<figcaption>Spirala 13 księżyców dzieli rok na trzynaście identycznych okresów, odmierzanych od przesilenia zimowego.</figcaption>
+</figure>
 
 #### Dlaczego 13 miesięcy (księżyców) po 28 dni?
 
@@ -323,7 +340,7 @@ Dla wielu 2012 reprezentuje zmianę ery lub świadomości. Zamiast wybierać sta
 
 Chociaż ten wybór jest arbitralny (jak każdy punkt wyjścia kalendarza), jego symboliczne znaczenie czyni go interesującym odniesieniem czasowym dla systemu, który dąży do odnowienia naszej relacji z czasem.
 
-### FAQ - Aplikacja
+### Aplikacja
 
 #### Natural Time to projekt open source. Dlaczego?
 
@@ -361,6 +378,12 @@ Nie zapomnij zmienić pozycji geograficznej podczas podróży. Możesz także ak
 Obliczenia astronomiczne są wykonywane całkowicie na twoim urządzeniu. Żadne dane osobowe nie są zapisywane. Aplikacja działa zresztą doskonale offline (z wyjątkiem interaktywnej mapy).
 
 Aby uzyskać wyobrażenie o ruchu w aplikacji, używany jest samohodtowany serwer Matomo (odpowiednik open source Google Analytics). Ten serwer zapisuje tylko liczbę unikalnych odwiedzających i liczbę wyświetleń stron. Żadne dane osobowe nie są zapisywane.
+
+#### Czas Naturalny na smartwatchu Pebble
+
+Tarcza "Natural Time" zdobyła **pierwsze miejsce** w konkursie tarcz zorganizowanym przez Pebble. Jest dostępna bezpłatnie w sklepie Pebble: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Wyświetlacz z elektronicznym atramentem pokazuje wędrówkę słońca na tarczy 360°, a bateria działa od dwóch do czterech tygodni. Tarcza konfiguruje się automatycznie na podstawie położenia użytkownika.
 
 #### Podziękowania
 

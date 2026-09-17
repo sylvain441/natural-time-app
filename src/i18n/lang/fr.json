@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Temps Naturel",
     "subtitle": "Une nouvelle convention du temps",
+    "clockHero": {
+      "titleLine1": "Je suis une",
+      "titleLine2": "horloge naturelle",
+      "subtitle": "Je tourne au rythme du soleil.",
+      "cta": {
+        "howToRead": "Comment ça marche ?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Je suis une",
+      "titleLine2": "spirale de 13 lunes",
+      "subtitle": "Une année : 13 mois de 28 jours + le jour arc-en-ciel",
+      "cta": {
+        "howToRead": "Comment ça marche ?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Le Temps Naturel réinvente aussi notre façon de compter les jours.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspirée des traditions du monde entier, la spirale emprunte à la {moon} son élégance : {same} de 28 jours chacun. Simple, non ?",
+      "moonWord": "lune",
+      "sameWord": "13 mois identiques",
+      "links": {
+        "spiral": "Ouvrir les 13 lunes",
+        "faq": "FAQ"
+      }
+    },
+    "intro": {
+      "lead": "Le Temps Naturel réinvente notre façon de mesurer le temps.",
+      "statement": "Avec {hand} et un {dial}, l'horloge naturelle redonne au {sun} sa place de {reference} du temps qui passe.",
+      "handWord": "une seule aiguille",
+      "dialWord": "cadran de 360°",
+      "sunWord": "soleil",
+      "referenceWord": "référence universelle",
+      "video": {
+        "label": "Tout comprendre en vidéo",
+        "offline": "La vidéo revient dès que tu es en ligne."
+      },
+      "links": {
+        "clock": "Démarrer l'horloge",
+        "faq": "FAQ"
+      }
+    },
+    "turn": {
+      "line1": "Le Temps Naturel n'est pas qu'une horloge.",
+      "line2": "C'est aussi un « {spiral} ».",
+      "spiral": "calendrier"
+    },
+    "topbar": {
+      "before": "Le Temps Naturel a gagné un concours de cadrans de Pebble ",
+      "long": "(montres connectées)",
+      "after": "",
+      "cta": "Pebble Store",
+      "close": "Fermer l'annonce"
+    },
+    "commons": {
+      "lead": "Le temps naturel n'est pas un produit.",
+      "statement": "C'est {convention} appartenant au domaine public, {units}. Elle n'est la propriété de personne, sinon de ceux qui s'en servent au quotidien.",
+      "conventionWord": "une convention",
+      "unitsPhrase": "comme le mètre",
+      "cta": "Natural Time sur GitHub",
+      "author": {
+        "text": "Le temps naturel a été créé par Sylvain (alias « Biquette »).",
+        "hunch": "Tout est né d'une intuition : la division du temps qu'on utilise au quotidien est compliquée pour rien. Et à force de la suivre, on finit décalé des cycles du monde vivant."
+      },
+      "links": {
+        "site": "Les autres projets de Sylvain",
+        "shop": "Acheter une horloge",
+        "donate": "Faire un don"
+      },
+      "supportLabel": "Soutenir le projet",
+      "support": "Le projet Natural Time est libre et open source. Pour auto-financer sa vie d'inventeur, Sylvain fabrique des horloges artisanales, réglées exactement pour ton lieu de vie. Pièces uniques et séries limitées."
+    },
     "naturalClock": {
       "title": "Horloge Naturelle",
       "description": "Je suis une horloge inspirée du vivant.\nMon aiguille tourne une fois par jour seulement...\nJe suis la course du soleil dans le ciel,\ntranquillement... selon un cadran de 360°.",
@@ -28,11 +101,6 @@
         "download": "Voir sur Pebble"
       }
     },
-    "hero": {
-      "description": "Le Temps Naturel réinvente notre façon de mesurer le temps.\nAvec {clock} et {spiral},\nle soleil retrouve sa place comme référence universelle\ndu temps qui passe...",
-      "clockLink": "l'horloge de 360°",
-      "spiralLink": "la spirale de 13 lunes"
-    },
     "understanding": {
       "title": "Tout comprendre",
       "subtitle": "sur le temps naturel",
@@ -44,12 +112,12 @@
     "footer": {
       "closing": {
         "line1": "Nous avons créé des machines pour mesurer le temps.",
-        "line2": "Puis nous sommes devenus esclaves de leur tic tac.",
+        "line2": "Puis nous leur sommes devenus obéissants.",
         "line3": "Le Temps Naturel inverse cette tendance.",
         "line4": "La vie a déjà prévu la plus belle des horloges...",
         "line5": "On l'appelle le soleil ! Maître du temps et chef d'orchestre du vivant."
       },
-      "credits": "Créé par {author} | {github}",
+      "credits": "Créé par {author}",
       "author": "Sylvain",
       "github": "Code source sur GitHub",
       "resetData": "Réinitialiser les données"
@@ -165,7 +233,7 @@
         "description": "Car le temps est cyclique, non linéaire"
       },
       "step6": {
-        "title": "Voici le 5ème jour de la 5ème lune",
+        "title": "Voici le 5e jour de la 5e lune",
         "description": "Par exemple..."
       },
       "step7": {
@@ -373,6 +441,9 @@
     }
   },
   "faq": {
+    "title": "Foire aux questions",
+    "subtitle": "Tout comprendre sur le temps naturel",
+    "boardTitle": "La différence en bref",
     "inProgress": "(En cours de rédaction)"
   },
   "locationPicker": {
@@ -429,7 +500,7 @@
     "dateFormat": "fr-FR"
   },
   "youtubePlayer": {
-    "thumbnail": "Comprendre le Temps Naturel en 10 minutes"
+    "thumbnail": "Pourquoi inventer une nouvelle horloge ?"
   },
   "notFound": {
     "title": "404",

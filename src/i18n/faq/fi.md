@@ -1,15 +1,4 @@
-> Natural Time on avoimen lähdekoodin projekti  
-> Luonut ❤️ [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Niille, jotka arvostavat tätä konseptia ja haluavat tukea sen kehitystä:
-> - [Tee lahjoitus](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Muut projektini: [biquette.xyz](https://biquette.xyz)
-> - Uutiskirjeeni: [Tilaa täältä](http://biquette.xyz/#/portal/signup/free)
-> - Kauppani: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube-kanava: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-tili: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### UKK - Luonnollinen Aika
+### Luonnollinen Aika
 
 #### Mikä on Luonnollinen Aika? Mihin sitä käytetään?
 
@@ -63,13 +52,21 @@ Luonnollinen Aika on avoin konsepti, jonka kuka tahansa voi omaksua, parantaa ja
 
 Jokainen henkilö, joka omaksuu tämän uuden aikakäsityksen, osallistuu maailman luomiseen, joka on enemmän sopusoinnussa meitä ympäröivien luonnollisten rytmien kanssa.
 
-### UKK - Luonnollinen Kello
+### Luonnollinen Kello
 
-#### \[MAINOS\] Mistä voin ostaa luonnollisen kellon?
+<figure class="faq-board" data-category="2">
 
-Luonnollinen Aika on vapaa konsepti, jonka kuka tahansa voi omaksua ja keksiä uudelleen. Tällä hetkellä projektia johtaa sen luoja, [Sylvain](https://biquette.xyz), joka omistaa aikaa tämän konseptin tutkimukseen ja kehitykseen.
+|  | Luonnollinen aika | *vs* Keinotekoinen aika |
+|---|---|---|
+| Aurinko on korkeimmillaan | 180° | 12, 13, 13.37, 14.22 — paikan, vuodenajan ja aikavyöhykkeen mukaan |
+| Keskiyö oikeasti | 0° | 0, 1, 1.37, 2.22 |
+| Yksi täysi kierros kellotaulua | 360°, kerran päivässä | 12 tuntia, kuljettuna kahdesti päivässä |
+| Kiina, 5 200 km idästä länteen | 62° reunojen välillä | yksi ainoa aikavyöhyke |
+| Siirtyminen talviaikaan | ei tapahdu mitään | kello 3 yöllä on kello 2 |
+| Sopia aika kaukana olevan kanssa | 210° NTZ — kulma plus vertailumeridiaani | klo 14, plus aikavyöhyke, plus kesä- tai talviaika |
 
-Tukeakseen tätä työtä ja rahoittaakseen projektin jatkuvaa kehitystä alkuperäisiä fyysisiä luonnollisia kelloja luodaan ja ne ovat ostettavissa hänen verkkokaupastaan [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>Luonnollinen kello mittaa vain yhtä asiaa: kuinka pitkällä aurinko on matkallaan sen paikan yllä, jossa seisot.</figcaption>
+</figure>
 
 #### Miten luonnollista kelloa luetaan?
 
@@ -243,7 +240,27 @@ Tämä kaksoislähetymistapa mahdollistaa luonnollisen kellon olevan sekä tarkk
 
 Ollakseni rehellinen, kun sanomme, että luonnollisessa ajassa "180° todella vastaa keskipäivää", se on lievä yksinkertaistus. Todellisuudessa todellinen auringon keskipäivä (hetki, jolloin aurinko on tarkalleen zenitissä) vaihtelee hieman joka päivä. Käytämme keskiarvoa käytännön syistä, ei siksi, että sen laskeminen olisi liian vaikeaa, vaan koska se lisäisi tarpeetonta monimutkaisuutta arkielämään.
 
-### UKK - 13 Kuun Spiraali
+#### Mistä voin ostaa luonnollisen kellon?
+
+Luonnollinen Aika on vapaa konsepti, jonka kuka tahansa voi omaksua ja keksiä uudelleen. Tällä hetkellä projektia johtaa sen luoja, [Sylvain](https://biquette.xyz), joka omistaa aikaa tämän konseptin tutkimukseen ja kehitykseen.
+
+Tukeakseen tätä työtä ja rahoittaakseen projektin jatkuvaa kehitystä alkuperäisiä fyysisiä luonnollisia kelloja luodaan ja ne ovat ostettavissa hänen verkkokaupastaan [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### 13 Kuun Spiraali
+
+<figure class="faq-board" data-category="3">
+
+|  | Luonnollinen aika | *vs* Keinotekoinen aika |
+|---|---|---|
+| Kuukauden pituus | 28 päivää, kolmetoista kertaa | 31, 28 tai 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Kuukauden ensimmäinen päivä | punainen päivä, aina | maanantai, torstai, lauantai — kuukauden ja vuoden mukaan |
+| Viikkoja kuukaudessa | 4 viikkoa, tasan | 4 viikkoa ja 2 tai 3 päivää |
+| Vuoden päivät | 364, plus sateenkaaripäivä, joskus kaksi | 365, ja 366 joka neljäs vuosi |
+| Vuoden loppu | talvipäivänseisaus | 31. joulukuuta |
+| Kirjoitetun päiväyksen järjestys | vuosi)kuu)päivä | päivä/kuukausi/vuosi, kuukausi/päivä/vuosi tai vuosi-kuukausi-päivä |
+
+<figcaption>13 kuun spiraali jakaa vuoden kolmeentoista samanlaiseen jaksoon, talvipäivänseisauksesta mitattuna.</figcaption>
+</figure>
 
 #### Miksi 13 kuukautta (kuuta) 28 päivää?
 
@@ -323,7 +340,7 @@ Monille 2012 edustaa aikakauden tai tietoisuuden muutosta. Sen sijaan, että val
 
 Vaikka tämä valinta on mielivaltainen (kuten mikä tahansa kalenterin lähtöpiste), sen symbolinen merkitys tekee siitä kiinnostavan aikaviitteen järjestelmälle, joka pyrkii uudistamaan suhdettamme aikaan.
 
-### UKK - Sovellus
+### Sovellus
 
 #### Natural Time on avoimen lähdekoodin projekti. Miksi?
 
@@ -361,6 +378,12 @@ Muista vaihtaa maantieteellinen sijainti matkustaessasi. Voit myös aktivoida pa
 Tähtitieteelliset laskelmat suoritetaan kokonaan laitteellasi. Henkilötietoja ei tallenneta. Sovellus toimii muuten täydellisesti offline-tilassa (paitsi interaktiivinen kartta).
 
 Saadakseen käsityksen sovelluksen liikenteestä käytetään itse ylläpidettyä Matomo-palvelinta (Google Analyticsin avoimen lähdekoodin vastine). Tämä palvelin tallentaa vain yksilöllisten vierailijoiden määrän ja sivunäyttöjen määrän. Henkilötietoja ei tallenneta.
+
+#### Natural Time Pebble-älykellossa
+
+"Natural Time" -kellotaulu voitti **ensimmäisen sijan** Pebblen kellotaulukilpailussa. Se on saatavilla maksutta Pebble-kaupasta: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+E-ink-näyttö näyttää auringon kulun 360° kellotaululla, ja akun kesto on kahdesta neljään viikkoa. Kellotaulu määrittää asetuksensa automaattisesti käyttäjän sijainnin perusteella.
 
 #### Kiitokset
 

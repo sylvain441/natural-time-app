@@ -2,6 +2,79 @@
   "welcome": {
     "title": "자연 시간",
     "subtitle": "새로운 시간 개념",
+    "clockHero": {
+      "titleLine1": "저는",
+      "titleLine2": "자연 시계입니다",
+      "subtitle": "태양의 걸음에 맞춰 움직입니다.",
+      "cta": {
+        "howToRead": "어떻게 작동하나요?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "저는",
+      "titleLine2": "13달 나선입니다",
+      "subtitle": "1년: 똑같은 28일짜리 13개월과 무지개의 날",
+      "cta": {
+        "howToRead": "어떻게 작동하나요?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "자연 시간은 날짜를 세는 방식도 새롭게 바라봅니다.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "세계 곳곳의 전통과 {moon}에서 영감을 얻은 나선은 단순한 리듬을 따릅니다. 각각 28일인 {same}입니다. 간단하죠?",
+      "moonWord": "달",
+      "sameWord": "똑같은 13개월",
+      "links": {
+        "spiral": "13달 열기",
+        "faq": "자주 묻는 질문"
+      }
+    },
+    "intro": {
+      "lead": "자연 시간은 시간을 측정하는 방식을 새롭게 바라봅니다.",
+      "statement": "자연 시계는 {hand}과 {dial}으로 {sun}을 다시 시간 측정의 중심에 놓고, 우리의 {reference}으로 삼습니다.",
+      "handWord": "하나의 바늘",
+      "dialWord": "360° 다이얼",
+      "sunWord": "태양",
+      "referenceWord": "보편적인 기준",
+      "video": {
+        "label": "소개 영상 보기",
+        "offline": "온라인이 되면 영상을 다시 볼 수 있습니다."
+      },
+      "links": {
+        "clock": "시계 시작하기",
+        "faq": "자주 묻는 질문"
+      }
+    },
+    "turn": {
+      "line1": "자연 시간은 단순한 시계가 아닙니다.",
+      "line2": "“{spiral}”이기도 합니다.",
+      "spiral": "달력"
+    },
+    "topbar": {
+      "before": "자연 시간이 Pebble 워치페이스 ",
+      "long": "공모전에서 우승했습니다 ",
+      "after": "(스마트워치 브랜드)",
+      "cta": "Pebble Store",
+      "close": "알림 닫기"
+    },
+    "commons": {
+      "lead": "자연 시간은 상품이 아닙니다.",
+      "statement": "자연 시간은 {units} 퍼블릭 도메인에 속한 {convention}입니다. 누구의 소유도 아니며, 사용하는 모든 사람의 것입니다.",
+      "conventionWord": "시간 체계",
+      "unitsPhrase": "미터처럼",
+      "cta": "GitHub에서 Natural Time 보기",
+      "author": {
+        "text": "자연 시간은 Sylvain(별명 “Biquette”)이 만들었습니다.",
+        "hunch": "모든 것은 단순한 직감에서 시작했습니다. 우리가 일상에서 시간을 나누는 방식은 쓸데없이 복잡하고, 그 방식에 오래 맞춰 살수록 생명 세계의 주기에서 멀어진다는 생각이었습니다."
+      },
+      "links": {
+        "site": "Sylvain의 다른 프로젝트",
+        "shop": "시계 구매하기",
+        "donate": "후원하기"
+      },
+      "supportLabel": "프로젝트 후원",
+      "support": "Natural Time은 자유로운 오픈 소스 프로젝트입니다. Sylvain은 독립적인 작업을 이어 가기 위해 사용자의 거주지에 정확히 맞춘 수제 시계를 만듭니다. 하나뿐인 작품과 한정판으로 제작됩니다."
+    },
     "naturalClock": {
       "title": "자연 시계",
       "description": "저는 자연에서 영감을 받은 시계입니다.\n하나뿐인 시침이 하루에 단 한 바퀴만 돕니다...\n하늘을 가로지르는 태양의 경로를 따라,\n끊김 없이... 360° 다이얼 위에서.",
@@ -49,7 +122,7 @@
         "line4": "자연은 이미 완벽한 시간 측정기를 주었습니다...",
         "line5": "태양! 모든 생명체의 궁극적인 지휘자."
       },
-      "credits": "{author} 제작 | {github}",
+      "credits": "{author} 제작",
       "author": "Sylvain",
       "github": "GitHub에서 오픈 소스로 공개",
       "resetData": "데이터 초기화"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "자주 묻는 질문",
+    "subtitle": "자연 시간 이해하기",
+    "boardTitle": "한눈에 보는 차이",
     "inProgress": "(진행 중)"
   },
   "locationPicker": {
@@ -441,7 +517,8 @@
     "v2_4": "🌍 자연 시간 앱이 이제 12개 언어를 지원합니다! 독일어, 이탈리아어, 러시아어, 그리스어, 중국어, 일본어, 포르투갈어(브라질)가 모험에 합류합니다.",
     "v2_5": "⌚ 자연 시간이 Pebble 스마트워치에 출시되었습니다! Pebble에서 워치페이스를 다운로드하세요.",
     "v2_5_cta": "Pebble에서 다운로드",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 새로운 DIY 모드: 태양, 일출, 일몰, 계절 곡선의 각도를 이용해 나만의 자연 해시계를 만들어 보세요."
   },
   "common": {
     "loading": "로딩 중…",

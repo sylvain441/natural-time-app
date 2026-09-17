@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Koha Natyrale",
     "subtitle": "Një konventë e re kohe",
+    "clockHero": {
+      "titleLine1": "Jam një",
+      "titleLine2": "orë natyrore",
+      "subtitle": "Lëviz me ritmin e diellit.",
+      "cta": {
+        "howToRead": "Si funksionon?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Jam një",
+      "titleLine2": "spirale me 13 hëna",
+      "subtitle": "Një vit: 13 muaj të barabartë me nga 28 ditë, plus Dita e Ylberit",
+      "cta": {
+        "howToRead": "Si funksionon?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Koha Natyrore rimendon edhe mënyrën se si i numërojmë ditët.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "E frymëzuar nga traditat e mbarë botës dhe nga {moon}, spiralja ndjek një ritëm të thjeshtë: {same} me nga 28 ditë secili. E thjeshtë, apo jo?",
+      "moonWord": "hëna",
+      "sameWord": "13 muaj të njëjtë",
+      "links": {
+        "spiral": "Hap 13 hënat",
+        "faq": "Pyetjet e shpeshta"
+      }
+    },
+    "intro": {
+      "lead": "Koha Natyrore rimendon mënyrën se si e matim kohën.",
+      "statement": "Me {hand} dhe një {dial}, ora natyrore e vendos sërish {sun} në qendër të mënyrës se si e matim kohën, si {reference}.",
+      "handWord": "një akrep të vetëm",
+      "dialWord": "faqe ore 360°",
+      "sunWord": "diellin",
+      "referenceWord": "pikë universale referimi",
+      "video": {
+        "label": "Shiko hyrjen",
+        "offline": "Videoja do të shfaqet sërish sapo të jesh në linjë."
+      },
+      "links": {
+        "clock": "Nis orën",
+        "faq": "Pyetjet e shpeshta"
+      }
+    },
+    "turn": {
+      "line1": "Koha Natyrore është më shumë se një orë.",
+      "line2": "Është gjithashtu një «{spiral}».",
+      "spiral": "kalendar"
+    },
+    "topbar": {
+      "before": "Koha Natyrore fitoi konkursin e Pebble për ",
+      "long": "faqet e orëve ",
+      "after": "(markë orësh inteligjente)",
+      "cta": "Pebble Store",
+      "close": "Mbyll njoftimin"
+    },
+    "commons": {
+      "lead": "Koha Natyrore nuk është produkt.",
+      "statement": "Është {convention} në domenin publik, {units}. Nuk i përket askujt dhe njëkohësisht u përket të gjithëve që e përdorin.",
+      "conventionWord": "një konventë",
+      "unitsPhrase": "si metri",
+      "cta": "Koha Natyrore në GitHub",
+      "author": {
+        "text": "Koha Natyrore u krijua nga Sylvain, i njohur edhe si «Biquette».",
+        "hunch": "Gjithçka nisi nga një ide e thjeshtë: mënyra se si e ndajmë kohën është pa nevojë e ndërlikuar. Duke e ndjekur për një kohë të gjatë, humbasim ritmin e cikleve të botës së gjallë."
+      },
+      "links": {
+        "site": "Projektet e tjera të Sylvain",
+        "shop": "Bli një orë",
+        "donate": "Bëj një dhurim"
+      },
+      "supportLabel": "Mbështet projektin",
+      "support": "Projekti Koha Natyrore është falas dhe me burim të hapur. Për të vazhduar punën e tij të pavarur, Sylvain ndërton orë artizanale, secilën të rregulluar posaçërisht për vendin ku jeton. Pjesë unike dhe seri të kufizuara."
+    },
     "naturalClock": {
       "title": "Ora Natyrale",
       "description": "Unë jam një orë e frymëzuar nga natyra.\nAkrepi im i vetëm bën vetëm një rrotullim në ditë...\nDuke ndjekur rrugën e diellit nëpër qiell,\npa ndërprerje... në një ceferan 360°.",
@@ -49,7 +122,7 @@
         "line4": "Natyra na ka dhënë tashmë matësin perfekt të kohës...",
         "line5": "Diellin! Dirigjentin suprem të të gjitha qenieve të gjalla."
       },
-      "credits": "Krijuar nga {author} | {github}",
+      "credits": "Krijuar nga {author}",
       "author": "Sylvain",
       "github": "Kod i hapur në GitHub",
       "resetData": "Rivendos të dhënat"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "Pyetjet e bëra shpesh",
+    "subtitle": "Të kuptosh kohën natyrale",
+    "boardTitle": "Ndryshimi shkurtimisht",
     "inProgress": "(Në progres)"
   },
   "locationPicker": {
@@ -441,7 +517,8 @@
     "v2_4": "🌍 Aplikacioni i Kohës Natyrale tani flet 12 gjuhë! Gjermanishtja, Italishtja, Russishtja, Greqishtja, Kinezçja, Japonishtja dhe Portugalishtja (Brazili) bashkohen në aventurë.",
     "v2_5": "⌚ Koha Natyrore tani në orën tuaj Pebble! Shkarko kuadratin në Pebble.",
     "v2_5_cta": "Shkarko në Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Modalitet i ri Bëje vetë: krijo orën tënde diellore natyrore me këndet e diellit, lindjes, perëndimit dhe mustaqeve."
   },
   "common": {
     "loading": "Duke ngarkuar…",

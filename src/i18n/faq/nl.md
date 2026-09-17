@@ -1,15 +1,4 @@
-> Natural Time is een open source project  
-> Gemaakt met ❤️ door [Sylvain](https://biquette.xyz) (alias "Biquette")
-> 
-> Voor degenen die dit concept waarderen en de ontwikkeling ervan willen ondersteunen:
-> - [Doe een donatie](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Mijn andere projecten: [biquette.xyz](https://biquette.xyz)
-> - Mijn nieuwsbrief: [Abonneer je hier](http://biquette.xyz/#/portal/signup/free)
-> - Mijn winkel: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube-kanaal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-account: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Natuurlijke Tijd
+### Natuurlijke Tijd
 
 #### Wat is Natuurlijke Tijd? Waar dient het voor?
 
@@ -63,13 +52,21 @@ Natuurlijke Tijd is een open concept dat iedereen kan adopteren, verbeteren en v
 
 Elke persoon die deze nieuwe perceptie van tijd adopteert, draagt bij aan het creëren van een wereld die meer in harmonie is met de natuurlijke ritmes om ons heen.
 
-### FAQ - Natuurlijke Klok
+### Natuurlijke Klok
 
-#### \[ADVERTENTIE\] Waar kan ik een natuurlijke klok kopen?
+<figure class="faq-board" data-category="2">
 
-Natuurlijke Tijd is een vrij concept dat iedereen kan adopteren en opnieuw kan uitvinden. Momenteel wordt het project geleid door de maker, [Sylvain](https://biquette.xyz), die tijd besteedt aan onderzoek en ontwikkeling van dit concept.
+|  | Natuurlijke tijd | *vs* Kunstmatige tijd |
+|---|---|---|
+| De zon staat op haar hoogst | 180° | 12 uur, 13 uur, 13:37, 14:22, afhankelijk van plaats, seizoen en tijdzone |
+| Het midden van de nacht | 0° | 0 uur, 1 uur, 1:37, 2:22 |
+| Een volledige ronde over de wijzerplaat | 360°, één keer per dag | 12 uur, twee keer per dag afgelegd |
+| China, 5 200 km van oost naar west | 62° tussen de twee randen | één enkele tijdzone |
+| De overgang naar de wintertijd | er gebeurt niets | om 3 uur 's nachts is het 2 uur |
+| Een tijd afspreken met iemand ver weg | 210° NTZ, de hoek plus de referentiemeridiaan | 14 uur, plus de tijdzone, plus zomer- of wintertijd |
 
-Om dit werk te ondersteunen en de voortdurende ontwikkeling van het project te financieren, worden originele fysieke natuurlijke klokken gemaakt en beschikbaar gesteld voor aankoop in zijn online winkel [shop.biquette.xyz](https://shop.biquette.xyz).
+<figcaption>De natuurlijke klok meet maar één ding: hoe ver de zon gekomen is, boven de plek waar je staat.</figcaption>
+</figure>
 
 #### Hoe lees je een natuurlijke klok?
 
@@ -243,7 +240,27 @@ Deze dubbele benadering stelt de natuurlijke klok in staat om zowel precies te z
 
 Om eerlijk te zijn, wanneer we zeggen dat in natuurlijke tijd "180° werkelijk overeenkomt met het middaguur", is dat een kleine vereenvoudiging. In werkelijkheid varieert het echte zonne-middaguur (wanneer de zon exact op zijn hoogste punt staat) elke dag enigszins. We gebruiken een gemiddelde om praktische redenen, niet omdat het te moeilijk te berekenen is, maar omdat het onnodige complexiteit aan het dagelijks leven zou toevoegen.
 
-### FAQ - 13 Manen Spiraal
+#### Waar kan ik een natuurlijke klok kopen?
+
+Natuurlijke Tijd is een vrij concept dat iedereen kan adopteren en opnieuw kan uitvinden. Momenteel wordt het project geleid door de maker, [Sylvain](https://biquette.xyz), die tijd besteedt aan onderzoek en ontwikkeling van dit concept.
+
+Om dit werk te ondersteunen en de voortdurende ontwikkeling van het project te financieren, worden originele fysieke natuurlijke klokken gemaakt en beschikbaar gesteld voor aankoop in zijn online winkel [shop.biquette.xyz](https://shop.biquette.xyz).
+
+### 13 Manen Spiraal
+
+<figure class="faq-board" data-category="3">
+
+|  | Natuurlijke tijd | *vs* Kunstmatige tijd |
+|---|---|---|
+| De lengte van een maand | 28 dagen, dertien keer | 31, 28 of 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| De eerste dag van de maand | een rode dag, altijd | maandag, donderdag, zaterdag, afhankelijk van maand en jaar |
+| De negende maand | de 9e maan | september, van het Latijnse *septem*, ‘zeven’ |
+| De dagen in een jaar | 364, plus de regenboogdag, soms twee | 365, en 366 om de vier jaar |
+| Het einde van het jaar | de winterzonnewende | 31 december |
+| De volgorde van een geschreven datum | jaar)maan)dag | dag/maand/jaar, maand/dag/jaar of jaar-maand-dag |
+
+<figcaption>De spiraal van 13 manen deelt het jaar in dertien identieke perioden, vastgelegd door de winterzonnewende.</figcaption>
+</figure>
 
 #### Waarom 13 maanden (manen) van 28 dagen?
 
@@ -323,7 +340,7 @@ Voor velen vertegenwoordigt 2012 een verandering van tijdperk of bewustzijn. In 
 
 Hoewel deze keuze willekeurig is (zoals elk kalender-startpunt), maakt de symbolische betekenis het een interessante temporele referentie voor een systeem dat onze relatie met tijd wil vernieuwen.
 
-### FAQ - Applicatie
+### Applicatie
 
 #### Natural Time is een open source project. Waarom?
 
@@ -361,6 +378,12 @@ Vergeet niet de geografische positie te veranderen wanneer je reist. Je kunt ook
 Astronomische berekeningen worden volledig op je apparaat uitgevoerd. Er worden geen persoonlijke gegevens opgeslagen. De applicatie werkt trouwens perfect offline (behalve de interactieve kaart).
 
 Om een idee te krijgen van het verkeer van de applicatie, wordt een zelf-gehoste Matomo-server (open source equivalent van Google Analytics) gebruikt. Deze server registreert alleen het aantal unieke bezoekers en het aantal paginaweergaven. Er worden geen persoonlijke gegevens opgeslagen.
+
+#### Natuurlijke Tijd op de Pebble-smartwatch
+
+De wijzerplaat ‘Natural Time’ behaalde de **eerste plaats** in de wijzerplatenwedstrijd van Pebble. Hij is gratis verkrijgbaar in de Pebble Store: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Het e-inkscherm toont de baan van de zon op een wijzerplaat van 360° en heeft een batterijduur van twee tot vier weken. De wijzerplaat stelt zichzelf automatisch in op basis van de locatie van de drager.
 
 #### Dankwoord
 

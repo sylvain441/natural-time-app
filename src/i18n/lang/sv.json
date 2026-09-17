@@ -2,6 +2,79 @@
   "welcome": {
     "title": "Naturlig Tid",
     "subtitle": "En ny tidskonvention",
+    "clockHero": {
+      "titleLine1": "Jag är en",
+      "titleLine2": "naturlig klocka",
+      "subtitle": "Jag rör mig i solens takt.",
+      "cta": {
+        "howToRead": "Hur fungerar det?"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "Jag är en",
+      "titleLine2": "spiral med 13 månar",
+      "subtitle": "Ett år: 13 lika långa månader med 28 dagar, plus Regnbågsdagen",
+      "cta": {
+        "howToRead": "Hur fungerar det?"
+      }
+    },
+    "moonsIntro": {
+      "lead": "Naturlig Tid tänker också om hur vi räknar dagarna.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspirerad av traditioner från hela världen och av {moon} följer spiralen en enkel rytm: {same} med 28 dagar vardera. Enkelt, eller hur?",
+      "moonWord": "månen",
+      "sameWord": "13 identiska månader",
+      "links": {
+        "spiral": "Öppna de 13 månarna",
+        "faq": "Vanliga frågor"
+      }
+    },
+    "intro": {
+      "lead": "Naturlig Tid tänker om hur vi mäter tid.",
+      "statement": "Med {hand} och en {dial} sätter den naturliga klockan åter {sun} i centrum för hur vi mäter tid, som vår {reference}.",
+      "handWord": "en enda visare",
+      "dialWord": "urtavla på 360°",
+      "sunWord": "solen",
+      "referenceWord": "universella referens",
+      "video": {
+        "label": "Se introduktionen",
+        "offline": "Videon är tillbaka så snart du är online."
+      },
+      "links": {
+        "clock": "Starta klockan",
+        "faq": "Vanliga frågor"
+      }
+    },
+    "turn": {
+      "line1": "Naturlig Tid är mer än en klocka.",
+      "line2": "Det är också en \"{spiral}\".",
+      "spiral": "kalender"
+    },
+    "topbar": {
+      "before": "Naturlig Tid vann en Pebble-",
+      "long": "urtavletävling ",
+      "after": "(ett smartwatchmärke)",
+      "cta": "Pebble Store",
+      "close": "Stäng meddelandet"
+    },
+    "commons": {
+      "lead": "Naturlig Tid är ingen produkt.",
+      "statement": "Det är {convention} som är allmän egendom, {units}. Den tillhör ingen, men samtidigt alla som använder den.",
+      "conventionWord": "en konvention",
+      "unitsPhrase": "precis som metern",
+      "cta": "Naturlig Tid på GitHub",
+      "author": {
+        "text": "Naturlig Tid skapades av Sylvain, även kallad \"Biquette\".",
+        "hunch": "Allt började med en enkel tanke: vårt sätt att dela in tiden är onödigt krångligt. Följer vi det tillräckligt länge kommer vi ur takt med den levande världens cykler."
+      },
+      "links": {
+        "site": "Sylvains andra projekt",
+        "shop": "Köp en klocka",
+        "donate": "Ge ett bidrag"
+      },
+      "supportLabel": "Stöd projektet",
+      "support": "Naturlig Tid är ett fritt projekt med öppen källkod. För att kunna fortsätta sitt oberoende arbete bygger Sylvain handgjorda klockor, var och en inställd exakt för platsen där du bor. Unika exemplar och begränsade serier."
+    },
     "naturalClock": {
       "title": "Naturlig Klocka",
       "description": "Jag är en klocka inspirerad av naturen.\nMin enda visare gör bara ett varv per dag...\nFöljer solens bana över himlen,\nsömlöst... på en 360° urtavla.",
@@ -49,7 +122,7 @@
         "line4": "Naturen har redan gett oss den perfekta tidmätaren...",
         "line5": "Solen! Den ultimata dirigenten för alla levande varelser."
       },
-      "credits": "Skapad av {author} | {github}",
+      "credits": "Skapad av {author}",
       "author": "Sylvain",
       "github": "Öppen källkod på GitHub",
       "resetData": "Återställ data"
@@ -373,6 +446,9 @@
     }
   },
   "faq": {
+    "title": "Vanliga frågor",
+    "subtitle": "Förstå naturlig tid",
+    "boardTitle": "Skillnaden i korthet",
     "inProgress": "(Pågående arbete)"
   },
   "locationPicker": {
@@ -440,6 +516,7 @@
     "title": "Applikationen uppdaterad!",
     "v2_4": "🌍 Naturlig Tid-applikationen talar nu 12 språk! Tyska, italienska, ryska, grekiska, kinesiska, japanska och portugisiska (Brasilien) ansluter sig till äventyret.",
     "v2_5": "⌚ Naturlig Tid finns nu på din Pebble-smartwatch! Ladda ner urtavlan på Pebble.",
+    "v2_6": "🧭 Nytt gör-det-själv-läge: bygg ditt eget naturliga solur med vinklarna för solen, soluppgången, solnedgången och mustascherna.",
     "v2_5_cta": "Ladda ner på Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },

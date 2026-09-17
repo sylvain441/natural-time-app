@@ -1,15 +1,4 @@
-> Natürliche Zeit ist ein Open‑Source‑Projekt  
-> Erdacht mit ❤️ von [Sylvain](https://biquette.xyz) (alias "Biquette")
->
-> Für alle, die dieses Konzept mögen und seine Entwicklung unterstützen möchten:
-> - [Spenden](https://biquette.xyz/#/portal/support) 🙏🥰
-> - Meine anderen Projekte: [biquette.xyz](https://biquette.xyz)
-> - Mein Newsletter: [Hier abonnieren](http://biquette.xyz/#/portal/signup/free)
-> - Mein Shop: [shop.biquette.xyz](https://shop.biquette.xyz)
-> - YouTube‑Kanal: [youtube.com/sylvainbiquette](https://youtube.com/sylvainbiquette)
-> - X-Konto: [x.com/sylvainbiquette](https://x.com/sylvainbiquette)
-
-### FAQ - Natürliche Zeit
+### Natürliche Zeit
 
 #### Was ist die Natürliche Zeit? Wozu ist sie gut?
 
@@ -66,13 +55,21 @@ Jede Person, die diese neue Zeitwahrnehmung übernimmt, hilft, eine Welt zu scha
 
 
 
-### FAQ - Natürliche Uhr
+### Natürliche Uhr
 
-#### \[WERBUNG\] Wo kann man eine Natürliche Uhr kaufen?
+<figure class="faq-board" data-category="2">
 
-Die Natürliche Zeit ist ein freies Konzept, das sich jede und jeder aneignen und neu erfinden kann. Aktuell wird das Projekt von seinem Schöpfer [Sylvain](https://biquette.xyz) getragen, der Zeit in Forschung und Entwicklung investiert.
+|  | Natürliche Zeit | *vs* Künstliche Zeit |
+|---|---|---|
+| Die Sonne steht am höchsten | 180° | 12 Uhr, 13 Uhr, 13:37, 14:22, je nach Ort, Jahreszeit und Zeitzone |
+| Die Mitte der Nacht | 0° | 0 Uhr, 1 Uhr, 1:37, 2:22 |
+| Eine volle Runde über das Zifferblatt | 360°, einmal am Tag | 12 Stunden, zweimal am Tag durchlaufen |
+| China, 5 200 km von Ost nach West | 62° zwischen seinen beiden Rändern | eine einzige Zeitzone |
+| Die Umstellung auf die Winterzeit | es passiert nichts | um 3 Uhr morgens ist es 2 Uhr |
+| Einen Termin mit jemandem weit weg | 210° NTZ, der Winkel und der Bezugsmeridian | 14 Uhr, dazu die Zeitzone, dazu Sommer- oder Winterzeit |
 
-Zur Unterstützung dieser Arbeit und zur Finanzierung der kontinuierlichen Weiterentwicklung werden originale physische Natürliche Uhren in seinem Onlineshop [shop.biquette.xyz](https://shop.biquette.xyz) hergestellt und zum Kauf angeboten.
+<figcaption>Die natürliche Uhr misst nur eines: wie weit die Sonne über dem Ort, an dem man steht, gekommen ist.</figcaption>
+</figure>
 
 #### Wie liest man eine Natürliche Uhr?
 
@@ -244,10 +241,30 @@ Tatsächlich rotiert die Erde nicht mit konstanter Geschwindigkeit über das Jah
 
 Wenn man sagt, „180° entspricht wirklich dem Mittag“, ist das ehrlich gesagt eine leichte Vereinfachung. Der wahre Sonnenmittag (exakter Zenit) variiert täglich etwas. Aus praktischen Gründen nutzt man eine gemittelte Zeit – nicht, weil die exakte Berechnung zu schwierig wäre, sondern weil sie den Alltag unnötig verkomplizieren würde.
 
+#### Wo kann man eine Natürliche Uhr kaufen?
+
+Die Natürliche Zeit ist ein freies Konzept, das sich jede und jeder aneignen und neu erfinden kann. Aktuell wird das Projekt von seinem Schöpfer [Sylvain](https://biquette.xyz) getragen, der Zeit in Forschung und Entwicklung investiert.
+
+Zur Unterstützung dieser Arbeit und zur Finanzierung der kontinuierlichen Weiterentwicklung werden originale physische Natürliche Uhren in seinem Onlineshop [shop.biquette.xyz](https://shop.biquette.xyz) hergestellt und zum Kauf angeboten.
 
 
 
-### FAQ - Spirale der 13 Monde
+
+### Spirale der 13 Monde
+
+<figure class="faq-board" data-category="3">
+
+|  | Natürliche Zeit | *vs* Künstliche Zeit |
+|---|---|---|
+| Die Länge eines Monats | 28 Tage, dreizehnmal | 31, 28 oder 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 |
+| Der erste Tag des Monats | ein roter Tag, immer | Montag, Donnerstag, Samstag, je nach Monat und Jahr |
+| Der neunte Monat | der 9. Mond | September, vom lateinischen *septem*, „sieben“ |
+| Die Tage eines Jahres | 364, dazu der Regenbogentag, manchmal zwei | 365, und 366 in jedem vierten Jahr |
+| Das Ende des Jahres | die Wintersonnenwende | der 31. Dezember |
+| Die Reihenfolge eines Datums | Jahr)Mond)Tag | Tag/Monat/Jahr, Monat/Tag/Jahr oder Jahr-Monat-Tag |
+
+<figcaption>Die Spirale der 13 Monde teilt das Jahr in dreizehn gleiche Abschnitte, festgelegt durch die Wintersonnenwende.</figcaption>
+</figure>
 
 #### Warum 13 Monate (Monde) zu 28 Tagen?
 
@@ -330,7 +347,7 @@ Auch wenn diese Wahl – wie jeder Kalenderursprung – willkürlich ist, macht 
 
 
 
-### FAQ - Anwendung
+### Anwendung
 
 #### Die Natürliche Zeit ist ein Open‑Source‑Projekt. Warum?
 
@@ -369,6 +386,12 @@ Vergiss nicht, die Position bei Reisen zu ändern. Du kannst auch die Geolokalis
 Die astronomischen Berechnungen erfolgen vollständig auf deinem Gerät. Es werden keine personenbezogenen Daten gespeichert. Die App funktioniert übrigens auch perfekt offline (außer der interaktiven Karte).
 
 Um eine Vorstellung von der Nutzung der Anwendung zu bekommen, wird ein selbst gehosteter Matomo‑Server (Open‑Source‑Pendant zu Google Analytics) verwendet. Dieser Server erfasst nur die Zahl eindeutiger Besucher und die Seitenaufrufe. Personenbezogene Daten werden nicht gespeichert.
+
+#### Natürliche Zeit auf der Pebble-Smartwatch
+
+Das Zifferblatt „Natural Time“ gewann den **ersten Platz** im Zifferblatt-Wettbewerb von Pebble. Es ist kostenlos im Pebble Store erhältlich: [apps.repebble.com](https://apps.repebble.com/ec836faa1fdf48b294e94560).
+
+Das E-Ink-Display zeigt den Lauf der Sonne auf einem 360°-Zifferblatt und bietet zwei bis vier Wochen Akkulaufzeit. Das Zifferblatt richtet sich automatisch nach dem Standort seines Trägers.
 
 #### Danksagungen
 

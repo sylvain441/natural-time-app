@@ -2,6 +2,58 @@
   "welcome": {
     "title": "Luonnollinen Aika",
     "subtitle": "Uusi aikakäsitys",
+    "clockHero": {
+      "titleLine1": "Olen",
+      "titleLine2": "luonnollinen kello",
+      "subtitle": "Liikun auringon tahdissa.",
+      "cta": { "howToRead": "Miten se toimii?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Olen",
+      "titleLine2": "13 kuun spiraali",
+      "subtitle": "Yksi vuosi: 13 yhtä pitkää 28 päivän kuukautta ja Sateenkaaripäivä",
+      "cta": { "howToRead": "Miten se toimii?" }
+    },
+    "moonsIntro": {
+      "lead": "Luonnollinen Aika uudistaa myös tapamme laskea päiviä.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Eri puolilta maailmaa kumpuavat perinteet ja {moon} ovat innoittaneet spiraalin yksinkertaista rytmiä: {same}, jokaisessa 28 päivää. Yksinkertaista, eikö?",
+      "moonWord": "kuu",
+      "sameWord": "13 identtistä kuukautta",
+      "links": { "spiral": "Avaa 13 kuuta", "faq": "Usein kysytyt kysymykset" }
+    },
+    "intro": {
+      "lead": "Luonnollinen Aika uudistaa tapamme mitata aikaa.",
+      "statement": "Luonnollisessa kellossa on {hand} ja {dial}. Se nostaa {sun} jälleen ajan mittaamisen keskipisteeksi ja {reference}.",
+      "handWord": "vain yksi viisari",
+      "dialWord": "360°:n kellotaulu",
+      "sunWord": "auringon",
+      "referenceWord": "yleismaailmalliseksi vertailukohdaksi",
+      "video": { "label": "Katso esittely", "offline": "Video palaa näkyviin heti, kun olet taas verkossa." },
+      "links": { "clock": "Käynnistä kello", "faq": "Usein kysytyt kysymykset" }
+    },
+    "turn": { "line1": "Luonnollinen Aika on enemmän kuin kello.", "line2": "Se on myös \"{spiral}\".", "spiral": "kalenteri" },
+    "topbar": {
+      "before": "Luonnollinen Aika voitti Pebble-",
+      "long": "kellotaulukilpailun ",
+      "after": "(älykellojen merkki)",
+      "cta": "Pebble Store",
+      "close": "Sulje ilmoitus"
+    },
+    "commons": {
+      "lead": "Luonnollinen Aika ei ole tuote.",
+      "statement": "Se on {convention}, {units}. Se ei kuulu kenellekään ja kuuluu kaikille, jotka sitä käyttävät.",
+      "conventionWord": "kaikille kuuluva käytäntö",
+      "unitsPhrase": "metrin tavoin",
+      "cta": "Luonnollinen Aika GitHubissa",
+      "author": {
+        "text": "Luonnollisen Ajan loi Sylvain, joka tunnetaan myös nimellä \"Biquette\".",
+        "hunch": "Kaikki alkoi yksinkertaisesta ajatuksesta: tapamme jakaa aikaa on tarpeettoman monimutkainen. Kun noudatamme sitä tarpeeksi kauan, etäännymme elävän maailman rytmeistä."
+      },
+      "links": { "site": "Sylvainin muut projektit", "shop": "Osta kello", "donate": "Lahjoita" },
+      "supportLabel": "Tue projektia",
+      "support": "Luonnollinen Aika on vapaa avoimen lähdekoodin projekti. Jatkaakseen itsenäistä työtään Sylvain rakentaa käsintehtyjä kelloja, joista jokainen säädetään tarkasti sinun asuinpaikkaasi varten. Yksittäiskappaleita ja pieniä sarjoja."
+    },
     "naturalClock": {
       "title": "Luonnollinen Kello",
       "description": "Olen luonnosta inspiroitunut kello.\nAinoa viisarini tekee vain yhden kierroksen päivässä...\nSeuraten auringon kulkua taivaalla,\nsaumattomasti... 360° kellotaululla.",
@@ -49,7 +101,7 @@
         "line4": "Luonto on jo antanut meille täydellisen ajanmittarin...",
         "line5": "Aurinko! Kaikkien elävien olentojen ylin kapellimestari."
       },
-      "credits": "Luonut {author} | {github}",
+      "credits": "Luonut {author}",
       "author": "Sylvain",
       "github": "Avoin lähdekoodi GitHubissa",
       "resetData": "Nollaa tiedot"
@@ -373,6 +425,9 @@
     }
   },
   "faq": {
+    "title": "Usein kysytyt kysymykset",
+    "subtitle": "Luonnollisen ajan ymmärtäminen",
+    "boardTitle": "Ero lyhyesti",
     "inProgress": "(Työn alla)"
   },
   "locationPicker": {
@@ -440,6 +495,7 @@
     "title": "Sovellus päivitetty!",
     "v2_4": "🌍 Luonnollinen Aika -sovellus puhuu nyt 12 kieltä! Saksa, italia, venäjä, kreikka, kiina, japani ja portugali (Brasilia) liittyvät seikkailuun.",
     "v2_5": "⌚ Luonnollinen Aika on nyt Pebble-älykellossasi! Lataa kellotaulu Pebblestä.",
+    "v2_6": "🧭 Uusi tee se itse -tila: rakenna oma luonnollinen aurinkokellosi auringon, auringonnousun, auringonlaskun ja viiksien kulmien avulla.",
     "v2_5_cta": "Lataa Pebblestä",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },

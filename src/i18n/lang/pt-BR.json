@@ -2,6 +2,62 @@
   "welcome": {
     "title": "Tempo Natural",
     "subtitle": "Uma nova convenção do tempo",
+    "clockHero": {
+      "titleLine1": "Sou um",
+      "titleLine2": "relógio natural",
+      "subtitle": "Avanço no ritmo do sol.",
+      "cta": { "howToRead": "Como funciona?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Sou uma",
+      "titleLine2": "espiral de 13 luas",
+      "subtitle": "Um ano: 13 meses iguais de 28 dias, mais o Dia do Arco-íris",
+      "cta": { "howToRead": "Como funciona?" }
+    },
+    "moonsIntro": {
+      "lead": "O Tempo Natural também reinventa a forma como contamos os dias.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspirada em tradições do mundo todo e na {moon}, a espiral segue um ritmo simples: {same} de 28 dias cada. Simples, não é?",
+      "moonWord": "lua",
+      "sameWord": "13 meses iguais",
+      "links": { "spiral": "Abrir as 13 luas", "faq": "FAQ" }
+    },
+    "intro": {
+      "lead": "O Tempo Natural reinventa a forma como medimos o tempo.",
+      "statement": "Com {hand} e um {dial}, o relógio natural devolve ao {sun} seu lugar como {reference} da passagem do tempo.",
+      "handWord": "um único ponteiro",
+      "dialWord": "mostrador de 360°",
+      "sunWord": "sol",
+      "referenceWord": "referência universal",
+      "video": { "label": "Ver a introdução", "offline": "O vídeo volta assim que você estiver online." },
+      "links": { "clock": "Iniciar o relógio", "faq": "FAQ" }
+    },
+    "turn": {
+      "line1": "O Tempo Natural é mais do que um relógio.",
+      "line2": "É também um “{spiral}”.",
+      "spiral": "calendário"
+    },
+    "topbar": {
+      "before": "O Tempo Natural venceu um concurso de mostradores da Pebble ",
+      "long": "",
+      "after": "(marca de smartwatches)",
+      "cta": "Pebble Store",
+      "close": "Fechar o anúncio"
+    },
+    "commons": {
+      "lead": "O Tempo Natural não é um produto.",
+      "statement": "É {convention} de domínio público, {units}. Não pertence a ninguém e pertence a todas as pessoas que a usam.",
+      "conventionWord": "uma convenção",
+      "unitsPhrase": "como o metro",
+      "cta": "Tempo Natural no GitHub",
+      "author": {
+        "text": "O Tempo Natural foi criado por Sylvain (também conhecido como “Biquette”).",
+        "hunch": "Tudo começou com uma intuição simples: a forma como dividimos o tempo é desnecessariamente complicada. Se a seguimos por tempo demais, acabamos perdendo o ritmo dos ciclos do mundo vivo."
+      },
+      "links": { "site": "Outros projetos de Sylvain", "shop": "Comprar um relógio", "donate": "Fazer uma doação" },
+      "supportLabel": "Apoiar o projeto",
+      "support": "O projeto Tempo Natural é livre e de código aberto. Para continuar seu trabalho independente, Sylvain fabrica relógios artesanais, cada um ajustado ao local exato onde você vive. Peças únicas e séries limitadas."
+    },
     "naturalClock": {
       "title": "Relógio Natural",
       "description": "Sou um relógio inspirado na natureza.\nMeu único ponteiro completa apenas uma volta por dia...\nAcompanho o percurso do sol no céu,\ntranquilamente... em um mostrador de 360°.",
@@ -39,7 +95,7 @@
         "line4": "A natureza já nos deu o relógio perfeito...",
         "line5": "O sol! O grande maestro de toda a vida."
       },
-      "credits": "Criado por {author} | {github}",
+      "credits": "Criado por {author}",
       "author": "Sylvain",
       "github": "Código aberto no GitHub",
       "resetData": "Redefinir dados"
@@ -149,7 +205,7 @@
     "menu": { "settings": "Configurações", "locationPicker": "Escolher localização", "viewMode": { "spiralTitle": "Mostrar em espiral", "verticalTitle": "Mostrar na vertical" }, "understanding": "Entender", "startTutorial": "Iniciar tutorial", "faq": "Perguntas frequentes", "specialMode": "Modo especial", "timeTravel": "Viagem no tempo" },
     "notifications": { "geolocation": { "title": "Posição do GPS alterada. Atualizar?", "ignoreButton": "Ignorar hoje", "updateButton": "Sim", "dismissButton": "Não" }, "routeLocation": {"title":"Qual localização deve ser usada?","description":"Este link propõe definir uma localização diferente da salva nas suas configurações.","linkLabel":"Localização solicitada pelo link","savedLabel":"Localização salva","keepSavedButton":"Manter a localização salva","updateButton":"Usar a localização do link"} }
   },
-  "faq": { "inProgress": "(Em preparação)" },
+  "faq": { "title": "Perguntas frequentes", "subtitle": "Entender o tempo natural", "boardTitle": "A diferença em resumo", "inProgress": "(Em preparação)" },
   "locationPicker": {
     "title": "Escolher uma localização",
     "nameLabel": { "new": "Dar um nome a esta localização", "edit": "Editar nome da localização" },
@@ -177,9 +233,8 @@
     "v2_4": "🌍 O aplicativo Tempo Natural agora fala 12 idiomas! Alemão, Italiano, Russo, Grego, Chinês, Japonês e Português (Brasil) se juntam à aventura.",
     "v2_5": "⌚ O Tempo Natural chegou ao seu relógio Pebble! Baixe o mostrador no Pebble.",
     "v2_5_cta": "Baixar no Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Novo modo DIY: faça seu próprio relógio solar natural com os ângulos correspondentes ao sol, ao nascer do sol, ao pôr do sol e aos bigodes."
   },
   "common": { "loading": "Carregando…", "confirmReset": "Tem certeza de que deseja limpar todos os dados salvos?", "selectLanguage": "Selecionar idioma" }
 }
-
-

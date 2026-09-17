@@ -2,6 +2,79 @@
   "welcome": {
     "title": "自然時間",
     "subtitle": "いのちに学ぶ新しい時間の約束",
+    "clockHero": {
+      "titleLine1": "私は",
+      "titleLine2": "自然時間の時計です",
+      "subtitle": "太陽の歩みに合わせて動きます。",
+      "cta": {
+        "howToRead": "どんな仕組み？"
+      }
+    },
+    "moonsHero": {
+      "titleLine1": "私は",
+      "titleLine2": "13の月のスパイラルです",
+      "subtitle": "1年は、28日ずつの同じ13か月と「虹の日」",
+      "cta": {
+        "howToRead": "どんな仕組み？"
+      }
+    },
+    "moonsIntro": {
+      "lead": "自然時間は、日の数え方も新しく考え直します。",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "世界各地の伝統と{moon}に着想を得たスパイラルは、シンプルなリズムを刻みます。28日ずつの{same}です。わかりやすいでしょう？",
+      "moonWord": "月",
+      "sameWord": "同じ13か月",
+      "links": {
+        "spiral": "13の月を開く",
+        "faq": "よくある質問"
+      }
+    },
+    "intro": {
+      "lead": "自然時間は、時間の測り方を新しく考え直します。",
+      "statement": "自然時間の時計は、{hand}と{dial}で、{sun}をふたたび時を測る中心に置き、私たちの{reference}にします。",
+      "handWord": "1本の針",
+      "dialWord": "360°の文字盤",
+      "sunWord": "太陽",
+      "referenceWord": "普遍的な基準",
+      "video": {
+        "label": "紹介動画を見る",
+        "offline": "オンラインに戻ると動画を再生できます。"
+      },
+      "links": {
+        "clock": "時計を動かす",
+        "faq": "よくある質問"
+      }
+    },
+    "turn": {
+      "line1": "自然時間は、時計だけではありません。",
+      "line2": "「{spiral}」でもあります。",
+      "spiral": "カレンダー"
+    },
+    "topbar": {
+      "before": "自然時間がPebbleの",
+      "long": "ウォッチフェイスコンテストで優勝 ",
+      "after": "（スマートウォッチブランド）",
+      "cta": "Pebble Store",
+      "close": "お知らせを閉じる"
+    },
+    "commons": {
+      "lead": "自然時間は商品ではありません。",
+      "statement": "これはパブリックドメインの{convention}で、{units}。誰か一人のものではなく、使うすべての人のものです。",
+      "conventionWord": "時間の取り決め",
+      "unitsPhrase": "メートルと同じです",
+      "cta": "GitHubでNatural Timeを見る",
+      "author": {
+        "text": "自然時間はSylvain（別名「Biquette」）が考案しました。",
+        "hunch": "始まりは素朴な直感でした。普段使っている時間の分け方は、必要以上に複雑なのではないか。それに従い続けるうちに、私たちは生きものの周期からずれてしまうのではないか。"
+      },
+      "links": {
+        "site": "Sylvainのほかのプロジェクト",
+        "shop": "時計を購入",
+        "donate": "寄付する"
+      },
+      "supportLabel": "プロジェクトを支援",
+      "support": "Natural Timeは自由でオープンソースのプロジェクトです。独立した創作活動を続けるため、Sylvainは使う場所に合わせて正確に調整した時計を手作りしています。一点ものと限定生産です。"
+    },
     "naturalClock": {
       "title": "自然時間の時計",
       "description": "私は生きものから着想を得た時計です。\n私の唯一の針は一日に一度だけ一周します……\n太陽が空を進む軌跡をたどり、\nゆっくりと……360°の文字盤に沿って動きます。",
@@ -49,7 +122,7 @@
         "line4": "じつは、いちばん美しい時計はすでに用意されています……",
         "line5": "その名は太陽！ 時の主人公にして、いのちの指揮者です。"
       },
-      "credits": "作成 {author} | {github}",
+      "credits": "作成 {author}",
       "author": "Sylvain",
       "github": "ソースコード（GitHub）",
       "resetData": "データをリセット"
@@ -343,6 +416,9 @@
     }
   },
   "faq": {
+    "title": "よくある質問",
+    "subtitle": "自然時間についてすべてを理解する",
+    "boardTitle": "ひと目でわかる違い",
     "inProgress": "（作成中）"
   },
   "locationPicker": {
@@ -411,7 +487,8 @@
     "v2_4": "🌍 自然時間アプリが12言語に対応しました！ドイツ語、イタリア語、ロシア語、ギリシャ語、中国語、日本語、ポルトガル語（ブラジル）が仲間入りです。",
     "v2_5": "⌚ ナチュラルタイムがPebbleスマートウォッチに登場！Pebbleでウォッチフェイスをダウンロード。",
     "v2_5_cta": "Pebbleでダウンロード",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 新しいDIYモード：太陽、日の出、日の入り、季節の弧の角度を使って、自分だけの自然日時計を作れます。"
   },
   "common": {
     "loading": "読み込み中…",
@@ -419,5 +496,3 @@
     "selectLanguage": "言語を選択"
   }
 }
-
-

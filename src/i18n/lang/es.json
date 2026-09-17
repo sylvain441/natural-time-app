@@ -2,6 +2,62 @@
   "welcome": {
     "title": "Tiempo Natural",
     "subtitle": "Una nueva convención del tiempo",
+    "clockHero": {
+      "titleLine1": "Soy un",
+      "titleLine2": "reloj natural",
+      "subtitle": "Avanzo al ritmo del sol.",
+      "cta": { "howToRead": "¿Cómo funciona?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Soy una",
+      "titleLine2": "espiral de 13 lunas",
+      "subtitle": "Un año: 13 meses iguales de 28 días, más el Día Arcoíris",
+      "cta": { "howToRead": "¿Cómo funciona?" }
+    },
+    "moonsIntro": {
+      "lead": "Tiempo Natural también reinventa nuestra forma de contar los días.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Inspirada en tradiciones de todo el mundo y en la {moon}, la espiral sigue un ritmo sencillo: {same} de 28 días cada uno. Fácil, ¿verdad?",
+      "moonWord": "luna",
+      "sameWord": "13 meses idénticos",
+      "links": { "spiral": "Abrir las 13 lunas", "faq": "FAQ" }
+    },
+    "intro": {
+      "lead": "Tiempo Natural reinventa nuestra forma de medir el tiempo.",
+      "statement": "Con {hand} y una {dial}, el reloj natural devuelve al {sun} su lugar como {reference} del paso del tiempo.",
+      "handWord": "una sola aguja",
+      "dialWord": "esfera de 360°",
+      "sunWord": "sol",
+      "referenceWord": "referencia universal",
+      "video": { "label": "Ver la introducción", "offline": "El vídeo volverá cuando tengas conexión." },
+      "links": { "clock": "Poner en marcha el reloj", "faq": "FAQ" }
+    },
+    "turn": {
+      "line1": "Tiempo Natural es mucho más que un reloj.",
+      "line2": "También es un «{spiral}».",
+      "spiral": "calendario"
+    },
+    "topbar": {
+      "before": "Tiempo Natural ganó un concurso de esferas de Pebble ",
+      "long": "",
+      "after": "(marca de relojes inteligentes)",
+      "cta": "Pebble Store",
+      "close": "Cerrar el anuncio"
+    },
+    "commons": {
+      "lead": "Tiempo Natural no es un producto.",
+      "statement": "Es {convention} de dominio público, {units}. No pertenece a nadie y pertenece a todas las personas que lo usan.",
+      "conventionWord": "una convención",
+      "unitsPhrase": "como el metro",
+      "cta": "Tiempo Natural en GitHub",
+      "author": {
+        "text": "Tiempo Natural fue creado por Sylvain (alias «Biquette»).",
+        "hunch": "Todo empezó con una intuición sencilla: nuestra forma de dividir el tiempo es innecesariamente complicada. A fuerza de seguirla, acabamos perdiendo el compás de los ciclos del mundo vivo."
+      },
+      "links": { "site": "Otros proyectos de Sylvain", "shop": "Comprar un reloj", "donate": "Hacer una donación" },
+      "supportLabel": "Apoyar el proyecto",
+      "support": "El proyecto Tiempo Natural es libre y de código abierto. Para poder seguir trabajando de forma independiente, Sylvain fabrica relojes artesanales, ajustados con precisión al lugar donde vives. Piezas únicas y series limitadas."
+    },
     "naturalClock": {
       "title": "Reloj Natural",
       "description": "Soy un reloj inspirado en la naturaleza.\nMi única aguja completa una sola vuelta al día...\nSigo el recorrido del sol por el cielo,\nsuavemente... sobre un dial de 360°.",
@@ -49,7 +105,7 @@
         "line4": "La naturaleza ya nos dio el reloj perfecto...",
         "line5": "¡El sol! El gran orquestador de todo lo vivo."
       },
-      "credits": "Creado por {author} | {github}",
+      "credits": "Creado por {author}",
       "author": "Sylvain",
       "github": "Código abierto en GitHub",
       "resetData": "Restablecer datos"
@@ -349,6 +405,9 @@
     }
   },
   "faq": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Comprender el tiempo natural",
+    "boardTitle": "La diferencia en breve",
     "inProgress": "(En preparación)"
   },
   "locationPicker": {
@@ -417,7 +476,8 @@
     "v2_4": "🌍 ¡La aplicación Tiempo Natural ahora habla 12 idiomas! Alemán, Italiano, Ruso, Griego, Chino, Japonés y Portugués (Brasil) se unen a la aventura.",
     "v2_5": "⌚ ¡Tiempo Natural llega a tu reloj Pebble! Descarga la esfera en Pebble.",
     "v2_5_cta": "Descargar en Pebble",
-    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
+    "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560",
+    "v2_6": "🧭 Nuevo modo DIY: fabrica tu propio reloj solar natural con los ángulos correspondientes al sol, al amanecer, al atardecer y a los bigotes."
   },
   "common": {
     "loading": "Cargando…",
@@ -425,5 +485,3 @@
     "selectLanguage": "Elegir idioma"
   }
 }
-
-

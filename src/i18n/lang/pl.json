@@ -2,6 +2,58 @@
   "welcome": {
     "title": "Czas Naturalny",
     "subtitle": "Nowa konwencja czasu",
+    "clockHero": {
+      "titleLine1": "Jestem",
+      "titleLine2": "zegarem naturalnym",
+      "subtitle": "Poruszam się w rytmie słońca.",
+      "cta": { "howToRead": "Jak to działa?" }
+    },
+    "moonsHero": {
+      "titleLine1": "Jestem",
+      "titleLine2": "spiralą 13 księżyców",
+      "subtitle": "Jeden rok: 13 równych miesięcy po 28 dni oraz Tęczowy Dzień",
+      "cta": { "howToRead": "Jak to działa?" }
+    },
+    "moonsIntro": {
+      "lead": "Czas Naturalny na nowo określa także sposób, w jaki liczymy dni.",
+      "formula": "13 × 28 + 1 = 365",
+      "statement": "Spirala czerpie inspirację z tradycji z całego świata i z {moon}. Jej rytm jest prosty: {same}, każdy po 28 dni. Proste, prawda?",
+      "moonWord": "księżyca",
+      "sameWord": "13 identycznych miesięcy",
+      "links": { "spiral": "Otwórz 13 księżyców", "faq": "Najczęstsze pytania" }
+    },
+    "intro": {
+      "lead": "Czas Naturalny na nowo określa sposób, w jaki mierzymy czas.",
+      "statement": "Dzięki {hand} i {dial} zegar naturalny znów stawia {sun} w centrum naszego sposobu mierzenia czasu jako {reference}.",
+      "handWord": "jednej wskazówce",
+      "dialWord": "tarczy 360°",
+      "sunWord": "słońce",
+      "referenceWord": "uniwersalny punkt odniesienia",
+      "video": { "label": "Obejrzyj wprowadzenie", "offline": "Film pojawi się ponownie, gdy tylko połączysz się z internetem." },
+      "links": { "clock": "Uruchom zegar", "faq": "Najczęstsze pytania" }
+    },
+    "turn": { "line1": "Czas Naturalny to więcej niż zegar.", "line2": "To także \"{spiral}\".", "spiral": "kalendarz" },
+    "topbar": {
+      "before": "Czas Naturalny wygrał konkurs Pebble na ",
+      "long": "tarcze zegarkowe ",
+      "after": "(marki smartwatchy)",
+      "cta": "Pebble Store",
+      "close": "Zamknij ogłoszenie"
+    },
+    "commons": {
+      "lead": "Czas Naturalny nie jest produktem.",
+      "statement": "To {convention} należąca do domeny publicznej, {units}. Nie należy do nikogo, a zarazem do wszystkich, którzy z niej korzystają.",
+      "conventionWord": "konwencja",
+      "unitsPhrase": "podobnie jak metr",
+      "cta": "Czas Naturalny na GitHubie",
+      "author": {
+        "text": "Czas Naturalny stworzył Sylvain, znany także jako \"Biquette\".",
+        "hunch": "Wszystko zaczęło się od prostej myśli: sposób, w jaki dzielimy czas, jest niepotrzebnie skomplikowany. Gdy trzymamy się go dostatecznie długo, tracimy rytm cykli żywego świata."
+      },
+      "links": { "site": "Inne projekty Sylvaina", "shop": "Kup zegar", "donate": "Przekaż darowiznę" },
+      "supportLabel": "Wesprzyj projekt",
+      "support": "Czas Naturalny to wolny projekt o otwartym kodzie źródłowym. Aby móc dalej pracować niezależnie, Sylvain buduje ręcznie zegary, a każdy z nich ustawia dokładnie dla miejsca, w którym mieszkasz. Pojedyncze egzemplarze i krótkie serie."
+    },
     "naturalClock": {
       "title": "Naturalny Zegar",
       "description": "Jestem zegarem inspirowanym naturą.\nMoja jedyna wskazówka wykonuje tylko jeden obrót dziennie...\nŚledząc drogę słońca po niebie,\npłynnie... na tarczy 360°.",
@@ -49,7 +101,7 @@
         "line4": "Natura już dała nam idealny miernik czasu...",
         "line5": "Słońce! Najwyższy dyrygent wszystkich żywych istot."
       },
-      "credits": "Stworzone przez {author} | {github}",
+      "credits": "Stworzone przez {author}",
       "author": "Sylvain",
       "github": "Otwarty kod źródłowy na GitHub",
       "resetData": "Zresetuj dane"
@@ -373,6 +425,9 @@
     }
   },
   "faq": {
+    "title": "Często zadawane pytania",
+    "subtitle": "Zrozumienie czasu naturalnego",
+    "boardTitle": "Różnica w skrócie",
     "inProgress": "(W trakcie)"
   },
   "locationPicker": {
@@ -440,6 +495,7 @@
     "title": "Aplikacja zaktualizowana!",
     "v2_4": "🌍 Aplikacja Czas Naturalny mówi teraz 12 językami! Niemiecki, włoski, rosyjski, grecki, chiński, japoński i portugalski (Brazylia) dołączają do przygody.",
     "v2_5": "⌚ Czas Naturalny jest teraz na Twoim zegarku Pebble! Pobierz tarczę na Pebble.",
+    "v2_6": "🧭 Nowy tryb zrób to sam: zbuduj własny naturalny zegar słoneczny, korzystając z kątów słońca, wschodu, zachodu oraz wąsów.",
     "v2_5_cta": "Pobierz na Pebble",
     "v2_5_url": "https://apps.repebble.com/ec836faa1fdf48b294e94560"
   },
