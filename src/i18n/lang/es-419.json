@@ -111,6 +111,148 @@
     "mainMenu": "Menú principal",
     "openSettings": "Abrir configuración"
   },
+  "tutorials": {
+    "clock": {
+      "welcome": {
+        "description": "Descubre una manera más simple e intuitiva de seguir el paso del día"
+      },
+      "notification": {
+        "title": "Tutorial del Reloj Natural",
+        "message": "¡Bienvenido! Esta guía visual explica el reloj natural de 360° en un abrir y cerrar de ojos"
+      },
+      "step1": {
+        "title": "Soy un reloj natural",
+        "description": "Apunto constantemente a la posición del sol"
+      },
+      "step2": {
+        "title": "Mi única aguja",
+        "description": "Hace una sola vuelta completa al día, muy lentamente"
+      },
+      "step3": {
+        "title": "Mi carátula está graduada en 360°",
+        "description": "Adiós al complicado sistema 24h/60min/60s"
+      },
+      "step4": {
+        "title": "180° marca el verdadero mediodía",
+        "description": "Cuando el sol está más alto en el cielo"
+      },
+      "step5": {
+        "title": "0° indica la medianoche",
+        "description": "Cuando el sol está al otro lado de nuestra posición"
+      },
+      "step6": {
+        "title": "Los bigotes representan día y noche",
+        "description": "La duración día/noche varía según estación y latitud"
+      },
+      "step7": {
+        "title": "En el solsticio de verano...",
+        "description": "El sol sale por aquí"
+      },
+      "step8": {
+        "title": "En el solsticio de verano...",
+        "description": "Y se pone por allá"
+      },
+      "step9": {
+        "title": "En el solsticio de invierno...",
+        "description": "El sol sale aquí"
+      },
+      "step10": {
+        "title": "En el solsticio de invierno...",
+        "description": "Y se pone por allá"
+      },
+      "step11": {
+        "title": "Solo en los equinoccios",
+        "description": "El día y la noche duran exactamente lo mismo"
+      },
+      "step12": {
+        "title": "Ya no preguntamos \"¿Qué hora es?\"",
+        "description": "Sino \"¿Dónde está el sol en el cielo?\""
+      },
+      "step13": {
+        "title": "El sol está a 222°",
+        "description": "(por ejemplo)"
+      },
+      "step14": {
+        "title": "Los números son opcionales",
+        "description": "El reloj natural es ante todo una experiencia visual"
+      },
+      "end": {
+        "title": "¡Tutorial completado!",
+        "description": "Para continuar, la app necesita una ubicación geográfica"
+      }
+    },
+    "spiral": {
+      "welcome": {
+        "description": "Descubre la Espiral de 13 Lunas, un calendario universal basado 100% en ciclos naturales"
+      },
+      "notification": {
+        "title": "Tutorial 13 Lunas",
+        "message": "¡Bienvenido! Esta guía visual explica cómo funciona el calendario de 13 lunas"
+      },
+      "step1": {
+        "title": "Soy un calendario de 13 meses de 28 días",
+        "description": "Me llaman la \"Espiral de 13 Lunas\""
+      },
+      "step2": {
+        "title": "1 luna = 4 semanas de 7 días",
+        "description": "Exactamente 28 días, sin excepción"
+      },
+      "step3": {
+        "title": "Cada día lleva el nombre de un color",
+        "description": "1er día = Rojo"
+      },
+      "step4": {
+        "title": "Luego Naranja, Amarillo, Verde, Azul, Índigo",
+        "description": "Y finalmente el 7º día: Violeta"
+      },
+      "step5": {
+        "title": "Las 13 lunas están dispuestas en espiral",
+        "description": "Porque el tiempo es cíclico, no lineal"
+      },
+      "step6": {
+        "title": "Aquí el día 5 de la luna 5",
+        "description": "Por ejemplo..."
+      },
+      "step7": {
+        "title": "Y aquí: el día 11 de la luna 11",
+        "description": "Un día verde, sea cual sea el año o siglo"
+      },
+      "step8": {
+        "title": "¿Sabías? 13 × 28 = 364 días 🤩",
+        "description": "Agreguemos un día más para llegar a 365"
+      },
+      "step9": {
+        "title": "Este es el Día Arcoíris 🌈",
+        "description": "Un día de celebración cerca del solsticio de invierno (hemisferio norte)"
+      },
+      "step10": {
+        "title": "Algunos años tienen 366 días",
+        "description": "La oportunidad de celebrar dos días consecutivos fuera del tiempo"
+      },
+      "step11": {
+        "title": "Una fecha natural se escribe: AÑO ) LUNA ) DÍA",
+        "description": "Un formato que permite un orden alfabético"
+      },
+      "step12": {
+        "title": "El día 1 del año 001",
+        "description": "corresponde al 22 de diciembre de 2012 (ver FAQ)"
+      },
+      "step13": {
+        "title": "Nota importante",
+        "description": "Los 28 días difieren del ciclo lunar de 29,53 días (ver FAQ)"
+      },
+      "end": {
+        "title": "¡Tutorial completado!",
+        "description": "Para continuar, la app necesita una ubicación geográfica"
+      }
+    },
+    "timeTravel": {
+      "notification": {
+        "title": "Modo viaje en el tiempo",
+        "message": "Para navegar por pasado y futuro:\nPaso 1: Elige una velocidad\nPaso 2: Usa los botones - y +\nConsejo: Mantén presionados los botones para movimiento continuo"
+      }
+    }
+  },
   "clock": {
     "title": "Reloj de Tiempo Natural",
     "subtitle": "Una sola aguja sincronizada con el sol",
