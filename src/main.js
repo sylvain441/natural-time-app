@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/router'
 import i18n from './i18n/i18n'
 import { languageService, preloadLocaleAssets, ensureLocaleMessages } from './i18n/i18n'
+import { DEFAULT_LANGUAGE } from './i18n/config'
 import longClickDirective from './directive/longclick'
 import Vue3TouchEvents from "vue3-touch-events";
 import { version } from '../package.json'
@@ -12,11 +13,6 @@ import { initializePWA } from './plugins/pwa'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import { ViteSSG } from 'vite-ssg'
 
-// Self-hosted fonts (subset imports; WOFF2 bundled offline)
-// Fonts are now loaded on-demand per locale in i18n service
-
-
-
 export const createApp = ViteSSG(
   App, 
   {
@@ -25,7 +21,6 @@ export const createApp = ViteSSG(
   },
   async ({ app, router, initialState, head }) => {
 
-    // PINIA LOGIC
     const pinia = createPinia();
     if(!import.meta.env.SSR) {
       pinia.use(piniaPluginPersistedstate);
@@ -35,24 +30,15 @@ export const createApp = ViteSSG(
     if (import.meta.env.SSR) {
       initialState.pinia = pinia.state.value
       
-      // Determine the language from route path for SSR using language service
       const routePath = router.currentRoute.value?.path || '';
-      
-      // Use language service to determine language from route path
       const lang = languageService.determineAndSetLanguage({
         isSSR: true,
         pathname: routePath
       });
-      // Ensure messages are available for SSR before rendering head
       await ensureLocaleMessages(lang);
-      // Set locale synchronously for SSR so components render translated strings
+      await ensureLocaleMessages(DEFAULT_LANGUAGE);
       i18n.global.locale.value = lang;
-      
-      // Set HTML attributes 
       head.htmlAttrs = { lang };
-      
-      // Set page metadata using i18n translations instead of hardcoded values
-      // Use welcome page meta tags as default for the initial SSR
       head.title = i18n.global.t('welcome.meta.title');
       head.meta = head.meta || [];
       head.meta.push({
@@ -60,7 +46,6 @@ export const createApp = ViteSSG(
         content: i18n.global.t('welcome.meta.description')
       });
       
-      // Add Open Graph meta tags
       head.meta.push({
         property: 'og:title',
         content: i18n.global.t('welcome.meta.title')
@@ -89,53 +74,43 @@ export const createApp = ViteSSG(
       pinia.state.value = initialState.pinia || {}
     }
     
-    // MIGRATION LOGIC
     if (!import.meta.env.SSR) {
       router.beforeEach((to, from, next) => {
         const storedVersion = localStorage.getItem('appVersion')
         
-        // Only handle first-time users here, let PWA plugin handle version updates
         if (!storedVersion) {
           console.log('First-time user, setting initial version:', version)
           localStorage.setItem('appVersion', version)
         }
-        // Migration is now handled by PWA plugin for existing users
-        
         next()
       })
     }
 
-    app
-      .use(router)
-      .use(i18n)
+    app.use(i18n)
 
-    // CLIENT SIDE ONLY LOGIC
     if (!import.meta.env.SSR) {
-      // Ensure the proper locale is selected and its messages are loaded
-      // BEFORE any component mounts/hydrates, to avoid rendering translation keys.
       const initialPathLang = languageService.determineAndSetLanguage({ pathname: window.location.pathname });
-      await ensureLocaleMessages(initialPathLang);
+      await Promise.all([
+        ensureLocaleMessages(initialPathLang),
+        ensureLocaleMessages(DEFAULT_LANGUAGE),
+      ]);
       i18n.global.locale.value = initialPathLang;
-      // Preload fonts/messages for the initial locale
       await preloadLocaleAssets(initialPathLang);
 
       app
         .use(Vue3TouchEvents, {rollOverFrequency: 500})
         .directive('longclick', longClickDirective({delay: 200, interval: 50}));
 
-      // Set up watcher for locale changes (using i18n directly for backward compatibility)
       watch(() => i18n.global.locale.value, (newLocale) => {
         if (typeof localStorage !== 'undefined' && newLocale) {
           localStorage.setItem('user-language', newLocale);
         }
-        // Load fonts/messages for the new locale on demand
         if (newLocale) {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
           preloadLocaleAssets(newLocale);
         }
       });
 
-      // Dynamic import for Matomo
       import('./plugins/matomo').then(({ setupMatomo }) => {
         setupMatomo(app, router)
       })

@@ -170,6 +170,13 @@ routeLanguageMap['/startpwa/'] = AVAILABLE_LANGUAGES[0];
 
 export default defineConfig({
   base: '/',
+
+  // Honour PORT so several worktrees can run their own dev server side by
+  // side. Unset (the normal case), Vite keeps its own default.
+  server: {
+    port: Number(process.env.PORT) || 5173,
+  },
+
   
   // Plugin configurations
   plugins: [
@@ -288,6 +295,12 @@ export default defineConfig({
   ssgOptions: {
     script: 'async',
     formatting: 'prettify',
+    // Render one route at a time. The vue-i18n instance is a module-level
+    // singleton whose `locale` is set per route in src/main.js, so concurrent
+    // renders overwrite each other's locale and pages get pre-rendered with a
+    // neighbouring route's language (visible until the client hydrates).
+    // Do not raise this without making the i18n instance per-app first.
+    concurrency: 1,
     crittersOptions: {
       preload: 'js-lazy',
       preloadFonts: true,
