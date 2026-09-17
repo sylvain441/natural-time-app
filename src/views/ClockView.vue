@@ -232,7 +232,7 @@
 					<LocationPicker viewType="clock" v-if="clockActivePanel === AVAILABLE_PANELS.locationPicker"
 						@save="() => { clockActivePanel = null; clockWelcomeMode = false; }" />
 					<!-- FAQ -->
-					<div class="py-6 px-4 h-full overflow-auto touch-pan-y">
+					<div class="h-full overflow-auto touch-pan-y">
 						<FAQAccordion v-if="clockActivePanel === AVAILABLE_PANELS.faq" :categories="[2]" />
 					</div>
 				</div>

@@ -250,7 +250,7 @@
         <!-- LOCATION PICKER -->
         <LocationPicker viewType="spiral" v-if="spiralActivePanel === AVAILABLE_PANELS.locationPicker" @save="() => { spiralActivePanel = null; spiralWelcomeMode = false; }" />
         <!-- FAQ -->
-        <div class="py-6 px-4 h-full overflow-auto touch-pan-y">
+        <div class="h-full overflow-auto touch-pan-y">
           <FAQAccordion v-if="spiralActivePanel === AVAILABLE_PANELS.faq" :categories="[3]" />
         </div>
       </div>
