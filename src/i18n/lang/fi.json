@@ -114,9 +114,11 @@
     }
   },
   "navigation": {
-    "clock": "Kello",
-    "spiral": "13 Kuuta",
-    "faq": "UKK"
+    "home": "Etusivu",
+    "openMenu": "Avaa valikko",
+    "closeMenu": "Sulje valikko",
+    "mainMenu": "Päävalikko",
+    "openSettings": "Avaa asetukset"
   },
   "tutorials": {
     "clock": {
@@ -472,9 +474,6 @@
       "naturalTime": "Luonnollinen Aika => {date}",
       "artificialTime": "Keinotekoinen Aika => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Etusivu naturaltime.app"
   },
   "display": {
     "year": "Vuosi",

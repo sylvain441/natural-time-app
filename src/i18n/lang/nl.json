@@ -118,9 +118,11 @@
     }
   },
   "navigation": {
-    "clock": "Klok",
-    "spiral": "13 Manen",
-    "faq": "FAQ"
+    "home": "Home",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "mainMenu": "Hoofdmenu",
+    "openSettings": "Instellingen openen"
   },
   "tutorials": {
     "clock": {
@@ -476,9 +478,6 @@
       "naturalTime": "Natuurlijke Tijd => {date}",
       "artificialTime": "Kunstmatige Tijd => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Home naturaltime.app"
   },
   "display": {
     "year": "Jaar",

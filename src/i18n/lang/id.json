@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Jam",
-    "spiral": "13 Bulan",
-    "faq": "FAQ"
+    "home": "Beranda",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "mainMenu": "Menu utama",
+    "openSettings": "Buka pengaturan"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Waktu Alami => {date}",
       "artificialTime": "Waktu Buatan => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Beranda naturaltime.app"
   },
   "display": {
     "year": "Tahun",

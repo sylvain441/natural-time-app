@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Saat",
-    "spiral": "13 Ay",
-    "faq": "SSS"
+    "home": "Ana sayfa",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "mainMenu": "Ana menü",
+    "openSettings": "Ayarları aç"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Doğal Zaman => {date}",
       "artificialTime": "Yapay Zaman => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Ana sayfa naturaltime.app"
   },
   "display": {
     "year": "Yıl",

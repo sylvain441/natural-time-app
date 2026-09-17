@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "시계",
-    "spiral": "13달",
-    "faq": "FAQ"
+    "home": "홈",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "mainMenu": "메인 메뉴",
+    "openSettings": "설정 열기"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "자연 시간 => {date}",
       "artificialTime": "인공 시간 => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "홈 naturaltime.app"
   },
   "display": {
     "year": "년",

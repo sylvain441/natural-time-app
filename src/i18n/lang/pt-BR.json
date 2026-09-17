@@ -107,46 +107,12 @@
       "ogUrl": "https://naturaltime.app/pt-BR/"
     }
   },
-  "navigation": { "clock": "Relógio", "spiral": "13 Luas", "faq": "FAQ" },
-  "tutorials": {
-    "clock": {
-      "welcome": { "description": "Descubra uma forma mais simples e intuitiva de acompanhar o passar do dia" },
-      "notification": { "title": "Tutorial do Relógio Natural", "message": "Bem‑vindo! Este guia visual explica o relógio natural de 360° num piscar de olhos" },
-      "step1": { "title": "Sou um relógio natural", "description": "Aponto constantemente para a posição do sol" },
-      "step2": { "title": "Meu único ponteiro", "description": "Faz apenas uma volta completa por dia, bem lentamente" },
-      "step3": { "title": "Meu mostrador é graduado em 360°", "description": "Adeus ao sistema 24h/60min/60s" },
-      "step4": { "title": "180° marca o verdadeiro meio‑dia", "description": "Quando o sol está mais alto no céu" },
-      "step5": { "title": "0° indica a meia‑noite", "description": "Quando o sol está do lado oposto da nossa posição" },
-      "step6": { "title": "Os bigodes representam dia e noite", "description": "A duração dia/noite varia conforme a estação e a latitude" },
-      "step7": { "title": "No solstício de verão...", "description": "O sol nasce por aqui" },
-      "step8": { "title": "No solstício de verão...", "description": "E se põe por ali" },
-      "step9": { "title": "No solstício de inverno...", "description": "O sol nasce aqui" },
-      "step10": { "title": "No solstício de inverno...", "description": "E se põe por ali" },
-      "step11": { "title": "Somente nos equinócios", "description": "O dia e a noite têm exatamente a mesma duração" },
-      "step12": { "title": "Não perguntamos mais \"Que horas são?\"", "description": "Mas sim \"Onde está o sol no céu?\"" },
-      "step13": { "title": "O sol está a 222°", "description": "(por exemplo)" },
-      "step14": { "title": "Os números são opcionais", "description": "O relógio natural é, antes de tudo, uma experiência visual" },
-      "end": { "title": "Tutorial concluído!", "description": "Para continuar, o app precisa de uma localização geográfica" }
-    },
-    "spiral": {
-      "welcome": { "description": "Descubra a Espiral de 13 Luas, um calendário universal baseado 100% em ciclos naturais" },
-      "notification": { "title": "Tutorial 13 Luas", "message": "Bem‑vindo! Este guia visual explica como funciona o calendário de 13 luas" },
-      "step1": { "title": "Sou um calendário de 13 meses de 28 dias", "description": "Sou chamado de \"Espiral de 13 Luas\"" },
-      "step2": { "title": "1 lua = 4 semanas de 7 dias", "description": "Exatamente 28 dias, sem exceção" },
-      "step3": { "title": "Cada dia tem o nome de uma cor", "description": "1º dia = Vermelho" },
-      "step4": { "title": "Depois Laranja, Amarelo, Verde, Azul, Índigo", "description": "E por fim o 7º dia: Violeta" },
-      "step5": { "title": "As 13 luas estão dispostas em espiral", "description": "Porque o tempo é cíclico, não linear" },
-      "step6": { "title": "Aqui está o 5º dia da 5ª lua", "description": "Por exemplo..." },
-      "step7": { "title": "E aqui: o 11º dia da 11ª lua", "description": "Um dia verde, independentemente do ano ou século" },
-      "step8": { "title": "Sabia? 13 × 28 = 364 dias 🤩", "description": "Acrescentemos mais um dia para chegar a 365" },
-      "step9": { "title": "Este é o Dia do Arco‑íris 🌈", "description": "Um dia de celebração perto do solstício de inverno (hemisfério norte)" },
-      "step10": { "title": "Alguns anos têm 366 dias", "description": "A oportunidade de celebrar dois dias seguidos fora do tempo" },
-      "step11": { "title": "Uma data natural se escreve: ANO ) LUA ) DIA", "description": "Um formato que permite ordenação alfabética" },
-      "step12": { "title": "O 1º dia do ano 001", "description": "corresponde a 22 de dezembro de 2012 (ver FAQ)" },
-      "step13": { "title": "Nota importante", "description": "Os 28 dias diferem do ciclo lunar de 29,53 dias (ver FAQ)" },
-      "end": { "title": "Tutorial concluído!", "description": "Para continuar, o app precisa de uma localização geográfica" }
-    },
-    "timeTravel": { "notification": { "title": "Modo viagem no tempo", "message": "Para navegar pelo passado e futuro:\nPasso 1: Escolha uma velocidade\nPasso 2: Use os botões - e +\nDica: Mantenha os botões pressionados para movimento contínuo" } }
+  "navigation": {
+    "home": "Início",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "mainMenu": "Menu principal",
+    "openSettings": "Abrir configurações"
   },
   "clock": {
     "title": "Relógio do Tempo Natural",
@@ -223,7 +189,6 @@
     "searchPlaceholder": "Pesquisar um local"
   },
   "moon": { "title": { "moon": "Lua #{number}", "rainbowDay": "Dia do Arco‑íris", "rainbowDays": "Dias do Arco‑íris" }, "dayTooltip": { "naturalTime": "Tempo Natural => {date}", "artificialTime": "Tempo artificial => {date}" } },
-  "mainMenu": { "homeTooltip": "Início naturaltime.app" },
   "display": { "year": "Ano", "moon": "Lua", "day": "Dia", "rainbow": "Dia do Arco‑íris", "dateFormat": "pt-BR" },
 
   "youtubePlayer": { "thumbnail": "Entender o Tempo Natural em 10 minutos" },

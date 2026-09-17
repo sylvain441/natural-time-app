@@ -114,9 +114,11 @@
     }
   },
   "navigation": {
-    "clock": "Klukka",
-    "spiral": "13 Tungl",
-    "faq": "Spurningar"
+    "home": "Heim",
+    "openMenu": "Opna valmynd",
+    "closeMenu": "Loka valmynd",
+    "mainMenu": "Aðalvalmynd",
+    "openSettings": "Opna stillingar"
   },
   "tutorials": {
     "clock": {
@@ -472,9 +474,6 @@
       "naturalTime": "Náttúrulegur Tími => {date}",
       "artificialTime": "Tilbúinn Tími => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Heim naturaltime.app"
   },
   "display": {
     "year": "Ár",

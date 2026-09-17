@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "時計",
-    "spiral": "13の月",
-    "faq": "FAQ"
+    "home": "ホーム",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "mainMenu": "メインメニュー",
+    "openSettings": "設定を開く"
   },
   "tutorials": {
     "clock": {
@@ -463,9 +465,6 @@
       "naturalTime": "自然時間 => {date}",
       "artificialTime": "人工時間 => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "ホーム naturaltime.app"
   },
   "display": {
     "year": "年",

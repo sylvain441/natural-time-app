@@ -12,7 +12,6 @@
       spiralVerticalMode ? 'h-full overflow-y-auto' : 'h-dvh'
     ]">
       
-      <!-- MAIN MENU -->  
       <MainMenu />
       
       <div 
@@ -272,16 +271,16 @@
         />
       </button>
 
-      <!-- Menu button -->
-      <button @click="toggleMenu" class="p-2 rounded-full bg-nt-cyan-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-lighter">
-        <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
-          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out', 
-            isMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
-          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
-            isMenuOpen ? 'opacity-0' : '']"></span>
-          <span :class="['block w-6 h-0.5 bg-current transform transition-all duration-300 ease-in-out',
-            isMenuOpen ? '-rotate-45 -translate-y-2' : '']"></span>
-        </div>
+      <button
+        @click="toggleMenu"
+        class="p-2 rounded-full bg-nt-cyan-light text-black focus:outline-none transition-all duration-300 hover:bg-nt-cyan-lighter"
+        :aria-expanded="isMenuOpen"
+        :aria-label="$t('navigation.openSettings')"
+      >
+        <svg class="w-6 h-6 transition-transform duration-300" :class="isMenuOpen ? 'rotate-45' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.33 4.317c.426-1.756 2.914-1.756 3.34 0a1.72 1.72 0 0 0 2.573 1.065c1.544-.967 3.303.793 2.337 2.337a1.72 1.72 0 0 0 1.065 2.573c1.756.426 1.756 2.914 0 3.34a1.72 1.72 0 0 0-1.065 2.573c.966 1.544-.793 3.303-2.337 2.337a1.72 1.72 0 0 0-2.573 1.065c-.426 1.756-2.914 1.756-3.34 0a1.72 1.72 0 0 0-2.573-1.065c-1.544.966-3.303-.793-2.337-2.337a1.72 1.72 0 0 0-1.065-2.573c-1.756-.426-1.756-2.914 0-3.34A1.72 1.72 0 0 0 5.423 7.72c-.966-1.544.793-3.304 2.337-2.337a1.72 1.72 0 0 0 2.573-1.065Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
       </button>
     </div>
 

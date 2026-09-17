@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Часы",
-    "spiral": "13 лун",
-    "faq": "FAQ"
+    "home": "Домой",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "mainMenu": "Главное меню",
+    "openSettings": "Открыть настройки"
   },
   "tutorials": {
     "clock": {
@@ -470,9 +472,6 @@
       "naturalTime": "Естественное время => {date}",
       "artificialTime": "Искусственное время => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Домой naturaltime.app"
   },
   "display": {
     "year": "Год",

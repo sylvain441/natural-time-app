@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "घड़ी",
-    "spiral": "13 चंद्रमा",
-    "faq": "प्रश्न"
+    "home": "होम",
+    "openMenu": "मेन्यू खोलें",
+    "closeMenu": "मेन्यू बंद करें",
+    "mainMenu": "मुख्य मेन्यू",
+    "openSettings": "सेटिंग्स खोलें"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "प्राकृतिक समय => {date}",
       "artificialTime": "कृत्रिम समय => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "होम naturaltime.app"
   },
   "display": {
     "year": "वर्ष",

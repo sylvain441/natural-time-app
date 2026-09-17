@@ -118,9 +118,11 @@
     }
   },
   "navigation": {
-    "clock": "Reloj",
-    "spiral": "13 Lunas",
-    "faq": "FAQ"
+    "home": "Inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "mainMenu": "Menú principal",
+    "openSettings": "Abrir ajustes"
   },
   "tutorials": {
     "clock": {
@@ -452,9 +454,6 @@
       "naturalTime": "Tiempo Natural => {date}",
       "artificialTime": "Tiempo artificial => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Inicio naturaltime.app"
   },
   "display": {
     "year": "Año",

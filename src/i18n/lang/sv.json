@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Klocka",
-    "spiral": "13 Månar",
-    "faq": "FAQ"
+    "home": "Hem",
+    "openMenu": "Öppna meny",
+    "closeMenu": "Stäng meny",
+    "mainMenu": "Huvudmeny",
+    "openSettings": "Öppna inställningar"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Naturlig Tid => {date}",
       "artificialTime": "Artificiell Tid => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Hem naturaltime.app"
   },
   "display": {
     "year": "År",

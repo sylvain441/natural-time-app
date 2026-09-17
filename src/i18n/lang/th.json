@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "นาฬิกา",
-    "spiral": "13 เดือน",
-    "faq": "คำถาม"
+    "home": "หน้าแรก",
+    "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "mainMenu": "เมนูหลัก",
+    "openSettings": "เปิดการตั้งค่า"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "เวลาธรรมชาติ => {date}",
       "artificialTime": "เวลาเทียม => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "หน้าแรก naturaltime.app"
   },
   "display": {
     "year": "ปี",

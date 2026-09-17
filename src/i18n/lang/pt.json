@@ -116,9 +116,11 @@
     }
   },
   "navigation": {
-    "clock": "Relógio",
-    "spiral": "13 Luas",
-    "faq": "FAQ"
+    "home": "Início",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "mainMenu": "Menu principal",
+    "openSettings": "Abrir definições"
   },
   "tutorials": {
     "clock": {
@@ -329,7 +331,6 @@
     "title": { "moon": "Lua #{number}", "rainbowDay": "Dia do Arco‑íris", "rainbowDays": "Dias do Arco‑íris" },
     "dayTooltip": { "naturalTime": "Tempo Natural => {date}", "artificialTime": "Tempo artificial => {date}" }
   },
-  "mainMenu": { "homeTooltip": "Início naturaltime.app" },
   "display": {
     "year": "Ano",
     "moon": "Lua",

@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Đồng hồ",
-    "spiral": "13 Trăng",
-    "faq": "FAQ"
+    "home": "Trang chủ",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "mainMenu": "Menu chính",
+    "openSettings": "Mở cài đặt"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Thời Gian Tự Nhiên => {date}",
       "artificialTime": "Thời Gian Nhân Tạo => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Trang chủ naturaltime.app"
   },
   "display": {
     "year": "Năm",

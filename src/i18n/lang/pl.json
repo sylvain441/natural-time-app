@@ -114,9 +114,11 @@
     }
   },
   "navigation": {
-    "clock": "Zegar",
-    "spiral": "13 Księżyców",
-    "faq": "FAQ"
+    "home": "Strona główna",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu",
+    "mainMenu": "Menu główne",
+    "openSettings": "Otwórz ustawienia"
   },
   "tutorials": {
     "clock": {
@@ -472,9 +474,6 @@
       "naturalTime": "Czas Naturalny => {date}",
       "artificialTime": "Czas Sztuczny => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Strona główna naturaltime.app"
   },
   "display": {
     "year": "Rok",

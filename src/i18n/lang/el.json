@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Ρολόι",
-    "spiral": "13 Σελήνες",
-    "faq": "FAQ"
+    "home": "Αρχική",
+    "openMenu": "Άνοιγμα μενού",
+    "closeMenu": "Κλείσιμο μενού",
+    "mainMenu": "Κύριο μενού",
+    "openSettings": "Άνοιγμα ρυθμίσεων"
   },
   "tutorials": {
     "clock": {
@@ -469,9 +471,6 @@
       "naturalTime": "Φυσικός Χρόνος => {date}",
       "artificialTime": "Τεχνητός Χρόνος => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Αρχική naturaltime.app"
   },
   "display": {
     "year": "Έτος",

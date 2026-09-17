@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Klokke",
-    "spiral": "13 Måner",
-    "faq": "FAQ"
+    "home": "Hjem",
+    "openMenu": "Åpne meny",
+    "closeMenu": "Lukk meny",
+    "mainMenu": "Hovedmeny",
+    "openSettings": "Åpne innstillinger"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Naturlig Tid => {date}",
       "artificialTime": "Kunstig Tid => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Hjem naturaltime.app"
   },
   "display": {
     "year": "År",

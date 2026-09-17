@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "时钟",
-    "spiral": "13 月",
-    "faq": "FAQ"
+    "home": "主页",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "mainMenu": "主菜单",
+    "openSettings": "打开设置"
   },
   "tutorials": {
     "clock": {
@@ -346,7 +348,6 @@
     "title": { "moon": "第 #{number} 月", "rainbowDay": "彩虹日", "rainbowDays": "彩虹日" },
     "dayTooltip": { "naturalTime": "自然时间 => {date}", "artificialTime": "人工时间 => {date}" }
   },
-  "mainMenu": { "homeTooltip": "主页 naturaltime.app" },
   "display": { "year": "年", "moon": "月", "day": "日", "rainbow": "彩虹日", "dateFormat": "zh-CN" },
 
   "youtubePlayer": { "thumbnail": "10 分钟了解自然时间" },

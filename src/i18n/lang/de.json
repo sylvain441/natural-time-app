@@ -118,9 +118,11 @@
     }
   },
   "navigation": {
-    "clock": "Uhr",
-    "spiral": "13 Monde",
-    "faq": "FAQ"
+    "home": "Start",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "mainMenu": "Hauptmenü",
+    "openSettings": "Einstellungen öffnen"
   },
   "tutorials": {
     "clock": {
@@ -455,9 +457,6 @@
       "naturalTime": "Natürliche Zeit => {date}",
       "artificialTime": "Künstliche Zeit => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Start naturaltime.app"
   },
   "display": {
     "year": "Jahr",

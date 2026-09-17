@@ -135,9 +135,11 @@
     }
   },
   "navigation": {
-    "clock": "Ora",
-    "spiral": "13 Hëna",
-    "faq": "Pyetje"
+    "home": "Ballina",
+    "openMenu": "Hap menynë",
+    "closeMenu": "Mbyll menynë",
+    "mainMenu": "Menyja kryesore",
+    "openSettings": "Hap cilësimet"
   },
   "tutorials": {
     "clock": {
@@ -493,9 +495,6 @@
       "naturalTime": "Koha Natyrale => {date}",
       "artificialTime": "Koha Artificiale => {date}"
     }
-  },
-  "mainMenu": {
-    "homeTooltip": "Ballina naturaltime.app"
   },
   "display": {
     "year": "Viti",
