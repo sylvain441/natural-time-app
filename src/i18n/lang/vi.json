@@ -58,20 +58,17 @@
       "close": "Đóng thông báo"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Thời Gian Tự Nhiên không phải là một sản phẩm.",
-      "statement": "Đó là {convention} thuộc phạm vi công cộng, {units}. Nó không thuộc về riêng ai mà thuộc về tất cả những người sử dụng nó.",
-      "conventionWord": "một quy ước",
-      "unitsPhrase": "giống như mét",
+      "statement": "Đó là **một quy ước** thuộc phạm vi công cộng, **giống như mét**, lít hay gam. Nó không thuộc về riêng ai mà thuộc về tất cả những người sử dụng nó.",
       "cta": "Natural Time trên GitHub",
-      "author": {
-        "text": "Thời Gian Tự Nhiên do Sylvain, biệt danh “Biquette”, sáng tạo.",
-        "hunch": "Mọi thứ bắt đầu từ một linh cảm đơn giản: cách chúng ta chia thời gian hằng ngày phức tạp một cách không cần thiết. Càng sống theo nó, chúng ta càng lệch khỏi nhịp điệu của thế giới sống."
-      },
+      "author": "Thời Gian Tự Nhiên do Sylvain, biệt danh “Biquette”, sáng tạo. Mọi thứ bắt đầu từ một linh cảm đơn giản: cách chúng ta chia thời gian hằng ngày phức tạp một cách không cần thiết. Càng sống theo nó, chúng ta càng lệch khỏi nhịp điệu của thế giới sống.",
       "links": {
-        "site": "Các dự án khác của Sylvain",
+        "site": "Các dự án khác của tác giả",
         "shop": "Mua đồng hồ",
         "donate": "Quyên góp"
       },
+      "authorLabel": "Khởi nguồn",
       "supportLabel": "Ủng hộ dự án",
       "support": "Natural Time là một dự án tự do và mã nguồn mở. Để tiếp tục công việc độc lập của mình, Sylvain làm đồng hồ thủ công và căn chỉnh chính xác theo nơi bạn sống. Mỗi chiếc là độc bản hoặc thuộc một đợt sản xuất giới hạn."
     },

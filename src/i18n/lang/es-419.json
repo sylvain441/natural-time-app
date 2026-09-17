@@ -45,16 +45,13 @@
       "close": "Cerrar el anuncio"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Tiempo Natural no es un producto.",
-      "statement": "Es {convention} de dominio público, {units}. No pertenece a nadie y pertenece a todas las personas que lo usan.",
-      "conventionWord": "una convención",
-      "unitsPhrase": "como el metro",
+      "statement": "Es **una convención** de dominio público, **como el metro**, el litro o el gramo. No pertenece a nadie y pertenece a todas las personas que lo usan.",
       "cta": "Tiempo Natural en GitHub",
-      "author": {
-        "text": "Tiempo Natural fue creado por Sylvain (alias «Biquette»).",
-        "hunch": "Todo empezó con una intuición sencilla: nuestra forma de dividir el tiempo es innecesariamente complicada. A fuerza de seguirla, acabamos perdiendo el compás de los ciclos del mundo vivo."
-      },
-      "links": { "site": "Otros proyectos de Sylvain", "shop": "Comprar un reloj", "donate": "Hacer una donación" },
+      "author": "Tiempo Natural fue creado por Sylvain (alias «Biquette»). Todo empezó con una intuición sencilla: nuestra forma de dividir el tiempo es innecesariamente complicada. A fuerza de seguirla, acabamos perdiendo el compás de los ciclos del mundo vivo.",
+      "links": { "site": "Otros proyectos del autor", "shop": "Comprar un reloj", "donate": "Hacer una donación" },
+      "authorLabel": "Los orígenes",
       "supportLabel": "Apoyar el proyecto",
       "support": "El proyecto Tiempo Natural es libre y de código abierto. Para poder seguir trabajando de forma independiente, Sylvain fabrica relojes artesanales, ajustados con precisión al lugar donde vives. Piezas únicas y series limitadas."
     },

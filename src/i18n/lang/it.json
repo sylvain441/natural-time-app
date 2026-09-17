@@ -45,17 +45,14 @@
       "close": "Chiudi l'annuncio"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Il Tempo Naturale non è un prodotto.",
-      "statement": "È {convention} di dominio pubblico, {units}. Non appartiene a nessuno e appartiene a tutti coloro che la usano.",
-      "conventionWord": "una convenzione",
-      "unitsPhrase": "come il metro",
+      "statement": "È **una convenzione** di dominio pubblico, **come il metro**, il litro o il grammo. Non appartiene a nessuno e appartiene a tutti coloro che la usano.",
       "cta": "Tempo Naturale su GitHub",
-      "author": {
-        "text": "Il Tempo Naturale è stato creato da Sylvain (alias «Biquette»).",
-        "hunch": "Tutto è nato da un'intuizione semplice: il modo in cui dividiamo il tempo è inutilmente complicato. A forza di adeguarci a questa divisione, perdiamo il ritmo dei cicli del mondo vivente."
-      },
-      "links": { "site": "Gli altri progetti di Sylvain", "shop": "Acquista un orologio", "donate": "Fai una donazione" },
-      "supportLabel": "Sostieni il progetto",
+      "author": "Il Tempo Naturale è stato creato da Sylvain (alias «Biquette»). Tutto è nato da un'intuizione semplice: il modo in cui dividiamo il tempo è inutilmente complicato. A forza di adeguarci a questa divisione, perdiamo il ritmo dei cicli del mondo vivente.",
+      "links": { "site": "Gli altri progetti dell'autore", "shop": "Acquista un orologio", "donate": "Fai una donazione" },
+      "authorLabel": "Le origini",
+      "supportLabel": "Sostenere il progetto",
       "support": "Il progetto Tempo Naturale è libero e open source. Per poter continuare a lavorare in modo indipendente, Sylvain costruisce orologi artigianali, ciascuno regolato sul luogo esatto in cui vivi. Pezzi unici e serie limitate."
     },
     "naturalClock": {

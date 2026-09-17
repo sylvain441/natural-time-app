@@ -45,16 +45,13 @@
       "close": "Sluit de aankondiging"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Natuurlijke Tijd is geen product.",
-      "statement": "Het is {convention} die tot het publieke domein behoort, {units}. Het is van niemand en van iedereen die het gebruikt.",
-      "conventionWord": "een conventie",
-      "unitsPhrase": "zoals de meter",
+      "statement": "Het is **een conventie** die tot het publieke domein behoort, **zoals de meter**, de liter of de gram. Het is van niemand en van iedereen die het gebruikt.",
       "cta": "Natuurlijke Tijd op GitHub",
-      "author": {
-        "text": "Natuurlijke Tijd is gemaakt door Sylvain (alias ‘Biquette’).",
-        "hunch": "Het begon met een eenvoudig inzicht: de manier waarop we tijd indelen is onnodig ingewikkeld. Hoe langer we ons ernaar richten, hoe verder we uit de pas raken met de cycli van de levende wereld."
-      },
-      "links": { "site": "Andere projecten van Sylvain", "shop": "Koop een klok", "donate": "Doe een donatie" },
+      "author": "Natuurlijke Tijd is gemaakt door Sylvain (alias ‘Biquette’). Het begon met een eenvoudig inzicht: de manier waarop we tijd indelen is onnodig ingewikkeld. Hoe langer we ons ernaar richten, hoe verder we uit de pas raken met de cycli van de levende wereld.",
+      "links": { "site": "Andere projecten van de maker", "shop": "Koop een klok", "donate": "Doe een donatie" },
+      "authorLabel": "De oorsprong",
       "supportLabel": "Steun het project",
       "support": "Het project Natuurlijke Tijd is vrij en opensource. Om onafhankelijk te kunnen blijven werken, maakt Sylvain klokken met de hand, precies afgesteld op de plek waar je woont. Unieke stukken en beperkte oplages."
     },

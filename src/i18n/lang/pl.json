@@ -41,16 +41,13 @@
       "close": "Zamknij ogłoszenie"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Czas Naturalny nie jest produktem.",
-      "statement": "To {convention} należąca do domeny publicznej, {units}. Nie należy do nikogo, a zarazem do wszystkich, którzy z niej korzystają.",
-      "conventionWord": "konwencja",
-      "unitsPhrase": "podobnie jak metr",
+      "statement": "To **konwencja** należąca do domeny publicznej, **podobnie jak metr**, litr czy gram. Nie należy do nikogo, a zarazem do wszystkich, którzy z niej korzystają.",
       "cta": "Czas Naturalny na GitHubie",
-      "author": {
-        "text": "Czas Naturalny stworzył Sylvain, znany także jako \"Biquette\".",
-        "hunch": "Wszystko zaczęło się od prostej myśli: sposób, w jaki dzielimy czas, jest niepotrzebnie skomplikowany. Gdy trzymamy się go dostatecznie długo, tracimy rytm cykli żywego świata."
-      },
-      "links": { "site": "Inne projekty Sylvaina", "shop": "Kup zegar", "donate": "Przekaż darowiznę" },
+      "author": "Czas Naturalny stworzył Sylvain, znany także jako \"Biquette\". Wszystko zaczęło się od prostej myśli: sposób, w jaki dzielimy czas, jest niepotrzebnie skomplikowany. Gdy trzymamy się go dostatecznie długo, tracimy rytm cykli żywego świata.",
+      "links": { "site": "Inne projekty autora", "shop": "Kup zegar", "donate": "Przekaż darowiznę" },
+      "authorLabel": "Początki",
       "supportLabel": "Wesprzyj projekt",
       "support": "Czas Naturalny to wolny projekt o otwartym kodzie źródłowym. Aby móc dalej pracować niezależnie, Sylvain buduje ręcznie zegary, a każdy z nich ustawia dokładnie dla miejsca, w którym mieszkasz. Pojedyncze egzemplarze i krótkie serie."
     },

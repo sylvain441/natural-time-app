@@ -58,21 +58,18 @@
       "close": "Tutup pengumuman"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Waktu Alami bukan produk.",
-      "statement": "Ini adalah {convention} dalam domain publik, {units}. Konvensi ini bukan milik siapa pun, sekaligus milik semua orang yang menggunakannya.",
-      "conventionWord": "sebuah konvensi",
-      "unitsPhrase": "seperti meter",
+      "statement": "Ini adalah **sebuah konvensi** dalam domain publik, **seperti meter**, liter, atau gram. Konvensi ini bukan milik siapa pun, sekaligus milik semua orang yang menggunakannya.",
       "cta": "Natural Time di GitHub",
-      "author": {
-        "text": "Waktu Alami diciptakan oleh Sylvain (alias “Biquette”).",
-        "hunch": "Semuanya berawal dari firasat sederhana: cara kita membagi waktu sehari-hari terlalu rumit tanpa alasan. Semakin lama kita mengikutinya, semakin jauh kita dari siklus kehidupan."
-      },
+      "author": "Waktu Alami diciptakan oleh Sylvain (alias “Biquette”). Semuanya berawal dari firasat sederhana: cara kita membagi waktu sehari-hari terlalu rumit tanpa alasan. Semakin lama kita mengikutinya, semakin jauh kita dari siklus kehidupan.",
       "links": {
-        "site": "Proyek Sylvain lainnya",
+        "site": "Proyek lain dari penulis",
         "shop": "Beli jam",
         "donate": "Beri donasi"
       },
-      "supportLabel": "Dukung proyek",
+      "authorLabel": "Asal mulanya",
+      "supportLabel": "Dukung proyek ini",
       "support": "Natural Time adalah proyek bebas dan sumber terbuka. Untuk melanjutkan karya independennya, Sylvain membuat jam dengan tangan dan menyetelnya secara tepat untuk tempat tinggal Anda. Setiap jam dibuat satu per satu atau dalam edisi terbatas."
     },
     "naturalClock": {

@@ -58,20 +58,17 @@
       "close": "Duyuruyu kapat"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Doğal Zaman bir ürün değildir.",
-      "statement": "Bu, {units} kamuya ait {convention}. Kimseye ait değildir, onu kullanan herkese aittir.",
-      "conventionWord": "bir ölçüm standardıdır",
-      "unitsPhrase": "metre gibi",
+      "statement": "Bu, **metre, litre ya da gram gibi** kamuya ait **bir ölçüm standardıdır**. Kimseye ait değildir, onu kullanan herkese aittir.",
       "cta": "GitHub'da Doğal Zaman",
-      "author": {
-        "text": "Doğal Zaman, «Biquette» olarak da bilinen Sylvain tarafından yaratıldı.",
-        "hunch": "Her şey basit bir düşünceyle başladı: zamanı bölme biçimimiz gereksiz yere karmaşık. Bunu yeterince uzun süre izlediğimizde, canlı dünyanın döngüleriyle aramızdaki uyumu kaybediyoruz."
-      },
+      "author": "Doğal Zaman, «Biquette» olarak da bilinen Sylvain tarafından yaratıldı. Her şey basit bir düşünceyle başladı: zamanı bölme biçimimiz gereksiz yere karmaşık. Bunu yeterince uzun süre izlediğimizde, canlı dünyanın döngüleriyle aramızdaki uyumu kaybediyoruz.",
       "links": {
-        "site": "Sylvain'in diğer projeleri",
+        "site": "Yazarın diğer projeleri",
         "shop": "Bir saat satın al",
         "donate": "Bağış yap"
       },
+      "authorLabel": "Kökenler",
       "supportLabel": "Projeyi destekle",
       "support": "Doğal Zaman ücretsiz ve açık kaynaklı bir projedir. Sylvain, bağımsız çalışmalarını sürdürebilmek için her biri yaşadığın yere özel olarak ayarlanmış el yapımı saatler üretiyor. Benzersiz parçalar ve sınırlı seriler."
     },

@@ -41,16 +41,13 @@
       "close": "Loka tilkynningunni"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Náttúrulegur Tími er ekki vara.",
-      "statement": "Hann er {convention} í almenningseigu, {units}. Hann tilheyrir engum og öllum sem nota hann.",
-      "conventionWord": "samkomulag",
-      "unitsPhrase": "rétt eins og metrinn",
+      "statement": "Hann er **samkomulag** í almenningseigu, **rétt eins og metrinn**, lítrinn eða grammið. Hann tilheyrir engum og öllum sem nota hann.",
       "cta": "Náttúrulegur Tími á GitHub",
-      "author": {
-        "text": "Sylvain, einnig þekktur sem \"Biquette\", skapaði Náttúrulegan Tíma.",
-        "hunch": "Allt hófst með einfaldri hugmynd: Það er óþarflega flókið hvernig við skiptum tímanum. Fylgjum við því nógu lengi færumst við úr takti við hringrásir lífríkisins."
-      },
-      "links": { "site": "Önnur verkefni Sylvains", "shop": "Kaupa klukku", "donate": "Styrkja verkefnið" },
+      "author": "Sylvain, einnig þekktur sem \"Biquette\", skapaði Náttúrulegan Tíma. Allt hófst með einfaldri hugmynd: Það er óþarflega flókið hvernig við skiptum tímanum. Fylgjum við því nógu lengi færumst við úr takti við hringrásir lífríkisins.",
+      "links": { "site": "Önnur verkefni höfundarins", "shop": "Kaupa klukku", "donate": "Styrkja verkefnið" },
+      "authorLabel": "Uppruninn",
       "supportLabel": "Styðja verkefnið",
       "support": "Náttúrulegur Tími er frjálst verkefni með opinn hugbúnað. Til að geta haldið sjálfstæðu starfi sínu áfram smíðar Sylvain klukkur í höndunum og stillir hverja þeirra nákvæmlega fyrir staðinn þar sem þú býrð. Einstök verk og takmarkaðar seríur."
     },

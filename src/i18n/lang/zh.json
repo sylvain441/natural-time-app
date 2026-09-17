@@ -58,21 +58,18 @@
       "close": "关闭公告"
     },
     "commons": {
+      "kicker": "开源",
       "lead": "自然时间不是一件商品。",
-      "statement": "它是一种属于公共领域的{convention}，{units}。它不属于任何人，也属于每一位使用它的人。",
-      "conventionWord": "计时约定",
-      "unitsPhrase": "就像米一样",
+      "statement": "它是一种属于公共领域的**计时约定**，**就像米、升或克一样**。它不属于任何人，也属于每一位使用它的人。",
       "cta": "在 GitHub 上查看 Natural Time",
-      "author": {
-        "text": "自然时间由 Sylvain（网名“Biquette”）创立。",
-        "hunch": "一切源于一个简单的直觉：我们日常划分时间的方式复杂得毫无必要。长久照着它生活，我们便逐渐偏离了生命世界的周期。"
-      },
+      "author": "自然时间由 Sylvain（网名“Biquette”）创立。一切源于一个简单的直觉：我们日常划分时间的方式复杂得毫无必要。长久照着它生活，我们便逐渐偏离了生命世界的周期。",
       "links": {
-        "site": "Sylvain 的其他项目",
+        "site": "作者的其他项目",
         "shop": "购买时钟",
         "donate": "捐助项目"
       },
-      "supportLabel": "支持项目",
+      "authorLabel": "缘起",
+      "supportLabel": "支持这个项目",
       "support": "Natural Time 是一个自由开源项目。为了维持独立创作，Sylvain 亲手制作时钟，并根据你的所在地精确调校。每一件都是独一无二的作品或限量制作。"
     },
     "naturalClock": {

@@ -58,20 +58,17 @@
       "close": "Fermer l'annonce"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Le temps naturel n'est pas un produit.",
-      "statement": "C'est {convention} appartenant au domaine public, {units}. Elle n'est la propriété de personne, sinon de ceux qui s'en servent au quotidien.",
-      "conventionWord": "une convention",
-      "unitsPhrase": "comme le mètre",
+      "statement": "C'est **une convention**\nappartenant au domaine public,\n**comme le mètre**, le litre ou le gramme.\nElle n'est la propriété de personne,\nsinon de ceux qui s'en servent\nau quotidien.",
       "cta": "Natural Time sur GitHub",
-      "author": {
-        "text": "Le temps naturel a été créé par Sylvain (alias « Biquette »).",
-        "hunch": "Tout est né d'une intuition : la division du temps qu'on utilise au quotidien est compliquée pour rien. Et à force de la suivre, on finit décalé des cycles du monde vivant."
-      },
+      "author": "Le temps naturel a été créé par Sylvain, alias « Biquette ». Tout est né d'une intuition : notre façon de découper le temps est compliquée pour rien. Et à force de la suivre, on finit décalé des cycles du vivant.",
       "links": {
-        "site": "Les autres projets de Sylvain",
+        "site": "Autres projets de l'auteur",
         "shop": "Acheter une horloge",
         "donate": "Faire un don"
       },
+      "authorLabel": "Les origines",
       "supportLabel": "Soutenir le projet",
       "support": "Le projet Natural Time est libre et open source. Pour auto-financer sa vie d'inventeur, Sylvain fabrique des horloges artisanales, réglées exactement pour ton lieu de vie. Pièces uniques et séries limitées."
     },

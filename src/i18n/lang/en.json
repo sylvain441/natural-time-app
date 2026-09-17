@@ -58,20 +58,17 @@
       "close": "Close the announcement"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Natural Time is not a product.",
-      "statement": "It is {convention} in the public domain, {units}. It belongs to no one, and to everyone who uses it.",
-      "conventionWord": "a convention",
-      "unitsPhrase": "like the metre",
+      "statement": "It is **a convention** in the public domain, **like the metre**, the litre or the gram. It belongs to no one, and to everyone who uses it.",
       "cta": "Natural Time on GitHub",
-      "author": {
-        "text": "Natural Time was created by Sylvain (alias “Biquette”).",
-        "hunch": "It began with a simple hunch: the way we divide time is needlessly complicated. Follow it long enough, and we drift out of step with the cycles of the living world."
-      },
+      "author": "Natural Time was created by Sylvain, alias “Biquette”. It began with a simple hunch: the way we cut up time is needlessly complicated. Follow it long enough, and you drift out of step with the cycles of the living world.",
       "links": {
-        "site": "Sylvain's other projects",
+        "site": "The author's other projects",
         "shop": "Buy a clock",
         "donate": "Make a donation"
       },
+      "authorLabel": "The origins",
       "supportLabel": "Support the project",
       "support": "The Natural Time project is free and open source. To sustain his independent work as an inventor, Sylvain builds handmade clocks, each one set for the exact place you live. One-off pieces and limited runs."
     },

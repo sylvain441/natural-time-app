@@ -6,15 +6,9 @@
     <div class="project-statement__copy">
       <div class="project-statement__disc">
         <div class="project-statement__disc-in">
+          <p class="project-statement__kicker">{{ $t('welcome.commons.kicker') }}</p>
           <h2 class="project-statement__lead">{{ $t('welcome.commons.lead') }}</h2>
-          <i18n-t keypath="welcome.commons.statement" tag="p" class="project-statement__statement" scope="global">
-            <template #convention>
-              <span class="project-statement__highlight">{{ $t('welcome.commons.conventionWord') }}</span>
-            </template>
-            <template #units>
-              <span class="project-statement__highlight">{{ $t('welcome.commons.unitsPhrase') }}</span>
-            </template>
-          </i18n-t>
+          <p class="project-statement__statement"><template v-for="(part, i) in statement" :key="i"><span v-if="part.marked" class="project-statement__highlight">{{ part.text }}</span><template v-else>{{ part.text }}</template></template></p>
 
           <a class="project-statement__cta"
              href="https://github.com/sylvain441/natural-time"
@@ -28,30 +22,31 @@
         </div>
       </div>
 
-      <p class="project-statement__author">
-        <span>{{ $t('welcome.commons.author.text') }}</span>
-        <span>{{ $t('welcome.commons.author.hunch') }}</span>
-      </p>
+      <div class="project-statement__blocks">
+        <section class="project-statement__block project-statement__block--author">
+          <h3 class="project-statement__block-label">{{ $t('welcome.commons.authorLabel') }}</h3>
+          <p class="project-statement__block-text">{{ $t('welcome.commons.author') }}</p>
+          <nav class="project-statement__block-doors">
+            <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="project-statement__pill">
+              {{ $t('welcome.commons.links.site') }}
+              <span class="project-statement__pill-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </nav>
+        </section>
 
-      <nav class="project-statement__doors">
-        <a href="https://biquette.xyz" target="_blank" rel="noopener noreferrer" class="project-statement__door">
-          {{ $t('welcome.commons.links.site') }}
-          <span class="project-statement__door-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-      </nav>
-
-      <section class="project-statement__support">
-        <h3 class="project-statement__support-label">{{ $t('welcome.commons.supportLabel') }}</h3>
-        <p class="project-statement__support-text">{{ $t('welcome.commons.support') }}</p>
-        <nav class="project-statement__support-doors">
-          <a href="https://shop.biquette.xyz" target="_blank" rel="noopener noreferrer" class="project-statement__pill project-statement__pill-solid">
-            {{ $t('welcome.commons.links.shop') }}
-          </a>
-          <a href="https://biquette.xyz/soutenir-mes-recherches/#/portal/support" target="_blank" rel="noopener noreferrer" class="project-statement__pill">
-            {{ $t('welcome.commons.links.donate') }}
-          </a>
-        </nav>
-      </section>
+        <section class="project-statement__block project-statement__block--support">
+          <h3 class="project-statement__block-label">{{ $t('welcome.commons.supportLabel') }}</h3>
+          <p class="project-statement__block-text">{{ $t('welcome.commons.support') }}</p>
+          <nav class="project-statement__block-doors">
+            <a href="https://shop.biquette.xyz" target="_blank" rel="noopener noreferrer" class="project-statement__pill project-statement__pill-solid">
+              {{ $t('welcome.commons.links.shop') }}
+            </a>
+            <a href="https://biquette.xyz/soutenir-mes-recherches/#/portal/support" target="_blank" rel="noopener noreferrer" class="project-statement__pill">
+              {{ $t('welcome.commons.links.donate') }}
+            </a>
+          </nav>
+        </section>
+      </div>
     </div>
 
     <PaperTexture class="project-statement__paper" :opacity="0.42" blend="multiply" :seed="77" />
@@ -59,10 +54,22 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import PaperTexture from '@/components/PaperTexture.vue';
 import '@fontsource/poppins/400.css';
 import '@fontsource/poppins/500.css';
 
+const { t } = useI18n();
+
+// The sentence is one translated string carrying its own emphasis and, where a
+// translation wants to set them, its own line breaks. Splitting on the capture
+// group leaves the emphasised runs on the odd indices.
+const statement = computed(() =>
+  t('welcome.commons.statement')
+    .split(/\*\*(.+?)\*\*/g)
+    .map((text, i) => ({ text, marked: i % 2 === 1 }))
+);
 </script>
 
 <style scoped>
@@ -83,10 +90,15 @@ import '@fontsource/poppins/500.css';
   --project-statement-disc-ink: #16140F;
 }
 
+/* Three layers instead of a flat ramp: light falling from the top edge, a
+   vignette closing the foot, and the base gradient underneath. */
 .project-statement__ground {
   position: absolute; inset: 0; z-index: 0;
 
-  background: linear-gradient(180deg, #101827 0%, var(--project-statement-page) 52%, #070B14 100%);
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgb(190 214 255 / .07) 0%, rgb(190 214 255 / 0) 62%),
+    radial-gradient(100% 55% at 50% 100%, rgb(0 0 0 / .32) 0%, rgb(0 0 0 / 0) 72%),
+    linear-gradient(180deg, #101827 0%, var(--project-statement-page) 52%, #070B14 100%);
 }
 
 .project-statement__paper {
@@ -116,10 +128,36 @@ import '@fontsource/poppins/500.css';
   container-type: inline-size;
 }
 
+/* The disc bleeds a warm halo, which keeps it from looking like a sticker */
+.project-statement__disc::before {
+  content: "";
+  position: absolute;
+  inset: -16%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side,
+    rgb(255 204 61 / .17) 0%,
+    rgb(255 204 61 / .07) 52%,
+    rgb(255 204 61 / 0) 78%);
+  pointer-events: none;
+}
+
+/* Wide enough to hold the longest hand-set line of the statement; the lines
+   themselves then decide the shape, and widening further changes nothing. */
 .project-statement__disc-in {
-  width: 72%;
+  width: 82%;
   text-align: center;
   text-wrap: balance;
+}
+
+/* Echoes the labels that head the two blocks below the disc, in the disc's ink */
+.project-statement__kicker {
+  margin-bottom: 3.4cqi;
+  font-size: 2.4cqi;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgb(22 20 15 / .45);
 }
 
 .project-statement__lead {
@@ -129,14 +167,18 @@ import '@fontsource/poppins/500.css';
   color: rgb(22 20 15 / .62);
 }
 
+/* A translation may hand-set its own line breaks to sit well in the circle
+   (French does). They are honoured while the disc is wide enough to hold the
+   longest of them, and collapse back to ordinary wrapping below that. */
 .project-statement__statement {
   margin-top: 3cqi;
   font-weight: 400;
   font-size: 4.2cqi;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
-.project-statement__disc :deep(.project-statement__highlight) {
+.project-statement__highlight {
   --project-statement-white: 255 255 255;
   background-image: linear-gradient(101deg,
     rgb(var(--project-statement-white) / 0) 0.5%,
@@ -193,7 +235,7 @@ import '@fontsource/poppins/500.css';
 }
 
 @container (max-width: 26rem) {
-  .project-statement__disc-in { width: 68%; }
+  .project-statement__statement { white-space: normal; }
   .project-statement__cta {
     margin-top: 3.6rem;
     margin-top: 3.6cqi;
@@ -202,54 +244,23 @@ import '@fontsource/poppins/500.css';
   }
 }
 
-.project-statement__author {
-  margin: clamp(2.6rem, 5vw, 3.8rem) auto 0;
+/* The author block and the support block are the same object twice over: a
+   label, a paragraph, a row of pills. Only their side of the rule differs. */
+.project-statement__blocks {
+  margin-top: clamp(2.6rem, 5vw, 3.8rem);
+}
+
+.project-statement__block {
+  margin: 0 auto;
   max-width: 32rem;
-  font-size: clamp(.9rem, 1.1vw, 1rem);
-  line-height: 1.8;
-  text-wrap: pretty;
-  color: var(--project-statement-ink);
 }
-
-.project-statement__author span { display: block; }
-.project-statement__author span + span { margin-top: .9em; }
-
-.project-statement__doors {
-  margin-top: clamp(1.5rem, 2.6vw, 2rem);
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: .7rem;
-}
-
-.project-statement__door {
-  display: inline-flex;
-  align-items: center;
-  gap: .5em;
-  padding: .5rem 1.1rem;
-  border: 1px solid rgb(var(--project-statement-edge) / .28);
-  border-radius: 999px;
-  font-size: clamp(.78rem, .95vw, .86rem);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--project-statement-ink);
-  opacity: .85;
-  transition: opacity .25s ease, border-color .25s ease, background-color .25s ease;
-}
-.project-statement__door-arrow { transition: transform .3s ease; }
-.project-statement__door:hover, .project-statement__door:focus-visible {
-  opacity: 1;
-  background: rgb(var(--project-statement-edge) / .07);
-  border-color: rgb(var(--project-statement-edge) / .5);
-}
-.project-statement__door:hover .project-statement__door-arrow { transform: translateX(2px); }
-
-.project-statement__support {
-  margin: clamp(2.6rem, 5vw, 3.6rem) auto 0;
-  max-width: 32rem;
+.project-statement__block + .project-statement__block {
+  margin-top: clamp(2.6rem, 5vw, 3.6rem);
   padding-top: clamp(1.8rem, 3.4vw, 2.6rem);
   border-top: 1px solid rgb(var(--project-statement-edge) / .14);
 }
 
-.project-statement__support-label {
+.project-statement__block-label {
   margin: 0;
   font-size: clamp(.68rem, .82vw, .74rem);
   font-weight: 500;
@@ -258,15 +269,14 @@ import '@fontsource/poppins/500.css';
   color: rgb(var(--project-statement-edge) / .5);
 }
 
-.project-statement__support-text {
+.project-statement__block-text {
   margin-top: .9rem;
   font-size: clamp(.86rem, 1.05vw, .95rem);
   line-height: 1.75;
   text-wrap: pretty;
   color: rgb(var(--project-statement-edge) / .72);
 }
-
-.project-statement__support-doors {
+.project-statement__block-doors {
   margin-top: 1.3rem;
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: .7rem;
@@ -275,6 +285,7 @@ import '@fontsource/poppins/500.css';
 .project-statement__pill {
   display: inline-flex;
   align-items: center;
+  gap: .5em;
   padding: .58rem 1.2rem;
   border-radius: 999px;
   background: rgb(var(--project-statement-edge) / .1);
@@ -290,6 +301,10 @@ import '@fontsource/poppins/500.css';
   border-color: rgb(var(--project-statement-edge) / .3);
 }
 
+.project-statement__pill-arrow { transition: transform .3s ease; }
+.project-statement__pill:hover .project-statement__pill-arrow,
+.project-statement__pill:focus-visible .project-statement__pill-arrow { transform: translateX(2px); }
+
 .project-statement__pill-solid {
   background: #FFFFFF;
   border-color: rgb(255 255 255 / .9);
@@ -300,7 +315,51 @@ import '@fontsource/poppins/500.css';
   border-color: #FFFFFF;
 }
 
+/* Past this width the two blocks read as one long ribbon under the disc: they
+   turn to face each other instead, and the rule that separated them stands up
+   into the gutter between the columns. */
+@media (min-width: 64rem) {
+  .project-statement__copy { max-width: 62rem; }
+
+  .project-statement__blocks {
+    --project-statement-gutter: clamp(2.5rem, 4vw, 3.5rem);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--project-statement-gutter);
+
+    /* Drawn as a background rather than a column border: a border sits at the
+       start of the second column, half a gutter off the axis the disc is
+       centred on, while this lands on the axis itself. */
+    background: linear-gradient(rgb(var(--project-statement-edge) / .14) 0 100%)
+      50% 0 / 1px 100% no-repeat;
+  }
+
+  /* Both blocks stretch to the taller one, so pushing the pills down lands the
+     two rows of them on the same line. */
+  .project-statement__block {
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-statement__block-doors { margin-top: auto; padding-top: 1.3rem; }
+
+  .project-statement__block--author { text-align: right; }
+  .project-statement__block--author .project-statement__block-doors { justify-content: flex-end; }
+
+  /* Matches the selector that draws the rule above the block on one column,
+     so the reset wins and both blocks start on the same line. */
+  .project-statement__block + .project-statement__block--support {
+    text-align: left;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .project-statement__block--support .project-statement__block-doors { justify-content: flex-start; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .project-statement__cta, .project-statement__door, .project-statement__door-arrow, .project-statement__pill { transition: none; }
+  .project-statement__cta, .project-statement__pill, .project-statement__pill-arrow { transition: none; }
 }
 </style>

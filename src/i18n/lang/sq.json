@@ -58,20 +58,17 @@
       "close": "Mbyll njoftimin"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Koha Natyrore nuk është produkt.",
-      "statement": "Është {convention} në domenin publik, {units}. Nuk i përket askujt dhe njëkohësisht u përket të gjithëve që e përdorin.",
-      "conventionWord": "një konventë",
-      "unitsPhrase": "si metri",
+      "statement": "Është **një konventë** në domenin publik, **si metri**, litri ose grami. Nuk i përket askujt dhe njëkohësisht u përket të gjithëve që e përdorin.",
       "cta": "Koha Natyrore në GitHub",
-      "author": {
-        "text": "Koha Natyrore u krijua nga Sylvain, i njohur edhe si «Biquette».",
-        "hunch": "Gjithçka nisi nga një ide e thjeshtë: mënyra se si e ndajmë kohën është pa nevojë e ndërlikuar. Duke e ndjekur për një kohë të gjatë, humbasim ritmin e cikleve të botës së gjallë."
-      },
+      "author": "Koha Natyrore u krijua nga Sylvain, i njohur edhe si «Biquette». Gjithçka nisi nga një ide e thjeshtë: mënyra se si e ndajmë kohën është pa nevojë e ndërlikuar. Duke e ndjekur për një kohë të gjatë, humbasim ritmin e cikleve të botës së gjallë.",
       "links": {
-        "site": "Projektet e tjera të Sylvain",
+        "site": "Projektet e tjera të autorit",
         "shop": "Bli një orë",
         "donate": "Bëj një dhurim"
       },
+      "authorLabel": "Origjina",
       "supportLabel": "Mbështet projektin",
       "support": "Projekti Koha Natyrore është falas dhe me burim të hapur. Për të vazhduar punën e tij të pavarur, Sylvain ndërton orë artizanale, secilën të rregulluar posaçërisht për vendin ku jeton. Pjesë unike dhe seri të kufizuara."
     },

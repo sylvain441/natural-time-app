@@ -41,16 +41,13 @@
       "close": "Sulje ilmoitus"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Luonnollinen Aika ei ole tuote.",
-      "statement": "Se on {convention}, {units}. Se ei kuulu kenellekään ja kuuluu kaikille, jotka sitä käyttävät.",
-      "conventionWord": "kaikille kuuluva käytäntö",
-      "unitsPhrase": "metrin tavoin",
+      "statement": "Se on **kaikille kuuluva käytäntö**, **metrin, litran tai gramman tavoin**. Se ei kuulu kenellekään ja kuuluu kaikille, jotka sitä käyttävät.",
       "cta": "Luonnollinen Aika GitHubissa",
-      "author": {
-        "text": "Luonnollisen Ajan loi Sylvain, joka tunnetaan myös nimellä \"Biquette\".",
-        "hunch": "Kaikki alkoi yksinkertaisesta ajatuksesta: tapamme jakaa aikaa on tarpeettoman monimutkainen. Kun noudatamme sitä tarpeeksi kauan, etäännymme elävän maailman rytmeistä."
-      },
-      "links": { "site": "Sylvainin muut projektit", "shop": "Osta kello", "donate": "Lahjoita" },
+      "author": "Luonnollisen Ajan loi Sylvain, joka tunnetaan myös nimellä \"Biquette\". Kaikki alkoi yksinkertaisesta ajatuksesta: tapamme jakaa aikaa on tarpeettoman monimutkainen. Kun noudatamme sitä tarpeeksi kauan, etäännymme elävän maailman rytmeistä.",
+      "links": { "site": "Tekijän muut projektit", "shop": "Osta kello", "donate": "Lahjoita" },
+      "authorLabel": "Alkuperä",
       "supportLabel": "Tue projektia",
       "support": "Luonnollinen Aika on vapaa avoimen lähdekoodin projekti. Jatkaakseen itsenäistä työtään Sylvain rakentaa käsintehtyjä kelloja, joista jokainen säädetään tarkasti sinun asuinpaikkaasi varten. Yksittäiskappaleita ja pieniä sarjoja."
     },

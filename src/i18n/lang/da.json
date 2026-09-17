@@ -58,20 +58,17 @@
       "close": "Luk meddelelsen"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Naturlig Tid er ikke et produkt.",
-      "statement": "Det er {convention} i det offentlige domæne, {units}. Den tilhører ingen og alle, der bruger den.",
-      "conventionWord": "en konvention",
-      "unitsPhrase": "ligesom meteren",
+      "statement": "Det er **en konvention** i det offentlige domæne, **ligesom meteren**, literen eller grammet. Den tilhører ingen og alle, der bruger den.",
       "cta": "Naturlig Tid på GitHub",
-      "author": {
-        "text": "Naturlig Tid blev skabt af Sylvain, også kendt som \"Biquette\".",
-        "hunch": "Det begyndte med en enkel tanke: Den måde, vi opdeler tiden på, er unødigt kompliceret. Følger vi den længe nok, kommer vi ud af takt med den levende verdens cyklusser."
-      },
+      "author": "Naturlig Tid blev skabt af Sylvain, også kendt som \"Biquette\". Det begyndte med en enkel tanke: Den måde, vi opdeler tiden på, er unødigt kompliceret. Følger vi den længe nok, kommer vi ud af takt med den levende verdens cyklusser.",
       "links": {
-        "site": "Sylvains andre projekter",
+        "site": "Forfatterens andre projekter",
         "shop": "Køb et ur",
         "donate": "Giv et bidrag"
       },
+      "authorLabel": "Oprindelsen",
       "supportLabel": "Støt projektet",
       "support": "Naturlig Tid er et frit projekt med åben kildekode. For at kunne fortsætte sit uafhængige arbejde bygger Sylvain håndlavede ure, som hver især indstilles præcist til det sted, du bor. Unikke eksemplarer og begrænsede serier."
     },

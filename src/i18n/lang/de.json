@@ -45,17 +45,14 @@
       "close": "Ankündigung schließen"
     },
     "commons": {
+      "kicker": "Open source",
       "lead": "Die Natürliche Zeit ist kein Produkt.",
-      "statement": "Sie ist {convention} und gehört zum Gemeingut, {units}. Sie gehört niemandem und zugleich allen, die sie nutzen.",
-      "conventionWord": "eine Konvention",
-      "unitsPhrase": "wie der Meter",
+      "statement": "Sie ist **eine Konvention** und gehört zum Gemeingut, **wie der Meter**, der Liter oder das Gramm. Sie gehört niemandem und zugleich allen, die sie nutzen.",
       "cta": "Natürliche Zeit auf GitHub",
-      "author": {
-        "text": "Die Natürliche Zeit wurde von Sylvain (alias „Biquette“) entwickelt.",
-        "hunch": "Am Anfang stand eine einfache Ahnung: Unsere Einteilung der Zeit ist unnötig kompliziert. Wenn wir ihr lange genug folgen, geraten wir aus dem Takt mit den Zyklen der lebendigen Welt."
-      },
-      "links": { "site": "Weitere Projekte von Sylvain", "shop": "Eine Uhr kaufen", "donate": "Spenden" },
-      "supportLabel": "Projekt unterstützen",
+      "author": "Die Natürliche Zeit wurde von Sylvain (alias „Biquette“) entwickelt. Am Anfang stand eine einfache Ahnung: Unsere Einteilung der Zeit ist unnötig kompliziert. Wenn wir ihr lange genug folgen, geraten wir aus dem Takt mit den Zyklen der lebendigen Welt.",
+      "links": { "site": "Weitere Projekte des Autors", "shop": "Eine Uhr kaufen", "donate": "Spenden" },
+      "authorLabel": "Die Anfänge",
+      "supportLabel": "Das Projekt unterstützen",
       "support": "Das Projekt Natürliche Zeit ist frei und quelloffen. Damit er unabhängig weiterarbeiten kann, baut Sylvain Uhren von Hand, die genau auf deinen Wohnort eingestellt sind. Einzelstücke und limitierte Serien."
     },
     "naturalClock": {
